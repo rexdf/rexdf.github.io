@@ -1,0 +1,174 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<script type="text/javascript">var _speedMark=new Date</script>
+<meta charset="utf-8">
+<title>[转]Linux LVM 逻辑卷管理 - Rexdf</title>
+<meta name="author" content="Rexdf">
+<meta name="description" content="PV(Physical Volume) 物理卷。可以是单独磁盘，也可以是硬盘分区 VG(Volume Group) 卷组。是PV的组合，可以看成单独的逻辑磁盘 LV(Logical Volume) 逻辑分区。相当于物理分区的/dev/hdaX PE(Physical Extent) 物理范围。 &hellip;">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' data: https://hm.baidu.com https://tajs.qq.com https://ssl.google-analytics.com https://static.rexdf.org https://*.disquscdn.com https://rexdf.disqus.com https://api.github.com https://ssl.google-analytics.com https://disqus.com https://analytics.rexdf.net; connect-src 'self' https://static.rexdf.org https://analytics.rexdf.net https://hm.baidu.com; img-src data: https://*; font-src data: https://*; child-src 'none'; style-src 'self' 'unsafe-inline' https://*; frame-src 'self' https://t.rexdf.org http://t.rexdf.org https://rexdf.disqus.com https://disqus.com">
+<link rel="canonical" href="https://i.rexdf.org/blog/2013/03/17/zhuan-Linux-LVM-luo-ji-juan-guan-li">
+<link rel="dns-prefetch" href="https://static.rexdf.org/">
+<link href="/favicon.ico" rel="icon">
+<link id="main-css" href="/stylesheets/screen.css" media="screen,projection" rel="stylesheet" type="text/css" title="pc">
+<link href="/stylesheets/screen_mobile.css" rel="alternate stylesheet" type="text/css" title="mobile">
+<link href="/atom.xml" rel="alternate" title="Rexdf" type="application/atom+xml">
+<script src="/javascripts/libs/jquery.min.js"></script>
+<script src="/javascripts/octopress-rexdf.min.js" type="text/javascript"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+      
+      toggle_theme();
+  });
+</script>
+<script type="text/javascript" async src="https://static.rexdf.org/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript">var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-55590409-1"]),_gaq.push(["_trackPageview"]),function(){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(t,e)}()</script>
+<script>var _hmt=_hmt||[];!function(){var e=document.createElement("script");e.src="//hm.baidu.com/hm.js?32192d95b89fbefa0875c4c95adb1412";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}()</script>
+<script src="/javascripts/fancybox/jquery.fancybox.pack.js"></script>
+<link rel="stylesheet" type="text/css" href="/javascripts/fancybox/jquery.fancybox.css">
+<script type="text/javascript">var _paq=_paq||[];_paq.push(["trackPageView"]),_paq.push(["enableLinkTracking"]),function(){var e="https://analytics.rexdf.net/";_paq.push(["setTrackerUrl",e+"piwik.php"]),_paq.push(["setSiteId","1"]);var a=document,t=a.createElement("script"),p=a.getElementsByTagName("script")[0];t.type="text/javascript",t.async=!0,t.defer=!0,t.src=e+"piwik.js",p.parentNode.insertBefore(t,p)}()</script>
+</head>
+<body class="low-contrast-linen-wptouch-bg">
+<header role="banner"><hgroup>
+<h1 id="header-title"><a href="/">Rexdf</a></h1>
+<h2 id="subtitle">The devil is in the Details.</h2>
+</hgroup>
+</header>
+<nav role="navigation"><ul class="subscription" data-subscription="rss">
+<li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+</ul>
+<form action="https://google.com/search" method="get">
+<fieldset role="search">
+<input type="hidden" name="q" value="site:i.rexdf.org">
+<input class="search" type="text" name="q" results="0" placeholder="Search">
+</fieldset>
+</form>
+<ul class="main-navigation">
+<li><a href="/">Blog</a></li>
+<li><a href="/blog/archives/">Archives</a></li>
+<li><a href="/idea/">Idea</a></li>
+<li><a href="/share/">Share</a></li>
+<li><a href="/books/">Books</a></li>
+<li><a href="/donate/">Donate</a></li>
+<li><a target="_blank" href="https://blog.rexdf.org" style="font-family:Shadows Into Light">Main-Blog</a></li>
+</ul>
+</nav>
+<div id="main">
+<div id="content">
+<div>
+<article class="hentry" role="article">
+<header>
+<h1 class="entry-title">[转]Linux LVM 逻辑卷管理</h1>
+<p class="meta">
+<time class="data-article month-03 season-spring" datetime="2013-03-17T13:24:00+08:00" pubdate><span class="month">Mar</span> <span class="day">17th</span> <span class="year">2013</span></time>
+| <a href="#disqus_thread" data-disqus-identifier="https://i.rexdf.org">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>PV(Physical Volume) 物理卷。可以是单独磁盘，也可以是硬盘分区 VG(Volume Group) 卷组。是PV的组合，可以看成单独的逻辑磁盘 LV(Logical Volume) 逻辑分区。相当于物理分区的/dev/hdaX PE(Physical Extent) 物理范围。VG单元，类似于RAID的条带大小。 当多个PV组成一个VG时，LVM会在所有PV上做类似格式化的动作， 将每个PV切成一块块的空间，这一块块的空间就称为PE, 通常是4MB。 LE(Logical Extent) 逻辑范围。LV的组成单位。大小为PE的倍数(通常为1:1) 那么，最常用的3个名词和意义列表如下： 名词 意义 操作系统对应设备 PV 物理卷 /dev/hdaX VG 卷组 /dev/ (通常是个目录) LV 逻辑卷 /dev// 如果我们要使用lvm，顺序是pv-&gt;vg-&gt;lv。 就是说，我们先创建一个物理卷(对应一个物理硬盘分区或者一个物理硬盘)，然后把这些分区/硬盘加入 一个卷组中(相当于一个逻辑上的大硬盘)，然后我们在这个大硬盘上划分分区lv(逻辑上的分区，就是逻 辑卷这样，我们把lv逻辑卷格式化以后，就可以像使用一个传统分区那样，把它挂载到一个挂载点上，需要的时候，这个逻辑卷可以被动态缩放。 我们可以用一个长方蛋糕来说明这个对应关系。物理硬盘相当于一个长方蛋糕，我们把它切割成许多快， 每个小块相当于一个pv，然后我们把其中的某些pv重新放在一起，抹上奶油，那么这么些个pv的组合就是 一个新的蛋糕，也就是vg。最后，我们切割这个新蛋糕vg，切出来的小蛋糕就叫做lv。 有一点需要注意，就是/boot区不可以是lvm，因为引导程序lilo/grub并不能识别lvm，就像/boot同样不可以是软raid设备一样。 3) 如何使用lvm,创建逻辑卷的流程和实例 好了，我们来创建一个lv。 比如说，在一个物理硬盘/dev/hda上，我们需要将/dev/hda5,/dev/hda6作为pv 1 fdisk划分hda5,hda6，并且将这两个分区的标志(键入t改)改为(0x)8e 然后用partprobe通知OS磁盘分区的变化 2 pvcreate /dev/hda5 /dev/hda6(-s xxM可设定PE大小) 创建pv hda5,hda6 3 vgcreate rootvg /dev/hda5 /dev/hda6 将hda5,hda6加入逻辑卷组rootvg中 4 lvcreate -L 100M -n lv1 rootvg 从我们的rootvg中，创建一个100M的逻辑卷lv1 5 mkfs.ext3 /dev/rootvg/lv1 格式化我们的lv1，文件系统用ext3 6 mkdir /mnt/lvm;mount /dev/rootvg/lv1 /mnt/lvm 将lv1挂载到/mnt/lvm下 好了，这样一个创建lv的例子完成 4) 如何动态放大/缩小一个逻辑卷/逻辑卷组 我们如何放大lv?比如上面的lv1?流程： 1 lvextend -L 200M /dev/rootvg/lv1 将lv1增加200M 2 ext2online /dev/rootvg/lv1 让lv1容量更改立即生效减小lv，网上很多文章介绍的是ReiserFS，这里我们是ext3文件系统，如果我们需要减少50M： 1 umount /mnt/lvm 这里，需要先卸载分区 2 mke2fs -n /dev/rootvg/lv1 计算lv1的block数 这里一定要加-n参数，这是计算lv1的block数，而不是格式化分区，注意。 并且注意，从MB-&gt;KB这些的计算，都是乘1024，不是1000，这是个细节问题 3 计算减少50M后的block数。从mke2fs -n /dev/rootvg/lv1，我们可以得出2个需要的信息： Block size和blocks，这两个数的乘积就是分区大小A(单位字节)， 我们把需要减小的容量50M换算成字节B，然后A-B的结果除以Block size,就是剩余的block数 4 resize2fs -f /dev/rootvg/lv1 剩余的block数 调整文件系统大小 5 lvreduce -L-50M /dev/rootvg/lv1 调整lv分区大小，减小50M 6 重新mount，df察看一下容量的减小 动态加大VG： 这里我们新增一个PV并加入VG 1 fdisk增加一个(0x)8e标志的分区/dev/hda7 2 vgextend rootvg /dev/hda7 好了，vg增大了 缩小逻辑卷组VG： 1 搬移PV中的资料(只限于同一VG中) #pvmove [-n ] [] 如 #pvmove /dev/hda5 /dev/hda6 将VG中pv hda5的内容搬移到hda6中 pvmove /dev/hda5(也可以这样，lvm决定hda2的内容被复制到哪里) 2 vgreduce rootvg /dev/hda5 把vg hda5移除 5) 如何删除逻辑卷/逻辑卷组 删除VG流程： 1 umount /挂接点 2 lvremove /dev/rootvg/lv1 移除逻辑卷，这里是lv1 3 vgchange -a n rootvg(关闭rootvg) 4 vgremove rootvg 移除rootvg 6) lvm相关命令 这个表格，你可以在RHCE_Study_Guide.pdf上找到 Physical Volume Volume Group Logical Volume scan pvscan vgscan lvscan create pvcreate vgcreate lvcreate display pvdispaly vgdisplay lvdisplay remove pvremove vgremove lvremove</p>
+</div>
+<footer>
+<p class="meta">
+<span class="byline author vcard">Posted by <span class="fn">Rexdf</span></span>
+<time class="data-article month-03 season-spring" datetime="2013-03-17T13:24:00+08:00" pubdate><span class="month">Mar</span> <span class="day">17th</span> <span class="year">2013</span></time>
+</p>
+<div class="sharing">
+</div>
+<p class="meta">
+<a class="basic-alignment left" href="/blog/2013/03/17/Codeforces-Round-172-Div-2-Rectangle-Puzzle/" title="Previous Post: Codeforces Round #172 (Div. 2)  Rectangle Puzzle">&laquo; Codeforces Round #172 (Div. 2) Rectangle Puzzle</a>
+<a class="basic-alignment right" href="/blog/2013/03/17/Codeforces-Round-173-Div-2-Painting-Eggs/" title="Next Post: Codeforces Round #173 (Div. 2) Painting Eggs">Codeforces Round #173 (Div. 2) Painting Eggs &raquo;</a>
+</p>
+</footer>
+</article>
+<section>
+<h1>Comments</h1>
+<div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
+</div>
+<aside class="sidebar">
+<section>
+<h1>Categories</h1>
+<ul id="categories">
+<li class="category"><a href="/blog/categories/acm/">ACM <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/algorithm/">Algorithm <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/assembly/">Assembly <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/cygwin/">Cygwin <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/gnu/">GNU <sup>8</sup></a></li>
+<li class="category"><a href="/blog/categories/math/">Math <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/octopress/">Octopress <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/programming/">Programming <sup>6</sup></a></li>
+<li class="category"><a href="/blog/categories/security/">Security <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sublime/">Sublime <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/synology/">Synology <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sysadmin/">SysAdmin <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/web/">Web <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/windows/">Windows <sup>7</sup></a></li>
+<li class="category"><a href="/blog/categories/proxmox/">proxmox <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/ri-chang/">日常 <sup>37</sup></a></li>
+</ul>
+</section>
+<section>
+<h1>Recent Posts</h1>
+<ul id="recent_posts">
+<li class="post">
+<a href="/blog/2024/12/16/fu-wu-qi-wa-kuang-bing-du-de-cha-sha/">服务器挖矿病毒的查杀</a>
+</li>
+<li class="post">
+<a href="/blog/2021/07/11/apple-m1-bian-yi-tensorflow/">Apple M1 编译tensorflow</a>
+</li>
+<li class="post">
+<a href="/blog/2021/02/27/chromiumbian-ma-qi-wen-ti/">Chromium编码器问题</a>
+</li>
+<li class="post">
+<a href="/blog/2020/12/13/proxmoxbi-ji/">Proxmox笔记</a>
+</li>
+<li class="post">
+<a href="/blog/2020/11/15/lun-yan-du-yu-shen-du/">论广度与深度</a>
+</li>
+</ul>
+</section>
+<section>
+<iframe frameborder="0" scrolling="no" referrerpolicy="unsafe-url" style="width:283px;height:200px" src="https://t.rexdf.org/?m=app&a=showwidget&name=rexdf&type=1&width=283px&height=500px"></iframe>
+</section>
+<section>
+<h1>GitHub Repos</h1>
+<ul id="gh_repos">
+<li class="loading">Status updating...</li>
+</ul>
+<a href="https://github.com/rexdf">@rexdf</a> on GitHub
+<script type="text/javascript">$(document).ready(function(){if(!window.jXHR){var e=document.createElement("script");e.type="text/javascript",e.src="/javascripts/libs/jXHR.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}github.showRepos({user:"rexdf",count:0,skip_forks:!0,target:"#gh_repos"})})</script>
+</section>
+</aside>
+</div>
+</div>
+<footer role="contentinfo"><p>
+<span class="credit">Copyright &copy; 2024 - Rexdf -</span> |
+<span class="credit">Powered by <a name="bottoms" target="_blank" href="http://octopress.org">Octopress</a></span> |
+<span class="credit">Theme by ：<a href="https://blog.rexdf.org/" target="_blank" rel="theme">Rexdf</a></span> |
+<span class="credit">Host by：<a href="https://github.com/" target="_blank" rel="host">Github.com</a></span> |
+<span class="credit">版权声明：<a href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" target="_blank" rel="license">CC BY-NC-SA 3.0</a><img src="https://analytics.rexdf.net/piwik.php?idsite=1&amp;rec=1" style="border:0" alt="" referrerpolicy="no-referrer-when-downgrade"></span>|
+<span class="credit"><a href="/sitemap.xml" rel="sitemap">sitemap</a></span>
+</p>
+<script type="text/javascript" src="https://tajs.qq.com/stats?sId=30296377" charset="UTF-8"></script>
+</footer>
+<script type="text/javascript">var disqus_shortname="rexdf",disqus_identifier="https://i.rexdf.org/blog/2013/03/17/zhuan-Linux-LVM-luo-ji-juan-guan-li/",disqus_url="https://i.rexdf.org/blog/2013/03/17/zhuan-Linux-LVM-luo-ji-juan-guan-li/",disqus_script="embed.js";!function(){var e=document.createElement("script");e.type="text/javascript",e.async=!0,e.src="//"+disqus_shortname+".disqus.com/"+disqus_script,(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(e)}()</script>
+<script type="text/javascript">$(function(){$(".entry-content").each(function(t){var r=t;$(this).find("img.fancybox").each(function(){var t=$(this),a=t.attr("title"),n=t.attr("class");t.removeAttr("class"),t.wrap('<a href="'+this.src+'" class="'+n+'" rel="gallery'+r+'" />'),""!=a&&t.parent().attr("title",a)})}),$(".fancybox").fancybox()})</script>
+</body>
+</html>

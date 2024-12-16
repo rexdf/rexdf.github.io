@@ -1,0 +1,176 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<script type="text/javascript">var _speedMark=new Date</script>
+<meta charset="utf-8">
+<title>对于Oracle锁的一些理论总结 - Rexdf</title>
+<meta name="author" content="Rexdf">
+<meta name="description" content="首先什么是锁呢？可以理解为他是对一种共享资源并发访问的一种控制：） 在数据库中，基本的锁类型有两类，分别是 X-排他锁：如果对象被一个排他锁给琐住，那么按照锁的相容性来讲其他会话就不能够在对这个会话所加锁的对象加任何的锁。 S-共享锁：如果对象被一个共享锁给锁住， &hellip;">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' data: https://hm.baidu.com https://tajs.qq.com https://ssl.google-analytics.com https://static.rexdf.org https://*.disquscdn.com https://rexdf.disqus.com https://api.github.com https://ssl.google-analytics.com https://disqus.com https://analytics.rexdf.net; connect-src 'self' https://static.rexdf.org https://analytics.rexdf.net https://hm.baidu.com; img-src data: https://*; font-src data: https://*; child-src 'none'; style-src 'self' 'unsafe-inline' https://*; frame-src 'self' https://t.rexdf.org http://t.rexdf.org https://rexdf.disqus.com https://disqus.com">
+<link rel="canonical" href="https://i.rexdf.org/blog/2011/11/23/dui-yu-Oracle-suo-de-yi-xie-li-lun-zong-jie">
+<link rel="dns-prefetch" href="https://static.rexdf.org/">
+<link href="/favicon.ico" rel="icon">
+<link id="main-css" href="/stylesheets/screen.css" media="screen,projection" rel="stylesheet" type="text/css" title="pc">
+<link href="/stylesheets/screen_mobile.css" rel="alternate stylesheet" type="text/css" title="mobile">
+<link href="/atom.xml" rel="alternate" title="Rexdf" type="application/atom+xml">
+<script src="/javascripts/libs/jquery.min.js"></script>
+<script src="/javascripts/octopress-rexdf.min.js" type="text/javascript"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+      
+      toggle_theme();
+  });
+</script>
+<script type="text/javascript" async src="https://static.rexdf.org/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript">var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-55590409-1"]),_gaq.push(["_trackPageview"]),function(){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(t,e)}()</script>
+<script>var _hmt=_hmt||[];!function(){var e=document.createElement("script");e.src="//hm.baidu.com/hm.js?32192d95b89fbefa0875c4c95adb1412";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}()</script>
+<script src="/javascripts/fancybox/jquery.fancybox.pack.js"></script>
+<link rel="stylesheet" type="text/css" href="/javascripts/fancybox/jquery.fancybox.css">
+<script type="text/javascript">var _paq=_paq||[];_paq.push(["trackPageView"]),_paq.push(["enableLinkTracking"]),function(){var e="https://analytics.rexdf.net/";_paq.push(["setTrackerUrl",e+"piwik.php"]),_paq.push(["setSiteId","1"]);var a=document,t=a.createElement("script"),p=a.getElementsByTagName("script")[0];t.type="text/javascript",t.async=!0,t.defer=!0,t.src=e+"piwik.js",p.parentNode.insertBefore(t,p)}()</script>
+</head>
+<body class="low-contrast-linen-wptouch-bg">
+<header role="banner"><hgroup>
+<h1 id="header-title"><a href="/">Rexdf</a></h1>
+<h2 id="subtitle">The devil is in the Details.</h2>
+</hgroup>
+</header>
+<nav role="navigation"><ul class="subscription" data-subscription="rss">
+<li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+</ul>
+<form action="https://google.com/search" method="get">
+<fieldset role="search">
+<input type="hidden" name="q" value="site:i.rexdf.org">
+<input class="search" type="text" name="q" results="0" placeholder="Search">
+</fieldset>
+</form>
+<ul class="main-navigation">
+<li><a href="/">Blog</a></li>
+<li><a href="/blog/archives/">Archives</a></li>
+<li><a href="/idea/">Idea</a></li>
+<li><a href="/share/">Share</a></li>
+<li><a href="/books/">Books</a></li>
+<li><a href="/donate/">Donate</a></li>
+<li><a target="_blank" href="https://blog.rexdf.org" style="font-family:Shadows Into Light">Main-Blog</a></li>
+</ul>
+</nav>
+<div id="main">
+<div id="content">
+<div>
+<article class="hentry" role="article">
+<header>
+<h1 class="entry-title">对于Oracle锁的一些理论总结</h1>
+<p class="meta">
+<time class="data-article month-11 season-autumn" datetime="2011-11-23T21:42:00+08:00" pubdate><span class="month">Nov</span> <span class="day">23rd</span> <span class="year">2011</span></time>
+| <a href="#disqus_thread" data-disqus-identifier="https://i.rexdf.org">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>首先什么是锁呢？可以理解为他是对一种共享资源并发访问的一种控制：） 在数据库中，基本的锁类型有两类，分别是 X-排他锁：如果对象被一个排他锁给琐住，那么按照锁的相容性来讲其他会话就不能够在对这个会话所加锁的对象加任何的锁。 S-共享锁：如果对象被一个共享锁给锁住，那么按照锁的相容性来讲其他会话除了S锁本身，都不能对这个会话所加锁的对象加任何的锁。 那么在Oracle数据库中呢，锁是多粒度的，而且他的锁类型可以分三大类 1.DML lock:目的是为了保护数据完整性 2.DDL lock:目的是为了保护数据库对象的结构 3.一些内部锁和latch:目的是为了保护数据库的内部结构 这里呢，主要想介绍一下DML锁，因为其他类型的锁基本上只会保持很短的一段时间 DML锁呢共有两种 1.row level lock  2.table level lock 1.TX(row level lock） 先 介绍一下行级锁吧，其实很多人都认为在数据库中，行级锁就是锁定一行（注意我想说Oracle在数据行上面只有排他锁X，而没有共享锁之类的其他锁）。很 多朋友认为一个数据表里有多少行，就会有多少个行级别锁，在Oracle却不是这样，其实需要澄清的是，Oracle对于行级锁是事务级的。也就是说当一 个事务发起一个更新(update)命令时，无论事务所涉及的行有多少，那么Oracle只会分配一个TX锁，所以在这里Oracle是不会像其他数据库 一样有锁的升级(lock escalation)，而且这中锁升级也并不是数据库的特性，但是他会执行锁的转换，Oracle会尽可能的在最低级别加锁。因此对于开销来讲1个锁的 开销和1000000个锁的开销其实是一样的，都没有什么开销。而且Oracle也不会像其他数据库一样来通过维护一个锁的列表来管理锁的资源（比如 DB2，通过LOCKLIST，MAXLOCKS两个参数来度量锁的开销），因为对于DB2来说,锁是一种稀有的资源,需要对锁的使用呢,进行监控,系统 开销就必然很大,而Oracle在锁的维护上就大大的减少了开销，而且也不会出现因为锁数量不够时引起的问题（锁升级-&gt;死锁）. 让我们来对比一下DB2和Oracle在行级的加锁过程 DB2 -—– 加锁的时候 1,找到想锁定那一行的地址 2.在locklist中排队(其实这种锁管理器就是一种串行化的设备,这样做的好处是可以有效的避免活锁) 3.锁定列表 4.搜索列表,看看别人是否已经对我要加锁的那一样上了锁 5,如果没有,则在列表中创建一个entry,表明我已经锁住了这一行 6.对列表解锁 解锁的时候 1.再次进行排队 2.锁住我们的列表 3.在这个列表中搜索,释放我们的锁 4,对列解锁 我们看DB2对于锁管理的开销还是比较的大,锁越多表明,这个操作花的时间就越长,开销就比较大. 那么Oracle是怎么来做的呢?咱们来看一下: 当我想要加锁的时候 1.找到要锁定的一行. 2.定位那一样,然后加锁 对,没错就是这么的简单.让你看到Oracle的实现就是这么的piece of cake!!Oracle不需要传统的锁管理器,事务只是找数据如果数据没有被加锁,则加锁. 那么Oracle没有了锁管理器,看似简单的问题,他是怎么实现的呢? 这 就要从数据块说起,在Oracle中,其最小的逻辑单元就是block,在每一个block头部,都保留有一个ITL的事务列表.每当一个事务要修改 block中所保留的行的时候,就会在在ITL的SLOT中记录一项.而每一行的行首还有一个Lock byte用来表示行的锁定,因此未commit的事务用ITL的slot和lock byte来表示那些被封锁的行. 刚才说过,Oracle的行 级锁是TX,是事务级的.如果一个事务要修改被另一个事务更新还没有提交的数据时,他就会阻塞.等待锁的释放,但是等待的绝对不是行的锁,而是事务锁 (TX)的释放.所以真正的TX锁释放了(而不是隐式的那些行).被阻塞的事务才可以继续进行.所以即使你加了savepoint也无用,回滚到某一个 savepoint只能释放某些隐式行上的锁,但是不能释放真正的事务锁. 那么ITL中的SLOT的数量是由谁决定的呢?其实一个slot项一般会占用block的24个字节,在建对象的时候会通过指定initrans和 maxtrans来设置slot的数目.需要注意的是Oracle 10g中这个maxtrans的设置已经被废弃,意思是说,即使我们指定了maxtrans,Oracle也会忽略这个限制,只要block有空 间,Oracle就会不受约束的扩大ITL中的slot. 2.TM(table level lock) 表级锁,其实就是向表加 锁了(废话嘛).那么在对一个表加锁之前,数据库需要做一些判断,首先是他要对表加的这个锁是否与表中所加的这个锁相容.其次,还要检查该锁是否与表中的 每一行上的锁相容,对于这一点如果我一个表里面有很多的行,那么如果我要对一个表加锁的话,就需要遍历表中的所有行,来查看锁的相容性,这对数据库来讲无 疑是高性能的一个障碍.所以呢,Oracle引出了一个意向锁的概念. 那么什么是意向锁呢?如果我给了一个节点加了一个意向锁,就表示我要对其下 层节点加一个同等类型的锁,意思也就是说要对一个节点加锁,就要先在其上层节点上加个意向锁,这样一来,如果我要对一个表加锁的话,那么只要判断和意向锁 的相容性就好了,不需要再遍历表中的行来检查每一行的锁了,这样系统的效率就大大提高了. 意向锁有那些类型呢? 1.Intent share lock(意向共享锁 IS):如果要对一个对象加S锁,那么首先就要在其上层节点加IS锁 2.Intent exclusive lock(意向排他锁 IX):如果要对一个对象加X锁,首先也要对其上级节点加IX锁. 3.Shared intent exclusive lock(共享意向排他锁):如果一个事务对某个表加了SIX锁的话,则表示整个事务要读取整个的表,同时又会更新个别行. 这样我们可以总结一下,在对数据库对象加锁的时候就有5种 X , S , IX , IS ,  SIX 因此Oracle的DML锁,在行级只有X锁,在TM级有5种就是我们刚刚提到的:X , S , IX , IS , SIX 表示起来就是,S , X , RS , RX , SRX 我 们可以看到，通常的DML操作（SELECT…FOR UPDATE、INSERT、UPDATE、DELETE），在表级获得的只是意向锁（RS或RX），其真正的封锁粒度还是在行级；另外，Oracle数 据库的一个显著特点是，在缺省情况下，单纯地读数据（SELECT）并不加锁，Oracle通过回滚段（Rollback segment）来保证用户不读“脏”数据。这些都极大地提高了系统的并发程度。(撤消对读取的块所做的块修改)由于意向锁及数据行上锁标志位的引入，极 大地减小了Oracle维护行级锁的开销，这些技术的应用使Oracle能够高效地处理高度并发的事务请求。 最后,给出两个表格是IT PUBer的朋友提供的:</p>
+<p>       T2</p>
+<p>T1</p>
+</div>
+<footer>
+<p class="meta">
+<span class="byline author vcard">Posted by <span class="fn">Rexdf</span></span>
+<time class="data-article month-11 season-autumn" datetime="2011-11-23T21:42:00+08:00" pubdate><span class="month">Nov</span> <span class="day">23rd</span> <span class="year">2011</span></time>
+</p>
+<div class="sharing">
+</div>
+<p class="meta">
+<a class="basic-alignment left" href="/blog/2011/11/23/Oracle-de-suo-ji-zhi-gui-na-zong-jie/" title="Previous Post: Oracle的锁机制归纳总结">&laquo; Oracle的锁机制归纳总结</a>
+<a class="basic-alignment right" href="/blog/2011/11/23/create-sequence/" title="Next Post: create sequence">create sequence &raquo;</a>
+</p>
+</footer>
+</article>
+<section>
+<h1>Comments</h1>
+<div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
+</div>
+<aside class="sidebar">
+<section>
+<h1>Categories</h1>
+<ul id="categories">
+<li class="category"><a href="/blog/categories/acm/">ACM <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/algorithm/">Algorithm <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/assembly/">Assembly <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/cygwin/">Cygwin <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/gnu/">GNU <sup>8</sup></a></li>
+<li class="category"><a href="/blog/categories/math/">Math <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/octopress/">Octopress <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/programming/">Programming <sup>6</sup></a></li>
+<li class="category"><a href="/blog/categories/security/">Security <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sublime/">Sublime <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/synology/">Synology <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sysadmin/">SysAdmin <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/web/">Web <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/windows/">Windows <sup>7</sup></a></li>
+<li class="category"><a href="/blog/categories/proxmox/">proxmox <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/ri-chang/">日常 <sup>37</sup></a></li>
+</ul>
+</section>
+<section>
+<h1>Recent Posts</h1>
+<ul id="recent_posts">
+<li class="post">
+<a href="/blog/2024/12/16/fu-wu-qi-wa-kuang-bing-du-de-cha-sha/">服务器挖矿病毒的查杀</a>
+</li>
+<li class="post">
+<a href="/blog/2021/07/11/apple-m1-bian-yi-tensorflow/">Apple M1 编译tensorflow</a>
+</li>
+<li class="post">
+<a href="/blog/2021/02/27/chromiumbian-ma-qi-wen-ti/">Chromium编码器问题</a>
+</li>
+<li class="post">
+<a href="/blog/2020/12/13/proxmoxbi-ji/">Proxmox笔记</a>
+</li>
+<li class="post">
+<a href="/blog/2020/11/15/lun-yan-du-yu-shen-du/">论广度与深度</a>
+</li>
+</ul>
+</section>
+<section>
+<iframe frameborder="0" scrolling="no" referrerpolicy="unsafe-url" style="width:283px;height:200px" src="https://t.rexdf.org/?m=app&a=showwidget&name=rexdf&type=1&width=283px&height=500px"></iframe>
+</section>
+<section>
+<h1>GitHub Repos</h1>
+<ul id="gh_repos">
+<li class="loading">Status updating...</li>
+</ul>
+<a href="https://github.com/rexdf">@rexdf</a> on GitHub
+<script type="text/javascript">$(document).ready(function(){if(!window.jXHR){var e=document.createElement("script");e.type="text/javascript",e.src="/javascripts/libs/jXHR.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}github.showRepos({user:"rexdf",count:0,skip_forks:!0,target:"#gh_repos"})})</script>
+</section>
+</aside>
+</div>
+</div>
+<footer role="contentinfo"><p>
+<span class="credit">Copyright &copy; 2024 - Rexdf -</span> |
+<span class="credit">Powered by <a name="bottoms" target="_blank" href="http://octopress.org">Octopress</a></span> |
+<span class="credit">Theme by ：<a href="https://blog.rexdf.org/" target="_blank" rel="theme">Rexdf</a></span> |
+<span class="credit">Host by：<a href="https://github.com/" target="_blank" rel="host">Github.com</a></span> |
+<span class="credit">版权声明：<a href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" target="_blank" rel="license">CC BY-NC-SA 3.0</a><img src="https://analytics.rexdf.net/piwik.php?idsite=1&amp;rec=1" style="border:0" alt="" referrerpolicy="no-referrer-when-downgrade"></span>|
+<span class="credit"><a href="/sitemap.xml" rel="sitemap">sitemap</a></span>
+</p>
+<script type="text/javascript" src="https://tajs.qq.com/stats?sId=30296377" charset="UTF-8"></script>
+</footer>
+<script type="text/javascript">var disqus_shortname="rexdf",disqus_identifier="https://i.rexdf.org/blog/2011/11/23/dui-yu-Oracle-suo-de-yi-xie-li-lun-zong-jie/",disqus_url="https://i.rexdf.org/blog/2011/11/23/dui-yu-Oracle-suo-de-yi-xie-li-lun-zong-jie/",disqus_script="embed.js";!function(){var e=document.createElement("script");e.type="text/javascript",e.async=!0,e.src="//"+disqus_shortname+".disqus.com/"+disqus_script,(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(e)}()</script>
+<script type="text/javascript">$(function(){$(".entry-content").each(function(t){var r=t;$(this).find("img.fancybox").each(function(){var t=$(this),a=t.attr("title"),n=t.attr("class");t.removeAttr("class"),t.wrap('<a href="'+this.src+'" class="'+n+'" rel="gallery'+r+'" />'),""!=a&&t.parent().attr("title",a)})}),$(".fancybox").fancybox()})</script>
+</body>
+</html>

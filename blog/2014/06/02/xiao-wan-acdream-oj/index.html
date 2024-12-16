@@ -1,0 +1,268 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<script type="text/javascript">var _speedMark=new Date</script>
+<meta charset="utf-8">
+<title>小玩Acdream_OJ - Rexdf</title>
+<meta name="author" content="Rexdf">
+<meta name="description" content="0.备忘 1.安装依赖 2.启动系统 午后心情比较蛋疼，然后花了大约2小时测试了下Acdream这个OJ。 由于其前端与后端都是开源的，因此可以非常容易的搭建。 其后端是 https://github.com/ttlast/Judge.git，前端是 https://github.com/ &hellip;">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' data: https://hm.baidu.com https://tajs.qq.com https://ssl.google-analytics.com https://static.rexdf.org https://*.disquscdn.com https://rexdf.disqus.com https://api.github.com https://ssl.google-analytics.com https://disqus.com https://analytics.rexdf.net; connect-src 'self' https://static.rexdf.org https://analytics.rexdf.net https://hm.baidu.com; img-src data: https://*; font-src data: https://*; child-src 'none'; style-src 'self' 'unsafe-inline' https://*; frame-src 'self' https://t.rexdf.org http://t.rexdf.org https://rexdf.disqus.com https://disqus.com">
+<link rel="canonical" href="https://i.rexdf.org/blog/2014/06/02/xiao-wan-acdream-oj">
+<link rel="dns-prefetch" href="https://static.rexdf.org/">
+<link href="/favicon.ico" rel="icon">
+<link id="main-css" href="/stylesheets/screen.css" media="screen,projection" rel="stylesheet" type="text/css" title="pc">
+<link href="/stylesheets/screen_mobile.css" rel="alternate stylesheet" type="text/css" title="mobile">
+<link href="/atom.xml" rel="alternate" title="Rexdf" type="application/atom+xml">
+<script src="/javascripts/libs/jquery.min.js"></script>
+<script src="/javascripts/octopress-rexdf.min.js" type="text/javascript"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+      
+      toggle_theme();
+  });
+</script>
+<script type="text/javascript" async src="https://static.rexdf.org/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript">var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-55590409-1"]),_gaq.push(["_trackPageview"]),function(){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(t,e)}()</script>
+<script>var _hmt=_hmt||[];!function(){var e=document.createElement("script");e.src="//hm.baidu.com/hm.js?32192d95b89fbefa0875c4c95adb1412";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}()</script>
+<script src="/javascripts/fancybox/jquery.fancybox.pack.js"></script>
+<link rel="stylesheet" type="text/css" href="/javascripts/fancybox/jquery.fancybox.css">
+<script type="text/javascript">var _paq=_paq||[];_paq.push(["trackPageView"]),_paq.push(["enableLinkTracking"]),function(){var e="https://analytics.rexdf.net/";_paq.push(["setTrackerUrl",e+"piwik.php"]),_paq.push(["setSiteId","1"]);var a=document,t=a.createElement("script"),p=a.getElementsByTagName("script")[0];t.type="text/javascript",t.async=!0,t.defer=!0,t.src=e+"piwik.js",p.parentNode.insertBefore(t,p)}()</script>
+</head>
+<body class="low-contrast-linen-wptouch-bg">
+<header role="banner"><hgroup>
+<h1 id="header-title"><a href="/">Rexdf</a></h1>
+<h2 id="subtitle">The devil is in the Details.</h2>
+</hgroup>
+</header>
+<nav role="navigation"><ul class="subscription" data-subscription="rss">
+<li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+</ul>
+<form action="https://google.com/search" method="get">
+<fieldset role="search">
+<input type="hidden" name="q" value="site:i.rexdf.org">
+<input class="search" type="text" name="q" results="0" placeholder="Search">
+</fieldset>
+</form>
+<ul class="main-navigation">
+<li><a href="/">Blog</a></li>
+<li><a href="/blog/archives/">Archives</a></li>
+<li><a href="/idea/">Idea</a></li>
+<li><a href="/share/">Share</a></li>
+<li><a href="/books/">Books</a></li>
+<li><a href="/donate/">Donate</a></li>
+<li><a target="_blank" href="https://blog.rexdf.org" style="font-family:Shadows Into Light">Main-Blog</a></li>
+</ul>
+</nav>
+<div id="main">
+<div id="content">
+<div>
+<article class="hentry" role="article">
+<header>
+<h1 class="entry-title">小玩Acdream_OJ</h1>
+<p class="meta">
+<time class="data-article month-06 season-summer" datetime="2014-06-02T15:46:35+08:00" pubdate><span class="month">Jun</span> <span class="day">2nd</span> <span class="year">2014</span></time>
+| <a href="#disqus_thread" data-disqus-identifier="https://i.rexdf.org">Comments</a>
+</p>
+</header>
+<div class="entry-content"><ul class="markdown-toc">
+<li><a href="#section">0.备忘</a></li>
+<li><a href="#section-1">1.安装依赖</a></li>
+<li><a href="#section-2">2.启动系统</a></li>
+</ul>
+<p>午后心情比较蛋疼，然后花了大约2小时测试了下Acdream这个OJ。</p>
+<p>由于其前端与后端都是开源的，因此可以非常容易的搭建。</p>
+<p>其后端是 https://github.com/ttlast/Judge.git，前端是 https://github.com/KIDx/ACdream.git .</p>
+<p>均是在Ubuntu平台以nodejs为目标语言编写。</p>
+<p>由于我的Ubuntu安装在物理机，而我惯于启动到Win平台, 懒于重启机器，故使用最近才喜欢上的Arch来搭建。</p>
+<h1 id="section">0.备忘</h1>
+<p>家里几台机器ssh配置</p>
+<pre><code>scp .ssh/id_rsa.pub localhost@rexdf:~/
+ssh localhost:12345
+cat id_rsa.pub &gt;&gt;authorized_keys
+vim /etc/ssh/sshd_config
+PermitRootLogin no
+PasswordAuthentication no
+UsePAM no
+RSAAuthentication yes
+PubkeyAuthentication yes
+</code></pre>
+<h1 id="section-1">1.安装依赖</h1>
+<p>像什么imagemagick,g++,python2,python3,make这些基础的开发环境就不说了，基本上我是在Arch第一次开机以前就会安装的。</p>
+<p>nodejs安装，因为前些天要玩grunt，所以也安装过了。</p>
+<p>首先是Acdream，放在prog/Acdream</p>
+<p>针对这个项目前端比较重要的</p>
+<pre><code>sudo pacman -S mongodb redis 
+sudo systemctl start mongodb
+redis
+sudo npm install -g canvas
+sudo npm install -g socket.io
+cd ~/prog/Acdream
+npm i #这里只能使用普通权限，因为Arch用sudo是真的以root用于运行，不像Ubuntu只是依然是当前用户。这一步相当的漫长，需要无错误退出。如果出错，rm -rf node_modules，然后再次执行。
+</code></pre>
+<p>然后就是Judge，放在prog/Judge下面</p>
+<p>第一个比较麻烦的问题是Arch64源已经使用python3为默认的python，而python2叫做python2.这个问题在我这里不存在，因为我需要运行gae_dev，已经加了一个~/bin目录在PATH最前面。 同时需要修改deamon.py第一行为 #!/usr/bin/env python</p>
+<p>然而Python的pip却是分python3和python2的。</p>
+<pre><code>sudo pacman -S python2-pip
+sudo pip2 install pymongo
+</code></pre>
+<p>修改~/prog/Judge/judge/test.cpp</p>
+<p>把</p>
+<pre><code>//设置运行根目录、运行用户
+//获得运行用户的信息
+struct passwd *judge = getpwnam("ttlast");
+</code></pre>
+<p>的ttlast改成rexdf；</p>
+<p>修改~/prog/Judge/judge/okcall.h</p>
+<p>因为我是Arch64，所以修改136行<code>#else</code>之后的部分 在C和Cpp里面各添加一行</p>
+<pre><code>89,1,
+</code></pre>
+<p>然后执行</p>
+<pre><code>g++ ~/prog/Judge/judge/test.cpp -O ~/prog/Judge/judge/Judge
+</code></pre>
+<p>修改deamon.py，第一行</p>
+<pre><code>#!/usr/bin/env python
+</code></pre>
+<p>124行<code>dadir = "./data"</code>改成<code>dadir = ../../Acdream/data</code>
+145行同理，不过似乎可以不改。</p>
+<p>244行，把<code>'/home/ttlast/OJ/dtest/daemon.pid'</code>改成我的git-clone目录里面的pid文件绝对路径<code>'/home/rexdf/prog/Judge/dtest/daemon.pid'</code>。</p>
+<p>202行，把<code>db = con.gzhu_db</code>改成<code>db = con.acdream_db</code></p>
+<h1 id="section-2">2.启动系统</h1>
+<p>启动mongdb，并初始化表，开一个cygwin的teminal</p>
+<pre><code>sudo systemctl start mongodb
+cd ~/prog/Acdream
+mongorestore -h localhost -d acdream_db --directoryperdb acdream_db -drop
+</code></pre>
+<p>启动redis,直接开了一个terminal启动</p>
+<pre><code>sudo systemctl start redis
+</code></pre>
+<p>启动前端，新开一个teminal</p>
+<pre><code>cd ~/prog/Acdream
+node app.js
+</code></pre>
+<p>启动判题系统，新开一个terminal</p>
+<pre><code>cd ~/prog/Judge
+~/prog/Judge/daestart.sh
+sudo ~/prog/Judge/daemon.py restart
+</code></pre>
+<p>接下去做一个端口映射，我是把3000映射到了主机的10013，结果如图。
+<img src="/images/acdream.png" alt=""></p>
+<p>另外说一下坑爹的admin密码，我试了下admim和123456似乎都是不对，然后KiDx项目主页似乎也没有明文说明，无奈只能强行进入db看看了。</p>
+<pre><code>mongo
+&gt;show dbs;
+&gt;use acdream_db;
+&gt;show collections;
+&gt;db.acdream_db.users.find();
+</code></pre>
+<p>然后上网搜索这个MD5值，直接指导密码是root。</p>
+<p>另外我注意到了test.cpp里面使用的spoj.exe，显然是需要重新编译的，不过我没有兴趣继续玩这个。</p>
+<p>总体感觉不错，似乎nodej嘛，mongo嘛，redis嘛，都是较为前沿的技术。应该说效率是会比传统LAMP,LNMP高出许多的。</p>
+</div>
+<footer>
+<p class="meta">
+<span class="byline author vcard">Posted by <span class="fn">Rexdf</span></span>
+<time class="data-article month-06 season-summer" datetime="2014-06-02T15:46:35+08:00" pubdate><span class="month">Jun</span> <span class="day">2nd</span> <span class="year">2014</span></time>
+<span class="categories">
+<a class="category" href="/blog/categories/programming/">Programming</a>
+</span>
+</p>
+<div class="sharing">
+</div>
+<p class="meta">
+<a class="basic-alignment left" href="/blog/2014/05/22/mi-ma-bei-dao-shi-jian-hou-guo/" title="Previous Post: 密码被盗事件后果">&laquo; 密码被盗事件后果</a>
+<a class="basic-alignment right" href="/blog/2014/07/05/guan-yu-gpt-plus-efishuang-xi-tong-qi-dong-cai-dan/" title="Next Post: 关于GPT+EFI双系统启动菜单">关于GPT+EFI双系统启动菜单 &raquo;</a>
+</p>
+</footer>
+</article>
+<section>
+<h1>Comments</h1>
+<div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
+</div>
+<aside class="sidebar">
+<section>
+<h1>Categories</h1>
+<ul id="categories">
+<li class="category"><a href="/blog/categories/acm/">ACM <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/algorithm/">Algorithm <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/assembly/">Assembly <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/cygwin/">Cygwin <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/gnu/">GNU <sup>8</sup></a></li>
+<li class="category"><a href="/blog/categories/math/">Math <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/octopress/">Octopress <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/programming/">Programming <sup>6</sup></a></li>
+<li class="category"><a href="/blog/categories/security/">Security <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sublime/">Sublime <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/synology/">Synology <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sysadmin/">SysAdmin <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/web/">Web <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/windows/">Windows <sup>7</sup></a></li>
+<li class="category"><a href="/blog/categories/proxmox/">proxmox <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/ri-chang/">日常 <sup>37</sup></a></li>
+</ul>
+</section>
+<section>
+<h1>Recent Posts</h1>
+<ul id="recent_posts">
+<li class="post">
+<a href="/blog/2024/12/16/fu-wu-qi-wa-kuang-bing-du-de-cha-sha/">服务器挖矿病毒的查杀</a>
+</li>
+<li class="post">
+<a href="/blog/2021/07/11/apple-m1-bian-yi-tensorflow/">Apple M1 编译tensorflow</a>
+</li>
+<li class="post">
+<a href="/blog/2021/02/27/chromiumbian-ma-qi-wen-ti/">Chromium编码器问题</a>
+</li>
+<li class="post">
+<a href="/blog/2020/12/13/proxmoxbi-ji/">Proxmox笔记</a>
+</li>
+<li class="post">
+<a href="/blog/2020/11/15/lun-yan-du-yu-shen-du/">论广度与深度</a>
+</li>
+</ul>
+</section>
+<section>
+<iframe frameborder="0" scrolling="no" referrerpolicy="unsafe-url" style="width:283px;height:200px" src="https://t.rexdf.org/?m=app&a=showwidget&name=rexdf&type=1&width=283px&height=500px"></iframe>
+</section>
+<section>
+<h1>GitHub Repos</h1>
+<ul id="gh_repos">
+<li class="loading">Status updating...</li>
+</ul>
+<a href="https://github.com/rexdf">@rexdf</a> on GitHub
+<script type="text/javascript">$(document).ready(function(){if(!window.jXHR){var e=document.createElement("script");e.type="text/javascript",e.src="/javascripts/libs/jXHR.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}github.showRepos({user:"rexdf",count:0,skip_forks:!0,target:"#gh_repos"})})</script>
+</section>
+</aside>
+</div>
+</div>
+<footer role="contentinfo"><p>
+<span class="credit">Copyright &copy; 2024 - Rexdf -</span> |
+<span class="credit">Powered by <a name="bottoms" target="_blank" href="http://octopress.org">Octopress</a></span> |
+<span class="credit">Theme by ：<a href="https://blog.rexdf.org/" target="_blank" rel="theme">Rexdf</a></span> |
+<span class="credit">Host by：<a href="https://github.com/" target="_blank" rel="host">Github.com</a></span> |
+<span class="credit">版权声明：<a href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" target="_blank" rel="license">CC BY-NC-SA 3.0</a><img src="https://analytics.rexdf.net/piwik.php?idsite=1&amp;rec=1" style="border:0" alt="" referrerpolicy="no-referrer-when-downgrade"></span>|
+<span class="credit"><a href="/sitemap.xml" rel="sitemap">sitemap</a></span>
+</p>
+<script type="text/javascript" src="https://tajs.qq.com/stats?sId=30296377" charset="UTF-8"></script>
+</footer>
+<script type="text/javascript">var disqus_shortname="rexdf",disqus_identifier="https://i.rexdf.org/blog/2014/06/02/xiao-wan-acdream-oj/",disqus_url="https://i.rexdf.org/blog/2014/06/02/xiao-wan-acdream-oj/",disqus_script="embed.js";!function(){var e=document.createElement("script");e.type="text/javascript",e.async=!0,e.src="//"+disqus_shortname+".disqus.com/"+disqus_script,(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(e)}()</script>
+<script type="text/javascript">$(function(){$(".entry-content").each(function(t){var r=t;$(this).find("img.fancybox").each(function(){var t=$(this),a=t.attr("title"),n=t.attr("class");t.removeAttr("class"),t.wrap('<a href="'+this.src+'" class="'+n+'" rel="gallery'+r+'" />'),""!=a&&t.parent().attr("title",a)})}),$(".fancybox").fancybox()})</script>
+</body>
+</html>

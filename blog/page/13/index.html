@@ -1,0 +1,768 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<script type="text/javascript">var _speedMark=new Date</script>
+<meta charset="utf-8">
+<title>Rexdf</title>
+<meta name="author" content="Rexdf">
+<meta name="description" content="很简单的一个插件，现在支持汉化Sublime Text2，Sublime Text3。全部系统Win64、Win32，Linux64，Linux32，OSX等，可以随意来回切换简体中文、繁体中文、日语、英语，无需重启SublimeText。 ">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' data: https://hm.baidu.com https://tajs.qq.com https://ssl.google-analytics.com https://static.rexdf.org https://*.disquscdn.com https://rexdf.disqus.com https://api.github.com https://ssl.google-analytics.com https://disqus.com https://analytics.rexdf.net; connect-src 'self' https://static.rexdf.org https://analytics.rexdf.net https://hm.baidu.com; img-src data: https://*; font-src data: https://*; child-src 'none'; style-src 'self' 'unsafe-inline' https://*; frame-src 'self' https://t.rexdf.org http://t.rexdf.org https://rexdf.disqus.com https://disqus.com">
+<link rel="canonical" href="https://i.rexdf.org/blog/page/13">
+<link rel="dns-prefetch" href="https://static.rexdf.org/">
+<link href="/favicon.ico" rel="icon">
+<link id="main-css" href="/stylesheets/screen.css" media="screen,projection" rel="stylesheet" type="text/css" title="pc">
+<link href="/stylesheets/screen_mobile.css" rel="alternate stylesheet" type="text/css" title="mobile">
+<link href="/atom.xml" rel="alternate" title="Rexdf" type="application/atom+xml">
+<script src="/javascripts/libs/jquery.min.js"></script>
+<script src="/javascripts/octopress-rexdf.min.js" type="text/javascript"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+      
+      toggle_theme();
+  });
+</script>
+<script type="text/javascript" async src="https://static.rexdf.org/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript">var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-55590409-1"]),_gaq.push(["_trackPageview"]),function(){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(t,e)}()</script>
+<script>var _hmt=_hmt||[];!function(){var e=document.createElement("script");e.src="//hm.baidu.com/hm.js?32192d95b89fbefa0875c4c95adb1412";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}()</script>
+<script src="/javascripts/fancybox/jquery.fancybox.pack.js"></script>
+<link rel="stylesheet" type="text/css" href="/javascripts/fancybox/jquery.fancybox.css">
+<script type="text/javascript">var _paq=_paq||[];_paq.push(["trackPageView"]),_paq.push(["enableLinkTracking"]),function(){var e="https://analytics.rexdf.net/";_paq.push(["setTrackerUrl",e+"piwik.php"]),_paq.push(["setSiteId","1"]);var a=document,t=a.createElement("script"),p=a.getElementsByTagName("script")[0];t.type="text/javascript",t.async=!0,t.defer=!0,t.src=e+"piwik.js",p.parentNode.insertBefore(t,p)}()</script>
+</head>
+<body class="low-contrast-linen-wptouch-bg">
+<header role="banner"><hgroup>
+<h1 id="header-title"><a href="/">Rexdf</a></h1>
+<h2 id="subtitle">The devil is in the Details.</h2>
+</hgroup>
+</header>
+<nav role="navigation"><ul class="subscription" data-subscription="rss">
+<li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+</ul>
+<form action="https://google.com/search" method="get">
+<fieldset role="search">
+<input type="hidden" name="q" value="site:i.rexdf.org">
+<input class="search" type="text" name="q" results="0" placeholder="Search">
+</fieldset>
+</form>
+<ul class="main-navigation">
+<li><a href="/">Blog</a></li>
+<li><a href="/blog/archives/">Archives</a></li>
+<li><a href="/idea/">Idea</a></li>
+<li><a href="/share/">Share</a></li>
+<li><a href="/books/">Books</a></li>
+<li><a href="/donate/">Donate</a></li>
+<li><a target="_blank" href="https://blog.rexdf.org" style="font-family:Shadows Into Light">Main-Blog</a></li>
+</ul>
+</nav>
+<div id="main">
+<div id="content">
+<div class="blog-index">
+<article>
+<header>
+<h1 class="entry-title">[置顶]<a href="/blog/2015/05/15/fa-bu-yi-ge-sublimeyi-hua-cha-jian/">发布一个sublime汉化插件</a></h1>
+<p class="meta">
+<time class="data-article month-05 season-spring" datetime="2015-05-15T11:19:01+08:00" pubdate><span class="month">May</span> <span class="day">15th</span> <span class="year">2015</span></time>
+| <a href="/blog/2015/05/15/fa-bu-yi-ge-sublimeyi-hua-cha-jian/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2015/05/15/fa-bu-yi-ge-sublimeyi-hua-cha-jian/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>很简单的一个插件，现在支持汉化Sublime Text2，Sublime Text3。全部系统Win64、Win32，Linux64，Linux32，OSX等，可以随意来回切换简体中文、繁体中文、日语、英语，无需重启SublimeText。</p>
+</div>
+<footer>
+<a rel="full-article" href="/blog/2015/05/15/fa-bu-yi-ge-sublimeyi-hua-cha-jian/">Read on &rarr;</a>
+</footer>
+</article>
+<article>
+<header>
+<h1 class="entry-title"><a href="/blog/2013/05/06/jian-zhan-ri-zhi/">建站日志</a></h1>
+<p class="meta">
+<time class="data-article month-05 season-spring" datetime="2013-05-06T19:36:00+08:00" pubdate><span class="month">May</span> <span class="day">6th</span> <span class="year">2013</span></time>
+| <a href="/blog/2013/05/06/jian-zhan-ri-zhi/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2013/05/06/jian-zhan-ri-zhi/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>今天主要有两个更新，对菜单进行了完整的更新，对CSS布局上的样式进行了修正（IE显示上的bug得到了修正）。</p>
+<h2 id="ie">1.IE页面无限滚动</h2>
+<p>首先讲CSS修正遇到的一个奇葩的现象，之前在开启jiaThis边栏插件的情况下，IE下是可以无限向下拖动的，但是在FIrefox和Chrome下都是好的。这个问题不是太严重，页面滚动到最下面了刻意向下拖动也没意思，所以一直没解决。今天停掉多余的插件时，发现我一直都处于开启状态的jiaThis是可以关掉了，可以直接把代码写到脚本里面就好了，但是我先看了小工具，发现这里藏着一个远古的边栏插件而且它是没有显示的，果断的删掉了。然后没停jiaThis，清空了IE的缓存之后打开偶然发现居然可以滚动到最下面就停止了。于是果断的进行进一步的清理，发现了下面一行代码</p>
+<pre><code>&lt;div class="hfeed" id="wrapper"&gt;
+</code></pre>
+<p>起初我是以为我在放加载动画的时候放进来的。在修改了部分CSS之后发现页面加载过程中会发生移动现象，显然这不是好的体验，固然是css文件重新定义了这个div的对齐方式了，一查是20px右边对齐，于是在代码行上也打算加上这么一行，这样虽然重复了，但是就不会抖动了。于是我改成了下面这样</p>
+<pre><code>&lt;div id="wrapper" style="padding-right: 20px;"&gt;
+</code></pre>
+<p>结果在IE中那个现象又出现了，再次可以无限滚动。于是Chrome调试，发现class=”hfeed”似乎没有作任何CSS的选择器，好像就是一个多余项一样。一番搜索发现了下面这个事实。很是有趣，居然有一个预定义的类：显示有人提的问题<a href="http://www.sitepoint.com/forums/showthread.php?829239-Question-About-class-quot-hfeed-quot">Question About ‘ class=”hfeed” ‘</a>  英文的参考<a href="http://microformats.org/wiki/hatom">hatom</a> ，以及翻译过来的<a href="http://www.aoao.org.cn/blog/2008/05/hatom/">hAtom应用 让结构提供数据</a></p>
+<h2 id="section">2.多语言菜单</h2>
+<p>做的另外一件事便是多语言的导航菜单，由于支持多语言的qTranslate可以使用</p>
+<pre><code>&lt;!--lang--&gt;内容&lt;!--:&gt;
+</code></pre>
+<p>来区别语言，所以菜单栏进行了一下设计。可以切换语言，同时切换后又在不同的语言显示切换菜单。不过这个就像其他html标签一样会被wordpress过滤掉，所以是不能通过导入导出功能备份的，必须自己想法办手工备份。</p>
+<h2 id="section-1">3.整体布局进行了修改</h2>
+<p>布局上面，以前导航菜单、谷歌广告、QQ联系方式三个div采用的是以左上的绝对定位方式，显然这种方式不具有通用性，现在应该主要是基于相对定位的了，适应性更强，同时减小了导航菜单上的padding和margin值，留更多的空闲显示博客本身的内容。</p>
+<h2 id="section-2">4.后面打算</h2>
+<p>后期我打算写一写CSS与JS的学习笔记，同时整理下算法。</p>
+</div>
+</article>
+<article>
+<header>
+<h1 class="entry-title"><a href="/blog/2013/05/06/love/">Love</a></h1>
+<p class="meta">
+<time class="data-article month-05 season-spring" datetime="2013-05-06T12:02:00+08:00" pubdate><span class="month">May</span> <span class="day">6th</span> <span class="year">2013</span></time>
+| <a href="/blog/2013/05/06/love/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2013/05/06/love/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div><div data-line="5" class="line-number"></div><div data-line="6" class="line-number"></div><div data-line="7" class="line-number"></div><div data-line="8" class="line-number"></div><div data-line="9" class="line-number"></div><div data-line="10" class="line-number"></div><div data-line="11" class="line-number"></div><div data-line="12" class="line-number"></div><div data-line="13" class="line-number"></div><div data-line="14" class="line-number"></div></pre></td><td class="main code"><pre><div class="line matlab"><span class="o">\</span><span class="n">begin</span><span class="p">{</span><span class="n">align</span><span class="o">*</span><span class="p">}</span>
+</div><div class="line matlab">  <span class="o">&amp;</span> <span class="o">\</span><span class="n">phi</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="p">=</span> <span class="o">\</span><span class="n">phi</span> <span class="o">\</span><span class="n">left</span><span class="p">(</span><span class="o">\</span><span class="n">sum_</span><span class="p">{</span><span class="nb">i</span><span class="p">=</span><span class="mi">1</span><span class="p">}</span>^<span class="n">n</span> <span class="n">x_ie_i</span><span class="p">,</span> <span class="o">\</span><span class="n">sum_</span><span class="p">{</span><span class="nb">j</span><span class="p">=</span><span class="mi">1</span><span class="p">}</span>^<span class="n">n</span> <span class="n">y_je_j</span> <span class="o">\</span><span class="n">right</span><span class="p">)</span>
+</div><div class="line matlab">  <span class="p">=</span> <span class="o">\</span><span class="n">sum_</span><span class="p">{</span><span class="nb">i</span><span class="p">=</span><span class="mi">1</span><span class="p">}</span>^<span class="n">n</span> <span class="o">\</span><span class="n">sum_</span><span class="p">{</span><span class="nb">j</span><span class="p">=</span><span class="mi">1</span><span class="p">}</span>^<span class="n">n</span> <span class="n">x_i</span> <span class="n">y_j</span> <span class="o">\</span><span class="n">phi</span><span class="p">(</span><span class="n">e_i</span><span class="p">,</span> <span class="n">e_j</span><span class="p">)</span> <span class="p">=</span> <span class="o">\\</span>
+</div><div class="line matlab">  <span class="o">&amp;</span> <span class="p">(</span><span class="n">x_1</span><span class="p">,</span> <span class="o">\</span><span class="n">ldots</span><span class="p">,</span> <span class="n">x_n</span><span class="p">)</span> <span class="o">\</span><span class="n">left</span><span class="p">(</span> <span class="o">\</span><span class="n">begin</span><span class="p">{</span><span class="n">array</span><span class="p">}{</span><span class="n">ccc</span><span class="p">}</span>
+</div><div class="line matlab">      <span class="o">\</span><span class="n">phi</span><span class="p">(</span><span class="n">e_1</span><span class="p">,</span> <span class="n">e_1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="o">\</span><span class="n">cdots</span> <span class="o">&amp;</span> <span class="o">\</span><span class="n">phi</span><span class="p">(</span><span class="n">e_1</span><span class="p">,</span> <span class="n">e_n</span><span class="p">)</span> <span class="o">\\</span>
+</div><div class="line matlab">      <span class="o">\</span><span class="n">vdots</span> <span class="o">&amp;</span> <span class="o">\</span><span class="n">ddots</span> <span class="o">&amp;</span> <span class="o">\</span><span class="n">vdots</span> <span class="o">\\</span>
+</div><div class="line matlab">      <span class="o">\</span><span class="n">phi</span><span class="p">(</span><span class="n">e_n</span><span class="p">,</span> <span class="n">e_1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="o">\</span><span class="n">cdots</span> <span class="o">&amp;</span> <span class="o">\</span><span class="n">phi</span><span class="p">(</span><span class="n">e_n</span><span class="p">,</span> <span class="n">e_n</span><span class="p">)</span>
+</div><div class="line matlab">    <span class="o">\</span><span class="k">end</span><span class="p">{</span><span class="n">array</span><span class="p">}</span> <span class="o">\</span><span class="n">right</span><span class="p">)</span>
+</div><div class="line matlab">  <span class="o">\</span><span class="n">left</span><span class="p">(</span> <span class="o">\</span><span class="n">begin</span><span class="p">{</span><span class="n">array</span><span class="p">}{</span><span class="n">c</span><span class="p">}</span>
+</div><div class="line matlab">      <span class="n">y_1</span> <span class="o">\\</span>
+</div><div class="line matlab">      <span class="o">\</span><span class="n">vdots</span> <span class="o">\\</span>
+</div><div class="line matlab">      <span class="n">y_n</span>
+</div><div class="line matlab">    <span class="o">\</span><span class="k">end</span><span class="p">{</span><span class="n">array</span><span class="p">}</span> <span class="o">\</span><span class="n">right</span><span class="p">)</span>
+</div><div class="line matlab"><span class="o">\</span><span class="k">end</span><span class="p">{</span><span class="n">align</span><span class="o">*</span><span class="p">}</span>
+</div></pre></td></tr></table></div></figure></notextile></div>
+<script type="math/tex;mode=display">% <![CDATA[
+
+\begin{align*}
+  & \phi(x,y) = \phi \left(\sum_{i=1}^n x_ie_i, \sum_{j=1}^n y_je_j \right)
+  = \sum_{i=1}^n \sum_{j=1}^n x_i y_j \phi(e_i, e_j) = \\
+  & (x_1, \ldots, x_n) \left( \begin{array}{ccc}
+      \phi(e_1, e_1) & \cdots & \phi(e_1, e_n) \\
+      \vdots & \ddots & \vdots \\
+      \phi(e_n, e_1) & \cdots & \phi(e_n, e_n)
+    \end{array} \right)
+  \left( \begin{array}{c}
+      y_1 \\
+      \vdots \\
+      y_n
+    \end{array} \right)
+\end{align*}
+ %]]></script>
+</div>
+</article>
+<article>
+<header>
+<h1 class="entry-title"><a href="/blog/2013/04/30/jian-zhan-ri-zhi/">建站日志</a></h1>
+<p class="meta">
+<time class="data-article month-04 season-spring" datetime="2013-04-30T19:51:00+08:00" pubdate><span class="month">Apr</span> <span class="day">30th</span> <span class="year">2013</span></time>
+| <a href="/blog/2013/04/30/jian-zhan-ri-zhi/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2013/04/30/jian-zhan-ri-zhi/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>So long a time, I didn’t update my blog’s theme. But this time it was greatly revisied , and I renew for one year for my host.</p>
+<h1 id="google-fonts">1.Google Fonts</h1>
+<h1 id="mulitluange-support">2.MulitLuange Support</h1>
+<p>It should adapt to client’s default language automatically.</p>
+<h1 id="pdf">3.pdf</h1>
+<p>You can download the post as a pdf file.But some post including MathJax’s Latex will not be converted as the orginal html.</p>
+<h1 id="css-optimization">4.CSS optimization</h1>
+<h2 id="all-navigation-bar-in-gradient">All navigation bar in gradient</h2>
+<pre><code>#nav-above {
+background-color: #004979;
+background: -ms-linear-gradient(top, #0000ff 0%, #7d7fc8 40%, #0000ff 100%);
+background: linear-gradient(top, #0000ff 0%, #7d7dc8 40%, #0000ff 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0000ff', endColorstr='#7d7dc8', GradientType=0 );
+background: -moz-linear-gradient(top, blue, rgba(125, 125, 200, 0.5));
+background: -webkit-gradient(linear, 0 0, 0 bottom, from(#0000ff), to(rgba(125, 125, 200, 0.5)));
+background: -o-linear-gradient(top, blue, rgba(125, 125, 200, 0.5));
+}
+</code></pre>
+<p>Compatible with IE, Firefox and Chrome</p>
+<h2 id="dynamic-retractable-search-box">Dynamic retractable Search box</h2>
+<p>in ‘include/general-template.php’ edit ‘get_search_form’ function add ‘placeholder’ attribution.</p>
+<pre><code>#s:focus { width: 80%; }
+.widget_search #s {
+float: left;
+-webkit-transition-duration: 400ms;
+-webkit-transition-property: width, background;
+-webkit-transition-timing-function: ease;
+-moz-transition-duration: 400ms;
+-moz-transition-property: width, background;
+-moz-transition-timing-function: ease;
+-o-transition-duration: 400ms;
+-o-transition-property: width, background;
+-o-transition-timing-function: ease;
+width: 60%;
+}
+</code></pre>
+<p>好久没用折腾博客空间的主题了，这次算是一个较为重大的更新，顺手把主机又续费一年。现在已经包含了较多的插件，有时间后面再专门写一篇介绍。本篇主要讲这次更新新添加的东西。上次ftiasch博客看到MathJax后，就有添加支持的想法。一搜索居然真的就有这个插件，所以直接就用起来了。</p>
+<h1 id="google-fonts-1">1.Google Fonts</h1>
+<p>不过现在看到的字体都不是谷歌的，谷歌字体已经加入，还没开始使用。</p>
+<h1 id="section">2.多语言</h1>
+<p>可以自动识别浏览器的语言，也可以手动设置。</p>
+<h1 id="pdf-1">3.pdf</h1>
+<p>添加了下载文章为PDF功能，不过MathJax的Latex就会在pdf里面被原文呈现。</p>
+<h1 id="css">4.CSS优化</h1>
+<h2 id="section-1">4.1导航条全部采用了渐变</h2>
+<pre><code>#nav-above {
+background-color: #004979;
+background: -ms-linear-gradient(top, #0000ff 0%, #7d7fc8 40%, #0000ff 100%);
+background: linear-gradient(top, #0000ff 0%, #7d7dc8 40%, #0000ff 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0000ff', endColorstr='#7d7dc8', GradientType=0 );
+background: -moz-linear-gradient(top, blue, rgba(125, 125, 200, 0.5));
+background: -webkit-gradient(linear, 0 0, 0 bottom, from(#0000ff), to(rgba(125, 125, 200, 0.5)));
+background: -o-linear-gradient(top, blue, rgba(125, 125, 200, 0.5));
+}
+</code></pre>
+<p>这段代码是用来支持IE、Firefox和Chrome中均能渐变显示的。</p>
+<h2 id="section-2">4.2动态伸缩搜索框</h2>
+<p>在include/general-template.php中修改get_search_form搜索框添加了placeholder，并添加了</p>
+<pre><code>#s:focus { width: 80%; }
+.widget_search #s {
+float: left;
+-webkit-transition-duration: 400ms;
+-webkit-transition-property: width, background;
+-webkit-transition-timing-function: ease;
+-moz-transition-duration: 400ms;
+-moz-transition-property: width, background;
+-moz-transition-timing-function: ease;
+-o-transition-duration: 400ms;
+-o-transition-property: width, background;
+-o-transition-timing-function: ease;
+width: 60%;
+}
+</code></pre>
+<p>主要是针对三个浏览器设置延时，然后宽度设置成60%，获得焦点后变成80%，这样来进行动态伸缩效果。</p>
+<h2 id="section-3">4.3主要块背景透明</h2>
+<p>这个使用的技巧比较简单，只要不给div设置背景色，那么它自动就是透明的，然后用一张透明属性的png图片，这样就做成的见到的这个效果。</p>
+<h1 id="section-4">5经验</h1>
+<p>因为blog.rexdf.org在是通过.htaccess绑定到子目录的，这样就可以算作两个域名，但是我考虑到了把资源放到不同域名是可以加快加载速度的，因此一些背景图片等就故意使用rexdf.org域名来加载。</p>
+</div>
+</article>
+<article>
+<header>
+<h1 class="entry-title"><a href="/blog/2013/04/28/ce-shi-shu-xue-gong-shi/">测试数学公式</a></h1>
+<p class="meta">
+<time class="data-article month-04 season-spring" datetime="2013-04-28T20:15:00+08:00" pubdate><span class="month">Apr</span> <span class="day">28th</span> <span class="year">2013</span></time>
+| <a href="/blog/2013/04/28/ce-shi-shu-xue-gong-shi/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2013/04/28/ce-shi-shu-xue-gong-shi/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><table>
+<tbody>
+<tr>
+<td>[latex]\begin{equation}\label{eq1}r = r_F+ \beta (r_M - r_F) + \epsilon\end{equation}[/latex] [latex] \begin{aligned} \color{red}{\dot{x}} &amp; =\color{blue}{ \sigma(y-x)} &#92; \dot{y} &amp; = \rho x - y - xz &#92; \dot{z} &amp; = -\beta z + xy \end{aligned} [/latex] [latex] x^2+y<em>1+z</em>{12}^{34} &#92; \sin^{-1} (x) &#92; \lim\limits<em>{h-&gt;0} \frac{f(x+h)-f(x)}{h} &#92; \lim\nolimits</em>{h\to 0} \frac{f(x+h)-f(x)}{h} &#92; f(x)=\sum\limits<em>{n=0}^{\infty} \frac{f^{(n)}(a)}{n!}(x-a)^n &#92; \int</em>0^1 f(x)dx &#92; \left[ \begin{array} {lcr} 1 &amp; 2 &amp; 3 &#92; 4 &amp; 5 &amp; 6 &#92; 7 &amp; 8 &amp; 9 \end{array} \right] &#92; \left[ \begin{array}{lcr} a &amp; b &#92; c &amp; d \end{array} \right] \left( \begin{array}{lcr} n &#92; k \end{array} \right) [/latex] [latex] \left( \sum<em>{k=1}^n a_k b_k \right)^2 \leq \left( \sum</em>{k=1}^n a_k^2 \right) \left( \sum<em>{k=1}^n b_k^2 \right) &#92; \mathbf{V}</em>1 \times \mathbf{V}<em>2 = \begin{vmatrix} \mathbf{i} &amp; \mathbf{j} &amp; \mathbf{k} &#92; \frac{\partial X}{\partial u} &amp; \frac{\partial Y}{\partial u} &amp; 0 &#92; \frac{\partial X}{\partial v} &amp; \frac{\partial Y}{\partial v} &amp; 0 \end{vmatrix} &#92; P(E) = {n \choose k} p^k (1-p)^{ n-k} &#92; \frac{1}{\Bigl(\sqrt{\phi \sqrt{5}}-\phi\Bigr) e^{\frac25 \pi}} = 1+\frac{e^{-2\pi}} {1+\frac{e^{-4\pi}} {1+\frac{e^{-6\pi}} {1+\frac{e^{-8\pi}} {1+\ldots} } } } &#92; 1 + \frac{q^2}{(1-q)}+\frac{q^6}{(1-q)(1-q^2)}+\cdots = \prod</em>{j=0}^{\infty}\frac{1}{(1-q^{5j+2})(1-q^{5j+3})}, \quad\quad \text{for $</td>
+<td>q</td>
+<td>&lt;1$}. &#92; \begin{aligned} \nabla \times \vec{\mathbf{B}} -\, \frac1c\, \frac{\partial\vec{\mathbf{E}}}{\partial t} &amp; = \frac{4\pi}{c}\vec{\mathbf{j}} &#92; \nabla \cdot \vec{\mathbf{E}} &amp; = 4 \pi \rho &#92; \nabla \times \vec{\mathbf{E}}\, +\, \frac1c\, \frac{\partial\vec{\mathbf{B}}}{\partial t} &amp; = \vec{\mathbf{0}} &#92; \nabla \cdot \vec{\mathbf{B}} &amp; = 0 \end{aligned} [/latex]<script type="math/tex">\begin{equation} \label{eq1}r = r_F+ \beta (r_M - r_F) + \epsilon \end{equation}</script><script type="math/tex">% <![CDATA[
+ \begin{aligned} \color{red}{\dot{x}} & =\color{blue}{ \sigma(y-x)} \\\ \dot{y} & = \rho x - y - xz \\\ \dot{z} & = -\beta z + xy \end{aligned}  %]]></script>\[ \mathbf{V}<em>1 \times \mathbf{V}</em>2 = \begin{vmatrix} \mathbf{i} &amp; \mathbf{j} &amp; \mathbf{k} &#92; \frac{\partial X}{\partial u} &amp; \frac{\partial Y}{\partial u} &amp; 0 &#92; \frac{\partial X}{\partial v} &amp; \frac{\partial Y}{\partial v} &amp; 0 \end{vmatrix} \]<script type="math/tex">% <![CDATA[
+x^2+y_1+z_{12}^{34} \\\ \sin^{-1} (x) \\\ \lim\limits_{h->0} \frac{f(x+h)-f(x)}{h} \\\ \lim\nolimits_{h\to 0} \frac{f(x+h)-f(x)}{h} \\\ f(x)=\sum\limits_{n=0}^{\infty} \frac{f^{(n)}(a)}{n!}(x-a)^n \\\ \int_0^1 f(x)dx \\\ \left[\begin{array} {lcr} 1 & 2 & 3 \\\ 4 & 5 & 6 \\\ 7 & 8 & 9 \end{array}\right] \\\ \left[\begin{array}{lcr} a & b \\\c & d\end{array}\right] \left(\begin{array}{lcr}n \\\k\end{array}\right) %]]></script>$$\left( \sum<em>{k=1}^n a_k b_k \right)^2 \leq \left( \sum</em>{k=1}^n a_k^2 \right) \left( \sum<em>{k=1}^n b_k^2 \right)&#92;\mathbf{V}</em>1 \times \mathbf{V}<em>2 = \begin{vmatrix}\mathbf{i} &amp; \mathbf{j} &amp; \mathbf{k} &#92;\frac{\partial X}{\partial u} &amp; \frac{\partial Y}{\partial u} &amp; 0 &#92;\frac{\partial X}{\partial v} &amp; \frac{\partial Y}{\partial v} &amp; 0\end{vmatrix}&#92;P(E) = {n \choose k} p^k (1-p)^{ n-k}&#92;\frac{1}{\Bigl(\sqrt{\phi \sqrt{5}}-\phi\Bigr) e^{\frac25 \pi}} =1+\frac{e^{-2\pi}} {1+\frac{e^{-4\pi}} {1+\frac{e^{-6\pi}}{1+\frac{e^{-8\pi}} {1+\ldots} } } }&#92;1 + \frac{q^2}{(1-q)}+\frac{q^6}{(1-q)(1-q^2)}+\cdots =\prod</em>{j=0}^{\infty}\frac{1}{(1-q^{5j+2})(1-q^{5j+3})}, \quad\quad \text{for $</td>
+<td>q</td>
+<td>&lt;1$}.&#92;\begin{aligned}\nabla \times \vec{\mathbf{B}} -\, \frac1c\, \frac{\partial\vec{\mathbf{E}}}{\partial t} &amp; = \frac{4\pi}{c}\vec{\mathbf{j}} &#92; \nabla \cdot \vec{\mathbf{E}} &amp; = 4 \pi \rho &#92;\nabla \times \vec{\mathbf{E}}\, +\, \frac1c\, \frac{\partial\vec{\mathbf{B}}}{\partial t} &amp; = \vec{\mathbf{0}} &#92; \nabla \cdot \vec{\mathbf{B}} &amp; = 0 \end{aligned}$$</td>
+</tr>
+</tbody>
+</table>
+<h2 id="comments">Comments</h2>
+<p><strong><a href="#1265" title="2013-04-29 13:38:22">rexdf</a>:</strong></p>
+<pre><code>#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+int main()
+{
+printf("Hello\n");
+return 0;
+}
+</code></pre>
+<script type="math/tex;mode=display">\sum\limits_{i=0}^{i=\infty}\frac{x^i}{i!}</script>
+<p><strong><a href="#1306" title="2013-05-01 18:07:43">rexdf</a>:</strong> \(\sum\limits_{i=0}^{i=\infty}\frac{x^i}{i!}\)</p>
+</div>
+</article>
+<article>
+<header>
+<h1 class="entry-title"><a href="/blog/2013/04/21/LFP-wen-jian-ge-shi-jie-xi/">LFP文件格式解析</a></h1>
+<p class="meta">
+<time class="data-article month-04 season-spring" datetime="2013-04-21T19:55:00+08:00" pubdate><span class="month">Apr</span> <span class="day">21st</span> <span class="year">2013</span></time>
+| <a href="/blog/2013/04/21/LFP-wen-jian-ge-shi-jie-xi/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2013/04/21/LFP-wen-jian-ge-shi-jie-xi/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>经过一番折腾，在我的64位Win8上面也装上了GSTreamer的Python绑定，然后就开始玩behnam-python-lfp-reader，之后经过搜索，发现了一个标准C语言版本的，和一个用php类写的版本。</p>
+<h1 id="lfptools">1.lfptools</h1>
+<p>当然先clone下来</p>
+<pre><code>git clone git://github.com/nrpatel/lfptools.git
+</code></pre>
+<p>然后进入MingW</p>
+<pre><code>cd /e/work/lfptools/
+make
+</code></pre>
+<p>成功编译 <img src="/wp-content/uploads/2013/04/lfptools.png" alt="lfptools"> 现在就分析下源代码了 main函数进入之后解析命令行第一个参数，并调用lfp_create打开，过程大约就是，算出文件长度并填入表中(二进制到位中间转换过一次)，然后整个按照二进制文件读取出来。 接着便是调用lfp_file_check检测是否是lfp格式的文件，lfp格式文件开头标志为0x89, 0x4C, 0x46, 0x50, 0x0D, 0x0A, 0x1A, 0x0A。 下一步就是解析lfp文件了，lfp数据是一块一块的，每块都有一个魔术头3+1byte，然后就是块的长度，这是一个32bit的整数，而且大端方式，转换成正常整数即是数据块长度，之后就是45bit SHA1+35bit Blank,接下去就是声明长度的块数据了。数据块识别好以后就是识别数据块的类型，首先寻找一个“”包含的字符串，从处理上看，应该包括以下几种类型： LFP_RAW_IMAGE应该就是普通的图片格式了，调用converted_image函数处理，似乎就是把3<em>8bit的数据转换成如下的两个16位数据。 <img src="http://blog.rexdf.org/wp-content/uploads/2013/04/image1.png" alt="image"> LFP_JSON 数据名字,假设其他不是”imageRef”标识的 LFP_DEPTH_LUT 深度信息，是4</em>8bit一个32位的float格式。用”depth”（包括引号)标识 LFP_LUT 是Lytro第二版本有的，用”lut”（包括引号)标识 LFP_JPEG 是JPEG格式数据,用”image”（包括引号)标识 LFP_BLOCK_OF_IMAGES 这个是H264块,用”blockOfImagesRef”（包括引号)标识</p>
+<h1 id="behnam-python-lfp-reader">2.behnam-python-lfp-reader</h1>
+<pre><code>git clone git://github.com/behnam/python-lfp-reader.git
+</code></pre>
+<p>主要是装Gstreamer的Python绑定比较麻烦，不能用google code的10.7那个OSSBuild，要用2012的那个，而且不能同时安装这个两个。不过奇怪的是在ＸＰ系统上那么快，为何在我的系统上几乎要几分钟来执行import gst命令。左键换焦点，中键全聚焦，右键小幅度变化视角。对于代码的分析，没有太大的欲望。所以也就只是调试下这个项目代码而已。 <img src="/wp-content/uploads/2013/04/lfp-reader.png" alt="lfp reader"></p>
+<h1 id="lytro-image-viewer">3.Lytro: Image Viewer</h1>
+<pre><code>git clone git://github.com/maxvw/php-lytro.git
+</code></pre>
+<p>这个是php版本的，本来打算放到博客空间上面的，但是才发现博客是采用php5.2，开了tips问了下，说是不可以，要我买VPS可以自己折腾，想想这个空间大约6月份就到期了，就不续费好了。回到这个软件上了，这个是用php实现的，用了namespace等，用OO的思想实现的，图片进行缓存。 <img src="/wp-content/uploads/2013/04/imageviewer.png" alt="imageviewer">经过一番折腾，在我的64位Win8上面也装上了GSTreamer的Python绑定，然后就开始玩behnam-python-lfp-reader，之后经过搜索，发现了一个标准C语言版本的，和一个用php类写的版本。</p>
+<h1 id="lfptools-1">1.lfptools</h1>
+<p>当然先clone下来</p>
+<pre><code>git clone git://github.com/nrpatel/lfptools.git
+</code></pre>
+<p>然后进入MingW</p>
+<pre><code>cd /e/work/lfptools/
+make
+</code></pre>
+<p>成功编译 <img src="/wp-content/uploads/2013/04/lfptools.png" alt="lfptools"> <img src="http://blog.rexdf.org/wp-content/uploads/2013/04/lfptools2.png" alt="lfptools2"> 现在就分析下源代码了 main函数进入之后解析命令行第一个参数，并调用lfp_create打开，过程大约就是，算出文件长度并填入表中(二进制到位中间转换过一次)，然后整个按照二进制文件读取出来。 接着便是调用lfp_file_check检测是否是lfp格式的文件，lfp格式文件开头标志为0x89, 0x4C, 0x46, 0x50, 0x0D, 0x0A, 0x1A, 0x0A。 下一步就是解析lfp文件了，lfp数据是一块一块的，每块都有一个魔术头3+1byte，然后就是块的长度，这是一个32bit的整数，而且大端方式，转换成正常整数即是数据块长度，之后就是45bit SHA1+35bit Blank,接下去就是声明长度的块数据了。数据块识别好以后就是识别数据块的类型，首先寻找一个“”包含的字符串，从处理上看，应该包括以下几种类型： LFP_RAW_IMAGE应该就是普通的图片格式了，调用converted_image函数处理，似乎就是把3<em>8bit的数据转换成如下的两个16位数据。 <img src="http://blog.rexdf.org/wp-content/uploads/2013/04/image1.png" alt="image"> LFP_JSON 数据名字,假设其他不是”imageRef”标识的 LFP_DEPTH_LUT 深度信息，是4</em>8bit一个32位的float格式。用”depth”（包括引号)标识 LFP_LUT 是Lytro第二版本有的，用”lut”（包括引号)标识 LFP_JPEG 是JPEG格式数据,用”image”（包括引号)标识 LFP_BLOCK_OF_IMAGES 这个是H264块,用”blockOfImagesRef”（包括引号)标识</p>
+<h1 id="behnam-python-lfp-reader-1">2.behnam-python-lfp-reader</h1>
+<pre><code>git clone git://github.com/behnam/python-lfp-reader.git
+</code></pre>
+<p>主要是装Gstreamer的Python绑定比较麻烦，不能用google code的10.7那个OSSBuild，要用2012的那个，而且不能同时安装这个两个。不过奇怪的是在ＸＰ系统上那么快，为何在我的系统上几乎要几分钟来执行import gst命令。左键换焦点，中键全聚焦，右键小幅度变化视角。对于代码的分析，没有太大的欲望。所以也就只是调试下这个项目代码而已。 <img src="/wp-content/uploads/2013/04/lfp-reader.png" alt="lfp reader"></p>
+<h1 id="lytro-image-viewer-1">3.Lytro: Image Viewer</h1>
+<pre><code>git clone git://github.com/maxvw/php-lytro.git
+</code></pre>
+<p>这个是php版本的，本来打算放到博客空间上面的，但是才发现博客是采用php5.2，开了tips问了下，说是不可以，要我买VPS可以自己折腾，想想这个空间大约6月份就到期了，就不续费好了。回到这个软件上了，这个是用php实现的，用了namespace等，用OO的思想实现的，图片进行缓存。</p>
+</div>
+</article>
+<article>
+<header>
+<h1 class="entry-title"><a href="/blog/2013/04/18/da-jia-hao/">大家好</a></h1>
+<p class="meta">
+<time class="data-article month-04 season-spring" datetime="2013-04-18T18:09:00+08:00" pubdate><span class="month">Apr</span> <span class="day">18th</span> <span class="year">2013</span></time>
+| <a href="/blog/2013/04/18/da-jia-hao/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2013/04/18/da-jia-hao/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div><div data-line="5" class="line-number"></div><div data-line="6" class="line-number"></div><div data-line="7" class="line-number"></div><div data-line="8" class="line-number"></div><div data-line="9" class="line-number"></div><div data-line="10" class="line-number"></div><div data-line="11" class="line-number"></div><div data-line="12" class="line-number"></div><div data-line="13" class="line-number"></div><div data-line="14" class="line-number"></div></pre></td><td class="main code"><pre><div class="line matlab"><span class="o">\</span><span class="n">begin</span><span class="p">{</span><span class="n">align</span><span class="o">*</span><span class="p">}</span>
+</div><div class="line matlab">  <span class="o">&amp;</span> <span class="o">\</span><span class="n">phi</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="p">=</span> <span class="o">\</span><span class="n">phi</span> <span class="o">\</span><span class="n">left</span><span class="p">(</span><span class="o">\</span><span class="n">sum_</span><span class="p">{</span><span class="nb">i</span><span class="p">=</span><span class="mi">1</span><span class="p">}</span>^<span class="n">n</span> <span class="n">x_ie_i</span><span class="p">,</span> <span class="o">\</span><span class="n">sum_</span><span class="p">{</span><span class="nb">j</span><span class="p">=</span><span class="mi">1</span><span class="p">}</span>^<span class="n">n</span> <span class="n">y_je_j</span> <span class="o">\</span><span class="n">right</span><span class="p">)</span>
+</div><div class="line matlab">  <span class="p">=</span> <span class="o">\</span><span class="n">sum_</span><span class="p">{</span><span class="nb">i</span><span class="p">=</span><span class="mi">1</span><span class="p">}</span>^<span class="n">n</span> <span class="o">\</span><span class="n">sum_</span><span class="p">{</span><span class="nb">j</span><span class="p">=</span><span class="mi">1</span><span class="p">}</span>^<span class="n">n</span> <span class="n">x_i</span> <span class="n">y_j</span> <span class="o">\</span><span class="n">phi</span><span class="p">(</span><span class="n">e_i</span><span class="p">,</span> <span class="n">e_j</span><span class="p">)</span> <span class="p">=</span> <span class="o">\\</span>
+</div><div class="line matlab">  <span class="o">&amp;</span> <span class="p">(</span><span class="n">x_1</span><span class="p">,</span> <span class="o">\</span><span class="n">ldots</span><span class="p">,</span> <span class="n">x_n</span><span class="p">)</span> <span class="o">\</span><span class="n">left</span><span class="p">(</span> <span class="o">\</span><span class="n">begin</span><span class="p">{</span><span class="n">array</span><span class="p">}{</span><span class="n">ccc</span><span class="p">}</span>
+</div><div class="line matlab">      <span class="o">\</span><span class="n">phi</span><span class="p">(</span><span class="n">e_1</span><span class="p">,</span> <span class="n">e_1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="o">\</span><span class="n">cdots</span> <span class="o">&amp;</span> <span class="o">\</span><span class="n">phi</span><span class="p">(</span><span class="n">e_1</span><span class="p">,</span> <span class="n">e_n</span><span class="p">)</span> <span class="o">\\</span>
+</div><div class="line matlab">      <span class="o">\</span><span class="n">vdots</span> <span class="o">&amp;</span> <span class="o">\</span><span class="n">ddots</span> <span class="o">&amp;</span> <span class="o">\</span><span class="n">vdots</span> <span class="o">\\</span>
+</div><div class="line matlab">      <span class="o">\</span><span class="n">phi</span><span class="p">(</span><span class="n">e_n</span><span class="p">,</span> <span class="n">e_1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="o">\</span><span class="n">cdots</span> <span class="o">&amp;</span> <span class="o">\</span><span class="n">phi</span><span class="p">(</span><span class="n">e_n</span><span class="p">,</span> <span class="n">e_n</span><span class="p">)</span>
+</div><div class="line matlab">    <span class="o">\</span><span class="k">end</span><span class="p">{</span><span class="n">array</span><span class="p">}</span> <span class="o">\</span><span class="n">right</span><span class="p">)</span>
+</div><div class="line matlab">  <span class="o">\</span><span class="n">left</span><span class="p">(</span> <span class="o">\</span><span class="n">begin</span><span class="p">{</span><span class="n">array</span><span class="p">}{</span><span class="n">c</span><span class="p">}</span>
+</div><div class="line matlab">      <span class="n">y_1</span> <span class="o">\\</span>
+</div><div class="line matlab">      <span class="o">\</span><span class="n">vdots</span> <span class="o">\\</span>
+</div><div class="line matlab">      <span class="n">y_n</span>
+</div><div class="line matlab">    <span class="o">\</span><span class="k">end</span><span class="p">{</span><span class="n">array</span><span class="p">}</span> <span class="o">\</span><span class="n">right</span><span class="p">)</span>
+</div><div class="line matlab"><span class="o">\</span><span class="k">end</span><span class="p">{</span><span class="n">align</span><span class="o">*</span><span class="p">}</span>
+</div></pre></td></tr></table></div></figure></notextile></div>
+<script type="math/tex;mode=display">% <![CDATA[
+
+\begin{align*}
+  & \phi(x,y) = \phi \left(\sum_{i=1}^n x_ie_i, \sum_{j=1}^n y_je_j \right)
+  = \sum_{i=1}^n \sum_{j=1}^n x_i y_j \phi(e_i, e_j) = \\
+  & (x_1, \ldots, x_n) \left( \begin{array}{ccc}
+      \phi(e_1, e_1) & \cdots & \phi(e_1, e_n) \\
+      \vdots & \ddots & \vdots \\
+      \phi(e_n, e_1) & \cdots & \phi(e_n, e_n)
+    \end{array} \right)
+  \left( \begin{array}{c}
+      y_1 \\
+      \vdots \\
+      y_n
+    \end{array} \right)
+\end{align*}
+ %]]></script>
+</div>
+</article>
+<article>
+<header>
+<h1 class="entry-title"><a href="/blog/2013/04/07/hello/">Hello,world</a></h1>
+<p class="meta">
+<time class="data-article month-04 season-" datetime="2013-04-07T00:00:00+08:00" pubdate></time>
+| <a href="/blog/2013/04/07/hello/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2013/04/07/hello/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><h2>hello,world</h2>
+<p>My first Page</p>
+<p>07 Apr 2013</p>
+</div>
+</article>
+<article>
+<header>
+<h1 class="entry-title"><a href="/blog/2013/04/03/Codeforces-177-D/">Codeforces 177 D</a></h1>
+<p class="meta">
+<time class="data-article month-04 season-spring" datetime="2013-04-03T02:08:00+08:00" pubdate><span class="month">Apr</span> <span class="day">3rd</span> <span class="year">2013</span></time>
+| <a href="/blog/2013/04/03/Codeforces-177-D/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2013/04/03/Codeforces-177-D/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>Polo the Penguin and Houses</p>
+<p>time limit per test</p>
+<p>2 seconds</p>
+<p>memory limit per test</p>
+<p>256 megabytes</p>
+<p>input</p>
+<p>standard input</p>
+<p>output</p>
+<p>standard output</p>
+<p>Little penguin Polo loves his home village. The village has <em>n</em> houses, indexed by integers from 1 to <em>n</em>. Each house has a plaque containing an integer, the <em>i</em>-th house has a plaque containing integer <em>p__i</em> (1 ≤ <em>p__i</em> ≤ <em>n</em>). Little penguin Polo loves walking around this village. The walk looks like that. First he stands by a house number <em>x</em>. Then he goes to the house whose number is written on the plaque of house <em>x</em> (that is, to house <em>p__x</em>), then he goes to the house whose number is written on the plaque of house <em>p__x</em> (that is, to house <em>p__p__x</em>), and so on. We know that:  </p>
+<ol>
+<li>When the penguin starts walking from any house indexed from 1 to <em>k</em>, inclusive, he can walk to house number 1.</li>
+<li>When the penguin starts walking from any house indexed from <em>k</em> + 1 to <em>n</em>, inclusive, he definitely cannot walk to house number 1.</li>
+<li>When the penguin starts walking from house number 1, he can get back to house number 1 after some non-zero number of walks from a house to a house.   You need to find the number of ways you may write the numbers on the houses’ plaques so as to fulfill the three above described conditions. Print the remainder after dividing this number by 1000000007 (109 + 7).</li>
+</ol>
+<p>Input</p>
+<p>The single line contains two space-separated integers <em>n</em> and <em>k</em> (1 ≤ <em>n</em> ≤ 1000, 1 ≤ <em>k</em> ≤ <em>min</em>(8, <em>n</em>)) — the number of the houses and the number <em>k</em> from the statement.</p>
+<p>Output</p>
+<p>In a single line print a single integer — the answer to the problem modulo 1000000007 (109 + 7).</p>
+<p>Sample test(s)</p>
+<p>input</p>
+<pre><code>5 2
+</code></pre>
+<p>output</p>
+<pre><code>54
+</code></pre>
+<p>input</p>
+<pre><code>7 4
+</code></pre>
+<p>output</p>
+<pre><code>1728
+
+
+#include &lt;iostream&gt;
+
+using namespace std;
+
+const long long MOD=1e9+7;
+
+long long pow_mod(int n,int k)
+{
+    long  long ret=1,p=n;
+    while(k)
+    {
+        if(k&amp;1)
+        {
+            ret*=p;
+            ret%=MOD;
+        }
+        p*=p;
+        p%=MOD;
+        k&gt;&gt;=1;
+    }
+    return ret;
+}
+
+int main()
+{
+    int N,K;
+    cin&gt;&gt;N&gt;&gt;K;
+    cout&lt;&lt;((pow_mod(K,K-1)*pow_mod(N-K,N-K))%MOD)&lt;&lt;endl;
+    return 0;
+}
+</code></pre>
+</div>
+</article>
+<article>
+<header>
+<h1 class="entry-title"><a href="/blog/2013/04/03/Codeforces-177-E/">Codeforces 177 E</a></h1>
+<p class="meta">
+<time class="data-article month-04 season-spring" datetime="2013-04-03T02:01:00+08:00" pubdate><span class="month">Apr</span> <span class="day">3rd</span> <span class="year">2013</span></time>
+| <a href="/blog/2013/04/03/Codeforces-177-E/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2013/04/03/Codeforces-177-E/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>Polo the Penguin and XOR operation</p>
+<p>time limit per test</p>
+<p>2 seconds</p>
+<p>memory limit per test</p>
+<p>256 megabytes</p>
+<p>input</p>
+<p>standard input</p>
+<p>output</p>
+<p>standard output</p>
+<p>Little penguin Polo likes permutations. But most of all he likes permutations of integers from 0 to <em>n</em>, inclusive. For permutation <em>p</em> = <em>p</em>0, <em>p</em>1, …, <em>p__n</em>, Polo has defined its beauty — number <img src="http://codeforces.ru/renderer/0c51fe5d835015fdb8b8dbb056e9a83c439c83dc.png" alt="">. Expression <img src="http://codeforces.ru/renderer/b364f2e04c665b78b924ec10666327a4ef4635bc.png" alt=""> means applying the operation of bitwise excluding “OR” to numbers <em>x</em> and <em>y</em>. This operation exists in all modern programming languages, for example, in language C++ and Java it is represented as “^” and in Pascal — as “xor”. Help him find among all permutations of integers from 0 to <em>n</em> the permutation with the maximum beauty.</p>
+<p>Input</p>
+<p>The single line contains a positive integer <em>n</em> (1 ≤ <em>n</em> ≤ 106).</p>
+<p>Output</p>
+<p>In the first line print integer <em>m</em> the maximum possible beauty. In the second line print any permutation of integers from 0 to <em>n</em> with the beauty equal to <em>m</em>. If there are several suitable permutations, you are allowed to print any of them.</p>
+<p>Sample test(s)</p>
+<p>input</p>
+<pre><code>4
+</code></pre>
+<p>output</p>
+<pre><code>20 0 2 1 4 3
+
+
+#include &lt;iostream&gt;
+#include &lt;cstdio&gt;
+#include &lt;cstdlib&gt;
+
+using namespace std;
+
+int a[1000005];
+int vis[1000005];
+
+int main()
+{
+    int n,mask=0,tmp_p,p=1;
+    int tmp;
+    long long sum=0;
+    cin&gt;&gt;n;
+    while(p&lt;=n)
+    {
+        mask|=p;
+        p&lt;&lt;=1;
+    }
+    //cout&lt;&lt;mask&lt;&lt;endl;
+    for(int i=n;i;i--)
+      if(0==vis[i])
+      {
+          tmp=((~i)&amp;mask);
+          //cout&lt;&lt;i&lt;&lt;" find "&lt;&lt;tmp&lt;&lt;endl;
+          if(tmp&lt;=n)
+          {
+              vis[i]=1;
+              vis[tmp]=1;
+              sum+=mask&lt;&lt;1;
+              a[i]=tmp;
+              a[tmp]=i;
+          }
+          else
+          {
+              tmp_p=1;
+              //tmp=((~i)&amp;(mask&gt;&gt;1));
+              while((1&lt;&lt;tmp_p)&lt;=mask)
+              {
+                  tmp=((~i)&amp;(mask&gt;&gt;tmp_p));
+                  if(0==vis[tmp])break;
+                  tmp_p++;
+              }
+              vis[tmp]=1;
+              vis[i]=1;
+              sum+=(tmp^i)&lt;&lt;1;
+              a[i]=tmp;
+              a[tmp]=i;
+          }
+      }
+    cout&lt;&lt;sum&lt;&lt;endl;
+    if(vis[0])cout&lt;&lt;a[0];
+    else cout&lt;&lt;0;
+    for(int i=1;i&lt;=n;i++)
+      cout&lt;&lt;" "&lt;&lt;a[i];
+    return 0;
+}
+</code></pre>
+</div>
+</article>
+<article>
+<header>
+<h1 class="entry-title"><a href="/blog/2013/03/25/Flash-Mob/">Flash Mob</a></h1>
+<p class="meta">
+<time class="data-article month-03 season-spring" datetime="2013-03-25T13:25:00+08:00" pubdate><span class="month">Mar</span> <span class="day">25th</span> <span class="year">2013</span></time>
+| <a href="/blog/2013/03/25/Flash-Mob/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2013/03/25/Flash-Mob/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>Description Jumping Jack is in charge of organizing a ash mob. The members of the ash mob move around town all day and part of the appeal of this group is they come together to do their thing whenever the mood strikes Jack. When the mood does strike, Jack sends a text message to the members to meet at a particular intersection in town in exactly one hour. The streets of the town run only north-south or east-west and are evenly spaced, forming a perfect grid like a sheet of graph paper. Due to the spontaneity, Jack wants to minimize the inconvenience and so picks an intersection to minimize the total distance traveled by the ash mob’s members. Fortunately Jack has the locations of all the members via the GPS on their cell phones. Your job is to second the meeting location given all the members’ locations. Each intersection will be given by a pair of non-negative integers; the first coordinate is the east-west street and the second coordinate is the north-south street. The location of each ash mob member will be an intersection. Members can travel only north-south or east-west between intersections. For example, suppose there are 5 mob members at locations (3;4);(0;5);(1;1);(5;5), and (5;5). Then if Jack summons them all to location (3;5), the total number of blocks traveled by the mob members would be 14. Jack could do no better { but sometimes the ‘best’ location may not be unique</p>
+<h2 id="input">Input</h2>
+<p>Input for each test case will be a series of integers on one or more lines. The first integer, n (1 &lt;= n &lt;= 1000), indicates the number of mob members. There follow n pairs of integers indicating the location (intersection) of each member. The location coordinates are both between 0 and 10^6, inclusive. More than one member may be at the same intersection. A line containing 0 will follow the last test case.</p>
+<h2 id="output">Output</h2>
+<p>Output one line for each test case in the format given below. The ordered pair is the coordinates of the location in the city where the total distance traveled (in blocks) is minimal. If there is more than one such location, output the one with the smallest first coordinate. If there is more than one ‘best’ location with the smallest first coordinate, output the one of those with the smallest second coordinate. The total number of blocks traveled by all the mob members follows the location.</p>
+<h2 id="sample-input">Sample Input</h2>
+<p>5 3 4 0 5 1 1 5 5 5 5 4 100 2 100 2 100 2 1 20000 0</p>
+<h2 id="sample-output">Sample Output</h2>
+<p>Case 1: (3,5) 14 Case 2: (100,2) 20097</p>
+<h2 id="source">Source</h2>
+<p>2012 East Central Regional Contest</p>
+<pre><code>//求平面上一点到其他点曼哈顿距离和最小
+//其实只要分别考虑两维就好了
+//y=|x-x1|+|x-x2|+...+|x-xn|，的最小值一定取在中位数值上(包括偶数个点，此时中间是水平线)
+//但是下面的算法并不是这么求的，用的模拟退火的方法，也刷到了8ms，挺不容易的。当然上面的算法肯定是0ms了。
+#include &lt;iostream&gt;
+#include &lt;cstdio&gt;
+#include &lt;cstdlib&gt;
+#include &lt;cstring&gt;
+#include &lt;algorithm&gt;
+ 
+using namespace std;
+ 
+int p[1005][3],n;
+int px[1005],py[1005];
+//int min_x,min_y,max_x,max_y;
+int st_x,st_y;
+int st;
+int multx,multy;
+const int dx[]={-1,-1,0,-1,0,1,1,1};
+const int dy[]={-1,0,-1,1,1,-1,0,1};
+ 
+inline int Abs(int x)
+{
+    if(x&gt;0)return x;
+    return -x;
+}
+ 
+int sum(int x,int y)
+{
+    int ret=0;
+    for(int i=0;i&lt;n;i++)
+      ret+=Abs(p[i][0]-x)+Abs(p[i][1]-y);
+    //cout&lt;&lt;"sum "&lt;&lt;x&lt;&lt;" "&lt;&lt;y&lt;&lt;" "&lt;&lt;ret&lt;&lt;endl;
+    //cout&lt;&lt;ret&lt;&lt;endl;
+    return ret;
+}
+ 
+void solve()
+{
+    //st_x=(min_x+max_x)/2;st_y=(min_y+max_y)/2;
+    int stx,sty;
+    int idx;
+    st=sum(st_x,st_y);
+    int st2;
+    while(1)
+    {
+        idx=-1;
+        for(int i=0;i&lt;8;i++)
+        {
+            stx=st_x+multx*dx[i];
+            sty=st_y+multy*dy[i];
+            st2=sum(stx,sty);
+            if(st2&lt;st || (i&lt;3 &amp;&amp; st2==st))
+            {
+                st=st2;
+                idx=i;
+            }
+        }
+        if(-1==idx)
+        {
+            if(1==multx &amp;&amp; 1==multy)break;
+            if(multx&gt;1)multx&gt;&gt;=1;
+            if(multy&gt;1)multy&gt;&gt;=1;
+        }
+        else
+        {
+            st_x=st_x+multx*dx[idx];
+            st_y=st_y+multy*dy[idx];
+        }
+        //cout&lt;&lt;idx&lt;&lt;" "&lt;&lt;st_x&lt;&lt;" "&lt;&lt;st_y&lt;&lt;" "&lt;&lt;sum(st_x,st_y)&lt;&lt;endl;
+       //system("pause");
+    }
+}
+ 
+int main()
+{
+    freopen("1796in.txt","r",stdin);
+    freopen("1796_revise_out.txt","w",stdout);
+    int tx,ty;
+    long long sx,sy;
+    int cs=0;
+    while(scanf("%d",&amp;n),n)
+    {
+        //min_x=1e6;min_y=1e6;
+        //max_x=0;max_y=0;
+        sx=0;sy=0;
+        for(int i=0;i&lt;n;i++)
+        {
+            //cin&gt;&gt;tx&gt;&gt;ty;
+            scanf("%d%d",&amp;tx,&amp;ty);
+            p[i][0]=tx;p[i][1]=ty;
+            px[i]=tx;py[i]=ty;
+            sx+=tx;
+            sy+=ty;
+        }
+        sort(px,px+n);
+        sort(py,py+n);
+        multx=(px[n-1]-px[0])/2;
+        multy=(py[n-1]-py[0])/2;
+        if(n&amp;1)
+        {
+            st_x=px[n/2];
+            st_y=py[n/2];
+        }
+        else
+        {
+            st_x=(px[n/2]+px[n/2+1])/2;
+            st_y=(py[n/2]+py[n/2+1])/2;
+        }
+        solve();
+        cs++;
+        //cout&lt;&lt;"Case "&lt;&lt;cs&lt;&lt;": ("&lt;&lt;st_x&lt;&lt;","&lt;&lt;st_y&lt;&lt;") "&lt;&lt;st&lt;&lt;endl;
+        printf("Case %d: (%d,%d) %dn",cs,st_x,st_y,st);
+    }
+    return 0;
+}
+</code></pre>
+<p>Description Jumping Jack is in charge of organizing a ash mob. The members of the ash mob move around town all day and part of the appeal of this group is they come together to do their thing whenever the mood strikes Jack. When the mood does strike, Jack sends a text message to the members to meet at a particular intersection in town in exactly one hour. The streets of the town run only north-south or east-west and are evenly spaced, forming a perfect grid like a sheet of graph paper. Due to the spontaneity, Jack wants to minimize the inconvenience and so picks an intersection to minimize the total distance traveled by the ash mob’s members. Fortunately Jack has the locations of all the members via the GPS on their cell phones. Your job is to second the meeting location given all the members’ locations. Each intersection will be given by a pair of non-negative integers; the first coordinate is the east-west street and the second coordinate is the north-south street. The location of each ash mob member will be an intersection. Members can travel only north-south or east-west between intersections. For example, suppose there are 5 mob members at locations (3;4);(0;5);(1;1);(5;5), and (5;5). Then if Jack summons them all to location (3;5), the total number of blocks traveled by the mob members would be 14. Jack could do no better { but sometimes the ‘best’ location may not be unique</p>
+<h2 id="input-1">Input</h2>
+<p>Input for each test case will be a series of integers on one or more lines. The first integer, n (1 &lt;= n &lt;= 1000), indicates the number of mob members. There follow n pairs of integers indicating the location (intersection) of each member. The location coordinates are both between 0 and 10^6, inclusive. More than one member may be at the same intersection. A line containing 0 will follow the last test case.</p>
+<h2 id="output-1">Output</h2>
+<p>Output one line for each test case in the format given below. The ordered pair is the coordinates of the location in the city where the total distance traveled (in blocks) is minimal. If there is more than one such location, output the one with the smallest first coordinate. If there is more than one ‘best’ location with the smallest first coordinate, output the one of those with the smallest second coordinate. The total number of blocks traveled by all the mob members follows the location.</p>
+<h2 id="sample-input-1">Sample Input</h2>
+<p>5 3 4 0 5 1 1 5 5 5 5 4 100 2 100 2 100 2 1 20000 0</p>
+</div>
+</article>
+<div class="pagination">
+<a class="prev" href="/blog/page/14/">&larr; Older</a>
+<a href="/blog/archives">Blog Archives</a>
+<a class="next" href="/blog/page/12/">Newer &rarr;</a>
+</div>
+</div>
+<aside class="sidebar">
+<section>
+<h1>Categories</h1>
+<ul id="categories">
+<li class="category"><a href="/blog/categories/acm/">ACM <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/algorithm/">Algorithm <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/assembly/">Assembly <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/cygwin/">Cygwin <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/gnu/">GNU <sup>8</sup></a></li>
+<li class="category"><a href="/blog/categories/math/">Math <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/octopress/">Octopress <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/programming/">Programming <sup>6</sup></a></li>
+<li class="category"><a href="/blog/categories/security/">Security <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sublime/">Sublime <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/synology/">Synology <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sysadmin/">SysAdmin <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/web/">Web <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/windows/">Windows <sup>7</sup></a></li>
+<li class="category"><a href="/blog/categories/proxmox/">proxmox <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/ri-chang/">日常 <sup>37</sup></a></li>
+</ul>
+</section>
+<section>
+<h1>Recent Posts</h1>
+<ul id="recent_posts">
+<li class="post">
+<a href="/blog/2024/12/16/fu-wu-qi-wa-kuang-bing-du-de-cha-sha/">服务器挖矿病毒的查杀</a>
+</li>
+<li class="post">
+<a href="/blog/2021/07/11/apple-m1-bian-yi-tensorflow/">Apple M1 编译tensorflow</a>
+</li>
+<li class="post">
+<a href="/blog/2021/02/27/chromiumbian-ma-qi-wen-ti/">Chromium编码器问题</a>
+</li>
+<li class="post">
+<a href="/blog/2020/12/13/proxmoxbi-ji/">Proxmox笔记</a>
+</li>
+<li class="post">
+<a href="/blog/2020/11/15/lun-yan-du-yu-shen-du/">论广度与深度</a>
+</li>
+</ul>
+</section>
+<section>
+<iframe frameborder="0" scrolling="no" referrerpolicy="unsafe-url" style="width:283px;height:200px" src="https://t.rexdf.org/?m=app&a=showwidget&name=rexdf&type=1&width=283px&height=500px"></iframe>
+</section>
+<section>
+<h1>GitHub Repos</h1>
+<ul id="gh_repos">
+<li class="loading">Status updating&#8230;</li>
+</ul>
+<a href="https://github.com/rexdf">@rexdf</a> on GitHub
+<script type="text/javascript">$(document).ready(function(){if(!window.jXHR){var e=document.createElement("script");e.type="text/javascript",e.src="/javascripts/libs/jXHR.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}github.showRepos({user:"rexdf",count:0,skip_forks:!0,target:"#gh_repos"})})</script>
+</section>
+</aside>
+</div>
+</div>
+<footer role="contentinfo"><p>
+<span class="credit">Copyright &copy; 2024 - Rexdf -</span> |
+<span class="credit">Powered by <a name="bottoms" target="_blank" href="http://octopress.org">Octopress</a></span> |
+<span class="credit">Theme by ：<a href="https://blog.rexdf.org/" target="_blank" rel="theme">Rexdf</a></span> |
+<span class="credit">Host by：<a href="https://github.com/" target="_blank" rel="host">Github.com</a></span> |
+<span class="credit">版权声明：<a href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" target="_blank" rel="license">CC BY-NC-SA 3.0</a><img src="https://analytics.rexdf.net/piwik.php?idsite=1&amp;rec=1" style="border:0" alt="" referrerpolicy="no-referrer-when-downgrade"></span>|
+<span class="credit"><a href="/sitemap.xml" rel="sitemap">sitemap</a></span>
+</p>
+<script type="text/javascript" src="https://tajs.qq.com/stats?sId=30296377" charset="UTF-8"></script>
+</footer>
+<script type="text/javascript">var disqus_shortname="rexdf",disqus_script="count.js";!function(){var e=document.createElement("script");e.type="text/javascript",e.async=!0,e.src="//"+disqus_shortname+".disqus.com/"+disqus_script,(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(e)}()</script>
+<script type="text/javascript">$(function(){$(".entry-content").each(function(t){var r=t;$(this).find("img.fancybox").each(function(){var t=$(this),a=t.attr("title"),n=t.attr("class");t.removeAttr("class"),t.wrap('<a href="'+this.src+'" class="'+n+'" rel="gallery'+r+'" />'),""!=a&&t.parent().attr("title",a)})}),$(".fancybox").fancybox()})</script>
+</body>
+</html>

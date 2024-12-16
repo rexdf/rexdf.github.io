@@ -1,0 +1,184 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<script type="text/javascript">var _speedMark=new Date</script>
+<meta charset="utf-8">
+<title>[转载]Apache Rewrite 规则详解 - Rexdf</title>
+<meta name="author" content="Rexdf">
+<meta name="description" content="Apache Rewrite 规则详解 2010-07-19 10:16 Apache Rewrite 规则详解 在开篇之前： 我想说这篇文章其实是我刚刚接触Rewrite的时候学习的文档，应属转载，但是在这里我不想写明原地址，原因是文章中大多数给出的配置命令经实验都是错误的。 &hellip;">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' data: https://hm.baidu.com https://tajs.qq.com https://ssl.google-analytics.com https://static.rexdf.org https://*.disquscdn.com https://rexdf.disqus.com https://api.github.com https://ssl.google-analytics.com https://disqus.com https://analytics.rexdf.net; connect-src 'self' https://static.rexdf.org https://analytics.rexdf.net https://hm.baidu.com; img-src data: https://*; font-src data: https://*; child-src 'none'; style-src 'self' 'unsafe-inline' https://*; frame-src 'self' https://t.rexdf.org http://t.rexdf.org https://rexdf.disqus.com https://disqus.com">
+<link rel="canonical" href="https://i.rexdf.org/blog/2011/11/19/zhuan-zai-Apache-Rewrite-gui-ze-xiang-jie">
+<link rel="dns-prefetch" href="https://static.rexdf.org/">
+<link href="/favicon.ico" rel="icon">
+<link id="main-css" href="/stylesheets/screen.css" media="screen,projection" rel="stylesheet" type="text/css" title="pc">
+<link href="/stylesheets/screen_mobile.css" rel="alternate stylesheet" type="text/css" title="mobile">
+<link href="/atom.xml" rel="alternate" title="Rexdf" type="application/atom+xml">
+<script src="/javascripts/libs/jquery.min.js"></script>
+<script src="/javascripts/octopress-rexdf.min.js" type="text/javascript"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+      
+      toggle_theme();
+  });
+</script>
+<script type="text/javascript" async src="https://static.rexdf.org/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript">var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-55590409-1"]),_gaq.push(["_trackPageview"]),function(){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(t,e)}()</script>
+<script>var _hmt=_hmt||[];!function(){var e=document.createElement("script");e.src="//hm.baidu.com/hm.js?32192d95b89fbefa0875c4c95adb1412";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}()</script>
+<script src="/javascripts/fancybox/jquery.fancybox.pack.js"></script>
+<link rel="stylesheet" type="text/css" href="/javascripts/fancybox/jquery.fancybox.css">
+<script type="text/javascript">var _paq=_paq||[];_paq.push(["trackPageView"]),_paq.push(["enableLinkTracking"]),function(){var e="https://analytics.rexdf.net/";_paq.push(["setTrackerUrl",e+"piwik.php"]),_paq.push(["setSiteId","1"]);var a=document,t=a.createElement("script"),p=a.getElementsByTagName("script")[0];t.type="text/javascript",t.async=!0,t.defer=!0,t.src=e+"piwik.js",p.parentNode.insertBefore(t,p)}()</script>
+</head>
+<body class="low-contrast-linen-wptouch-bg">
+<header role="banner"><hgroup>
+<h1 id="header-title"><a href="/">Rexdf</a></h1>
+<h2 id="subtitle">The devil is in the Details.</h2>
+</hgroup>
+</header>
+<nav role="navigation"><ul class="subscription" data-subscription="rss">
+<li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+</ul>
+<form action="https://google.com/search" method="get">
+<fieldset role="search">
+<input type="hidden" name="q" value="site:i.rexdf.org">
+<input class="search" type="text" name="q" results="0" placeholder="Search">
+</fieldset>
+</form>
+<ul class="main-navigation">
+<li><a href="/">Blog</a></li>
+<li><a href="/blog/archives/">Archives</a></li>
+<li><a href="/idea/">Idea</a></li>
+<li><a href="/share/">Share</a></li>
+<li><a href="/books/">Books</a></li>
+<li><a href="/donate/">Donate</a></li>
+<li><a target="_blank" href="https://blog.rexdf.org" style="font-family:Shadows Into Light">Main-Blog</a></li>
+</ul>
+</nav>
+<div id="main">
+<div id="content">
+<div>
+<article class="hentry" role="article">
+<header>
+<h1 class="entry-title">[转载]Apache Rewrite 规则详解</h1>
+<p class="meta">
+<time class="data-article month-11 season-autumn" datetime="2011-11-19T22:29:00+08:00" pubdate><span class="month">Nov</span> <span class="day">19th</span> <span class="year">2011</span></time>
+| <a href="#disqus_thread" data-disqus-identifier="https://i.rexdf.org">Comments</a>
+</p>
+</header>
+<div class="entry-content"><table>
+<tbody>
+<tr>
+<td>Apache Rewrite 规则详解 2010-07-19 10:16 Apache Rewrite 规则详解 在开篇之前： 我想说这篇文章其实是我刚刚接触Rewrite的时候学习的文档，应属转载，但是在这里我不想写明原地址，原因是文章中大多数给出的配置命令经实验都是错误的。需要原文的可以在谷歌上搜索一下”Apache Rewrite 规则详解” 好在我对正则表达式有所了解，把原文的代码都通过自己的理解改写了一下，并都能够达到题设的要求，并联想需求添加了例子。 本文是经过我实验后修改有效的，如果还是出现500错误请去掉 # 及后面的注释（也许有些环境不支持中文注解），如果还是错误请在下面给我留言。 1、Rewrite规则简介： Rewirte主要的功能就是实现URL的跳转，它的正则表达式是基于Perl语言。可基于服务器级的(httpd.conf)和目录级的(.htaccess)两种方式。如果要想用到rewrite模块，必须先安装或加载rewrite模块。方法有两种一种是编译apache的时候就直接安装rewrite模块，别一种是编译apache时以DSO模式安装apache,然后再利用源码和apxs来安装rewrite模块。 基于服务器级的(httpd.conf)有两种方法，一种是在httpd.conf的全局下直接利用RewriteEngine on来打开rewrite功能;另一种是在局部里利用RewriteEngine on来打开rewrite功能,下面将会举例说明，需要注意的是,必须在每个virtualhost里用RewriteEngine on来打开rewrite功能。否则virtualhost里没有RewriteEngine on它里面的规则也不会生效。 基于目录级的(.htaccess),要注意一点那就是必须打开此目录的FollowSymLinks属性且在.htaccess里要声明RewriteEngine on。 2、举例说明： 例一.下面是在一个虚拟主机里定义的规则。功能是把client请求的主机前缀不是www.kiya.cn和70.40.213.183都跳转到主机前缀为http://www.kiya.cn，避免相同内容的网页有多个指向的域名，如http://kiya.cn。 NameVirtualHost 70.40.213.183:80 ServerAdmin slj@kiya.cn DocumentRoot “/web” ServerName kiya.cn RewriteEngine on #打开rewirte功能 RewriteCond %{HTTP_HOST} !^www.kiya.cn [NC] #声明Client请求的主机中前缀不是www.kiya.cn，其中 [NC] 的意思是忽略大小写 RewriteCond %{HTTP_HOST} !^70.40.213.183 [NC] #声明Client请求的主机中前缀不是70.40.213.183，其中 [NC] 的意思是忽略大小写 RewriteCond %{HTTP_HOST} !^$ #声明Client请求的主机中前缀不为空 RewriteRule ^(.<em>) http://www.kiya.cn/ [L] #含义是如果Client请求的主机中的前缀符合上述条件，则直接进行跳转到http://www.kiya.cn/,[L]意味着立即停止重写操作，并不再应用其他重写规则。这里的.</em>是指匹配所有URL中不包含换行字符，()括号的功能是把所有的字符做一个标记，以便于后面的应用.就是引用前面里的(.<em>)字符。 例二.将输入 en.sicasoft.com 的域名时跳转到www.sicasoft.com RewriteEngine on RewriteCond %{HTTP_HOST} ^en.sicasoft.com [NC] RewriteRule ^(.</em>) http://www.sicasoft.com/ [L] 例三.赛卡软件近期更换了域名，新域名为www.sicasoft.com, 更加简短好记。这时需要将原来的域名ss.kiya.cn, 以及论坛所在地址ss.kiya.cn/bbs/定向到新的域名，以便用户可以找到，并且使原来的论坛 URL 继续有效而不出现 404 未找到，比如原来的http://ss.kiya.cn/bbs/tread-60.html, 让它在新的域名下继续有效，点击后转发到http://bbs.sicasoft.com/tread-60.html，而其他网页，如原先的http://ss.kiya.cn/purchase不会到二级域名bbs.sicasoft.com/purchase上，而是到www.sicasoft.com/purchase 按照这样的要求重定向规则应该这样写： RewriteEngine On RewriteCond %{REQUEST_URI} ^/bbs/ RewriteRule ^bbs/(.<em>) http://bbs.sicasoft.com/$1 [R=permanent,L] RewriteCond %{REQUEST_URI} !^/bbs/ RewriteRule ^(.</em>) http://www.sicasoft.com/$1 [R=permanent,L] 3.Apache mod_rewrite规则重写的标志一览 1) R<a href="force redirect">=code</a> 强制外部重定向 强制在替代字符串加上http://thishost[:thisport]/前缀重定向到外部的URL.如果code不指定，将用缺省的302 HTTP状态码。 2) F(force URL to be forbidden)禁用URL,返回403HTTP状态码。 3) G(force URL to be gone) 强制URL为GONE，返回410HTTP状态码。 4) P(force proxy) 强制使用代理转发。 5) L(last rule) 表明当前规则是最后一条规则，停止分析以后规则的重写。 6) N(next round) 重新从第一条规则开始运行重写过程。 7) C(chained with next rule) 与下一条规则关联 如果规则匹配则正常处理，该标志无效，如果不匹配，那么下面所有关联的规则都跳过。 8) T=MIME-type(force MIME type) 强制MIME类型 9) NS (used only if no internal sub-request) 只用于不是内部子请求 10) NC(no case) 不区分大小写 11) QSA(query string append) 追加请求字符串 12) NE(no URI escaping of output) 不在输出转义特殊字符 例如：RewriteRule /foo/(.<em>) /bar?arg=P1%3d$1 [R,NE] 将能正确的将/foo/zoo转换成/bar?arg=P1=zoo 13) PT(pass through to next handler) 传递给下一个处理 例如： RewriteRule ^/abc(.</em>) /def$1 [PT] # 将会交给/def规则处理 Alias /def /ghi 14) S=num(skip next rule(s)) 跳过num条规则 15) E=VAR:VAL(set environment variable) 设置环境变量 4.Apache rewrite例子集合 URL重定向 例子一: 同时达到下面两个要求： 1.用http://www.zzz.com/xxx.php 来访问 http://www.zzz.com/xxx/ 2.用http://yyy.zzz.com 来访问 http://www.zzz.com/user.php?username=yyy 的功能 RewriteEngine On RewriteCond %{HTTP_HOST} ^www.zzz.com RewriteCond %{REQUEST_URI} !^user.php$ RewriteCond %{REQUEST_URI} .php$ RewriteRule (.<em>).php$ http://www.zzz.com/$1/ [R] RewriteCond %{HTTP_HOST} !^www.zzz.com RewriteRule ^(.+) %{HTTP_HOST} [C] RewriteRule ^([^.]+).zzz.com http://www.zzz.com/user.php?username=$1 例子二： /type.php?typeid=</em> –&gt; /type<em>.html /type.php?typeid=</em>&amp;page;=* –&gt; /type<em>page</em>.html RewriteRule ^/type([0-9]+).html$ /type.php?typeid=$1 [PT] RewriteRule ^/type([0-9]+)page([0-9]+).html$ /type.php?typeid=$1&amp;page;=$2 [PT] 5.使用Apache的URL Rewrite配置多用户虚拟服务器 要实现这个功能，首先要在DNS服务器上打开域名的泛域名解析（自己做或者找域名服务商做）。比如，我就把 <em>.kiya.us和 *.kiya.cn全部解析到了我的IP地址70.40.213.183上。 然后，看一下我的Apache中关于</em>.kiya.us的虚拟主机的设定。 ServerAdmin webmaster@kiya.us DocumentRoot /home/www/www.kiya.us ServerName dns.kiya.us ServerAlias dns.kiya.us kiya.us *.kiya.us CustomLog /var/log/httpd/osa/access_log.log” common ErrorLog /var/log/httpd/osa/error_log.log” AllowOverride None Order deny,allow #AddDefaultCharset GB2312 RewriteEngine on RewriteCond %{HTTP_HOST} ^[^.]+.kiya.(cn</td>
+<td>us)$ RewriteRule ^(.+) %{HTTP_HOST}$1 [C] RewriteRule ^([^.]+).kiya.(cn</td>
+<td>us)(.<em>)$ /home/www/www.kiya.us/sylvan$3?un=$1&amp;%{QUERY_STRING} [L] 在这段设定中，我把</em>.kiya.cn和*.kiya.us 的Document Root都设定到了 /home/www/www.kiya.us 继续看下去，在这里我就配置了URL Rewrite规则。 RewriteEngine on #打开URL Rewrite功能 RewriteCond %{HTTP_HOST} ^[^.]+.kiya.(cn</td>
+<td>us)$ #匹配条件，如果用户输入的URL中主机名是类似 xxxx.kiya.us 或者 xxxx.kiya.cn 就执行下面一句 RewriteRule ^(.+) %{HTTP_HOST}$1 [C] #把用户输入完整的地址（GET方式的参数除外）作为参数传给下一个规则，[C]是Chain串联下一个规则的意思 RewriteRule ^([^.]+).kiya.(cn</td>
+<td>us)(.*)$ /home/www/dev.kiya.us/sylvan$3?un=$1&amp;%{QUERY_STRING} [L] # 最关键的是这一句，使用证则表达式解析用户输入的URL地址，把主机名中的用户名信息作为名为un的参数传给/home/www/dev.kiya.us目录下的脚本，并在后面跟上用户输入的GET方式的传入参数。并指明这是最后一条规则（[L</td>
+</tr>
+</tbody>
+</table>
+</div>
+<footer>
+<p class="meta">
+<span class="byline author vcard">Posted by <span class="fn">Rexdf</span></span>
+<time class="data-article month-11 season-autumn" datetime="2011-11-19T22:29:00+08:00" pubdate><span class="month">Nov</span> <span class="day">19th</span> <span class="year">2011</span></time>
+</p>
+<div class="sharing">
+</div>
+<p class="meta">
+<a class="basic-alignment left" href="/blog/2011/11/19/zhuan-zai-Apache-mo-kuai-mod_rewrite/" title="Previous Post: [转载]Apache模块 mod_rewrite">&laquo; [转载]Apache模块 mod_rewrite</a>
+<a class="basic-alignment right" href="/blog/2011/11/22/fa-xian-kuai-su-fa-bu-dui-IE-zhi-chi-de-fei-chang-hao/" title="Next Post: 发现快速发布对IE支持的非常好">发现快速发布对IE支持的非常好 &raquo;</a>
+</p>
+</footer>
+</article>
+<section>
+<h1>Comments</h1>
+<div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
+</div>
+<aside class="sidebar">
+<section>
+<h1>Categories</h1>
+<ul id="categories">
+<li class="category"><a href="/blog/categories/acm/">ACM <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/algorithm/">Algorithm <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/assembly/">Assembly <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/cygwin/">Cygwin <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/gnu/">GNU <sup>8</sup></a></li>
+<li class="category"><a href="/blog/categories/math/">Math <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/octopress/">Octopress <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/programming/">Programming <sup>6</sup></a></li>
+<li class="category"><a href="/blog/categories/security/">Security <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sublime/">Sublime <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/synology/">Synology <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sysadmin/">SysAdmin <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/web/">Web <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/windows/">Windows <sup>7</sup></a></li>
+<li class="category"><a href="/blog/categories/proxmox/">proxmox <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/ri-chang/">日常 <sup>37</sup></a></li>
+</ul>
+</section>
+<section>
+<h1>Recent Posts</h1>
+<ul id="recent_posts">
+<li class="post">
+<a href="/blog/2024/12/16/fu-wu-qi-wa-kuang-bing-du-de-cha-sha/">服务器挖矿病毒的查杀</a>
+</li>
+<li class="post">
+<a href="/blog/2021/07/11/apple-m1-bian-yi-tensorflow/">Apple M1 编译tensorflow</a>
+</li>
+<li class="post">
+<a href="/blog/2021/02/27/chromiumbian-ma-qi-wen-ti/">Chromium编码器问题</a>
+</li>
+<li class="post">
+<a href="/blog/2020/12/13/proxmoxbi-ji/">Proxmox笔记</a>
+</li>
+<li class="post">
+<a href="/blog/2020/11/15/lun-yan-du-yu-shen-du/">论广度与深度</a>
+</li>
+</ul>
+</section>
+<section>
+<iframe frameborder="0" scrolling="no" referrerpolicy="unsafe-url" style="width:283px;height:200px" src="https://t.rexdf.org/?m=app&a=showwidget&name=rexdf&type=1&width=283px&height=500px"></iframe>
+</section>
+<section>
+<h1>GitHub Repos</h1>
+<ul id="gh_repos">
+<li class="loading">Status updating...</li>
+</ul>
+<a href="https://github.com/rexdf">@rexdf</a> on GitHub
+<script type="text/javascript">$(document).ready(function(){if(!window.jXHR){var e=document.createElement("script");e.type="text/javascript",e.src="/javascripts/libs/jXHR.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}github.showRepos({user:"rexdf",count:0,skip_forks:!0,target:"#gh_repos"})})</script>
+</section>
+</aside>
+</div>
+</div>
+<footer role="contentinfo"><p>
+<span class="credit">Copyright &copy; 2024 - Rexdf -</span> |
+<span class="credit">Powered by <a name="bottoms" target="_blank" href="http://octopress.org">Octopress</a></span> |
+<span class="credit">Theme by ：<a href="https://blog.rexdf.org/" target="_blank" rel="theme">Rexdf</a></span> |
+<span class="credit">Host by：<a href="https://github.com/" target="_blank" rel="host">Github.com</a></span> |
+<span class="credit">版权声明：<a href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" target="_blank" rel="license">CC BY-NC-SA 3.0</a><img src="https://analytics.rexdf.net/piwik.php?idsite=1&amp;rec=1" style="border:0" alt="" referrerpolicy="no-referrer-when-downgrade"></span>|
+<span class="credit"><a href="/sitemap.xml" rel="sitemap">sitemap</a></span>
+</p>
+<script type="text/javascript" src="https://tajs.qq.com/stats?sId=30296377" charset="UTF-8"></script>
+</footer>
+<script type="text/javascript">var disqus_shortname="rexdf",disqus_identifier="https://i.rexdf.org/blog/2011/11/19/zhuan-zai-Apache-Rewrite-gui-ze-xiang-jie/",disqus_url="https://i.rexdf.org/blog/2011/11/19/zhuan-zai-Apache-Rewrite-gui-ze-xiang-jie/",disqus_script="embed.js";!function(){var e=document.createElement("script");e.type="text/javascript",e.async=!0,e.src="//"+disqus_shortname+".disqus.com/"+disqus_script,(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(e)}()</script>
+<script type="text/javascript">$(function(){$(".entry-content").each(function(t){var r=t;$(this).find("img.fancybox").each(function(){var t=$(this),a=t.attr("title"),n=t.attr("class");t.removeAttr("class"),t.wrap('<a href="'+this.src+'" class="'+n+'" rel="gallery'+r+'" />'),""!=a&&t.parent().attr("title",a)})}),$(".fancybox").fancybox()})</script>
+</body>
+</html>

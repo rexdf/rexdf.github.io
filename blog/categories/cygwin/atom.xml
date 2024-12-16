@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Cygwin | Rexdf]]></title>
+  <link href="https://i.rexdf.org/blog/categories/cygwin/atom.xml" rel="self"/>
+  <link href="https://i.rexdf.org/"/>
+  <updated>2024-12-16T23:11:13+08:00</updated>
+  <id>https://i.rexdf.org/</id>
+  <author>
+    <name><![CDATA[Rexdf]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[发现个新环境msys2]]></title>
+    <link href="https://i.rexdf.org/blog/2015/04/04/fa-xian-ge-xin-huan-jing-msys2/"/>
+    <updated>2015-04-04T15:02:30+08:00</updated>
+    <id>https://i.rexdf.org/blog/2015/04/04/fa-xian-ge-xin-huan-jing-msys2</id>
+    <content type="html"><![CDATA[<ul class="markdown-toc">
+  <li><a href="#mingwmsys-10">MinGW/msys 1.0:</a></li>
+  <li><a href="#mingw">MingW</a></li>
+  <li><a href="#mingw-w64">MinGW-w64</a></li>
+  <li><a href="#mingw-builds">MinGW-builds</a></li>
+  <li><a href="#win-builds">Win-builds</a></li>
+  <li><a href="#tdm-gcc">tdm-gcc</a></li>
+  <li><a href="#cygwin">Cygwin</a></li>
+  <li><a href="#msys2">msys2</a></li>
+  <li><a href="#section">结束语</a></li>
+</ul>
+
+<p>好久没写，发生种种暂且不表。</p>
+
+<p>最近注意到了一个新的Windows上面的模拟Linux的项目。一般来说两大主流阵营MingW与Cygwin，这两个思路各不相同。相对来说MingW性能比较好，尽可能用WinAPI替代实现。Cygwin则是添加了一个层，利用很多dll来模拟Linux的那些syscall(典型的如fork)。所以cygwin程序一般都是需要有cygwin的dll在path里面才可以运行。MingW缺点是很多程序没法编译，如果没有专门为MingW设计的程序，基本上MingW是编译不出来的。Cygwin缺点是会比较慢。</p>
+
+<!-- more -->
+
+<p>另外注意一下环境变量。MingW的环境变量path转换比较简陋很多情况下会有问题。cygwin环境下面有<code>cygpath.exe</code>这个工具来回转化(我就是用它hack了一下在cygwin的Mintty下面能运行调用nodejs处理博客压缩)。另外cygwin的path是Unicode的，偶尔会出现目录过深，windows资源管理器和<code>rd /s </code>都删不掉的超长路径文件，<code>rm -rf</code>可以在Windows下面轻易删除。</p>
+
+<p>msys本来是MingW的基本shell环境，从MingW项目没落之前很久就没更新过了。</p>
+
+<p>msys2是完全不同的项目。下面会详细给出参考。在此之前我们来看看各种Windows下面的gcc native build环境的比较。</p>
+
+<p>在此之前提醒一下，大部分MingW系列都是官网加SourceForge.net托管二进制的模式，所以有两个主要官网.</p>
+
+<h2 id="mingwmsys-10">MinGW/msys 1.0:</h2>
+
+<p>MinGW的官网是<a href="http://www.mingw.org/" target="_blank">http://www.mingw.org/</a>。</p>
+
+<p>MingW里面自带一个msys 1.0，这个比较经典，但是太老了，如果需要gcc 3.4.4与GNU Make 3.81搭配。很多最近的github与svn checkout都会编译失败。基本上除了学习csapp以外没有任何其他用途(它与CSAPP里面例子编译结果一致)。如果要用<code>/bin/gcc</code>就是msys的的古董gcc，因为MinGW的PATH里面<code>/mingw/bin</code>在<code>/bin</code>前面。</p>
+
+<h2 id="mingw">MingW</h2>
+
+<p>还算在更新从<a href="http://sourceforge.net/projects/mingw/" target="_blank">http://sourceforge.net/projects/mingw/</a>上看最后一次更新是2014年12月。估计是某个包的补丁而已。</p>
+
+<h2 id="mingw-w64">MinGW-w64</h2>
+
+<p>官网<a href="http://mingw-w64.yaxm.org" target="_blank">http://mingw-w64.yaxm.org</a>,二进制文件官网<a href="http://sourceforge.net/projects/mingw-w64/" target="_blank">http://sourceforge.net/projects/mingw-w64/</a>。</p>
+
+<p>应该是MinGW的后续了。一个典型的下载目录是<a href="http://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win64/Personal%20Builds/mingw-builds/4.9.2/threads-win32/seh/" target="_blank">http://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win64/Personal%20Builds/mingw-builds/4.9.2/threads-win32/seh/</a>，这样的结构。理论上应该更新最好的，是从Linux版本的MinGW编译出的Windows版本。这个是目前正规血统的MinGW项目，虽然是构建Windows的exe和dll文件，但是<strong>它能力最大发挥在Linux平台上</strong>。<strong>支持win7/8/8.1的API</strong>。被<a href="http://ffmpeg.mplayerhq.hu/" target="_blank">ffmpeg</a>，<a href="http://www.gtk.org/download-windows-64bit.html" target="_blank">GTK+</a>，<a href="http://www.openssl.org/" target="_blank">OpenSSL</a>，<a href="http://www.wxwidgets.org/" target="_blank">wxWidgets</a>，<a href="http://www.perl.org/" target="_blank">Perl</a>，<a href="http://sourceware.org/pthreads-win32/" target="_blank">phreads</a>，<a href="http://kde.org/" target="_blank">KDE Software Collection</a>，<a href="http://gimp-win.sourceforge.net/stable.html" target="_blank">GIMP</a>，<a href="http://www.blender.org/" target="_blank">Blender</a>，<a href="http://www.r-project.org/" target="_blank">The R Project for Statistical Computing</a>等项目所使用。但是Windows版本各种bug吧。</p>
+
+<h2 id="mingw-builds">MinGW-builds</h2>
+
+<p>被废弃的官网<a href="https://code.google.com/p/mingw-builds/" target="_blank">https://code.google.com/p/mingw-builds/</a>.</p>
+
+<p>二进制文件官网<a href="http://sourceforge.net/projects/mingwbuilds/" target="_blank">http://sourceforge.net/projects/mingwbuilds/</a>.</p>
+
+<p>似乎是俄罗斯人开发的，目前似乎停止开发了，已有的发行版gcc 4.6.2-4.8.1。一些feature如下(我也不懂直接复制了)。</p>
+
+<pre><code>OpenMP
+LTO
+Graphite
+std Thread support library
+std Atomic operations library
+Native TLS Callbacks
+Wide-Character Startup (-municode)
+32-bit and 64-bit Windows
+Multilib toolchains
+Cross-compiling from x86_64 for i686 and vice versa
+</code></pre>
+
+<h2 id="win-builds">Win-builds</h2>
+
+<p>官网是<a href="http://win-builds.org/" target="_blank">http://win-builds.org/</a>.</p>
+
+<p>它需要依附在MinGW或者Cygwin的shell环境下，Linux下也有一个版本。最新是4.8.3版本。</p>
+
+<p>这个比较稳定，其集成了Qt, Curl, EFL, freetype, GTK+, lua, openssl, sqlite, wget, zlib…等等92个库。支持Windows和Linux，感觉如果是做开发，这个好像是个不错的选择。</p>
+
+<p><img src="/images/winbuilds_screenshot.png" alt="Win-builds" class="center fancybox" /></p>
+
+<h2 id="tdm-gcc">tdm-gcc</h2>
+
+<p>官网是<a href="http://tdm-gcc.tdragon.net/" target="_blank">http://tdm-gcc.tdragon.net/</a>.</p>
+
+<p>这个还是比较个性和实用的选择。它默认选用的posix，这个可能会引起一些问题。但是<a href="http://www.wxwidgets.org" target="_blank">wxWidgets</a>官网推荐的编译器就是它，另外一部分人喜欢的Dev-CPP的后续开发版本<a href="http://sourceforge.net/projects/orwelldevcpp/" target="_blank">orwelldevcpp</a>也是用的它。可见其定制还是有一定合理性的。</p>
+
+<p>更新较快最新已经更新到4.9.2了。</p>
+
+<h2 id="cygwin">Cygwin</h2>
+
+<p>这个不用在这里多说，社区很活跃，发邮件很快就有人回复。软件更新也很频繁。这里说下mirror，除了163等。阿里也有mirror，<a href="http://mirrors.aliyun.com/" target="_blank">http://mirrors.aliyun.com/</a>，速度会比较快。但是注意，添加mirror有技巧。首先复制的目录应该是<code>http://mirrors.aliyun.com/cygwin</code>不能带最后的那个<code>/</code>，其次添加之后需要首先随手点击一下其他的，然后再点击刚刚添加的阿里才可以，手动换其他的源也是这样。</p>
+
+<h2 id="msys2">msys2</h2>
+
+<p>官网<a href="http://msys2.github.io" target="_blank">http://msys2.github.io</a> 可能在目前github的一系列事件有关，国内没法直接打开.二进制文件官网<a href="http://sourceforge.net/projects/msys2/" target="_blank">http://sourceforge.net/projects/msys2/</a>.</p>
+
+<p>一个<a href="http://sourceforge.net/p/msys2/wiki/Contributing%20to%20MSYS2/" target="_blank">简介</a>.</p>
+
+<p>两个关键的github repo:</p>
+
+<p><a href="https://github.com/Alexpux/MSYS2-packages" target="_blank">https://github.com/Alexpux/MSYS2-packages</a></p>
+
+<p><a href="https://github.com/Alexpux/MINGW-packages" target="_blank">https://github.com/Alexpux/MINGW-packages</a></p>
+
+<p>如果想自己从源码编译可以用他的patch。实际上SourceForge.net上面的就是用他的patch编译出来的。</p>
+
+<p>另外就是它采用了我最喜欢的ArchLinux的<code>pacman -Syu</code>。简直棒到不行。但是略微有点小问题就是需要rebase，还好它比cygwin自动化一些，直接执行根目录里面的<code>autorebase.bat</code>即可。</p>
+
+<p>我发现他的github里面有很多在所有其他地方没见过的包，比如nodejs(nodejs官网的win版本在cygwin的shell下面会找不到正确的目录，直接拒绝执行，这会导致很多需要用nodejs的命令行项目无法编译以及使用)。</p>
+
+<p>一个国内的二进制mirror:
+<a href="https://lug.ustc.edu.cn/wiki/mirrors/help/msys2" target="_blank">MSYS2 镜像使用帮助</a>.</p>
+
+<p><img src="/images/msys2_sc.png" alt="MSYS2" class="center fancybox" /></p>
+
+<h2 id="section">结束语</h2>
+
+<p>最后说一下国人据说很有前途的<a href="https://github.com/wishstudio/flinux" target="_blank">flinux</a>的包管理也是基于pacman的，看来大家都是比较喜欢<code>pacman</code>的了。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Cygwin的日常妙用]]></title>
+    <link href="https://i.rexdf.org/blog/2015/01/02/cygwinde-ri-chang-miao-yong/"/>
+    <updated>2015-01-02T18:09:04+08:00</updated>
+    <id>https://i.rexdf.org/blog/2015/01/02/cygwinde-ri-chang-miao-yong</id>
+    <content type="html"><![CDATA[<p>电脑的日常使用中总是会感觉一些需求不能满足，比如希望批量重命名1000多个分布在不同文件夹的图片，希望在十多个文件夹中的txt文件中找一个含有某一字符串的文件等。</p>
+
+<!-- more -->
+
+<p>对于这种需求，在Windows上面是开发出了若干的辅助Explorer的，这在喜欢玩小众软件的人中间应该非常流行。比如非常多的一些人都会使用Total Command。但是我一直都是拒绝使用这种软件的。理由有二：其一，学习成本非常高，而且具有较强的排他性，之后看很多其他软件都会带上有色眼镜，重要的是破坏原生Windows的体验；其二，这种基本需求的东西，居然不开源。</p>
+
+<p>我主要的Windows使用习惯是物理机上面基本上不会运行任何有保证的基础软件之外的程序，而且基本上两个月左右必定格盘重做一次系统。另外按照我自己的使用情况来看，大部分需求，Explorer.exe和管理员cmd.exe，都是可以完成需求的。按照我的认为，如果一个日常的文件管理需要写成bat来运行，那么问题就复杂化了，最好的是鼠标点几下或者敲一个一两行的cmd命令就解决。</p>
+
+<p>然而因为我也学习了一段时间的Bash shell，一些基本的文件名查找find和文件内容查找grep，以及强大流编辑器sed和awk，很多问题解决起来也是随手两条命令的事。</p>
+
+<p>在熟悉find和grep之后，基本上就会感觉批处理显得非常无能。但是要注意的它是自带的，而且是标配，也就是说是首选项，如果它也能简单解决自然就不用Bash命令了。</p>
+
+<p>cygwin的bin目录下面很多命令是.exe格式的，另外一些则是不带后缀的shell。对于exe格式的大部分在cmd下面也是可以正常工作的，比如rm，ls，find，grep等，当然最好的工作环境还是在mintty里面。</p>
+
+<p>比如我今天想找我的一个RSA公钥的私钥，然后随手在mintty里面敲了如下一句。</p>
+
+<p><code>bash 命令 http://blog.rexdf.org MyBlog
+cd "d:\passwd\sec"
+find . -type f -name "*.pub" | xargs grep "iEsSR"
+</code></p>
+
+<p>非常快捷的就递归了目录下面的所有pub后缀的文件，然后按内容查找字符。这是非常快捷的。如果批处理则<code>findstr /s iEsSR *.*</code>也可以达到递归查找的目的，只是<strong>不能</strong>限制为pub后缀了。</p>
+
+<p>本文还待完善整理。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Cygwin的XWin对win8.1支持完美]]></title>
+    <link href="https://i.rexdf.org/blog/2014/11/30/cygwinde-xwindui-win8-dot-1zhi-chi-wan-mei/"/>
+    <updated>2014-11-30T17:35:06+08:00</updated>
+    <id>https://i.rexdf.org/blog/2014/11/30/cygwinde-xwindui-win8-dot-1zhi-chi-wan-mei</id>
+    <content type="html"><![CDATA[<p>最近一次升级cygwin后(cygwin升级基本上和Ubuntu差不多频繁，个人感觉仅仅次于Arch的升级频率，这说明开发社区异常活跃)，对图形界面比较惊喜。而国内的几个有影响的mirror都加入了cygwin的源，所以网速没问题的(实际上kernel.org的源也是非常稳定的)。</p>
+
+<!-- more -->
+
+<p>XWin我以前就用过，但是基本上对Cygwin的图形界面不大信任，因为首先感性上不觉得Windows能够模拟Linux的图形环境；其次使用上也确实不稳定，gvim和git-tk跑起来过，但是基本上没有任何实用点，一般gtk的程序都是用MingW这种原生WinAPI的接口，基本不会考虑用cygwin-dev来编译的。</p>
+
+<p>刚刚发现开始菜单中多了Cygwin目录下面的OpenBox，打开一看左上角多了一个菜单。有点像Cygwin的开始菜单的样子，结构是Debian的菜单的分类的样子。虽然Terminal中界面非常完美，但是图形界面好像还没支持多国语的样子。</p>
+
+<p>总之这次升级后，图形界面稳定性好像很不错。</p>
+
+<p><img src="/images/cygwin.png" alt="cpp自动补全" class="center fancybox" /></p>
+
+<p><img src="/images/cygwin-2.png" alt="cpp自动补全" class="center fancybox" /></p>
+]]></content>
+  </entry>
+  
+</feed>

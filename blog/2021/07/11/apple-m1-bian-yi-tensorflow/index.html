@@ -1,0 +1,331 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<script type="text/javascript">var _speedMark=new Date</script>
+<meta charset="utf-8">
+<title>Apple M1 编译tensorflow - Rexdf</title>
+<meta name="author" content="Rexdf">
+<meta name="description" content="0. python环境 1. bazel版本 2. 尝试 3. 依赖解决 3.1 libclang 3.2 numpy 3.3 grpcio 3.4 h5py 4. 编译 5. 测试 6. tensorflow-metal PluggableDevice 7. 参考资料 &hellip;">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' data: https://hm.baidu.com https://tajs.qq.com https://ssl.google-analytics.com https://static.rexdf.org https://*.disquscdn.com https://rexdf.disqus.com https://api.github.com https://ssl.google-analytics.com https://disqus.com https://analytics.rexdf.net; connect-src 'self' https://static.rexdf.org https://analytics.rexdf.net https://hm.baidu.com; img-src data: https://*; font-src data: https://*; child-src 'none'; style-src 'self' 'unsafe-inline' https://*; frame-src 'self' https://t.rexdf.org http://t.rexdf.org https://rexdf.disqus.com https://disqus.com">
+<link rel="canonical" href="https://i.rexdf.org/blog/2021/07/11/apple-m1-bian-yi-tensorflow">
+<link rel="dns-prefetch" href="https://static.rexdf.org/">
+<link href="/favicon.ico" rel="icon">
+<link id="main-css" href="/stylesheets/screen.css" media="screen,projection" rel="stylesheet" type="text/css" title="pc">
+<link href="/stylesheets/screen_mobile.css" rel="alternate stylesheet" type="text/css" title="mobile">
+<link href="/atom.xml" rel="alternate" title="Rexdf" type="application/atom+xml">
+<script src="/javascripts/libs/jquery.min.js"></script>
+<script src="/javascripts/octopress-rexdf.min.js" type="text/javascript"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+      
+      toggle_theme();
+  });
+</script>
+<script type="text/javascript" async src="https://static.rexdf.org/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript">var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-55590409-1"]),_gaq.push(["_trackPageview"]),function(){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(t,e)}()</script>
+<script>var _hmt=_hmt||[];!function(){var e=document.createElement("script");e.src="//hm.baidu.com/hm.js?32192d95b89fbefa0875c4c95adb1412";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}()</script>
+<script src="/javascripts/fancybox/jquery.fancybox.pack.js"></script>
+<link rel="stylesheet" type="text/css" href="/javascripts/fancybox/jquery.fancybox.css">
+<script type="text/javascript">var _paq=_paq||[];_paq.push(["trackPageView"]),_paq.push(["enableLinkTracking"]),function(){var e="https://analytics.rexdf.net/";_paq.push(["setTrackerUrl",e+"piwik.php"]),_paq.push(["setSiteId","1"]);var a=document,t=a.createElement("script"),p=a.getElementsByTagName("script")[0];t.type="text/javascript",t.async=!0,t.defer=!0,t.src=e+"piwik.js",p.parentNode.insertBefore(t,p)}()</script>
+</head>
+<body class="low-contrast-linen-wptouch-bg">
+<header role="banner"><hgroup>
+<h1 id="header-title"><a href="/">Rexdf</a></h1>
+<h2 id="subtitle">The devil is in the Details.</h2>
+</hgroup>
+</header>
+<nav role="navigation"><ul class="subscription" data-subscription="rss">
+<li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+</ul>
+<form action="https://google.com/search" method="get">
+<fieldset role="search">
+<input type="hidden" name="q" value="site:i.rexdf.org">
+<input class="search" type="text" name="q" results="0" placeholder="Search">
+</fieldset>
+</form>
+<ul class="main-navigation">
+<li><a href="/">Blog</a></li>
+<li><a href="/blog/archives/">Archives</a></li>
+<li><a href="/idea/">Idea</a></li>
+<li><a href="/share/">Share</a></li>
+<li><a href="/books/">Books</a></li>
+<li><a href="/donate/">Donate</a></li>
+<li><a target="_blank" href="https://blog.rexdf.org" style="font-family:Shadows Into Light">Main-Blog</a></li>
+</ul>
+</nav>
+<div id="main">
+<div id="content">
+<div>
+<article class="hentry" role="article">
+<header>
+<h1 class="entry-title">Apple M1 编译tensorflow</h1>
+<p class="meta">
+<time class="data-article month-07 season-summer" datetime="2021-07-11T16:58:21+08:00" pubdate><span class="month">Jul</span> <span class="day">11th</span> <span class="year">2021</span></time>
+| <a href="#disqus_thread" data-disqus-identifier="https://i.rexdf.org">Comments</a>
+</p>
+</header>
+<div class="entry-content"><ul class="markdown-toc">
+<li><a href="#python">0. python环境</a></li>
+<li><a href="#bazel">1. bazel版本</a></li>
+<li><a href="#section">2. 尝试</a></li>
+<li><a href="#section-1">3. 依赖解决</a><ul>
+<li><a href="#libclang">3.1 libclang</a></li>
+<li><a href="#numpy">3.2 numpy</a></li>
+<li><a href="#grpcio">3.3 grpcio</a></li>
+<li><a href="#h5py">3.4 h5py</a></li>
+</ul>
+</li>
+<li><a href="#section-2">4. 编译</a></li>
+<li><a href="#section-3">5. 测试</a></li>
+<li><a href="#tensorflow-metal-pluggabledevice">6. tensorflow-metal PluggableDevice</a></li>
+<li><a href="#section-4">7. 参考资料</a></li>
+</ul>
+<p>本文记录了一个周日下午的日常。想来苹果这M1大概都出来半年了， M2/M1X都开始有传闻了，tensorflow应该支持得差不多了，实际情况似乎还是没有原生的官方二进制release。本文是记录的M1原生的编译，大概还有给Terminal开Rosetta 2 和 <a href="https://github.com/conda-forge/miniforge" target="_blank">Miniforge</a>两种方法本文不讨论.</p>
+<h1 id="python">0. python环境</h1>
+<p>M1支持的python版本大概是3.8.5+和python3.9.1+。</p>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div></pre></td><td class="main code"><pre><div class="line plain">pyenv install 3.8.11
+</div><div class="line plain">pyenv virtualenv 3.8.11 tf3811
+</div><div class="line plain">pyenv activate tf3811
+</div><div class="line plain">pip install -U pip wheel</div></pre></td></tr></table></div></figure></notextile></div>
+<h1 id="bazel">1. bazel版本</h1>
+<p>当前tensorflow官网给出最新的支持<a href="https://www.tensorflow.org/install/source#macos" target="_blank">bazel版本是3.7.2</a>，即使是最新的master分支也是锁死在3.99.0版本上，而bazel的<a href="https://github.com/bazelbuild/bazel/releases" target="_blank">release二进制</a>从4.1开始才支持darwin-arm64的二进制release。</p>
+<p>所以就打算直接用4.1版本的bazel了。对tensorflow的代码打一个patch。</p>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div><div data-line="5" class="line-number"></div><div data-line="6" class="line-number"></div><div data-line="7" class="line-number"></div><div data-line="8" class="line-number"></div><div data-line="9" class="line-number"></div><div data-line="10" class="line-number"></div><div data-line="11" class="line-number"></div><div data-line="12" class="line-number"></div><div data-line="13" class="line-number"></div><div data-line="14" class="line-number"></div></pre></td><td class="main code"><pre><div class="line plain">diff --git a/configure.py b/configure.py
+</div><div class="line plain">index 4f096b87550..9f7e16bd29a 100644
+</div><div class="line plain">--- a/configure.py
+</div><div class="line plain">+++ b/configure.py
+</div><div class="line plain">@@ -50,7 +50,8 @@ _TF_WORKSPACE_ROOT = ''
+</div><div class="line plain"> _TF_BAZELRC = ''
+</div><div class="line plain"> _TF_CURRENT_BAZEL_VERSION = None
+</div><div class="line plain"> _TF_MIN_BAZEL_VERSION = '3.7.2'
+</div><div class="line plain">-_TF_MAX_BAZEL_VERSION = '3.99.0'
+</div><div class="line plain">+#_TF_MAX_BAZEL_VERSION = '3.99.0'
+</div><div class="line plain">+_TF_MAX_BAZEL_VERSION = '5.0.0'
+</div><div class="line plain"> </div><div class="line plain"> NCCL_LIB_PATHS = [
+</div><div class="line plain"> 'lib64/', 'lib/powerpc64le-linux-gnu/', 'lib/x86_64-linux-gnu/', ''
+</div></pre></td></tr></table></div></figure></notextile></div>
+<h1 id="section">2. 尝试</h1>
+<p>bazel版本解决后按照官方的编译教程直接往下一路编译就正常了。似乎很简单是么？那我就不会写本文来记录了(<em>^_^</em>)</p>
+<p>首先我们安装两个python依赖的时候大概是<code>pip install numpy</code>会安装1.21.0。 但是目前tensorflow的master分支依赖的<code>~=1.19.2</code>。 然后我们会注意到一个libclang的错误。</p>
+<h1 id="section-1">3. 依赖解决</h1>
+<h2 id="libclang">3.1 libclang</h2>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div><div data-line="5" class="line-number"></div><div data-line="6" class="line-number"></div><div data-line="7" class="line-number"></div><div data-line="8" class="line-number"></div><div data-line="9" class="line-number"></div><div data-line="10" class="line-number"></div><div data-line="11" class="line-number"></div><div data-line="12" class="line-number"></div><div data-line="13" class="line-number"></div><div data-line="14" class="line-number"></div><div data-line="15" class="line-number"></div><div data-line="16" class="line-number"></div><div data-line="17" class="line-number"></div><div data-line="18" class="line-number"></div><div data-line="19" class="line-number"></div><div data-line="20" class="line-number"></div><div data-line="21" class="line-number"></div><div data-line="22" class="line-number"></div></pre></td><td class="main code"><pre><div class="line plain"> </div><div class="line plain">wget https://github.com/llvm/llvm-project/releases/download/llvmorg-11.1.0/llvm-11.1.0.src.tar.xz
+</div><div class="line plain">tar xf llvm-project-11.1.0.src.tar.xz
+</div><div class="line plain">mv llvm-project-11.1.0.src llvm-project-11.1.0
+</div><div class="line plain">cd llvm-project-11.1.0
+</div><div class="line plain">mkdir build
+</div><div class="line plain">cd build
+</div><div class="line plain">brew install gcc g++
+</div><div class="line plain">cmake ../llvm -DLLVM_ENABLE_PROJECTS=clang -DBUILD_SHARED_LIBS=OFF -DLLVM_ENABLE_TERMINFO=OFF -DLLVM_TARGETS_TO_BUILD=X86 -DCMAKE_BUILD_TYPE=MinSizeRel -DCMAKE_CXX_FLAGS_MINSIZEREL="-Os -s -DNDEBUG -static-libgcc -static-libstdc++" -DCMAKE_C_COMPILER=gcc-11 -DCMAKE_CXX_COMPILER=g++-11 -DCMAKE_OSX_DEPLOYMENT_TARGET=10.9
+</div><div class="line plain"> </div><div class="line plain">make libclang -j$(sysctl -n hw.ncpu)
+</div><div class="line plain"> </div><div class="line plain">cd ../..
+</div><div class="line plain">wget https://github.com/sighingnow/libclang/archive/refs/tags/llvm-11.1.0.tar.gz
+</div><div class="line plain"> </div><div class="line plain">tar xvf llvm-11.1.0.tar.gz
+</div><div class="line plain">cd libclang-llvm-11.1.0
+</div><div class="line plain"> cp ../llvm-project-11.1.0/build/lib/libclang.dylib native/
+</div><div class="line plain">pip install -v .
+</div><div class="line plain"># python setup.py build
+</div><div class="line plain"># python setup.py install
+</div><div class="line plain"> </div></pre></td></tr></table></div></figure></notextile></div>
+<h2 id="numpy">3.2 numpy</h2>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div></pre></td><td class="main code"><pre><div class="line plain">brew install openblas
+</div><div class="line plain">OPENBLAS="$(brew --prefix openblas)" pip install numpy==1.19.5
+</div></pre></td></tr></table></div></figure></notextile></div>
+<h2 id="grpcio">3.3 grpcio</h2>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div></pre></td><td class="main code"><pre><div class="line plain">CFLAGS="-I /opt/homebrew/opt/openssl/include" LDFLAGS="-L /opt/homebrew/opt/openssl/lib" GRPC_PYTHON_BUILD_SYSTEM_OPENSSL=1 GRPC_PYTHON_BUILD_SYSTEM_ZLIB=1 pip install  grpcio==1.38.1
+</div></pre></td></tr></table></div></figure></notextile></div>
+<h2 id="h5py">3.4 h5py</h2>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div></pre></td><td class="main code"><pre><div class="line plain">brew install hdf5
+</div><div class="line plain">HDF5_DIR=/opt/homebrew/opt/hdf5 pip3 install --no-build-isolation h5py==3.1.0
+</div></pre></td></tr></table></div></figure></notextile></div>
+<h1 id="section-2">4. 编译</h1>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div><div data-line="5" class="line-number"></div><div data-line="6" class="line-number"></div><div data-line="7" class="line-number"></div><div data-line="8" class="line-number"></div><div data-line="9" class="line-number"></div><div data-line="10" class="line-number"></div><div data-line="11" class="line-number"></div><div data-line="12" class="line-number"></div><div data-line="13" class="line-number"></div><div data-line="14" class="line-number"></div><div data-line="15" class="line-number"></div><div data-line="16" class="line-number"></div><div data-line="17" class="line-number"></div></pre></td><td class="main code"><pre><div class="line plain">#!/bin/bash
+</div><div class="line plain"> </div><div class="line plain">set -e
+</div><div class="line plain"> </div><div class="line plain">pushd tensorflow
+</div><div class="line plain">git pull
+</div><div class="line plain"> </div><div class="line plain">export TEST_TMPDIR=$HOME/tmp
+</div><div class="line plain"> </div><div class="line plain">bazel --output_user_root=$HOME/bazel build --config=opt //tensorflow/tools/pip_package:build_pip_package
+</div><div class="line plain"> </div><div class="line plain">#bazel build --config=opt //tensorflow/tools/pip_package:build_pip_package
+</div><div class="line plain"> </div><div class="line plain">./bazel-bin/tensorflow/tools/pip_package/build_pip_package $HOME
+</div><div class="line plain"> </div><div class="line plain">popd
+</div><div class="line plain"> </div></pre></td></tr></table></div></figure></notextile></div>
+<h1 id="section-3">5. 测试</h1>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div><div data-line="5" class="line-number"></div><div data-line="6" class="line-number"></div><div data-line="7" class="line-number"></div><div data-line="8" class="line-number"></div><div data-line="9" class="line-number"></div><div data-line="10" class="line-number"></div><div data-line="11" class="line-number"></div><div data-line="12" class="line-number"></div><div data-line="13" class="line-number"></div><div data-line="14" class="line-number"></div></pre></td><td class="main code"><pre><div class="line plain">pushd $HOME/models/official/vision/image_classification
+</div><div class="line plain">export MODEL_DIR="$HOME/models"
+</div><div class="line plain">export DATA_DIR="$HOME/data"
+</div><div class="line plain">export NUM_GPUS="0"
+</div><div class="line plain"> </div><div class="line plain">export PYTHONPATH=$PYTHONPATH:$HOME/models
+</div><div class="line plain"> </div><div class="line plain">python3 mnist_main.py \
+</div><div class="line plain">  --model_dir=$MODEL_DIR \
+</div><div class="line plain">  --data_dir=$DATA_DIR \
+</div><div class="line plain">  --train_epochs=10 \
+</div><div class="line plain">  --distribution_strategy=one_device \
+</div><div class="line plain">  --num_gpus=0 \
+</div><div class="line plain">  --download
+</div></pre></td></tr></table></div></figure></notextile></div>
+<p>运行的结果</p>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div><div data-line="5" class="line-number"></div><div data-line="6" class="line-number"></div><div data-line="7" class="line-number"></div><div data-line="8" class="line-number"></div><div data-line="9" class="line-number"></div></pre></td><td class="main code"><pre><div class="line plain">...
+</div><div class="line plain">58/58 [==============================] - ETA: 0s - loss: 1.4935 - sparse_categorical_accuracy: 0.54532021-07-11 18:30:40.523279: W tensorflow/core/grappler/optimizers/data/auto_shard.cc:461] The `assert_cardinality` transformation is currently not handled by the auto-shard rewrite and will be removed.
+</div><div class="line plain">58/58 [==============================] - 19s 312ms/step - loss: 1.4935 - sparse_categorical_accuracy: 0.5453 - val_loss: 0.5256 - val_sparse_categorical_accuracy: 0.8397
+</div><div class="line plain">Epoch 2/10
+</div><div class="line plain">58/58 [==============================] - ETA: 0s - loss: 0.4501 - sparse_categorical_accuracy: 0.85792021-07-11 18:31:00.658115: W tensorflow/core/framework/dataset.cc:679] Input of GeneratorDatasetOp::Dataset will not be optimized because the dataset does not implement the AsGraphDefInternal() method needed to apply optimizations.
+</div><div class="line plain">58/58 [==============================] - 20s 344ms/step - loss: 0.4501 - sparse_categorical_accuracy: 0.8579 - val_loss: 0.2695 - val_sparse_categorical_accuracy: 0.9229
+</div><div class="line plain">Epoch 3/10
+</div><div class="line plain">58/58 [==============================] - 20s 341ms/step - loss: 0.2812 - sparse_categorical_accuracy: 0.9153 - val_loss: 0.1970 - val_sparse_categorical_accuracy: 0.9427
+</div><div class="line plain">...
+</div></pre></td></tr></table></div></figure></notextile></div>
+<p>简直被Nvidia的显卡15ms/step暴击。Intel的260ms/step要慢。</p>
+<h1 id="tensorflow-metal-pluggabledevice">6. tensorflow-metal PluggableDevice</h1>
+<p>参考<a href="https://developer.apple.com/metal/tensorflow-plugin/" target="_blank">tensorflow-mental</a>。</p>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div><div data-line="5" class="line-number"></div><div data-line="6" class="line-number"></div><div data-line="7" class="line-number"></div><div data-line="8" class="line-number"></div><div data-line="9" class="line-number"></div><div data-line="10" class="line-number"></div><div data-line="11" class="line-number"></div><div data-line="12" class="line-number"></div></pre></td><td class="main code"><pre><div class="line plain">wget https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-MacOSX-arm64.sh
+</div><div class="line plain"> </div><div class="line plain">bash Miniforge3-MacOSX-arm64.sh
+</div><div class="line plain"> </div><div class="line plain">...
+</div><div class="line plain"> </div><div class="line plain">conda create -n tf39 python=3.9
+</div><div class="line plain">conda activate tf39
+</div><div class="line plain">conda install -c apple tensorflow-deps
+</div><div class="line plain">python -m pip install tensorflow-macos
+</div><div class="line plain">python -m pip install tensorflow-metal
+</div><div class="line plain"> </div></pre></td></tr></table></div></figure></notextile></div>
+<p>结果</p>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div><div data-line="5" class="line-number"></div><div data-line="6" class="line-number"></div><div data-line="7" class="line-number"></div><div data-line="8" class="line-number"></div><div data-line="9" class="line-number"></div><div data-line="10" class="line-number"></div><div data-line="11" class="line-number"></div><div data-line="12" class="line-number"></div><div data-line="13" class="line-number"></div><div data-line="14" class="line-number"></div><div data-line="15" class="line-number"></div><div data-line="16" class="line-number"></div><div data-line="17" class="line-number"></div><div data-line="18" class="line-number"></div><div data-line="19" class="line-number"></div><div data-line="20" class="line-number"></div><div data-line="21" class="line-number"></div></pre></td><td class="main code"><pre><div class="line plain">58/58 [==============================] - ETA: 0s - loss: 1.5647 - sparse_categorical_accuracy: 0.52392021-07-11 18:51:53.772789: W tensorflow/core/grappler/optimizers/data/auto_shard.cc:461] The `assert_cardinality` transformation is currently not handled by the auto-shard rewrite and will be removed.
+</div><div class="line plain">2021-07-11 18:51:53.799144: I tensorflow/core/grappler/optimizers/custom_graph_optimizer_registry.cc:112] Plugin optimizer for device_type GPU is enabled.
+</div><div class="line plain">2021-07-11 18:51:53.801124: I tensorflow/core/grappler/optimizers/custom_graph_optimizer_registry.cc:112] Plugin optimizer for device_type GPU is enabled.
+</div><div class="line plain">2021-07-11 18:51:53.844207: I tensorflow/core/grappler/optimizers/custom_graph_optimizer_registry.cc:112] Plugin optimizer for device_type GPU is enabled.
+</div><div class="line plain">58/58 [==============================] - 8s 100ms/step - loss: 1.5647 - sparse_categorical_accuracy: 0.5239 - val_loss: 0.5425 - val_sparse_categorical_accuracy: 0.8359
+</div><div class="line plain">Epoch 2/10
+</div><div class="line plain">58/58 [==============================] - ETA: 0s - loss: 0.4310 - sparse_categorical_accuracy: 0.86482021-07-11 18:51:59.418133: I tensorflow/core/grappler/optimizers/custom_graph_optimizer_registry.cc:112] Plugin optimizer for device_type GPU is enabled.
+</div><div class="line plain">2021-07-11 18:51:59.420233: I tensorflow/core/grappler/optimizers/custom_graph_optimizer_registry.cc:112] Plugin optimizer for device_type GPU is enabled.
+</div><div class="line plain">58/58 [==============================] - 5s 95ms/step - loss: 0.4310 - sparse_categorical_accuracy: 0.8648 - val_loss: 0.2834 - val_sparse_categorical_accuracy: 0.9180
+</div><div class="line plain">Epoch 3/10
+</div><div class="line plain">58/58 [==============================] - ETA: 0s - loss: 0.2663 - sparse_categorical_accuracy: 0.91952021-07-11 18:52:05.022747: I tensorflow/core/grappler/optimizers/custom_graph_optimizer_registry.cc:112] Plugin optimizer for device_type GPU is enabled.
+</div><div class="line plain">2021-07-11 18:52:05.025100: I tensorflow/core/grappler/optimizers/custom_graph_optimizer_registry.cc:112] Plugin optimizer for device_type GPU is enabled.
+</div><div class="line plain">58/58 [==============================] - 6s 96ms/step - loss: 0.2663 - sparse_categorical_accuracy: 0.9195 - val_loss: 0.1869 - val_sparse_categorical_accuracy: 0.9452
+</div><div class="line plain">Epoch 4/10
+</div><div class="line plain">58/58 [==============================] - ETA: 0s - loss: 0.2088 - sparse_categorical_accuracy: 0.93692021-07-11 18:52:10.479798: I tensorflow/core/grappler/optimizers/custom_graph_optimizer_registry.cc:112] Plugin optimizer for device_type GPU is enabled.
+</div><div class="line plain">2021-07-11 18:52:10.482146: I tensorflow/core/grappler/optimizers/custom_graph_optimizer_registry.cc:112] Plugin optimizer for device_type GPU is enabled.
+</div><div class="line plain">58/58 [==============================] - 5s 94ms/step - loss: 0.2088 - sparse_categorical_accuracy: 0.9369 - val_loss: 0.1528 - val_sparse_categorical_accuracy: 0.9548
+</div><div class="line plain">Epoch 5/10
+</div><div class="line plain">58/58 [==============================] - ETA: 0s - loss: 0.1774 - sparse_categorical_accuracy: 0.94642021-07-11 18:52:15.953144: I tensorflow/core/grappler/optimizers/custom_graph_optimizer_registry.cc:112] Plugin optimizer for device_type GPU is enabled.
+</div><div class="line plain">2021-07-11 18:52:15.955539: I tensorflow/core/grappler/optimizers/custom_graph_optimizer_registry.cc:112] Plugin optimizer for device_type GPU is enabled.
+</div><div class="line plain">58/58 [==============================] - 5s 94ms/step - loss: 0.1774 - sparse_categorical_accuracy: 0.9464 - val_loss: 0.1292 - val_sparse_categorical_accuracy: 0.9602
+</div></pre></td></tr></table></div></figure></notextile></div>
+<p>95ms/step还算可以吧。差不多是1060的35ms/step的三分之一。</p>
+<h1 id="section-4">7. 参考资料</h1>
+<ol>
+<li><a href="https://towardsdatascience.com/installing-tensorflow-on-the-m1-mac-410bb36b776" target="_blank">Installing TensorFlow on the M1 Mac</a></li>
+<li><a href="https://github.com/h5py/h5py/issues/1810" target="_blank">Fails to build from source on MacOS 11 + M1</a></li>
+<li><a href="https://alexslobodnik.medium.com/apple-m1-python-pandas-and-homebrew-20f14828ccc7" target="_blank">Apple M1, Python, Pandas, and Homebrew</a></li>
+<li><a href="https://github.com/numpy/numpy/issues/17807" target="_blank">BLD: fail to build on Apple M1</a></li>
+<li><a href="https://stackoverflow.com/questions/66640705/how-can-i-install-grpcio-on-an-apple-m1-silicon-laptop" target="_blank">How can I install GRPCIO on an Apple M1 Silicon laptop?</a></li>
+<li><a href="https://github.com/sighingnow/libclang/blob/master/.github/workflows/libclang-macosx-amd64.yml" target="_blank">libclang/.github/workflows/libclang-macosx-amd64.yml</a></li>
+</ol>
+</div>
+<footer>
+<p class="meta">
+<span class="byline author vcard">Posted by <span class="fn">Rexdf</span></span>
+<time class="data-article month-07 season-summer" datetime="2021-07-11T16:58:21+08:00" pubdate><span class="month">Jul</span> <span class="day">11th</span> <span class="year">2021</span></time>
+<span class="categories">
+<a class="category" href="/blog/categories/ri-chang/">日常</a>
+</span>
+</p>
+<div class="sharing">
+</div>
+<p class="meta">
+<a class="basic-alignment left" href="/blog/2021/02/27/chromiumbian-ma-qi-wen-ti/" title="Previous Post: Chromium编码器问题">&laquo; Chromium编码器问题</a>
+<a class="basic-alignment right" href="/blog/2024/12/16/fu-wu-qi-wa-kuang-bing-du-de-cha-sha/" title="Next Post: 服务器挖矿病毒的查杀">服务器挖矿病毒的查杀 &raquo;</a>
+</p>
+</footer>
+</article>
+<section>
+<h1>Comments</h1>
+<div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
+</div>
+<aside class="sidebar">
+<section>
+<h1>Categories</h1>
+<ul id="categories">
+<li class="category"><a href="/blog/categories/acm/">ACM <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/algorithm/">Algorithm <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/assembly/">Assembly <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/cygwin/">Cygwin <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/gnu/">GNU <sup>8</sup></a></li>
+<li class="category"><a href="/blog/categories/math/">Math <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/octopress/">Octopress <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/programming/">Programming <sup>6</sup></a></li>
+<li class="category"><a href="/blog/categories/security/">Security <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sublime/">Sublime <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/synology/">Synology <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sysadmin/">SysAdmin <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/web/">Web <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/windows/">Windows <sup>7</sup></a></li>
+<li class="category"><a href="/blog/categories/proxmox/">proxmox <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/ri-chang/">日常 <sup>37</sup></a></li>
+</ul>
+</section>
+<section>
+<h1>Recent Posts</h1>
+<ul id="recent_posts">
+<li class="post">
+<a href="/blog/2024/12/16/fu-wu-qi-wa-kuang-bing-du-de-cha-sha/">服务器挖矿病毒的查杀</a>
+</li>
+<li class="post">
+<a href="/blog/2021/07/11/apple-m1-bian-yi-tensorflow/">Apple M1 编译tensorflow</a>
+</li>
+<li class="post">
+<a href="/blog/2021/02/27/chromiumbian-ma-qi-wen-ti/">Chromium编码器问题</a>
+</li>
+<li class="post">
+<a href="/blog/2020/12/13/proxmoxbi-ji/">Proxmox笔记</a>
+</li>
+<li class="post">
+<a href="/blog/2020/11/15/lun-yan-du-yu-shen-du/">论广度与深度</a>
+</li>
+</ul>
+</section>
+<section>
+<iframe frameborder="0" scrolling="no" referrerpolicy="unsafe-url" style="width:283px;height:200px" src="https://t.rexdf.org/?m=app&a=showwidget&name=rexdf&type=1&width=283px&height=500px"></iframe>
+</section>
+<section>
+<h1>GitHub Repos</h1>
+<ul id="gh_repos">
+<li class="loading">Status updating...</li>
+</ul>
+<a href="https://github.com/rexdf">@rexdf</a> on GitHub
+<script type="text/javascript">$(document).ready(function(){if(!window.jXHR){var e=document.createElement("script");e.type="text/javascript",e.src="/javascripts/libs/jXHR.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}github.showRepos({user:"rexdf",count:0,skip_forks:!0,target:"#gh_repos"})})</script>
+</section>
+</aside>
+</div>
+</div>
+<footer role="contentinfo"><p>
+<span class="credit">Copyright &copy; 2024 - Rexdf -</span> |
+<span class="credit">Powered by <a name="bottoms" target="_blank" href="http://octopress.org">Octopress</a></span> |
+<span class="credit">Theme by ：<a href="https://blog.rexdf.org/" target="_blank" rel="theme">Rexdf</a></span> |
+<span class="credit">Host by：<a href="https://github.com/" target="_blank" rel="host">Github.com</a></span> |
+<span class="credit">版权声明：<a href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" target="_blank" rel="license">CC BY-NC-SA 3.0</a><img src="https://analytics.rexdf.net/piwik.php?idsite=1&amp;rec=1" style="border:0" alt="" referrerpolicy="no-referrer-when-downgrade"></span>|
+<span class="credit"><a href="/sitemap.xml" rel="sitemap">sitemap</a></span>
+</p>
+<script type="text/javascript" src="https://tajs.qq.com/stats?sId=30296377" charset="UTF-8"></script>
+</footer>
+<script type="text/javascript">var disqus_shortname="rexdf",disqus_identifier="https://i.rexdf.org/blog/2021/07/11/apple-m1-bian-yi-tensorflow/",disqus_url="https://i.rexdf.org/blog/2021/07/11/apple-m1-bian-yi-tensorflow/",disqus_script="embed.js";!function(){var e=document.createElement("script");e.type="text/javascript",e.async=!0,e.src="//"+disqus_shortname+".disqus.com/"+disqus_script,(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(e)}()</script>
+<script type="text/javascript">$(function(){$(".entry-content").each(function(t){var r=t;$(this).find("img.fancybox").each(function(){var t=$(this),a=t.attr("title"),n=t.attr("class");t.removeAttr("class"),t.wrap('<a href="'+this.src+'" class="'+n+'" rel="gallery'+r+'" />'),""!=a&&t.parent().attr("title",a)})}),$(".fancybox").fancybox()})</script>
+</body>
+</html>

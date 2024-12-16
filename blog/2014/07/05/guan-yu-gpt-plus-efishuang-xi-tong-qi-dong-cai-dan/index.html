@@ -1,0 +1,255 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<script type="text/javascript">var _speedMark=new Date</script>
+<meta charset="utf-8">
+<title>关于GPT+EFI双系统启动菜单 - Rexdf</title>
+<meta name="author" content="Rexdf">
+<meta name="description" content="我之前的方案： 现在的方案: 具体操作步骤 物理机上面我一直都是多系统，现在基本是Ubuntu+Win的方式，对于多系统的启动菜单，之前一直都是采用MBR+grub方案，这个方案成熟，而且绝大部分工具都是基于这个方式的。今年在新笔记本上面额外添加一块250G的SSD之后，起初也是用的MBR方案 &hellip;">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' data: https://hm.baidu.com https://tajs.qq.com https://ssl.google-analytics.com https://static.rexdf.org https://*.disquscdn.com https://rexdf.disqus.com https://api.github.com https://ssl.google-analytics.com https://disqus.com https://analytics.rexdf.net; connect-src 'self' https://static.rexdf.org https://analytics.rexdf.net https://hm.baidu.com; img-src data: https://*; font-src data: https://*; child-src 'none'; style-src 'self' 'unsafe-inline' https://*; frame-src 'self' https://t.rexdf.org http://t.rexdf.org https://rexdf.disqus.com https://disqus.com">
+<link rel="canonical" href="https://i.rexdf.org/blog/2014/07/05/guan-yu-gpt-plus-efishuang-xi-tong-qi-dong-cai-dan">
+<link rel="dns-prefetch" href="https://static.rexdf.org/">
+<link href="/favicon.ico" rel="icon">
+<link id="main-css" href="/stylesheets/screen.css" media="screen,projection" rel="stylesheet" type="text/css" title="pc">
+<link href="/stylesheets/screen_mobile.css" rel="alternate stylesheet" type="text/css" title="mobile">
+<link href="/atom.xml" rel="alternate" title="Rexdf" type="application/atom+xml">
+<script src="/javascripts/libs/jquery.min.js"></script>
+<script src="/javascripts/octopress-rexdf.min.js" type="text/javascript"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+      
+      toggle_theme();
+  });
+</script>
+<script type="text/javascript" async src="https://static.rexdf.org/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript">var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-55590409-1"]),_gaq.push(["_trackPageview"]),function(){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(t,e)}()</script>
+<script>var _hmt=_hmt||[];!function(){var e=document.createElement("script");e.src="//hm.baidu.com/hm.js?32192d95b89fbefa0875c4c95adb1412";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}()</script>
+<script src="/javascripts/fancybox/jquery.fancybox.pack.js"></script>
+<link rel="stylesheet" type="text/css" href="/javascripts/fancybox/jquery.fancybox.css">
+<script type="text/javascript">var _paq=_paq||[];_paq.push(["trackPageView"]),_paq.push(["enableLinkTracking"]),function(){var e="https://analytics.rexdf.net/";_paq.push(["setTrackerUrl",e+"piwik.php"]),_paq.push(["setSiteId","1"]);var a=document,t=a.createElement("script"),p=a.getElementsByTagName("script")[0];t.type="text/javascript",t.async=!0,t.defer=!0,t.src=e+"piwik.js",p.parentNode.insertBefore(t,p)}()</script>
+</head>
+<body class="low-contrast-linen-wptouch-bg">
+<header role="banner"><hgroup>
+<h1 id="header-title"><a href="/">Rexdf</a></h1>
+<h2 id="subtitle">The devil is in the Details.</h2>
+</hgroup>
+</header>
+<nav role="navigation"><ul class="subscription" data-subscription="rss">
+<li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+</ul>
+<form action="https://google.com/search" method="get">
+<fieldset role="search">
+<input type="hidden" name="q" value="site:i.rexdf.org">
+<input class="search" type="text" name="q" results="0" placeholder="Search">
+</fieldset>
+</form>
+<ul class="main-navigation">
+<li><a href="/">Blog</a></li>
+<li><a href="/blog/archives/">Archives</a></li>
+<li><a href="/idea/">Idea</a></li>
+<li><a href="/share/">Share</a></li>
+<li><a href="/books/">Books</a></li>
+<li><a href="/donate/">Donate</a></li>
+<li><a target="_blank" href="https://blog.rexdf.org" style="font-family:Shadows Into Light">Main-Blog</a></li>
+</ul>
+</nav>
+<div id="main">
+<div id="content">
+<div>
+<article class="hentry" role="article">
+<header>
+<h1 class="entry-title">关于GPT+EFI双系统启动菜单</h1>
+<p class="meta">
+<time class="data-article month-07 season-summer" datetime="2014-07-05T08:44:41+08:00" pubdate><span class="month">Jul</span> <span class="day">5th</span> <span class="year">2014</span></time>
+| <a href="#disqus_thread" data-disqus-identifier="https://i.rexdf.org">Comments</a>
+</p>
+</header>
+<div class="entry-content"><ul class="markdown-toc">
+<li><a href="#section">我之前的方案：</a></li>
+<li><a href="#section-1">现在的方案:</a></li>
+<li><a href="#section-2">具体操作步骤</a></li>
+</ul>
+<p>物理机上面我一直都是多系统，现在基本是Ubuntu+Win的方式，对于多系统的启动菜单，之前一直都是采用MBR+grub方案，这个方案成熟，而且绝大部分工具都是基于这个方式的。今年在新笔记本上面额外添加一块250G的SSD之后，起初也是用的MBR方案。</p>
+<h3 id="section">我之前的方案：</h3>
+<p>1T机械硬盘，把Win8.1格式化掉用来保存数据，上面的Linux保留。</p>
+<p>250G的SSD，仅仅MBR分一个区，然后空余10%作为三星数据冗余。</p>
+<p>启动方式：BIOS的引导MBR在1T的机械硬盘位置上(因为第二个机械硬盘位置似乎在北桥芯片上面，所以我想在似乎放SSD比放机械硬盘少发一些热量). BIOS –&gt; /dev/sda(1T)MBR –&gt; /dev/sda9 (/boot)</p>
+<p>–&gt;1 /dev/sda8(/) /dev/sda10(/home)</p>
+<p>–&gt;2 /dev/sdb1(win8.1，200+G)</p>
+<h3 id="section-1">现在的方案:</h3>
+<p>1T的机械硬盘上面Ubuntu系统保留不动。</p>
+<p>250G的SSD改成GPT分区方式。</p>
+<p>启动方式:EFI启动。</p>
+<h3 id="section-2">具体操作步骤</h3>
+<p>首先备份所有C盘数据，没必要删除，后面直接删除SSD的全部分区，因为多删除一次就是SSD的一次寿命。</p>
+<p>然后把电脑启动方式调整到EFI启动，这个对于自己电脑，setup里面找找很容易找到，我发现网上的与我的似乎都不一样。</p>
+<p>然后准备Win8.1的U盘，和Ubuntu的U盘，这两个系统的U盘都是都是直接可以在UEFI模式下启动的，不像一直感觉还不错的大白菜，那个600+M的EFI工具制作出来的U盘只能在MBR方式才能启动。</p>
+<ul>
+<li>安装Win8.1</li>
+</ul>
+<p>在EFI模式下启动Win8.1的U盘，可以明显发现与BIOS方式启动慢很多，然后启动过程画面略有不同。不过最终都是一样的安装界面。</p>
+<p>首先，由于前面说过大白菜的EFI模式U盘，在EFI模式无法启动，因此我也不想使用Diskgenius来分区。其次，在EFI模式启动的Win8.1安装程序，只能安装到GPT分区的磁盘上面，而且Win安装盘实际上操作Win范围内的磁盘工具绰绰有余。最后，Diskgenius处理GPT格式没问题，但是Win8.1会要求300M的恢复分区(Recovery Partion, RE)，100M的EFI分区(又叫系统分区),以及128M的MSR分区。参考<a href="http://technet.microsoft.com/zh-cn/library/hh824839.aspx">这里</a> ， 以及 <a href="http://technet.microsoft.com/zh-cn/library/dd744301%28v=ws.10%29.aspx" target="_blank">这里</a>。可以看出这个EFI和MSR分区非常特殊，Diskgenius应该还不能一键生成，而按照官方最准确无误的方法就是diskpart，既然如此何必使用PE呢。</p>
+<p><strong>我采简单高效的办法是，进入Win8.1的安装界面，选择手动安装之后，在分区选择界面，直接把 磁盘1 也就是我的SSD上面分区全部删掉，然后把整个 磁盘1 选为安装目标。Win8.1安装程序会自动格式化成GPT分区，以及自动生成RE+EFI+MSR+C的四个分区，大小应该是200M+100M+128M+余下的全部。</strong></p>
+<p>接下去就没什么注意点了，常规系统安装。吐槽下，Win8.1被禁止有理由啊，想想我每次重装，我的IE收藏夹(包括顺序)，我的桌面背景，开机画面背景，我的Skydrive文档，甚至我的豆沙绿注册表等都被直接同步下来。免去了Win7以及之前的配置烦恼。</p>
+<p>我开机之后直接先断网，然后驱动，重启，Office2013+Viso2013+VSU2013+AdobeCC2014+Acrobat11.0.7+Maya2015大约不到一个小时就OK了。然后联网开始漫长的Update下载，与此同时，安装杀毒，QQ，输入法啥的。以及安装Firefox+Opera并同步。再开启全局VPN，然后同步Chrome扩展。吐槽:想想现在还有隐私吗？显然没有了，所以我基本都是用隐私模式常开的状态。</p>
+<ul>
+<li>修复Ubuntu启动</li>
+</ul>
+<p>我现在状态是一块曾经用BIOS+MBR启动的另一块硬盘上的Ubuntu要修复启动成EFI启动。</p>
+<p>插入Ubuntu的U盘直接就能EFI方式启动的(<strong>需要注意的是Win8.1必须重启同时按键盘才能进入启动选项</strong>，关机然后开机可能不行，因为Win可能采用的快速关机)。成功进入EFI模式启动Ubuntu的U盘，标志还是比较明显的，反正与BIOS启动U盘界面明显不同。</p>
+<p>然后应该选择try Ubuntu进入图形界面测试环境，同时开启网络(因为我需要从MBR启动迁移到EFI上面，需要联网安装新的软件)。</p>
+<p>启动gparted，不要进行任何写操作，我们只是看看那个重点中的重点EFI分区在哪里。我这里是/dev/sdb2.</p>
+<p>这里要注意下sudo fdisk -l 是没有办法检测到RE，EFI，MSR这三个分区的。这就是为何要启动图形界面gparted的原因。</p>
+<pre><code>#提升到root，方便下面操作而已
+sudo -s
+
+#挂载Ubuntu的原来分区，根据你自己的情况挂载
+mount /dev/sda8 /mnt
+mount /dev/sda9 /mnt/boot
+mount /dev/sda10 /mnt/home
+
+#把efi也挂载一下，后面要用到，必须注意要先挂载/mnt，然后再挂载/mnt/efi
+mkdir /mnt/efi
+mount /dev/sdb2 /mnt/efi
+#测试下，如果看到EFI蓝色目录就是对的，如果什么都没有或者不是EFI，则挂载错了分区。
+ls /mnt/efi
+
+#准备工作，以及chroot，这在arch好lfs都是家常便饭
+mount --bind /dev /mnt/dev
+mount -t sysfs /sys /mnt/sys
+mount -t proc /proc /mnt/proc
+chroot /mnt bash 
+
+#另外开一个终端，里面输入 cat /etc/resolv.conf，然后把屏幕输出复制到下面的chroot中
+#启动网络
+echo nameserver:127.0.0.1 &gt; /etc/resolv.conf
+#更新软件缓存
+apt-get update
+#安装grub-efi
+apt-get install grub-efi-amd64-bin grub-efi-amd64
+#修复grub启动
+grub-install --efi-directory=/efi
+update-grub2
+</code></pre>
+<p>现在已经做好了Ubuntu的启动文件，但是还没法启动到Ubuntu。上面代码部分源头来自<a href="http://www.linuxsir.org/bbs/thread381141.html" target="_blank">这里</a>。在chroot环境继续进行：</p>
+<pre><code>cd /EFI
+#备份原来的bootx64.efi
+mkdir backup_Boot
+mv EFI/bootx64.efi backup_Book/bootx64.efi
+#使用Ubuntu的efi二进制来启动系统
+cp Ubuntu/grubx64.efi Boot/bootx64.efi
+exit
+exit
+</code></pre>
+<p>现在重启就可进入Ubuntu，然后再次执行 <code>update-grub2</code> 并修改 <code>/boot/grub/grub.cfg</code> 即，完成全部工作。双系统完美启动。</p>
+<p>本文全部命令以及操作都是rexdf凭借记忆写出来的，如有笔误欢迎指出。</p>
+</div>
+<footer>
+<p class="meta">
+<span class="byline author vcard">Posted by <span class="fn">Rexdf</span></span>
+<time class="data-article month-07 season-summer" datetime="2014-07-05T08:44:41+08:00" pubdate><span class="month">Jul</span> <span class="day">5th</span> <span class="year">2014</span></time>
+<span class="categories">
+<a class="category" href="/blog/categories/ri-chang/">日常</a>
+</span>
+</p>
+<div class="sharing">
+</div>
+<p class="meta">
+<a class="basic-alignment left" href="/blog/2014/06/02/xiao-wan-acdream-oj/" title="Previous Post: 小玩Acdream_OJ">&laquo; 小玩Acdream_OJ</a>
+<a class="basic-alignment right" href="/blog/2014/07/05/windowsquan-xian-zheng-zha-zhi-cygwinfu-huo-ji/" title="Next Post: Windows权限挣扎之cygwin复活记">Windows权限挣扎之cygwin复活记 &raquo;</a>
+</p>
+</footer>
+</article>
+<section>
+<h1>Comments</h1>
+<div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
+</div>
+<aside class="sidebar">
+<section>
+<h1>Categories</h1>
+<ul id="categories">
+<li class="category"><a href="/blog/categories/acm/">ACM <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/algorithm/">Algorithm <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/assembly/">Assembly <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/cygwin/">Cygwin <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/gnu/">GNU <sup>8</sup></a></li>
+<li class="category"><a href="/blog/categories/math/">Math <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/octopress/">Octopress <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/programming/">Programming <sup>6</sup></a></li>
+<li class="category"><a href="/blog/categories/security/">Security <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sublime/">Sublime <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/synology/">Synology <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sysadmin/">SysAdmin <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/web/">Web <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/windows/">Windows <sup>7</sup></a></li>
+<li class="category"><a href="/blog/categories/proxmox/">proxmox <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/ri-chang/">日常 <sup>37</sup></a></li>
+</ul>
+</section>
+<section>
+<h1>Recent Posts</h1>
+<ul id="recent_posts">
+<li class="post">
+<a href="/blog/2024/12/16/fu-wu-qi-wa-kuang-bing-du-de-cha-sha/">服务器挖矿病毒的查杀</a>
+</li>
+<li class="post">
+<a href="/blog/2021/07/11/apple-m1-bian-yi-tensorflow/">Apple M1 编译tensorflow</a>
+</li>
+<li class="post">
+<a href="/blog/2021/02/27/chromiumbian-ma-qi-wen-ti/">Chromium编码器问题</a>
+</li>
+<li class="post">
+<a href="/blog/2020/12/13/proxmoxbi-ji/">Proxmox笔记</a>
+</li>
+<li class="post">
+<a href="/blog/2020/11/15/lun-yan-du-yu-shen-du/">论广度与深度</a>
+</li>
+</ul>
+</section>
+<section>
+<iframe frameborder="0" scrolling="no" referrerpolicy="unsafe-url" style="width:283px;height:200px" src="https://t.rexdf.org/?m=app&a=showwidget&name=rexdf&type=1&width=283px&height=500px"></iframe>
+</section>
+<section>
+<h1>GitHub Repos</h1>
+<ul id="gh_repos">
+<li class="loading">Status updating...</li>
+</ul>
+<a href="https://github.com/rexdf">@rexdf</a> on GitHub
+<script type="text/javascript">$(document).ready(function(){if(!window.jXHR){var e=document.createElement("script");e.type="text/javascript",e.src="/javascripts/libs/jXHR.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}github.showRepos({user:"rexdf",count:0,skip_forks:!0,target:"#gh_repos"})})</script>
+</section>
+</aside>
+</div>
+</div>
+<footer role="contentinfo"><p>
+<span class="credit">Copyright &copy; 2024 - Rexdf -</span> |
+<span class="credit">Powered by <a name="bottoms" target="_blank" href="http://octopress.org">Octopress</a></span> |
+<span class="credit">Theme by ：<a href="https://blog.rexdf.org/" target="_blank" rel="theme">Rexdf</a></span> |
+<span class="credit">Host by：<a href="https://github.com/" target="_blank" rel="host">Github.com</a></span> |
+<span class="credit">版权声明：<a href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" target="_blank" rel="license">CC BY-NC-SA 3.0</a><img src="https://analytics.rexdf.net/piwik.php?idsite=1&amp;rec=1" style="border:0" alt="" referrerpolicy="no-referrer-when-downgrade"></span>|
+<span class="credit"><a href="/sitemap.xml" rel="sitemap">sitemap</a></span>
+</p>
+<script type="text/javascript" src="https://tajs.qq.com/stats?sId=30296377" charset="UTF-8"></script>
+</footer>
+<script type="text/javascript">var disqus_shortname="rexdf",disqus_identifier="https://i.rexdf.org/blog/2014/07/05/guan-yu-gpt-plus-efishuang-xi-tong-qi-dong-cai-dan/",disqus_url="https://i.rexdf.org/blog/2014/07/05/guan-yu-gpt-plus-efishuang-xi-tong-qi-dong-cai-dan/",disqus_script="embed.js";!function(){var s=document.createElement("script");s.type="text/javascript",s.async=!0,s.src="//"+disqus_shortname+".disqus.com/"+disqus_script,(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(s)}()</script>
+<script type="text/javascript">$(function(){$(".entry-content").each(function(t){var r=t;$(this).find("img.fancybox").each(function(){var t=$(this),a=t.attr("title"),n=t.attr("class");t.removeAttr("class"),t.wrap('<a href="'+this.src+'" class="'+n+'" rel="gallery'+r+'" />'),""!=a&&t.parent().attr("title",a)})}),$(".fancybox").fancybox()})</script>
+</body>
+</html>

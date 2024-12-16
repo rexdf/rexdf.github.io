@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Math | Rexdf]]></title>
+  <link href="https://i.rexdf.org/blog/categories/math/atom.xml" rel="self"/>
+  <link href="https://i.rexdf.org/"/>
+  <updated>2024-12-16T23:11:13+08:00</updated>
+  <id>https://i.rexdf.org/</id>
+  <author>
+    <name><![CDATA[Rexdf]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[数学公式测试2]]></title>
+    <link href="https://i.rexdf.org/blog/2014/01/29/shu-xue-gong-shi-ce-shi-2/"/>
+    <updated>2014-01-29T02:22:00+08:00</updated>
+    <id>https://i.rexdf.org/blog/2014/01/29/shu-xue-gong-shi-ce-shi-2</id>
+    <content type="html"><![CDATA[<p>大家都喜欢用 $E=mc^2$ 举例子，但是我不是很理解。  </p>
+
+<p>这个公式 $\cos 2\theta = \cos^2 \theta - \sin^2 \theta =  2 \cos^2 \theta - 1$ 少年可还记得？</p>
+
+<p>插入方程组（注意多行公式结尾\\需要打成\\，可能是因为markdown会自动转义第一个\）：
+$$\begin{aligned}
+\dot{x} &amp; = \sigma(y-x) \\
+\dot{y} &amp; = \rho x - y - xz \\
+\dot{z} &amp; = -\beta z + xy
+\end{aligned}
+$$</p>
+
+<p>插入矩阵（同上）：</p>
+
+<script type="math/tex; mode=display">% &lt;![CDATA[
+\begin{bmatrix}
+1 & 2 \\
+3 & 4 \\
+5 & 6
+\end{bmatrix}
+ %]]&gt;</script>
+
+<p>来个复杂点的（注意有的公式开头不会自动识别，用$$包围）：</p>
+
+<script type="math/tex; mode=display">\frac{\partial u}{\partial t}
+= h^2 \left( \frac{\partial^2 u}{\partial x^2}
++ \frac{\partial^2 u}{\partial y^2}
++ \frac{\partial^2 u}{\partial z^2}\right)</script>
+
+<p>最后来个牛逼的吧，薛定谔方程，大学物理就记得这个了：</p>
+
+<script type="math/tex; mode=display"> i\hbar\frac{\partial \psi}{\partial t}
+= \frac{-\hbar^2}{2m} \left(
+\frac{\partial^2}{\partial x^2}
++ \frac{\partial^2}{\partial y^2}
++ \frac{\partial^2}{\partial z^2}
+\right) \psi + V \psi.</script>
+
+<h1 id="section">洛伦兹公式</h1>
+
+<script type="math/tex; mode=display">% &lt;![CDATA[
+\left \{ \begin{aligned} 
+\dot{x} & = \sigma(y-x) \\ 
+\dot{y} & = \rho x – y – xz \\ 
+\dot{z} & = -\beta z + xy 
+\end{aligned} \right. %]]&gt;</script>
+
+<h1 id="section-1">柯西-施瓦茨不等式</h1>
+
+<script type="math/tex; mode=display">\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \left( \sum_{k=1}^n b_k^2 \right)</script>
+
+<h1 id="section-2">叉积公式</h1>
+
+<script type="math/tex; mode=display">% &lt;![CDATA[
+\mathbf{V}_1 \times \mathbf{V}_2 =  \begin{vmatrix} 
+\mathbf{i} & \mathbf{j} & \mathbf{k} \\ 
+\frac{\partial X}{\partial u} &  \frac{\partial Y}{\partial u} & 0 \\ 
+\frac{\partial X}{\partial v} &  \frac{\partial Y}{\partial v} & 0 
+\end{vmatrix} %]]&gt;</script>
+
+<h1 id="nk">n次实验k次成功的概率</h1>
+
+<script type="math/tex; mode=display">P(E) = {n \choose k} p^k (1-p)^{ n-k}</script>
+
+<h1 id="section-3">拉马努金恒等式</h1>
+
+<script type="math/tex; mode=display">\frac{1}{\Bigl(\sqrt{\phi \sqrt{5}}-\phi\Bigr) e^{\frac25 \pi}} = 
+1+\frac{e^{-2\pi}} {1+\frac{e^{-4\pi}} {1+\frac{e^{-6\pi}} 
+{1+\frac{e^{-8\pi}} {1+\ldots} } } }</script>
+
+<h1 id="rogersramanujan">Rogers–Ramanujan恒等式</h1>
+
+<script type="math/tex; mode=display">% &lt;![CDATA[
+1 +  \frac{q^2}{(1-q)}+\frac{q^6}{(1-q)(1-q^2)}+\cdots = 
+\prod_{j=0}^{\infty}\frac{1}{(1-q^{5j+2})(1-q^{5j+3})}, 
+\quad\quad \text{for $|q|<1$}. %]]&gt;</script>
+
+<h1 id="section-4">麦克斯韦方程组</h1>
+
+<script type="math/tex; mode=display">% &lt;![CDATA[
+\left\{\begin{aligned} 
+\nabla \times \vec{\mathbf{B}} -\, \frac1c\, \frac{\partial\vec{\mathbf{E}}}{\partial t} & = \frac{4\pi}{c}\vec{\mathbf{j}} \\   \nabla \cdot \vec{\mathbf{E}} & = 4 \pi \rho \\ 
+\nabla \times \vec{\mathbf{E}}\, +\, \frac1c\, \frac{\partial\vec{\mathbf{B}}}{\partial t} & = \vec{\mathbf{0}} \\ 
+\nabla \cdot \vec{\mathbf{B}} & = 0 \end{aligned} \right. %]]&gt;</script>
+
+<p>最后，当呈现整页看上去很棒的例子后，把数学公式与文本混合1同样重要。这个表达式 $\sqrt{3x-1}+(1+x)^2$ 是一个行内等式例子。正如你所见，MathJax中这种等式也可以试用的很好，而不必变更行间距。</p>
+]]></content>
+  </entry>
+  
+</feed>

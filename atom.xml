@@ -1,0 +1,2268 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Rexdf]]></title>
+  <link href="https://i.rexdf.org/atom.xml" rel="self"/>
+  <link href="https://i.rexdf.org/"/>
+  <updated>2024-12-16T23:11:13+08:00</updated>
+  <id>https://i.rexdf.org/</id>
+  <author>
+    <name><![CDATA[Rexdf]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[服务器挖矿病毒的查杀]]></title>
+    <link href="https://i.rexdf.org/blog/2024/12/16/fu-wu-qi-wa-kuang-bing-du-de-cha-sha/"/>
+    <updated>2024-12-16T22:58:09+08:00</updated>
+    <id>https://i.rexdf.org/blog/2024/12/16/fu-wu-qi-wa-kuang-bing-du-de-cha-sha</id>
+    <content type="html"><![CDATA[<ul class="markdown-toc">
+  <li><a href="#section">1. 一些病毒域名</a></li>
+  <li><a href="#ip">2. 一些病毒ip</a></li>
+  <li><a href="#ip-v6">3. 一些病毒ip v6</a></li>
+  <li><a href="#section-1">4. 一些病毒代码</a></li>
+</ul>
+
+<p>本文讲了最近一两年遇到的一些挖矿病毒，虽然不知道怎么感染的，但是一直在公司系统中反复进化了几次，还挺有特色，通过谷歌似乎也搜索不到一些域名，本着曝光的目的发一下博客。</p>
+
+<!--more-->
+
+<h1 id="section">1. 一些病毒域名</h1>
+
+<p>应该是一些CC控制器的域名，主要是太有特色，看起来很不像域名，感觉又像是一个大机构的域名</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div><div data-line="5" class="line-number"></div><div data-line="6" class="line-number"></div><div data-line="7" class="line-number"></div><div data-line="8" class="line-number"></div><div data-line="9" class="line-number"></div><div data-line="10" class="line-number"></div><div data-line="11" class="line-number"></div><div data-line="12" class="line-number"></div><div data-line="13" class="line-number"></div><div data-line="14" class="line-number"></div><div data-line="15" class="line-number"></div><div data-line="16" class="line-number"></div><div data-line="17" class="line-number"></div><div data-line="18" class="line-number"></div><div data-line="19" class="line-number"></div><div data-line="20" class="line-number"></div><div data-line="21" class="line-number"></div><div data-line="22" class="line-number"></div><div data-line="23" class="line-number"></div><div data-line="24" class="line-number"></div><div data-line="25" class="line-number"></div><div data-line="26" class="line-number"></div><div data-line="27" class="line-number"></div><div data-line="28" class="line-number"></div><div data-line="29" class="line-number"></div><div data-line="30" class="line-number"></div><div data-line="31" class="line-number"></div><div data-line="32" class="line-number"></div><div data-line="33" class="line-number"></div><div data-line="34" class="line-number"></div><div data-line="35" class="line-number"></div></pre></td><td class="main code  "><pre><div class="line plain">audio.cpi.sh
+</div><div class="line plain">audio.pci.sh
+</div><div class="line plain">retry.sshd.fail
+</div><div class="line plain">service.ssh.run
+</div><div class="line plain">gpu.cpi.sh
+</div><div class="line plain">gpu.pci.sh
+</div><div class="line plain">pid.ssh.run
+</div><div class="line plain">init.cpi.sh
+</div><div class="line plain">nvidia.cpi.sh
+</div><div class="line plain">open.ssh.run
+</div><div class="line plain">reboot.sshd.fail
+</div><div class="line plain">retry.ssh.run
+</div><div class="line plain">eu.sshd.fail
+</div><div class="line plain">init.ssh.run
+</div><div class="line plain">codex.ssh.run
+</div><div class="line plain">irc.sshd.fail
+</div><div class="line plain">login.ssh.run
+</div><div class="line plain">lib.sshd.fail
+</div><div class="line plain">lib.ssh.fail
+</div><div class="line plain">sbin.download
+</div><div class="line plain">network.sshd.run
+</div><div class="line plain">open.sshd.run
+</div><div class="line plain">retry.sshd.run
+</div><div class="line plain">slot1.pci.sh
+</div><div class="line plain">login.sshd.run
+</div><div class="line plain">pid.sshd.run
+</div><div class="line plain">codex.sshd.run
+</div><div class="line plain">init.pci.sh
+</div><div class="line plain">error.sshd.run
+</div><div class="line plain">eu.ssh.fail
+</div><div class="line plain">nvidia.pci.sh
+</div><div class="line plain">reboot.ssh.fail
+</div><div class="line plain">irc.ssh.fail
+</div><div class="line plain">service.sshd.run
+</div><div class="line plain">init.sshd.run
+</div></pre></td></tr></table></div></figure></notextile></div>
+
+<h1 id="ip">2. 一些病毒ip</h1>
+
+<p>这些ip大概是病毒的ip</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div><div data-line="5" class="line-number"></div><div data-line="6" class="line-number"></div><div data-line="7" class="line-number"></div><div data-line="8" class="line-number"></div><div data-line="9" class="line-number"></div><div data-line="10" class="line-number"></div><div data-line="11" class="line-number"></div><div data-line="12" class="line-number"></div><div data-line="13" class="line-number"></div><div data-line="14" class="line-number"></div><div data-line="15" class="line-number"></div><div data-line="16" class="line-number"></div><div data-line="17" class="line-number"></div><div data-line="18" class="line-number"></div><div data-line="19" class="line-number"></div><div data-line="20" class="line-number"></div><div data-line="21" class="line-number"></div><div data-line="22" class="line-number"></div><div data-line="23" class="line-number"></div><div data-line="24" class="line-number"></div><div data-line="25" class="line-number"></div><div data-line="26" class="line-number"></div><div data-line="27" class="line-number"></div><div data-line="28" class="line-number"></div><div data-line="29" class="line-number"></div><div data-line="30" class="line-number"></div><div data-line="31" class="line-number"></div><div data-line="32" class="line-number"></div><div data-line="33" class="line-number"></div><div data-line="34" class="line-number"></div><div data-line="35" class="line-number"></div><div data-line="36" class="line-number"></div><div data-line="37" class="line-number"></div><div data-line="38" class="line-number"></div><div data-line="39" class="line-number"></div><div data-line="40" class="line-number"></div><div data-line="41" class="line-number"></div><div data-line="42" class="line-number"></div></pre></td><td class="main code  "><pre><div class="line plain">3.163.125.19
+</div><div class="line plain">5.250.178.69
+</div><div class="line plain">15.204.198.198
+</div><div class="line plain">18.173.117.128
+</div><div class="line plain">23.228.66.219
+</div><div class="line plain">24.144.68.252
+</div><div class="line plain">24.144.69.125
+</div><div class="line plain">24.199.68.241
+</div><div class="line plain">45.125.0.6
+</div><div class="line plain">45.79.33.42
+</div><div class="line plain">59.5.106.105
+</div><div class="line plain">82.76.255.62
+</div><div class="line plain">85.215.204.106
+</div><div class="line plain">94.125.182.255
+</div><div class="line plain">104.192.7.239
+</div><div class="line plain">104.248.100.245
+</div><div class="line plain">124.221.5.37
+</div><div class="line plain">138.68.113.5
+</div><div class="line plain">139.59.206.74
+</div><div class="line plain">143.244.208.21
+</div><div class="line plain">146.190.4.21
+</div><div class="line plain">146.190.12.201
+</div><div class="line plain">152.228.218.54
+</div><div class="line plain">154.38.114.42
+</div><div class="line plain">159.65.136.167
+</div><div class="line plain">172.83.156.122
+</div><div class="line plain">172.104.170.240
+</div><div class="line plain">178.128.242.134
+</div><div class="line plain">185.198.56.60
+</div><div class="line plain">185.117.74.172
+</div><div class="line plain">194.164.174.213
+</div><div class="line plain">194.233.80.217
+</div><div class="line plain">199.247.27.41
+</div><div class="line plain">209.38.6.242
+</div><div class="line plain">209.38.174.34
+</div><div class="line plain">209.38.180.198
+</div><div class="line plain">212.227.166.174
+</div><div class="line plain">212.227.231.142
+</div><div class="line plain">212.227.239.116
+</div><div class="line plain">212.227.241.109
+</div><div class="line plain">216.225.202.220
+</div><div class="line plain">217.160.36.159</div></pre></td></tr></table></div></figure></notextile></div>
+
+<h1 id="ip-v6">3. 一些病毒ip v6</h1>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div><div data-line="5" class="line-number"></div><div data-line="6" class="line-number"></div></pre></td><td class="main code  "><pre><div class="line plain">2a06:3d81:a::2
+</div><div class="line plain">2607:8500:154::2
+</div><div class="line plain">2a05:9341:11::2
+</div><div class="line plain">2610:150:8019::1:a102
+</div><div class="line plain">2605:6440:1007::6667
+</div><div class="line plain">2604:6600:2000:27::6667</div></pre></td></tr></table></div></figure></notextile></div>
+
+<h1 id="section-1">4. 一些病毒代码</h1>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div></pre></td><td class="main code  "><pre><div class="line plain">TODO
+</div><div class="line plain">主要是进程隐藏
+</div><div class="line plain">xmrig挖矿
+</div><div class="line plain">开机隐藏</div></pre></td></tr></table></div></figure></notextile></div>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Apple M1 编译tensorflow]]></title>
+    <link href="https://i.rexdf.org/blog/2021/07/11/apple-m1-bian-yi-tensorflow/"/>
+    <updated>2021-07-11T16:58:21+08:00</updated>
+    <id>https://i.rexdf.org/blog/2021/07/11/apple-m1-bian-yi-tensorflow</id>
+    <content type="html"><![CDATA[<ul class="markdown-toc">
+  <li><a href="#python">0. python环境</a></li>
+  <li><a href="#bazel">1. bazel版本</a></li>
+  <li><a href="#section">2. 尝试</a></li>
+  <li><a href="#section-1">3. 依赖解决</a>    <ul>
+      <li><a href="#libclang">3.1 libclang</a></li>
+      <li><a href="#numpy">3.2 numpy</a></li>
+      <li><a href="#grpcio">3.3 grpcio</a></li>
+      <li><a href="#h5py">3.4 h5py</a></li>
+    </ul>
+  </li>
+  <li><a href="#section-2">4. 编译</a></li>
+  <li><a href="#section-3">5. 测试</a></li>
+  <li><a href="#tensorflow-metal-pluggabledevice">6. tensorflow-metal PluggableDevice</a></li>
+  <li><a href="#section-4">7. 参考资料</a></li>
+</ul>
+
+<p>本文记录了一个周日下午的日常。想来苹果这M1大概都出来半年了， M2/M1X都开始有传闻了，tensorflow应该支持得差不多了，实际情况似乎还是没有原生的官方二进制release。本文是记录的M1原生的编译，大概还有给Terminal开Rosetta 2 和 <a href="https://github.com/conda-forge/miniforge" target="_blank">Miniforge</a>两种方法本文不讨论.</p>
+
+<!--more-->
+
+<h1 id="python">0. python环境</h1>
+
+<p>M1支持的python版本大概是3.8.5+和python3.9.1+。</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div></pre></td><td class="main code  "><pre><div class="line plain">pyenv install 3.8.11
+</div><div class="line plain">pyenv virtualenv 3.8.11 tf3811
+</div><div class="line plain">pyenv activate tf3811
+</div><div class="line plain">pip install -U pip wheel</div></pre></td></tr></table></div></figure></notextile></div>
+
+<h1 id="bazel">1. bazel版本</h1>
+
+<p>当前tensorflow官网给出最新的支持<a href="https://www.tensorflow.org/install/source#macos" target="_blank">bazel版本是3.7.2</a>，即使是最新的master分支也是锁死在3.99.0版本上，而bazel的<a href="https://github.com/bazelbuild/bazel/releases" target="_blank">release二进制</a>从4.1开始才支持darwin-arm64的二进制release。</p>
+
+<p>所以就打算直接用4.1版本的bazel了。对tensorflow的代码打一个patch。</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div><div data-line="5" class="line-number"></div><div data-line="6" class="line-number"></div><div data-line="7" class="line-number"></div><div data-line="8" class="line-number"></div><div data-line="9" class="line-number"></div><div data-line="10" class="line-number"></div><div data-line="11" class="line-number"></div><div data-line="12" class="line-number"></div><div data-line="13" class="line-number"></div><div data-line="14" class="line-number"></div></pre></td><td class="main code  "><pre><div class="line plain">diff --git a/configure.py b/configure.py
+</div><div class="line plain">index 4f096b87550..9f7e16bd29a 100644
+</div><div class="line plain">--- a/configure.py
+</div><div class="line plain">+++ b/configure.py
+</div><div class="line plain">@@ -50,7 +50,8 @@ _TF_WORKSPACE_ROOT = ''
+</div><div class="line plain"> _TF_BAZELRC = ''
+</div><div class="line plain"> _TF_CURRENT_BAZEL_VERSION = None
+</div><div class="line plain"> _TF_MIN_BAZEL_VERSION = '3.7.2'
+</div><div class="line plain">-_TF_MAX_BAZEL_VERSION = '3.99.0'
+</div><div class="line plain">+#_TF_MAX_BAZEL_VERSION = '3.99.0'
+</div><div class="line plain">+_TF_MAX_BAZEL_VERSION = '5.0.0'
+</div><div class="line plain"> </div><div class="line plain"> NCCL_LIB_PATHS = [
+</div><div class="line plain"> 'lib64/', 'lib/powerpc64le-linux-gnu/', 'lib/x86_64-linux-gnu/', ''
+</div></pre></td></tr></table></div></figure></notextile></div>
+
+<h1 id="section">2. 尝试</h1>
+
+<p>bazel版本解决后按照官方的编译教程直接往下一路编译就正常了。似乎很简单是么？那我就不会写本文来记录了(<em>^_^</em>)</p>
+
+<p>首先我们安装两个python依赖的时候大概是<code>pip install numpy</code>会安装1.21.0。 但是目前tensorflow的master分支依赖的<code>~=1.19.2</code>。 然后我们会注意到一个libclang的错误。</p>
+
+<h1 id="section-1">3. 依赖解决</h1>
+
+<h2 id="libclang">3.1 libclang</h2>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div><div data-line="5" class="line-number"></div><div data-line="6" class="line-number"></div><div data-line="7" class="line-number"></div><div data-line="8" class="line-number"></div><div data-line="9" class="line-number"></div><div data-line="10" class="line-number"></div><div data-line="11" class="line-number"></div><div data-line="12" class="line-number"></div><div data-line="13" class="line-number"></div><div data-line="14" class="line-number"></div><div data-line="15" class="line-number"></div><div data-line="16" class="line-number"></div><div data-line="17" class="line-number"></div><div data-line="18" class="line-number"></div><div data-line="19" class="line-number"></div><div data-line="20" class="line-number"></div><div data-line="21" class="line-number"></div><div data-line="22" class="line-number"></div></pre></td><td class="main code  "><pre><div class="line plain"> </div><div class="line plain">wget https://github.com/llvm/llvm-project/releases/download/llvmorg-11.1.0/llvm-11.1.0.src.tar.xz
+</div><div class="line plain">tar xf llvm-project-11.1.0.src.tar.xz
+</div><div class="line plain">mv llvm-project-11.1.0.src llvm-project-11.1.0
+</div><div class="line plain">cd llvm-project-11.1.0
+</div><div class="line plain">mkdir build
+</div><div class="line plain">cd build
+</div><div class="line plain">brew install gcc g++
+</div><div class="line plain">cmake ../llvm -DLLVM_ENABLE_PROJECTS=clang -DBUILD_SHARED_LIBS=OFF -DLLVM_ENABLE_TERMINFO=OFF -DLLVM_TARGETS_TO_BUILD=X86 -DCMAKE_BUILD_TYPE=MinSizeRel -DCMAKE_CXX_FLAGS_MINSIZEREL="-Os -s -DNDEBUG -static-libgcc -static-libstdc++" -DCMAKE_C_COMPILER=gcc-11 -DCMAKE_CXX_COMPILER=g++-11 -DCMAKE_OSX_DEPLOYMENT_TARGET=10.9
+</div><div class="line plain"> </div><div class="line plain">make libclang -j$(sysctl -n hw.ncpu)
+</div><div class="line plain"> </div><div class="line plain">cd ../..
+</div><div class="line plain">wget https://github.com/sighingnow/libclang/archive/refs/tags/llvm-11.1.0.tar.gz
+</div><div class="line plain"> </div><div class="line plain">tar xvf llvm-11.1.0.tar.gz
+</div><div class="line plain">cd libclang-llvm-11.1.0
+</div><div class="line plain"> cp ../llvm-project-11.1.0/build/lib/libclang.dylib native/
+</div><div class="line plain">pip install -v .
+</div><div class="line plain"># python setup.py build
+</div><div class="line plain"># python setup.py install
+</div><div class="line plain"> </div></pre></td></tr></table></div></figure></notextile></div>
+
+<h2 id="numpy">3.2 numpy</h2>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div></pre></td><td class="main code  "><pre><div class="line plain">brew install openblas
+</div><div class="line plain">OPENBLAS="$(brew --prefix openblas)" pip install numpy==1.19.5
+</div></pre></td></tr></table></div></figure></notextile></div>
+
+<h2 id="grpcio">3.3 grpcio</h2>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div></pre></td><td class="main code  "><pre><div class="line plain">CFLAGS="-I /opt/homebrew/opt/openssl/include" LDFLAGS="-L /opt/homebrew/opt/openssl/lib" GRPC_PYTHON_BUILD_SYSTEM_OPENSSL=1 GRPC_PYTHON_BUILD_SYSTEM_ZLIB=1 pip install  grpcio==1.38.1
+</div></pre></td></tr></table></div></figure></notextile></div>
+
+<h2 id="h5py">3.4 h5py</h2>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div></pre></td><td class="main code  "><pre><div class="line plain">brew install hdf5
+</div><div class="line plain">HDF5_DIR=/opt/homebrew/opt/hdf5 pip3 install --no-build-isolation h5py==3.1.0
+</div></pre></td></tr></table></div></figure></notextile></div>
+
+<h1 id="section-2">4. 编译</h1>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div><div data-line="5" class="line-number"></div><div data-line="6" class="line-number"></div><div data-line="7" class="line-number"></div><div data-line="8" class="line-number"></div><div data-line="9" class="line-number"></div><div data-line="10" class="line-number"></div><div data-line="11" class="line-number"></div><div data-line="12" class="line-number"></div><div data-line="13" class="line-number"></div><div data-line="14" class="line-number"></div><div data-line="15" class="line-number"></div><div data-line="16" class="line-number"></div><div data-line="17" class="line-number"></div></pre></td><td class="main code  "><pre><div class="line plain">#!/bin/bash
+</div><div class="line plain"> </div><div class="line plain">set -e
+</div><div class="line plain"> </div><div class="line plain">pushd tensorflow
+</div><div class="line plain">git pull
+</div><div class="line plain"> </div><div class="line plain">export TEST_TMPDIR=$HOME/tmp
+</div><div class="line plain"> </div><div class="line plain">bazel --output_user_root=$HOME/bazel build --config=opt //tensorflow/tools/pip_package:build_pip_package
+</div><div class="line plain"> </div><div class="line plain">#bazel build --config=opt //tensorflow/tools/pip_package:build_pip_package
+</div><div class="line plain"> </div><div class="line plain">./bazel-bin/tensorflow/tools/pip_package/build_pip_package $HOME
+</div><div class="line plain"> </div><div class="line plain">popd
+</div><div class="line plain"> </div></pre></td></tr></table></div></figure></notextile></div>
+
+<h1 id="section-3">5. 测试</h1>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div><div data-line="5" class="line-number"></div><div data-line="6" class="line-number"></div><div data-line="7" class="line-number"></div><div data-line="8" class="line-number"></div><div data-line="9" class="line-number"></div><div data-line="10" class="line-number"></div><div data-line="11" class="line-number"></div><div data-line="12" class="line-number"></div><div data-line="13" class="line-number"></div><div data-line="14" class="line-number"></div></pre></td><td class="main code  "><pre><div class="line plain">pushd $HOME/models/official/vision/image_classification
+</div><div class="line plain">export MODEL_DIR="$HOME/models"
+</div><div class="line plain">export DATA_DIR="$HOME/data"
+</div><div class="line plain">export NUM_GPUS="0"
+</div><div class="line plain"> </div><div class="line plain">export PYTHONPATH=$PYTHONPATH:$HOME/models
+</div><div class="line plain"> </div><div class="line plain">python3 mnist_main.py \
+</div><div class="line plain">  --model_dir=$MODEL_DIR \
+</div><div class="line plain">  --data_dir=$DATA_DIR \
+</div><div class="line plain">  --train_epochs=10 \
+</div><div class="line plain">  --distribution_strategy=one_device \
+</div><div class="line plain">  --num_gpus=0 \
+</div><div class="line plain">  --download
+</div></pre></td></tr></table></div></figure></notextile></div>
+
+<p>运行的结果</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div><div data-line="5" class="line-number"></div><div data-line="6" class="line-number"></div><div data-line="7" class="line-number"></div><div data-line="8" class="line-number"></div><div data-line="9" class="line-number"></div></pre></td><td class="main code  "><pre><div class="line plain">...
+</div><div class="line plain">58/58 [==============================] - ETA: 0s - loss: 1.4935 - sparse_categorical_accuracy: 0.54532021-07-11 18:30:40.523279: W tensorflow/core/grappler/optimizers/data/auto_shard.cc:461] The `assert_cardinality` transformation is currently not handled by the auto-shard rewrite and will be removed.
+</div><div class="line plain">58/58 [==============================] - 19s 312ms/step - loss: 1.4935 - sparse_categorical_accuracy: 0.5453 - val_loss: 0.5256 - val_sparse_categorical_accuracy: 0.8397
+</div><div class="line plain">Epoch 2/10
+</div><div class="line plain">58/58 [==============================] - ETA: 0s - loss: 0.4501 - sparse_categorical_accuracy: 0.85792021-07-11 18:31:00.658115: W tensorflow/core/framework/dataset.cc:679] Input of GeneratorDatasetOp::Dataset will not be optimized because the dataset does not implement the AsGraphDefInternal() method needed to apply optimizations.
+</div><div class="line plain">58/58 [==============================] - 20s 344ms/step - loss: 0.4501 - sparse_categorical_accuracy: 0.8579 - val_loss: 0.2695 - val_sparse_categorical_accuracy: 0.9229
+</div><div class="line plain">Epoch 3/10
+</div><div class="line plain">58/58 [==============================] - 20s 341ms/step - loss: 0.2812 - sparse_categorical_accuracy: 0.9153 - val_loss: 0.1970 - val_sparse_categorical_accuracy: 0.9427
+</div><div class="line plain">...
+</div></pre></td></tr></table></div></figure></notextile></div>
+
+<p>简直被Nvidia的显卡15ms/step暴击。Intel的260ms/step要慢。</p>
+
+<h1 id="tensorflow-metal-pluggabledevice">6. tensorflow-metal PluggableDevice</h1>
+
+<p>参考<a href="https://developer.apple.com/metal/tensorflow-plugin/" target="_blank">tensorflow-mental</a>。</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div><div data-line="5" class="line-number"></div><div data-line="6" class="line-number"></div><div data-line="7" class="line-number"></div><div data-line="8" class="line-number"></div><div data-line="9" class="line-number"></div><div data-line="10" class="line-number"></div><div data-line="11" class="line-number"></div><div data-line="12" class="line-number"></div></pre></td><td class="main code  "><pre><div class="line plain">wget https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-MacOSX-arm64.sh
+</div><div class="line plain"> </div><div class="line plain">bash Miniforge3-MacOSX-arm64.sh
+</div><div class="line plain"> </div><div class="line plain">...
+</div><div class="line plain"> </div><div class="line plain">conda create -n tf39 python=3.9
+</div><div class="line plain">conda activate tf39
+</div><div class="line plain">conda install -c apple tensorflow-deps
+</div><div class="line plain">python -m pip install tensorflow-macos
+</div><div class="line plain">python -m pip install tensorflow-metal
+</div><div class="line plain"> </div></pre></td></tr></table></div></figure></notextile></div>
+
+<p>结果</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div><div data-line="5" class="line-number"></div><div data-line="6" class="line-number"></div><div data-line="7" class="line-number"></div><div data-line="8" class="line-number"></div><div data-line="9" class="line-number"></div><div data-line="10" class="line-number"></div><div data-line="11" class="line-number"></div><div data-line="12" class="line-number"></div><div data-line="13" class="line-number"></div><div data-line="14" class="line-number"></div><div data-line="15" class="line-number"></div><div data-line="16" class="line-number"></div><div data-line="17" class="line-number"></div><div data-line="18" class="line-number"></div><div data-line="19" class="line-number"></div><div data-line="20" class="line-number"></div><div data-line="21" class="line-number"></div></pre></td><td class="main code  "><pre><div class="line plain">58/58 [==============================] - ETA: 0s - loss: 1.5647 - sparse_categorical_accuracy: 0.52392021-07-11 18:51:53.772789: W tensorflow/core/grappler/optimizers/data/auto_shard.cc:461] The `assert_cardinality` transformation is currently not handled by the auto-shard rewrite and will be removed.
+</div><div class="line plain">2021-07-11 18:51:53.799144: I tensorflow/core/grappler/optimizers/custom_graph_optimizer_registry.cc:112] Plugin optimizer for device_type GPU is enabled.
+</div><div class="line plain">2021-07-11 18:51:53.801124: I tensorflow/core/grappler/optimizers/custom_graph_optimizer_registry.cc:112] Plugin optimizer for device_type GPU is enabled.
+</div><div class="line plain">2021-07-11 18:51:53.844207: I tensorflow/core/grappler/optimizers/custom_graph_optimizer_registry.cc:112] Plugin optimizer for device_type GPU is enabled.
+</div><div class="line plain">58/58 [==============================] - 8s 100ms/step - loss: 1.5647 - sparse_categorical_accuracy: 0.5239 - val_loss: 0.5425 - val_sparse_categorical_accuracy: 0.8359
+</div><div class="line plain">Epoch 2/10
+</div><div class="line plain">58/58 [==============================] - ETA: 0s - loss: 0.4310 - sparse_categorical_accuracy: 0.86482021-07-11 18:51:59.418133: I tensorflow/core/grappler/optimizers/custom_graph_optimizer_registry.cc:112] Plugin optimizer for device_type GPU is enabled.
+</div><div class="line plain">2021-07-11 18:51:59.420233: I tensorflow/core/grappler/optimizers/custom_graph_optimizer_registry.cc:112] Plugin optimizer for device_type GPU is enabled.
+</div><div class="line plain">58/58 [==============================] - 5s 95ms/step - loss: 0.4310 - sparse_categorical_accuracy: 0.8648 - val_loss: 0.2834 - val_sparse_categorical_accuracy: 0.9180
+</div><div class="line plain">Epoch 3/10
+</div><div class="line plain">58/58 [==============================] - ETA: 0s - loss: 0.2663 - sparse_categorical_accuracy: 0.91952021-07-11 18:52:05.022747: I tensorflow/core/grappler/optimizers/custom_graph_optimizer_registry.cc:112] Plugin optimizer for device_type GPU is enabled.
+</div><div class="line plain">2021-07-11 18:52:05.025100: I tensorflow/core/grappler/optimizers/custom_graph_optimizer_registry.cc:112] Plugin optimizer for device_type GPU is enabled.
+</div><div class="line plain">58/58 [==============================] - 6s 96ms/step - loss: 0.2663 - sparse_categorical_accuracy: 0.9195 - val_loss: 0.1869 - val_sparse_categorical_accuracy: 0.9452
+</div><div class="line plain">Epoch 4/10
+</div><div class="line plain">58/58 [==============================] - ETA: 0s - loss: 0.2088 - sparse_categorical_accuracy: 0.93692021-07-11 18:52:10.479798: I tensorflow/core/grappler/optimizers/custom_graph_optimizer_registry.cc:112] Plugin optimizer for device_type GPU is enabled.
+</div><div class="line plain">2021-07-11 18:52:10.482146: I tensorflow/core/grappler/optimizers/custom_graph_optimizer_registry.cc:112] Plugin optimizer for device_type GPU is enabled.
+</div><div class="line plain">58/58 [==============================] - 5s 94ms/step - loss: 0.2088 - sparse_categorical_accuracy: 0.9369 - val_loss: 0.1528 - val_sparse_categorical_accuracy: 0.9548
+</div><div class="line plain">Epoch 5/10
+</div><div class="line plain">58/58 [==============================] - ETA: 0s - loss: 0.1774 - sparse_categorical_accuracy: 0.94642021-07-11 18:52:15.953144: I tensorflow/core/grappler/optimizers/custom_graph_optimizer_registry.cc:112] Plugin optimizer for device_type GPU is enabled.
+</div><div class="line plain">2021-07-11 18:52:15.955539: I tensorflow/core/grappler/optimizers/custom_graph_optimizer_registry.cc:112] Plugin optimizer for device_type GPU is enabled.
+</div><div class="line plain">58/58 [==============================] - 5s 94ms/step - loss: 0.1774 - sparse_categorical_accuracy: 0.9464 - val_loss: 0.1292 - val_sparse_categorical_accuracy: 0.9602
+</div></pre></td></tr></table></div></figure></notextile></div>
+
+<p>95ms/step还算可以吧。差不多是1060的35ms/step的三分之一。</p>
+
+<h1 id="section-4">7. 参考资料</h1>
+
+<ol>
+  <li><a href="https://towardsdatascience.com/installing-tensorflow-on-the-m1-mac-410bb36b776" target="_blank">Installing TensorFlow on the M1 Mac</a></li>
+  <li><a href="https://github.com/h5py/h5py/issues/1810" target="_blank">Fails to build from source on MacOS 11 + M1</a> </li>
+  <li><a href="https://alexslobodnik.medium.com/apple-m1-python-pandas-and-homebrew-20f14828ccc7" target="_blank">Apple M1, Python, Pandas, and Homebrew</a></li>
+  <li><a href="https://github.com/numpy/numpy/issues/17807" target="_blank">BLD: fail to build on Apple M1</a></li>
+  <li><a href="https://stackoverflow.com/questions/66640705/how-can-i-install-grpcio-on-an-apple-m1-silicon-laptop" target="_blank">How can I install GRPCIO on an Apple M1 Silicon laptop?</a></li>
+  <li><a href="https://github.com/sighingnow/libclang/blob/master/.github/workflows/libclang-macosx-amd64.yml" target="_blank">libclang/.github/workflows/libclang-macosx-amd64.yml</a></li>
+</ol>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Chromium编码器问题]]></title>
+    <link href="https://i.rexdf.org/blog/2021/02/27/chromiumbian-ma-qi-wen-ti/"/>
+    <updated>2021-02-27T20:20:00+08:00</updated>
+    <id>https://i.rexdf.org/blog/2021/02/27/chromiumbian-ma-qi-wen-ti</id>
+    <content type="html"><![CDATA[<ul class="markdown-toc">
+  <li><a href="#section">问题解决</a></li>
+  <li><a href="#section-1">编译配置</a>    <ul>
+      <li><a href="#section-2">目录结构</a></li>
+      <li><a href="#begintoworkx64bat">_begin_to_work_x64.bat</a></li>
+      <li><a href="#buildbat">build.bat</a></li>
+      <li><a href="#buildx642bat">buildx64_2.bat</a></li>
+      <li><a href="#buildx862bat">buildx86_2.bat</a></li>
+      <li><a href="#mybuildargsgn">mybuild\args.gn</a></li>
+      <li><a href="#mybuild86argsgn">mybuild86\args.gn</a></li>
+      <li><a href="#section-3">额外的笔记</a></li>
+    </ul>
+  </li>
+  <li><a href="#section-4">编译消耗</a></li>
+  <li><a href="#section-5">参考资料</a></li>
+</ul>
+
+<p>本文记录chromium编译遇到的问题。 Windows上的Chrome浏览器一直都用着一个自己编译的版本。然而最近几个月的编译发现了Twitter的视频似乎没法播放，而Youtube的视频依然是正常的。</p>
+
+<!--more-->
+
+<h1 id="section">问题解决</h1>
+
+<p><img src="https://i.rexdf.org/images/twitter_not_play.png" alt="The media could not be played" class="center fancybox" /></p>
+
+<p>如上图所示。 搜索了一圈，尝试了重置浏览器(重新指定一个cache目录)和修改<a href="chrome://about">chrome://about</a>似乎都没效果。</p>
+
+<p>但是编译的时候有报一个错误’use_h254’编译选项未定义。那就变有什么编码器不支持了。然后搜了下确实现在默认不带h254的解码器了。但是用<code>proprietary_codecs = true</code>就可以再次启用。</p>
+
+<p><img src="https://i.rexdf.org/images/twitter_play.png" alt="Twitter video" class="center fancybox" /></p>
+
+<h1 id="section-1">编译配置</h1>
+
+<p>下面这个配置是我2015年写的一个自动化脚本，大概一直用到现在2021年，中间可能有几次优化，但是大体上都是2015年那会写的。</p>
+
+<p>首先假设下面的目录树在某个目录，那么其上一级目录要有<code>depot_tools</code>文件夹，然后把如下内容填入。按照如下笔记拖下源码。这个大概20~30分钟就好了。</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div><div data-line="5" class="line-number"></div><div data-line="6" class="line-number"></div><div data-line="7" class="line-number"></div><div data-line="8" class="line-number"></div><div data-line="9" class="line-number"></div><div data-line="10" class="line-number"></div><div data-line="11" class="line-number"></div></pre></td><td class="main code  "><pre><div class="line plain">更新工具链
+</div><div class="line plain">gclient runhooks
+</div><div class="line plain"> </div><div class="line plain"> </div><div class="line plain">出现问题时使用:
+</div><div class="line plain">git reset --hard origin/master
+</div><div class="line plain"> </div><div class="line plain"> </div><div class="line plain">更新代码
+</div><div class="line plain">git rebase-update
+</div><div class="line plain">gclient sync</div></pre></td></tr></table></div></figure></notextile></div>
+
+<h2 id="section-2">目录结构</h2>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div><div data-line="5" class="line-number"></div><div data-line="6" class="line-number"></div><div data-line="7" class="line-number"></div><div data-line="8" class="line-number"></div><div data-line="9" class="line-number"></div><div data-line="10" class="line-number"></div><div data-line="11" class="line-number"></div><div data-line="12" class="line-number"></div><div data-line="13" class="line-number"></div><div data-line="14" class="line-number"></div><div data-line="15" class="line-number"></div></pre></td><td class="main code  "><pre><div class="line plain">│  _begin_to_work_x64.bat
+</div><div class="line plain">│
+</div><div class="line plain">├─build_result
+</div><div class="line plain">├─chromium
+</div><div class="line plain">│      build.bat
+</div><div class="line plain">│      buildx64_2.bat
+</div><div class="line plain">│      buildx86_2.bat
+</div><div class="line plain">│
+</div><div class="line plain">└─src
+</div><div class="line plain">    └─out
+</div><div class="line plain">        ├─mybuild
+</div><div class="line plain">        │      args.gn
+</div><div class="line plain">        │
+</div><div class="line plain">        └─mybuild86
+</div><div class="line plain">                args.gn
+</div></pre></td></tr></table></div></figure></notextile></div>
+
+<h2 id="begintoworkx64bat">_begin_to_work_x64.bat</h2>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div><div data-line="5" class="line-number"></div><div data-line="6" class="line-number"></div><div data-line="7" class="line-number"></div><div data-line="8" class="line-number"></div><div data-line="9" class="line-number"></div><div data-line="10" class="line-number"></div></pre></td><td class="main code  "><pre><div class="line plain">@echo off
+</div><div class="line plain">chcp 437
+</div><div class="line plain">cd /d  %~dp0chromium
+</div><div class="line plain">rem call ..\setup_and_clean.bat
+</div><div class="line plain">set str=%~dp0
+</div><div class="line plain">path=%str%..\depot_tools;%path%
+</div><div class="line plain">set DEPOT_TOOLS_WIN_TOOLCHAIN=0
+</div><div class="line plain">rem set NO_AUTH_BOTO_CONFIG=%~dp0boto.cfg
+</div><div class="line plain">rem %comspec% /k "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" amd64
+</div><div class="line plain">%comspec% /k "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
+</div></pre></td></tr></table></div></figure></notextile></div>
+
+<h2 id="buildbat">build.bat</h2>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div><div data-line="5" class="line-number"></div><div data-line="6" class="line-number"></div><div data-line="7" class="line-number"></div><div data-line="8" class="line-number"></div><div data-line="9" class="line-number"></div><div data-line="10" class="line-number"></div><div data-line="11" class="line-number"></div><div data-line="12" class="line-number"></div><div data-line="13" class="line-number"></div><div data-line="14" class="line-number"></div><div data-line="15" class="line-number"></div><div data-line="16" class="line-number"></div><div data-line="17" class="line-number"></div><div data-line="18" class="line-number"></div><div data-line="19" class="line-number"></div><div data-line="20" class="line-number"></div><div data-line="21" class="line-number"></div><div data-line="22" class="line-number"></div><div data-line="23" class="line-number"></div><div data-line="24" class="line-number"></div><div data-line="25" class="line-number"></div><div data-line="26" class="line-number"></div><div data-line="27" class="line-number"></div><div data-line="28" class="line-number"></div><div data-line="29" class="line-number"></div><div data-line="30" class="line-number"></div><div data-line="31" class="line-number"></div><div data-line="32" class="line-number"></div><div data-line="33" class="line-number"></div><div data-line="34" class="line-number"></div><div data-line="35" class="line-number"></div><div data-line="36" class="line-number"></div><div data-line="37" class="line-number"></div><div data-line="38" class="line-number"></div><div data-line="39" class="line-number"></div><div data-line="40" class="line-number"></div><div data-line="41" class="line-number"></div><div data-line="42" class="line-number"></div><div data-line="43" class="line-number"></div></pre></td><td class="main code  "><pre><div class="line plain">@echo off
+</div><div class="line plain"> </div><div class="line plain">cd /d %~dp0src
+</div><div class="line plain"> </div><div class="line plain">set path=%~dp0..\..\depot_tools;%path%
+</div><div class="line plain">set DEPOT_TOOLS_WIN_TOOLCHAIN=0
+</div><div class="line plain">set VERSION_NUMVER=91.0.4432.1
+</div><div class="line plain"> </div><div class="line plain">if exist out (
+</div><div class="line plain"> rd /s /q out
+</div><div class="line plain">)
+</div><div class="line plain"> </div><div class="line plain">xcopy %~dp0..\src %~dp0src /E /I /s
+</div><div class="line plain"> </div><div class="line plain">call gn gen out/mybuild64 --ide=vs
+</div><div class="line plain">call gn gen --ide=vs --filters=//chrome out/Default64
+</div><div class="line plain"> </div><div class="line plain">call gn gen out/mybuild 
+</div><div class="line plain">call gn gen out/mybuild86
+</div><div class="line plain"> </div><div class="line plain">if not exist ..\..\build_result\%VERSION_NUMVER% (
+</div><div class="line plain">  mkdir  ..\..\build_result\%VERSION_NUMVER%
+</div><div class="line plain">)
+</div><div class="line plain"> </div><div class="line plain">if not exist ..\..\build_result\%VERSION_NUMVER%\x86 (
+</div><div class="line plain">  mkdir  ..\..\build_result\%VERSION_NUMVER%\x86
+</div><div class="line plain">)
+</div><div class="line plain"> </div><div class="line plain">if not exist ..\..\build_result\%VERSION_NUMVER%\x86\chrome.packed.7z (
+</div><div class="line plain">    call ..\buildx86_2.bat %VERSION_NUMVER%
+</div><div class="line plain">)
+</div><div class="line plain"> </div><div class="line plain">if not exist ..\..\build_result\%VERSION_NUMVER%\x64 (
+</div><div class="line plain">  mkdir  ..\..\build_result\%VERSION_NUMVER%\x64
+</div><div class="line plain">)
+</div><div class="line plain"> </div><div class="line plain">if not exist ..\..\build_result\%VERSION_NUMVER%\x64\chrome.packed.7z (
+</div><div class="line plain">    call ..\buildx64_2.bat %VERSION_NUMVER%
+</div><div class="line plain">)
+</div><div class="line plain"> </div><div class="line plain">rem shutdown -s -t 600
+</div><div class="line plain"> </div><div class="line plain">pause</div></pre></td></tr></table></div></figure></notextile></div>
+
+<h2 id="buildx642bat">buildx64_2.bat</h2>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div><div data-line="5" class="line-number"></div><div data-line="6" class="line-number"></div><div data-line="7" class="line-number"></div><div data-line="8" class="line-number"></div><div data-line="9" class="line-number"></div><div data-line="10" class="line-number"></div><div data-line="11" class="line-number"></div><div data-line="12" class="line-number"></div><div data-line="13" class="line-number"></div><div data-line="14" class="line-number"></div><div data-line="15" class="line-number"></div><div data-line="16" class="line-number"></div><div data-line="17" class="line-number"></div><div data-line="18" class="line-number"></div><div data-line="19" class="line-number"></div><div data-line="20" class="line-number"></div><div data-line="21" class="line-number"></div><div data-line="22" class="line-number"></div><div data-line="23" class="line-number"></div><div data-line="24" class="line-number"></div><div data-line="25" class="line-number"></div><div data-line="26" class="line-number"></div><div data-line="27" class="line-number"></div><div data-line="28" class="line-number"></div><div data-line="29" class="line-number"></div><div data-line="30" class="line-number"></div><div data-line="31" class="line-number"></div><div data-line="32" class="line-number"></div><div data-line="33" class="line-number"></div><div data-line="34" class="line-number"></div><div data-line="35" class="line-number"></div><div data-line="36" class="line-number"></div><div data-line="37" class="line-number"></div><div data-line="38" class="line-number"></div></pre></td><td class="main code  "><pre><div class="line plain">@echo off
+</div><div class="line plain"> </div><div class="line plain">cd /d %~dp0src
+</div><div class="line plain"> </div><div class="line plain">set path=%~dp0..\..\depot_tools;%path%
+</div><div class="line plain">set DEPOT_TOOLS_WIN_TOOLCHAIN=0
+</div><div class="line plain"> </div><div class="line plain">if [%1]==[] goto error
+</div><div class="line plain"> </div><div class="line plain">ninja -C out/mybuild chrome
+</div><div class="line plain">ninja -C out/mybuild chromedriver
+</div><div class="line plain">ninja -C out/mybuild mini_installer
+</div><div class="line plain"> </div><div class="line plain">for %%i in (chrome.packed.7z,chromedriver.exe,mini_installer.exe,setup.exe) do (
+</div><div class="line plain">    if exist out\mybuild\%%i (
+</div><div class="line plain">        copy out\mybuild\%%i ..\..\build_result\%1\x64\
+</div><div class="line plain">    )
+</div><div class="line plain">)
+</div><div class="line plain"> </div><div class="line plain">REM copy out\mybuild\chrome.packed.7z ..\..\build_result\%1\x64\
+</div><div class="line plain">REM copy out\mybuild\chromedriver.exe ..\..\build_result\%1\x64\
+</div><div class="line plain">REM copy out\mybuild\setup.exe ..\..\build_result\%1\x64\
+</div><div class="line plain"> </div><div class="line plain"> </div><div class="line plain">ninja -C out/mybuild -t graph all &gt; ..\..\build_result\%1\deps.dot
+</div><div class="line plain"> </div><div class="line plain">ninja -C out/mybuild -t targets &gt; ..\..\build_result\%1\targets.txt
+</div><div class="line plain"> </div><div class="line plain">if [%2] neq [] (
+</div><div class="line plain">    rd /s /q out\mybuild
+</div><div class="line plain">)
+</div><div class="line plain"> </div><div class="line plain"> </div><div class="line plain">echo Done.
+</div><div class="line plain">GOTO :EOF
+</div><div class="line plain"> </div><div class="line plain">:error
+</div><div class="line plain">echo Need a version number.
+</div></pre></td></tr></table></div></figure></notextile></div>
+
+<h2 id="buildx862bat">buildx86_2.bat</h2>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div><div data-line="5" class="line-number"></div><div data-line="6" class="line-number"></div><div data-line="7" class="line-number"></div><div data-line="8" class="line-number"></div><div data-line="9" class="line-number"></div><div data-line="10" class="line-number"></div><div data-line="11" class="line-number"></div><div data-line="12" class="line-number"></div><div data-line="13" class="line-number"></div><div data-line="14" class="line-number"></div><div data-line="15" class="line-number"></div><div data-line="16" class="line-number"></div><div data-line="17" class="line-number"></div><div data-line="18" class="line-number"></div><div data-line="19" class="line-number"></div><div data-line="20" class="line-number"></div><div data-line="21" class="line-number"></div><div data-line="22" class="line-number"></div><div data-line="23" class="line-number"></div><div data-line="24" class="line-number"></div><div data-line="25" class="line-number"></div><div data-line="26" class="line-number"></div><div data-line="27" class="line-number"></div><div data-line="28" class="line-number"></div><div data-line="29" class="line-number"></div><div data-line="30" class="line-number"></div><div data-line="31" class="line-number"></div><div data-line="32" class="line-number"></div><div data-line="33" class="line-number"></div></pre></td><td class="main code  "><pre><div class="line plain">@echo off
+</div><div class="line plain"> </div><div class="line plain">cd /d %~dp0src
+</div><div class="line plain"> </div><div class="line plain">set path=%~dp0..\..\depot_tools;%path%
+</div><div class="line plain">set DEPOT_TOOLS_WIN_TOOLCHAIN=0
+</div><div class="line plain"> </div><div class="line plain">if [%1]==[] goto error
+</div><div class="line plain"> </div><div class="line plain"> </div><div class="line plain">ninja -C out/mybuild86 chrome
+</div><div class="line plain">ninja -C out/mybuild86 chromedriver
+</div><div class="line plain">ninja -C out/mybuild86 mini_installer
+</div><div class="line plain"> </div><div class="line plain"> </div><div class="line plain">for %%i in (chrome.packed.7z,chromedriver.exe,mini_installer.exe,setup.exe) do (
+</div><div class="line plain">    if exist out\mybuild86\%%i (
+</div><div class="line plain">        copy out\mybuild86\%%i ..\..\build_result\%1\x86\
+</div><div class="line plain">    )
+</div><div class="line plain">)
+</div><div class="line plain"> </div><div class="line plain">REM copy out\mybuild86\chrome.packed.7z ..\..\build_result\%1\x86\
+</div><div class="line plain">REM copy out\mybuild86\chromedriver.exe ..\..\build_result\%1\x86\
+</div><div class="line plain">REM copy out\mybuild86\mini_installer.exe ..\..\build_result\%1\x86\
+</div><div class="line plain">if [%2] neq [] (
+</div><div class="line plain">    rd /s /q out\mybuild86
+</div><div class="line plain">)
+</div><div class="line plain"> </div><div class="line plain">echo Done.
+</div><div class="line plain">GOTO :EOF
+</div><div class="line plain"> </div><div class="line plain">:error
+</div><div class="line plain">echo Need a version number.
+</div></pre></td></tr></table></div></figure></notextile></div>
+
+<h2 id="mybuildargsgn">mybuild\args.gn</h2>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div><div data-line="5" class="line-number"></div><div data-line="6" class="line-number"></div><div data-line="7" class="line-number"></div><div data-line="8" class="line-number"></div><div data-line="9" class="line-number"></div><div data-line="10" class="line-number"></div><div data-line="11" class="line-number"></div><div data-line="12" class="line-number"></div><div data-line="13" class="line-number"></div><div data-line="14" class="line-number"></div><div data-line="15" class="line-number"></div><div data-line="16" class="line-number"></div><div data-line="17" class="line-number"></div><div data-line="18" class="line-number"></div><div data-line="19" class="line-number"></div><div data-line="20" class="line-number"></div><div data-line="21" class="line-number"></div><div data-line="22" class="line-number"></div><div data-line="23" class="line-number"></div><div data-line="24" class="line-number"></div><div data-line="25" class="line-number"></div><div data-line="26" class="line-number"></div><div data-line="27" class="line-number"></div><div data-line="28" class="line-number"></div><div data-line="29" class="line-number"></div><div data-line="30" class="line-number"></div></pre></td><td class="main code  "><pre><div class="line plain"># Build arguments go here.
+</div><div class="line plain"># See "gn args &lt;out_dir&gt; --list" for available build arguments.
+</div><div class="line plain"># enable_nacl = false
+</div><div class="line plain"> </div><div class="line plain">ffmpeg_branding = "Chrome"
+</div><div class="line plain"> </div><div class="line plain">is_component_build = false
+</div><div class="line plain">is_debug = false
+</div><div class="line plain">is_official_build = true
+</div><div class="line plain"> </div><div class="line plain"># proprietary_codecs = true
+</div><div class="line plain"># remove_webcore_debug_symbols = true
+</div><div class="line plain">rtc_use_h264 = true
+</div><div class="line plain"> </div><div class="line plain">symbol_level = 1
+</div><div class="line plain">blink_symbol_level = 1
+</div><div class="line plain"> </div><div class="line plain"># syzygy_optimize = true
+</div><div class="line plain"> </div><div class="line plain"># use_jumbo_build = true
+</div><div class="line plain">media_use_ffmpeg = true
+</div><div class="line plain">media_use_libvpx = true
+</div><div class="line plain">proprietary_codecs = true
+</div><div class="line plain"># use_openh264 = true
+</div><div class="line plain"> </div><div class="line plain">google_api_key = "no"
+</div><div class="line plain">google_default_client_id = "no"
+</div><div class="line plain">google_default_client_secret = "no"
+</div><div class="line plain"> </div><div class="line plain">#x64_arch = "skylake-avx512"</div></pre></td></tr></table></div></figure></notextile></div>
+
+<h2 id="mybuild86argsgn">mybuild86\args.gn</h2>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div><div data-line="5" class="line-number"></div><div data-line="6" class="line-number"></div><div data-line="7" class="line-number"></div><div data-line="8" class="line-number"></div><div data-line="9" class="line-number"></div><div data-line="10" class="line-number"></div><div data-line="11" class="line-number"></div><div data-line="12" class="line-number"></div><div data-line="13" class="line-number"></div><div data-line="14" class="line-number"></div><div data-line="15" class="line-number"></div><div data-line="16" class="line-number"></div><div data-line="17" class="line-number"></div><div data-line="18" class="line-number"></div><div data-line="19" class="line-number"></div><div data-line="20" class="line-number"></div><div data-line="21" class="line-number"></div><div data-line="22" class="line-number"></div><div data-line="23" class="line-number"></div><div data-line="24" class="line-number"></div><div data-line="25" class="line-number"></div><div data-line="26" class="line-number"></div><div data-line="27" class="line-number"></div><div data-line="28" class="line-number"></div><div data-line="29" class="line-number"></div><div data-line="30" class="line-number"></div><div data-line="31" class="line-number"></div><div data-line="32" class="line-number"></div></pre></td><td class="main code  "><pre><div class="line plain"># Build arguments go here.
+</div><div class="line plain"># See "gn args &lt;out_dir&gt; --list" for available build arguments.
+</div><div class="line plain">enable_nacl = false
+</div><div class="line plain"> </div><div class="line plain">ffmpeg_branding = "Chrome"
+</div><div class="line plain"> </div><div class="line plain">is_component_build = false
+</div><div class="line plain">is_debug = false
+</div><div class="line plain">is_official_build = true
+</div><div class="line plain"> </div><div class="line plain">proprietary_codecs = true
+</div><div class="line plain">#remove_webcore_debug_symbols = true
+</div><div class="line plain">rtc_use_h264 = true
+</div><div class="line plain"> </div><div class="line plain">symbol_level = 1
+</div><div class="line plain">blink_symbol_level = 1
+</div><div class="line plain"> </div><div class="line plain"># syzygy_optimize = true
+</div><div class="line plain"> </div><div class="line plain">media_use_ffmpeg = true
+</div><div class="line plain">media_use_libvpx = true
+</div><div class="line plain">proprietary_codecs = true
+</div><div class="line plain"># use_openh264 = true
+</div><div class="line plain"> </div><div class="line plain"># use_jumbo_build = true
+</div><div class="line plain"> </div><div class="line plain">target_cpu = "x86"
+</div><div class="line plain"> </div><div class="line plain">google_api_key = "no"
+</div><div class="line plain">google_default_client_id = "no"
+</div><div class="line plain">google_default_client_secret = "no"
+</div><div class="line plain"> </div></pre></td></tr></table></div></figure></notextile></div>
+
+<h2 id="section-3">额外的笔记</h2>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div><div data-line="5" class="line-number"></div><div data-line="6" class="line-number"></div><div data-line="7" class="line-number"></div><div data-line="8" class="line-number"></div><div data-line="9" class="line-number"></div><div data-line="10" class="line-number"></div><div data-line="11" class="line-number"></div><div data-line="12" class="line-number"></div><div data-line="13" class="line-number"></div><div data-line="14" class="line-number"></div><div data-line="15" class="line-number"></div><div data-line="16" class="line-number"></div><div data-line="17" class="line-number"></div><div data-line="18" class="line-number"></div><div data-line="19" class="line-number"></div><div data-line="20" class="line-number"></div><div data-line="21" class="line-number"></div><div data-line="22" class="line-number"></div><div data-line="23" class="line-number"></div><div data-line="24" class="line-number"></div><div data-line="25" class="line-number"></div><div data-line="26" class="line-number"></div><div data-line="27" class="line-number"></div><div data-line="28" class="line-number"></div><div data-line="29" class="line-number"></div><div data-line="30" class="line-number"></div><div data-line="31" class="line-number"></div><div data-line="32" class="line-number"></div><div data-line="33" class="line-number"></div><div data-line="34" class="line-number"></div><div data-line="35" class="line-number"></div><div data-line="36" class="line-number"></div><div data-line="37" class="line-number"></div><div data-line="38" class="line-number"></div><div data-line="39" class="line-number"></div><div data-line="40" class="line-number"></div><div data-line="41" class="line-number"></div><div data-line="42" class="line-number"></div></pre></td><td class="main code  "><pre><div class="line plain"> </div><div class="line plain">生成编译文件目录
+</div><div class="line plain">gn gen out/Default
+</div><div class="line plain"> </div><div class="line plain">配置编译参数
+</div><div class="line plain">gn args out\mybuild
+</div><div class="line plain"> </div><div class="line plain">列出全部参数
+</div><div class="line plain">gn args out\mybuild --list
+</div><div class="line plain"> </div><div class="line plain">编译
+</div><div class="line plain">ninja -C out/Default chrome
+</div><div class="line plain"> </div><div class="line plain">ninja -C out/mybuild86 chrome &amp;&amp; ninja -C out/mybuild chrome
+</div><div class="line plain"> </div><div class="line plain"> </div><div class="line plain">参数
+</div><div class="line plain"> </div><div class="line plain">is_component_build = false
+</div><div class="line plain">is_debug = false
+</div><div class="line plain">symbol_level = 0
+</div><div class="line plain">enable_nacl = false
+</div><div class="line plain">remove_webcore_debug_symbols = true
+</div><div class="line plain">use_openh264 = true
+</div><div class="line plain">rtc_use_h264 = true
+</div><div class="line plain">ffmpeg_branding = "Chrome"
+</div><div class="line plain"> </div><div class="line plain">#这个参数会导致错误
+</div><div class="line plain">enable_wifi_display = true
+</div><div class="line plain"> </div><div class="line plain">syzygy_optimize = true
+</div><div class="line plain"> </div><div class="line plain">#这个一般不需要
+</div><div class="line plain">is_win_fastlink = true
+</div><div class="line plain"> </div><div class="line plain">#32位的加一行
+</div><div class="line plain">target_cpu = "x86"
+</div><div class="line plain"> </div><div class="line plain"> </div><div class="line plain">google_api_key = "no"
+</div><div class="line plain">google_default_client_id = "no"
+</div><div class="line plain">google_default_client_secret = "no"</div></pre></td></tr></table></div></figure></notextile></div>
+
+<h1 id="section-4">编译消耗</h1>
+
+<p>chrome编译似乎给100GB内存，32独占物理核，编译依然是2小时左右，时间和我笔记本32GB-8750H时间差不多。不像firefox只要20分钟就能编译完成，似乎远远快于笔记本。</p>
+
+<p>磁盘嘛，一个版本大概50GB,给足100GB笔记满足，如果像我上面脚本一样要编译x86和x64大概需要200GB-300GB的磁盘剩余空间。</p>
+
+<p><img src="https://i.rexdf.org/images/chrome_build.png" alt="ESXI Chromium build" class="center fancybox" /></p>
+
+<h1 id="section-5">参考资料</h1>
+
+<ol>
+  <li><a href="https://gist.github.com/jedi4ever/d095656ae0f0eca4a83ebb2b331da367" target="_blank">Building chromium on OSX</a></li>
+  <li><a href="https://chromium.woolyss.com/" target="_blank">The free and open-source project behind Google Chrome</a></li>
+  <li><a href="https://chromium.googlesource.com/chromium/src/+/master/docs/windows_build_instructions.md" target="_blank">Checking out and Building Chromium for Windows</a></li>
+</ol>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Proxmox笔记]]></title>
+    <link href="https://i.rexdf.org/blog/2020/12/13/proxmoxbi-ji/"/>
+    <updated>2020-12-13T20:27:56+08:00</updated>
+    <id>https://i.rexdf.org/blog/2020/12/13/proxmoxbi-ji</id>
+    <content type="html"><![CDATA[<ul class="markdown-toc">
+  <li><a href="#section">1. 切换到非订阅源</a></li>
+  <li><a href="#letsencrypt">2. Letsencrypt证书</a></li>
+  <li><a href="#pveroot">3. pve_root扩容</a></li>
+  <li><a href="#section-1">4. 参考资料</a></li>
+</ul>
+
+<p>本文记录proxmox使用过程中的一些基本笔记。</p>
+
+<!--more-->
+
+<h3 id="section">1. 切换到非订阅源</h3>
+
+<p>这个会影响到更新，默认装然就是enterprise的。</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div><div data-line="5" class="line-number"></div></pre></td><td class="main code  "><pre><div class="line plain"> apt install sudo
+</div><div class="line plain"> </div><div class="line plain"> sudo mv /etc/apt/sources.list.d/pve-enterprise.list /etc/apt/sources.list.d/pve-enterprise.list.disabled
+</div><div class="line plain"> </div><div class="line plain"> sudo echo "deb http://download.proxmox.com/debian/pve buster pve-no-subscription" &gt; /etc/apt/sources.list.d/pve-no-subscription.list</div></pre></td></tr></table></div></figure></notextile></div>
+
+<h3 id="letsencrypt">2. Letsencrypt证书</h3>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div><div data-line="5" class="line-number"></div><div data-line="6" class="line-number"></div><div data-line="7" class="line-number"></div><div data-line="8" class="line-number"></div><div data-line="9" class="line-number"></div><div data-line="10" class="line-number"></div></pre></td><td class="main code  "><pre><div class="line plain">  curl https://get.acme.sh | sh
+</div><div class="line plain">  export DP_Id="12345"
+</div><div class="line plain">   export DP_Key="abcdfabcdfabcdfabcdefabcdef12121212"
+</div><div class="line plain">  /root/.acme.sh/acme.sh  --issue  --dns dns_dp  --standalone  -d pve.example.com
+</div><div class="line plain"> </div><div class="line plain">  /root/.acme.sh/acme.sh  --installcert  -d pve.example.com  \
+</div><div class="line plain">    --certpath /etc/pve/local/pveproxy-ssl.pem \
+</div><div class="line plain">    --keypath /etc/pve/local/pveproxy-ssl.key  \
+</div><div class="line plain">     --capath  /etc/pve/local/pveproxy-ssl.pem  \
+</div><div class="line plain">      --reloadcmd  "systemctl restart pveproxy"</div></pre></td></tr></table></div></figure></notextile></div>
+
+<h3 id="pveroot">3. pve_root扩容</h3>
+
+<p>我这是软路由，系统盘是系统自带的一个16GB的mstata。用<a href="https://www.ventoy.net/en/download.html">ventory</a>装好系统后，根目录<code>/</code>所在的分区只有3.5GB，偶尔<code>apt upgrade</code>都会导致磁盘不足，于是有了本节的代码。</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div><div data-line="5" class="line-number"></div><div data-line="6" class="line-number"></div><div data-line="7" class="line-number"></div><div data-line="8" class="line-number"></div><div data-line="9" class="line-number"></div><div data-line="10" class="line-number"></div><div data-line="11" class="line-number"></div></pre></td><td class="main code  "><pre><div class="line plain">df -Th
+</div><div class="line plain"> </div><div class="line plain">vgdisplay #卷组查看
+</div><div class="line plain">pvdisplay #物理卷查看
+</div><div class="line plain">lvdisplay #逻辑卷参考
+</div><div class="line plain">#我们要扩展的就是lvdisplay里的/dev/pve/root
+</div><div class="line plain">lvextend -L5G /dev/pve/root
+</div><div class="line plain">#lvextend -L+1G /dev/pve/root
+</div><div class="line plain"> </div><div class="line plain">#扩展文件系统
+</div><div class="line plain">resize2fs /dev/pve/root
+</div></pre></td></tr></table></div></figure></notextile></div>
+
+<h3 id="section-1">4. 参考资料</h3>
+
+<ol>
+  <li><a href="https://tldp.org/HOWTO/LVM-HOWTO/extendlv.html" target="_blank">Extending a logical volume</a></li>
+  <li><a href="https://gist.github.com/dergachev/6828967" target="_blank">enlarge-proxmox-root-partition.sh </a></li>
+</ol>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[论广度与深度]]></title>
+    <link href="https://i.rexdf.org/blog/2020/11/15/lun-yan-du-yu-shen-du/"/>
+    <updated>2020-11-15T21:14:19+08:00</updated>
+    <id>https://i.rexdf.org/blog/2020/11/15/lun-yan-du-yu-shen-du</id>
+    <content type="html"><![CDATA[
+<p>最近发觉自己注意力又被发散了。感觉好多事情要处理。然而被生活办证琐事折腾中让我又从中抽离出来，重新审视注意到问题了。</p>
+
+<!--more-->
+
+<p>其实自己内心一直比较贪心。有一堆设想和计划。比如按自己喜好实现一门语言做到编译到各种平台，比如js、x86,arm等。鼓捣一个稳定可靠的分布式个人存储系统，带透明加密，跨洲T级数据可靠同步，多后端(磁盘，Ceph，OSS, onedrive,gdrive). 鼓捣一个编译系统，至少可以随意起arm、mipse、x86_64 linux、windows编译环境，最好还能和我的gitlab集成起来。这些闲下来散步时都是有所考虑，但是似乎一年多了，还没有任何进展。想起来疫情期间也似乎也没有任何这方面的考虑，当然出差北京还了猫就和bct分了。让我有更多的时间来考虑这些事情了。</p>
+
+<p>仔细想想，我发现我经常会被一些最新的技术比如rust、go、Haskell耗去不少经历，然而也并没有深入下去。这样最后结果就好像其实什么都了解一点，而且花费了大把的时间。但是其实都没到足够使用的地步。大抵上我的一些知识都是这种结构的。这样带来好处是似乎没有我没听说过或者不能在非常短时间内基本掌握的常规知识，但是往深了就和大家一样了。</p>
+
+<p>结论就是，要有所取舍。有所为，有所不为。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[如何扩展群晖的basic分区容量]]></title>
+    <link href="https://i.rexdf.org/blog/2020/11/11/ru-he-kuo-zhan-qun-hui-de-basicfen-qu-rong-liang/"/>
+    <updated>2020-11-11T22:28:32+08:00</updated>
+    <id>https://i.rexdf.org/blog/2020/11/11/ru-he-kuo-zhan-qun-hui-de-basicfen-qu-rong-liang</id>
+    <content type="html"><![CDATA[<ul class="markdown-toc">
+  <li><a href="#section">1. 磁盘对拷</a></li>
+  <li><a href="#section-1">2. 测试群晖开机</a></li>
+  <li><a href="#section-2">3. 修改分区大小</a></li>
+  <li><a href="#section-5">3.4 参考资料</a></li>
+</ul>
+
+<p>美亚买了一个14T的硬盘，经历两周从德国邮寄收到了。拆出硬盘，准备换入群晖，发现硬盘分区已经没有了，最小的那个分区是一个4T的硬盘，而且是当初的第一个硬盘，上面有群晖的系统分区。</p>
+
+<!--more-->
+
+<p>本文主要记录操作过程，总时间不长，白天在上班，大概花了大概11+3个小时完成从4T到14T无损迁移，并且被群晖系统识别为全部容量。</p>
+
+<h3 id="section">1. 磁盘对拷</h3>
+
+<p>这个工具大概比较多，我用的Diskgenius，用的双盘位的硬盘盒, 直接 工具 -&gt; 克隆磁盘 -&gt; 源磁盘选4T那个盘，目标磁盘选14T的磁盘，复制所有扇区。</p>
+
+<p>一看时间需要12个小时，我就睡觉去了，早上起来，刚好拷完，用了大概11个小时。</p>
+
+<h3 id="section-1">2. 测试群晖开机</h3>
+
+<p>14T的磁盘插入群晖，可以正常开机。 似乎问题解决了，<strong>然而群晖只能识别成4T</strong>。 在群晖系统网页里面试了下，没有扩展按钮。</p>
+
+<h3 id="section-2">3. 修改分区大小</h3>
+
+<p>因为当初对这台群晖定位是灵活，都是用的basic btrfs建立的分区。群晖关机，拔下硬盘，用便携的硬盘盒插入PC，diskgenius只能识别出里面的一个EXT4分区，另外的几个分区似乎没法识别Linux Raid分区</p>
+
+<p><img src="https://i.rexdf.org/images/synology_partitions.png" alt="synology partitions" class="center fancybox" /></p>
+
+<h4 id="ubuntu">3.1 用Ubuntu挂载</h4>
+
+<p>无奈只能用Linux挂载了，虽然用虚拟机大概也可以。但是我这里刚好有一台物理机，所以就把硬盘盒弹出插入Ubuntu系统了。</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div></pre></td><td class="main code  "><pre><div class="line plain">mdadm --readwrite /dev/md3
+</div><div class="line plain">dmsetup remove_all
+</div></pre></td></tr></table></div></figure></notextile></div>
+
+<h4 id="section-3">3.2 修改分区大小</h4>
+
+<p>先尝试了下面的命令。</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div></pre></td><td class="main code  "><pre><div class="line plain">mdadm --grow --size max /dev/md3
+</div><div class="line plain">resize2fs /dev/md3
+</div></pre></td></tr></table></div></figure></notextile></div>
+
+<p>第一条命令提示扩展raid到了3.6T，这显然不是我要的。</p>
+
+<p>用fdisk -l 看了下</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div><div data-line="5" class="line-number"></div><div data-line="6" class="line-number"></div><div data-line="7" class="line-number"></div><div data-line="8" class="line-number"></div><div data-line="9" class="line-number"></div><div data-line="10" class="line-number"></div><div data-line="11" class="line-number"></div><div data-line="12" class="line-number"></div><div data-line="13" class="line-number"></div><div data-line="14" class="line-number"></div><div data-line="15" class="line-number"></div><div data-line="16" class="line-number"></div><div data-line="17" class="line-number"></div><div data-line="18" class="line-number"></div></pre></td><td class="main code  "><pre><div class="line plain">Disk /dev/sdd：12.75 TiB，14000519643136 字节，27344764928 个扇区
+</div><div class="line plain">Disk model: WDC WD140abcd-xx
+</div><div class="line plain">单元：扇区 / 1 * 512 = 512 字节
+</div><div class="line plain">扇区大小(逻辑/物理)：512 字节 / 4096 字节
+</div><div class="line plain">I/O 大小(最小/最佳)：4096 字节 / 4096 字节
+</div><div class="line plain">磁盘标签类型：gpt
+</div><div class="line plain">磁盘标识符：00000000-0000-0000-0000-000000000000
+</div><div class="line plain"> </div><div class="line plain">设备          起点       末尾       扇区  大小 类型
+</div><div class="line plain">/dev/sdd1     2048    4982527    4980480  2.4G Linux RAID
+</div><div class="line plain">/dev/sdd2  4982528    9176831    4194304    2G Linux RAID
+</div><div class="line plain">/dev/sdd3  9437184 7813832351 7804395168  3.6T Linux RAID
+</div><div class="line plain"> </div><div class="line plain"> </div><div class="line plain">Disk /dev/md3：3.65 TiB，3995849261056 字节，7804393088 个扇区
+</div><div class="line plain">单元：扇区 / 1 * 512 = 512 字节
+</div><div class="line plain">扇区大小(逻辑/物理)：512 字节 / 4096 字节
+</div><div class="line plain">I/O 大小(最小/最佳)：4096 字节 / 4096 字节
+</div></pre></td></tr></table></div></figure></notextile></div>
+
+<p>好家伙，分区只有3.6T，再怎么扩展肯定都是扩展不上去了。解决办法也是很简单，直接强行改分区大小好了。试了下fdisk，没找到改分区大小的命令。然后试了下gparted，这个图形界面的工具。可以修改分区前后的空闲空间大小，好像也没法改变分区自己的大小。(其实用diskgenius拷贝完毕，就想过改分区大小，diskgenius菜单是灰色的(我是付费高级版本))。 最后大小parted命令好像支持，也很简单。</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div><div data-line="5" class="line-number"></div><div data-line="6" class="line-number"></div><div data-line="7" class="line-number"></div><div data-line="8" class="line-number"></div><div data-line="9" class="line-number"></div><div data-line="10" class="line-number"></div><div data-line="11" class="line-number"></div><div data-line="12" class="line-number"></div><div data-line="13" class="line-number"></div><div data-line="14" class="line-number"></div><div data-line="15" class="line-number"></div><div data-line="16" class="line-number"></div><div data-line="17" class="line-number"></div><div data-line="18" class="line-number"></div><div data-line="19" class="line-number"></div><div data-line="20" class="line-number"></div><div data-line="21" class="line-number"></div><div data-line="22" class="line-number"></div><div data-line="23" class="line-number"></div><div data-line="24" class="line-number"></div><div data-line="25" class="line-number"></div><div data-line="26" class="line-number"></div><div data-line="27" class="line-number"></div><div data-line="28" class="line-number"></div><div data-line="29" class="line-number"></div><div data-line="30" class="line-number"></div><div data-line="31" class="line-number"></div><div data-line="32" class="line-number"></div><div data-line="33" class="line-number"></div></pre></td><td class="main code  "><pre><div class="line plain">parted /dev/sdd
+</div><div class="line plain">root@xxxx:~# parted /dev/sdd
+</div><div class="line plain">GNU Parted 3.3
+</div><div class="line plain">使用 /dev/sdd
+</div><div class="line plain">欢迎使用 GNU Parted！输入 'help' 来查看命令列表。
+</div><div class="line plain">(parted) print
+</div><div class="line plain">型号：ATA WDC WD140abcd-xx (scsi)
+</div><div class="line plain">磁盘 /dev/sdd: 14.0TB
+</div><div class="line plain">扇区大小 (逻辑/物理)：512B/4096B
+</div><div class="line plain">分区表：gpt
+</div><div class="line plain">磁盘标志：
+</div><div class="line plain"> </div><div class="line plain">编号  起始点  结束点  大小    文件系统        名称  标志
+</div><div class="line plain"> 1    1049kB  2551MB  2550MB  ext4                  raid
+</div><div class="line plain"> 2    2551MB  4699MB  2147MB  linux-swap(v1)        raid
+</div><div class="line plain"> 3    4832MB  4001GB  3996GB                        raid
+</div><div class="line plain"> </div><div class="line plain">(parted) resizepart
+</div><div class="line plain">分区编号？ 3
+</div><div class="line plain">结束点？  [4001GB]? 14.0TB
+</div><div class="line plain">(parted) print
+</div><div class="line plain">型号：ATA WDC WD140abcd-xx (scsi)
+</div><div class="line plain">磁盘 /dev/sdd: 14.0TB
+</div><div class="line plain">扇区大小 (逻辑/物理)：512B/4096B
+</div><div class="line plain">分区表：gpt
+</div><div class="line plain">磁盘标志：
+</div><div class="line plain"> </div><div class="line plain">编号  起始点  结束点  大小    文件系统        名称  标志
+</div><div class="line plain"> 1    1049kB  2551MB  2550MB  ext4                  raid
+</div><div class="line plain"> 2    2551MB  4699MB  2147MB  linux-swap(v1)        raid
+</div><div class="line plain"> 3    4832MB  14.0TB  14.0TB                        raid
+</div><div class="line plain"> </div><div class="line plain">(parted) quit
+</div></pre></td></tr></table></div></figure></notextile></div>
+
+<p>用fdisk看了下</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div><div data-line="5" class="line-number"></div><div data-line="6" class="line-number"></div><div data-line="7" class="line-number"></div><div data-line="8" class="line-number"></div><div data-line="9" class="line-number"></div><div data-line="10" class="line-number"></div><div data-line="11" class="line-number"></div><div data-line="12" class="line-number"></div><div data-line="13" class="line-number"></div><div data-line="14" class="line-number"></div><div data-line="15" class="line-number"></div><div data-line="16" class="line-number"></div><div data-line="17" class="line-number"></div><div data-line="18" class="line-number"></div></pre></td><td class="main code  "><pre><div class="line plain">Disk /dev/sdd：12.75 TiB，14000519643136 字节，27344764928 个扇区
+</div><div class="line plain">Disk model: WDC WD140abcd-xx
+</div><div class="line plain">单元：扇区 / 1 * 512 = 512 字节
+</div><div class="line plain">扇区大小(逻辑/物理)：512 字节 / 4096 字节
+</div><div class="line plain">I/O 大小(最小/最佳)：4096 字节 / 4096 字节
+</div><div class="line plain">磁盘标签类型：gpt
+</div><div class="line plain">磁盘标识符：00000000-0000-0000-0000-000000000000
+</div><div class="line plain"> </div><div class="line plain">设备          起点        末尾        扇区  大小 类型
+</div><div class="line plain">/dev/sdd1     2048     4982527     4980480  2.4G Linux RAID
+</div><div class="line plain">/dev/sdd2  4982528     9176831     4194304    2G Linux RAID
+</div><div class="line plain">/dev/sdd3  9437184 27343750000 27334312817 12.7T Linux RAID
+</div><div class="line plain"> </div><div class="line plain"> </div><div class="line plain">Disk /dev/md3：3.65 TiB，3995849277440 字节，7804393120 个扇区
+</div><div class="line plain">单元：扇区 / 1 * 512 = 512 字节
+</div><div class="line plain">扇区大小(逻辑/物理)：512 字节 / 4096 字节
+</div><div class="line plain">I/O 大小(最小/最佳)：4096 字节 / 4096 字节
+</div></pre></td></tr></table></div></figure></notextile></div>
+
+<p>分区层面似乎解决了</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div><div data-line="5" class="line-number"></div><div data-line="6" class="line-number"></div></pre></td><td class="main code  "><pre><div class="line plain">root@xxxx:~# mdadm --grow --size max /dev/md3
+</div><div class="line plain">mdadm: component size of /dev/md3 has been set to 13667155384K
+</div><div class="line plain">root@xxxx:~# resize2fs /dev/md3
+</div><div class="line plain">resize2fs 1.45.5 (07-Jan-2020)
+</div><div class="line plain">resize2fs: 超级块中的幻数有错 尝试打开 /dev/md3 时
+</div><div class="line plain">找不到有效的文件系统超级块。
+</div></pre></td></tr></table></div></figure></notextile></div>
+
+<p>为了安心用<code>mount /dev/md3 /mnt</code> 然后看了下，文件都还在。于是<code>umount /mnt</code>,拔下硬盘。</p>
+
+<h4 id="section-4">3.3 群晖扩展分区</h4>
+
+<p>拔下硬盘插入群晖，开机。一看还是4T，但是磁盘管理里面多了一个扩展按钮，点一下就变成了12.22T了
+。至此问题完美解决，无损迁移4T到14T了。</p>
+
+<h3 id="section-5">3.4 参考资料</h3>
+
+<ol>
+  <li><a href="https://www.synology.com/en-us/knowledgebase/DSM/tutorial/Storage/How_can_I_recover_data_from_my_DiskStation_using_a_PC" target="_blank">How can I recover data on my Synology NAS using a PC?</a></li>
+  <li><a href="https://www.tecmint.com/parted-command-to-create-resize-rescue-linux-disk-partitions/" target="_blank">8 Linux ‘Parted’ Commands to Create, Resize and Rescue Disk Partitions</a></li>
+</ol>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[树莓派笔记]]></title>
+    <link href="https://i.rexdf.org/blog/2020/09/20/shu-mei-pai-bi-ji/"/>
+    <updated>2020-09-20T16:46:29+08:00</updated>
+    <id>https://i.rexdf.org/blog/2020/09/20/shu-mei-pai-bi-ji</id>
+    <content type="html"><![CDATA[<ul class="markdown-toc">
+  <li><a href="#upgrade-raspbian-stretch-to-buster">1. Upgrade Raspbian Stretch to Buster</a></li>
+  <li><a href="#section">2. 首次安装</a></li>
+  <li><a href="#section-1">3. 网络的一些命令</a>    <ul>
+      <li><a href="#iwlist-channel">iwlist channel</a></li>
+      <li><a href="#iw">iw</a></li>
+      <li><a href="#wifi">wifi自动睡眠</a></li>
+      <li><a href="#ad-hoc-networking">Ad-hoc networking</a></li>
+    </ul>
+  </li>
+  <li><a href="#firmware">4. firmware</a></li>
+</ul>
+
+<p>一些碎片笔记，主要是Debian的网络相关。</p>
+
+<!--more-->
+
+<h2 id="upgrade-raspbian-stretch-to-buster">1. Upgrade Raspbian Stretch to Buster</h2>
+
+<p>Debian的升级不像Ubuntu那样有一个do-release-upgrade</p>
+
+<p>基本思路是，改源然后upgrade就好。</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div><div data-line="5" class="line-number"></div><div data-line="6" class="line-number"></div><div data-line="7" class="line-number"></div><div data-line="8" class="line-number"></div><div data-line="9" class="line-number"></div><div data-line="10" class="line-number"></div><div data-line="11" class="line-number"></div></pre></td><td class="main code  "><pre><div class="line plain">$ sudo sed -i 's/stretch/buster/g' /etc/apt/sources.list    
+</div><div class="line plain">$ sudo sed -i 's/stretch/buster/g' /etc/apt/sources.list.d/raspi.list   
+</div><div class="line plain"> </div><div class="line plain">$ grep -lnr stretch /etc/apt    
+</div><div class="line plain"> </div><div class="line plain">$ sudo apt-get remove apt-listchanges
+</div><div class="line plain"> </div><div class="line plain">   sudo apt-get update &amp;&amp; sudo apt-get full-upgrade -y &amp;&amp; sudo apt-get autoremove -y --purge &amp;&amp; sudo apt-get autoclean
+</div><div class="line plain"> </div><div class="line plain">sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 04EE7237B7D453EC 648ACFD622F3D138 EF0F382A1A7B6500 DCC9EFBF77E11517
+</div><div class="line plain"> </div></pre></td></tr></table></div></figure></notextile></div>
+
+<h2 id="section">2. 首次安装</h2>
+
+<p>到<a href="https://www.raspberrypi.org/downloads/raspberry-pi-os/">这里</a>下载最新的镜像zip，然后解压得到img文件。</p>
+
+<pre><code>lsblk -p
+
+umount /dev/sda1
+</code></pre>
+
+<p>用盘符而不是分区</p>
+
+<pre><code>sudo dd bs=4M if=2020-08-20-raspios-buster-armhf-full.img of=/dev/sdX conv=fsync
+
+sudo eject /dev/sda
+</code></pre>
+
+<p>一个tips，wifi的国家代码会影响到wifi的可用频段，比如5G连不上。</p>
+
+<pre><code>country=AU
+ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+update_config=1
+network={
+	ssid="MyWiFiNetwork"
+	psk="aVeryStrongPassword"
+	key_mgmt=WPA-PSK
+}
+</code></pre>
+
+<h2 id="section-1">3. 网络的一些命令</h2>
+
+<h3 id="iwlist-channel">iwlist channel</h3>
+
+<p>https://www.raspberrypi.org/documentation/configuration/wireless/wireless-cli.md</p>
+
+<h3 id="iw">iw</h3>
+
+<p>https://www.cnblogs.com/liuliu-word/p/9646060.html</p>
+
+<p>https://blog.csdn.net/u010164190/article/details/68942070</p>
+
+<h3 id="wifi">wifi自动睡眠</h3>
+
+<p>因为进行了几次 <code>rpi-update</code> 进行了固件升级，导致的问题。wifi一会儿就自动断网了。</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div></pre></td><td class="main code  "><pre><div class="line plain">iwconifg
+</div><div class="line plain">sudo iw wlan0 set power_save off
+</div><div class="line plain">iwconfig
+</div><div class="line plain"> </div></pre></td></tr></table></div></figure></notextile></div>
+
+<p>主要是看到<code> Power Management:off</code>就好了</p>
+
+<h3 id="ad-hoc-networking">Ad-hoc networking</h3>
+
+<p>https://wiki.archlinux.org/index.php/Ad-hoc_networking</p>
+
+<p>https://www.raspberrypi.org/documentation/configuration/wireless/access-point-routed.md</p>
+
+<p>https://github.com/simondlevy/RPiAdHocWiFi</p>
+
+<h2 id="firmware">4. firmware</h2>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div><div data-line="5" class="line-number"></div><div data-line="6" class="line-number"></div><div data-line="7" class="line-number"></div></pre></td><td class="main code  "><pre><div class="line plain">sudo rpi-update
+</div><div class="line plain"> </div><div class="line plain">#改回来
+</div><div class="line plain"> </div><div class="line plain">sudo apt-get install --reinstall raspberrypi-bootloader raspberrypi-kernel
+</div><div class="line plain"> </div><div class="line plain">sudo apt-get install --reinstall libraspberrypi-bin libraspberrypi-dev libraspberrypi-doc libraspberrypi0 raspberrypi-bootloader raspberrypi-kernel
+</div></pre></td></tr></table></div></figure></notextile></div>
+
+<p>booteeprom</p>
+
+<p>https://www.raspberrypi.org/documentation/hardware/raspberrypi/booteeprom.md</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[如何在Ubuntu 18.04运行ruby-1.9.3]]></title>
+    <link href="https://i.rexdf.org/blog/2020/06/07/ru-he-zai-ubuntu-18-dot-04yun-xing-ruby-1-dot-9-3/"/>
+    <updated>2020-06-07T11:38:42+08:00</updated>
+    <id>https://i.rexdf.org/blog/2020/06/07/ru-he-zai-ubuntu-18-dot-04yun-xing-ruby-1-dot-9-3</id>
+    <content type="html"><![CDATA[<ul class="markdown-toc">
+  <li><a href="#section">问题</a></li>
+  <li><a href="#section-1">解决</a></li>
+</ul>
+
+<p>问题其实在于我这个博客是octopress的，刚开始用的时候魔改了一堆东西，所以迁移其实有成本的，而且有些问题可能就是无解了，或者代价非常之高。然而近来从cygwin到Ubuntu似乎都是ruby 2.x了，导致我用的octopress以来的ruby环境找不到。</p>
+
+<!--more-->
+
+<h2 id="section">问题</h2>
+
+<p>无奈只得用多版本共存了。python和nodejs和ruby这几个都各自有不少多版本管理软件。</p>
+
+<p>具体到ruby我用的rvm(用rbenv)应该也一样。</p>
+
+<p>问题在于Ubuntu 18.04的gcc是7.5的，编译ruby-1.9.x一定是通不过的！</p>
+
+<p>所以无论怎么install一定都是失败告终。</p>
+
+<h2 id="section-1">解决</h2>
+
+<p>搜了下，大概得知ruby-1.9.x只能在gcc-4.8上编译通过。想自己动手编译gcc了吗？虽然很简单，但是这样不优雅，不够通用。</p>
+
+<p>然后找到了如下的包 </p>
+
+<p><a href="https://packages.ubuntu.com/bionic/gcc-4.8">https://packages.ubuntu.com/bionic/gcc-4.8</a></p>
+
+<p>那就简单了 <code>apt update &amp;&amp; apt install gcc-4.8</code> 就好了么？</p>
+
+<p>其实现在<code>rvm install ruby-1.9.3</code> 肯定还是失败了。解决办法也很简单。 先执行下如下命令就好了</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div></pre></td><td class="main code  "><pre><div class="line plain">export CC=gcc-4.8
+</div><div class="line plain">rvm install 1.9.3
+</div><div class="line plain">rvm use 1.9.3</div></pre></td></tr></table></div></figure></notextile></div>
+
+<p>以后只需要执行<code>export CC=gcc-4.8; rvm use 1.9.3</code>就好了</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[如何从GDrive下载超大文件]]></title>
+    <link href="https://i.rexdf.org/blog/2020/06/07/ru-he-cong-gdrivexia-zai-chao-da-wen-jian/"/>
+    <updated>2020-06-07T11:36:36+08:00</updated>
+    <id>https://i.rexdf.org/blog/2020/06/07/ru-he-cong-gdrivexia-zai-chao-da-wen-jian</id>
+    <content type="html"><![CDATA[<ul class="markdown-toc">
+  <li><a href="#section">目标</a></li>
+  <li><a href="#gdrive">GDrive下载工具</a></li>
+  <li><a href="#section-1">鉴权</a>    <ul>
+      <li><a href="#serice-account">1. 创建一个serice account，下载其密钥</a></li>
+      <li><a href="#gdrive-1">2. 把下载的密钥放到<code>~/.gdrive</code>下面</a></li>
+      <li><a href="#section-2">3. 运行测试命令</a></li>
+      <li><a href="#section-3">4. 网页打开上面报错的链接</a></li>
+      <li><a href="#section-4">5. 下载</a></li>
+      <li><a href="#section-5">一些说明</a></li>
+      <li><a href="#section-6">参考资料</a></li>
+    </ul>
+  </li>
+</ul>
+
+<p>最近需要紧急分析某个AI引擎框架，需要用ImageNet动态调试下。一番搜索后发现度盘和GDrive的链接。由于杜甫环境在国外的机器上，所以选择了从GDrive下载。(虽然同时起了个screen下载度盘，四天过去了，还在70%卡住着)</p>
+
+<!--more-->
+
+<h2 id="section">目标</h2>
+
+<p>要下载的是这个 </p>
+
+<p>Title: ImageNet ILSVRC2012</p>
+
+<p>Size: Train:138G+Val:6G</p>
+
+<p><a href="https://drive.google.com/drive/folders/1dU3PiW6RRQkxfQL9qAR16EhSbUcsofQ8?usp=sharing">https://drive.google.com/drive/folders/1dU3PiW6RRQkxfQL9qAR16EhSbUcsofQ8</a></p>
+
+<p>也就是如何在服务器上用命令行下载140GB的文件。</p>
+
+<h2 id="gdrive">GDrive下载工具</h2>
+
+<p>这个我们能比较容易找到好几个，最后我用的这个go写的客户端 <a href="https://github.com/gdrive-org/gdrive">gdrive</a></p>
+
+<h2 id="section-1">鉴权</h2>
+
+<p>这是谷歌GCP的一个特色(去年公司出钱让考过一个professional cloud architect证书)。IAM权限管理，为特点某种资源分配特点某种权限的账户，这个账户可以随时随时编辑和审计。 专门为程序用的账户就是service_account，是密钥对，而不是密码之类的。其实就是一个json文件。</p>
+
+<p>具体来说操作步骤如下：</p>
+
+<h3 id="serice-account">1. 创建一个serice account，下载其密钥</h3>
+
+<p>可以参考 <a href="https://developers.google.com/identity/protocols/OAuth2ServiceAccount#creatinganaccount">https://developers.google.com/identity/protocols/OAuth2ServiceAccount#creatinganaccount</a></p>
+
+<h3 id="gdrive-1">2. 把下载的密钥放到<code>~/.gdrive</code>下面</h3>
+
+<p>可以改一个简单的名字，比如改成 <code>~/.gdrive/g.json</code></p>
+
+<h3 id="section-2">3. 运行测试命令</h3>
+
+<p><code>gdrive --service-account g.json about</code></p>
+
+<p>如果能正常显示GDrive的空间大小那么直接下载就好了，如果报如下错误则继续</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div></pre></td><td class="main code  "><pre><div class="line plain">Failed to get about: googleapi: Error 403: Access Not Configured. Drive API has not been used in project [PROJECT_ID] before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/drive.googleapis.com/overview?project=[PROJECT_ID] then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry., accessNotConfigured
+</div></pre></td></tr></table></div></figure></notextile></div>
+
+<h3 id="section-3">4. 网页打开上面报错的链接</h3>
+
+<p><a href="https://console.developers.google.com/apis/api/drive.googleapis.com/overview?project=%5BPROJECT_ID%5D">https://console.developers.google.com/apis/api/drive.googleapis.com/overview?project=[PROJECT_ID]</a></p>
+
+<p>首先启用 GDrive API</p>
+
+<p>然后创建凭据 Create Credentials</p>
+
+<p>需要创建一个OAuth Client ID凭据</p>
+
+<p>等待大概几分钟，我大概是10分钟内再此尝试步骤3就好了。</p>
+
+<h3 id="section-4">5. 下载</h3>
+
+<p>首先用刚刚生成service account的账户打开要下载的GDrive链接，然后在要下载的文件上右键，选择 “获取共享链接”。 会得到一个如下的链接 <code>https://drive.google.com/file/d/xxx/view?usp=sharing</code></p>
+
+<p>那么下载命令就是如下了</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div></pre></td><td class="main code  "><pre><div class="line plain">gdrive --service-account g.json download xxx
+</div></pre></td></tr></table></div></figure></notextile></div>
+
+<p>速度大概可以稳定到10MB/s到30MB/s的样子，很快就下完了。</p>
+
+<h3 id="section-5">一些说明</h3>
+
+<p>从上面的流程可以看出，我们不需要把这种超大的文件储存到自己的空间然后下载，其次谷歌知道你在下载。所以谷歌也可以控制你滥用。这个其实是有额度的，具体看谷歌API limit方面的说明，理论上次数和流量应该都是有限额的，假如商用的也是有付费服务的。</p>
+
+<h3 id="section-6">参考资料</h3>
+
+<ol>
+  <li><a href="https://github.com/gdrive-org/gdrive/issues/533#issuecomment-596336395" target="_blank">Sign in with Google temporarily disabled for this app</a></li>
+  <li><a href="https://support.google.com/drive/thread/14876804?hl=en" target="_blank">Rate limit exceeded. User message: “Sorry, you have exceeded your sharing quota.</a></li>
+  <li><a href="https://github.com/gdrive-org/gdrive/issues/306" target="_blank">Rate Limit Exceeded</a></li>
+</ol>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[近况]]></title>
+    <link href="https://i.rexdf.org/blog/2020/02/23/jin-kuang/"/>
+    <updated>2020-02-23T15:07:12+08:00</updated>
+    <id>https://i.rexdf.org/blog/2020/02/23/jin-kuang</id>
+    <content type="html"><![CDATA[<p>上篇文章大概是18年底在家里写的，时至今日，变化挺多，也挺多没有变化的。 <!--more--> 在新冠肺炎这背景下，从春节前开始独自蜷缩在这出租房里已经一个月了，本来想着很多东西想去学习下，现在构造一个编译器，完整地上一个机器学习课程，重新回来打打codeforces，把主语言切到Java上，提升Haskell语言能力，写一个go的开源项目，系统学习ansible和docker熟练到随手就来，考日语证书。 然而现实情况是真的就是在家宅了一个月，啥都没有干啥都没有学，甚至19年新出游戏都没有推，不禁感到一丝的悲伤。</p>
+
+<p>时间都去哪里呢？我是知道了，大概也就归于网络世界虚无了吧。</p>
+
+<p>就这样吧，分享几张奶牛的图</p>
+
+<p><img src="https://i.rexdf.org/images/cat_1.jpg" alt="奶牛" class="center fancybox" /></p>
+
+<p><img src="https://i.rexdf.org/images/cat_2.jpg" alt="奶牛" class="center fancybox" /></p>
+
+<p><img src="https://i.rexdf.org/images/cat_3.jpg" alt="奶牛" class="center fancybox" /></p>
+
+<p><img src="https://i.rexdf.org/images/cat_4.jpg" alt="奶牛" class="center fancybox" /></p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[记录一次ovz下的ssh服务启动失败]]></title>
+    <link href="https://i.rexdf.org/blog/2018/11/22/ji-lu-yi-ci-ovzxia-de-sshfu-wu-qi-dong-shi-bai/"/>
+    <updated>2018-11-22T14:58:04+08:00</updated>
+    <id>https://i.rexdf.org/blog/2018/11/22/ji-lu-yi-ci-ovzxia-de-sshfu-wu-qi-dong-shi-bai</id>
+    <content type="html"><![CDATA[<p>本周的最近一次升级服务器后，某些国内nat主机商的ovz出现了不能登录的现象。</p>
+
+<!--more-->
+
+<p>因为里面跑的其他几个服务都还正常，如果不是因为习惯登录进服务器进行<code>apt update &amp;&amp; apt -y dist-upgrade</code>还不会发现这个问题。</p>
+
+<p>环境详情： 国外的几家ovz都没有这个现象，估计还和母鸡有关。遇到问题的是Ubuntu 16.04，其openssh-server版本如下</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div></pre></td><td class="main code  "><pre><div class="line plain">openssh-server/xenial-updates,xenial-security,now 1:7.2p2-4ubuntu2.6</div></pre></td></tr></table></div></figure></notextile></div>
+
+<p>刚某个服务商支持串口，所以研究了如何绕过这个问题。通过串口登录进去，查看，ssh启动失败的日志如下，以及尝试手动启动ssh服务。</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div><div data-line="5" class="line-number"></div><div data-line="6" class="line-number"></div><div data-line="7" class="line-number"></div><div data-line="8" class="line-number"></div><div data-line="9" class="line-number"></div><div data-line="10" class="line-number"></div><div data-line="11" class="line-number"></div><div data-line="12" class="line-number"></div><div data-line="13" class="line-number"></div><div data-line="14" class="line-number"></div><div data-line="15" class="line-number"></div><div data-line="16" class="line-number"></div><div data-line="17" class="line-number"></div><div data-line="18" class="line-number"></div><div data-line="19" class="line-number"></div><div data-line="20" class="line-number"></div><div data-line="21" class="line-number"></div><div data-line="22" class="line-number"></div><div data-line="23" class="line-number"></div><div data-line="24" class="line-number"></div><div data-line="25" class="line-number"></div><div data-line="26" class="line-number"></div><div data-line="27" class="line-number"></div><div data-line="28" class="line-number"></div><div data-line="29" class="line-number"></div><div data-line="30" class="line-number"></div><div data-line="31" class="line-number"></div><div data-line="32" class="line-number"></div><div data-line="33" class="line-number"></div><div data-line="34" class="line-number"></div><div data-line="35" class="line-number"></div><div data-line="36" class="line-number"></div><div data-line="37" class="line-number"></div><div data-line="38" class="line-number"></div><div data-line="39" class="line-number"></div></pre></td><td class="main code  "><pre><div class="line plain">$ systemctl status ssh
+</div><div class="line plain">● ssh.service - OpenBSD Secure Shell server
+</div><div class="line plain">   Loaded: loaded (/lib/systemd/system/ssh.service; enabled; vendor preset: enabled)
+</div><div class="line plain">   Active: failed (Result: start-limit-hit) since Thu 2018-11-22 01:47:12 EST; 4min 0s ago
+</div><div class="line plain">  Process: 304 ExecStartPre=/usr/sbin/sshd -t (code=exited, status=255)
+</div><div class="line plain"> </div><div class="line plain">Nov 22 01:47:12  systemd[1]: Failed to start OpenBSD Secure Shell server.
+</div><div class="line plain">Nov 22 01:47:12  systemd[1]: ssh.service: Unit entered failed state.
+</div><div class="line plain">Nov 22 01:47:12  systemd[1]: ssh.service: Failed with result 'exit-code'.
+</div><div class="line plain">Nov 22 01:47:12  systemd[1]: ssh.service: Service hold-off time over, scheduling restart.
+</div><div class="line plain">Nov 22 01:47:12  systemd[1]: Stopped OpenBSD Secure Shell server.
+</div><div class="line plain">Nov 22 01:47:12  systemd[1]: ssh.service: Start request repeated too quickly.
+</div><div class="line plain">Nov 22 01:47:12  systemd[1]: Failed to start OpenBSD Secure Shell server.
+</div><div class="line plain">Nov 22 01:47:12  systemd[1]: ssh.service: Unit entered failed state.
+</div><div class="line plain">Nov 22 01:47:12  systemd[1]: ssh.service: Failed with result 'start-limit-hit'.
+</div><div class="line plain"> </div><div class="line plain">$ systemctl start ssh
+</div><div class="line plain">Job for ssh.service failed because the control process exited with error code. See "systemctl status ssh.service" and "journalctl -xe" for details.
+</div><div class="line plain"> </div><div class="line plain">$ journalctl -xe
+</div><div class="line plain">--
+</div><div class="line plain">-- Unit ssh.service has finished shutting down.
+</div><div class="line plain">Nov 22 01:52:13  systemd[1]: Starting OpenBSD Secure Shell server...
+</div><div class="line plain">-- Subject: Unit ssh.service has begun start-up
+</div><div class="line plain">-- Defined-By: systemd
+</div><div class="line plain">-- Support: http://lists.freedesktop.org/mailman/listinfo/systemd-devel
+</div><div class="line plain">--
+</div><div class="line plain">-- Unit ssh.service has begun starting up.
+</div><div class="line plain">Nov 22 01:52:13  sshd[509]: Missing privilege separation directory: /var/run/sshd
+</div><div class="line plain">Nov 22 01:52:13  systemd[1]: ssh.service: Control process exited, code=exited status=255
+</div><div class="line plain">Nov 22 01:52:13  systemd[1]: Failed to start OpenBSD Secure Shell server.
+</div><div class="line plain">-- Subject: Unit ssh.service has failed
+</div><div class="line plain">-- Defined-By: systemd
+</div><div class="line plain">-- Support: http://lists.freedesktop.org/mailman/listinfo/systemd-devel
+</div><div class="line plain">--
+</div><div class="line plain">-- Unit ssh.service has failed.
+</div><div class="line plain">--
+</div><div class="line plain">-- The result is failed.
+</div><div class="line plain">Nov 22 01:52:13  systemd[1]: ssh.service: Unit entered failed state.</div></pre></td></tr></table></div></figure></notextile></div>
+
+<p>其中最关键的是<code>Missing privilege separation directory: /var/run/sshd</code>，发现这个目录确实不存在，创建这个目录，然后<code>systemctl start ssh</code>居然就成功了！ 重启，sshd依然没有启动！ 看了下这个目录又没有了！</p>
+
+<p>由于没有心情研究具体出问题的是在openssh-server这个包上，还是其他库比如libc上(升级时提示libc版本号不足)。接下来就是如何把这个过程自动化。 我的解决办法是在<code>/etc/rc.local</code>加上如下内容：</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div><div data-line="5" class="line-number"></div></pre></td><td class="main code  "><pre><div class="line plain">sleep 15
+</div><div class="line plain"> </div><div class="line plain">if [ ! -d /var/run/sshd ]; then mkdir /var/run/sshd; fi
+</div><div class="line plain"> </div><div class="line plain">/bin/systemctl start ssh</div></pre></td></tr></table></div></figure></notextile></div>
+
+<p>然后就好了。算了，能用就好！</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Dnsmasq的一些问题]]></title>
+    <link href="https://i.rexdf.org/blog/2018/11/13/dnsmasqde-yi-xie-wen-ti/"/>
+    <updated>2018-11-13T16:58:03+08:00</updated>
+    <id>https://i.rexdf.org/blog/2018/11/13/dnsmasqde-yi-xie-wen-ti</id>
+    <content type="html"><![CDATA[<ul class="markdown-toc">
+  <li><a href="#section">配置文件的位置</a></li>
+  <li><a href="#section-1">顺序有影响</a></li>
+  <li><a href="#section-2">启动时机</a></li>
+  <li><a href="#rclocal">关于<code>rc.local</code></a></li>
+  <li><a href="#systemd-resolved">与systemd-resolved共存</a></li>
+  <li><a href="#openvz">在openvz下启动</a></li>
+</ul>
+
+<p>dnsmasq似乎常常用于简单用途的dns缓存，比如防止解析泄漏、作为dhcp服务器等。可以跑在服务器上，但也许更多的情况是跑在手机上或者路由器上。本文记录几个使用过程中遇到的问题。</p>
+
+<!--more-->
+
+<h2 id="section">配置文件的位置</h2>
+
+<p>之前我一般是修改的<code>/etc/dnsmasq.conf</code>，但其实更好的是，在<code>/etc/dnsmasq.d/</code>新建按功能命名的conf文件。</p>
+
+<h2 id="section-1">顺序有影响</h2>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div><div data-line="5" class="line-number"></div></pre></td><td class="main code  "><pre><div class="line plain">interface=tap_soft
+</div><div class="line plain">bind-interfaces
+</div><div class="line plain">listen-address=127.0.0.1,172.10.1.1
+</div><div class="line plain">dhcp-range=tap_soft,172.10.1.10,172.10.1.240,6h
+</div><div class="line plain">dhcp-option=tap_soft,3,172.10.1.1
+</div></pre></td></tr></table></div></figure></notextile></div>
+
+<p>一定要是这个顺序，交换下前三行顺序，然后就怎么都起不来dnsmasq.service了。</p>
+
+<h2 id="section-2">启动时机</h2>
+
+<p>一般我都是改动了一下的。按照如下提示修改。</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div><div data-line="5" class="line-number"></div><div data-line="6" class="line-number"></div><div data-line="7" class="line-number"></div><div data-line="8" class="line-number"></div><div data-line="9" class="line-number"></div><div data-line="10" class="line-number"></div><div data-line="11" class="line-number"></div><div data-line="12" class="line-number"></div></pre></td><td class="main code  "><pre><div class="line plain">nano /lib/systemd/system/dnsmasq.service
+</div><div class="line plain">[Unit]
+</div><div class="line plain">Description=dnsmasq - A lightweight DHCP and caching DNS server
+</div><div class="line plain">Requires=network.target sys-subsystem-net-devices-tap_soft.device rc.local.service
+</div><div class="line plain">Wants=sys-subsystem-net-devices-tap_soft.device nss-lookup.target
+</div><div class="line plain">Before=nss-lookup.target
+</div><div class="line plain">After=sys-subsystem-net-devices-tap_soft.device network.target
+</div><div class="line plain"> </div><div class="line plain">[Service]
+</div><div class="line plain"> </div><div class="line plain">Restart=on-failure
+</div><div class="line plain">RestartSec=20
+</div></pre></td></tr></table></div></figure></notextile></div>
+
+<h2 id="rclocal">关于<code>rc.local</code></h2>
+
+<p>一般情况下，似乎只在openwrt之类的路由器上见得比较多，如果有systemd，写个systemd unit最好不过。写个<code>/etc/init.d/</code>脚本也行。</p>
+
+<p>我的<code>/etc/rc.loal</code>内容如下</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div></pre></td><td class="main code  "><pre><div class="line plain">iptables -t nat -A POSTROUTING -s 172.10.1.0/24 -o eth0 -j SNAT --to-source 8.8.8.8
+</div><div class="line plain"> </div><div class="line plain">exit 0
+</div><div class="line plain"> </div></pre></td></tr></table></div></figure></notextile></div>
+
+<p>然而每次reboot重启之后，dnsmasq都没有启动，提示的是<code>dnsmasq.service: Job dnsmasq.service/start failed with result 'dependency'.</code>。而登录上去手动执行<code>systemctl start dnsmasq</code>却可以正常启动。用<code>journalctl -xe</code>查看日志，找到如下：</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div></pre></td><td class="main code  "><pre><div class="line plain">GoogleApp rc.local[770]: Another app is currently holding the xtables lock. Perhaps you want to use the -w option?
+</div><div class="line plain">GoogleApp systemd[1]: Failed to start /etc/rc.local Compatibility.
+</div></pre></td></tr></table></div></figure></notextile></div>
+
+<p>机子上其实还装了docker和wireguard，可能是执行rc.local的时候，正好有其他的正在执行iptables。所以解决办法其实也挺简单将<code>/etc/rc.loal</code>最前面加一个<code>sleep 5</code>，然后就好了，反复重启都暂时没遇到dnsmasq起不来的情况了。 像这种用<code>sleep</code>延迟执行时间的做法显然不完美，正确的做法应该是写个systemd，然后写好依赖，然而现在能用，也就此作罢。</p>
+
+<h2 id="systemd-resolved">与systemd-resolved共存</h2>
+
+<p>只需要注意systemd-resolved侦听的是127.0.0.53:53就好了。 参考如下命令笔记</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div><div data-line="5" class="line-number"></div><div data-line="6" class="line-number"></div><div data-line="7" class="line-number"></div><div data-line="8" class="line-number"></div><div data-line="9" class="line-number"></div><div data-line="10" class="line-number"></div><div data-line="11" class="line-number"></div></pre></td><td class="main code  "><pre><div class="line plain"># https://wiki.archlinux.org/index.php?title=Systemd-resolved&amp;redirect=no
+</div><div class="line plain"> </div><div class="line plain">ln -sf /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
+</div><div class="line plain"> </div><div class="line plain">nano /etc/systemd/resolved.conf.d/dns_servers.conf
+</div><div class="line plain"> </div><div class="line plain">[Resolve]
+</div><div class="line plain">DNS=1.239.100.100 1.233.43.71
+</div><div class="line plain"> </div><div class="line plain"> </div><div class="line plain">systemd-resolve --status
+</div></pre></td></tr></table></div></figure></notextile></div>
+
+<h2 id="openvz">在openvz下启动</h2>
+
+<p>大都启动有问题，但是去掉 <code>interface=tap_soft</code> 与 <code>bind-interfaces</code> 貌似可以一用。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[owncloud-client登录出现Forbidden]]></title>
+    <link href="https://i.rexdf.org/blog/2018/10/11/owncloud-clientdeng-lu-chu-xian-forbidden/"/>
+    <updated>2018-10-11T18:01:09+08:00</updated>
+    <id>https://i.rexdf.org/blog/2018/10/11/owncloud-clientdeng-lu-chu-xian-forbidden</id>
+    <content type="html"><![CDATA[<ul class="markdown-toc">
+  <li><a href="#section">调查</a></li>
+  <li><a href="#section-1">解决</a></li>
+  <li><a href="#section-2">附：</a></li>
+</ul>
+
+<p>这几天发现树莓派上的owncloud-client登录不上了，退出登录后再登录，在输入完密码账户后，最后那一步总是提示”Error transferring …/remote.php/webdav/ server replied: Forbidden”。</p>
+
+<!--more-->
+
+<p>如下图：</p>
+
+<p><img src="https://i.rexdf.org/images/owncloud-pi.png" alt="login failed owncloud-client on raspberry" class="center fancybox" /></p>
+
+<p>一个月前应该都是用过的，而且win和手机的客户端端每天都在用，所以排除服务器故障。因为采用最小权限原则，树莓派上用的是一个单独账户，期初还怀疑账户权限问题，然而web登录正常，所以记起大约半个月前，owncloud和nextcloud同时更新过版本号。那大概是兼容性问题！因为树莓派的包大抵都很老，而且是armhf，可能是版本过低的缘故。</p>
+
+<p>目前我的cross-build环境还没搭起来，所以只能找一下原因了。</p>
+
+<h2 id="section">调查</h2>
+
+<p>先看一下web界面左下角设置里面提供的WebDAV地址，<code>https://1.1.1.1/remote.php/dav/files/admin/</code>，咦，好像哪里不对！ <code>remote.php</code>后面接的路径不对！</p>
+
+<p>于是乎先找changelog，找了owncloud官方 <a href="https://owncloud.org/changelog/server/" target="_blank">server changelog</a> 和 <a href="https://owncloud.org/changelog/desktop-client/" target="_blank">client changelog</a>，搜webdav，果然看到<code>Switch to new ownCloud server WebDAV endpoint</code>和<code>Switch Webdav URL in field in navigation panel to the new endpoint</code>的字样。</p>
+
+<p>然后在github的owncloud/client里面release下载了2.2.4和2.5.0的源码，随便搜了一下。</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div><div data-line="5" class="line-number"></div><div data-line="6" class="line-number"></div><div data-line="7" class="line-number"></div><div data-line="8" class="line-number"></div><div data-line="9" class="line-number"></div><div data-line="10" class="line-number"></div><div data-line="11" class="line-number"></div><div data-line="12" class="line-number"></div></pre></td><td class="main code  "><pre><div class="line plain">$ grep -nr "/webdav/" client-2.2.4/
+</div><div class="line plain">client-2.2.4/csync/tests/ownCloud/ownCloud/Test.pm:50:our $owncloud   = "http://localhost/oc/remote.php/webdav/";
+</div><div class="line plain">client-2.2.4/csync/tests/ownCloud/ownCloud/Test.pm:169:# http://localhost/owncloud/remote.php/webdav/t1-0543
+</div><div class="line plain">...
+</div><div class="line plain">$ grep -nr "/webdav/" client-2.5.0/
+</div><div class="line plain">client-2.5.0/doc/owncloudcmd.rst:67:  $ owncloudcmd /home/user/my_sync_folder https://carla:secret@server/owncloud/remote.php/webdav/
+</div><div class="line plain">client-2.5.0/doc/owncloudcmd.rst:75:                https://server/owncloud/remote.php/webdav/Music
+</div><div class="line plain">...
+</div><div class="line plain">$ grep -nr "/dav/" client-2.2.4/
+</div><div class="line plain">$ grep -nr "/dav/" client-2.5.0/
+</div><div class="line plain">client-2.5.0/src/libsync/account.cpp:64:        return QLatin1String("/remote.php/dav/files/") + davUser() + QLatin1Char('/');
+</div><div class="line plain">...</div></pre></td></tr></table></div></figure></notextile></div>
+
+<p>说明确实2.2.4的时候没有支持新的URL。不过对服务端源码10.0.9和10.0.10代码分析时没有找到问题关键所在，没有确定是哪一版本的服务端开始不支持remote.php/webdav/的。</p>
+
+<h2 id="section-1">解决</h2>
+
+<p>找了下，找到一个<a href="https://wiki.sgripon.net/doku.php/building_owncloud_client_for_raspberry_pi" target="_blank">如何编译树莓派的owncloud-client</a></p>
+
+<h2 id="section-2">附：</h2>
+
+<p>为啥用的owncloud？因为它兼容性好，比如在IE8上面可以正常登录，不乱码。 其实Nextcloud和Seafile我都是一起跑着的。感觉上速度最快的是seafile。而Nextcloud特性比较多，比如rss源，然后手机上可以用客户端当做新闻阅读器，还有Nextcloud Talk等，因为我把能启用的插件都启用了，所以感觉上web ui速度比较慢，一般也就只当做下载器/新闻阅读器用了，存储都放到了简单稳定的owncloud了。而且owncloud也支持<a href="https://nextcloud.com/collaboraonline/" target="_blank">Nextcloud的office</a>，均能在线编辑office文档，所以作为存储和办公来说，owncloud刚刚好。Nextcloud适合娱乐用。Seafile主要是账户设备数量限制，所以我基本上啥都不想存进去。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[常用的Ubuntu命令笔记]]></title>
+    <link href="https://i.rexdf.org/blog/2018/10/06/chang-yong-de-ubuntuming-ling-bi-ji/"/>
+    <updated>2018-10-06T22:21:11+08:00</updated>
+    <id>https://i.rexdf.org/blog/2018/10/06/chang-yong-de-ubuntuming-ling-bi-ji</id>
+    <content type="html"><![CDATA[<ul class="markdown-toc">
+  <li><a href="#section">包管理部分</a></li>
+  <li><a href="#section-1">系统管理</a></li>
+  <li><a href="#section-2">网络环境</a></li>
+</ul>
+
+<p>本文主要是把平时记录的Notes中，参考次数比较多的笔记摘录出来，供不时之需。</p>
+
+<!--more-->
+
+<h2 id="section">包管理部分</h2>
+
+<p>其实是一部分实际问题，乘着写文章整理一下。下面这些问题都是单条短命令，去掉问题中可能包含的字符后，应该不超过20个非空白字符，大都是10个内字符。</p>
+
+<ul>
+  <li>如何查看已经安装的vim版本号？ <code>apt list vim</code> 或者 <code>dpkg -l vim</code></li>
+  <li>如何查看已经安装的vim的所有文件列表？ <code>dpkg -L vim</code></li>
+  <li>如何查看<code>/bin/vim</code>这个文件属于哪个包？ <code>dpkg -S /bin/vim</code></li>
+  <li>如何查看vim有哪些依赖？ <code>apt-cache depends vim</code></li>
+  <li>如何查看哪些包依赖vim这个包？ <code>apt-cache rdepends vim</code></li>
+  <li>如何查看安装了哪些版本的内核？ <code>dpkg --get-selections | grep linux</code></li>
+  <li>如何查找源里面有哪些vim相关的包？ <code>apt-cache search vim</code></li>
+  <li>如何获取官方nginx包的源码(打patch然后重新编译)编译环境？ <code>apt-get source nginx &amp;&amp; apt-get build-dep nginx</code> (这里要求配置了deb-src源，另外<a href="https://www.debian.org/doc/manuals/packaging-tutorial/packaging-tutorial.en.pdf" target="_blank">debian packaging</a>话题较大，此略过)</li>
+</ul>
+
+<h2 id="section-1">系统管理</h2>
+
+<ul>
+  <li>如何修改时区？ <code>dpkg-reconfigure tzdata</code></li>
+  <li>如何配置编码？</li>
+</ul>
+
+<h2 id="section-2">网络环境</h2>
+
+<ul>
+  <li>如何配置linux命令行外网访问？</li>
+</ul>
+
+<p>对于浏览器或者命令行本身支持socks5的这里不谈。命令行种类繁多，用过一段时间proxychain，然而有些情况下似乎不太好用。 其实比较希望linux命令里面实现按域名(可自定义)类似PAC的方式实现外网访问。</p>
+
+<p>首先安装privoxy(或者功能差一些的polipo) <code>apt-get install privoxy</code> ，然后配置一下需要处理的域名列表。</p>
+
+<p>我用的是 <a href="https://github.com/zfl9/gfwlist2privoxy" target="_blank">gfwlist2privoxy</a> , 这个脚本貌似有点问题，第一行有个多余的输出，直接删掉就好，然后把github的域名加到第一行，强制github.com走外网。具体参考其readme就好了。</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption>privoxy配置<a href="http://blog.rexdf.org">MyBlog</a></figcaption><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div><div data-line="5" class="line-number"></div><div data-line="6" class="line-number"></div><div data-line="7" class="line-number"></div><div data-line="8" class="line-number"></div></pre></td><td class="main code  "><pre><div class="line bash"><span class="nb">cd</span> ~
+</div><div class="line bash">apt install -y git curl
+</div><div class="line bash">git clone https://github.com/zfl9/gfwlist2privoxy.git
+</div><div class="line bash"><span class="nb">cd </span>gfwlist2privoxy
+</div><div class="line bash">sh gfwlist2privoxy 127.0.0.1:1080 <span class="c">#1080换成下面socks5客户端的端口</span>
+</div><div class="line bash">sudo mv -f gfwlist.action /etc/privoxy/ <span class="c">#把外网域名列表拷贝到privoxy目录</span>
+</div><div class="line bash">sudo <span class="nb">echo</span> <span class="s1">&#39;actionsfile gfwlist.action&#39;</span> &gt;&gt;/etc/privoxy/config <span class="c">#或者nano手工编辑加上这一行也行</span>
+</div><div class="line bash">sudo systemctl restart privoxy.service
+</div></pre></td></tr></table></div></figure></notextile></div>
+
+<p>接着跑一个或者多个ss-local、v2ray、kcptun等socks5客户端，推荐全部用systemd管理，比较方便，此处略过具体安装步骤。可以同时起来多个，方便切换。 关于配置，我一般如下：<code>systemctl edit shadowsocks-libev-local@local</code>,敲一个回车留一个空白文件然后保存。接着编辑<code>/etc/shadowsocks-libev/local.json</code>加上适当的配置，然后执行<code>systemctl enable shadowsocks-libev-local@local</code> 和 <code>systemctl start shadowsocks-libev-local@local</code> 就好了。 (说明：其中<code>shadowsocks-libev-local@%I</code>的@后面接着的字符对应于<code>/etc/shadowsocks-libev/%I.json</code>，所以你可以方便同时起来任意多个客户端。)</p>
+
+<p>一个样例local.json</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div><div data-line="5" class="line-number"></div><div data-line="6" class="line-number"></div><div data-line="7" class="line-number"></div><div data-line="8" class="line-number"></div><div data-line="9" class="line-number"></div><div data-line="10" class="line-number"></div><div data-line="11" class="line-number"></div><div data-line="12" class="line-number"></div></pre></td><td class="main code  "><pre><div class="line plain">{
+</div><div class="line plain">      "server": "8.8.8.8",
+</div><div class="line plain">      "server_port": 1,
+</div><div class="line plain">      "password": "What's tHiS？",
+</div><div class="line plain">      "method": "aes-128-gcm",
+</div><div class="line plain">      "timeout": 60,
+</div><div class="line plain">      "local_port": 2,
+</div><div class="line plain">      "local_address": "0.0.0.0",
+</div><div class="line plain">      "plugin": "",
+</div><div class="line plain">      "plugin_opts": "",
+</div><div class="line plain">      "plugin_args": "",
+</div><div class="line plain">}
+</div></pre></td></tr></table></div></figure></notextile></div>
+
+<p>好了现在所做的工作还只是在把1080的socks5转换成了http/https的8118而已。接下来就是让命令行程序使用它。这个问题比较推荐参考<a href="https://wiki.archlinux.org/index.php/proxy_settings" target="_blank">ArchWiki/Proxy settings</a>。</p>
+
+<p>把上面Archlinux的wiki里面的proxy_on proxy_off两个函数拷贝到<code>~/.bashrc</code> 里面。</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption>~/.bashrc<a href="http://blog.rexdf.org">MyBlog</a></figcaption><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div><div data-line="5" class="line-number"></div><div data-line="6" class="line-number"></div><div data-line="7" class="line-number"></div><div data-line="8" class="line-number"></div><div data-line="9" class="line-number"></div><div data-line="10" class="line-number"></div><div data-line="11" class="line-number"></div><div data-line="12" class="line-number"></div><div data-line="13" class="line-number"></div><div data-line="14" class="line-number"></div><div data-line="15" class="line-number"></div><div data-line="16" class="line-number"></div><div data-line="17" class="line-number"></div><div data-line="18" class="line-number"></div></pre></td><td class="main code  "><pre><div class="line bash"><span class="k">function </span>proxy_on<span class="o">()</span> <span class="o">{</span>
+</div><div class="line bash">    <span class="c"># port=${1:-8118}</span>
+</div><div class="line bash">    <span class="nb">export </span><span class="nv">no_proxy</span><span class="o">=</span><span class="s2">&quot;localhost,127.0.0.1,localaddress,.localdomain.com&quot;</span>
+</div><div class="line bash"> </div><div class="line bash">    <span class="nb">export </span><span class="nv">http_proxy</span><span class="o">=</span><span class="s2">&quot;http://localhost:8118/&quot;</span>
+</div><div class="line bash">    <span class="nb">export </span><span class="nv">https_proxy</span><span class="o">=</span><span class="nv">$http_proxy</span> <span class="se">\</span>
+</div><div class="line bash">           <span class="nv">ftp_proxy</span><span class="o">=</span><span class="nv">$http_proxy</span> <span class="se">\</span>
+</div><div class="line bash">           <span class="nv">rsync_proxy</span><span class="o">=</span><span class="nv">$http_proxy</span> <span class="se">\</span>
+</div><div class="line bash">           <span class="nv">HTTP_PROXY</span><span class="o">=</span><span class="nv">$http_proxy</span> <span class="se">\</span>
+</div><div class="line bash">           <span class="nv">HTTPS_PROXY</span><span class="o">=</span><span class="nv">$http_proxy</span> <span class="se">\</span>
+</div><div class="line bash">           <span class="nv">FTP_PROXY</span><span class="o">=</span><span class="nv">$http_proxy</span> <span class="se">\</span>
+</div><div class="line bash">           <span class="nv">RSYNC_PROXY</span><span class="o">=</span><span class="nv">$http_proxy</span>
+</div><div class="line bash"><span class="o">}</span>
+</div><div class="line bash"><span class="k">function </span>proxy_off<span class="o">(){</span>
+</div><div class="line bash">    <span class="nb">unset </span>http_proxy https_proxy ftp_proxy rsync_proxy <span class="se">\</span>
+</div><div class="line bash">          HTTP_PROXY HTTPS_PROXY FTP_PROXY RSYNC_PROXY
+</div><div class="line bash">    <span class="nb">echo</span> -e <span class="s2">&quot;Proxy environment variable removed.&quot;</span>
+</div><div class="line bash"><span class="o">}</span>
+</div></pre></td></tr></table></div></figure></notextile></div>
+
+<p>然后<code>source ~/.bashrc</code>，接下来执行<code>proxy_on</code>，那么就开启了。 但是现在执行<code>sudo</code>提权命令时却依然不会走外网。解决办法是<code>sudo visudo</code>，在里面加上<code>Defaults env_keep += "http_proxy https_proxy ftp_proxy"</code>。这句的作用是提权时让这三个环境变量维持不变。</p>
+
+<p>测试一下</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption>测试<a href="http://blog.rexdf.org">MyBlog</a></figcaption><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div></pre></td><td class="main code  "><pre><div class="line bash">curl -4sSkL https://www.baidu.com <span class="c">#走直连，tcpdump 抓包可验证</span>
+</div><div class="line bash">curl -4sSkL https://www.google.com <span class="c">#走代理，实现了 gfwlist PAC 效果</span>
+</div><div class="line bash">curl -4sSkL http://ip.chinaz.com/getip.aspx <span class="c">#按道理来说，会显示本机 IP</span>
+</div></pre></td></tr></table></div></figure></notextile></div>
+
+<p>有时会特地希望某个没有被和谐的域名走外网，那么只要编辑 <code>/etc/privoxy/gfwlist.action</code> 加进去，然后重启privoxy就好了。</p>
+
+<p>现在就可以安心地拖chromium或者Android的源码了。不需要时也可以执行<code>proxy_off</code>关掉。</p>
+
+<p>至于udp2raw和frp等，等下次再补充。</p>
+
+<ul>
+  <li>IP以及ipv6如何配置？</li>
+</ul>
+
+<p>这个存储在<code>/etc/network/interfaces</code>，参考<a href="https://wiki.debian.org/NetworkConfiguration" target="_blank">Debian/wiki/NetworkConfiguration</a>和<a href="https://help.ubuntu.com/lts/serverguide/network-configuration.html.en" target="_blank">Ubuntu/wiki</a>。DebianWiki其中包含几个高级一些的配置：桥接(Bridging把多个网卡聚合到同一个子网)、VLAN(dot1q, 802.1q, trunk,)、单网卡多IP配置等。而Ubuntu文档则有关于Ubuntu-18.04采用的systemd-resolved的说明。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[更新了下博客主题]]></title>
+    <link href="https://i.rexdf.org/blog/2018/09/14/geng-xin-liao-xia-bo-ke-zhu-ti/"/>
+    <updated>2018-09-14T17:33:45+08:00</updated>
+    <id>https://i.rexdf.org/blog/2018/09/14/geng-xin-liao-xia-bo-ke-zhu-ti</id>
+    <content type="html"><![CDATA[<ul class="markdown-toc">
+  <li><a href="#fancybox">1. fancybox</a></li>
+  <li><a href="#section">2. 文章置顶</a></li>
+</ul>
+
+<p>今天更新了下博客主题，记录下内容。</p>
+
+<!--more-->
+
+<p>前一篇文章有几张图片，看起来有点模糊，所以考虑加个fancybox，顺便也把置顶解决了下。</p>
+
+<h2 id="fancybox">1. fancybox</h2>
+
+<p>用的是纯前端的解决方案，没有用jekyll插件的方式。插件方式可以参考 <a href="http://caiknife.github.io/blog/2013/10/02/fancybox-plugin-for-octopress/" target="_blank">给博客写了个 Fancybox 的插件</a>。 因为过多使用一些没有必要的Liquid标记，会对markdown文章造成污染，不利于迁移操作。</p>
+
+<p>我主要是参考的 <a href="https://blog.ewal.net/octopress-customizations/" target="_blank">Octopress Customizations</a> 和 <a href="http://devma.cn/blog/2016/03/29/zai-octopresszhong-tian-jia-tu-pian-fang-da/" target="_blank">在Octopress中添加图片放大</a>，不过主要是前者，因为我的图片都没有用img标记。</p>
+
+<p>具体来说，用如下方式表示图片</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div></pre></td><td class="main code  "><pre><div class="line plain">![GitLab CI/CD](/images/gitlab1.png){: .center .fancybox}</div></pre></td></tr></table></div></figure></notextile></div>
+
+<p>后面那个<code>{: .center .fancybox}</code>是kramdown的class标记。 接下来下载<a href="http://fancyapps.com/fancybox/" target="_blank">fancybox</a>，把source目录里面的内容解压到<code>source/javascripts/fancybox</code>。然后只要改下模板，head区域导入fancybox的css和js以及footer区域执行触发fancybox。</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption>head<a href="http://blog.rexdf.org">MyBlog</a></figcaption><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div></pre></td><td class="main code  "><pre><div class="line html"><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;/javascripts/fancybox/jquery.fancybox.pack.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+</div><div class="line html"><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">type=</span><span class="s">&quot;text/css&quot;</span> <span class="na">href=</span><span class="s">&quot;/javascripts/fancybox/jquery.fancybox.css&quot;</span> <span class="nt">/&gt;</span>
+</div></pre></td></tr></table></div></figure></notextile></div>
+
+<p>与</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption>footer<a href="http://blog.rexdf.org">MyBlog</a></figcaption><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div><div data-line="5" class="line-number"></div><div data-line="6" class="line-number"></div><div data-line="7" class="line-number"></div><div data-line="8" class="line-number"></div><div data-line="9" class="line-number"></div><div data-line="10" class="line-number"></div><div data-line="11" class="line-number"></div><div data-line="12" class="line-number"></div><div data-line="13" class="line-number"></div><div data-line="14" class="line-number"></div><div data-line="15" class="line-number"></div><div data-line="16" class="line-number"></div><div data-line="17" class="line-number"></div><div data-line="18" class="line-number"></div></pre></td><td class="main code  "><pre><div class="line html"><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span><span class="nt">&gt;</span>
+</div><div class="line html"><span class="nx">$</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</div><div class="line html">  <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.entry-content&#39;</span><span class="p">).</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">i</span><span class="p">){</span>
+</div><div class="line html">    <span class="kd">var</span> <span class="nx">_i</span> <span class="o">=</span> <span class="nx">i</span><span class="p">;</span>
+</div><div class="line html">    <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;img.fancybox&#39;</span><span class="p">).</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+</div><div class="line html">      <span class="kd">var</span> <span class="nx">img</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+</div><div class="line html">      <span class="kd">var</span> <span class="nx">title</span> <span class="o">=</span> <span class="nx">img</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;title&quot;</span><span class="p">);</span>
+</div><div class="line html">      <span class="kd">var</span> <span class="nx">classes</span> <span class="o">=</span> <span class="nx">img</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;class&quot;</span><span class="p">);</span>
+</div><div class="line html">      <span class="nx">img</span><span class="p">.</span><span class="nx">removeAttr</span><span class="p">(</span><span class="s2">&quot;class&quot;</span><span class="p">);</span>
+</div><div class="line html">      <span class="nx">img</span><span class="p">.</span><span class="nx">wrap</span><span class="p">(</span><span class="s1">&#39;&lt;a href=&quot;&#39;</span><span class="o">+</span><span class="k">this</span><span class="p">.</span><span class="nx">src</span><span class="o">+</span><span class="s1">&#39;&quot; class=&quot;&#39;</span> <span class="o">+</span> <span class="nx">classes</span> <span class="o">+</span> <span class="s1">&#39;&quot; rel=&quot;gallery&#39;</span><span class="o">+</span><span class="nx">_i</span><span class="o">+</span><span class="s1">&#39;&quot; /&gt;&#39;</span><span class="p">);</span>
+</div><div class="line html">      <span class="k">if</span> <span class="p">(</span><span class="nx">title</span> <span class="o">!=</span> <span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="p">{</span>
+</div><div class="line html">        <span class="nx">img</span><span class="p">.</span><span class="nx">parent</span><span class="p">().</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;title&quot;</span><span class="p">,</span> <span class="nx">title</span><span class="p">);</span>
+</div><div class="line html">      <span class="p">}</span>
+</div><div class="line html">    <span class="p">});</span>
+</div><div class="line html">  <span class="p">});</span>
+</div><div class="line html">  <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.fancybox&#39;</span><span class="p">).</span><span class="nx">fancybox</span><span class="p">();</span>
+</div><div class="line html"><span class="p">});</span>
+</div><div class="line html"><span class="nt">&lt;/script&gt;</span>
+</div></pre></td></tr></table></div></figure></notextile></div>
+
+<h2 id="section">2. 文章置顶</h2>
+
+<p>因为octopress背靠的jekyll这座大山，背后社区是比较庞大的。静态博客程序的star<a href="https://www.staticgen.com/" target="_blank">排行榜</a>上，Jekyll是排第一的，遇到问题比较容易搜索到解决办法。</p>
+
+<p>所以我用的是 <a href="https://tamouse.github.io/swaac/jekyll/2017/09/04/jekyll-making-posts-sticky-redux/" target="_blank">Jekyll: Making Posts Sticky Redux</a> 中的第一种方法。也就是修改<code>source/index.html</code>和<code>source/_includes/article.html</code></p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption>source/index.html<a href="http://blog.rexdf.org">MyBlog</a></figcaption><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div><div data-line="5" class="line-number"></div><div data-line="6" class="line-number"></div><div data-line="7" class="line-number"></div><div data-line="8" class="line-number"></div><div data-line="9" class="line-number"></div><div data-line="10" class="line-number"></div><div data-line="11" class="line-number"></div><div data-line="12" class="line-number"></div><div data-line="13" class="line-number"></div><div data-line="14" class="line-number"></div><div data-line="15" class="line-number"></div><div data-line="16" class="line-number"></div><div data-line="17" class="line-number"></div><div data-line="18" class="line-number"></div><div data-line="19" class="line-number"></div><div data-line="20" class="line-number"></div><div data-line="21" class="line-number"></div><div data-line="22" class="line-number"></div><div data-line="23" class="line-number"></div><div data-line="24" class="line-number"></div><div data-line="25" class="line-number"></div></pre></td><td class="main code  "><pre><div class="line html">...
+</div><div class="line html"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;blog-index&quot;</span><span class="nt">&gt;</span>
+</div><div class="line html">  &#x7b;&#x25; assign index = true %}
+</div><div class="line html"> </div><div class="line html">  &#x7b;&#x25; for post in site.posts %}
+</div><div class="line html">  &#x7b;&#x25; if post.sticky %}
+</div><div class="line html">  &#x7b;&#x25; assign content = post.content %}
+</div><div class="line html">  &#x7b;&#x25; assign sticky = post.sticky %}
+</div><div class="line html">    <span class="nt">&lt;article&gt;</span>
+</div><div class="line html">      &#x7b;&#x25; include article.html %}
+</div><div class="line html">    <span class="nt">&lt;/article&gt;</span>
+</div><div class="line html">  &#x7b;&#x25; endif %}
+</div><div class="line html">  &#x7b;&#x25; endfor %}
+</div><div class="line html"> </div><div class="line html">  &#x7b;&#x25; assign sticky = false %}
+</div><div class="line html">  &#x7b;&#x25; for post in paginator.posts %}
+</div><div class="line html">  &#x7b;&#x25; unless post.sticky %}
+</div><div class="line html">  &#x7b;&#x25; assign content = post.content %}
+</div><div class="line html">    <span class="nt">&lt;article&gt;</span>
+</div><div class="line html">      &#x7b;&#x25; include article.html %}
+</div><div class="line html">    <span class="nt">&lt;/article&gt;</span>
+</div><div class="line html">  &#x7b;&#x25; endunless %}
+</div><div class="line html">  &#x7b;&#x25; endfor %}
+</div><div class="line html">...
+</div><div class="line html"><span class="nt">&lt;/div&gt;</span>
+</div></pre></td></tr></table></div></figure></notextile></div>
+
+<p>在<code>source/_includes/article.html</code>中适当地方加上如下内容就好了。</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption>source/_includes/article.html<a href="http://blog.rexdf.org">MyBlog</a></figcaption><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div></pre></td><td class="main code  "><pre><div class="line html">&#x7b;&#x25; if sticky %} [置顶] &#x7b;&#x25; endif %}
+</div></pre></td></tr></table></div></figure></notextile></div>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[搭了个gitlab]]></title>
+    <link href="https://i.rexdf.org/blog/2018/09/12/da-liao-ge-gitlab/"/>
+    <updated>2018-09-12T14:21:15+08:00</updated>
+    <id>https://i.rexdf.org/blog/2018/09/12/da-liao-ge-gitlab</id>
+    <content type="html"><![CDATA[<ul class="markdown-toc">
+  <li><a href="#section">成果</a>    <ul>
+      <li><a href="#pipelines--jobs">Pipelines &amp; Jobs</a></li>
+      <li><a href="#gitlab-pages">GitLab Pages</a></li>
+    </ul>
+  </li>
+  <li><a href="#section-1">安装</a>    <ul>
+      <li><a href="#section-2">登录系统初始设置</a></li>
+      <li><a href="#section-3">安装常用软件配置等</a></li>
+      <li><a href="#gitlab">安装gitlab依赖</a></li>
+      <li><a href="#gitlab-1">安装gitlab</a></li>
+      <li><a href="#section-4">用户配置</a></li>
+    </ul>
+  </li>
+  <li><a href="#cicd">配置CI/CD</a>    <ul>
+      <li><a href="#gitlab-pages-1">自定义域名的GitLab Pages服务</a></li>
+      <li><a href="#gitlab-runner">配置GitLab Runner</a>        <ul>
+          <li><a href="#docker">安装docker</a></li>
+          <li><a href="#gitlab-runner-1">安装gitlab-runner及其配置</a></li>
+          <li><a href="#section-5">错误</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><a href="#section-6">时间成本</a></li>
+  <li><a href="#section-7">维护</a>    <ul>
+      <li><a href="#section-8">2018年10月2日</a>        <ul>
+          <li><a href="#section-9">问题</a></li>
+          <li><a href="#section-10">探索</a></li>
+          <li><a href="#section-11">解决</a></li>
+          <li><a href="#section-12">真实原因</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p>今天无意中看见个CN2线路，2核+4GB+4T的VPS，打了下折之后年付18美元。这么便宜，我都不敢把服务商写出来了。当然这是OpenVZ的，目前看来还好，将来不知道会被玩坏成什么样子。</p>
+
+<!--more-->
+
+<p>开源的自建git项目托管服务，貌似有模仿github用ruby写的<a href="https://about.gitlab.com/" target="_blank">gitlab</a>，用scala基于JVM的<a href="https://github.com/gitbucket/gitbucket" target="_blank">GitBucket</a>，以及国人用golang开发的<a href="https://github.com/gogs/gogs" target="_blank">gogs/gitea</a>等。功能最完善的当然是gitlab了。 gogs可以跑在路由器、树莓派等低配置硬件上，听闻国内有小团队直接用树莓派挂块硬盘跑gogs作为公司的代码仓库。至于GitBucket，没试过，猜想应该具有Java一贯的容易部署高内存消耗的特性吧。</p>
+
+<p>之前想装gitlab，都被官方文档的推荐内存要求吓退，最终都换成了gitea/gogs。虽然kvm可以通过swap加大内存绕过，但是好像比较卡，所以都没怎么用过。</p>
+
+<h1 id="section">成果</h1>
+
+<p>测试了下搭建私有gitlab带Web-IDE的持续集成环境。</p>
+
+<p>目前能做到在gitlab网页上编辑一下文件或者本地编辑后push一下，会自动触发gitlab-runner(一个docker虚拟机环境)，进行自动的编译和测试工作。如果编译与测试均成功通过，则进行部署。这样简化软件开发流程。</p>
+
+<p>如下四张图</p>
+
+<h2 id="pipelines--jobs">Pipelines &amp; Jobs</h2>
+
+<p><img src="https://i.rexdf.org/images/gitlab1.png" alt="GitLab CI/CD" class="center fancybox" /></p>
+
+<p><img src="https://i.rexdf.org/images/gitlab4.png" alt="GitLab CI/CD" class="center fancybox" /></p>
+
+<h2 id="gitlab-pages">GitLab Pages</h2>
+
+<p><img src="https://i.rexdf.org/images/gitlab2.png" alt="GitLab Pages" class="center fancybox" /></p>
+
+<p><img src="https://i.rexdf.org/images/gitlab3.png" alt="自定义泛解析域名" class="center fancybox" /></p>
+
+<h1 id="section-1">安装</h1>
+
+<h2 id="section-2">登录系统初始设置</h2>
+
+<p>我的惯例是如下，首先禁掉密码登录(<code>nano /etc/ssh/sshd_config</code>)，然后更新(<code>apt-get update &amp;&amp; apt-get -y upgrade</code>)，重启(<code>reboot</code>)</p>
+
+<h2 id="section-3">安装常用软件配置等</h2>
+
+<p>这里只随手打一下习惯性手指条件反射记得的包</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption>常用包安装<a href="http://blog.rexdf.org">MyBlog</a></figcaption><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div></pre></td><td class="main code  "><pre><div class="line bash">apt-get install curl wget bash-completion git bmon htop iftop nano vnstat build-essential language-pack-zh-hans
+</div><div class="line bash">locale-gen zh_CN.UTF-8
+</div></pre></td></tr></table></div></figure></notextile></div>
+
+<h2 id="gitlab">安装gitlab依赖</h2>
+
+<p>按照我一贯的习惯，能用包管理，尽量用包管理，docker次之，最次脚本安装。直接按照<a href="https://about.gitlab.com/installation/#ubuntu" target="_blank">官方文档</a>就好。</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption>安装gitlab依赖<a href="http://blog.rexdf.org">MyBlog</a></figcaption><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div></pre></td><td class="main code  "><pre><div class="line bash">sudo apt-get update
+</div><div class="line bash">sudo apt-get install -y curl openssh-server ca-certificates postfix
+</div></pre></td></tr></table></div></figure></notextile></div>
+
+<h2 id="gitlab-1">安装gitlab</h2>
+
+<p>之前有玩过bitnami的<a href="https://bitnami.com/stack/gitlab" target="_blank">虚拟机版本gitlab</a>，那个是GitLab CE。然而GitLab官方在<a href="https://about.gitlab.com/installation/ce-or-ee/" target="_blank">这里</a>说GitLab Enterprise Edition版本具有社区版本(MIT Expat license)的全部功能，而且能随时使用商业版以及试用过期后回退到社区版。故而直接安装企业版。</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption>安装gitlab官方源<a href="http://blog.rexdf.org">MyBlog</a></figcaption><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div></pre></td><td class="main code  "><pre><div class="line bash">curl https://packages.gitlab.com/install/repositories/gitlab/gitlab-ee/script.deb.sh | sudo bash
+</div></pre></td></tr></table></div></figure></notextile></div>
+
+<p>先加入GitLab官方的源，并导入密钥。</p>
+
+<p>现在去设置一下dns，把域名指向过来。然后就可以通过包管理来安装了</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption>安装gitlab<a href="http://blog.rexdf.org">MyBlog</a></figcaption><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div></pre></td><td class="main code  "><pre><div class="line bash">sudo <span class="nv">EXTERNAL_URL</span><span class="o">=</span><span class="s2">&quot;https://gitlab.rexdf.net&quot;</span> apt-get install gitlab-ee
+</div></pre></td></tr></table></div></figure></notextile></div>
+
+<p>小插曲：安装过程中会自动设置letsencrypt证书，我预想的是只是配置而已，然而当我看到letsencrpt字样的dpkg error时，就发现了这安装程序原来集成了自动配置证书功能。</p>
+
+<h2 id="section-4">用户配置</h2>
+
+<p>打开网页就是一个密码输入界面，这里输入的是GitLab的root用户的密码。然后注册了一个普通用户，发现没有任何验证，赶紧用root用户管理员关掉任意用户注册功能。</p>
+
+<h1 id="cicd">配置CI/CD</h1>
+
+<p>我并没有配置太多，只是换了下favicon与logo，然后用普通权限用户的ssh实验了下private项目的pull与push。 具体过程和github与Gitbucket没啥区别，这里不赘述。 当然修改<code>gitlab.rb</code>之后<code>gitlab-ctl reconfigure</code>这个应该也是要养成习惯了。</p>
+
+<h2 id="gitlab-pages-1">自定义域名的GitLab Pages服务</h2>
+
+<p>默认是没有开启Pages服务的。由于有点想当做博客/维基用的想法，所以研究了下。也挺简单，参考<a href="https://docs.gitlab.com/ee/administration/pages/#wildcard-domains-with-tls-support" target="_blank">官方文档</a>，一小时搞定。</p>
+
+<p>首先要泛解析另外一个域名，出于防范XSS攻击考虑，官方不推荐用gitlab服务的主域名。而且gitlab的安装程序目前似乎还不能自动配置泛解析letsencrypt证书。</p>
+
+<p>Let’s Encrypt支持泛解析测试的时候就看到过尝鲜用户的报告。印象中acme.sh是支持得最好的。我用的是如下的指令</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption>签发泛解析域名<a href="http://blog.rexdf.org">MyBlog</a></figcaption><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div><div data-line="5" class="line-number"></div><div data-line="6" class="line-number"></div><div data-line="7" class="line-number"></div><div data-line="8" class="line-number"></div><div data-line="9" class="line-number"></div><div data-line="10" class="line-number"></div><div data-line="11" class="line-number"></div><div data-line="12" class="line-number"></div><div data-line="13" class="line-number"></div><div data-line="14" class="line-number"></div></pre></td><td class="main code  "><pre><div class="line bash"><span class="c">#安装acme.sh(会自动配置alias和crontab等)</span>
+</div><div class="line bash">curl https://get.acme.sh | sh
+</div><div class="line bash"> </div><div class="line bash"><span class="c">#通过环境变量传递DNSPOD的api key</span>
+</div><div class="line bash"><span class="nb">export </span><span class="nv">DP_Id</span><span class="o">=</span><span class="s2">&quot;123456&quot;</span>
+</div><div class="line bash"><span class="nb">export </span><span class="nv">DP_Key</span><span class="o">=</span><span class="s2">&quot;14axxxxxbccxxxxx8a25xxxxx6xxxxx9&quot;</span>
+</div><div class="line bash"> </div><div class="line bash"><span class="c">#用上面的环境变量签泛解析证书</span>
+</div><div class="line bash">acme.sh  --issue  -d <span class="s1">&#39;*.rexdf.com&#39;</span>  --dns dns_dp
+</div><div class="line bash"> </div><div class="line bash"><span class="c">#把证书拷贝到gitlab配置目录下</span>
+</div><div class="line bash">acme.sh  --installcert -d  <span class="s1">&#39;*.rexdf.com&#39;</span>  <span class="se">\</span>
+</div><div class="line bash">--key-file   /etc/gitlab/ssl/rexdf.com.pages.key  <span class="se">\</span>
+</div><div class="line bash">--fullchain-file /etc/gitlab/ssl/rexdf.com.pages.crt
+</div></pre></td></tr></table></div></figure></notextile></div>
+
+<p>然后修改<code>/etc/gitlab/gitlab.rb</code></p>
+
+<p>找到gitlab pages相关的地方
+最终如下</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption>/etc/gitlab/gitlab.rb<a href="http://blog.rexdf.org">MyBlog</a></figcaption><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div><div data-line="5" class="line-number"></div><div data-line="6" class="line-number"></div></pre></td><td class="main code  "><pre><div class="line bash">pages_external_url <span class="s2">&quot;https://rexdf.com/&quot;</span>
+</div><div class="line bash">gitlab_pages<span class="o">[</span><span class="s1">&#39;enable&#39;</span><span class="o">]</span> <span class="o">=</span> <span class="nb">true</span>
+</div><div class="line bash"> </div><div class="line bash">pages_nginx<span class="o">[</span><span class="s1">&#39;redirect_http_to_https&#39;</span><span class="o">]</span> <span class="o">=</span> <span class="nb">true</span>
+</div><div class="line bash">pages_nginx<span class="o">[</span><span class="s1">&#39;ssl_certificate&#39;</span><span class="o">]</span> <span class="o">=</span> <span class="s2">&quot;/etc/gitlab/ssl/rexdf.com.pages.crt&quot;</span>
+</div><div class="line bash">pages_nginx<span class="o">[</span><span class="s1">&#39;ssl_certificate_key&#39;</span><span class="o">]</span> <span class="o">=</span> <span class="s2">&quot;/etc/gitlab/ssl/rexdf.com.pages.key&quot;</span>
+</div></pre></td></tr></table></div></figure></notextile></div>
+
+<h2 id="gitlab-runner">配置GitLab Runner</h2>
+
+<p>虽然有openvz官方的<a href="https://wiki.openvz.org/Docker_inside_CT" target="_blank">这篇</a>说明openvz是可以支持docker的，然而我的这个好像不支持，下单时我应该选3.x kernel的。 不过还好gitlab-runner好像就不推荐和gitlab跑在同一个机器上。</p>
+
+<p>在另外一台也是极端便宜的小鸡上装了个gitlab-runner</p>
+
+<h3 id="docker">安装docker</h3>
+
+<p>参考docker<a href="https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-from-a-package" target="_blank">官方文档</a></p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption>安装docker<a href="http://blog.rexdf.org">MyBlog</a></figcaption><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div><div data-line="5" class="line-number"></div><div data-line="6" class="line-number"></div><div data-line="7" class="line-number"></div><div data-line="8" class="line-number"></div><div data-line="9" class="line-number"></div><div data-line="10" class="line-number"></div><div data-line="11" class="line-number"></div><div data-line="12" class="line-number"></div><div data-line="13" class="line-number"></div><div data-line="14" class="line-number"></div><div data-line="15" class="line-number"></div><div data-line="16" class="line-number"></div></pre></td><td class="main code  "><pre><div class="line bash">apt-get install <span class="se">\</span>
+</div><div class="line bash">    apt-transport-https <span class="se">\</span>
+</div><div class="line bash">    ca-certificates <span class="se">\</span>
+</div><div class="line bash">    curl <span class="se">\</span>
+</div><div class="line bash">    software-properties-common
+</div><div class="line bash"> </div><div class="line bash">curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+</div><div class="line bash"> </div><div class="line bash">sudo add-apt-repository <span class="se">\</span>
+</div><div class="line bash">   <span class="s2">&quot;deb [arch=amd64] https://download.docker.com/linux/ubuntu \</span>
+</div><div class="line bash"><span class="s2">   $(lsb_release -cs) \</span>
+</div><div class="line bash"><span class="s2">   stable&quot;</span>
+</div><div class="line bash"> </div><div class="line bash">apt-get update
+</div><div class="line bash"> </div><div class="line bash">sudo apt-get install docker-ce
+</div></pre></td></tr></table></div></figure></notextile></div>
+
+<h3 id="gitlab-runner-1">安装gitlab-runner及其配置</h3>
+
+<p>参考<a href="https://docs.gitlab.com/runner/install/linux-repository.html" target="_blank">官方文档</a></p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption>安装gitlab-runner<a href="http://blog.rexdf.org">MyBlog</a></figcaption><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div></pre></td><td class="main code  "><pre><div class="line bash">curl -L https://packages.gitlab.com/install/repositories/runner/gitlab-runner/script.deb.sh | sudo bash
+</div><div class="line bash">sudo apt-get install gitlab-runner
+</div></pre></td></tr></table></div></figure></notextile></div>
+
+<p>配置相对来说比较方便,Runner executor选docker，然后镜像选择ruby:2.3就好了</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption>向gitlab注册gitlab-runner<a href="http://blog.rexdf.org">MyBlog</a></figcaption><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div></pre></td><td class="main code  "><pre><div class="line bash">sudo gitlab-runner register
+</div></pre></td></tr></table></div></figure></notextile></div>
+
+<p>另外gitlab-runner配置在<code>/etc/gitlab-runner/config.toml</code></p>
+
+<h3 id="section-5">错误</h3>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div></pre></td><td class="main code  "><pre><div class="line plain">This job is stuck, because you don’t have any active runners that can run this job.
+</div></pre></td></tr></table></div></figure></notextile></div>
+
+<p>应该在runner上面勾选<code>Run untagged jobs [] Indicates whether this runner can pick jobs without tags</code></p>
+
+<h1 id="section-6">时间成本</h1>
+
+<p>看了下付款记录，11点付款，下午2点多开始想搭gitlab，到现在写完本文下午6点钟。 整体上比较简单，只要照着官方文档复制粘贴命令就好了。</p>
+
+<h1 id="section-7">维护</h1>
+
+<h2 id="section-8">2018年10月2日</h2>
+
+<p>今天好像Debian系列的libc都升级了，于是惯例升级下系统。然而gitlab这次遇到了点儿问题记录下。</p>
+
+<h3 id="section-9">问题</h3>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption>升级错误<a href="http://blog.rexdf.org">MyBlog</a></figcaption><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div><div data-line="5" class="line-number"></div><div data-line="6" class="line-number"></div><div data-line="7" class="line-number"></div><div data-line="8" class="line-number"></div><div data-line="9" class="line-number"></div><div data-line="10" class="line-number"></div><div data-line="11" class="line-number"></div><div data-line="12" class="line-number"></div><div data-line="13" class="line-number"></div><div data-line="14" class="line-number"></div><div data-line="15" class="line-number"></div><div data-line="16" class="line-number"></div><div data-line="17" class="line-number"></div><div data-line="18" class="line-number"></div><div data-line="19" class="line-number"></div><div data-line="20" class="line-number"></div><div data-line="21" class="line-number"></div><div data-line="22" class="line-number"></div><div data-line="23" class="line-number"></div><div data-line="24" class="line-number"></div><div data-line="25" class="line-number"></div><div data-line="26" class="line-number"></div><div data-line="27" class="line-number"></div><div data-line="28" class="line-number"></div><div data-line="29" class="line-number"></div><div data-line="30" class="line-number"></div><div data-line="31" class="line-number"></div><div data-line="32" class="line-number"></div><div data-line="33" class="line-number"></div><div data-line="34" class="line-number"></div><div data-line="35" class="line-number"></div><div data-line="36" class="line-number"></div><div data-line="37" class="line-number"></div><div data-line="38" class="line-number"></div><div data-line="39" class="line-number"></div><div data-line="40" class="line-number"></div><div data-line="41" class="line-number"></div><div data-line="42" class="line-number"></div><div data-line="43" class="line-number"></div><div data-line="44" class="line-number"></div><div data-line="45" class="line-number"></div><div data-line="46" class="line-number"></div><div data-line="47" class="line-number"></div><div data-line="48" class="line-number"></div><div data-line="49" class="line-number"></div><div data-line="50" class="line-number"></div><div data-line="51" class="line-number"></div></pre></td><td class="main code  "><pre><div class="line bash">apt-get update <span class="o">&amp;&amp;</span> apt-get -y dist-upgrade
+</div><div class="line bash">Get:1 http://security.ubuntu.com/ubuntu xenial-security InRelease <span class="o">[</span>107 kB<span class="o">]</span>
+</div><div class="line bash">...
+</div><div class="line bash">Get:17 http://archive.ubuntu.com/ubuntu xenial-updates/universe Translation-en <span class="o">[</span>279 kB<span class="o">]</span>
+</div><div class="line bash">Fetched 3,792 kB in 2s <span class="o">(</span>1,377 kB/s<span class="o">)</span>
+</div><div class="line bash">Reading package lists... Done
+</div><div class="line bash">Reading package lists... Done
+</div><div class="line bash">Building dependency tree
+</div><div class="line bash">Reading state information... Done
+</div><div class="line bash">Calculating upgrade... Done
+</div><div class="line bash">The following packages will be upgraded:
+</div><div class="line bash">  gitlab-ee linux-libc-dev
+</div><div class="line bash">2 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+</div><div class="line bash">Need to get 494 MB of archives.
+</div><div class="line bash">After this operation, 1,921 kB of additional disk space will be used.
+</div><div class="line bash">Get:1 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 linux-libc-dev amd64 4.4.0-137.163 <span class="o">[</span>850 kB<span class="o">]</span>
+</div><div class="line bash">Get:2 https://packages.gitlab.com/gitlab/gitlab-ee/ubuntu xenial/main amd64 gitlab-ee amd64 11.3.1-ee.0 <span class="o">[</span>493 MB<span class="o">]</span>
+</div><div class="line bash">Fetched 494 MB in 15s <span class="o">(</span>32.8 MB/s<span class="o">)</span>
+</div><div class="line bash"><span class="o">(</span>Reading database ... 118431 files and directories currently installed.<span class="o">)</span>
+</div><div class="line bash">Preparing to unpack .../linux-libc-dev_4.4.0-137.163_amd64.deb ...
+</div><div class="line bash">Unpacking linux-libc-dev:amd64 <span class="o">(</span>4.4.0-137.163<span class="o">)</span> over <span class="o">(</span>4.4.0-135.161<span class="o">)</span> ...
+</div><div class="line bash">Preparing to unpack .../gitlab-ee_11.3.1-ee.0_amd64.deb ...
+</div><div class="line bash">gitlab preinstall: Automatically backing up only the GitLab SQL database <span class="o">(</span>excluding everything <span class="k">else</span>!<span class="o">)</span>
+</div><div class="line bash">Dumping database ...
+</div><div class="line bash">Dumping PostgreSQL database gitlabhq_production ... <span class="o">[</span>DONE<span class="o">]</span>
+</div><div class="line bash"><span class="k">done</span>
+</div><div class="line bash">Dumping repositories ...
+</div><div class="line bash"><span class="o">[</span>SKIPPED<span class="o">]</span>
+</div><div class="line bash">Dumping uploads ...
+</div><div class="line bash"><span class="o">[</span>SKIPPED<span class="o">]</span>
+</div><div class="line bash">Dumping builds ...
+</div><div class="line bash"><span class="o">[</span>SKIPPED<span class="o">]</span>
+</div><div class="line bash">Dumping artifacts ...
+</div><div class="line bash"><span class="o">[</span>SKIPPED<span class="o">]</span>
+</div><div class="line bash">Dumping pages ...
+</div><div class="line bash"><span class="o">[</span>SKIPPED<span class="o">]</span>
+</div><div class="line bash">Dumping lfs objects ...
+</div><div class="line bash"><span class="o">[</span>SKIPPED<span class="o">]</span>
+</div><div class="line bash">Dumping container registry images ...
+</div><div class="line bash"><span class="o">[</span>DISABLED<span class="o">]</span>
+</div><div class="line bash">Creating backup archive: 1538469788_2018_10_02_11.3.0-ee_gitlab_backup.tar ... <span class="k">done</span>
+</div><div class="line bash">Uploading backup archive to remote storage  ... skipped
+</div><div class="line bash">Deleting tmp directories ... <span class="k">done</span>
+</div><div class="line bash"><span class="k">done</span>
+</div><div class="line bash">Deleting old backups ... skipping
+</div><div class="line bash">Unpacking gitlab-ee <span class="o">(</span>11.3.1-ee.0<span class="o">)</span> over <span class="o">(</span>11.3.0-ee.0<span class="o">)</span> ...
+</div><div class="line bash">dpkg: error processing archive /var/cache/apt/archives/gitlab-ee_11.3.1-ee.0_amd64.deb <span class="o">(</span>--unpack<span class="o">)</span>:
+</div><div class="line bash"> unable to stat other new file <span class="s1">&#39;/opt/gitlab/embedded/postgresql/9.6.8/share/extension/lo--1.0--1.1.sql&#39;</span>: Cannot allocate memory
+</div><div class="line bash">Errors were encountered <span class="k">while </span>processing:
+</div><div class="line bash"> /var/cache/apt/archives/gitlab-ee_11.3.1-ee.0_amd64.deb
+</div><div class="line bash">E: Sub-process /usr/bin/dpkg returned an error code <span class="o">(</span>1<span class="o">)</span>
+</div></pre></td></tr></table></div></figure></notextile></div>
+
+<p>如果继续运行 <code>apt-get update &amp;&amp; apt-get -y dist-upgrade</code> 则是类似如下的错误</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption>再次安装依然错误<a href="http://blog.rexdf.org">MyBlog</a></figcaption><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div><div data-line="5" class="line-number"></div><div data-line="6" class="line-number"></div></pre></td><td class="main code  "><pre><div class="line bash">dpkg: error processing archive /var/cache/apt/archives/gitlab-ee_11.3.1-ee.0_amd64.deb <span class="o">(</span>--unpack<span class="o">)</span>:
+</div><div class="line bash"> unable to stat <span class="s1">&#39;./opt/gitlab/embedded/lib/ruby/gems/2.4.0/gems/graphql-1.8.1/spec/dummy/tmp/cache/assets/sprockets/v3.0/ij/ijLUBXXLleeHIaUQp-SQmpq0HpA44rYlbW5OJbKpnsg.cache&#39;</span> <span class="o">(</span>which I was about to install<span class="o">)</span>: Cannot allocate memory
+</div><div class="line bash">dpkg-deb: error: subprocess paste was killed by signal <span class="o">(</span>Broken pipe<span class="o">)</span>
+</div><div class="line bash">Errors were encountered <span class="k">while </span>processing:
+</div><div class="line bash"> /var/cache/apt/archives/gitlab-ee_11.3.1-ee.0_amd64.deb
+</div><div class="line bash">E: Sub-process /usr/bin/dpkg returned an error code <span class="o">(</span>1<span class="o">)</span>
+</div></pre></td></tr></table></div></figure></notextile></div>
+
+<h3 id="section-10">探索</h3>
+
+<p>期初我以为是内存的原因，于是<code>/opt/gitlab/bin/gitlab-ctl status</code> 然后 <code>/opt/gitlab/bin/gitlab-ctl stop</code>以及<code>/opt/gitlab/bin/gitlab-ctl start postgresql</code>和<code>/opt/gitlab/bin/gitlab-ctl start postgres-exporter</code>。这样内存占用减小到了206M/4G，而且开了另外一个终端实时监控内存使用情况，发现运行<code>dpkg -i /var/cache/apt/archives/gitlab-ee_11.3.1-ee.0_amd64.deb</code>过程中，内存从来就没超过1G。于是基本否定内存不足的情况了。</p>
+
+<h3 id="section-11">解决</h3>
+
+<p>运行如下三条命令即可解决</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption>解决<a href="http://blog.rexdf.org">MyBlog</a></figcaption><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div><div data-line="5" class="line-number"></div><div data-line="6" class="line-number"></div><div data-line="7" class="line-number"></div><div data-line="8" class="line-number"></div><div data-line="9" class="line-number"></div><div data-line="10" class="line-number"></div><div data-line="11" class="line-number"></div><div data-line="12" class="line-number"></div><div data-line="13" class="line-number"></div><div data-line="14" class="line-number"></div><div data-line="15" class="line-number"></div></pre></td><td class="main code  "><pre><div class="line bash">xx:~# apt-get install -f
+</div><div class="line bash">Reading package lists... Done
+</div><div class="line bash">Building dependency tree
+</div><div class="line bash">Reading state information... Done
+</div><div class="line bash">The following packages will be REMOVED:
+</div><div class="line bash">  gitlab-ee
+</div><div class="line bash">0 upgraded, 0 newly installed, 1 to remove and 0 not upgraded.
+</div><div class="line bash">2 not fully installed or removed.
+</div><div class="line bash">After this operation, 1,524 MB disk space will be freed.
+</div><div class="line bash">Do you want to <span class="k">continue</span>? <span class="o">[</span>Y/n<span class="o">]</span>
+</div><div class="line bash"><span class="o">(</span>Reading database ... 118428 files and directories currently installed.<span class="o">)</span>
+</div><div class="line bash">Removing gitlab-ee <span class="o">(</span>11.3.0-ee.0<span class="o">)</span> ...
+</div><div class="line bash">Setting up linux-libc-dev:amd64 <span class="o">(</span>4.4.0-137.163<span class="o">)</span> ...
+</div><div class="line bash">xx:~# dpkg -i /var/cache/apt/archives/gitlab-ee_11.3.1-ee.0_amd64.deb
+</div><div class="line bash">xx:~# gitlab-ctl restart
+</div></pre></td></tr></table></div></figure></notextile></div>
+
+<h3 id="section-12">真实原因</h3>
+
+<p>老版本依然在运行中，而且没有卸载。所以新版本无法覆盖。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[博客切换调查]]></title>
+    <link href="https://i.rexdf.org/blog/2018/09/10/bo-ke-qie-huan-diao-cha/"/>
+    <updated>2018-09-10T16:43:52+08:00</updated>
+    <id>https://i.rexdf.org/blog/2018/09/10/bo-ke-qie-huan-diao-cha</id>
+    <content type="html"><![CDATA[<ul class="markdown-toc">
+  <li><a href="#hexo">hexo</a>    <ul>
+      <li><a href="#section">缺点</a>        <ul>
+          <li><a href="#section-1">标题自动转拼音</a></li>
+          <li><a href="#section-2">文章置顶</a></li>
+          <li><a href="#section-3">隐藏文章</a></li>
+          <li><a href="#section-4">私有扩展</a></li>
+        </ul>
+      </li>
+      <li><a href="#section-5">优点</a>        <ul>
+          <li><a href="#section-6">搜索</a></li>
+          <li><a href="#section-7">多语言</a></li>
+          <li><a href="#section-8">移动友好</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><a href="#hugo">Hugo待补充</a></li>
+  <li><a href="#section-9">结论</a></li>
+</ul>
+
+<p>一段时间没有更新博客了，记录倒是一直都有的，养成了写操作日志的习惯，要是发出来得有100多篇，不过可能包含不少敏感内容，而且操作日志也算不上什么创造性的内容，就此作罢。</p>
+
+<p>嗯，这个博客主题确实有点儿过时了。</p>
+
+<!--more-->
+
+<p>比如<a href="https://hexo.io" target="_blank">hexo</a>或者<a href="https://gohugo.io" target="_blank">hugo</a>，采用的人就很多。做个hexo主题似乎就可轻松收割上千stars (<a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">https://github.com/yscoder/hexo-theme-indigo</a> )，乃至成功的到了上万stars (<a href="https://github.com/iissnan/hexo-theme-next" target="_blank">https://github.com/iissnan/hexo-theme-next</a>)。</p>
+
+<h1 id="hexo">hexo</h1>
+
+<p>先尝试了下hexo NexT主题，用的来自 <a href="https://github.com/theme-next/hexo-theme-next" target="_blank">https://github.com/theme-next/hexo-theme-next</a> 最新版，把octopress里面的_posts目录拷贝过去，运行<code>hexo s</code>，一切正常。 跑起来似乎还不错，主题也是全新的。</p>
+
+<p><img src="https://i.rexdf.org/images/hexo-theme.png" alt="hexo theme" class="center fancybox" /></p>
+
+<p>然而，很快我就发现一些痛点并没有被解决，而且一些octopress的特性被扔掉了。</p>
+
+<h2 id="section">缺点</h2>
+
+<h3 id="section-1">标题自动转拼音</h3>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption>new_post<a href="http://blog.rexdf.org">MyBlog</a></figcaption><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div></pre></td><td class="main code  "><pre><div class="line bash">rake new_post<span class="o">[</span><span class="s2">&quot;博客切换调查&quot;</span><span class="o">]</span>
+</div><div class="line bash">mkdir -p <span class="nb">source</span>/_posts
+</div><div class="line bash">Creating new post: <span class="nb">source</span>/_posts/2018-09-10-bo-ke-qie-huan-diao-cha.markdown
+</div></pre></td></tr></table></div></figure></notextile></div>
+
+<p>据我观察，似乎很多hexo博主文章url就是汉字，另外一部分手工翻译的英文。</p>
+
+<h3 id="section-2">文章置顶</h3>
+
+<p>有点儿想把sublime汉化插件那篇文章置顶下，折腾了一圈，发现没有好的解决办法，找到了两三个workaround(<a href="https://github.com/iissnan/hexo-theme-next/issues/415#issuecomment-193756827" target="_blank">1</a> <a href="https://github.com/netcan/hexo-generator-index-pin-top" target="_blank">2</a>)，但是看评论似乎都有bug，而且随着hexo官方升级以及NexT主题升级，随时会broken，这就是我一贯不喜欢nodejs项目的原因，包依赖非常脆弱。</p>
+
+<h3 id="section-3">隐藏文章</h3>
+
+<p>同样想隐藏部分文章，而且这个需求可以继续细化。部分只是不想在首页上显示，有的是想作为草稿撤回。</p>
+
+<h3 id="section-4">私有扩展</h3>
+
+<p>Octopress用了有这么几年了，改动过很多地方，添加了一些私有扩展，暂时hexo没有找到想要的功能。</p>
+
+<h2 id="section-5">优点</h2>
+
+<h3 id="section-6">搜索</h3>
+
+<p>有Algolia Search，另外还可以用纯js做的前端本地搜索。</p>
+
+<h3 id="section-7">多语言</h3>
+
+<p>似乎hexo从开始就考虑了多语言支持，这比octopress的那个插件要好很多。</p>
+
+<h3 id="section-8">移动友好</h3>
+
+<p>毕竟前端语言写的</p>
+
+<h1 id="hugo">Hugo待补充</h1>
+
+<p>留空</p>
+
+<h1 id="section-9">结论</h1>
+
+<p>暂时结论，自己改Octopress/Jekyll的主题，虽然生成时候相对nodejs、golang要慢一点，但是都是静态博客，敲下回车就去泡咖啡了，谁在乎生成的快慢！</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[编码小记]]></title>
+    <link href="https://i.rexdf.org/blog/2017/11/27/bian-ma-xiao-ji/"/>
+    <updated>2017-11-27T12:54:46+08:00</updated>
+    <id>https://i.rexdf.org/blog/2017/11/27/bian-ma-xiao-ji</id>
+    <content type="html"><![CDATA[<ul class="markdown-toc">
+  <li><a href="#section">编码获取</a>    <ul>
+      <li><a href="#section-1">十六进制</a></li>
+      <li><a href="#section-2">十进制</a></li>
+      <li><a href="#section-3">测试编码</a></li>
+    </ul>
+  </li>
+  <li><a href="#section-4">一些资料整理</a>    <ul>
+      <li><a href="#section-5">汉字的国标</a></li>
+      <li><a href="#section-6">一些编码常识</a>        <ul>
+          <li><a href="#ansi">ANSI</a></li>
+          <li><a href="#unicode-utf-8-utf-16-ucs-2">Unicode UTF-8 UTF-16 UCS-2</a></li>
+          <li><a href="#big5-shift-jis">BIG5 Shift-JIS</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p>偶尔我们会想获取汉字的编码，然而似乎网上随手一搜，在线转换工具倒是有不少只是好像都不太能满足真实需求。</p>
+
+<p>也许你会想到notepad++按照编码保存，然后用二进制打开。当然这在Windows下不失为不错的办法。</p>
+
+<!--more-->
+
+<p>鉴于UTF-8推荐的越来越多，我就来列举下它对于中文来说的缺点。</p>
+
+<p>顺便也说说对于汉字，UTF-8其实并不适合保存。虽然因为现在互联网应用交换的绝大部分都是html/css/js的原因，utf-8格式大行其道。但是对于中国的常规应用来说，其实不需要用UTF-8表示。</p>
+
+<p>简单点说：对于一个以英语为主，偶尔会需要显示一两个汉字，那么utf-8优势巨大。对于基本上是汉字，只需要偶尔显示一两个英文缩写的应用。GBK或者UTF-16优势巨大。</p>
+
+<p>原因在于汉字、日语都被UTF-8都被编码到了三字节，然而其中的有效位只有两字节，剩下一字节是用来做标志位的。也就是每个汉字要多浪费一个字节。而且UTF-8是变长编码，从1到4都会出现，对于字符串函数实际上很不方便。当然对于库函数丰富的今天这不算大问题，只是进行了一次内码转换而已。 而且3字节的汉字，中间夹杂着1字节的ASCII字符，这种编码在内存中处理，实际上非常麻烦的，不停要做移位操作，连简单的字符个数都是O(n)的。</p>
+
+<p>好了批判完了，写点有用的。</p>
+
+<h1 id="section">编码获取</h1>
+
+<p>我的方法是用Python，简单轻量级。</p>
+
+<h2 id="section-1">十六进制</h2>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div></pre></td><td class="main code  "><pre><div class="line python"><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">binascii</span>
+</div><div class="line python"><span class="o">&gt;&gt;&gt;</span> <span class="n">binascii</span><span class="o">.</span><span class="n">hexlify</span><span class="p">(</span><span class="s">&#39;我们&#39;</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s">&#39;utf-16le&#39;</span><span class="p">))</span>
+</div><div class="line python"><span class="n">b</span><span class="s">&#39;1162ec4e&#39;</span>
+</div></pre></td></tr></table></div></figure></notextile></div>
+
+<h2 id="section-2">十进制</h2>
+
+<p>这是是给 <code>ALT + 数字</code> 这种输入法用的。 需要注意的是，这里要用大端。</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div></pre></td><td class="main code  "><pre><div class="line python"><span class="o">&gt;&gt;&gt;</span> <span class="nb">int</span><span class="o">.</span><span class="n">from_bytes</span><span class="p">(</span><span class="s">&#39;我&#39;</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s">&#39;gbk&#39;</span><span class="p">)[:</span><span class="mi">2</span><span class="p">],</span><span class="s">&#39;big&#39;</span><span class="p">)</span>
+</div><div class="line python"><span class="mi">52946</span>
+</div></pre></td></tr></table></div></figure></notextile></div>
+
+<p>中文Windows下面按住Alt键，快速输入52946，就会出现汉字<code>我</code>.</p>
+
+<h2 id="section-3">测试编码</h2>
+
+<p>我们来测试下本文的markdown，上面的文本。</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div><div data-line="5" class="line-number"></div></pre></td><td class="main code  "><pre><div class="line python"><span class="o">&gt;&gt;&gt;</span> <span class="n">s</span><span class="o">=</span><span class="s">&#39;&#39;&#39;...&#39;&#39;&#39;</span>
+</div><div class="line python"><span class="o">&gt;&gt;&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">binascii</span><span class="o">.</span><span class="n">hexlify</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s">&#39;utf-16le&#39;</span><span class="p">)))</span>
+</div><div class="line python"><span class="mi">2716</span>
+</div><div class="line python"><span class="o">&gt;&gt;&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">binascii</span><span class="o">.</span><span class="n">hexlify</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s">&#39;utf-8&#39;</span><span class="p">)))</span>
+</div><div class="line python"><span class="mi">3094</span>
+</div></pre></td></tr></table></div></figure></notextile></div>
+
+<p><code>0xfffe</code>是BOM，可以发现UTF-8对常见汉字编码确实要多一个字节的。</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div><div data-line="5" class="line-number"></div><div data-line="6" class="line-number"></div><div data-line="7" class="line-number"></div><div data-line="8" class="line-number"></div><div data-line="9" class="line-number"></div><div data-line="10" class="line-number"></div></pre></td><td class="main code  "><pre><div class="line python"><span class="o">&gt;&gt;&gt;</span> <span class="n">binascii</span><span class="o">.</span><span class="n">hexlify</span><span class="p">(</span><span class="s">&#39;我们&#39;</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s">&#39;utf-16&#39;</span><span class="p">))</span>
+</div><div class="line python"><span class="n">b</span><span class="s">&#39;fffe1162ec4e&#39;</span>
+</div><div class="line python"><span class="o">&gt;&gt;&gt;</span> <span class="n">binascii</span><span class="o">.</span><span class="n">hexlify</span><span class="p">(</span><span class="s">&#39;我们&#39;</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s">&#39;utf-16le&#39;</span><span class="p">))</span>
+</div><div class="line python"><span class="n">b</span><span class="s">&#39;1162ec4e&#39;</span>
+</div><div class="line python"><span class="o">&gt;&gt;&gt;</span> <span class="n">binascii</span><span class="o">.</span><span class="n">hexlify</span><span class="p">(</span><span class="s">&#39;我们&#39;</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s">&#39;gbk&#39;</span><span class="p">))</span>
+</div><div class="line python"><span class="n">b</span><span class="s">&#39;ced2c3c7&#39;</span>
+</div><div class="line python"><span class="o">&gt;&gt;&gt;</span> <span class="n">binascii</span><span class="o">.</span><span class="n">hexlify</span><span class="p">(</span><span class="s">&#39;我们&#39;</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s">&#39;gb18030&#39;</span><span class="p">))</span>
+</div><div class="line python"><span class="n">b</span><span class="s">&#39;ced2c3c7&#39;</span>
+</div><div class="line python"><span class="o">&gt;&gt;&gt;</span> <span class="n">binascii</span><span class="o">.</span><span class="n">hexlify</span><span class="p">(</span><span class="s">&#39;我们&#39;</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s">&#39;utf-8&#39;</span><span class="p">))</span>
+</div><div class="line python"><span class="n">b</span><span class="s">&#39;e68891e4bbac&#39;</span>
+</div></pre></td></tr></table></div></figure></notextile></div>
+
+<h1 id="section-4">一些资料整理</h1>
+
+<h2 id="section-5">汉字的国标</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>编码</th>
+      <th>生效日期</th>
+      <th>备注</th>
+      <th>编码范围</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>GB2312</td>
+      <td>1981.5.1</td>
+      <td>GB2312编码共收录汉字6763个，其中一级汉字3755个，二级汉字3008个。同时，GB2312编码收录了包括拉丁字母、希腊字母、日文平假名及片假名字母、俄语西里尔字母在内的682个全角字符。</td>
+      <td>A1A1－FEFE(41377-65278)其中汉字编码范围：B0A1-F7FE(45217-63486)。</td>
+    </tr>
+    <tr>
+      <td>GBK</td>
+      <td>1995.12.15</td>
+      <td>GBK编码，是对GB2312编码的扩展，因此完全兼容GB2312-80标准。GBK编码依然采用双字节编码方案，其编码范围：8140－FEFE，剔除xx7F码位，共23940个码位。共收录汉字和图形符号21886个，其中汉字（包括部首和构件）21003个，图形符号883个。</td>
+      <td>8140－FEFE (33088-65278)</td>
+    </tr>
+    <tr>
+      <td>GB18030-2000</td>
+      <td>2000.3.17</td>
+      <td>是对GBK编码的扩充，覆盖中文、日文、朝鲜语和中国少数民族文字，其中收录27484个汉字。GB18030字符集采用单字节、双字节和四字节三种方式对字符编码。兼容GBK和GB2312字符集。</td>
+      <td>采用单字节、双字节、四字节分段编码方案，具体码位见特性。GB18030向下兼容ASCII码和GBK编码。</td>
+    </tr>
+    <tr>
+      <td>GB18030-2005</td>
+      <td>.</td>
+      <td>最主要的变化是增加了CJK统一汉字扩充B。它还去掉了单字节编码的欧元符号0x80）。GB18030有1611668个码位，在GB18030-2005中定义了76556个字符。</td>
+      <td>.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>GBK 的代码页是936，GBK18030的代码页是54936.</p>
+
+<h2 id="section-6">一些编码常识</h2>
+
+<h3 id="ansi">ANSI</h3>
+
+<p>Windows记事本的ANSI编码</p>
+
+<p>ANSI (American National Standards Institute) 美国国家标准学会的缩写。  在简体中文Windows操作系统中，ANSI 编码代表 GBK 编码；在繁体中文操作系统中,ANSI编码代表Big5编码；在日文Windows操作系统中，ANSI 编码代表 Shift_JIS 编码。</p>
+
+<h3 id="unicode-utf-8-utf-16-ucs-2">Unicode UTF-8 UTF-16 UCS-2</h3>
+
+<p>关于Unicode与UTF-8 UTF-16 UCS-2的关系 </p>
+
+<p>Unicode(统一码、万国码、单一码、标准万国码)编码就是为表达任意语言的任意字符而设计。特点: 一个字符代表一个code，不存在二义性，而且这套标准也会随着需求不断的拓展。由非盈利机构 The Unicode Consortium 负责，官网为 <a href="http://www.unicode.org/">http://www.unicode.org/</a></p>
+
+<p>Unicode是一个标准，只规定了某个字符应该对应哪一个code，但是并没有规定这个字符应该用即为字节来存储。规定用几个字节存储字符的是Unicode的不同实现，譬如UTF-8，UTF-16, UTF-32等。</p>
+
+<p>所以 UTF-8 UTF-16 的编码范围都是全部的Unicode字符集的。</p>
+
+<p>UTF-8是采用变长的编码方式，为1~6个字节，但通常我们只把它看作单字节或三字节的实现，因为其它情况实在少见。。</p>
+
+<p>Unicode编码中，最常用的字符其实是0-65535，因此针对这点产生了UTF-16方案。
+UTF-16将0–65535范围内的字符编码成2个字节，超过这个的用4个字节编码。(因此基本可以认为是双字节的)
+UTF-16是完全对应于UCS-2的，即把UCS-2规定的代码点通过Big Endian或Little Endian方式直接保存下来。所以UTF-16采用2个字节来存储Unicode。UTF-16也可以表示UCS-4的部分字符，所以UTF-16也采用4个字节来存储Unicode。
+UTF16编码是Unicode最直接的实现方式，通常我们在windows上新建文本文件后保存为Unicode编码，其实就是保存为UTF16编码。</p>
+
+<h3 id="big5-shift-jis">BIG5 Shift-JIS</h3>
+
+<p>其他汉字编码BIG5 Shift-JIS</p>
+
+<p>BIG5编码又称大五码，是繁体中文字符集编码标准，共收录13060个中文字，其中有二字为重复编码。BIG5重复地收录了两个相同的字：“兀、兀”（A461及C94A)、“嗀、嗀”(DCD1及DDFC)。编码范围8140－FEFE(33088-65278) 其中汉字编码范围：A440-F9DC(42048-63964)
+BIG5采用双字节编码，使用两个字节来表示一个字符。高位字节使用了0x81-0xFE，低位字节使用了0x40-0x7E，及0xA1-0xFE</p>
+
+<p>Shift-Jis比较特殊，不连续，需要校验合法性，而且有特殊的转换公式与技巧，有时会在代码中看到。</p>
+
+<p>ASCII字符 (0x20-0x7E)，但“\”被“¥”取代
+ASCII控制字符（0x00-0x1F、0x7F）
+JIS X 0201标准内的半角标点及片假名（0xA1-0xDF）
+在部分操作系统中，0xA0用来放置“不换行空格”。</p>
+
+<p>以下字符在Shift_JIS使用两个字节来表示。</p>
+
+<ul>
+  <li>JIS X 0208字集的所有字符</li>
+</ul>
+
+<p>“第一位字节”使用0x81-0x9F、0xE0-0xEF（共47个）
+“第二位字节”使用0x40-0x7E、0x80-0xFC（共188个）</p>
+
+<ul>
+  <li>使用者定义区</li>
+</ul>
+
+<p>“第一位字节”使用0xF0-0xFC（共13个）
+“第二位字节”使用0x40-0x7E、0x80-0xFC（共188个）</p>
+
+<p>在Shift_JIS编码表中，并未使用0xFD、0xFE及0xFF。</p>
+
+<p>在微软及IBM的日语电脑系统中，在0xFA、0xFB及0xFC的两字节区域，加入了388个JIS X 0208没有收录的符号和汉字。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Win10SDK的头文件问题]]></title>
+    <link href="https://i.rexdf.org/blog/2015/09/04/win10sdkde-tou-wen-jian-wen-ti/"/>
+    <updated>2015-09-04T16:29:12+08:00</updated>
+    <id>https://i.rexdf.org/blog/2015/09/04/win10sdkde-tou-wen-jian-wen-ti</id>
+    <content type="html"><![CDATA[<p>起因是在Win10上面ycmd补全Windows的头文件没有Win8.1的全了，最明显的就是一堆idl文件没有了。然后我折腾了一会ycm_extra_conf.py，发现问题的关键在于clang上。
+<!-- more --></p>
+
+<p>clang是我自己从源码编译3.8.0版本。执行<code>clang -v -E -x c++ -</code>得如下内容:</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption>command<a href="http://blog.rexdf.org">MyBlog</a></figcaption><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div><div data-line="5" class="line-number"></div><div data-line="6" class="line-number"></div><div data-line="7" class="line-number"></div><div data-line="8" class="line-number"></div><div data-line="9" class="line-number"></div><div data-line="10" class="line-number"></div><div data-line="11" class="line-number"></div><div data-line="12" class="line-number"></div><div data-line="13" class="line-number"></div><div data-line="14" class="line-number"></div><div data-line="15" class="line-number"></div><div data-line="16" class="line-number"></div><div data-line="17" class="line-number"></div><div data-line="18" class="line-number"></div><div data-line="19" class="line-number"></div><div data-line="20" class="line-number"></div><div data-line="21" class="line-number"></div></pre></td><td class="main code  "><pre><div class="line bat">X:\llvim<span class="m">3</span>.<span class="m">8</span>.<span class="m">0</span>\bin<span class="p">&gt;</span><span class="n">clang</span> -v -E -x c++ -
+</div><div class="line bat">clang version <span class="m">3</span>.<span class="m">8</span>.<span class="m">0</span> (trunk <span class="m">246839</span>)
+</div><div class="line bat">Target: x<span class="m">86</span>_<span class="m">64</span>-pc-windows-msvc
+</div><div class="line bat">Thread model: posix
+</div><div class="line bat">InstalledDir: X:\llvim<span class="m">3</span>.<span class="m">8</span>.<span class="m">0</span>\bin
+</div><div class="line bat"> <span class="s2">&quot;X:\\llvim3.8.0\\bin\\clang.exe&quot;</span> -cc<span class="m">1</span> -triple x<span class="m">86</span>_<span class="m">64</span>-pc-windows-msvc<span class="m">18</span>.<span class="m">0</span>.<span class="m">0</span> -E -disable-free -disable-llvm-verifier -main-file-name - -mrelocation-model pic -pic-level <span class="m">2</span> -mthread
+</div><div class="line bat">-model posix -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x<span class="m">86-64</span> -momit-leaf-frame-pointer -v -dwarf-column-info -resource-dir &quot;X:\\llvim<span class="m">3</span>.<span class="m">8</span>.<span class="m">0</span>\\bi
+</div><div class="line bat">n\\..\\lib\\clang\\<span class="m">3</span>.<span class="m">8</span>.<span class="m">0</span><span class="s2">&quot; -internal-isystem &quot;</span>X:\\llvim<span class="m">3</span>.<span class="m">8</span>.<span class="m">0</span>\\bin\\..\\lib\\clang\\<span class="m">3</span>.<span class="m">8</span>.<span class="m">0</span>\\include<span class="s2">&quot; -internal-isystem &quot;</span>C:\\Program Files (x<span class="m">86</span>)\\Microsoft Visual Studio <span class="m">14</span>.<span class="m">0</span>\\VC\\in
+</div><div class="line bat">clude<span class="s2">&quot; -internal-isystem &quot;</span>C:\\Program Files (x<span class="m">86</span>)\\Windows Kits\\<span class="m">10</span>\\include\\shared<span class="s2">&quot; -internal-isystem &quot;</span>C:\\Program Files (x<span class="m">86</span>)\\Windows Kits\\<span class="m">10</span>\\include\\um<span class="s2">&quot; -internal-isystem &quot;</span>C:\\Progr
+</div><div class="line bat">am Files (x<span class="m">86</span>)\\Windows Kits\\<span class="m">10</span>\\include\\winrt<span class="s2">&quot; -fdeprecated-macro -fdebug-compilation-dir &quot;</span>X:\\llvim<span class="m">3</span>.<span class="m">8</span>.<span class="m">0</span>\\bin&quot; -ferror-limit <span class="m">19</span> -fmessage-length <span class="m">189</span> -mstackrealign -fms-exten
+</div><div class="line bat">sions -fms-compatibility -fms-compatibility-version<span class="o">=</span><span class="m">18</span> -std<span class="o">=</span>c++<span class="m">11</span> -fno-threadsafe-statics -fdelayed-template-parsing -fobjc-runtime<span class="o">=</span>gcc -fdiagnostics-show-option -fcolor-diagnostics -o - -x
+</div><div class="line bat"> c++ -
+</div><div class="line bat">clang -cc<span class="m">1</span> version <span class="m">3</span>.<span class="m">8</span>.<span class="m">0</span> based upon LLVM <span class="m">3</span>.<span class="m">8</span>.<span class="m">0</span>svn default target x<span class="m">86</span>_<span class="m">64</span>-pc-windows-msvc
+</div><div class="line bat">ignoring nonexistent directory <span class="s2">&quot;C:\Program Files (x86)\Windows Kits\10\include\shared&quot;</span>
+</div><div class="line bat">ignoring nonexistent directory <span class="s2">&quot;C:\Program Files (x86)\Windows Kits\10\include\um&quot;</span>
+</div><div class="line bat">ignoring nonexistent directory <span class="s2">&quot;C:\Program Files (x86)\Windows Kits\10\include\winrt&quot;</span>
+</div><div class="line bat">#include <span class="s2">&quot;...&quot;</span> search starts here:
+</div><div class="line bat">#include &lt;...<span class="p">&gt;</span> <span class="n">search</span> starts here:
+</div><div class="line bat"> X:\llvim<span class="m">3</span>.<span class="m">8</span>.<span class="m">0</span>\bin\..\lib\clang\<span class="m">3</span>.<span class="m">8</span>.<span class="m">0</span>\include
+</div><div class="line bat"> C:\Program Files (x<span class="m">86</span>)\Microsoft Visual Studio <span class="m">14</span>.<span class="m">0</span>\VC\include
+</div><div class="line bat">End of search list.
+</div></pre></td></tr></table></div></figure></notextile></div>
+
+<p>去Windows Kits目录里面一看，发现C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\shared这个目录才是对的。</p>
+
+<p>蹭蹭地跑去llvm社区maillist求助，得到修改<code>clang/lib/Driver/MSVCToolChain.cpp</code>的提示，看来下，要做似乎挺简单。然而我习惯每天更新llvm源码，哪天心情不好就会重新编译，所以改源码似乎不是上策。于是想到了linux每天都做的事情，<code>ln -s</code>啊！</p>
+
+<p>新建快捷方式，复制进去。不行依然找不到。</p>
+
+<p>然后依稀记得以前见过NTFS的硬链接和软连接。于是问题迎刃而解了。具体方法参考<a href="http://tilt.lib.tsinghua.edu.cn/node/480" target="_blank">这里</a>。</p>
+
+<p>下载<a href="http://www.microsoft.com/technet/sysinternals/FileAndDisk/Junction.mspx" target="_blank">Junction</a>，然后<code>junction shared 10.0.10240.0\shared</code>即可，对另外五个目录同样方法。</p>
+
+<p>再次测试</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption>command<a href="http://blog.rexdf.org">MyBlog</a></figcaption><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div><div data-line="5" class="line-number"></div><div data-line="6" class="line-number"></div><div data-line="7" class="line-number"></div><div data-line="8" class="line-number"></div><div data-line="9" class="line-number"></div><div data-line="10" class="line-number"></div><div data-line="11" class="line-number"></div><div data-line="12" class="line-number"></div><div data-line="13" class="line-number"></div><div data-line="14" class="line-number"></div><div data-line="15" class="line-number"></div><div data-line="16" class="line-number"></div><div data-line="17" class="line-number"></div><div data-line="18" class="line-number"></div><div data-line="19" class="line-number"></div><div data-line="20" class="line-number"></div><div data-line="21" class="line-number"></div></pre></td><td class="main code  "><pre><div class="line bat">X:\\llvim<span class="m">3</span>.<span class="m">8</span>.<span class="m">0</span>\bin<span class="p">&gt;</span><span class="n">clang</span> -v -E -x c++ -
+</div><div class="line bat">clang version <span class="m">3</span>.<span class="m">8</span>.<span class="m">0</span> (trunk <span class="m">246839</span>)
+</div><div class="line bat">Target: x<span class="m">86</span>_<span class="m">64</span>-pc-windows-msvc
+</div><div class="line bat">Thread model: posix
+</div><div class="line bat">InstalledDir: X:\llvim<span class="m">3</span>.<span class="m">8</span>.<span class="m">0</span>\bin
+</div><div class="line bat"> <span class="s2">&quot;X:\\llvim3.8.0\\bin\\clang.exe&quot;</span> -cc<span class="m">1</span> -triple x<span class="m">86</span>_<span class="m">64</span>-pc-windows-msvc<span class="m">18</span>.<span class="m">0</span>.<span class="m">0</span> -E -disable-free -disable-llvm-verifier -main-file-name - -mrelocation-model pic -pic-level <span class="m">2</span> -mthread
+</div><div class="line bat">-model posix -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x<span class="m">86-64</span> -momit-leaf-frame-pointer -v -dwarf-column-info -resource-dir &quot;X:\\llvim<span class="m">3</span>.<span class="m">8</span>.<span class="m">0</span>\\bi
+</div><div class="line bat">n\\..\\lib\\clang\\<span class="m">3</span>.<span class="m">8</span>.<span class="m">0</span><span class="s2">&quot; -internal-isystem &quot;</span>X:\\llvim<span class="m">3</span>.<span class="m">8</span>.<span class="m">0</span>\\bin\\..\\lib\\clang\\<span class="m">3</span>.<span class="m">8</span>.<span class="m">0</span>\\include<span class="s2">&quot; -internal-isystem &quot;</span>C:\\Program Files (x<span class="m">86</span>)\\Microsoft Visual Studio <span class="m">14</span>.<span class="m">0</span>\\VC\\in
+</div><div class="line bat">clude<span class="s2">&quot; -internal-isystem &quot;</span>C:\\Program Files (x<span class="m">86</span>)\\Windows Kits\\<span class="m">10</span>\\include\\shared<span class="s2">&quot; -internal-isystem &quot;</span>C:\\Program Files (x<span class="m">86</span>)\\Windows Kits\\<span class="m">10</span>\\include\\um<span class="s2">&quot; -internal-isystem &quot;</span>C:\\Progr
+</div><div class="line bat">am Files (x<span class="m">86</span>)\\Windows Kits\\<span class="m">10</span>\\include\\winrt<span class="s2">&quot; -fdeprecated-macro -fdebug-compilation-dir &quot;</span>X:\\llvim<span class="m">3</span>.<span class="m">8</span>.<span class="m">0</span>\\bin&quot; -ferror-limit <span class="m">19</span> -fmessage-length <span class="m">189</span> -mstackrealign -fms-exten
+</div><div class="line bat">sions -fms-compatibility -fms-compatibility-version<span class="o">=</span><span class="m">18</span> -std<span class="o">=</span>c++<span class="m">11</span> -fno-threadsafe-statics -fdelayed-template-parsing -fobjc-runtime<span class="o">=</span>gcc -fdiagnostics-show-option -fcolor-diagnostics -o - -x
+</div><div class="line bat"> c++ -
+</div><div class="line bat">clang -cc<span class="m">1</span> version <span class="m">3</span>.<span class="m">8</span>.<span class="m">0</span> based upon LLVM <span class="m">3</span>.<span class="m">8</span>.<span class="m">0</span>svn default target x<span class="m">86</span>_<span class="m">64</span>-pc-windows-msvc
+</div><div class="line bat">#include <span class="s2">&quot;...&quot;</span> search starts here:
+</div><div class="line bat">#include &lt;...<span class="p">&gt;</span> <span class="n">search</span> starts here:
+</div><div class="line bat"> X:\llvim<span class="m">3</span>.<span class="m">8</span>.<span class="m">0</span>\bin\..\lib\clang\<span class="m">3</span>.<span class="m">8</span>.<span class="m">0</span>\include
+</div><div class="line bat"> C:\Program Files (x<span class="m">86</span>)\Microsoft Visual Studio <span class="m">14</span>.<span class="m">0</span>\VC\include
+</div><div class="line bat"> C:\Program Files (x<span class="m">86</span>)\Windows Kits\<span class="m">10</span>\include\shared
+</div><div class="line bat"> C:\Program Files (x<span class="m">86</span>)\Windows Kits\<span class="m">10</span>\include\um
+</div><div class="line bat"> C:\Program Files (x<span class="m">86</span>)\Windows Kits\<span class="m">10</span>\include\winrt
+</div><div class="line bat">End of search list.
+</div></pre></td></tr></table></div></figure></notextile></div>
+
+<p>然后ycmd就可以在Windows上面补全Win10 Kits的头文件了。</p>
+
+<p>补充:</p>
+
+<p>刚刚发现实际上<code>mklink</code>可以干同样的事情。</p>
+
+<p>Windows里面“连接”分四种：硬链接(Hard link)、联接(针对目录,Directory Junction)、符号连接(symbolic link)、快捷方式(Shortcut).前三种对应于mklink的三种参数 <code>/h</code> <code>/j</code> <code>/d</code> 。而且mklink是vista以后系统自带的。这样就方便很多了。对于本文的问题用 <code>mklink /j</code> 即可。</p>
+
+<p>而广为人知的快捷方式，实际上是*.lnk文件，它内容就是网址或者文件地址(还可以包括快捷方式图标等文本信息)，有大小的一个文本文件，在Windows的文件API上面做了透明处理。似乎没有办法通过普通文本编辑器打开lnk文件而不跳转到它连接的文件。这就是可以把快捷方式到处拷贝剪切和改名。</p>
+
+<p>而硬链接、联接和符号连接属于NTFS文件系统底层一些的级别的。</p>
+
+<p>而通过右键属性观察，符号连接和快捷方式几乎一样。区别就是快捷方式可以拷贝到Fat32的优盘，而符号链接则只能存在NTFS文件系统上。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Vmware虚拟机在移动硬盘上的问题]]></title>
+    <link href="https://i.rexdf.org/blog/2015/08/31/vmwarexu-ni-ji-zai-yi-dong-ying-pan-shang-de-wen-ti/"/>
+    <updated>2015-08-31T20:00:16+08:00</updated>
+    <id>https://i.rexdf.org/blog/2015/08/31/vmwarexu-ni-ji-zai-yi-dong-ying-pan-shang-de-wen-ti</id>
+    <content type="html"><![CDATA[<ul class="markdown-toc">
+  <li><a href="#section">描述</a></li>
+  <li><a href="#section-1">解决</a></li>
+  <li><a href="#section-2">猜测</a></li>
+  <li><a href="#section-3">附录</a></li>
+  <li><a href="#section-4">更新(2016.6.25)</a></li>
+</ul>
+
+<h2 id="section">描述</h2>
+
+<p>问题就是：①移动磁盘上建立一个vmware虚拟机，然后用win10的iso镜像安装，安装完成后，如果重启，则可以正常重启，但是一旦关机，则再次开机一直都是Bug Check 0xC000021A，然后进行dump，为此我特地用 <code>"windbg.exe" -b -k com:pipe,port=\\.\pipe\com_1,baud=115200,reconnect -y</code> 在线内核调试了下，但是水平所限(等到哪天有空了再来看看究竟)，没有找出问题的究竟，但是错误的字面倒是说shell32.dll校验错误。而我用Diskgenius把它拷贝出来，校验是正常的。
+<!-- more --></p>
+
+<p>②BT5-R3，CentOS7，RHEL7这三个我使用多年的vmdk，最近因为磁盘空间紧张，转移到了3T的移动硬盘上面(这个移动磁盘拷贝文件一般稳定70+MB/s，有些时候稳定在100MB/s，这里的数值是实际拷贝文件时Windows显示的。) 然而把这三个虚拟机开机一次，然后update一下，如果升级的有kernel，也就是boot分区内容有变化的话，下次就没法开机了。具体到CentOS和RHEL7就是如下</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption>CRC-mismatch<a href="http://blog.rexdf.org">MyBlog</a></figcaption><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div></pre></td><td class="main code  "><pre><div class="line bash"><span class="o">[</span>sda<span class="o">]</span> Assuming drive cache: write through
+</div><div class="line bash">XFS <span class="o">(</span>dm-1<span class="o">)</span>: log record CRC mismatch: found 0x5eb03e8d, expected 0xd23a2a8a
+</div><div class="line bash">...
+</div></pre></td></tr></table></div></figure></notextile></div>
+
+<p>此问题什么时候开始的已经不可考了，但是WinXP/Win7/Win8应该是不存在这个问题的，总之最近的一些新系统关机后就再也无法开机。我注意到是磁盘的问题，而且是磁盘问题则是最近安装在移动硬盘上装win10。我尝试了检查磁盘，检查iso的hash，最终无意中发现在本地磁盘上安装就可以避免。</p>
+
+<p>这个问题我可以完全排除磁盘坏道，或者NTFS元信息错误。均做过检测，正常且优良。</p>
+
+<h2 id="section-1">解决</h2>
+
+<p>Win10的解决办法目前就是在本地磁盘安装，然后移动到移动硬盘上去。而CentOS7/RHEL7因为是xfs系统，所以存在一个特别的解决办法。开机后如果看到 <code>Generating "/run/initramfs/rdsosreport.exe"</code> 这种方式的错误，而且最后停在<code>:/#</code>的root shell上面，那么可以直接执行 <code>xfs_repair -L /dev/mapper/centos-root</code> 即可（RHEL7是rhel-root)正常开机启动。而如果是EFIs错误，则可以用iso光盘Rescue功能，进入之后选择 <code>Skip</code>，然后再shell里面执行上面xfs_repair，则就可以救活移动硬盘上面的CentOS7/RHEL7系统。</p>
+
+<p><img src="https://i.rexdf.org/images/centos_vmware_xfs.png" alt="x64-gvim-mzscheme" class="center fancybox" /></p>
+
+<h2 id="section-2">猜测</h2>
+
+<p>这里只是大胆“瞎说”，目前没有进行验证。</p>
+
+<p>Win10的启动分区和CentOS7/RHEL7的xfs里面的boot部分，有非常底层的代码和硬件编号还是什么相关联，而vmdk动态修改的过程中可能会发生重新分配物理地址，中间引起了什么混乱。</p>
+
+<p>另外一个猜测就是我只在最近才发现，而3T最近快装满了，这是不是说明vmdk文件在物理磁盘上碎片的时候才会出现这个问题？</p>
+
+<h2 id="section-3">附录</h2>
+
+<p>Win10物理机上面用Vmware Workstation 12.</p>
+
+<p>移动硬盘用Diskgenius检测坏道数量0，有600个良，其余均是优。</p>
+
+<p>移动硬盘用chkdsk查不出问题。</p>
+
+<p>CentOS7只要一操作内核(删除/升级)，必定是可以直接重启，但关机后开机必定CRC mismatch.</p>
+
+<p>Win10在本地磁盘安装好后，拷贝到移动硬盘，再在里面安装各种软件，开关机均正常。</p>
+
+<p>Win10直接在移动硬盘新建虚拟机不下5次，均是可以重启，关机后开机必定0xC000021A</p>
+
+<p><a href="http://www.goldcome.net/2015/04/12/blog/vmware-workstation/" target="_blank">这里</a>有一个类似情况，不过是他不是移动硬盘，而是Windows Server2012的存储池。存储池必定CRC mismatch，本地磁盘正常。</p>
+
+<h2 id="section-4">更新(2016.6.25)</h2>
+
+<p>最近发现好像问题在于SCSI磁盘的问题上，也不知道问题出在哪个地方。避免在移动硬盘上使用SCSI磁盘即可避免问题。</p>
+
+<p>参考<a href="https://communities.vmware.com/thread/504836" target="_blank">这里</a>。</p>
+]]></content>
+  </entry>
+  
+</feed>

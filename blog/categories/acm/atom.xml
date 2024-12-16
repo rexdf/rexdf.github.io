@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: ACM | Rexdf]]></title>
+  <link href="https://i.rexdf.org/blog/categories/acm/atom.xml" rel="self"/>
+  <link href="https://i.rexdf.org/"/>
+  <updated>2024-12-16T23:11:13+08:00</updated>
+  <id>https://i.rexdf.org/</id>
+  <author>
+    <name><![CDATA[Rexdf]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[坑爹的hdu3265]]></title>
+    <link href="https://i.rexdf.org/blog/2014/02/19/keng-die-de-hdu3265/"/>
+    <updated>2014-02-19T17:15:51+08:00</updated>
+    <id>https://i.rexdf.org/blog/2014/02/19/keng-die-de-hdu3265</id>
+    <content type="html"><![CDATA[<p>起源于在做这道经典的扫描线的题目的时候，采用了按照我的思维倾向，横轴优先，那么就用竖轴做线段树，思路很简单。这里有两种划分的方法
+<img src="/images/hdu3265.png" alt="两种不同的分割方法" />
+问题出在，从左向右的用扫描线的时候，按照左图的方式是是无限的Stack_Overflow的，而我本地测试了多组10000+的随机最大范围数据，对拍均是正常的。
+至今任然想不明白是否是我线段树实现的问题，还是题目stack限制的问题。理论上区区线段树不可能出现stack_overflow的啊！！求大神解释</p>
+
+<p>```c++ 怪异的事情 http://blog.rexdf.org MyBlog
+for(int j=0;j&lt;4;j++)scanf(“%d%d”,&amp;x[j],&amp;y[j]);
+//非常奇怪，如果用注释里面的切割方式则一直是stack_overflow 
+//这里是一||一的切割方式，此方式STack_Overflow无数遍，无论hdu还是poj 
+/*SIDE[cnt1++]=Edge(x[0],y[2],y[3],1);
+SIDE[cnt1++]=Edge(x[2],y[2],y[3],-1);
+SIDE[cnt1++]=Edge(x[3],y[2],y[3],1);
+SIDE[cnt1++]=Edge(x[1],y[2],y[3],-1);</p>
+
+<p>SIDE[cnt1++]=Edge(x[0],y[3],y[1],1);
+SIDE[cnt1++]=Edge(x[1],y[3],y[1],-1);
+SIDE[cnt1++]=Edge(x[0],y[0],y[2],1);
+SIDE[cnt1++]=Edge(x[1],y[0],y[2],-1);*/
+//下面是I二I的切割方式 
+SIDE[cnt1++]=Edge(x[0],y[0],y[1],1);
+SIDE[cnt1++]=Edge(x[2],y[0],y[1],-1);</p>
+
+<p>SIDE[cnt1++]=Edge(x[2],y[0],y[2],1);
+SIDE[cnt1++]=Edge(x[2],y[3],y[1],1);</p>
+
+<p>SIDE[cnt1++]=Edge(x[3],y[0],y[2],-1);
+SIDE[cnt1++]=Edge(x[3],y[3],y[1],-1);</p>
+
+<p>SIDE[cnt1++]=Edge(x[3],y[0],y[1],1);
+SIDE[cnt1++]=Edge(x[1],y[0],y[1],-1);
+```</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[线段树起始下标0还是1]]></title>
+    <link href="https://i.rexdf.org/blog/2014/02/11/xian-duan-shu-qi-shi-xia-biao-0huan-shi-1/"/>
+    <updated>2014-02-11T00:02:36+08:00</updated>
+    <id>https://i.rexdf.org/blog/2014/02/11/xian-duan-shu-qi-shi-xia-biao-0huan-shi-1</id>
+    <content type="html"><![CDATA[<p>线段树可以写成结构体的形式，专门用一个元素left和right来存储，这样的写法基本上属于学院派，一些非ACMer会这么写，而理解性上个人觉得并没有什么本质的提升。
+作为ACMer的基础中的基础的数据结构，线段树写法一般是开一个4N的数组，用来存储线段树的各个节点。</p>
+
+<p>线段树的节点：[1,N],[1,N/2],[N/2+1,N],…
+假如N=9，则存在17个节点：[1,9] [1,5] [6,9] [1,3] [4,5] [6,7] [8,9] [1,2] [3,3] [4,4] [5,5] [6,6] [7,7] [8,8] [9,9] [1,1] [2,2]
+可以容易发现线段树是一颗完全树。
+<img src="/images/segmenttree.png" alt="Effect" />
+节点在数组中的编码方案(采用从1开始数组)是：
+0层[1,N]
+1层[1,N/2]、[N/2+1,N]
+2层[1,N/2/2]、[N/2/2+1,N/2]、[N/2+1,(N+N/2+1)/2]、[(N+N/2+1)/2+1,N]
+…
+容易发现正如完全树的定义一样，除了最后一层，第i层有2^i个节点。
+[1 2 4 8 …]
+所以如果加上一个1的话，就可以构成了二次幂的坐标了
+[1 1 2 4 8…]
+加入开始那个1为-1层，那么我们就可以说到第i(i&gt;=0)层，第一个节点的坐标是2^i。
+<img src="/images/segmentreemem.png" alt="Effect" />
+可以试着自己画的一试就知道了，如果第一个节点放到0节点，那么会发现2^i出现的地方是每层的第二个节点，这样便形成了一种数学形式上的复杂，同时也会增大代码的复杂度。
+<img src="/images/segmentree2.png" alt="Effect" /></p>
+]]></content>
+  </entry>
+  
+</feed>

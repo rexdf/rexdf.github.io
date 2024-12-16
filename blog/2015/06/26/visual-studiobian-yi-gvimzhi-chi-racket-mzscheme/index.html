@@ -1,0 +1,303 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<script type="text/javascript">var _speedMark=new Date</script>
+<meta charset="utf-8">
+<title>Visual Studio编译gvim支持Racket(mzscheme) - Rexdf</title>
+<meta name="author" content="Rexdf">
+<meta name="description" content="版本号 mzscheme_base.c scheme_register_tls_space 自己编译Racket 我的修改 后记 在VS编译的64位gvim支持了Python2/3,ruby，perl，tcl，lua之后(参考在Visual Studio编译gvim和ycmd)， &hellip;">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' data: https://hm.baidu.com https://tajs.qq.com https://ssl.google-analytics.com https://static.rexdf.org https://*.disquscdn.com https://rexdf.disqus.com https://api.github.com https://ssl.google-analytics.com https://disqus.com https://analytics.rexdf.net; connect-src 'self' https://static.rexdf.org https://analytics.rexdf.net https://hm.baidu.com; img-src data: https://*; font-src data: https://*; child-src 'none'; style-src 'self' 'unsafe-inline' https://*; frame-src 'self' https://t.rexdf.org http://t.rexdf.org https://rexdf.disqus.com https://disqus.com">
+<link rel="canonical" href="https://i.rexdf.org/blog/2015/06/26/visual-studiobian-yi-gvimzhi-chi-racket-mzscheme">
+<link rel="dns-prefetch" href="https://static.rexdf.org/">
+<link href="/favicon.ico" rel="icon">
+<link id="main-css" href="/stylesheets/screen.css" media="screen,projection" rel="stylesheet" type="text/css" title="pc">
+<link href="/stylesheets/screen_mobile.css" rel="alternate stylesheet" type="text/css" title="mobile">
+<link href="/atom.xml" rel="alternate" title="Rexdf" type="application/atom+xml">
+<script src="/javascripts/libs/jquery.min.js"></script>
+<script src="/javascripts/octopress-rexdf.min.js" type="text/javascript"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+      
+      toggle_theme();
+  });
+</script>
+<script type="text/javascript" async src="https://static.rexdf.org/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript">var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-55590409-1"]),_gaq.push(["_trackPageview"]),function(){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(t,e)}()</script>
+<script>var _hmt=_hmt||[];!function(){var e=document.createElement("script");e.src="//hm.baidu.com/hm.js?32192d95b89fbefa0875c4c95adb1412";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}()</script>
+<script src="/javascripts/fancybox/jquery.fancybox.pack.js"></script>
+<link rel="stylesheet" type="text/css" href="/javascripts/fancybox/jquery.fancybox.css">
+<script type="text/javascript">var _paq=_paq||[];_paq.push(["trackPageView"]),_paq.push(["enableLinkTracking"]),function(){var e="https://analytics.rexdf.net/";_paq.push(["setTrackerUrl",e+"piwik.php"]),_paq.push(["setSiteId","1"]);var a=document,t=a.createElement("script"),p=a.getElementsByTagName("script")[0];t.type="text/javascript",t.async=!0,t.defer=!0,t.src=e+"piwik.js",p.parentNode.insertBefore(t,p)}()</script>
+</head>
+<body class="low-contrast-linen-wptouch-bg">
+<header role="banner"><hgroup>
+<h1 id="header-title"><a href="/">Rexdf</a></h1>
+<h2 id="subtitle">The devil is in the Details.</h2>
+</hgroup>
+</header>
+<nav role="navigation"><ul class="subscription" data-subscription="rss">
+<li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+</ul>
+<form action="https://google.com/search" method="get">
+<fieldset role="search">
+<input type="hidden" name="q" value="site:i.rexdf.org">
+<input class="search" type="text" name="q" results="0" placeholder="Search">
+</fieldset>
+</form>
+<ul class="main-navigation">
+<li><a href="/">Blog</a></li>
+<li><a href="/blog/archives/">Archives</a></li>
+<li><a href="/idea/">Idea</a></li>
+<li><a href="/share/">Share</a></li>
+<li><a href="/books/">Books</a></li>
+<li><a href="/donate/">Donate</a></li>
+<li><a target="_blank" href="https://blog.rexdf.org" style="font-family:Shadows Into Light">Main-Blog</a></li>
+</ul>
+</nav>
+<div id="main">
+<div id="content">
+<div>
+<article class="hentry" role="article">
+<header>
+<h1 class="entry-title">Visual Studio编译gvim支持Racket(mzscheme)</h1>
+<p class="meta">
+<time class="data-article month-06 season-summer" datetime="2015-06-26T01:28:25+08:00" pubdate><span class="month">Jun</span> <span class="day">26th</span> <span class="year">2015</span></time>
+| <a href="#disqus_thread" data-disqus-identifier="https://i.rexdf.org">Comments</a>
+</p>
+</header>
+<div class="entry-content"><ul class="markdown-toc">
+<li><a href="#section">版本号</a></li>
+<li><a href="#mzschemebasec">mzscheme_base.c</a></li>
+<li><a href="#schemeregistertlsspace">scheme_register_tls_space</a></li>
+<li><a href="#racket">自己编译Racket</a></li>
+<li><a href="#section-1">我的修改</a></li>
+<li><a href="#section-2">后记</a></li>
+</ul>
+<p>在VS编译的64位gvim支持了Python2/3,ruby，perl，tcl，lua之后(参考<a href="http://blog.rexdf.org/2015/06/在visual-studio编译gvim和ycmd/" target="_blank">在Visual Studio编译gvim和ycmd</a>)，发现配置里面还有一个叫做MzScheme，而且是在Make_mvc.mak里面，就是说原生是支持VS编译的。那么开启吧。</p>
+<p>先来看效果吧！</p>
+<p><img src="/images/mzscheme_vim.gif" alt="x64-gvim-mzscheme" class="center fancybox"></p>
+<p>这个相对上面几种语言来说，应该是最难编译了。因为mzscheme已经变成Racket了，然而4xx版本以前的只能在原网站下载，新版本的5xx与6xx似乎就完全改成新名字Racket了，已经见不到mzscheme的字样。</p>
+<p>按照我的惯性，首先当然就是下载64位的安装程序racket-6.1.1-x86_64-win32.exe(写本文的时候已经升级到了6.2.2了)，但是几处硬编码patch后，是链接失败。于是我怀疑库的问题，于是我便源码手动编译，然而问题依旧。实际问题是vim最新的源码似乎并没有完全迁移到支持Racket 6xx，反正这里有好几个tricks，我是直接读源码才搞明白怎么回事的。</p>
+<h3 id="section">版本号</h3>
+<p>首先第一个问题是Racket/MzScheme版本是多少6.1.1？611？都是错的。我们来看看<code>PYTHON_VER=27</code> <code>PYTHON3_VER=34</code> <code>PERL_VER=520</code> <code>TCL_VER=86</code> <code>TCL_VER_LONG=8.6</code> <code>RUBY_VER=22 RUBY_VER_LONG=2.2.2</code> <code>LUA_VER=53</code>,似乎直接就会写<code>MZSCHEME_VER=611</code>而通过读<code>vim/src/Make_mvs.mak</code>,很快弄明白了，它就是用来链接库的后缀的,比如Python27.lib，而这个27就被写成了<code>PYTHON_VER=27</code>，以达到代码的通用性。然而我们去看看<code>Racket\lib\msvc</code>，简直“不堪入目”。 6.1.1的版本是如下四个文件</p>
+<p>libracket3m_9xtjc8.exp</p>
+<p>libracket3m_9xtjc8.lib</p>
+<p>mzdyn3m.exp</p>
+<p>mzdyn3m.obj</p>
+<p>当然我立即意识到了，<code>MZSCHEME_VER=3m_9xtjc8</code>，然而问题远没有这么简单。</p>
+<h3 id="mzschemebasec">mzscheme_base.c</h3>
+<p>它有一个依赖</p>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption>makefile<a href="http://blog.rexdf.org">MyBlog</a></figcaption><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div></pre></td><td class="main code"><pre><div class="line makefile"><span class="nf">mzscheme_base.c</span><span class="o">:</span>
+</div><div class="line makefile">	<span class="k">$(</span>MZSCHEME<span class="k">)</span><span class="se">\m</span>zc --c-mods mzscheme_base.c ++lib scheme/base
+</div></pre></td></tr></table></div></figure></notextile></div>
+<p>这句真的是mzscheme的，然而一番搜索，发现现在的应该是<code>raco ctool --c-mods mzscheme_base.c ++lib scheme/base</code>，而实际上在6.1.1上面则应该是<code>raco ctool --c-mods mzscheme_base.c ++lib racket/base</code></p>
+<h3 id="schemeregistertlsspace">scheme_register_tls_space</h3>
+<p>src/if_mzsch.c这个地方总是报链接错误。 于是我来探寻一番，启动VS2013 x64 Native Tools Command Prompt，我们来到Racket\lib\msvc里面。执行<code>dumpbin.exe -headers libracket3m_9xtjc8.lib | findstr /c:" Symbol name :"&gt;libs.txt</code>，然后打开搜索scheme_register_tls_space，确实找不到！</p>
+<p>然后我们来到了Racket/doc/inside/im_memoryalloc.html?q=scheme_register_tls_space#%28cpp._scheme_register_tls_space%29这里，Only available on 32-bit Windows，也就是说64位不能用。然而不让用有啥替代呢？上下翻了下，没有说明。于是不管怎么样先pass过编译再说吧，于是注释掉了</p>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption>diff<a href="http://blog.rexdf.org">MyBlog</a></figcaption><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div><div data-line="5" class="line-number"></div><div data-line="6" class="line-number"></div><div data-line="7" class="line-number"></div><div data-line="8" class="line-number"></div><div data-line="9" class="line-number"></div><div data-line="10" class="line-number"></div><div data-line="11" class="line-number"></div></pre></td><td class="main code"><pre><div class="line diff"><span class="gd">--- a/src/if_mzsch.c    Thu Jun 25 18:36:26 2015 +0200</span>
+</div><div class="line diff"><span class="gi">+++ b/src/if_mzsch.c    Fri Jun 26 01:26:10 2015 +0800</span>
+</div><div class="line diff"><span class="gu">@@ -871,7 +871,7 @@</span>
+</div><div class="line diff"> mzscheme_main(int argc, char** argv)
+</div><div class="line diff"> {
+</div><div class="line diff"> #if MZSCHEME_VERSION_MAJOR &gt;= 500 &amp;&amp; defined(WIN32) &amp;&amp; defined(USE_THREAD_LOCAL)
+</div><div class="line diff"><span class="gd">-    scheme_register_tls_space(&amp;tls_space, 0);</span>
+</div><div class="line diff"><span class="gi">+    //scheme_register_tls_space(&amp;tls_space, 0);</span>
+</div><div class="line diff"> #endif
+</div><div class="line diff"> #ifdef TRAMPOLINED_MZVIM_STARTUP
+</div><div class="line diff">     return scheme_main_setup(TRUE, mzscheme_env_main, argc, argv);
+</div></pre></td></tr></table></div></figure></notextile></div>
+<p>很顺利编译通过了。然而启动gvim执行<code>:mz (+ 1 1)</code>却是程序无响应退出。启动Windbg_x64，先Attach上去，按F5跑起来，然后再次执行<code>:mz (+ 1 1)</code>,于是我发现Windbg_x64也是支持源码级别的调试的了！真是强大。</p>
+<h3 id="racket">自己编译Racket</h3>
+<p>因为3m版本的对C语言支持没有CGC版本的友好，于是手动编译Racket。直接官网下载min版本的源码。然后二话不说执行<code>racket-6.2\src\worksp\build.bat</code>，直接就编译好了最新版本的Racket,对我来说比安装exe真的要容易啊，因为它是pdb调试文件的啊！然后执行<code>raco install</code>安装完整的racket库。</p>
+<h3 id="section-1">我的修改</h3>
+<p>实际上我成功的链接是用CGC版本的，也就是<code>MZSCHEME_VER=xxxxxxx DYNAMIC_MZSCHEME=no</code>为编译参数，同时对源码打如下补丁。其中<code>libintl.dll</code>改成<code>intl.dll</code>是因为我自己用Visual Studio编译64位的gettext的时候发现现在已经官网名字确实已经是<code>intl.dll</code>，而且这个在vim官网的下载页面有明说，它给出方案是把<code>intl.dll</code>改成<code>libintl.dll</code>，而我则是改vim的源码。因为我不需要像vim官网一样顾忌老系统的支持。</p>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption>diff<a href="http://blog.rexdf.org">MyBlog</a></figcaption><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div><div data-line="5" class="line-number"></div><div data-line="6" class="line-number"></div><div data-line="7" class="line-number"></div><div data-line="8" class="line-number"></div><div data-line="9" class="line-number"></div><div data-line="10" class="line-number"></div><div data-line="11" class="line-number"></div><div data-line="12" class="line-number"></div><div data-line="13" class="line-number"></div><div data-line="14" class="line-number"></div><div data-line="15" class="line-number"></div><div data-line="16" class="line-number"></div><div data-line="17" class="line-number"></div><div data-line="18" class="line-number"></div><div data-line="19" class="line-number"></div><div data-line="20" class="line-number"></div><div data-line="21" class="line-number"></div><div data-line="22" class="line-number"></div><div data-line="23" class="line-number"></div><div data-line="24" class="line-number"></div><div data-line="25" class="line-number"></div><div data-line="26" class="line-number"></div><div data-line="27" class="line-number"></div><div data-line="28" class="line-number"></div><div data-line="29" class="line-number"></div><div data-line="30" class="line-number"></div><div data-line="31" class="line-number"></div><div data-line="32" class="line-number"></div><div data-line="33" class="line-number"></div><div data-line="34" class="line-number"></div><div data-line="35" class="line-number"></div><div data-line="36" class="line-number"></div><div data-line="37" class="line-number"></div><div data-line="38" class="line-number"></div><div data-line="39" class="line-number"></div><div data-line="40" class="line-number"></div><div data-line="41" class="line-number"></div><div data-line="42" class="line-number"></div><div data-line="43" class="line-number"></div><div data-line="44" class="line-number"></div><div data-line="45" class="line-number"></div><div data-line="46" class="line-number"></div><div data-line="47" class="line-number"></div><div data-line="48" class="line-number"></div><div data-line="49" class="line-number"></div><div data-line="50" class="line-number"></div><div data-line="51" class="line-number"></div><div data-line="52" class="line-number"></div><div data-line="53" class="line-number"></div><div data-line="54" class="line-number"></div><div data-line="55" class="line-number"></div><div data-line="56" class="line-number"></div><div data-line="57" class="line-number"></div><div data-line="58" class="line-number"></div><div data-line="59" class="line-number"></div><div data-line="60" class="line-number"></div><div data-line="61" class="line-number"></div><div data-line="62" class="line-number"></div><div data-line="63" class="line-number"></div><div data-line="64" class="line-number"></div><div data-line="65" class="line-number"></div><div data-line="66" class="line-number"></div><div data-line="67" class="line-number"></div><div data-line="68" class="line-number"></div><div data-line="69" class="line-number"></div><div data-line="70" class="line-number"></div><div data-line="71" class="line-number"></div><div data-line="72" class="line-number"></div><div data-line="73" class="line-number"></div><div data-line="74" class="line-number"></div><div data-line="75" class="line-number"></div><div data-line="76" class="line-number"></div><div data-line="77" class="line-number"></div><div data-line="78" class="line-number"></div><div data-line="79" class="line-number"></div><div data-line="80" class="line-number"></div><div data-line="81" class="line-number"></div><div data-line="82" class="line-number"></div><div data-line="83" class="line-number"></div><div data-line="84" class="line-number"></div></pre></td><td class="main code"><pre><div class="line diff"><span class="gh">diff -r a5e1a8813a3f src/GvimExt/gvimext.cpp</span>
+</div><div class="line diff"><span class="gd">--- a/src/GvimExt/gvimext.cpp   Thu Jun 25 18:36:26 2015 +0200</span>
+</div><div class="line diff"><span class="gi">+++ b/src/GvimExt/gvimext.cpp   Fri Jun 26 01:26:10 2015 +0800</span>
+</div><div class="line diff"><span class="gu">@@ -157,7 +157,7 @@</span>
+</div><div class="line diff"> # define _(x)  (*dyn_libintl_gettext)(x)
+</div><div class="line diff"> # define VIMPACKAGE &quot;vim&quot;
+</div><div class="line diff"> # ifndef GETTEXT_DLL
+</div><div class="line diff"><span class="gd">-#  define GETTEXT_DLL &quot;libintl.dll&quot;</span>
+</div><div class="line diff"><span class="gi">+#  define GETTEXT_DLL &quot;intl.dll&quot;</span>
+</div><div class="line diff"> # endif
+</div><div class="line diff"> </div><div class="line diff"> // Dummy functions
+</div><div class="line diff"><span class="gh">diff -r a5e1a8813a3f src/Make_mvc.mak</span>
+</div><div class="line diff"><span class="gd">--- a/src/Make_mvc.mak  Thu Jun 25 18:36:26 2015 +0200</span>
+</div><div class="line diff"><span class="gi">+++ b/src/Make_mvc.mak  Fri Jun 26 01:26:10 2015 +0800</span>
+</div><div class="line diff"><span class="gu">@@ -797,7 +797,7 @@</span>
+</div><div class="line diff"> !endif
+</div><div class="line diff"> CFLAGS = $(CFLAGS) -DFEAT_MZSCHEME -I $(MZSCHEME)\include
+</div><div class="line diff"> !if EXIST(&quot;$(MZSCHEME)\collects\scheme\base.ss&quot;) \
+</div><div class="line diff"><span class="gd">-       || EXIST(&quot;$(MZSCHEME)\collects\scheme\base.rkt&quot;)</span>
+</div><div class="line diff"><span class="gi">+       || EXIST(&quot;$(MZSCHEME)\collects\racket\base.rkt&quot;)</span>
+</div><div class="line diff"> # for MzScheme &gt;= 4 we need to include byte code for basic Scheme stuff
+</div><div class="line diff"> MZSCHEME_EXTRA_DEP = mzscheme_base.c
+</div><div class="line diff"> CFLAGS = $(CFLAGS) -DINCLUDE_MZSCHEME_BASE
+</div><div class="line diff"><span class="gu">@@ -1170,7 +1170,7 @@</span>
+</div><div class="line diff">        $(CC) $(CFLAGS) if_mzsch.c \
+</div><div class="line diff">                -DMZSCHEME_COLLECTS=\&quot;$(MZSCHEME:\=\\)\\collects\&quot;
+</div><div class="line diff"> mzscheme_base.c:
+</div><div class="line diff"><span class="gd">-       $(MZSCHEME)\mzc --c-mods mzscheme_base.c ++lib scheme/base</span>
+</div><div class="line diff"><span class="gi">+       $(MZSCHEME)\raco ctool --c-mods mzscheme_base.c ++lib scheme/base</span>
+</div><div class="line diff"> </div><div class="line diff"> $(OUTDIR)/if_python.obj: $(OUTDIR) if_python.c if_py_both.h $(INCL)
+</div><div class="line diff">        $(CC) $(CFLAGS) $(PYTHON_INC) if_python.c
+</div><div class="line diff"><span class="gh">diff -r a5e1a8813a3f src/if_mzsch.c</span>
+</div><div class="line diff"><span class="gd">--- a/src/if_mzsch.c    Thu Jun 25 18:36:26 2015 +0200</span>
+</div><div class="line diff"><span class="gi">+++ b/src/if_mzsch.c    Fri Jun 26 01:26:10 2015 +0800</span>
+</div><div class="line diff"><span class="gu">@@ -871,7 +871,7 @@</span>
+</div><div class="line diff"> mzscheme_main(int argc, char** argv)
+</div><div class="line diff"> {
+</div><div class="line diff"> #if MZSCHEME_VERSION_MAJOR &gt;= 500 &amp;&amp; defined(WIN32) &amp;&amp; defined(USE_THREAD_LOCAL)
+</div><div class="line diff"><span class="gd">-    scheme_register_tls_space(&amp;tls_space, 0);</span>
+</div><div class="line diff"><span class="gi">+    //scheme_register_tls_space(&amp;tls_space, 0);</span>
+</div><div class="line diff"> #endif
+</div><div class="line diff"> #ifdef TRAMPOLINED_MZVIM_STARTUP
+</div><div class="line diff">     return scheme_main_setup(TRUE, mzscheme_env_main, argc, argv);
+</div><div class="line diff"><span class="gh">diff -r a5e1a8813a3f src/os_win32.c</span>
+</div><div class="line diff"><span class="gd">--- a/src/os_win32.c    Thu Jun 25 18:36:26 2015 +0200</span>
+</div><div class="line diff"><span class="gi">+++ b/src/os_win32.c    Fri Jun 26 01:26:10 2015 +0800</span>
+</div><div class="line diff"><span class="gu">@@ -435,7 +435,7 @@</span>
+</div><div class="line diff"> </div><div class="line diff"> #if defined(DYNAMIC_GETTEXT) || defined(PROTO)
+</div><div class="line diff"> # ifndef GETTEXT_DLL
+</div><div class="line diff"><span class="gd">-#  define GETTEXT_DLL &quot;libintl.dll&quot;</span>
+</div><div class="line diff"><span class="gi">+#  define GETTEXT_DLL &quot;intl.dll&quot;</span>
+</div><div class="line diff"> # endif
+</div><div class="line diff"> /* Dummy functions */
+</div><div class="line diff"> static char *null_libintl_gettext(const char *);
+</div><div class="line diff"><span class="gh">diff -r a5e1a8813a3f src/po/Make_mvc.mak</span>
+</div><div class="line diff"><span class="gd">--- a/src/po/Make_mvc.mak       Thu Jun 25 18:36:26 2015 +0200</span>
+</div><div class="line diff"><span class="gi">+++ b/src/po/Make_mvc.mak       Fri Jun 26 01:26:10 2015 +0800</span>
+</div><div class="line diff"><span class="gu">@@ -63,7 +63,7 @@</span>
+</div><div class="line diff"> PACKAGE = vim
+</div><div class="line diff"> </div><div class="line diff"> # Correct the following line for the directory where gettext et al is installed
+</div><div class="line diff"><span class="gd">-GETTEXT_PATH = H:\gettext.0.14.4\bin</span>
+</div><div class="line diff"><span class="gi">+GETTEXT_PATH = gettext-0.14.4\bin</span>
+</div><div class="line diff"> </div><div class="line diff"> MSGFMT = $(GETTEXT_PATH)\msgfmt
+</div><div class="line diff"> XGETTEXT = $(GETTEXT_PATH)\xgettext
+</div><div class="line diff"><span class="gh">diff -r 99fc18dc1ede src/main.c</span>
+</div><div class="line diff"><span class="gd">--- a/src/main.c        Sun Jun 28 19:24:40 2015 +0200</span>
+</div><div class="line diff"><span class="gi">+++ b/src/main.c        Wed Jul 01 15:46:58 2015 +0800</span>
+</div><div class="line diff"><span class="gu">@@ -4014,9 +4014,9 @@</span>
+</div><div class="line diff">      *  endif
+</div><div class="line diff">      */
+</div><div class="line diff">     ga_concat(&amp;ga, (char_u *)&quot;:if !exists(&#39;+acd&#39;)||!&amp;acd|if haslocaldir()|&quot;);
+</div><div class="line diff"><span class="gd">-    ga_concat(&amp;ga, (char_u *)&quot;cd -|lcd -|elseif getcwd() ==# \&quot;&quot;);</span>
+</div><div class="line diff"><span class="gi">+    ga_concat(&amp;ga, (char_u *)&quot;cd -|lcd -|elseif getcwd() ==# \&#39;&quot;);</span>
+</div><div class="line diff">     ga_concat(&amp;ga, cdp);
+</div><div class="line diff"><span class="gd">-    ga_concat(&amp;ga, (char_u *)&quot;\&quot;|cd -|endif|endif&lt;CR&gt;&quot;);</span>
+</div><div class="line diff"><span class="gi">+    ga_concat(&amp;ga, (char_u *)&quot;\&#39;|cd -|endif|endif&lt;CR&gt;&quot;);</span>
+</div><div class="line diff">     vim_free(cdp);
+</div><div class="line diff"> </div><div class="line diff">     if (sendReply)
+</div></pre></td></tr></table></div></figure></notextile></div>
+<h3 id="section-2">后记</h3>
+<p>本文内容已经于7月10日被Bram Moolenaar在7.4.772<a href="https://groups.google.com/forum/#!topic/vim_dev/RMY7Mpl3JTQ" target="_blank">合并</a>到了主分支了。</p>
+</div>
+<footer>
+<p class="meta">
+<span class="byline author vcard">Posted by <span class="fn">Rexdf</span></span>
+<time class="data-article month-06 season-summer" datetime="2015-06-26T01:28:25+08:00" pubdate><span class="month">Jun</span> <span class="day">26th</span> <span class="year">2015</span></time>
+<span class="categories">
+<a class="category" href="/blog/categories/ri-chang/">日常</a>
+</span>
+</p>
+<div class="sharing">
+</div>
+<p class="meta">
+<a class="basic-alignment left" href="/blog/2015/06/14/opensource-projects-build-skills/" title="Previous Post: opensource projects build skills">&laquo; opensource projects build skills</a>
+<a class="basic-alignment right" href="/blog/2015/08/31/vmwarexu-ni-ji-zai-yi-dong-ying-pan-shang-de-wen-ti/" title="Next Post: vmware虚拟机在移动硬盘上的问题">vmware虚拟机在移动硬盘上的问题 &raquo;</a>
+</p>
+</footer>
+</article>
+<section>
+<h1>Comments</h1>
+<div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
+</div>
+<aside class="sidebar">
+<section>
+<h1>Categories</h1>
+<ul id="categories">
+<li class="category"><a href="/blog/categories/acm/">ACM <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/algorithm/">Algorithm <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/assembly/">Assembly <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/cygwin/">Cygwin <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/gnu/">GNU <sup>8</sup></a></li>
+<li class="category"><a href="/blog/categories/math/">Math <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/octopress/">Octopress <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/programming/">Programming <sup>6</sup></a></li>
+<li class="category"><a href="/blog/categories/security/">Security <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sublime/">Sublime <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/synology/">Synology <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sysadmin/">SysAdmin <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/web/">Web <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/windows/">Windows <sup>7</sup></a></li>
+<li class="category"><a href="/blog/categories/proxmox/">proxmox <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/ri-chang/">日常 <sup>37</sup></a></li>
+</ul>
+</section>
+<section>
+<h1>Recent Posts</h1>
+<ul id="recent_posts">
+<li class="post">
+<a href="/blog/2024/12/16/fu-wu-qi-wa-kuang-bing-du-de-cha-sha/">服务器挖矿病毒的查杀</a>
+</li>
+<li class="post">
+<a href="/blog/2021/07/11/apple-m1-bian-yi-tensorflow/">Apple M1 编译tensorflow</a>
+</li>
+<li class="post">
+<a href="/blog/2021/02/27/chromiumbian-ma-qi-wen-ti/">Chromium编码器问题</a>
+</li>
+<li class="post">
+<a href="/blog/2020/12/13/proxmoxbi-ji/">Proxmox笔记</a>
+</li>
+<li class="post">
+<a href="/blog/2020/11/15/lun-yan-du-yu-shen-du/">论广度与深度</a>
+</li>
+</ul>
+</section>
+<section>
+<iframe frameborder="0" scrolling="no" referrerpolicy="unsafe-url" style="width:283px;height:200px" src="https://t.rexdf.org/?m=app&a=showwidget&name=rexdf&type=1&width=283px&height=500px"></iframe>
+</section>
+<section>
+<h1>GitHub Repos</h1>
+<ul id="gh_repos">
+<li class="loading">Status updating...</li>
+</ul>
+<a href="https://github.com/rexdf">@rexdf</a> on GitHub
+<script type="text/javascript">$(document).ready(function(){if(!window.jXHR){var e=document.createElement("script");e.type="text/javascript",e.src="/javascripts/libs/jXHR.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}github.showRepos({user:"rexdf",count:0,skip_forks:!0,target:"#gh_repos"})})</script>
+</section>
+</aside>
+</div>
+</div>
+<footer role="contentinfo"><p>
+<span class="credit">Copyright &copy; 2024 - Rexdf -</span> |
+<span class="credit">Powered by <a name="bottoms" target="_blank" href="http://octopress.org">Octopress</a></span> |
+<span class="credit">Theme by ：<a href="https://blog.rexdf.org/" target="_blank" rel="theme">Rexdf</a></span> |
+<span class="credit">Host by：<a href="https://github.com/" target="_blank" rel="host">Github.com</a></span> |
+<span class="credit">版权声明：<a href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" target="_blank" rel="license">CC BY-NC-SA 3.0</a><img src="https://analytics.rexdf.net/piwik.php?idsite=1&amp;rec=1" style="border:0" alt="" referrerpolicy="no-referrer-when-downgrade"></span>|
+<span class="credit"><a href="/sitemap.xml" rel="sitemap">sitemap</a></span>
+</p>
+<script type="text/javascript" src="https://tajs.qq.com/stats?sId=30296377" charset="UTF-8"></script>
+</footer>
+<script type="text/javascript">var disqus_shortname="rexdf",disqus_identifier="https://i.rexdf.org/blog/2015/06/26/visual-studiobian-yi-gvimzhi-chi-racket-mzscheme/",disqus_url="https://i.rexdf.org/blog/2015/06/26/visual-studiobian-yi-gvimzhi-chi-racket-mzscheme/",disqus_script="embed.js";!function(){var e=document.createElement("script");e.type="text/javascript",e.async=!0,e.src="//"+disqus_shortname+".disqus.com/"+disqus_script,(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(e)}()</script>
+<script type="text/javascript">$(function(){$(".entry-content").each(function(t){var r=t;$(this).find("img.fancybox").each(function(){var t=$(this),a=t.attr("title"),n=t.attr("class");t.removeAttr("class"),t.wrap('<a href="'+this.src+'" class="'+n+'" rel="gallery'+r+'" />'),""!=a&&t.parent().attr("title",a)})}),$(".fancybox").fancybox()})</script>
+</body>
+</html>

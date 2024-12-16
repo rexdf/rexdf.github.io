@@ -1,0 +1,394 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<script type="text/javascript">var _speedMark=new Date</script>
+<meta charset="utf-8">
+<title>Rexdf</title>
+<meta name="author" content="Rexdf">
+<meta name="description" content="很简单的一个插件，现在支持汉化Sublime Text2，Sublime Text3。全部系统Win64、Win32，Linux64，Linux32，OSX等，可以随意来回切换简体中文、繁体中文、日语、英语，无需重启SublimeText。 ">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' data: https://hm.baidu.com https://tajs.qq.com https://ssl.google-analytics.com https://static.rexdf.org https://*.disquscdn.com https://rexdf.disqus.com https://api.github.com https://ssl.google-analytics.com https://disqus.com https://analytics.rexdf.net; connect-src 'self' https://static.rexdf.org https://analytics.rexdf.net https://hm.baidu.com; img-src data: https://*; font-src data: https://*; child-src 'none'; style-src 'self' 'unsafe-inline' https://*; frame-src 'self' https://t.rexdf.org http://t.rexdf.org https://rexdf.disqus.com https://disqus.com">
+<link rel="canonical" href="https://i.rexdf.org/blog/page/19">
+<link rel="dns-prefetch" href="https://static.rexdf.org/">
+<link href="/favicon.ico" rel="icon">
+<link id="main-css" href="/stylesheets/screen.css" media="screen,projection" rel="stylesheet" type="text/css" title="pc">
+<link href="/stylesheets/screen_mobile.css" rel="alternate stylesheet" type="text/css" title="mobile">
+<link href="/atom.xml" rel="alternate" title="Rexdf" type="application/atom+xml">
+<script src="/javascripts/libs/jquery.min.js"></script>
+<script src="/javascripts/octopress-rexdf.min.js" type="text/javascript"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+      
+      toggle_theme();
+  });
+</script>
+<script type="text/javascript" async src="https://static.rexdf.org/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript">var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-55590409-1"]),_gaq.push(["_trackPageview"]),function(){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(t,e)}()</script>
+<script>var _hmt=_hmt||[];!function(){var e=document.createElement("script");e.src="//hm.baidu.com/hm.js?32192d95b89fbefa0875c4c95adb1412";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}()</script>
+<script src="/javascripts/fancybox/jquery.fancybox.pack.js"></script>
+<link rel="stylesheet" type="text/css" href="/javascripts/fancybox/jquery.fancybox.css">
+<script type="text/javascript">var _paq=_paq||[];_paq.push(["trackPageView"]),_paq.push(["enableLinkTracking"]),function(){var e="https://analytics.rexdf.net/";_paq.push(["setTrackerUrl",e+"piwik.php"]),_paq.push(["setSiteId","1"]);var a=document,t=a.createElement("script"),p=a.getElementsByTagName("script")[0];t.type="text/javascript",t.async=!0,t.defer=!0,t.src=e+"piwik.js",p.parentNode.insertBefore(t,p)}()</script>
+</head>
+<body class="low-contrast-linen-wptouch-bg">
+<header role="banner"><hgroup>
+<h1 id="header-title"><a href="/">Rexdf</a></h1>
+<h2 id="subtitle">The devil is in the Details.</h2>
+</hgroup>
+</header>
+<nav role="navigation"><ul class="subscription" data-subscription="rss">
+<li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+</ul>
+<form action="https://google.com/search" method="get">
+<fieldset role="search">
+<input type="hidden" name="q" value="site:i.rexdf.org">
+<input class="search" type="text" name="q" results="0" placeholder="Search">
+</fieldset>
+</form>
+<ul class="main-navigation">
+<li><a href="/">Blog</a></li>
+<li><a href="/blog/archives/">Archives</a></li>
+<li><a href="/idea/">Idea</a></li>
+<li><a href="/share/">Share</a></li>
+<li><a href="/books/">Books</a></li>
+<li><a href="/donate/">Donate</a></li>
+<li><a target="_blank" href="https://blog.rexdf.org" style="font-family:Shadows Into Light">Main-Blog</a></li>
+</ul>
+</nav>
+<div id="main">
+<div id="content">
+<div class="blog-index">
+<article>
+<header>
+<h1 class="entry-title">[置顶]<a href="/blog/2015/05/15/fa-bu-yi-ge-sublimeyi-hua-cha-jian/">发布一个sublime汉化插件</a></h1>
+<p class="meta">
+<time class="data-article month-05 season-spring" datetime="2015-05-15T11:19:01+08:00" pubdate><span class="month">May</span> <span class="day">15th</span> <span class="year">2015</span></time>
+| <a href="/blog/2015/05/15/fa-bu-yi-ge-sublimeyi-hua-cha-jian/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2015/05/15/fa-bu-yi-ge-sublimeyi-hua-cha-jian/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>很简单的一个插件，现在支持汉化Sublime Text2，Sublime Text3。全部系统Win64、Win32，Linux64，Linux32，OSX等，可以随意来回切换简体中文、繁体中文、日语、英语，无需重启SublimeText。</p>
+</div>
+<footer>
+<a rel="full-article" href="/blog/2015/05/15/fa-bu-yi-ge-sublimeyi-hua-cha-jian/">Read on &rarr;</a>
+</footer>
+</article>
+<article>
+<header>
+<h1 class="entry-title"><a href="/blog/2011/12/17/Vim-de-hang-hao-yu-fa-xian-shi-deng-she-zhi-ji-vimrc-wen-jian-de-pei-zhi/">Vim的行号、语法显示等设置，即.vimrc文件的配置</a></h1>
+<p class="meta">
+<time class="data-article month-12 season-winter" datetime="2011-12-17T20:51:00+08:00" pubdate><span class="month">Dec</span> <span class="day">17th</span> <span class="year">2011</span></time>
+| <a href="/blog/2011/12/17/Vim-de-hang-hao-yu-fa-xian-shi-deng-she-zhi-ji-vimrc-wen-jian-de-pei-zhi/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2011/12/17/Vim-de-hang-hao-yu-fa-xian-shi-deng-she-zhi-ji-vimrc-wen-jian-de-pei-zhi/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>在终端下使用vim进行编辑时，默认情况下，编辑的界面上是没有显示行号、语法高亮度显示、智能缩进等功能的。为了更好的在vim下进行工作，需要手动设置一个配置文件：.vimrc。 在启动vim时，当前用户根目录下的.vimrc文件会被自动读取，该文件可以包含一些设置甚至脚本，所以，一般情况下把.vimrc文件创建在当前用户的根目录下比较方便，即创建的命令为： $vi ~/.vimrc 设置完后 $:x 或者 $wq 进行保存退出即可。 下面给出一个例子，其中列出了经常用到的设置，详细的设置信息请参照参考资料： “双引号开始的行为注释行，下同 “去掉讨厌的有关vi一致性模式，避免以前版本的一些bug和局限 set nocompatible “显示行号 set nummber “检测文件的类型 filetype on “记录历史的行数 set history=1000 “背景使用黑色 set background=dark “语法高亮度显示 syntax on “下面两行在进行编写代码时，在格式对起上很有用； “第一行，vim使用自动对起，也就是把当前行的对起格式应用到下一行； “第二行，依据上面的对起格式，智能的选择对起方式，对于类似C语言编 “写上很有用 set autoindent set smartindent “第一行设置tab键为4个空格，第二行设置当行之间交错时使用4个空格 set tabstop=4 set shiftwidth=4 “设置匹配模式，类似当输入一个左括号时会匹配相应的那个右括号 set showmatch “去除vim的GUI版本中的toolbar set guioptions-=T “当vim进行编辑时，如果命令错误，会发出一个响声，该设置去掉响声 set vb t_vb= “在编辑过程中，在右下角显示光标位置的状态行 set ruler “默认情况下，寻找匹配是高亮度显示的，该设置关闭高亮显示 set nohls “查询时非常方便，如要查找book单词，当输入到/b时，会自动找到第一 “个b开头的单词，当输入到/bo时，会自动找到第一个bo开头的单词，依 “次类推，进行查找时，使用此设置会快速找到答案，当你找要匹配的单词 “时，别忘记回车 set incsearch “修改一个文件后，自动进行备份，备份的文件名为原文件名加“~“后缀 if has(“vms”) set nobackup else set backup endif 如果去除注释后，一个完整的.vimrc配置信息如下所示： set nocompatible set nummber filetype on set history=1000 set background=dark syntax on set autoindent set smartindent set tabstop=4 set shiftwidth=4 set showmatch set guioptions-=T set vb t_vb= set ruler set nohls set incsearch if has(“vms”) set nobackup else set backup endif 如果设置完后，发现功能没有起作用，检查一下系统下是否安装了vim-enhanced包，查询命令为： $rpm –q vim-enhanced 参考资料： 1．vim的完全翻译版在下面连接处可以找到 <a href="http://vimcdoc.sourceforge.net/">http://vimcdoc.sourceforge.net/</a> 可以下栽其中的一个PDF版本，里面介绍的很详细，强烈推荐：） 2．更详细的vim信息可以访问： <a href="http://www.vim.org/">http://www.vim.org/</a> 3．一个带有英文注释的.vimrc例子 <a href="http://www.vi-improved.org/vimrc.php">http://www.vi-improved.org/vimrc.php</a>(王朝网络 wangchao.net.cn)</p>
+</div>
+</article>
+<article>
+<header>
+<h1 class="entry-title"><a href="/blog/2011/12/17/gdb-diao-shi-shi-No-symbol-var-defined-in-current-context-ju-bu-bian-liang-bu-ke-cha-kan-wen-ti/">gdb调试时No Symbol Var Defined in Current Context，局部变量不可查看问题</a></h1>
+<p class="meta">
+<time class="data-article month-12 season-winter" datetime="2011-12-17T20:35:00+08:00" pubdate><span class="month">Dec</span> <span class="day">17th</span> <span class="year">2011</span></time>
+| <a href="/blog/2011/12/17/gdb-diao-shi-shi-No-symbol-var-defined-in-current-context-ju-bu-bian-liang-bu-ke-cha-kan-wen-ti/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2011/12/17/gdb-diao-shi-shi-No-symbol-var-defined-in-current-context-ju-bu-bian-liang-bu-ke-cha-kan-wen-ti/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>调试程序时，在gdb内p var，会提示 No symbol “var” in current context. 即使没有使用任何编译优化选项，仍然不能查看，放狗搜了一下，可能是这些变量被优化到寄存器中，gdb无法读取。 解决方案： 在编译是加入 ‘-gstabs+’  选项，比如: g++ -g -Wall  -gstabs+ -o main.o main.cpp gdb main，就可以查看局部变量了。</p>
+</div>
+</article>
+<article>
+<header>
+<h1 class="entry-title"><a href="/blog/2011/12/12/jin-shan-WPS-gao-xiao-shi-pin-liang-dian-zong-shi-zai-zui-hou/">金山WPS搞笑视频，亮点总是在最后</a></h1>
+<p class="meta">
+<time class="data-article month-12 season-winter" datetime="2011-12-12T21:47:00+08:00" pubdate><span class="month">Dec</span> <span class="day">12th</span> <span class="year">2011</span></time>
+| <a href="/blog/2011/12/12/jin-shan-WPS-gao-xiao-shi-pin-liang-dian-zong-shi-zai-zui-hou/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2011/12/12/jin-shan-WPS-gao-xiao-shi-pin-liang-dian-zong-shi-zai-zui-hou/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>[youku id=”XMzI1NTQyNTIw”]</p>
+</div>
+</article>
+<article>
+<header>
+<h1 class="entry-title"><a href="/blog/2011/12/11/windows7-windowsXP-you-jian-xin-jian-cai-dan-pai-xu/">windows7/windowsXP 右键新建菜单排序</a></h1>
+<p class="meta">
+<time class="data-article month-12 season-winter" datetime="2011-12-11T19:16:00+08:00" pubdate><span class="month">Dec</span> <span class="day">11th</span> <span class="year">2011</span></time>
+| <a href="/blog/2011/12/11/windows7-windowsXP-you-jian-xin-jian-cai-dan-pai-xu/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2011/12/11/windows7-windowsXP-you-jian-xin-jian-cai-dan-pai-xu/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>win7 右键-“新建”菜单的排序确实很让人闹心，因为是默认按照文件扩展名的顺序进行排列的，所以，导致新建菜单的顺序看起来很乱，虽然可以通过修改注册表 HKEY_CURRENT_USER Software Microsoft Windows CurrentVersion Explorer Discardable PostSetupShell NewClasses 的方法进行修改，但是当多刷新几次之后，发现注册表的值又被系统修改回来了。 有没有办法彻底的解决这个问题？答案是肯定的，那就是-权限。</p>
+</div>
+</article>
+<article>
+<header>
+<h1 class="entry-title"><a href="/blog/2011/12/09/lu-yin-ben-shen-mei-sha-ke-xiao-jia-shang-zi-mu-xiao-can-wo-le/">录音本身没啥可笑，加上字幕笑惨我了。。</a></h1>
+<p class="meta">
+<time class="data-article month-12 season-winter" datetime="2011-12-09T18:44:00+08:00" pubdate><span class="month">Dec</span> <span class="day">9th</span> <span class="year">2011</span></time>
+| <a href="/blog/2011/12/09/lu-yin-ben-shen-mei-sha-ke-xiao-jia-shang-zi-mu-xiao-can-wo-le/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2011/12/09/lu-yin-ben-shen-mei-sha-ke-xiao-jia-shang-zi-mu-xiao-can-wo-le/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>[youku id=”XMzI5OTc0MTI0”]</p>
+<h2 id="comments">Comments</h2>
+<p><strong><a href="#45" title="2011-12-11 16:19:00">rexdf</a>:</strong> Mac</p>
+</div>
+</article>
+<article>
+<header>
+<h1 class="entry-title"><a href="/blog/2011/12/07/Matlab-Mathematica/">Matlab&Mathematica</a></h1>
+<p class="meta">
+<time class="data-article month-12 season-winter" datetime="2011-12-07T22:31:00+08:00" pubdate><span class="month">Dec</span> <span class="day">7th</span> <span class="year">2011</span></time>
+| <a href="/blog/2011/12/07/Matlab-Mathematica/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2011/12/07/Matlab-Mathematica/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>一、常用对象操作：除了一般windows窗口的常用功能键外。 1、!dir 可以查看当前工作目录的文件。   !dir&amp; 可以在dos状态下查看。 2、who  可以查看当前工作空间变量名，    whos 可以查看变量名细节。 3、功能键： 功能键             快捷键           说明 方向上键           Ctrl+P          返回前一行输入 方向下键           Ctrl+N          返回下一行输入 方向左键           Ctrl+B          光标向后移一个字符 方向右键           Ctrl+F          光标向前移一个字符 Ctrl+方向右键      Ctrl+R          光标向右移一个字符 Ctrl+方向左键      Ctrl+L          光标向左移一个字符 home              Ctrl+A          光标移到行首 End               Ctrl+E          光标移到行尾 Esc               Ctrl+U          清除一行 Del               Ctrl+D          清除光标所在的字符 Backspace         Ctrl+H          删除光标前一个字符                              Ctrl+K          删除到行尾 Ctrl+C          中断正在执行的命令 4、clc可以命令窗口显示的内容，但并不清除工作空间。 二、函数及运算 1、运算符： ＋：加，  －：减，  *：乘，  /： 除， ：左除  ^：  幂，‘：复数的共轭转置， （）：制定运算顺序。 2、常用函数表： sin( )   正弦（变量为弧度） Cot( )   余切（变量为弧度） sind( )  正弦（变量为度数） Cotd( )  余切（变量为度数） asin( )  反正弦（返回弧度） acot( )  反余切（返回弧度） Asind( ) 反正弦（返回度数） acotd( ) 反余切（返回度数） cos( )   余弦（变量为弧度） exp( )   指数 cosd( )  余弦（变量为度数） log( )   对数 acos( )  余正弦（返回弧度） log10( ) 以10为底对数 acosd( ) 余正弦（返回度数） sqrt( )  开方 tan( )   正切（变量为弧度） realsqrt( ) 返回非负根 tand( )  正切（变量为度数） abs( )   取绝对值 atan( )  反正切（返回弧度） angle( ) 返回复数的相位角 atand( ) 反正切（返回度数） mod(x,y) 返回x/y的余数 sum(  )  向量元素求和 3、其余函数可以用help elfun和help specfun命令获得。 4、常用常数的值： pi            3.1415926……. realmin       最小浮点数，2^-1022 i             虚数单位 realmax       最大浮点数，（2－eps）2^1022 j             虚数单位 Inf           无限值 eps           浮点相对经度＝2^-52 NaN           空值 三、数组和矩阵： 1、构造数组的方法：增量发和linspace(first,last,num)first和last为起始和终止数，num为需要的数组元素个数。 2、构造矩阵的方法：可以直接用[ ]来输入数组，也可以用以下提供的函数来生成矩阵。 ones( )   创建一个所有元素都为1的矩阵，其中可以制定维数，1，2….个变量 zeros()   创建一个所有元素都为0的矩阵 eye()     创建对角元素为1，其他元素为0的矩阵 diag()    根据向量创建对角矩阵，即以向量的元素为对角元素 magic()   创建魔方矩阵 rand()    创建随机矩阵，服从均匀分布 randn()   创建随机矩阵，服从正态分布 randperm()         创建随机行向量 horcat             C=[A,B]，水平聚合矩阵，还可以用cat(1,A,B) vercat             C=[A;B]，垂直聚合矩阵, 还可以用cat(2,A,B) repmat(M,v,h)      将矩阵M在垂直方向上聚合v次，在水平方向上聚合h次 blkdiag（A，B）     以A，和B为块创建块对角矩阵 length             返回矩阵最长维的的长度 ndims              返回维数 numel              返回矩阵元素个数 size               返回每一维的长度，[rows,cols]=size(A) reshape            重塑矩阵，reshape(A,2,6),将A变为2×6的矩阵，按列排列。 rot90              旋转矩阵90度，逆时针方向 fliplr             沿垂轴翻转矩阵 flipud             沿水平轴翻转矩阵 transpose          沿主对角线翻转矩阵 ctranspose         转置矩阵，也可用A’或A.’，这仅当矩阵为复数矩阵时才有区别 inv                矩阵的逆 det                矩阵的行列式值 trace              矩阵对角元素的和 norm               矩阵或矢量的范数，norm（a，1），norm（a，Inf）……. normest            估计矩阵的最大范数矢量 chol               矩阵的cholesky分解 cholinc            不完全cholesky分解 lu                 LU分解 luinc              不完全LU分解 qr                 正交分解 kron（A，B）        A为m×n，B为p×q，则生成mp×nq的矩阵，A的每一个元素都会乘上B，并占据p×q大小的空间 rank               求出矩阵的刺 pinv               求伪逆矩阵 A^p                对A进行操作 A.^P               对A中的每一个元素进行操作 四、数值计算 1、线性方程组求解 （1）AX=B 的解可以用X＝AB求。XA=B的解可以用X= A/B求。如果A是m×n的矩阵，当m＝n时可以找到唯一解，m&lt;n，不定解，解中至多有m个非零元素。如果m&gt;n，超定系统，至少找到一组 解。如果A是奇异的，且AX=B有解，可以用X＝pinv（A）×B返回最小二乘解 （2）AX=b,  A＝L×U，[L,U]=lu(A),  X=U(Lb),即用LU分解求解。 （3）QR（正交）分解是将一矩阵表示为一正交矩阵和一上三角矩阵之积，A＝Q×R[Q,R]=chol(A),  X=Q(Ub) （4）cholesky分解类似。 2、特征值 D＝eig（A）返回A的所有特征值组成的矩阵。[V,D]=eig(A),还返回特征向量矩阵。 3、A＝U×S×UT，[U,S]=schur(A).其中S的对角线元素为A的特征值。 4、多项式Matlab里面的多项式是以向量来表示的，其具体操作函数如下： conv           多项式的乘法 deconv         多项式的除法，【a，b】＝deconv（s），返回商和余数 poly           求多项式的系数（由已知根求多项式的系数） polyeig        求多项式的特征值 Polyfit（x，y，n）        多项式的曲线拟合，x，y为被拟合的向量，n为拟合多项式阶数。 polyder        求多项式的一阶导数，polyder（a，b）返回ab的导数 [a,b]＝polyder（a，b）返回a/b的导数。 polyint        多项式的积分 polyval        求多项式的值 polyvalm       以矩阵为变量求多项式的值 residue        部分分式展开式 roots          求多项式的根（返回所有根组成的向量） 注：用ploy（A）求出矩阵的特征多项式，然后再求其根，即为矩阵的特征值。 5、插值常用的插值函数如下： griddata       数据网格化合曲面拟合 Griddata3      三维数据网格化合超曲面拟合 interp1        一维插值（yi=interp1(x,y,xi,’method’)Method=nearest/linear/spline/pchip/cubic Interp2        二维插值zi=interp1(x,y,z,xi,yi’method’),bilinear Interp3        三维插值 interpft       用快速傅立叶变换进行一维插值，help fft。 mkpp           使用分段多项式 spline         三次样条插值 pchip          分段hermit插值 6、函数最值的求解</p>
+</div>
+</article>
+<article>
+<header>
+<h1 class="entry-title"><a href="/blog/2011/12/02/IPv6-Apache-yu-ming-DNS-AAAA-pei-zhi/">IPv6 Apache 域名DNS AAAA配置</a></h1>
+<p class="meta">
+<time class="data-article month-12 season-winter" datetime="2011-12-02T22:34:00+08:00" pubdate><span class="month">Dec</span> <span class="day">2nd</span> <span class="year">2011</span></time>
+| <a href="/blog/2011/12/02/IPv6-Apache-yu-ming-DNS-AAAA-pei-zhi/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2011/12/02/IPv6-Apache-yu-ming-DNS-AAAA-pei-zhi/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><h2 id="ipv6-">IPv6 长度：</h2>
+<p>IPv6是128bit，和MD5一样，对每个IPv6进行MD5，会出现什么情况？MD5用完了？</p>
+<h2 id="ipv6-dns">IPv6 DNS：</h2>
+<pre><code>未知国家
+2001:470:20::2
+加拿大
+2001:478:6:0:230:48ff:fe22:6a29
+英国
+2001:7fd::1
+日本
+2001:dc4::1
+</code></pre>
+<h2 id="linuxipv6-dns">Linux优先使用IPv6 DNS：</h2>
+<pre><code>sudo vi /etc/resolv.conf
+</code></pre>
+<h2 id="linux-ping-ipv6">Linux命令 ping IPv6：</h2>
+<p>Linux下ping IPv6需要使用ping6，如果使用ping，则会提示ping: unknown host。</p>
+<pre><code>ping6 ipv6.google.com
+ping6 2001:470:20::2
+PING 2001:470:20::2(2001:470:20::2) 56 data bytes
+64 bytes from 2001:470:20::2: icmp_seq=11 ttl=60 time=714 ms
+64 bytes from 2001:470:20::2: icmp_seq=12 ttl=60 time=4.65 ms
+ping 2001:470:20::2
+ping: unknown host 2001:470:20::2
+</code></pre>
+<h2 id="windows-ping-ipv6">Windows命令 ping IPv6：</h2>
+<pre><code>ping -6 ipv6.google.com
+</code></pre>
+<h2 id="linux-wget-ipv6">Linux命令 wget IPv6：</h2>
+<pre><code>wget -6 http://ipv6.google.com
+</code></pre>
+<h2 id="linuxwindowsaaaaipv6">Linux和Windows命令查询域名AAAA记录，是否支持IPv6：</h2>
+<p>Linux和Windows都是使用nslookup程序查询dns。</p>
+<pre><code>$ nslookup
+&gt; set querytype=aaaa
+&gt; ipv6.google.com
+Server:		8.8.8.8
+Address:	8.8.8.8#53
+
+Non-authoritative answer:
+ipv6.google.com	canonical name = ipv6.l.google.com.
+ipv6.l.google.com	has AAAA address 2404:6800:8005::6a
+</code></pre>
+<p>由此可知，IPv4的DNS也能返回域名的IPv6记录，即AAAA记录。</p>
+<pre><code>$ nslookup
+&gt; set querytype=aaaa
+&gt; google.com
+Server:		2001:470:20::2
+Address:	2001:470:20::2#53
+
+Non-authoritative answer:
+google.com	has AAAA address 2001:4860:800b::69
+</code></pre>
+<h2 id="ipv6ipv4">配置域名同时支持IPv6和IPv4：</h2>
+<p>领先的域名注册商同时支持IPv6和IPv4，比如godaddy、namesilo，在注册商这里购买了域名之后，登录到域名管理界面，可以设置A记录和AAAA记录。 假设购买了example.com，希望example.com同时支持IPv6和IPv4，则添加一条A记录指向192.0.32.10，添加一条AAAA记录，指向2620:0:2d0:200::10，等待一段时间即可生效（等待时间与TTL有关）。结果如下：</p>
+<pre><code>$ nslookup
+&gt; example.com
+Server:		8.8.8.8
+Address:	8.8.8.8#53
+
+Non-authoritative answer:
+Name:	example.com
+Address: 192.0.32.10
+&gt; set querytype=aaaa
+&gt; example.com
+Server:		8.8.8.8
+Address:	8.8.8.8#53
+
+Non-authoritative answer:
+example.com	has AAAA address 2620:0:2d0:200::10
+</code></pre>
+<h2 id="ipv6">配置域名只支持IPv6：</h2>
+<p>假设购买了google.com，希望ipv6.google.com只支持IPv6，不支持IPv4，则不添加A记录，只添加一条AAAA记录，指向2404:6800:8005::68。结果如下：</p>
+<pre><code>$ nslookup
+&gt; ipv6.google.com
+Server:		8.8.8.8
+Address:	8.8.8.8#53
+
+Non-authoritative answer:
+ipv6.google.com	canonical name = ipv6.l.google.com.
+&gt; ipv6.l.google.com
+Server:		8.8.8.8
+Address:	8.8.8.8#53
+
+Non-authoritative answer:
+*** Can't find ipv6.l.google.com: No answer
+&gt; set querytype=aaaa
+&gt; ipv6.google.com
+Server:		8.8.8.8
+Address:	8.8.8.8#53
+
+Non-authoritative answer:
+ipv6.google.com	canonical name = ipv6.l.google.com.
+ipv6.l.google.com	has AAAA address 2404:6800:8005::68
+</code></pre>
+<h2 id="apache-httpdipv6">Apache httpd配置IPv6：</h2>
+<p>Apache httpd配置支持IPv6，需要给IP带上方括号，参考：<a href="http://lamp.linux.gov.cn/Apache/ApacheMenu/mod/core.html#virtualhost">http://lamp.linux.gov.cn/Apache/ApacheMenu/mod/core.html#virtualhost</a></p>
+<pre><code>&lt;VirtualHost [2404:6800:8005::68]:80&gt;
+ServerAdmin webmaster@ipv6.google.com
+DocumentRoot /var/www/html/ipv6.google.com/
+ServerName ipv6.google.com
+&lt;/VirtualHost&gt;
+</code></pre>
+<h2 id="ipv4ipv6">IPv4内网用户如何使用IPv6：</h2>
+<p>安装Teredo隧道即可。访问IPv6网站通过Teredo服务器转发，速度受影响。 注意： Teredo隧道与PPPOE冲突，解决方法：使用路由拨号，本机只有一个本地连接即可。 Teredo隧道与多网卡冲突，比如virtualbox的虚拟网卡，解决办法：禁用别的网卡，只留一个本地连接。 参考： 在IPv4网络下接入IPv6网络的方法：<a href="http://www.ipv6bbs.cn/thread-151-1-1.html">http://www.ipv6bbs.cn/thread-151-1-1.html</a> 资料（你懂的）：<a href="http://felixcat.net/2010/04/install-teredo-ipv6/">http://felixcat.net/2010/04/install-teredo-ipv6/</a> http://www.ipv6home.cn/html/63/t-17563.html Win 7下用Teredo隧道接入IPv6后，操作系统默认还是直接走IPv4：<a href="http://social.technet.microsoft.com/Forums/zh-CN/window7betacn/thread/ae1f7d47-aa19-493d-a10d-f8032441a147/">http://social.technet.microsoft.com/Forums/zh-CN/window7betacn/thread/ae1f7d47-aa19-493d-a10d-f8032441a147/</a> teredo IPv6 配置hosts后无法使用gtalk客户端（解决办法：使用Pidgin）：<a href="http://www.google.com/support/forum/p/other/thread?tid=4f65f26a7da1785f&amp;hl=zh-CN">http://www.google.com/support/forum/p/other/thread?tid=4f65f26a7da1785f&amp;hl=zh-CN</a></p>
+<h2 id="ipv4ipv6-1">IPv4外网用户如何使用IPv6：</h2>
+<p>安装isatap隧道即可。访问IPv6网站通过isatap网关转发，速度受影响。</p>
+<h2 id="ipv6-1">如何设置浏览器默认使用IPv6：</h2>
+<p>1、真实IPv4 + 真实IPv6 操作系统会优先使用IPv6（未测试）。 2、真实IPv4内网+ IPv6 Teredo隧道 当域名同时有A和AAAA记录时，Windows 7、Ubuntu优先使用真实IPv4内网，所以需要修改hosts加入IPv6。 当域名只有AAAA记录时，Ubuntu可直接访问（比如ipv6.google.com），不用配hosts。 2、真实IPv4外网+ IPv6 isatap隧道 XP可以直接访问ipv6.google.com，不能直接访问docs.google.com，需要配hosts。</p>
+<h2 id="ipv6-2">IPv6路由器：</h2>
+<p>D-Link一百元的家用路由器国外版本支持IPv6：<a href="http://www.dlink.com/ipv6">http://www.dlink.com/ipv6</a>，比如DIR-615，截图在最后。但国内版本不知是否支持IPv6，京东客服说不支持。 TP-Link家用路由器不支持IPv6。 是不是刷了dd-wrt完整版操作系统的路由器都支持IPv6，还待确认。</p>
+<h2 id="section">参考资料：</h2>
+<p>测试浏览器是否支持IPv6：<a href="http://test-ipv6.com/">http://test-ipv6.com/</a> 测试浏览器是否默认使用IPv6：<a href="http://www.kame.net/">http://www.kame.net/</a> 火狐扩展，显示正在访问的网站IP，可以看出是否是IPv6：<a href="https://addons.mozilla.org/zh-CN/firefox/addon/worldip-flag-and-datacenter-pi/">https://addons.mozilla.org/zh-CN/firefox/addon/worldip-flag-and-datacenter-pi/</a> Windows 7 in NAT Lan teredo： <img src="/wp-content/uploads/2011/12/2011050819190311.png" alt=""> <img src="http://blog.rexdf.org/wp-content/uploads/2011/12/2011041602021396.png" alt=""> Ubuntu 11.04 in NAT Lan teredo： <img src="http://blog.rexdf.org/wp-content/uploads/2011/12/2011041514201525.png" alt=""> D-Link DIR-615 ipv6： <img src="http://blog.rexdf.org/wp-content/uploads/2011/12/2011041602000318.jpg" alt=""></p>
+<h2 id="comments">Comments</h2>
+<p><strong><a href="#44" title="2011-12-03 19:18:22">rexdf</a>:</strong> 测试下 头像</p>
+</div>
+</article>
+<article>
+<header>
+<h1 class="entry-title"><a href="/blog/2011/12/02/ri-zhi-lu-shen-me-shi-yu-ming-jie-xi-AAAA-ji-lu-TXT-ji-lu/">日知录：什么是域名解析AAAA记录、TXT记录？</a></h1>
+<p class="meta">
+<time class="data-article month-12 season-winter" datetime="2011-12-02T21:48:00+08:00" pubdate><span class="month">Dec</span> <span class="day">2nd</span> <span class="year">2011</span></time>
+| <a href="/blog/2011/12/02/ri-zhi-lu-shen-me-shi-yu-ming-jie-xi-AAAA-ji-lu-TXT-ji-lu/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2011/12/02/ri-zhi-lu-shen-me-shi-yu-ming-jie-xi-AAAA-ji-lu-TXT-ji-lu/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><h2 id="aaaaipv6-ipv4-a-ipv6-ipv6"><strong>AAAA记录</strong>和IPv6相关，是通过将 IPv4 A记录的简单扩展得到合法的 IPv6 地址，它因此不能完成支持IPv6的层次性等特性。</h2>
+<p>什么是域名<strong>TXT记录</strong>？ 用户可点击“生成简单的SPF信息”来生成简单的SPF信息 TXT 记录，一般指为某个主机名或域名设置的说明，如： admin IN TXT “管理员, 电话： 13901234567” mail IN TXT “邮件主机, 存放在xxx , 管理人：AAA” Jim IN TXT “contact: <a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#097;&#098;&#099;&#064;&#109;&#097;&#105;&#108;&#115;&#101;&#114;&#118;&#101;&#114;&#046;&#099;&#111;&#109;">&#097;&#098;&#099;&#064;&#109;&#097;&#105;&#108;&#115;&#101;&#114;&#118;&#101;&#114;&#046;&#099;&#111;&#109;</a>” 也就是说您可以设置 TXT ，以便使别人联系到您 设置TXT的主要目的是，向hotmail这样的邮局开始过滤掉没有做SPF的邮件，用户可以为域名设置含有SPF信息的TXT记录，避免邮件无法正常收发 SPF信息：就是Sender Policy Framework。SPF是跟DNS相关的一项技术，它的内容写在DNS的txt类型的记录里面。mx记录的作用是给寄信者指明某个域名的邮件服务器有哪些。SPF的作用跟mx相反，它向收信者表明，哪些邮件服务器是经过某个域名认可会发送邮件的。SPF的作用主要是反垃圾邮件，主要针对那些发信人伪造域名的垃圾邮件。例如：当邮件服务器收到自称发件人是spam@gmail.com的邮件，那么到底它是不是真的gmail.com的邮件服务器发过来的呢？那么我们可以查询gmail.com的SPF记录SPF可以防止别人伪造你来发邮件。</p>
+</div>
+</article>
+<article>
+<header>
+<h1 class="entry-title"><a href="/blog/2011/12/02/e-luo-si-fang-kuai-ke-yi-yong-yuan-de-wan-xia-qu-ma/">俄罗斯方块可以永远的玩下去吗？</a></h1>
+<p class="meta">
+<time class="data-article month-12 season-winter" datetime="2011-12-02T19:20:00+08:00" pubdate><span class="month">Dec</span> <span class="day">2nd</span> <span class="year">2011</span></time>
+| <a href="/blog/2011/12/02/e-luo-si-fang-kuai-ke-yi-yong-yuan-de-wan-xia-qu-ma/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2011/12/02/e-luo-si-fang-kuai-ke-yi-yong-yuan-de-wan-xia-qu-ma/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><h3 id="section">　　</h3>
+<p><img src="/wp-content/uploads/2011/12/20111130132207-311619789.jpg" alt=""> 大家在玩<a href="http://wenwen.soso.com/z/Search.e?sp=S%E4%BF%84%E7%BD%97%E6%96%AF%E6%96%B9%E5%9D%97&amp;ch=w.search.jhlink">俄罗斯方块</a>的时候有没有想过这样一个问题：如果玩家足够牛B的话，是不是永远也不可能玩死？换句话说，假设你是万恶的<a href="http://wenwen.soso.com/z/Search.e?sp=S%E6%B8%B8%E6%88%8F%E6%9C%BA&amp;ch=w.search.jhlink">游戏机</a>，你打算害死你面前的玩家；你知道任意时刻游戏的状态，并可以有针对性地给出一些明显不合适的方块，尽量迫使玩家面对<a href="http://wenwen.soso.com/z/Search.e?sp=S%E6%9C%80%E5%9D%8F%E6%83%85%E5%86%B5&amp;ch=w.search.jhlink">最坏情况</a>。那么，你有没有一种<a href="http://wenwen.soso.com/z/Search.e?sp=S%E7%AE%97%E6%B3%95&amp;ch=w.search.jhlink">算法</a>能保证害死玩家，或者玩家无论如何都存在一种必胜策略呢？ 俄罗斯方块的游戏区域是一个宽为10，高为20的<a href="http://wenwen.soso.com/z/Search.e?sp=S%E7%9F%A9%E5%BD%A2&amp;ch=w.search.jhlink">矩形</a>，并且玩家可以预先看到下一个给出的方块是什么。在<a href="http://wenwen.soso.com/z/Search.e?sp=S%E8%AE%BE%E8%AE%A1%E7%AD%96%E7%95%A5&amp;ch=w.search.jhlink">设计策略</a>时，你必需考虑到这一点。 相信很多人有过这样的经历：玩俄罗斯方块时一开局就给你一个“S”型方块，让<a href="http://wenwen.soso.com/z/Search.e?sp=S%E5%AE%8C%E7%BE%8E%E4%B8%BB%E4%B9%89%E8%80%85&amp;ch=w.search.jhlink">完美主义者</a>感 到异常别扭；结果，第二个方块还是这个“S”，第三个方块依旧 是“S”，相当令人崩溃。于是，我们开始猜测，如果游戏机给你无穷个“S”形方块，玩家是不是就没有解了？答案是否定的。如图1，从第10步开始，整个局 面产生一个循环；只要机器给的一直都是“S”方块，玩家可以不断重复这几个步骤，保证永远也<a href="http://wenwen.soso.com/z/Search.e?sp=S%E6%AD%BB%E4%B8%8D%E4%BA%86&amp;ch=w.search.jhlink">死不了</a>。 个循环是在<a href="http://wenwen.soso.com/z/Search.e?sp=S%E6%B8%B8%E6%88%8F%E5%9C%BA%E5%9C%B0&amp;ch=w.search.jhlink">游戏场地</a>清空了的情况下才产生的。有人会进一步想了，要是在玩着玩着，看着你局势不好时突然给你无穷多个“S”方块呢？事实上，此时局面的循环依然可能存在，如图2。在第5个“S”形方块落地后，循环再次产生。 俄罗斯方块真的不可能玩死吗？1988年，John Brzustowski的一篇<a href="http://wenwen.soso.com/z/Search.e?sp=S%E8%AE%BA%E6%96%87&amp;ch=w.search.jhlink">论文</a>指出，俄罗斯方块游戏无解并非不可能。它给出了一种算法可以保证游戏 机能够害死玩家，即使我们要求它必须提前向玩家展示出下一个方块的形状。<a href="http://wenwen.soso.com/z/Search.e?sp=S%E6%9E%84%E9%80%A0&amp;ch=w.search.jhlink">构造</a>的关键在于，整个游戏的局面个数是有限的（2的20<a href="http://wenwen.soso.com/z/Search.e?sp=S0%E6%AC%A1%E6%96%B9&amp;ch=w.search.jhlink">0次方</a>），如果玩家一直不 死，在某一时刻必然会重复某一状态。我们把两次重复状态及其之间的游戏过程叫做一个“循环”，这个循环<a href="http://wenwen.soso.com/z/Search.e?sp=S%E5%AE%9E%E9%99%85%E5%BD%B1%E5%93%8D&amp;ch=w.search.jhlink">实际影响</a>到的那些行就叫做“实际循环区”。例如，图 2就是一个循环，这个循环的“实际循环区”是从第4行到第7行这四行。 我们把宽为10的游戏区域划分为5个宽为2的“通道”，从左至右用1到5标号。注意到图1和图2中的两个循环都有一个共同点：每个“S”形方 块最终都完全落在某个通道内。事实上，对于任意一个只有“S”形方块的循环，我们都有这个结论。也就是说，如果游戏机一直给你“S”形的方块，你却用它们 弄出了一个循环，那只有一种可能：所有“S”形方块的下落位置都没有跨越通道（就像图3中的紫色方块那样，而非绿色方块那样）。 为了证明这一点，我们对通道编号施归纳。令命题P(x)表示，如果某个“S”形方块（或它的其中一部分）落在了通道x的左边，那它一定完全落在某个通道 内。 P(1)显然成立：方块根本不可能占据通道1左边的某个格子，因为通道1左边啥都没有。下面我们说明，当P(n)为真时，P(n+1)也为真。 我们首先要证明一个引理：在循环中的任意时刻，通道n的实际循环区内绝对不可能出现形如“口”的两个并排的格子。如图4.1，假设图中<a href="http://wenwen.soso.com/z/Search.e?sp=S%E6%98%9F%E5%8F%B7&amp;ch=w.search.jhlink">星号</a>方 块所在行 是通道n的实际循环区内位置最低的“口”的结构。假如这一行被消掉了，又由归纳假设，不存在哪个“S”形方块跨越了该通道的左边界，因此只有一种可能： 某个“S”形方块从左侧面挤了进来（如图4.2）。但这样一来，我们又产生了一个更低的“口”，矛盾。这就是说，星号方块所在行一直没被消去。但这也是 不可能的，因为实际循环区内是一个<a href="http://wenwen.soso.com/z/Search.e?sp=S%E6%96%B0%E9%99%88%E4%BB%A3%E8%B0%A2&amp;ch=w.search.jhlink">新陈代谢</a>、<a href="http://wenwen.soso.com/z/Search.e?sp=S%E4%BB%A5%E6%97%A7%E6%8D%A2%E6%96%B0&amp;ch=w.search.jhlink">以旧换新</a>的更替过程，每一行最后都是会被消除的。 虑命题P(n+1)。要想让“S”形方块占据通道n的格子，只有图5这四种情况。但是，由于我们之前证明了通道n中不能存在“口”，因此在 这个“S”形方块落下之前，星号方块都是已经有了的了。注意到，每一个“S”形方块的下落都致使“口”形结构的减少，但第一种情形除外——它消除了一个 “口”形结构，但在其上方带来了一个新的，使得“口”形结构个数保持不变。没有哪种情<a href="http://wenwen.soso.com/z/Search.e?sp=S%E5%BD%A2%E8%83%BD&amp;ch=w.search.jhlink">形能</a>够增加“口”的个数。但是，通道n的“口”形结构个数应 该是恒定的，因为它在一个循环区里。因此，只有第一种情况才能够被接受。 仅含有“S”形方块的循环只有一种情况——“S” 形方块在各个通道内重叠，填满并消除若干行后回到初始状态。实际循环区内的每个通道都是一个模样：底下是0个或多个“”，顶部一个“口”。注意，最 右侧那个通道的最顶端是一个“口”，右边这个空<a href="http://wenwen.soso.com/z/Search.e?sp=S%E7%99%BD%E4%B8%80&amp;ch=w.search.jhlink">白一</a>辈子也不可能用“Z”形方块填上。也就是说，在一个只含“S”形方块的循环区内，必然会有某一行，它 的最右侧是一个“口”，它保证了该行不能仅用“Z”形方块消掉。如图6所示，箭头所指的行无法单用“Z”形方块消除，因为星号位置不可能用“Z”形方块 填充。 下面我们给出游戏机害死人的算法： 1. 不断给出“S”形方块并显示下一个方块也为“S”，直到出现一个循环； 2. 给一个“S”形方块并显示下一个方块为“Z”； 3. 不断给出“Z”形方块并显示下一个方块也为“Z”，直到出现一个循环； 4. 给一个“Z”形方块并显示下一个方块为“S”；</p>
+</div>
+</article>
+<article>
+<header>
+<h1 class="entry-title"><a href="/blog/2011/12/02/CDN-nei-rong-fen-fa-wang-luo-ji-shu-yuan-li/">CDN（内容分发网络）技术原理</a></h1>
+<p class="meta">
+<time class="data-article month-12 season-winter" datetime="2011-12-02T18:48:00+08:00" pubdate><span class="month">Dec</span> <span class="day">2nd</span> <span class="year">2011</span></time>
+| <a href="/blog/2011/12/02/CDN-nei-rong-fen-fa-wang-luo-ji-shu-yuan-li/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2011/12/02/CDN-nei-rong-fen-fa-wang-luo-ji-shu-yuan-li/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><h1 id="it-2011-11-15-1425-">来源: IT世界网  发布时间: 2011-11-15 14:25  </h1>
+<p><strong>　　1. 前言</strong> Internet的高速发展，给人们的工作和生活带来了极大的便利，对Internet的服务品质和访问速度要求越来越高，虽然带宽不断增加，用户数量也在不断增加，受Web服务器的负荷和传输距离等因数的影响，响应速度慢还是经常抱怨和困扰。解决方案就是在网络传输上利用缓存技术使得Web服务数据流能就近访问，是优化网络数据传输非常有效的技术，从而获得高速的体验和品质保证。 网络缓存技术，其目的就是减少网络中冗余数据的重复传输，使之最小化，将广域传输转为本地或就近访问。互联网上传递的内容，大部分为重复的Web/FTP数据，Cache服务器及应用Caching技术的网络设备，可大大优化数据链路性能，消除数据峰值访问造成的结点设备阻塞。Cache服务器具有缓存功能，所以大部分网页对象（Web page object），如html, htm, php等页面文件，gif,tif, png, bmp等图片文件，以及其他格式的文件，在有效期（TTL）内，对于重复的访问，不必从原始网站重新传送文件实体，只需通过简单的认证（Freshness Validation）- 传送几十字节的Header，即可将本地的副本直接传送给访问者。由于缓存服务器通常部署在靠近用户端，所以能获得近似局域网的响应速度，并有效减少广域带宽的消耗。据统计，Internet上超过80%的用户重复访问20%的信息资源，给缓存技术的应用提供了先决的条件。缓存服务器的体系结构与Web服务器不同，缓存服务器能比Web服务器获得更高的性能，缓存服务器不仅能提高响应速度，节约带宽，对于加速Web服务器，有效减轻源服务器的负荷是非常有效的。 高速缓存服务器（Cache Server）是软硬件高度集成的专业功能服务器，主要做高速缓存加速服务，一般部署在网络边缘。根据加速对象不同，分为客户端加速和服务器加速，客户端加速Cache部署在网络出口处，把常访问的内容缓存在本地，提高响应速度和节约带宽；服务器加速，Cache部署在服务器前端，作为Web服务器的前置机，提高Web服务器的性能，加速访问速度。如果多台Cache加速服务器且分布在不同地域，需要通过有效地机制管理Cache网络，引导用户就近访问，全局负载均衡流量，这就是CDN内容传输网络的基本思想。 <strong>2．什么是CDN？</strong> CDN的全称是Content Delivery Network，即内容分发网络。其目的是通过在现有的Internet中增加一层新的网络架构，将网站的内容发布到最接近用户的网络”边缘”，使用户可以就近取得所需的内容，解决Internet网络拥塞状况，提高用户访问网站的响应速度。从技术上全面解决由于网络带宽小、用户访问量大、网点分布不均等原因，解决用户访问网站的响应速度慢的根本原因。 狭义地讲，内容分发布网络(CDN)是一种新型的网络构建方式，它是为能在传统的IP网发布宽带丰富媒体而特别优化的网络覆盖层；而从广义的角度，CDN代表了一种基于质量与秩序的网络服务模式。简单地说，内容发布网络(CDN)是一个经策略性部署的整体系统，包括分布式存储、负载均衡、网络请求的重定向和内容管理４个要件，而内容管理和全局的网络流量管理(Traffic Management)是CDN的核心所在。通过用户就近性和服务器负载的判断，CDN确保内容以一种极为高效的方式为用户的请求提供服务。总的来说，内容服务基于缓存服务器，也称作代理缓存(Surrogate)，它位于网络的边缘，距用户仅有”一跳”(Single Hop)之遥。同时，代理缓存是内容提供商源服务器（通常位于CDN服务提供商的数据中心）的一个透明镜像。这样的架构使得CDN服务提供商能够代表他们客户，即内容供应商，向最终用户提供尽可能好的体验，而这些用户是不能容忍请求响应时间有任何延迟的。据统计，采用CDN技术，能处理整个网站页面的70%～95％的内容访问量，减轻服务器的压力，提升了网站的性能和可扩展性。 与目前现有的内容发布模式相比较，CDN强调了网络在内容发布中的重要性。通过引入主动的内容管理层的和全局负载均衡，CDN从根本上区别于传统的内容发布模式。在传统的内容发布模式中，内容的发布由ICP的应用服务器完成，而网络只表现为一个透明的数据传输通道，这种透明性表现在网络的质量保证仅仅停留在数据包的层面，而不能根据内容对象的不同区分服务质量。此外，由于IP网的”尽力而为”的特性使得其质量保证是依靠在用户和应用服务器之间端到端地提供充分的、远大于实际所需的带宽通量来实现的。在这样的内容发布模式下，不仅大量宝贵的骨干带宽被占用，同时ICP的应用服务器的负载也变得非常重，而且不可预计。当发生一些热点事件和出现浪涌流量时，会产生局部热点效应，从而使应用服务器过载退出服务。这种基于中心的应用服务器的内容发布模式的另外一个缺陷在于个性化服务的缺失和对宽带服务价值链的扭曲，内容提供商承担了他们不该干也干不好的内容发布服务。 纵观整个宽带服务的价值链，内容提供商和用户位于整个价值链的两端，中间依靠网络服务提供商将其串接起来。随着互联网工业的成熟和商业模式的变革，在这条价值链上的角色越来越多也越来越细分。比如内容／应用的运营商、托管服务提供商、骨干网络服务提供商、接入服务提供商等等。在这一条价值链上的每一个角色都要分工合作、各司其职才能为客户提供良好的服务，从而带来多赢的局面。从内容与网络的结合模式上看，内容的发布已经走过了ICP的内容（应用）服务器和IDC这两个阶段。IDC的热潮也催生了托管服务提供商这一角色。但是，IDC并不能解决内容的有效发布问题。内容位于网络的中心并不能解决骨干带宽的占用和建立IP网络上的流量秩序。因此将内容推到网络的边缘，为用户提供就近性的边缘服务，从而保证服务的质量和整个网络上的访问秩序就成了一种显而易见的选择。而这就是内容发布网(CDN)服务模式。CDN的建立解决了困扰内容运营商的内容”集中与分散”的两难选择。无疑对于构建良好的互联网价值链是有价值的，也是不可或缺的。 3．CDN新应用和客户 目前的CDN服务主要应用于证券、金融保险、ISP、ICP、网上交易、门户网站、大中型公司、网络教学等领域。另外在行业专网、互联网中都可以用到，甚至可以对局域网进行网络优化。利用CDN，这些网站无需投资昂贵的各类服务器、设立分站点，特别是流媒体信息的广泛应用、远程教学课件等消耗带宽资源多的媒体信息，应用CDN网络，把内容复制到网络的最边缘，使内容请求点和交付点之间的距离缩至最小，从而促进Web站点性能的提高，具有重要的意义。CDN网络的建设主要有企业建设的CDN网络，为企业服务；IDC的CDN网络，主要服务于IDC和增值服务；网络运营上主建的CDN网络，主要提供内容推送服务；CDN网络服务商，专门建设的CDN用于做服务，用户通过与CDN机构进行合作，CDN负责信息传递工作，保证信息正常传输，维护传送网络，而网站只需要内容维护，不再需要考虑流量问题。 CDN能够为网络的快速、安全、稳定、可扩展等方面提供保障。</p>
+</div>
+</article>
+<div class="pagination">
+<a class="prev" href="/blog/page/20/">&larr; Older</a>
+<a href="/blog/archives">Blog Archives</a>
+<a class="next" href="/blog/page/18/">Newer &rarr;</a>
+</div>
+</div>
+<aside class="sidebar">
+<section>
+<h1>Categories</h1>
+<ul id="categories">
+<li class="category"><a href="/blog/categories/acm/">ACM <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/algorithm/">Algorithm <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/assembly/">Assembly <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/cygwin/">Cygwin <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/gnu/">GNU <sup>8</sup></a></li>
+<li class="category"><a href="/blog/categories/math/">Math <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/octopress/">Octopress <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/programming/">Programming <sup>6</sup></a></li>
+<li class="category"><a href="/blog/categories/security/">Security <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sublime/">Sublime <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/synology/">Synology <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sysadmin/">SysAdmin <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/web/">Web <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/windows/">Windows <sup>7</sup></a></li>
+<li class="category"><a href="/blog/categories/proxmox/">proxmox <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/ri-chang/">日常 <sup>37</sup></a></li>
+</ul>
+</section>
+<section>
+<h1>Recent Posts</h1>
+<ul id="recent_posts">
+<li class="post">
+<a href="/blog/2024/12/16/fu-wu-qi-wa-kuang-bing-du-de-cha-sha/">服务器挖矿病毒的查杀</a>
+</li>
+<li class="post">
+<a href="/blog/2021/07/11/apple-m1-bian-yi-tensorflow/">Apple M1 编译tensorflow</a>
+</li>
+<li class="post">
+<a href="/blog/2021/02/27/chromiumbian-ma-qi-wen-ti/">Chromium编码器问题</a>
+</li>
+<li class="post">
+<a href="/blog/2020/12/13/proxmoxbi-ji/">Proxmox笔记</a>
+</li>
+<li class="post">
+<a href="/blog/2020/11/15/lun-yan-du-yu-shen-du/">论广度与深度</a>
+</li>
+</ul>
+</section>
+<section>
+<iframe frameborder="0" scrolling="no" referrerpolicy="unsafe-url" style="width:283px;height:200px" src="https://t.rexdf.org/?m=app&a=showwidget&name=rexdf&type=1&width=283px&height=500px"></iframe>
+</section>
+<section>
+<h1>GitHub Repos</h1>
+<ul id="gh_repos">
+<li class="loading">Status updating&#8230;</li>
+</ul>
+<a href="https://github.com/rexdf">@rexdf</a> on GitHub
+<script type="text/javascript">$(document).ready(function(){if(!window.jXHR){var e=document.createElement("script");e.type="text/javascript",e.src="/javascripts/libs/jXHR.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}github.showRepos({user:"rexdf",count:0,skip_forks:!0,target:"#gh_repos"})})</script>
+</section>
+</aside>
+</div>
+</div>
+<footer role="contentinfo"><p>
+<span class="credit">Copyright &copy; 2024 - Rexdf -</span> |
+<span class="credit">Powered by <a name="bottoms" target="_blank" href="http://octopress.org">Octopress</a></span> |
+<span class="credit">Theme by ：<a href="https://blog.rexdf.org/" target="_blank" rel="theme">Rexdf</a></span> |
+<span class="credit">Host by：<a href="https://github.com/" target="_blank" rel="host">Github.com</a></span> |
+<span class="credit">版权声明：<a href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" target="_blank" rel="license">CC BY-NC-SA 3.0</a><img src="https://analytics.rexdf.net/piwik.php?idsite=1&amp;rec=1" style="border:0" alt="" referrerpolicy="no-referrer-when-downgrade"></span>|
+<span class="credit"><a href="/sitemap.xml" rel="sitemap">sitemap</a></span>
+</p>
+<script type="text/javascript" src="https://tajs.qq.com/stats?sId=30296377" charset="UTF-8"></script>
+</footer>
+<script type="text/javascript">var disqus_shortname="rexdf",disqus_script="count.js";!function(){var e=document.createElement("script");e.type="text/javascript",e.async=!0,e.src="//"+disqus_shortname+".disqus.com/"+disqus_script,(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(e)}()</script>
+<script type="text/javascript">$(function(){$(".entry-content").each(function(t){var r=t;$(this).find("img.fancybox").each(function(){var t=$(this),a=t.attr("title"),n=t.attr("class");t.removeAttr("class"),t.wrap('<a href="'+this.src+'" class="'+n+'" rel="gallery'+r+'" />'),""!=a&&t.parent().attr("title",a)})}),$(".fancybox").fancybox()})</script>
+</body>
+</html>

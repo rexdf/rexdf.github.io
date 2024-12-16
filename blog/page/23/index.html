@@ -1,0 +1,904 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<script type="text/javascript">var _speedMark=new Date</script>
+<meta charset="utf-8">
+<title>Rexdf</title>
+<meta name="author" content="Rexdf">
+<meta name="description" content="很简单的一个插件，现在支持汉化Sublime Text2，Sublime Text3。全部系统Win64、Win32，Linux64，Linux32，OSX等，可以随意来回切换简体中文、繁体中文、日语、英语，无需重启SublimeText。 ">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' data: https://hm.baidu.com https://tajs.qq.com https://ssl.google-analytics.com https://static.rexdf.org https://*.disquscdn.com https://rexdf.disqus.com https://api.github.com https://ssl.google-analytics.com https://disqus.com https://analytics.rexdf.net; connect-src 'self' https://static.rexdf.org https://analytics.rexdf.net https://hm.baidu.com; img-src data: https://*; font-src data: https://*; child-src 'none'; style-src 'self' 'unsafe-inline' https://*; frame-src 'self' https://t.rexdf.org http://t.rexdf.org https://rexdf.disqus.com https://disqus.com">
+<link rel="canonical" href="https://i.rexdf.org/blog/page/23">
+<link rel="dns-prefetch" href="https://static.rexdf.org/">
+<link href="/favicon.ico" rel="icon">
+<link id="main-css" href="/stylesheets/screen.css" media="screen,projection" rel="stylesheet" type="text/css" title="pc">
+<link href="/stylesheets/screen_mobile.css" rel="alternate stylesheet" type="text/css" title="mobile">
+<link href="/atom.xml" rel="alternate" title="Rexdf" type="application/atom+xml">
+<script src="/javascripts/libs/jquery.min.js"></script>
+<script src="/javascripts/octopress-rexdf.min.js" type="text/javascript"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+      
+      toggle_theme();
+  });
+</script>
+<script type="text/javascript" async src="https://static.rexdf.org/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript">var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-55590409-1"]),_gaq.push(["_trackPageview"]),function(){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(t,e)}()</script>
+<script>var _hmt=_hmt||[];!function(){var e=document.createElement("script");e.src="//hm.baidu.com/hm.js?32192d95b89fbefa0875c4c95adb1412";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}()</script>
+<script src="/javascripts/fancybox/jquery.fancybox.pack.js"></script>
+<link rel="stylesheet" type="text/css" href="/javascripts/fancybox/jquery.fancybox.css">
+<script type="text/javascript">var _paq=_paq||[];_paq.push(["trackPageView"]),_paq.push(["enableLinkTracking"]),function(){var e="https://analytics.rexdf.net/";_paq.push(["setTrackerUrl",e+"piwik.php"]),_paq.push(["setSiteId","1"]);var a=document,t=a.createElement("script"),p=a.getElementsByTagName("script")[0];t.type="text/javascript",t.async=!0,t.defer=!0,t.src=e+"piwik.js",p.parentNode.insertBefore(t,p)}()</script>
+</head>
+<body class="low-contrast-linen-wptouch-bg">
+<header role="banner"><hgroup>
+<h1 id="header-title"><a href="/">Rexdf</a></h1>
+<h2 id="subtitle">The devil is in the Details.</h2>
+</hgroup>
+</header>
+<nav role="navigation"><ul class="subscription" data-subscription="rss">
+<li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+</ul>
+<form action="https://google.com/search" method="get">
+<fieldset role="search">
+<input type="hidden" name="q" value="site:i.rexdf.org">
+<input class="search" type="text" name="q" results="0" placeholder="Search">
+</fieldset>
+</form>
+<ul class="main-navigation">
+<li><a href="/">Blog</a></li>
+<li><a href="/blog/archives/">Archives</a></li>
+<li><a href="/idea/">Idea</a></li>
+<li><a href="/share/">Share</a></li>
+<li><a href="/books/">Books</a></li>
+<li><a href="/donate/">Donate</a></li>
+<li><a target="_blank" href="https://blog.rexdf.org" style="font-family:Shadows Into Light">Main-Blog</a></li>
+</ul>
+</nav>
+<div id="main">
+<div id="content">
+<div class="blog-index">
+<article>
+<header>
+<h1 class="entry-title">[置顶]<a href="/blog/2015/05/15/fa-bu-yi-ge-sublimeyi-hua-cha-jian/">发布一个sublime汉化插件</a></h1>
+<p class="meta">
+<time class="data-article month-05 season-spring" datetime="2015-05-15T11:19:01+08:00" pubdate><span class="month">May</span> <span class="day">15th</span> <span class="year">2015</span></time>
+| <a href="/blog/2015/05/15/fa-bu-yi-ge-sublimeyi-hua-cha-jian/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2015/05/15/fa-bu-yi-ge-sublimeyi-hua-cha-jian/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>很简单的一个插件，现在支持汉化Sublime Text2，Sublime Text3。全部系统Win64、Win32，Linux64，Linux32，OSX等，可以随意来回切换简体中文、繁体中文、日语、英语，无需重启SublimeText。</p>
+</div>
+<footer>
+<a rel="full-article" href="/blog/2015/05/15/fa-bu-yi-ge-sublimeyi-hua-cha-jian/">Read on &rarr;</a>
+</footer>
+</article>
+<article>
+<header>
+<h1 class="entry-title"><a href="/blog/2011/11/14/HTML5/">HTML5</a></h1>
+<p class="meta">
+<time class="data-article month-11 season-autumn" datetime="2011-11-14T18:56:00+08:00" pubdate><span class="month">Nov</span> <span class="day">14th</span> <span class="year">2011</span></time>
+| <a href="/blog/2011/11/14/HTML5/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2011/11/14/HTML5/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p><a href="http://www.openrise.com/lab/FlowerPower/#">FlowerPower</a> <a href="http://www.openrise.com/lab/PlasmaTree/">PlasmaTree</a> [Bender<em>328](http://www.openrise.com/lab/Bender</em>328/) <a href="http://www.openrise.com/lab/ParticleWorld/">ParticleWorld</a> <a href="http://www.openrise.com/lab/MeteoPlot/">MeteoPlot</a></p>
+</div>
+</article>
+<article>
+<header>
+<h1 class="entry-title"><a href="/blog/2011/11/14/wang-zhan-liu-yan-kuang-geng-xin-ri-zhi/">网站留言框更新日志</a></h1>
+<p class="meta">
+<time class="data-article month-11 season-autumn" datetime="2011-11-14T11:25:00+08:00" pubdate><span class="month">Nov</span> <span class="day">14th</span> <span class="year">2011</span></time>
+| <a href="/blog/2011/11/14/wang-zhan-liu-yan-kuang-geng-xin-ri-zhi/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2011/11/14/wang-zhan-liu-yan-kuang-geng-xin-ri-zhi/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>. http://v.youku.com/v_show/id_XMTAwNTg5MzA0.html 样式美化修改主题目录的stytle.css中</p>
+<pre><code>/* =Comments
+-------------------------------------------------------------- */
+#comments {
+	clear: both;
+}
+#comments .navigation {
+	padding: 0 0 18px 0;
+}
+h3#comments-title,
+h3#reply-title {
+	color: #000;
+	font-size: 20px;
+	font-weight: bold;
+	margin-bottom: 0;
+}
+h3#comments-title {
+	padding: 24px 0;
+}
+.commentlist {
+	list-style: none;
+	margin: 0;
+}
+.commentlist li.comment {
+
+        border: 2px dotted #0ec;border-radius: 8px;
+        //border-bottom: 1px solid #e7e7e7;
+        padding-top:10px;
+        padding-bottom:10px;
+        padding-right:10px;
+        padding-left:56px;
+	line-height: 24px;
+	margin: 0 0 24px 0;
+	//padding: 0 0 0 56px;
+	position: relative;
+}
+.commentlist li:last-child {
+	//border-bottom: none;
+	margin-bottom: 0;
+}
+#comments .comment-body ul,
+#comments .comment-body ol {
+	margin-bottom: 18px;
+}
+#comments .comment-body p:last-child {
+	margin-bottom: 6px;
+}
+#comments .comment-body blockquote p:last-child {
+	margin-bottom: 24px;
+}
+.commentlist ol {
+	list-style: decimal;
+}
+.commentlist .avatar {
+	position: absolute;
+	top: 4px;
+	left: 2px;
+}
+.comment-author {
+}
+.comment-author cite {
+	color: #000;
+	font-style: normal;
+	font-weight: bold;
+}
+.comment-author .says {
+	font-style: italic;
+}
+.comment-meta {
+	font-size: 14px;
+	margin: 0 0 18px 0;
+        //border:1px double #A6F;
+}
+.comment-meta a:link,
+.comment-meta a:visited {
+	color: #888;
+	text-decoration: none;
+}
+.comment-meta a:active,
+.comment-meta a:hover {
+	color: #ff4b33;
+}
+.commentlist .even {
+}
+.commentlist .bypostauthor {
+}
+.reply {
+	font-size: 18px;
+        color:#abc;
+       // border:1px double #08F;
+}
+.reply a,
+a.comment-edit-link {
+	color: #888;
+}
+.reply a:hover,
+a.comment-edit-link:hover {
+	color: #ff4b33;
+}
+.commentlist .children {
+	list-style: none;
+	margin: 0;
+        border: 1px dotted #06F;border-radius: 8px;
+        padding-top:10px;
+        padding-bottom:10px;
+        padding-right:10px;
+        padding-left:10px;
+        //border:1px double #06F;
+}
+.commentlist .children li {
+	border: none;
+	margin: 0;
+}
+.nopassword,
+.nocomments {
+	display: none;
+}
+#comments .pingback {
+	border-bottom: 1px solid #e7e7e7;
+	margin-bottom: 18px;
+	padding-bottom: 18px;
+}
+.commentlist li.comment+li.pingback {
+	margin-top: -6px;
+}
+#comments .pingback p {
+	color: #888;
+	display: block;
+	font-size: 12px;
+	line-height: 18px;
+	margin: 0;
+}
+#comments .pingback .url {
+	font-size: 13px;
+	font-style: italic;
+}
+
+/* Comments form */
+input[type=submit] {
+	color: #333;
+}
+input[type=file] {
+        height:30px;
+        width:60%;
+	border: 1px dotted;
+        background-image: url(/img/icons.png);
+        background-repeat: no-repeat;
+        padding: 3px 1px 3px 22px;
+        background-position: 3px -28px;
+        border-radius: 8px;
+}
+#respond {
+	border-top: 1px solid #e7e7e7;
+	margin: 24px 0;
+	overflow: hidden;
+	position: relative;
+}
+#respond p {
+	margin: 0;
+}
+#respond .comment-notes {
+	margin-bottom: 1em;
+        border-radius: 8px;
+}
+.form-allowed-tags {
+	line-height: 1em;
+}
+.children #respond {
+	margin: 0 48px 0 0;
+}
+h3#reply-title {
+	margin: 18px 0;
+}
+#comments-list #respond {
+	margin: 0 0 18px 0;
+}
+#comments-list ul #respond {
+	margin: 0;
+}
+#cancel-comment-reply-link {
+	font-size: 16px;
+	font-weight: normal;
+	line-height: 19px;
+}
+#respond .required {
+	color: #ff4b33;
+	font-weight: bold;
+}
+#respond label {
+	color: #888;
+	font-size: 12px;
+}
+#respond input {
+	margin: 0 0 9px;
+	width: 98%;
+
+}
+#respond .comment-form-author input{
+        height:30px;
+        width: 95%;
+        border: 1px dotted;
+        background-image: url(/img/icons.png);
+        background-repeat: no-repeat;
+        padding: 3px 1px 3px 22px;
+        background-position: 3px -469px;
+        border-radius: 8px;
+}
+#respond .comment-form-email input{
+        height:30px;
+        width: 95%;
+        border: 1px dotted;
+        background-image: url(/img/icons.png);
+        background-repeat: no-repeat;
+        padding: 3px 1px 3px 22px;
+        background-position: 3px -343px;
+        border-radius: 8px;
+}
+#respond .comment-form-url input{
+        height:30px;
+        width: 95%;
+        border: 1px dotted;
+        background-image: url(/img/icons.png);
+        background-repeat: no-repeat;
+        padding: 3px 1px 3px 22px;
+        background-position: 3px -503px;
+        border-radius: 8px;
+}
+#respond textarea {
+	width: 98%;
+        border-radius: 8px;
+}
+#respond .form-allowed-tags {
+	color: #888;
+	font-size: 12px;
+	line-height: 18px;
+}
+#respond .form-allowed-tags code {
+	font-size: 11px;
+}
+#respond .form-submit {
+	margin: 12px 0;
+}
+#respond .form-submit input {
+	font-size: 14px;
+	width: auto;
+}
+</code></pre>
+<p>在wp-includes/comment-template.php中，修改function comment_form( $args = array(), $post_id = null )的部分，$fields数组。</p>
+<pre><code>$fields =  array(
+		'author' =&gt; '
+
+' . '' . __( 'Name' ) . ' ' . ( $req ? '*' : '' ) .
+		            ' 
+
+",
+		'email'  =&gt; '
+
+' . __( 'Email' ) . ' ' . ( $req ? '*' : '' ) .
+		            ' 
+
+",
+		'url'    =&gt; '
+
+' . __( 'Website' ) . '' .
+		            ' 
+
+",
+	);
+</code></pre>
+<h2 id="comments">Comments</h2>
+<p><strong><a href="#33" title="2011-11-14 11:42:35">rexdf</a>:</strong> :(vvsda :(ert :(1123a :(xzcsjk :(56gft [img]http://blog.rexdf.org/wp-content/uploads/2011/11/12.jpg[/img]</p>
+</div>
+</article>
+<article>
+<header>
+<h1 class="entry-title"><a href="/blog/2011/11/12/guan-yu-shan-chu-shi-de-chu-fa-qi-de-wen-ti/">关于删除时的触发器的问题</a></h1>
+<p class="meta">
+<time class="data-article month-11 season-autumn" datetime="2011-11-12T11:48:00+08:00" pubdate><span class="month">Nov</span> <span class="day">12th</span> <span class="year">2011</span></time>
+| <a href="/blog/2011/11/12/guan-yu-shan-chu-shi-de-chu-fa-qi-de-wen-ti/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2011/11/12/guan-yu-shan-chu-shi-de-chu-fa-qi-de-wen-ti/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>..</p>
+<p>http://v.youku.com/v_show/id_XMTkyNTk0NDQ0.html</p>
+<p> </p>
+<p>在做一个触发器要求从在一个表中删除完某种部门的人的时候在另一个部门表中把这个部门也删掉。 :-P  触发器这么写的：</p>
+<pre><code>create or replace trigger scott.emp_delete before delete on emp for each row
+declare
+v_temp number(2);
+begin
+select deptno into v_temp from emp where deptno=:old.deptno;
+if sql%NOTFOUND THEN
+delete from dept where dept.deptno=v_temp;
+end if;
+end;
+</code></pre>
+<p>发现怎么都会报下面的错误</p>
+<pre><code>SQL&gt; delete from emp2 where deptno=15;
+delete from emp2 where deptno=15
+*
+第 1 行出现错误:
+ORA-04092: COMMIT 不能在触发器中
+ORA-06512: 在 "SCOTT.EMP2_DELETE", line 4
+ORA-04088: 触发器 'SCOTT.EMP2_DELETE' 执行过程中出错
+</code></pre>
+<p>按网上的说法是Avoiding Mutating Tables，要用到自制事务pragma autonomous_transaction;</p>
+<pre><code>CREATE OR REPLACE TRIGGER TR_DEL_CABLE
+         AFTER DELETE ON wire_terminal
+FOR EACH ROW
+DECLARE 
+v_count number;
+pragma autonomous_transaction;
+BEGIN
+        select count(*) into v_count from wire_terminal where cable_id = :Old.cable_id and cable_side = :Old.cable_side;
+  if v_count = 0 then
+            if :Old.cable_side = 1 then
+                    update cable set side_1_desc= '' where cable_id = :Old.cable_id;
+        commit;
+            else
+                    update cable set side_2_desc= '' where cable_id = :Old.cable_id;
+              commit;
+      end if;
+        end if;
+
+END TR_DEL_CABLE;
+</code></pre>
+<p>自治事务很可能是误用。你在触发器里看到的其实是修改之前的数据，因为主事务还未提交。<br>
+解决这个问题首选的办法：不要用触发器；</p>
+<p>符一个收集的状况：<br>
+1，变化表是被DML语句正在修改的表，delete cascade也是变化表。<br>
+限制表：可能需要对参考完整性限制执行读操作的表。</p>
+<p>比如emp表上创建了触发器，如果对表emp执行DML，则由于emp的deptno是参照<br>
+dept的，所以这时emp是变化表而dept是限制表。</p>
+<p>2，mutating table：</p>
+<pre><code>create or replace trigger emp_trigger after update of sal on emp for each row
+declare
+rsal emp.sal%type;
+begin
+select sal into rsal from emp where ename='KIN';
+end;
+/
+</code></pre>
+<p>这个触发器虽然可以创建成功，但是如果真的在emp列sal上执行了dml则这时emp立即变成mutating表，<br>
+所以触发时会发生错误。</p>
+<p>ORA-04091: 表 SCOTT.EMP 发生了变化, 触发器/函数不能读它</p>
+<p>但是这个限制只对行级触发器起作用，对语句级的不起限制：</p>
+<pre><code>create or replace trigger emp_trigger after update of sal on emp
+declare
+rsal emp.sal%type;
+begin
+select sal into rsal from emp where ename='KING';
+end;
+</code></pre>
+<p>而且如果对表进行插入一行操作，那么oracle不把触发表当成mutating table，插入多行则当成mutating</p>
+<p>table：</p>
+<pre><code>create or replace trigger emp_trigger before insert on emp for each row
+declare
+rsal emp.sal%type;
+begin
+select sal into rsal from emp where ename='KING';
+end;
+
+insert into emp(ename,empno,sal,deptno) values('Tank',7748,4550,10);
+</code></pre>
+<p>这条语句可以执行，且触发器不出错。</p>
+<p>下面就不行了：</p>
+<pre><code>select * from test;
+
+X                   Y          Z          M
+---------- ---------- ---------- ----------
+Tii              3342       6700         10
+Poo              3355       6720         30
+
+insert into emp(ename,empno,sal,deptno) select * from test;
+
+ORA-04091: 表 SCOTT.EMP 发生了变化, 触发器/函数不能读它
+
+就算子查询返回一条也不行：
+
+select * from test;
+
+X                   Y          Z          M
+---------- ---------- ---------- ----------
+Poo              3355       6720         30
+
+insert into emp(ename,empno,sal,deptno) select * from test;
+
+ORA-04091: 表 SCOTT.EMP 发生了变化, 触发器/函数不能读它
+</code></pre>
+<h2 id="comments">Comments</h2>
+<p><strong><a href="#26" title="2011-11-12 23:41:51">twinkle</a>:</strong> test</p>
+<p><strong><a href="#27" title="2011-11-12 23:43:02">rexdf</a>:</strong> 测试 :mrgreen: :( :( :-P 8-O</p>
+<p><strong><a href="#28" title="2011-11-12 23:49:13">winkle</a>:</strong> 嘿嘿 [img]http://blog.rexdf.org/wp-content/uploads/2011/11/1.png[/img]</p>
+<p><strong><a href="#29" title="2011-11-13 00:07:06">rexdf</a>:</strong> test 要注册的才能收到评论回复是吧</p>
+<p><strong><a href="#30" title="2011-11-14 20:09:45">Tracy</a>:</strong> 留点言吧。。。 :wink: :wink: 小伙子不错啊！！！~~~</p>
+<p><strong><a href="#31" title="2011-11-14 20:14:52">rexdf</a>:</strong> 呀 小伙也厉害啊 :(asd :(asd</p>
+</div>
+</article>
+<article>
+<header>
+<h1 class="entry-title"><a href="/blog/2011/10/30/ACM-bo-yi-zong-jie/">ACM博弈总结</a></h1>
+<p class="meta">
+<time class="data-article month-10 season-autumn" datetime="2011-10-30T16:33:00+08:00" pubdate><span class="month">Oct</span> <span class="day">30th</span> <span class="year">2011</span></time>
+| <a href="/blog/2011/10/30/ACM-bo-yi-zong-jie/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2011/10/30/ACM-bo-yi-zong-jie/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>以下是我从网上收集的关于组合博弈的资料汇总：<br>
+有一种很有意思的游戏，就是有物体若干堆，可以是火柴棍或是围棋子等等均可。两个<br>
+人轮流从堆中取物体若干，规定最后取光物体者取胜。这是我国民间很古老的一个游戏<br>
+，别看这游戏极其简单，却蕴含着深刻的数学原理。下面我们来分析一下要如何才能够<br>
+取胜。<br>
+（一）巴什博奕（Bash Game）：只有一堆n个物品，两个人轮流从这堆物品中取物，规<br>
+定每次至少取一个，最多取m个。最后取光者得胜。<br>
+显然，如果n=m+1，那么由于一次最多只能取m个，所以，无论先取者拿走多少个，<br>
+后取者都能够一次拿走剩余的物品，后者取胜。因此我们发现了如何取胜的法则：如果<br>
+n=（m+1）r+s，（r为任意自然数，s≤m),那么先取者要拿走s个物品，如果后取者拿走<br>
+k（≤m)个，那么先取者再拿走m+1-k个，结果剩下（m+1）（r-1）个，以后保持这样的<br>
+取法，那么先取者肯定获胜。总之，要保持给对手留下（m+1）的倍数，就能最后获胜。<br>
+这个游戏还可以有一种变相的玩法：两个人轮流报数，每次至少报一个，最多报十<br>
+个，谁能报到100者胜。<br>
+（二）威佐夫博奕（Wythoff Game）：有两堆各若干个物品，两个人轮流从某一堆或同<br>
+时从两堆中取同样多的物品，规定每次至少取一个，多者不限，最后取光者得胜。</p>
+<p>这种情况下是颇为复杂的。我们用（ak，bk）（ak ≤ bk ,k=0，1，2，…,n)表示<br>
+两堆物品的数量并称其为局势，如果甲面对（0，0），那么甲已经输了，这种局势我们<br>
+称为奇异局势。前几个奇异局势是：（0，0）、（1，2）、（3，5）、（4，7）、（6，<br>
+10）、（8，13）、（9，15）、（11，18）、（12，20）。<br>
+可以看出,a0=b0=0,ak是未在前面出现过的最小自然数,而 bk= ak + k，奇异局势有<br>
+如下三条性质：<br>
+1。任何自然数都包含在一个且仅有一个奇异局势中。<br>
+由于ak是未在前面出现过的最小自然数，所以有ak &gt; ak-1 ，而 bk= ak + k &gt; ak<br>
+-1 + k-1 = bk-1 &gt; ak-1 。所以性质1。成立。<br>
+2。任意操作都可将奇异局势变为非奇异局势。<br>
+事实上，若只改变奇异局势（ak，bk）的某一个分量，那么另一个分量不可能在其<br>
+他奇异局势中，所以必然是非奇异局势。如果使（ak，bk）的两个分量同时减少，则由<br>
+于其差不变，且不可能是其他奇异局势的差，因此也是非奇异局势。<br>
+3。采用适当的方法，可以将非奇异局势变为奇异局势。<br>
+假设面对的局势是（a,b），若 b = a，则同时从两堆中取走 a 个物体，就变为了<br>
+奇异局势（0，0）；如果a = ak ，b &gt; bk，那么，取走b  – bk个物体，即变为奇异局<br>
+势；如果 a = ak ，  b &lt; bk ,则同时从两堆中拿走 ak – ab – ak个物体,变为奇异局 势（ ab – ak , ab – ak+ b – ak）；如果a &gt; ak ，b= ak + k,则从第一堆中拿走多余<br>
+的数量a – ak 即可；如果a &lt; ak ，b= ak + k,分两种情况，第一种，a=aj （j &lt; k）<br>
+,从第二堆里面拿走 b – bj 即可；第二种，a=bj （j &lt; k）,从第二堆里面拿走 b – a<br>
+j 即可。<br>
+从如上性质可知，两个人如果都采用正确操作，那么面对非奇异局势，先拿者必胜<br>
+；反之，则后拿者取胜。<br>
+那么任给一个局势（a，b），怎样判断它是不是奇异局势呢？我们有如下公式：<br>
+ak =[k（1+√5）/2]，bk= ak + k  （k=0，1，2，…,n 方括号表示取整函数)</p>
+<p>奇妙的是其中出现了黄金分割数（1+√5）/2 = 1。618…,因此,由ak，bk组成的矩形近<br>
+似为黄金矩形，由于2/（1+√5）=（√5-1）/2，可以先求出j=[a（√5-1）/2]，若a=[<br>
+j（1+√5）/2]，那么a = aj，bj = aj + j，若不等于，那么a = aj+1，bj+1 = aj+1<br>
++ j + 1，若都不是，那么就不是奇异局势。然后再按照上述法则进行，一定会遇到奇异<br>
+局势。<br>
+（三）尼姆博奕（Nimm Game）：有三堆各若干个物品，两个人轮流从某一堆取任意多的<br>
+物品，规定每次至少取一个，多者不限，最后取光者得胜。<br>
+这种情况最有意思，它与二进制有密切关系，我们用（a，b，c）表示某种局势，首<br>
+先（0，0，0）显然是奇异局势，无论谁面对奇异局势，都必然失败。第二种奇异局势是<br>
+（0，n，n），只要与对手拿走一样多的物品，最后都将导致（0，0，0）。仔细分析一<br>
+下，（1，2，3）也是奇异局势，无论对手如何拿，接下来都可以变为（0，n，n）的情<br>
+形。<br>
+计算机算法里面有一种叫做按位模2加，也叫做异或的运算，我们用符号（+）表示<br>
+这种运算。这种运算和一般加法不同的一点是1+1=0。先看（1，2，3）的按位模2加的结<br>
+果：<br>
+1 =二进制01<br>
+2 =二进制10<br>
+3 =二进制11 （+）<br>
+———————<br>
+0 =二进制00 （注意不进位）<br>
+对于奇异局势（0，n，n）也一样，结果也是0。<br>
+任何奇异局势（a，b，c）都有a（+）b（+）c =0。<br>
+如果我们面对的是一个非奇异局势（a，b，c），要如何变为奇异局势呢？假设 a &lt; b<br>
+&lt; c,我们只要将 c 变为 a（+）b,即可,因为有如下的运算结果: a（+）b（+）(a（+） b)=(a（+）a)（+）(b（+）b)=0（+）0=0。要将c 变为a（+）b，只要从 c中减去 c-（ a（+）b）即可。     例1。（14，21，39），14（+）21=27，39-27=12，所以从39中拿走12个物体即可达 到奇异局势（14，21，27）。     例2。（55，81，121），55（+）81=102，121-102=19，所以从121中拿走19个物品 就形成了奇异局势（55，81，102）。     例3。（29，45，58），29（+）45=48，58-48=10，从58中拿走10个，变为（29，4 5，48）。     例4。我们来实际进行一盘比赛看看：         甲:(7,8,9)-&gt;(1,8,9)奇异局势<br>
+乙:(1,8,9)-&gt;(1,8,4)<br>
+甲:(1,8,4)-&gt;(1,5,4)奇异局势<br>
+乙:(1,5,4)-&gt;(1,4,4)<br>
+甲:(1,4,4)-&gt;(0,4,4)奇异局势<br>
+乙:(0,4,4)-&gt;(0,4,2)<br>
+甲:(0.4,2)-&gt;(0,2,2)奇异局势<br>
+乙:(0,2,2)-&gt;(0,2,1)<br>
+甲:(0,2,1)-&gt;(0,1,1)奇异局势<br>
+乙:(0,1,1)-&gt;(0,1,0)<br>
+甲:(0,1,0)-&gt;(0,0,0)奇异局势<br>
+甲胜。<br>
+取火柴的游戏<br>
+题目1：今有若干堆火柴，两人依次从中拿取，规定每次只能从一堆中取若干根，<br>
+可将一堆全取走，但不可不取，最后取完者为胜，求必胜的方法。<br>
+题目2：今有若干堆火柴，两人依次从中拿取，规定每次只能从一堆中取若干根，<br>
+可将一堆全取走，但不可不取，最后取完者为负，求必胜的方法。<br>
+嘿嘿，这个游戏我早就见识过了。小时候用珠算玩这个游戏：第一档拨一个，第二档拨两个，依次直到第五档拨五个。然后两个人就轮流再把棋子拨下来，谁要是最后一个拨谁就赢。有一次暑假看见两个小孩子在玩这个游戏，我就在想有没有一个定论呢。下面就来试着证明一下吧<br>
+先解决第一个问题吧。<br>
+定义：若所有火柴数异或为0，则该状态被称为利他态，用字母T表示；否则，<br>
+为利己态，用S表示。<br>
+[定理1]：对于任何一个S态，总能从一堆火柴中取出若干个使之成为T态。<br>
+证明：<br>
+若有n堆火柴，每堆火柴有A(i)根火柴数，那么既然现在处于S态，<br>
+c = A(1) xor A(2) xor … xor A(n) &gt; 0;</p>
+</div>
+</article>
+<article>
+<header>
+<h1 class="entry-title"><a href="/blog/2011/10/30/zui-da-liu-Dinic-suan-fa-he-SAP-suan-fa-jian-jie/">最大流-Dinic算法和SAP算法简介</a></h1>
+<p class="meta">
+<time class="data-article month-10 season-autumn" datetime="2011-10-30T09:26:00+08:00" pubdate><span class="month">Oct</span> <span class="day">30th</span> <span class="year">2011</span></time>
+| <a href="/blog/2011/10/30/zui-da-liu-Dinic-suan-fa-he-SAP-suan-fa-jian-jie/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2011/10/30/zui-da-liu-Dinic-suan-fa-he-SAP-suan-fa-jian-jie/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p><img src="http://rexdf.org/wp-content/uploads/2011/10/1280wallpaperQ.jpg" alt="">求解最大流一般采用两种思路，一种是预流，另一各是增广路。增广路这种思想是基于以下定理： 定理一：设网络 G 的源为 S, 汇和 T，F 和 C 分别为 G 的流和容量，则 F 是最大流当且仅当 G 中不存在可增广路。 由此定理可以设计很多算法来计算最大流，Dinic 算法是其中一种比较高效的方法，其复杂度为 O(n2*m) Dinic 算法的基本步骤为: 1) 计算残余网络的层次图。我们定义 h[i] 为顶点 i 距离源 S 所经过到最小边数，求出所有顶点的 h 值，h[] 值相同的顶点属于同一层，这就是网络的层次图。 2) 在层次图上进行 BFS 增广，直到不存在增广路径。这时求得的增广路径上顶点是分层的，路径上不可能存在两个顶点属于同一层，即 h[i]== h[j] (i!= j )。同时，求得层次图后，我们可以在层次图上进行多次增广。 3) 重复 1 和 2。直到不存在增广路径。 可知，Dinic 算法找到的增广路径是最短的，即经过的顶点数最少。再者，Dinic 算法找一条增广路径同时可以找到多条，类似增广路径树。比如我们找到了一条增广路径，这条增广路径所增加的流量为 C,则这条增广路径上必然有一条边&lt;i,j&gt;残余容量为 C，这是我们不必又从起点开始寻找增广路，而是从 i 顶点出发找增广路，这样就减少了重复计算，提高了效率，这好像就是所说的多路增广</p>
+<pre><code>/*
+Pku 3469 Dual Core CPU ( Dinic )
+*/
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+ 
+int const N= 20010, M= 880010;
+int n, m, idx= -1, S, T;
+ 
+#define min(a,b) ( (a)&lt; (b)? (a): (b) )
+ 
+struct Edge{
+    int wt, v;
+
+    Edge* next;
+ }tb[M];
+
+Edge* mat[N];
+ int h[N], que[N];
+
+void inline add( int u, int v, int x, int y ){
+
+    idx++;
+
+    tb[idx].wt= x; tb[idx].v= v;
+
+    tb[idx].next= mat[u]; mat[u]= tb+ idx;
+
+    idx++;
+
+    tb[idx].wt= y; tb[idx].v= u;
+
+    tb[idx].next= mat[v]; mat[v]= tb+ idx;
+ }
+
+inline Edge* reserve( Edge* p ){
+
+    return tb+ ((p-tb)^1);
+ }
+
+int bfs(){
+
+    int head= 0, tail= 0;
+
+    for( int i= 0; i&lt;= T; ++i ) h[i]= -1;
+
+    que[0]= S; h[S]= 0;
+
+    while( head&lt;= tail ){
+
+        int u= que[head++];
+
+        for( Edge* p= mat[u]; p; p= p-&gt;next ){
+
+            int v= p-&gt;v, w= p-&gt;wt;
+
+            if( h[v]== -1 &amp;&amp; w&gt; 0 ){
+
+                h[v]= h[u]+ 1; que[++tail]= v;
+
+            }
+
+        }
+
+    }
+
+    return h[T]!= -1;
+ }
+
+int dfs( int u, int flow ){
+
+    if( u== T ) return flow;
+
+    int tf= 0, f;
+
+    for( Edge* p= mat[u]; p; p= p-&gt;next ){
+
+        int v= p-&gt;v, w= p-&gt;wt;
+
+        if( h[v]== h[u]+ 1 &amp;&amp; w&gt; 0 &amp;&amp; tf&lt; flow &amp;&amp; ( f= dfs( v, min( w, flow- tf ) ) ) ){
+
+            p-&gt;wt-= f;
+
+            reserve(p)-&gt;wt+= f;
+
+            tf+= f;
+
+        }
+
+    }
+
+    if( tf== 0 ) h[u]= -1;
+
+    return tf;
+ }
+
+int inline read(){
+
+    char ch;
+
+    int d;
+
+    while( ch= getchar(), ch== ' ' || ch== 'n');
+
+    d= ch- '0';
+
+    while( ch= getchar(), ch&gt;= '0' &amp;&amp; ch&lt;= '9' )
+
+    d= d* 10+ ch- '0';
+
+    return d;
+ }
+
+int main(){
+
+    scanf("%d%d",&amp;n,&amp;m );
+
+    S= 0, T= n+ 1; idx= -1;
+
+    for( int i= 0; i&lt;= n+ 1; ++i ) mat[i]= 0;
+
+    for( int i= 1; i&lt;= n; ++i ){
+
+        int x, y;
+
+        x= read(),y=read();
+
+        add( S, i, x, 0 ); add( i, T, y, 0 );
+
+    }
+
+    for( int i= 0; i&lt; m; ++i ){
+
+        int x, y, z;
+
+        x=read(),y=read(),z=read();
+
+        add( x, y, z, z );
+
+    }
+
+    int ans= 0;
+
+    while( bfs()) ans+= dfs( S, 0x7fffffff );
+
+    printf("%dn", ans );
+
+    return 0;
+ }
+</code></pre>
+<p>然则算法的优化是无尽头的，Dinic 算法要多次计算层次图，增加了复杂度。是不是可以不多次计算层次图呢？答案是肯定，这就产生了 SAP 算法。 SAP 计算的是反向图的层次图，这和原图的层次图是作用是一样的，当然其实Dinic也可以计算反向图的层次图。确保增广路径最短，SAP 意思就是 Shortest Augmenting Paths，最短增广路径。计算反向图的层次图是便于重新给顶点标号，即重新确定其层次图。具体做法为，当我们找到一条经过顶点 i 的增广路径后，对于所有边&lt;i,j&gt;，计算出 m= min{ h[j] ]，这是我们就可以把 i 重新标号为 h[i]= min+ 1。实际上，我们可以首先不需要计算反向图的层次图，而是把所有顶点的层次标为0，这对效率没多大影响。然则这样优化后还不够，又出现了一个 gap 优化。所谓 gap 优化就是计算出层次图后，层次出现断层，这是可以确定残余网络中不存在增广路径了，算法就可以提前结束。这个优化看似微小，实际作用确不小。做法就是保存某一个标号在残余网络中出现的次数，如果是 0 ，就断层了。</p>
+<h2 id="comments">Comments</h2>
+<p><strong><a href="#2" title="2011-10-30 22:58:54">huazheng</a>:</strong> Well,I’m no good at making speeches,…so…have a wonderful time doing what u like…and,see u in Spring Festival.</p>
+<p><strong><a href="#3" title="2011-10-30 23:24:20">rexdf</a>:</strong> e.. When starting do a website… we all hope more people to visit</p>
+<p><strong><a href="#4" title="2011-11-12 23:26:51">rexdf</a>:</strong> 现在回复应该有邮件了</p>
+</div>
+</article>
+<article>
+<header>
+<h1 class="entry-title"><a href="/blog/2011/10/30/POJ1014-duo-chong-bei-bao--er-jin-zhi-you-hua--qu-mo-you-hua/">POJ1014: 多重背包 + 二进制优化 + 取模优化</a></h1>
+<p class="meta">
+<time class="data-article month-10 season-autumn" datetime="2011-10-30T02:23:00+08:00" pubdate><span class="month">Oct</span> <span class="day">30th</span> <span class="year">2011</span></time>
+| <a href="/blog/2011/10/30/POJ1014-duo-chong-bei-bao--er-jin-zhi-you-hua--qu-mo-you-hua/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2011/10/30/POJ1014-duo-chong-bei-bao--er-jin-zhi-you-hua--qu-mo-you-hua/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>问题描述： 有若干价值为分别为1，2 ，3，4，5，6的大理石，求总价值的均分策略。设价值为V的石头重量为V,这批石头的总价值为SUM,则问题转化为选取若干大理石将容量为SUM/2的背包装满。 背包问题（参考“背包问题9讲”） 有N件物品和一个容量为V的背包，第i件物品的费用是c[i]，价值是w[i]。 f[i][v]表示前i件物品恰放入一个容量为v的背包可以获得的最大价值,则有： 0-1背包</p>
+<p>状态转移方程 f[i][v] = max{f[i-1][v], f[i-1][v-c[i]]+w[i]}</p>
+<p>解法 O(VN) for i = 1…N for v = V…c[i] f[v] = max{f[v], f[v-c[i]]+w[i]};</p>
+<p>子过程 procedure ZeroOnePack(cost, weight) for v = V…cost f[v] = max{f[v], f[v-cost]+weight}</p>
+<p>初始化 要求恰好装满背包： f[0] = 0, f[1…V] = –1 只要求价值最大: f[0…V] = 0</p>
+<p>完全背包</p>
+<p>状态转移方程 O(V<em>Σ(V/c[i])) f[i][v] = max{f[i-1][v-k</em>c[i]]+k<em>w[i]|0&lt;=k</em>c[i]&lt;=v}</p>
+<p>转化为0-1背包问题 O(VN) for i = 1…N for v = cost…V f[v] = max{f[v], f[v-cost]+weight}</p>
+<p>子过程 procedure CompletePack(cost, weight) for v = cost…V f[v] = max{f[v], f[v-cost]+weight}</p>
+<p>多重背包 (指定每件物品的个数n[i])</p>
+<p>状态转移方程 O(V<em>Σn[i]) f[i][v] = max{f[i-1][v-k</em>c[i]]+k*w[i]|0&lt;=k&lt;=n[i]}</p>
+<p>二进制优化 O(V*Σlog(n[i])) 将第i种物品以2的指数分堆：1，2，4，…，2^(k-1)，n[i]-2^k+1,且 k是满足n[i]-2^k+1&gt;0的最大整数。每次处理一堆而不是一个物品。</p>
+<p>伪代码 procedure MultiplePack(cost, weight, amount) if cost<em>amount&gt;=V CompletePack(cost, weight) return integer k=1 while k&lt;amount ZeroOnePack(k</em>cost, k<em>weight) amount = amount – k k = k * 2 ZeroOnePack(amount</em>cost, amount*weight)</p>
+<p>取模优化 当输入样本特别大时，比如给出上百万件物品，这时候仅靠优化算法仍然不能使运行时间降到满意的范围。可考虑如何减少输入样本。poj1014的discussion上有一个非常巧妙的“取模优化”法。 设价值为v(1&lt;=v&lt;=6)的物品共有n件，我们希望找到一个比较小的数s(s&lt;n), 且将n件物品v减少到s或s-1件，问题的可分性不变。考虑不可分和可分两种情况：</p>
+<ul>
+<li>如果该问题不可分，那么n-2件v仍然不可分，依次类推，用s或 s-1替换n仍然不可分</li>
+<li>如果该问题可分，即可分成价值相等的两堆。分两种情况考虑：</li>
+<li>如果两堆里都有v。 两堆各减一个v，即n改为n-2,仍然可分，可以反复减2直至只有一堆有v。</li>
+<li>如果仅有一堆有v。 如果将n改为n-2仍可分，则必须满足两个条件： I.没有v的那一堆中，至少有一种其它物品可替换v。II.替换后两堆都至少有一个v。如果n&gt;s时始终满足这两个条件，我们就可以用s或s-1替换n. 下面依次考虑v=1,2,3,4,5,6时如何根据“抽屉原理”得到满足条件I和II的s。 v=1时，s=6 替换法： if(n&gt;6) n=6-n%2 1总能被其它价值替换，所以满足条件I不是问题，为满足条件2，s必须大于6。 因为6是其它价值物品中一次可替换最多1的物品。 v=2时，s=5 替换法： if(n&gt;5) n=4+n%2 由1<em>(2-1)+3</em>(2-1)+4<em>(1-1)+5</em>(2-1)+6<em>(1-1) = 9 &lt; 2</em>5知，s=4时满足条件I。但这里要注意，如果另一堆可替换2的是两个5，那么一次就可替换5个2。为满足条件 II,s不能小于5。所以这里s是5而不是4。 v=3时，s=8 替换法： if(n&gt;8) n=8-n%2 由1<em>(3-1)+2</em>(3-1)+4<em>(3-1)+5</em>(3-1)+6<em>(1-1) = 24 &lt; 3</em>9知，s=8时满足条件I，且最多可替换5个3，所以s=8&gt;5也满足条件II。 v=4时，s=8 替换法： if(n&gt;8) n=8-n%2 由1<em>(4-1)+2</em>(2-1)+3<em>(4-1)+5</em>(4-1)+6<em>(2-1) = 35 &lt; 4</em>9知， s=8时满足条件I，且最多可替换5个4，所以s=8&gt;5也满足条件II。 v=5时，s=12 替换法： if(n&gt;12) n=12-n%2 由1<em>(5-1)+2</em>(5-1)+3<em>(5-1)+4</em>(5-1)+6<em>(5-1) = 64 &lt; 5</em>13知，s=12满足条件I，且最多可替换6个5，所以s=12&gt;6也满足条件II。 v=6时，s=7 替换法：if(n&gt;7) n=6+n%2 由1<em>(6-1)+2</em>(3-1)+3<em>(2-1)+4</em>(3-1)+5<em>(6-1) = 45 &lt; 6</em>8知，s=7满足条件I，且最多可替换5个6，所以s=7&gt;5也满足条件II。 可以看出，“模优化”将无论多么大的输入样本减少到50个以内，极大地减少了计算量，从而显著提高运行效率。而“模优化”的关键就是“抽屉原理”。</li>
+</ul>
+<h2 id="comments">Comments</h2>
+<table>
+<tbody>
+<tr>
+<td><strong><a href="#12" title="2011-10-30 10:30:11">rexdf</a>:</strong> (function(){ var p = { url:location.href, to:’qqmail’, desc:’’, /<em>默认分享理由(可选)</em>/ summary:’’,/<em>摘要(可选)</em>/ title:’’,/<em>分享标题(可选)</em>/ site:’’,/<em>分享来源 如：腾讯网(可选)</em>/ pics:’’ /<em>分享图片的路径(可选)</em>/ }; var s = []; for(var i in p){ s.push(i + ‘=’ + encodeURIComponent(p[i]</td>
+<td> </td>
+<td>’’)); } document.write([”’].join(“”)); })();</td>
+</tr>
+</tbody>
+</table>
+<p><strong><a href="#13" title="2011-10-30 10:31:34">rexdf</a>:</strong> #include<iostream>
+using namespace std;</iostream></p>
+<pre><code>int main()
+{
+cout&lt;&lt;"Hello World!"&lt;&lt;endl;
+system("pause");
+return 0;
+}
+</code></pre>
+<p><strong><a href="#14" title="2011-10-31 23:23:21">asdfasdfasdf</a>:</strong> text</p>
+<p><strong><a href="#15" title="2011-10-31 23:26:41">SkyWorld</a>:</strong> <?php
+    echo "hello world.";
+    echo "I found this editor is very convenient for edit code."
+     ?></p>
+<p><strong><a href="#16" title="2011-10-31 23:27:01">SkyWorld</a>:</strong> <?php
+    echo "hello world.";
+    echo "I found this editor is very convenient for edit code.";
+     ?></p>
+<p><strong><a href="#17" title="2011-11-12 23:29:55">rexdf</a>:</strong> 你好 现在回复可用了</p>
+</div>
+</article>
+<div class="pagination">
+<a href="/blog/archives">Blog Archives</a>
+<a class="next" href="/blog/page/22/">Newer &rarr;</a>
+</div>
+</div>
+<aside class="sidebar">
+<section>
+<h1>Categories</h1>
+<ul id="categories">
+<li class="category"><a href="/blog/categories/acm/">ACM <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/algorithm/">Algorithm <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/assembly/">Assembly <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/cygwin/">Cygwin <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/gnu/">GNU <sup>8</sup></a></li>
+<li class="category"><a href="/blog/categories/math/">Math <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/octopress/">Octopress <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/programming/">Programming <sup>6</sup></a></li>
+<li class="category"><a href="/blog/categories/security/">Security <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sublime/">Sublime <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/synology/">Synology <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sysadmin/">SysAdmin <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/web/">Web <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/windows/">Windows <sup>7</sup></a></li>
+<li class="category"><a href="/blog/categories/proxmox/">proxmox <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/ri-chang/">日常 <sup>37</sup></a></li>
+</ul>
+</section>
+<section>
+<h1>Recent Posts</h1>
+<ul id="recent_posts">
+<li class="post">
+<a href="/blog/2024/12/16/fu-wu-qi-wa-kuang-bing-du-de-cha-sha/">服务器挖矿病毒的查杀</a>
+</li>
+<li class="post">
+<a href="/blog/2021/07/11/apple-m1-bian-yi-tensorflow/">Apple M1 编译tensorflow</a>
+</li>
+<li class="post">
+<a href="/blog/2021/02/27/chromiumbian-ma-qi-wen-ti/">Chromium编码器问题</a>
+</li>
+<li class="post">
+<a href="/blog/2020/12/13/proxmoxbi-ji/">Proxmox笔记</a>
+</li>
+<li class="post">
+<a href="/blog/2020/11/15/lun-yan-du-yu-shen-du/">论广度与深度</a>
+</li>
+</ul>
+</section>
+<section>
+<iframe frameborder="0" scrolling="no" referrerpolicy="unsafe-url" style="width:283px;height:200px" src="https://t.rexdf.org/?m=app&a=showwidget&name=rexdf&type=1&width=283px&height=500px"></iframe>
+</section>
+<section>
+<h1>GitHub Repos</h1>
+<ul id="gh_repos">
+<li class="loading">Status updating&#8230;</li>
+</ul>
+<a href="https://github.com/rexdf">@rexdf</a> on GitHub
+<script type="text/javascript">$(document).ready(function(){if(!window.jXHR){var e=document.createElement("script");e.type="text/javascript",e.src="/javascripts/libs/jXHR.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}github.showRepos({user:"rexdf",count:0,skip_forks:!0,target:"#gh_repos"})})</script>
+</section>
+</aside>
+</div>
+</div>
+<footer role="contentinfo"><p>
+<span class="credit">Copyright &copy; 2024 - Rexdf -</span> |
+<span class="credit">Powered by <a name="bottoms" target="_blank" href="http://octopress.org">Octopress</a></span> |
+<span class="credit">Theme by ：<a href="https://blog.rexdf.org/" target="_blank" rel="theme">Rexdf</a></span> |
+<span class="credit">Host by：<a href="https://github.com/" target="_blank" rel="host">Github.com</a></span> |
+<span class="credit">版权声明：<a href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" target="_blank" rel="license">CC BY-NC-SA 3.0</a><img src="https://analytics.rexdf.net/piwik.php?idsite=1&amp;rec=1" style="border:0" alt="" referrerpolicy="no-referrer-when-downgrade"></span>|
+<span class="credit"><a href="/sitemap.xml" rel="sitemap">sitemap</a></span>
+</p>
+<script type="text/javascript" src="https://tajs.qq.com/stats?sId=30296377" charset="UTF-8"></script>
+</footer>
+<script type="text/javascript">var disqus_shortname="rexdf",disqus_script="count.js";!function(){var e=document.createElement("script");e.type="text/javascript",e.async=!0,e.src="//"+disqus_shortname+".disqus.com/"+disqus_script,(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(e)}()</script>
+<script type="text/javascript">$(function(){$(".entry-content").each(function(t){var r=t;$(this).find("img.fancybox").each(function(){var t=$(this),a=t.attr("title"),n=t.attr("class");t.removeAttr("class"),t.wrap('<a href="'+this.src+'" class="'+n+'" rel="gallery'+r+'" />'),""!=a&&t.parent().attr("title",a)})}),$(".fancybox").fancybox()})</script>
+</body>
+</html>

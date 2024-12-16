@@ -1,0 +1,215 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<script type="text/javascript">var _speedMark=new Date</script>
+<meta charset="utf-8">
+<title>无盘虚拟机试玩 - Rexdf</title>
+<meta name="author" content="Rexdf">
+<meta name="description" content="试着玩了两个无盘系统，一个是BXP在win2000server上面，客户端是xp客户端；另一个是锐起3.1在Win2003，客户端依然是xp。我只试验了3.3BXP，这个感觉学习原理挺不错。但是它非常老，有几点不好的地方。首先，不具备开机还原磁盘的功能(或者我没发现)，所以开机是锁定磁盘的， &hellip;">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' data: https://hm.baidu.com https://tajs.qq.com https://ssl.google-analytics.com https://static.rexdf.org https://*.disquscdn.com https://rexdf.disqus.com https://api.github.com https://ssl.google-analytics.com https://disqus.com https://analytics.rexdf.net; connect-src 'self' https://static.rexdf.org https://analytics.rexdf.net https://hm.baidu.com; img-src data: https://*; font-src data: https://*; child-src 'none'; style-src 'self' 'unsafe-inline' https://*; frame-src 'self' https://t.rexdf.org http://t.rexdf.org https://rexdf.disqus.com https://disqus.com">
+<link rel="canonical" href="https://i.rexdf.org/blog/2014/11/24/wu-pan-xu-ni-ji-shi-wan">
+<link rel="dns-prefetch" href="https://static.rexdf.org/">
+<link href="/favicon.ico" rel="icon">
+<link id="main-css" href="/stylesheets/screen.css" media="screen,projection" rel="stylesheet" type="text/css" title="pc">
+<link href="/stylesheets/screen_mobile.css" rel="alternate stylesheet" type="text/css" title="mobile">
+<link href="/atom.xml" rel="alternate" title="Rexdf" type="application/atom+xml">
+<script src="/javascripts/libs/jquery.min.js"></script>
+<script src="/javascripts/octopress-rexdf.min.js" type="text/javascript"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+      
+      toggle_theme();
+  });
+</script>
+<script type="text/javascript" async src="https://static.rexdf.org/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript">var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-55590409-1"]),_gaq.push(["_trackPageview"]),function(){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(t,e)}()</script>
+<script>var _hmt=_hmt||[];!function(){var e=document.createElement("script");e.src="//hm.baidu.com/hm.js?32192d95b89fbefa0875c4c95adb1412";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}()</script>
+<script src="/javascripts/fancybox/jquery.fancybox.pack.js"></script>
+<link rel="stylesheet" type="text/css" href="/javascripts/fancybox/jquery.fancybox.css">
+<script type="text/javascript">var _paq=_paq||[];_paq.push(["trackPageView"]),_paq.push(["enableLinkTracking"]),function(){var e="https://analytics.rexdf.net/";_paq.push(["setTrackerUrl",e+"piwik.php"]),_paq.push(["setSiteId","1"]);var a=document,t=a.createElement("script"),p=a.getElementsByTagName("script")[0];t.type="text/javascript",t.async=!0,t.defer=!0,t.src=e+"piwik.js",p.parentNode.insertBefore(t,p)}()</script>
+</head>
+<body class="low-contrast-linen-wptouch-bg">
+<header role="banner"><hgroup>
+<h1 id="header-title"><a href="/">Rexdf</a></h1>
+<h2 id="subtitle">The devil is in the Details.</h2>
+</hgroup>
+</header>
+<nav role="navigation"><ul class="subscription" data-subscription="rss">
+<li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+</ul>
+<form action="https://google.com/search" method="get">
+<fieldset role="search">
+<input type="hidden" name="q" value="site:i.rexdf.org">
+<input class="search" type="text" name="q" results="0" placeholder="Search">
+</fieldset>
+</form>
+<ul class="main-navigation">
+<li><a href="/">Blog</a></li>
+<li><a href="/blog/archives/">Archives</a></li>
+<li><a href="/idea/">Idea</a></li>
+<li><a href="/share/">Share</a></li>
+<li><a href="/books/">Books</a></li>
+<li><a href="/donate/">Donate</a></li>
+<li><a target="_blank" href="https://blog.rexdf.org" style="font-family:Shadows Into Light">Main-Blog</a></li>
+</ul>
+</nav>
+<div id="main">
+<div id="content">
+<div>
+<article class="hentry" role="article">
+<header>
+<h1 class="entry-title">无盘虚拟机试玩</h1>
+<p class="meta">
+<time class="data-article month-11 season-autumn" datetime="2014-11-24T14:46:58+08:00" pubdate><span class="month">Nov</span> <span class="day">24th</span> <span class="year">2014</span></time>
+| <a href="#disqus_thread" data-disqus-identifier="https://i.rexdf.org">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>试着玩了两个无盘系统，一个是BXP在win2000server上面，客户端是xp客户端；另一个是锐起3.1在Win2003，客户端依然是xp。我只试验了3.3BXP，这个感觉学习原理挺不错。但是它非常老，有几点不好的地方。首先，不具备开机还原磁盘的功能(或者我没发现)，所以开机是锁定磁盘的，也就是一个镜像只能开机一个机器。所以如果10台或者100台，那么重复占用的磁盘就会非常大；其次不知道是不是用的win2000的原因，无盘客户端开机非常之慢，而工作站我还是放在SSD上面的，至少开机速度比正常虚拟机开机XP慢4到10倍。然后我就实验了锐起3.1，这个实验起来非常之爽，可以说和BXP比起来优点非常显著，首先最明显的就是<strong>开机速度非常之快</strong>，和直接启动磁盘虚拟机没多大差别，一个系统只需要一个镜像，也就是说<strong>一个镜像可以同时启动多个系统</strong>，而且支持更新镜像，支持<strong>全自动客户端自动配置</strong>，支持开机还原磁盘。</p>
+<p>至于怎么配置BXP3.3和锐起3.1，网上教程比较多，而且多数都是视频教程。</p>
+<p>至于VMware上面安装锐起的，主要是参考的<a href="http://bbs.kafan.cn/thread-1315652-1-1.html" target="_blank">这里</a>，虚拟机安装和视频教程中的主要区别在于，虚拟机可以设置一个虚拟网络(LAN)。然后定义个全局虚拟网，自己给其一个独立的名字，然后你就可以在这个虚拟网络中任意定义你局域网IP了，比如你可以设置DHCP为10.0.0.1或者192.168.10.10或者172.16.17.17这样的网段，这个局域网IP段和其他名字的局域是相对独立的，也就是一个独立的子网，不同子网里面的LAN地址可以互相重复。这样在虚拟机中也可以组成非常复杂的网络来进行实验了。这里有一点需要指出，就是VMware在LAN里面也自带了一个默认的DHCP服务(也就是你没有配置DHCP的时候也会获取一个IP的)，我们可以自己配置DHCP把它覆盖掉，或者手工指定静态IP。</p>
+<p>本文主要记叙的是关于无盘虚拟机的上网问题，这个有点类似网吧的那种。因为发现锐起可以同时启动多台虚拟之后，我就在想很多用途，比如调试程序的时候可以用这种方式，非常非常之方便。关键是只要物理机内存支持，可以快速开启任意多的虚拟机而不需要磁盘，<strong>只要建一个虚拟机(不需要任何磁盘光盘或者软盘)，然后把网卡设置成锐起的LAN，直接开机锐起就会自动分配IP然后启动一个虚拟机XP</strong>，另外那么以及开机还原这个有点。而且虚拟机的所有流量都必须经过LAN到达工作站，那么在上面部署流量分析、翻***墙、抓包、协议分析等会非常方便。</p>
+<p>上网配置</p>
+<p>首先在公网网卡上面开启 共享Internet即可。但是这个方法需要开启防火墙ICS等服务。会导致 路由器和远程访问被禁止。</p>
+<p>两块网卡:</p>
+<pre><code>1.NAT DHCP自动获取，现在为192.168.199.153
+2.LAN 192.168.5.1 
+</code></pre>
+<p>然后开启DHCP服务，192.168.5.10-192.168.5.250</p>
+<p>开启DNS服务，做一个转发器。关键是转发到192.168.199.2，这个地址。这个地址是VMware的NAT的DHCP的网关，可以ipconfig/all看到。</p>
+<p>因为我是先配置的LAN网卡，等到要上网才发现需要再添加一块网卡，所以没有关机的情况下，热插拔了一块NAT的VMware网卡。直接自动找到驱动并可以使用。但是我发现一个奇怪的事情就是ping baidu.com可以解析成正确的地址，但是全部丢包。这显然是路由的问题。</p>
+<p>然后开启 路由器和远程访问 选NAT的那项即可。</p>
+<p>这时客户端发现无法ping通，但是dns解析是正常的。路由问题！！</p>
+<p>然后route print一看。</p>
+<pre><code>Network Destination        Netmask          Gateway       Interface  Metric
+      0.0.0.0          0.0.0.0      192.168.5.1      192.168.5.1      1
+      0.0.0.0          0.0.0.0    192.168.199.2  192.168.199.153     10
+....
+Default Gateway:       192.168.5.1
+</code></pre>
+<p>有两条,然后默认网关显然不正确。</p>
+<p>直接删除第一条</p>
+<pre><code>route delete 0.0.0.0 mask 0.0.0.0 192.168.5.1
+</code></pre>
+<p>然后工作站服务器可以正常上网，客户端一看也是正常的了。</p>
+<p>最终效果如下图，看看如何轻易的同时启动四台VMware虚拟机，而且对于硬件比如CPU核心数、硬盘、内存是可以异构的，完全没有影响。</p>
+<p><img src="/images/rq1.png" alt="cpp自动补全" class="center fancybox"></p>
+<p><img src="/images/rq2.png" alt="cpp自动补全" class="center fancybox"></p>
+<p><img src="/images/rq3.png" alt="cpp自动补全" class="center fancybox"></p>
+<p><img src="/images/rq5.png" alt="cpp自动补全" class="center fancybox"></p>
+<p><img src="/images/rq4.png" alt="cpp自动补全" class="center fancybox"></p>
+<p>然后看看磁盘使用量，工作站的vmdk磁盘只有5.5G，这4台虚拟机的磁盘是用共用一个8G的img镜像作为系统盘。本身win2003占用的大约是1.2G的样子，然后这个8G的磁盘占用了显示的是占用8G，但是VMware的vmdk把它压缩了，然后每个虚拟机配置文件大约100M左右(在工作目录中192.168.5.11-0.dat这样的文件)</p>
+<p><img src="/images/rq6.png" alt="cpp自动补全" class="center fancybox"></p>
+<p>最后附件一下BXP的两张截图，BXP启动速度非常非常之慢(只启动一台)。开机大约需要三四分钟。而锐起即使是四台同时开机，全部启动完毕(听到开机音乐）,用时不超过30秒。</p>
+<p><img src="/images/bxp1.png" alt="cpp自动补全" class="center fancybox"></p>
+<p><img src="/images/bxp2.png" alt="cpp自动补全" class="center fancybox"></p>
+<p>不过开机之运行倒是都还流畅，因为这个是和虚拟CPU内核数和内存相关的，这个属于虚拟机配置，与无盘系统不太相关。</p>
+</div>
+<footer>
+<p class="meta">
+<span class="byline author vcard">Posted by <span class="fn">Rexdf</span></span>
+<time class="data-article month-11 season-autumn" datetime="2014-11-24T14:46:58+08:00" pubdate><span class="month">Nov</span> <span class="day">24th</span> <span class="year">2014</span></time>
+<span class="categories">
+<a class="category" href="/blog/categories/sysadmin/">SysAdmin</a>, <a class="category" href="/blog/categories/ri-chang/">日常</a>
+</span>
+</p>
+<div class="sharing">
+</div>
+<p class="meta">
+<a class="basic-alignment left" href="/blog/2014/11/17/windowsquan-xian-wen-ti/" title="Previous Post: Windows权限问题">&laquo; Windows权限问题</a>
+<a class="basic-alignment right" href="/blog/2014/11/30/cygwinde-xwindui-win8-dot-1zhi-chi-wan-mei/" title="Next Post: Cygwin的XWin对win8.1支持完美">Cygwin的XWin对win8.1支持完美 &raquo;</a>
+</p>
+</footer>
+</article>
+<section>
+<h1>Comments</h1>
+<div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
+</div>
+<aside class="sidebar">
+<section>
+<h1>Categories</h1>
+<ul id="categories">
+<li class="category"><a href="/blog/categories/acm/">ACM <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/algorithm/">Algorithm <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/assembly/">Assembly <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/cygwin/">Cygwin <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/gnu/">GNU <sup>8</sup></a></li>
+<li class="category"><a href="/blog/categories/math/">Math <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/octopress/">Octopress <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/programming/">Programming <sup>6</sup></a></li>
+<li class="category"><a href="/blog/categories/security/">Security <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sublime/">Sublime <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/synology/">Synology <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sysadmin/">SysAdmin <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/web/">Web <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/windows/">Windows <sup>7</sup></a></li>
+<li class="category"><a href="/blog/categories/proxmox/">proxmox <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/ri-chang/">日常 <sup>37</sup></a></li>
+</ul>
+</section>
+<section>
+<h1>Recent Posts</h1>
+<ul id="recent_posts">
+<li class="post">
+<a href="/blog/2024/12/16/fu-wu-qi-wa-kuang-bing-du-de-cha-sha/">服务器挖矿病毒的查杀</a>
+</li>
+<li class="post">
+<a href="/blog/2021/07/11/apple-m1-bian-yi-tensorflow/">Apple M1 编译tensorflow</a>
+</li>
+<li class="post">
+<a href="/blog/2021/02/27/chromiumbian-ma-qi-wen-ti/">Chromium编码器问题</a>
+</li>
+<li class="post">
+<a href="/blog/2020/12/13/proxmoxbi-ji/">Proxmox笔记</a>
+</li>
+<li class="post">
+<a href="/blog/2020/11/15/lun-yan-du-yu-shen-du/">论广度与深度</a>
+</li>
+</ul>
+</section>
+<section>
+<iframe frameborder="0" scrolling="no" referrerpolicy="unsafe-url" style="width:283px;height:200px" src="https://t.rexdf.org/?m=app&a=showwidget&name=rexdf&type=1&width=283px&height=500px"></iframe>
+</section>
+<section>
+<h1>GitHub Repos</h1>
+<ul id="gh_repos">
+<li class="loading">Status updating...</li>
+</ul>
+<a href="https://github.com/rexdf">@rexdf</a> on GitHub
+<script type="text/javascript">$(document).ready(function(){if(!window.jXHR){var e=document.createElement("script");e.type="text/javascript",e.src="/javascripts/libs/jXHR.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}github.showRepos({user:"rexdf",count:0,skip_forks:!0,target:"#gh_repos"})})</script>
+</section>
+</aside>
+</div>
+</div>
+<footer role="contentinfo"><p>
+<span class="credit">Copyright &copy; 2024 - Rexdf -</span> |
+<span class="credit">Powered by <a name="bottoms" target="_blank" href="http://octopress.org">Octopress</a></span> |
+<span class="credit">Theme by ：<a href="https://blog.rexdf.org/" target="_blank" rel="theme">Rexdf</a></span> |
+<span class="credit">Host by：<a href="https://github.com/" target="_blank" rel="host">Github.com</a></span> |
+<span class="credit">版权声明：<a href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" target="_blank" rel="license">CC BY-NC-SA 3.0</a><img src="https://analytics.rexdf.net/piwik.php?idsite=1&amp;rec=1" style="border:0" alt="" referrerpolicy="no-referrer-when-downgrade"></span>|
+<span class="credit"><a href="/sitemap.xml" rel="sitemap">sitemap</a></span>
+</p>
+<script type="text/javascript" src="https://tajs.qq.com/stats?sId=30296377" charset="UTF-8"></script>
+</footer>
+<script type="text/javascript">var disqus_shortname="rexdf",disqus_identifier="https://i.rexdf.org/blog/2014/11/24/wu-pan-xu-ni-ji-shi-wan/",disqus_url="https://i.rexdf.org/blog/2014/11/24/wu-pan-xu-ni-ji-shi-wan/",disqus_script="embed.js";!function(){var s=document.createElement("script");s.type="text/javascript",s.async=!0,s.src="//"+disqus_shortname+".disqus.com/"+disqus_script,(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(s)}()</script>
+<script type="text/javascript">$(function(){$(".entry-content").each(function(t){var r=t;$(this).find("img.fancybox").each(function(){var t=$(this),a=t.attr("title"),n=t.attr("class");t.removeAttr("class"),t.wrap('<a href="'+this.src+'" class="'+n+'" rel="gallery'+r+'" />'),""!=a&&t.parent().attr("title",a)})}),$(".fancybox").fancybox()})</script>
+</body>
+</html>

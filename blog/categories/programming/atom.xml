@@ -1,0 +1,398 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Programming | Rexdf]]></title>
+  <link href="https://i.rexdf.org/blog/categories/programming/atom.xml" rel="self"/>
+  <link href="https://i.rexdf.org/"/>
+  <updated>2024-12-16T23:11:13+08:00</updated>
+  <id>https://i.rexdf.org/</id>
+  <author>
+    <name><![CDATA[Rexdf]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[小玩Acdream_OJ]]></title>
+    <link href="https://i.rexdf.org/blog/2014/06/02/xiao-wan-acdream-oj/"/>
+    <updated>2014-06-02T15:46:35+08:00</updated>
+    <id>https://i.rexdf.org/blog/2014/06/02/xiao-wan-acdream-oj</id>
+    <content type="html"><![CDATA[<ul class="markdown-toc">
+  <li><a href="#section">0.备忘</a></li>
+  <li><a href="#section-1">1.安装依赖</a></li>
+  <li><a href="#section-2">2.启动系统</a></li>
+</ul>
+
+<p>午后心情比较蛋疼，然后花了大约2小时测试了下Acdream这个OJ。</p>
+
+<p>由于其前端与后端都是开源的，因此可以非常容易的搭建。</p>
+
+<p>其后端是 https://github.com/ttlast/Judge.git，前端是 https://github.com/KIDx/ACdream.git .</p>
+
+<p>均是在Ubuntu平台以nodejs为目标语言编写。</p>
+
+<p>由于我的Ubuntu安装在物理机，而我惯于启动到Win平台, 懒于重启机器，故使用最近才喜欢上的Arch来搭建。</p>
+
+<!--more-->
+
+<h1 id="section">0.备忘</h1>
+<p>家里几台机器ssh配置</p>
+
+<pre><code>scp .ssh/id_rsa.pub localhost@rexdf:~/
+ssh localhost:12345
+cat id_rsa.pub &gt;&gt;authorized_keys
+vim /etc/ssh/sshd_config
+PermitRootLogin no
+PasswordAuthentication no
+UsePAM no
+RSAAuthentication yes
+PubkeyAuthentication yes
+</code></pre>
+
+<h1 id="section-1">1.安装依赖</h1>
+<p>像什么imagemagick,g++,python2,python3,make这些基础的开发环境就不说了，基本上我是在Arch第一次开机以前就会安装的。</p>
+
+<p>nodejs安装，因为前些天要玩grunt，所以也安装过了。</p>
+
+<p>首先是Acdream，放在prog/Acdream</p>
+
+<p>针对这个项目前端比较重要的</p>
+
+<pre><code>sudo pacman -S mongodb redis 
+sudo systemctl start mongodb
+redis
+sudo npm install -g canvas
+sudo npm install -g socket.io
+cd ~/prog/Acdream
+npm i #这里只能使用普通权限，因为Arch用sudo是真的以root用于运行，不像Ubuntu只是依然是当前用户。这一步相当的漫长，需要无错误退出。如果出错，rm -rf node_modules，然后再次执行。
+</code></pre>
+
+<p>然后就是Judge，放在prog/Judge下面</p>
+
+<p>第一个比较麻烦的问题是Arch64源已经使用python3为默认的python，而python2叫做python2.这个问题在我这里不存在，因为我需要运行gae_dev，已经加了一个~/bin目录在PATH最前面。
+同时需要修改deamon.py第一行为
+#!/usr/bin/env python</p>
+
+<p>然而Python的pip却是分python3和python2的。</p>
+
+<pre><code>sudo pacman -S python2-pip
+sudo pip2 install pymongo
+</code></pre>
+
+<p>修改~/prog/Judge/judge/test.cpp</p>
+
+<p>把</p>
+
+<pre><code>//设置运行根目录、运行用户
+//获得运行用户的信息
+struct passwd *judge = getpwnam("ttlast");
+</code></pre>
+
+<p>的ttlast改成rexdf；</p>
+
+<p>修改~/prog/Judge/judge/okcall.h</p>
+
+<p>因为我是Arch64，所以修改136行<code>#else</code>之后的部分
+在C和Cpp里面各添加一行</p>
+
+<pre><code>89,1,
+</code></pre>
+
+<p>然后执行</p>
+
+<pre><code>g++ ~/prog/Judge/judge/test.cpp -O ~/prog/Judge/judge/Judge
+</code></pre>
+
+<p>修改deamon.py，第一行</p>
+
+<pre><code>#!/usr/bin/env python
+</code></pre>
+
+<p>124行<code>dadir = "./data"</code>改成<code>dadir = ../../Acdream/data</code>
+145行同理，不过似乎可以不改。</p>
+
+<p>244行，把<code>'/home/ttlast/OJ/dtest/daemon.pid'</code>改成我的git-clone目录里面的pid文件绝对路径<code>'/home/rexdf/prog/Judge/dtest/daemon.pid'</code>。</p>
+
+<p>202行，把<code>db = con.gzhu_db</code>改成<code>db = con.acdream_db</code></p>
+
+<h1 id="section-2">2.启动系统</h1>
+<p>启动mongdb，并初始化表，开一个cygwin的teminal</p>
+
+<pre><code>sudo systemctl start mongodb
+cd ~/prog/Acdream
+mongorestore -h localhost -d acdream_db --directoryperdb acdream_db -drop
+</code></pre>
+
+<p>启动redis,直接开了一个terminal启动</p>
+
+<pre><code>sudo systemctl start redis
+</code></pre>
+
+<p>启动前端，新开一个teminal</p>
+
+<pre><code>cd ~/prog/Acdream
+node app.js
+</code></pre>
+
+<p>启动判题系统，新开一个terminal</p>
+
+<pre><code>cd ~/prog/Judge
+~/prog/Judge/daestart.sh
+sudo ~/prog/Judge/daemon.py restart
+</code></pre>
+
+<p>接下去做一个端口映射，我是把3000映射到了主机的10013，结果如图。
+<img src="/images/acdream.png" alt="" /></p>
+
+<p>另外说一下坑爹的admin密码，我试了下admim和123456似乎都是不对，然后KiDx项目主页似乎也没有明文说明，无奈只能强行进入db看看了。</p>
+
+<pre><code>mongo
+&gt;show dbs;
+&gt;use acdream_db;
+&gt;show collections;
+&gt;db.acdream_db.users.find();
+</code></pre>
+
+<p>然后上网搜索这个MD5值，直接指导密码是root。</p>
+
+<p>另外我注意到了test.cpp里面使用的spoj.exe，显然是需要重新编译的，不过我没有兴趣继续玩这个。</p>
+
+<p>总体感觉不错，似乎nodej嘛，mongo嘛，redis嘛，都是较为前沿的技术。应该说效率是会比传统LAMP,LNMP高出许多的。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[OpenMP在win上面的编译]]></title>
+    <link href="https://i.rexdf.org/blog/2014/03/06/openmpzai-winshang-mian-de-bian-yi/"/>
+    <updated>2014-03-06T03:41:19+08:00</updated>
+    <id>https://i.rexdf.org/blog/2014/03/06/openmpzai-winshang-mian-de-bian-yi</id>
+    <content type="html"><![CDATA[<p>并行库有有Intel® Threading Building Blocks和微软的Parallel Patterns Library，开源的OpenMP等。
+架构有Google的Sawzall,Yahoo的Pig 猪和微软的Dryad。
+MPI消息机制</p>
+
+<p>而在异构多核计算中，有Nvdia的CUDA™，即Compute Unified Device Architecture；而微软虽然有了DirectX也不甘示弱，提出了C++ AMP (C++ Accelerated Massive Parallelism)，以利用显卡日益增加的大规模浮点运算能力。而开源的则对应于OpenCL。</p>
+
+<p>总的来说前前面的几种都是利用多线程在CPU上加速，主要的就是解决线程同步互斥，CPU的Cache冲突等；而后面的则是解决显卡硬件的通用浮点计算。现在显卡的计算性能已近比CPU高出了好几个数量级了，这么高的计算性能，主要是由于大型视屏游戏发展带来的，因此主要都是针对DirectX和OpenGL做的驱动，解决图形运算。然而这么强大的运算能力，自然就想在其他方面利用起来，因此CUDA和C++AMP，OpenCL，WebCL等出现了。简单点说就是在显卡上另外设计一个驱动和行业API适应通用大规模数值运算需求。用途有比如已经不能用了的比特币挖矿，密码破解等。</p>
+
+<p>下面主要记录一下一次编译的经历：</p>
+
+<pre><code>#include &lt;iostream&gt;
+#include &lt;time.h&gt;
+void test()
+{
+    int a = 0;
+    for (int i=0;i&lt;100000000;i++)
+        a++;
+}
+int main()
+{
+    clock_t t1 = clock();
+    for (int i=0;i&lt;8;i++)
+        test();
+    clock_t t2 = clock();
+    std::cout&lt;&lt;"time: "&lt;&lt;t2-t1&lt;&lt;std::endl;
+}
+</code></pre>
+
+<p>另一段代码</p>
+
+<pre><code>#include &lt;iostream&gt;
+#include &lt;time.h&gt;
+void test()
+{
+    int a = 0;
+    for (int i=0;i&lt;100000000;i++)
+        a++;
+}
+int main()
+{
+    clock_t t1 = clock();
+    #pragma omp parallel for
+    for (int i=0;i&lt;8;i++)
+        test();
+    clock_t t2 = clock();
+    std::cout&lt;&lt;"time: "&lt;&lt;t2-t1&lt;&lt;std::endl;
+}
+</code></pre>
+
+<p>在cygwin的g++4.8.2下面编译，得到如下结果：</p>
+
+<p><img src="/images/openmp_on_cygwin.png" alt="cygwin" /></p>
+
+<p>而如果使用VS2013编译，第二个代码工程在C/C++ –&gt; Language –&gt; Open MP Support yes(/openmp)</p>
+
+<p><img src="/images/openmp_on_vs.png" alt="vs2013" /></p>
+
+<p>而我使用Dev-cpp5.6.1里面的MingW G++ 4.8.1编译结果则是比vs结果略微差一点:</p>
+
+<p><img src="/images/openmp_on_mingw.png" alt="vs2013" /></p>
+
+<p>这里比较奇葩的就是cygwin的生成的了，看了有必要分析下生成的代码了。如此的奇葩。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Cygwin安装nokogiri]]></title>
+    <link href="https://i.rexdf.org/blog/2014/02/27/cygwinan-zhuang-nokogiri/"/>
+    <updated>2014-02-27T15:43:22+08:00</updated>
+    <id>https://i.rexdf.org/blog/2014/02/27/cygwinan-zhuang-nokogiri</id>
+    <content type="html"><![CDATA[<h2 id="section">前言</h2>
+<p>本来是打算写一个抓取图片的脚本，然而自然需要Parse HTML了，C语言有谷歌大名鼎鼎的<a href="https://github.com/google/gumbo-parser">gumbo-parser</a>，Python自然有妇孺皆知的<a href="http://www.crummy.com/software/BeautifulSoup/">Beautiful Soup</a>，而Java实现则是较多功能完善，Perl语言有<a href="https://metacpan.org/module/HTML::Parser">HTML::Parser</a>等等不一而足。而且仅仅抓取图片，往往有现成的脚本或者专门针对特定网站的浏览器助手Chrome Plugins或者Firefox Plugins。然而由于最近对于Python和Perl有些腻了，想玩玩Ruby，实际上我已经借助Firefox的DownloadThemALL下载完成了图片了。</p>
+
+<h2 id="ruby">ruby环境</h2>
+<p>在win下面越来越喜欢cygwin了，一方面自然是因为cygwin的更新频率了，基本上和Ubuntu一样，每过了一周左右，更新就会发现有软件升级了，这样自然就是软件的错误越来越少。
+其次我还是比较喜欢Linux的bash的，循环相对cmd来说要强很多。
+因为有了cygwin，那么Perl和Ruby这两个基本不需要另外安装了，运行大部分的软件，安装CPAN和Gems都还很方便，当然这里还是需要一定的技巧的。不过Python和Java则最好是另外安装，而且把他们放到cygwin/bin/的%PATH%环境变量前面，这样的话，Cygwin运行的时候Cygwin的Python和Java自动重新配置$PATH就不会与Win的发生干扰了。</p>
+
+<h2 id="section-1">编译安装</h2>
+<p>我尝试着直接使用<code>gem instal nokogiri</code>安装，自然是提示错误了，当时具体什么错误则说的不够详细，自然也就不知道怎么path了。</p>
+
+<h3 id="section-2">1. 下载源码</h3>
+
+<p><code>git clone https://github.com/sparklemotion/nokogiri,git</code></p>
+
+<h3 id="libxml2libxsl">2. 安装Libxml2和Libxsl依赖</h3>
+
+<p>首先关闭cygwin打开setup.exe，搜索libxml2和libxsl，把lib装上，我是把Python下面的也装了的，理论上应该不需要Python下面的。</p>
+
+<h3 id="racc">3. 安装racc</h3>
+
+<p>这个比较简单，直接<code>gem install racc</code>，即可。
+检验便是敲入racc，会提示no input而不是找不到命令</p>
+
+<h3 id="rex">4. 安装rex</h3>
+
+<p>这个比较难，首先直接运行<code>gem install rex</code>，会提示一个错误，但是安装完成是OK的。
+接着输入rex会提示如下的错误</p>
+
+<pre><code>$ rex
+/usr/lib/ruby/gems/1.9.1/gems/rex-1.0.2/lib/rex/rexcmd.rb:66:in `initialize': undefined method `collect' for #&lt;String:0x80195bd8&gt; (NoMethodError)
+        from /usr/lib/ruby/gems/1.9.1/gems/rex-1.0.2/bin/rex:18:in `new'
+        from /usr/lib/ruby/gems/1.9.1/gems/rex-1.0.2/bin/rex:18:in `&lt;top (required)&gt;'
+        from /usr/bin/rex:23:in `load'
+        from /usr/bin/rex:23:in `&lt;main&gt;'
+</code></pre>
+
+<p>我们打开定位到<code>/usr/lib/ruby/gems/1.9.1/gems/rex-1.0.2/lib/rex/rexcmd.rb</code>，会发现</p>
+
+<pre><code>class Cmd
+OPTIONS  =  &lt;&lt;-EOT
+
+o -o --output-file &lt;outfile&gt;  file name of output [&lt;filename&gt;.rb]
+o -s --stub             - append stub code for debug
+o -i --ignorecase       - ignore char case
+o -C --check-only       - syntax check only
+o -  --independent      - independent mode
+o -d --debug            - print debug information
+o -h --help             - print this message and quit
+o -  --version          - print version and quit
+o -  --copyright        - print copyright and quit
+
+EOT
+....
+def initialize
+    @status  =  2
+    @cmd  =  File.basename($0, ".rb")
+    tmp  =  OPTIONS.collect do |line|
+...
+def usage( msg=nil )
+    f  =  $stderr
+    f.puts "#{@cmd}: #{msg}"  if msg
+    f.print &lt;&lt;-EOT
+Usage: #{@cmd} [options] &lt;grammar file&gt;
+Options:
+    EOT
+
+    OPTIONS.each do |line|
+</code></pre>
+
+<p>根据运行rex提示的错误就是<code>OPTIONS.collect</code>这里才错误了，很明显嘛，OPTIONS是一个string，查一下就发现问题的关键了，ruby的1.9以后 <code>Ruby 1.9: String is no longer Enumerable. …Can't call collect directly; we have to split it into lines first.</code> 所以，String是没有collect方法的了，String不是可枚举的。知道原因就好pach了。直接改成<code>OPTIONS.split(/\n/).each do |line|</code> 和<code>tmp  =  OPTIONS.split(/\n/).collect do |line|</code>即可。然后再次运行rex则正常的提示了：</p>
+
+<pre><code>$ rex
+rex: no grammar file given
+Usage: rex [options] &lt;grammar file&gt;
+Options:
+-o,--output-file &lt;outfile&gt;  file name of output [&lt;filename&gt;.rb]
+-s,--stub                   append stub code for debug
+-i,--ignorecase             ignore char case
+-C,--check-only             syntax check only
+--independent               independent mode
+-d,--debug                  print debug information
+-h,--help                   print this message and quit
+--version                   print version and quit
+--copyright                 print copyright and quit
+</code></pre>
+
+<h3 id="section-3">5. 安装</h3>
+
+<pre><code>cd nokogiri
+rake
+</code></pre>
+
+<p>然后等待就好。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[迁移wordpress博文到octopress]]></title>
+    <link href="https://i.rexdf.org/blog/2014/01/30/qian-yi-wordpressbo-wen-dao-octopress/"/>
+    <updated>2014-01-30T01:15:00+08:00</updated>
+    <id>https://i.rexdf.org/blog/2014/01/30/qian-yi-wordpressbo-wen-dao-octopress</id>
+    <content type="html"><![CDATA[<h2 id="section">导言</h2>
+
+<p>本来我没有把wordpress迁移过来的打算，就像我发现<a href="http://www.movabletype.com/">Movable Type</a>生成的页面无比的快，依然还是比较喜欢Wordpress。这里不像展开讨论PHP和Perl、Ruby甚至Python的优缺点比较，总之存在就是合理的。网上你可以轻易搜索得到100个提供PHP空间的免费服务器，而那些提供其他语言的一般都会提供PHP，就连谷歌也都开始试验PHP了，总之这是市场的需求。PHP是看上去没有那种学院气派，没有一总令人眼前一亮的内在哲学美。PHP出生就像是一个下乡的乡巴佬，看起来那么的不和谐，各种不一致，简直像一门自然语言，但是它是人造的。关于PHP的指责可以看<a href="http://me.veekun.com/blog/2012/04/09/php-a-fractal-of-bad-design/">这里</a>。</p>
+
+<h2 id="section-1">问题</h2>
+
+<p>好了回到本文的正题上来，我的博客采用了三种语言的方式，提供了中文、日语、英文。因此字符集是比较大的，在我这里算是一个特殊情况。博客运行有两三年了(早期是用的免费主机，然后也不知道备份，严重丢失过一次，应该是09或者10年开始的)，博文有210+篇，这样的话要尽量减少人工参与的程度，当然个别特殊的还是需要处理下的，比如有的标题中我用了引号或者*/?等符号的，这种个别的问题rake generate时报错直接手工修改就好。另外代码中如果有{ {双左大括号出现，那么也会出错，解决办法便是加一个空格隔开。</p>
+
+<h2 id="section-2">解决工具：</h2>
+<p>我已经git push到了<a href="http://github.com/rexdf/wp2octopress">这里</a></p>
+
+<h2 id="section-3">命令:</h2>
+
+<p><code>bash 在rexdf.wordpress.2014-01-29.xml所在的目录执行下面三条命令即可 Myblog http://blog.rexdf.org
+pip install -e git+git://github.com/rexdf/wp2octopress#egg=wp2oct
+wget --no-check-certificate https://raw.github.com/rexdf/wp2octopress/master/wp2oct/convert-utf-8.txt
+wp2oct rexdf.wordpress.2014-01-29.xml
+</code></p>
+
+<p><img src="/images/wp2oct_cmd.png" alt="Effect" /></p>
+
+<h2 id="section-4">效果:</h2>
+<p><img src="/images/wp2oct.png" alt="Effect" />
+以及本博客.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[发布流程]]></title>
+    <link href="https://i.rexdf.org/blog/2014/01/29/fa-bu-liu-cheng/"/>
+    <updated>2014-01-29T02:48:00+08:00</updated>
+    <id>https://i.rexdf.org/blog/2014/01/29/fa-bu-liu-cheng</id>
+    <content type="html"><![CDATA[<p>废话不多说，简单的说明下。需要注意的两个命令：</p>
+
+<p><code>bash 配置octopress http://blog.rexdf.org MyBlog
+rake preview 
+</code></p>
+
+<p>可以开着然后用MarkdownPad 2修改，octopress会随时监视文件修改然后的自动重新生成，<a href="http://localhost:4000">打开网页</a>便可以预览.而且可以省去delploy前的generate。效果如下图：<img src="/images/markdownpad2.png" alt="插入图片" /></p>
+
+<p>然后发布</p>
+
+<p><code>bash 配置octopress http://blog.rexdf.org MyBlog
+rake deploy
+</code></p>
+
+<p>则是发布，会重新生成_deploy目录下面的普通文件(注意是普通文件，.git目录的跟踪文件是不会删除的，否则就不能push了)</p>
+
+<p><code>bash 配置octopress http://blog.rexdf.org MyBlog
+git add .
+git commit -m "update Post 1/29/2014" 
+git push origin source
+</code></p>
+]]></content>
+  </entry>
+  
+</feed>

@@ -1,0 +1,330 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<script type="text/javascript">var _speedMark=new Date</script>
+<meta charset="utf-8">
+<title>最大流-Dinic算法和SAP算法简介 - Rexdf</title>
+<meta name="author" content="Rexdf">
+<meta name="description" content="求解最大流一般采用两种思路，一种是预流，另一各是增广路。增广路这种思想是基于以下定理： 定理一：设网络 G 的源为 S, 汇和 T，F 和 C 分别为 G 的流和容量，则 F 是最大流当且仅当 G 中不存在可增广路。 由此定理可以设计很多算法来计算最大流，Dinic 算法是其中一种比较高效的方法， &hellip;">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' data: https://hm.baidu.com https://tajs.qq.com https://ssl.google-analytics.com https://static.rexdf.org https://*.disquscdn.com https://rexdf.disqus.com https://api.github.com https://ssl.google-analytics.com https://disqus.com https://analytics.rexdf.net; connect-src 'self' https://static.rexdf.org https://analytics.rexdf.net https://hm.baidu.com; img-src data: https://*; font-src data: https://*; child-src 'none'; style-src 'self' 'unsafe-inline' https://*; frame-src 'self' https://t.rexdf.org http://t.rexdf.org https://rexdf.disqus.com https://disqus.com">
+<link rel="canonical" href="https://i.rexdf.org/blog/2011/10/30/zui-da-liu-Dinic-suan-fa-he-SAP-suan-fa-jian-jie">
+<link rel="dns-prefetch" href="https://static.rexdf.org/">
+<link href="/favicon.ico" rel="icon">
+<link id="main-css" href="/stylesheets/screen.css" media="screen,projection" rel="stylesheet" type="text/css" title="pc">
+<link href="/stylesheets/screen_mobile.css" rel="alternate stylesheet" type="text/css" title="mobile">
+<link href="/atom.xml" rel="alternate" title="Rexdf" type="application/atom+xml">
+<script src="/javascripts/libs/jquery.min.js"></script>
+<script src="/javascripts/octopress-rexdf.min.js" type="text/javascript"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+      
+      toggle_theme();
+  });
+</script>
+<script type="text/javascript" async src="https://static.rexdf.org/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript">var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-55590409-1"]),_gaq.push(["_trackPageview"]),function(){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(t,e)}()</script>
+<script>var _hmt=_hmt||[];!function(){var e=document.createElement("script");e.src="//hm.baidu.com/hm.js?32192d95b89fbefa0875c4c95adb1412";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}()</script>
+<script src="/javascripts/fancybox/jquery.fancybox.pack.js"></script>
+<link rel="stylesheet" type="text/css" href="/javascripts/fancybox/jquery.fancybox.css">
+<script type="text/javascript">var _paq=_paq||[];_paq.push(["trackPageView"]),_paq.push(["enableLinkTracking"]),function(){var e="https://analytics.rexdf.net/";_paq.push(["setTrackerUrl",e+"piwik.php"]),_paq.push(["setSiteId","1"]);var a=document,t=a.createElement("script"),p=a.getElementsByTagName("script")[0];t.type="text/javascript",t.async=!0,t.defer=!0,t.src=e+"piwik.js",p.parentNode.insertBefore(t,p)}()</script>
+</head>
+<body class="low-contrast-linen-wptouch-bg">
+<header role="banner"><hgroup>
+<h1 id="header-title"><a href="/">Rexdf</a></h1>
+<h2 id="subtitle">The devil is in the Details.</h2>
+</hgroup>
+</header>
+<nav role="navigation"><ul class="subscription" data-subscription="rss">
+<li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+</ul>
+<form action="https://google.com/search" method="get">
+<fieldset role="search">
+<input type="hidden" name="q" value="site:i.rexdf.org">
+<input class="search" type="text" name="q" results="0" placeholder="Search">
+</fieldset>
+</form>
+<ul class="main-navigation">
+<li><a href="/">Blog</a></li>
+<li><a href="/blog/archives/">Archives</a></li>
+<li><a href="/idea/">Idea</a></li>
+<li><a href="/share/">Share</a></li>
+<li><a href="/books/">Books</a></li>
+<li><a href="/donate/">Donate</a></li>
+<li><a target="_blank" href="https://blog.rexdf.org" style="font-family:Shadows Into Light">Main-Blog</a></li>
+</ul>
+</nav>
+<div id="main">
+<div id="content">
+<div>
+<article class="hentry" role="article">
+<header>
+<h1 class="entry-title">最大流-Dinic算法和SAP算法简介</h1>
+<p class="meta">
+<time class="data-article month-10 season-autumn" datetime="2011-10-30T09:26:00+08:00" pubdate><span class="month">Oct</span> <span class="day">30th</span> <span class="year">2011</span></time>
+| <a href="#disqus_thread" data-disqus-identifier="https://i.rexdf.org">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p><img src="http://rexdf.org/wp-content/uploads/2011/10/1280wallpaperQ.jpg" alt="">求解最大流一般采用两种思路，一种是预流，另一各是增广路。增广路这种思想是基于以下定理： 定理一：设网络 G 的源为 S, 汇和 T，F 和 C 分别为 G 的流和容量，则 F 是最大流当且仅当 G 中不存在可增广路。 由此定理可以设计很多算法来计算最大流，Dinic 算法是其中一种比较高效的方法，其复杂度为 O(n2*m) Dinic 算法的基本步骤为: 1) 计算残余网络的层次图。我们定义 h[i] 为顶点 i 距离源 S 所经过到最小边数，求出所有顶点的 h 值，h[] 值相同的顶点属于同一层，这就是网络的层次图。 2) 在层次图上进行 BFS 增广，直到不存在增广路径。这时求得的增广路径上顶点是分层的，路径上不可能存在两个顶点属于同一层，即 h[i]== h[j] (i!= j )。同时，求得层次图后，我们可以在层次图上进行多次增广。 3) 重复 1 和 2。直到不存在增广路径。 可知，Dinic 算法找到的增广路径是最短的，即经过的顶点数最少。再者，Dinic 算法找一条增广路径同时可以找到多条，类似增广路径树。比如我们找到了一条增广路径，这条增广路径所增加的流量为 C,则这条增广路径上必然有一条边&lt;i,j&gt;残余容量为 C，这是我们不必又从起点开始寻找增广路，而是从 i 顶点出发找增广路，这样就减少了重复计算，提高了效率，这好像就是所说的多路增广</p>
+<pre><code>/*
+Pku 3469 Dual Core CPU ( Dinic )
+*/
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+ 
+int const N= 20010, M= 880010;
+int n, m, idx= -1, S, T;
+ 
+#define min(a,b) ( (a)&lt; (b)? (a): (b) )
+ 
+struct Edge{
+    int wt, v;
+
+    Edge* next;
+ }tb[M];
+
+Edge* mat[N];
+ int h[N], que[N];
+
+void inline add( int u, int v, int x, int y ){
+
+    idx++;
+
+    tb[idx].wt= x; tb[idx].v= v;
+
+    tb[idx].next= mat[u]; mat[u]= tb+ idx;
+
+    idx++;
+
+    tb[idx].wt= y; tb[idx].v= u;
+
+    tb[idx].next= mat[v]; mat[v]= tb+ idx;
+ }
+
+inline Edge* reserve( Edge* p ){
+
+    return tb+ ((p-tb)^1);
+ }
+
+int bfs(){
+
+    int head= 0, tail= 0;
+
+    for( int i= 0; i&lt;= T; ++i ) h[i]= -1;
+
+    que[0]= S; h[S]= 0;
+
+    while( head&lt;= tail ){
+
+        int u= que[head++];
+
+        for( Edge* p= mat[u]; p; p= p-&gt;next ){
+
+            int v= p-&gt;v, w= p-&gt;wt;
+
+            if( h[v]== -1 &amp;&amp; w&gt; 0 ){
+
+                h[v]= h[u]+ 1; que[++tail]= v;
+
+            }
+
+        }
+
+    }
+
+    return h[T]!= -1;
+ }
+
+int dfs( int u, int flow ){
+
+    if( u== T ) return flow;
+
+    int tf= 0, f;
+
+    for( Edge* p= mat[u]; p; p= p-&gt;next ){
+
+        int v= p-&gt;v, w= p-&gt;wt;
+
+        if( h[v]== h[u]+ 1 &amp;&amp; w&gt; 0 &amp;&amp; tf&lt; flow &amp;&amp; ( f= dfs( v, min( w, flow- tf ) ) ) ){
+
+            p-&gt;wt-= f;
+
+            reserve(p)-&gt;wt+= f;
+
+            tf+= f;
+
+        }
+
+    }
+
+    if( tf== 0 ) h[u]= -1;
+
+    return tf;
+ }
+
+int inline read(){
+
+    char ch;
+
+    int d;
+
+    while( ch= getchar(), ch== ' ' || ch== 'n');
+
+    d= ch- '0';
+
+    while( ch= getchar(), ch&gt;= '0' &amp;&amp; ch&lt;= '9' )
+
+    d= d* 10+ ch- '0';
+
+    return d;
+ }
+
+int main(){
+
+    scanf("%d%d",&amp;n,&amp;m );
+
+    S= 0, T= n+ 1; idx= -1;
+
+    for( int i= 0; i&lt;= n+ 1; ++i ) mat[i]= 0;
+
+    for( int i= 1; i&lt;= n; ++i ){
+
+        int x, y;
+
+        x= read(),y=read();
+
+        add( S, i, x, 0 ); add( i, T, y, 0 );
+
+    }
+
+    for( int i= 0; i&lt; m; ++i ){
+
+        int x, y, z;
+
+        x=read(),y=read(),z=read();
+
+        add( x, y, z, z );
+
+    }
+
+    int ans= 0;
+
+    while( bfs()) ans+= dfs( S, 0x7fffffff );
+
+    printf("%dn", ans );
+
+    return 0;
+ }
+</code></pre>
+<p>然则算法的优化是无尽头的，Dinic 算法要多次计算层次图，增加了复杂度。是不是可以不多次计算层次图呢？答案是肯定，这就产生了 SAP 算法。 SAP 计算的是反向图的层次图，这和原图的层次图是作用是一样的，当然其实Dinic也可以计算反向图的层次图。确保增广路径最短，SAP 意思就是 Shortest Augmenting Paths，最短增广路径。计算反向图的层次图是便于重新给顶点标号，即重新确定其层次图。具体做法为，当我们找到一条经过顶点 i 的增广路径后，对于所有边&lt;i,j&gt;，计算出 m= min{ h[j] ]，这是我们就可以把 i 重新标号为 h[i]= min+ 1。实际上，我们可以首先不需要计算反向图的层次图，而是把所有顶点的层次标为0，这对效率没多大影响。然则这样优化后还不够，又出现了一个 gap 优化。所谓 gap 优化就是计算出层次图后，层次出现断层，这是可以确定残余网络中不存在增广路径了，算法就可以提前结束。这个优化看似微小，实际作用确不小。做法就是保存某一个标号在残余网络中出现的次数，如果是 0 ，就断层了。</p>
+<h2 id="comments">Comments</h2>
+<p><strong><a href="#2" title="2011-10-30 22:58:54">huazheng</a>:</strong> Well,I’m no good at making speeches,…so…have a wonderful time doing what u like…and,see u in Spring Festival.</p>
+<p><strong><a href="#3" title="2011-10-30 23:24:20">rexdf</a>:</strong> e.. When starting do a website… we all hope more people to visit</p>
+<p><strong><a href="#4" title="2011-11-12 23:26:51">rexdf</a>:</strong> 现在回复应该有邮件了</p>
+</div>
+<footer>
+<p class="meta">
+<span class="byline author vcard">Posted by <span class="fn">Rexdf</span></span>
+<time class="data-article month-10 season-autumn" datetime="2011-10-30T09:26:00+08:00" pubdate><span class="month">Oct</span> <span class="day">30th</span> <span class="year">2011</span></time>
+</p>
+<div class="sharing">
+</div>
+<p class="meta">
+<a class="basic-alignment left" href="/blog/2011/10/30/POJ1014-duo-chong-bei-bao--er-jin-zhi-you-hua--qu-mo-you-hua/" title="Previous Post: POJ1014: 多重背包 + 二进制优化 + 取模优化">&laquo; POJ1014: 多重背包 + 二进制优化 + 取模优化</a>
+<a class="basic-alignment right" href="/blog/2011/10/30/ACM-bo-yi-zong-jie/" title="Next Post: ACM博弈总结">ACM博弈总结 &raquo;</a>
+</p>
+</footer>
+</article>
+<section>
+<h1>Comments</h1>
+<div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
+</div>
+<aside class="sidebar">
+<section>
+<h1>Categories</h1>
+<ul id="categories">
+<li class="category"><a href="/blog/categories/acm/">ACM <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/algorithm/">Algorithm <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/assembly/">Assembly <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/cygwin/">Cygwin <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/gnu/">GNU <sup>8</sup></a></li>
+<li class="category"><a href="/blog/categories/math/">Math <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/octopress/">Octopress <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/programming/">Programming <sup>6</sup></a></li>
+<li class="category"><a href="/blog/categories/security/">Security <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sublime/">Sublime <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/synology/">Synology <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sysadmin/">SysAdmin <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/web/">Web <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/windows/">Windows <sup>7</sup></a></li>
+<li class="category"><a href="/blog/categories/proxmox/">proxmox <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/ri-chang/">日常 <sup>37</sup></a></li>
+</ul>
+</section>
+<section>
+<h1>Recent Posts</h1>
+<ul id="recent_posts">
+<li class="post">
+<a href="/blog/2024/12/16/fu-wu-qi-wa-kuang-bing-du-de-cha-sha/">服务器挖矿病毒的查杀</a>
+</li>
+<li class="post">
+<a href="/blog/2021/07/11/apple-m1-bian-yi-tensorflow/">Apple M1 编译tensorflow</a>
+</li>
+<li class="post">
+<a href="/blog/2021/02/27/chromiumbian-ma-qi-wen-ti/">Chromium编码器问题</a>
+</li>
+<li class="post">
+<a href="/blog/2020/12/13/proxmoxbi-ji/">Proxmox笔记</a>
+</li>
+<li class="post">
+<a href="/blog/2020/11/15/lun-yan-du-yu-shen-du/">论广度与深度</a>
+</li>
+</ul>
+</section>
+<section>
+<iframe frameborder="0" scrolling="no" referrerpolicy="unsafe-url" style="width:283px;height:200px" src="https://t.rexdf.org/?m=app&a=showwidget&name=rexdf&type=1&width=283px&height=500px"></iframe>
+</section>
+<section>
+<h1>GitHub Repos</h1>
+<ul id="gh_repos">
+<li class="loading">Status updating...</li>
+</ul>
+<a href="https://github.com/rexdf">@rexdf</a> on GitHub
+<script type="text/javascript">$(document).ready(function(){if(!window.jXHR){var e=document.createElement("script");e.type="text/javascript",e.src="/javascripts/libs/jXHR.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}github.showRepos({user:"rexdf",count:0,skip_forks:!0,target:"#gh_repos"})})</script>
+</section>
+</aside>
+</div>
+</div>
+<footer role="contentinfo"><p>
+<span class="credit">Copyright &copy; 2024 - Rexdf -</span> |
+<span class="credit">Powered by <a name="bottoms" target="_blank" href="http://octopress.org">Octopress</a></span> |
+<span class="credit">Theme by ：<a href="https://blog.rexdf.org/" target="_blank" rel="theme">Rexdf</a></span> |
+<span class="credit">Host by：<a href="https://github.com/" target="_blank" rel="host">Github.com</a></span> |
+<span class="credit">版权声明：<a href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" target="_blank" rel="license">CC BY-NC-SA 3.0</a><img src="https://analytics.rexdf.net/piwik.php?idsite=1&amp;rec=1" style="border:0" alt="" referrerpolicy="no-referrer-when-downgrade"></span>|
+<span class="credit"><a href="/sitemap.xml" rel="sitemap">sitemap</a></span>
+</p>
+<script type="text/javascript" src="https://tajs.qq.com/stats?sId=30296377" charset="UTF-8"></script>
+</footer>
+<script type="text/javascript">var disqus_shortname="rexdf",disqus_identifier="https://i.rexdf.org/blog/2011/10/30/zui-da-liu-Dinic-suan-fa-he-SAP-suan-fa-jian-jie/",disqus_url="https://i.rexdf.org/blog/2011/10/30/zui-da-liu-Dinic-suan-fa-he-SAP-suan-fa-jian-jie/",disqus_script="embed.js";!function(){var e=document.createElement("script");e.type="text/javascript",e.async=!0,e.src="//"+disqus_shortname+".disqus.com/"+disqus_script,(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(e)}()</script>
+<script type="text/javascript">$(function(){$(".entry-content").each(function(t){var r=t;$(this).find("img.fancybox").each(function(){var t=$(this),a=t.attr("title"),n=t.attr("class");t.removeAttr("class"),t.wrap('<a href="'+this.src+'" class="'+n+'" rel="gallery'+r+'" />'),""!=a&&t.parent().attr("title",a)})}),$(".fancybox").fancybox()})</script>
+</body>
+</html>

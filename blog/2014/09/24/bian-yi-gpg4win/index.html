@@ -1,0 +1,500 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<script type="text/javascript">var _speedMark=new Date</script>
+<meta charset="utf-8">
+<title>编译Gpg4win - Rexdf</title>
+<meta name="author" content="Rexdf">
+<meta name="description" content="1.环境介绍 2.错误列表: 错误1 解决办法: 错误2 错误3 错误4 错误5 错误6 错误7 错误8 错误9 补充错误 收尾工作 结果 本来在Windows上面我是不需要这样的软件的，一方面我收到的加密邮件并不多，另一方面我已经习惯了用纯命令的方式进行加解密了。来编译这个Gpg4Win &hellip;">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' data: https://hm.baidu.com https://tajs.qq.com https://ssl.google-analytics.com https://static.rexdf.org https://*.disquscdn.com https://rexdf.disqus.com https://api.github.com https://ssl.google-analytics.com https://disqus.com https://analytics.rexdf.net; connect-src 'self' https://static.rexdf.org https://analytics.rexdf.net https://hm.baidu.com; img-src data: https://*; font-src data: https://*; child-src 'none'; style-src 'self' 'unsafe-inline' https://*; frame-src 'self' https://t.rexdf.org http://t.rexdf.org https://rexdf.disqus.com https://disqus.com">
+<link rel="canonical" href="https://i.rexdf.org/blog/2014/09/24/bian-yi-gpg4win">
+<link rel="dns-prefetch" href="https://static.rexdf.org/">
+<link href="/favicon.ico" rel="icon">
+<link id="main-css" href="/stylesheets/screen.css" media="screen,projection" rel="stylesheet" type="text/css" title="pc">
+<link href="/stylesheets/screen_mobile.css" rel="alternate stylesheet" type="text/css" title="mobile">
+<link href="/atom.xml" rel="alternate" title="Rexdf" type="application/atom+xml">
+<script src="/javascripts/libs/jquery.min.js"></script>
+<script src="/javascripts/octopress-rexdf.min.js" type="text/javascript"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+      
+      toggle_theme();
+  });
+</script>
+<script type="text/javascript" async src="https://static.rexdf.org/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript">var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-55590409-1"]),_gaq.push(["_trackPageview"]),function(){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(t,e)}()</script>
+<script>var _hmt=_hmt||[];!function(){var e=document.createElement("script");e.src="//hm.baidu.com/hm.js?32192d95b89fbefa0875c4c95adb1412";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}()</script>
+<script src="/javascripts/fancybox/jquery.fancybox.pack.js"></script>
+<link rel="stylesheet" type="text/css" href="/javascripts/fancybox/jquery.fancybox.css">
+<script type="text/javascript">var _paq=_paq||[];_paq.push(["trackPageView"]),_paq.push(["enableLinkTracking"]),function(){var e="https://analytics.rexdf.net/";_paq.push(["setTrackerUrl",e+"piwik.php"]),_paq.push(["setSiteId","1"]);var a=document,t=a.createElement("script"),p=a.getElementsByTagName("script")[0];t.type="text/javascript",t.async=!0,t.defer=!0,t.src=e+"piwik.js",p.parentNode.insertBefore(t,p)}()</script>
+</head>
+<body class="low-contrast-linen-wptouch-bg">
+<header role="banner"><hgroup>
+<h1 id="header-title"><a href="/">Rexdf</a></h1>
+<h2 id="subtitle">The devil is in the Details.</h2>
+</hgroup>
+</header>
+<nav role="navigation"><ul class="subscription" data-subscription="rss">
+<li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+</ul>
+<form action="https://google.com/search" method="get">
+<fieldset role="search">
+<input type="hidden" name="q" value="site:i.rexdf.org">
+<input class="search" type="text" name="q" results="0" placeholder="Search">
+</fieldset>
+</form>
+<ul class="main-navigation">
+<li><a href="/">Blog</a></li>
+<li><a href="/blog/archives/">Archives</a></li>
+<li><a href="/idea/">Idea</a></li>
+<li><a href="/share/">Share</a></li>
+<li><a href="/books/">Books</a></li>
+<li><a href="/donate/">Donate</a></li>
+<li><a target="_blank" href="https://blog.rexdf.org" style="font-family:Shadows Into Light">Main-Blog</a></li>
+</ul>
+</nav>
+<div id="main">
+<div id="content">
+<div>
+<article class="hentry" role="article">
+<header>
+<h1 class="entry-title">编译Gpg4win</h1>
+<p class="meta">
+<time class="data-article month-09 season-autumn" datetime="2014-09-24T11:59:26+08:00" pubdate><span class="month">Sep</span> <span class="day">24th</span> <span class="year">2014</span></time>
+| <a href="#disqus_thread" data-disqus-identifier="https://i.rexdf.org">Comments</a>
+</p>
+</header>
+<div class="entry-content"><ul class="markdown-toc">
+<li><a href="#section">1.环境介绍</a></li>
+<li><a href="#section-1">2.错误列表:</a><ul>
+<li><a href="#section-2">错误1</a><ul>
+<li><a href="#section-3">解决办法:</a></li>
+</ul>
+</li>
+<li><a href="#section-4">错误2</a></li>
+<li><a href="#section-5">错误3</a></li>
+<li><a href="#section-6">错误4</a></li>
+<li><a href="#section-7">错误5</a></li>
+<li><a href="#section-8">错误6</a></li>
+<li><a href="#section-9">错误7</a></li>
+<li><a href="#section-10">错误8</a></li>
+<li><a href="#section-11">错误9</a></li>
+<li><a href="#section-12">补充错误</a></li>
+</ul>
+</li>
+<li><a href="#section-13">收尾工作</a></li>
+<li><a href="#section-14">结果</a></li>
+</ul>
+<p>本来在Windows上面我是不需要这样的软件的，一方面我收到的加密邮件并不多，另一方面我已经习惯了用纯命令的方式进行加解密了。来编译这个<a href="http://www.gpg4win.org/download.html" target="_blank">Gpg4Win</a> 这个页面上我目前最新下载的是gpg4win-2.2.2.exe，但是他们似乎没有严格测试过软件。我从2.2.1升级到2.2.2后，那个GPA密钥管理助手就不能启动，<del>说是缺少libwinpthread-1.dll</del>。更正下，是找不到rand_s，在msvcrt.dll中。</p>
+<p>虽然官方使用的是Debian7，我也有装好的Debian系统。不过我选择的我最喜爱的Archlinux来编译的，好处是所有软件足够新，比Ubuntu更加激进，但是又不是Debian系列开发版那种会使人心理不安的那种。其次我在Ubuntu上测试编译了一下，果真不行，Ubuntu上面编译latex的地方就会出错直接终止进程，而我看了下texinfo版本(<code>apt-cache -s texinfo</code>）也是5.2版本的。所以可以肯定，Ubuntu要正常编译出来，要解决的问题一定比Archlinux多得多。(粗略感觉下，我对编译Compendium.pdf这个地方，Latex出错就无能为力了。而且我是完全按照<a href="http://wiki.gnupg.org/Gpg4win/build" target="_blank">官网</a>指令安装了全部依赖了的。</p>
+<p>总之，虽然我物理机装的是Ubuntu，但是对于一些GNU的cpp开发，Ubuntu应该不是一个好的选择。</p>
+<h1 id="section">1.环境介绍</h1>
+<p>而Archlinux却有好几个包根本找不到任何对应的包，比如latex-xcolor这个，我完全不知道对应什么。不过还好Archlinux有yaourt可以方便安装非官方的包，比如docbook-utils,mingw-w64-**依赖库等。</p>
+<p>我的Arch的mingw-w64-gcc是4.9.1-3的，这应该是最前沿的了吧，所有依赖库是非官方维护，通过源码本地编译出来的，所以mingw不会出现找不到符号的错误。这个非常关键。</p>
+<p>总之我不知道官方的版本在Debian是否真的如<a href="http://wiki.gnupg.org/Gpg4win/build" target="_blank">官网编译wiki</a>上面说的那么轻松三条命令搞定</p>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption>官网编译命令<a href="http://blog.rexdf.org">MyBlog</a></figcaption><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div></pre></td><td class="main code"><pre><div class="line bash"><span class="nb">cd </span>gpg4win/packages <span class="o">&amp;&amp;</span> ./download.sh <span class="o">&amp;&amp;</span> <span class="nb">cd</span> ..
+</div><div class="line bash">./autogen.sh --force
+</div><div class="line bash">./autogen.sh --build-w32 <span class="o">&amp;&amp;</span> make
+</div></pre></td></tr></table></div></figure></notextile></div>
+<p>我没有在Debian上面测试，这看上去把所有的细节都封装到了autogen脚本里面去了。刚刚出错的时候我还不知怎么回事，不过进到目录里面就清楚了。</p>
+<p>下面我列出官网顺序执行下的错误列表</p>
+<h1 id="section-1">2.错误列表:</h1>
+<p>下面的错误列表我按出现的时间顺序给出。</p>
+<h2 id="section-2">错误1</h2>
+<ul>
+<li>libadns-1.dll.def:2: syntax error</li>
+</ul>
+<p>具体错误信息如下</p>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption>libadns-1.dll.def:2: syntax error错误信息<a href="http://blog.rexdf.org">MyBlog</a></figcaption><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div><div data-line="5" class="line-number"></div><div data-line="6" class="line-number"></div><div data-line="7" class="line-number"></div><div data-line="8" class="line-number"></div><div data-line="9" class="line-number"></div><div data-line="10" class="line-number"></div><div data-line="11" class="line-number"></div><div data-line="12" class="line-number"></div><div data-line="13" class="line-number"></div><div data-line="14" class="line-number"></div><div data-line="15" class="line-number"></div><div data-line="16" class="line-number"></div><div data-line="17" class="line-number"></div><div data-line="18" class="line-number"></div><div data-line="19" class="line-number"></div><div data-line="20" class="line-number"></div><div data-line="21" class="line-number"></div><div data-line="22" class="line-number"></div></pre></td><td class="main code"><pre><div class="line bash">/usr/lib/gcc/i686-w64-mingw32/4.9.1/../../../../i686-w64-mingw32/bin/ld:.libs/libadns-1.dll.def:2: syntax error
+</div><div class="line bash">collect2: error: ld returned 1 <span class="nb">exit </span>status
+</div><div class="line bash">Makefile:390: recipe <span class="k">for </span>target <span class="s1">&#39;libadns.la&#39;</span> failed
+</div><div class="line bash">make<span class="o">[</span>6<span class="o">]</span>: *** <span class="o">[</span>libadns.la<span class="o">]</span> Error 1
+</div><div class="line bash">make<span class="o">[</span>6<span class="o">]</span>: Leaving directory <span class="s1">&#39;/home/rexdf/prog/gpg4win/src/playground/build/adns-1.4-g10-4-build/src&#39;</span>
+</div><div class="line bash">Makefile:308: recipe <span class="k">for </span>target <span class="s1">&#39;all&#39;</span> failed
+</div><div class="line bash">make<span class="o">[</span>5<span class="o">]</span>: *** <span class="o">[</span>all<span class="o">]</span> Error 2
+</div><div class="line bash">make<span class="o">[</span>5<span class="o">]</span>: Leaving directory <span class="s1">&#39;/home/rexdf/prog/gpg4win/src/playground/build/adns-1.4-g10-4-build/src&#39;</span>
+</div><div class="line bash">Makefile:284: recipe <span class="k">for </span>target <span class="s1">&#39;all-recursive&#39;</span> failed
+</div><div class="line bash">make<span class="o">[</span>4<span class="o">]</span>: *** <span class="o">[</span>all-recursive<span class="o">]</span> Error 1
+</div><div class="line bash">make<span class="o">[</span>4<span class="o">]</span>: Leaving directory <span class="s1">&#39;/home/rexdf/prog/gpg4win/src/playground/build/adns-1.4-g10-4-build&#39;</span>
+</div><div class="line bash">gpg4win.mk:476: recipe <span class="k">for </span>target <span class="s1">&#39;stamps/stamp-adns-03-make&#39;</span> failed
+</div><div class="line bash">make<span class="o">[</span>3<span class="o">]</span>: *** <span class="o">[</span>stamps/stamp-adns-03-make<span class="o">]</span> Error 2
+</div><div class="line bash">make<span class="o">[</span>3<span class="o">]</span>: Leaving directory <span class="s1">&#39;/home/rexdf/prog/gpg4win/src&#39;</span>
+</div><div class="line bash">Makefile:963: recipe <span class="k">for </span>target <span class="s1">&#39;all-recursive&#39;</span> failed
+</div><div class="line bash">make<span class="o">[</span>2<span class="o">]</span>: *** <span class="o">[</span>all-recursive<span class="o">]</span> Error 1
+</div><div class="line bash">make<span class="o">[</span>2<span class="o">]</span>: Leaving directory <span class="s1">&#39;/home/rexdf/prog/gpg4win/src&#39;</span>
+</div><div class="line bash">Makefile:722: recipe <span class="k">for </span>target <span class="s1">&#39;all-recursive&#39;</span> failed
+</div><div class="line bash">make<span class="o">[</span>1<span class="o">]</span>: *** <span class="o">[</span>all-recursive<span class="o">]</span> Error 1
+</div><div class="line bash">make<span class="o">[</span>1<span class="o">]</span>: Leaving directory <span class="s1">&#39;/home/rexdf/prog/gpg4win&#39;</span>
+</div><div class="line bash">Makefile:660: recipe <span class="k">for </span>target <span class="s1">&#39;all&#39;</span> failed
+</div><div class="line bash">make: *** <span class="o">[</span>all<span class="o">]</span> Error 2
+</div></pre></td></tr></table></div></figure></notextile></div>
+<h3 id="section-3">解决办法:</h3>
+<p>网上搜索找到了两个</p>
+<p>一个<a href="http://lists.wald.intevation.org/pipermail/gpg4win-devel/2013-April/001214.html" target="_blank">邮件</a>里面的patch可以参考，需要手工打patch，因为行号似乎和现在版本对不上。</p>
+<p>还是一个<a href="http://lists.gnupg.org/pipermail/gnupg-users/2012-June/044884.html" target="_blank">邮件</a>，是Fedora上的，不过没有后续提出的解决办法。</p>
+<p>我的解决办法，①我尝试过降级libtool，但是libtool是binutils的一部分，降级binutils需要降级gcc，这个就非常麻烦了。简单点说就是不可能的了。</p>
+<p>Debian是libtool2.2，好像从libtool2.3就开始不支持def导出符号表中有双行<code>EXPORTS</code>，这个在上面第一个邮件里面争论过，最终是大家都说是upstream的问题或者libtool的错误，反正本该这样支持双<code>EXPORTS</code>等，反正现在是悬着的问题，自然就是留给了我们编译用户了。</p>
+<p>②降级binutils不行，自然就是改代码了。准确地说是hacking代码，反正只要欺骗libtool这是一个合格的def导出符号表就行了。对于这个编译过程中工具链的调用方式的真的是没有搞懂的，反正传统的<code>./configure &amp;&amp; make</code>是绝对不会编译出正确的结果的，因为是cross-build，自然是要传CXX或者host，target等参数进去的。不过最终我也没有搞懂这些参数是怎么传递进去的，不过问题还是被我给解决了。hacking code</p>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption>修改的文件<a href="http://blog.rexdf.org">MyBlog</a></figcaption><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div></pre></td><td class="main code"><pre><div class="line bash">vim /home/rexdf/prog/gpg4win/src/playground/build/adns-1.4-g10-4-build/libtool
+</div></pre></td></tr></table></div></figure></notextile></div>
+<p>查找EXPORTS，一直找到<code>echo EXPORTS</code>的一行，我的是325行。</p>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption>要修改的行<a href="http://blog.rexdf.org">MyBlog</a></figcaption><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div></pre></td><td class="main code"><pre><div class="line bash"><span class="nb">echo </span>EXPORTS &gt; <span class="se">\$</span>output_objdir/<span class="se">\$</span>soname.def;
+</div><div class="line bash">cat <span class="se">\$</span>export_symbols &gt;&gt; <span class="se">\$</span>output_objdir/<span class="se">\$</span>soname.def;
+</div></pre></td></tr></table></div></figure></notextile></div>
+<p>把这两行的第一行删除，第二行的<code>&gt;&gt;</code>改成<code>&gt;</code>，已覆盖而不是追加。</p>
+<p>保存退出，继续执行<code>make</code>。vim界面如下如:</p>
+<p><img src="/images/gpg4win-1.png" alt="结果图" class="center fancybox"></p>
+<h2 id="section-4">错误2</h2>
+<ul>
+<li>libw32pth-0.dll.def:2: syntax error</li>
+</ul>
+<p>具体错误信息如下</p>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption>libw32pth-0.dll.def:2: syntax error错误信息<a href="http://blog.rexdf.org">MyBlog</a></figcaption><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div><div data-line="5" class="line-number"></div><div data-line="6" class="line-number"></div><div data-line="7" class="line-number"></div><div data-line="8" class="line-number"></div><div data-line="9" class="line-number"></div><div data-line="10" class="line-number"></div><div data-line="11" class="line-number"></div><div data-line="12" class="line-number"></div><div data-line="13" class="line-number"></div><div data-line="14" class="line-number"></div><div data-line="15" class="line-number"></div><div data-line="16" class="line-number"></div><div data-line="17" class="line-number"></div><div data-line="18" class="line-number"></div><div data-line="19" class="line-number"></div><div data-line="20" class="line-number"></div></pre></td><td class="main code"><pre><div class="line bash">/usr/lib/gcc/i686-w64-mingw32/4.9.1/../../../../i686-w64-mingw32/bin/ld:.libs/libw32pth-0.dll.def: file format not recognized; treating as linker script
+</div><div class="line bash">/usr/lib/gcc/i686-w64-mingw32/4.9.1/../../../../i686-w64-mingw32/bin/ld:.libs/libw32pth-0.dll.def:2: syntax error
+</div><div class="line bash">collect2: error: ld returned 1 <span class="nb">exit </span>status
+</div><div class="line bash">Makefile:421: recipe <span class="k">for </span>target <span class="s1">&#39;libw32pth.la&#39;</span> failed
+</div><div class="line bash">make<span class="o">[</span>5<span class="o">]</span>: *** <span class="o">[</span>libw32pth.la<span class="o">]</span> Error 1
+</div><div class="line bash">make<span class="o">[</span>5<span class="o">]</span>: Leaving directory <span class="s1">&#39;/home/rexdf/prog/gpg4win/src/playground/build/w32pth-2.0.5-build&#39;</span>
+</div><div class="line bash">Makefile:331: recipe <span class="k">for </span>target <span class="s1">&#39;all&#39;</span> failed
+</div><div class="line bash">make<span class="o">[</span>4<span class="o">]</span>: *** <span class="o">[</span>all<span class="o">]</span> Error 2
+</div><div class="line bash">make<span class="o">[</span>4<span class="o">]</span>: Leaving directory <span class="s1">&#39;/home/rexdf/prog/gpg4win/src/playground/build/w32pth-2.0.5-build&#39;</span>
+</div><div class="line bash">gpg4win.mk:476: recipe <span class="k">for </span>target <span class="s1">&#39;stamps/stamp-w32pth-03-make&#39;</span> failed
+</div><div class="line bash">make<span class="o">[</span>3<span class="o">]</span>: *** <span class="o">[</span>stamps/stamp-w32pth-03-make<span class="o">]</span> Error 2
+</div><div class="line bash">make<span class="o">[</span>3<span class="o">]</span>: Leaving directory <span class="s1">&#39;/home/rexdf/prog/gpg4win/src&#39;</span>
+</div><div class="line bash">Makefile:963: recipe <span class="k">for </span>target <span class="s1">&#39;all-recursive&#39;</span> failed
+</div><div class="line bash">make<span class="o">[</span>2<span class="o">]</span>: *** <span class="o">[</span>all-recursive<span class="o">]</span> Error 1
+</div><div class="line bash">make<span class="o">[</span>2<span class="o">]</span>: Leaving directory <span class="s1">&#39;/home/rexdf/prog/gpg4win/src&#39;</span>
+</div><div class="line bash">Makefile:722: recipe <span class="k">for </span>target <span class="s1">&#39;all-recursive&#39;</span> failed
+</div><div class="line bash">make<span class="o">[</span>1<span class="o">]</span>: *** <span class="o">[</span>all-recursive<span class="o">]</span> Error 1
+</div><div class="line bash">make<span class="o">[</span>1<span class="o">]</span>: Leaving directory <span class="s1">&#39;/home/rexdf/prog/gpg4win&#39;</span>
+</div><div class="line bash">Makefile:660: recipe <span class="k">for </span>target <span class="s1">&#39;all&#39;</span> failed
+</div><div class="line bash">make: *** <span class="o">[</span>all<span class="o">]</span> Error 2
+</div></pre></td></tr></table></div></figure></notextile></div>
+<p>解决办法同 <a href="#section-2">错误1</a> 只要按照上面的修改<code>/home/rexdf/prog/gpg4win/src/playground/build/w32pth-2.0.5-build/libtool</code>即可。然后再次执行make.</p>
+<h2 id="section-5">错误3</h2>
+<ul>
+<li>libksba-8.dll.def:2: syntax error</li>
+</ul>
+<p>解决办法同 <a href="#section-2">错误1</a> 只要按照上面的修改<code>/home/rexdf/prog/gpg4win/src/playground/build/libksba-1.3.0-build/libtool</code>即可。然后再次执行make.</p>
+<h2 id="section-6">错误4</h2>
+<ul>
+<li>libscute-0.dll.def:2: syntax error</li>
+</ul>
+<p>解决办法同 <a href="#section-2">错误1</a> 只要按照上面的修改<code>/home/rexdf/prog/gpg4win/src/playground/build/scute-1.4.0-build/libtool</code>即可。然后再次执行make.</p>
+<h2 id="section-7">错误5</h2>
+<ul>
+<li>doc/gnutls.info failed</li>
+</ul>
+<p>具体错误信息如下:</p>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption>gnutls的doc编译错误<a href="http://blog.rexdf.org">MyBlog</a></figcaption><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div><div data-line="5" class="line-number"></div><div data-line="6" class="line-number"></div><div data-line="7" class="line-number"></div><div data-line="8" class="line-number"></div><div data-line="9" class="line-number"></div><div data-line="10" class="line-number"></div><div data-line="11" class="line-number"></div><div data-line="12" class="line-number"></div><div data-line="13" class="line-number"></div><div data-line="14" class="line-number"></div><div data-line="15" class="line-number"></div><div data-line="16" class="line-number"></div><div data-line="17" class="line-number"></div><div data-line="18" class="line-number"></div><div data-line="19" class="line-number"></div><div data-line="20" class="line-number"></div><div data-line="21" class="line-number"></div><div data-line="22" class="line-number"></div><div data-line="23" class="line-number"></div><div data-line="24" class="line-number"></div><div data-line="25" class="line-number"></div><div data-line="26" class="line-number"></div><div data-line="27" class="line-number"></div><div data-line="28" class="line-number"></div><div data-line="29" class="line-number"></div></pre></td><td class="main code"><pre><div class="line bash">../../gnutls-2.12.23/doc/gnutls.texi:119: warning: node prev <span class="sb">`</span>Function and Data Index<span class="s1">&#39; in menu `Concept Index&#39;</span> and in sectioning <span class="sb">`</span>Bibliography<span class="s1">&#39; differ</span>
+</div><div class="line bash"><span class="s1">../../gnutls-2.12.23/doc/gnutls.texi:124: warning: node `Function and Data Index&#39;</span> is next <span class="k">for</span> <span class="sb">`</span>Concept Index<span class="s1">&#39; in menu but not in sectioning</span>
+</div><div class="line bash"><span class="s1">../../gnutls-2.12.23/doc/gnutls.texi:124: warning: node prev `Concept Index&#39;</span> in menu <span class="sb">`</span>Copying Information<span class="s1">&#39; and in sectioning `Function and Data Index&#39;</span> differ
+</div><div class="line bash">Makefile:1377: recipe <span class="k">for </span>target <span class="s1">&#39;../../gnutls-2.12.23/doc/gnutls.info&#39;</span> failed
+</div><div class="line bash">make<span class="o">[</span>8<span class="o">]</span>: *** <span class="o">[</span>../../gnutls-2.12.23/doc/gnutls.info<span class="o">]</span> Error 1
+</div><div class="line bash">make<span class="o">[</span>8<span class="o">]</span>: Leaving directory <span class="s1">&#39;/home/rexdf/prog/gpg4win/src/playground/build/gnutls-2.12.23-build/doc&#39;</span>
+</div><div class="line bash">Makefile:1568: recipe <span class="k">for </span>target <span class="s1">&#39;all-recursive&#39;</span> failed
+</div><div class="line bash">make<span class="o">[</span>7<span class="o">]</span>: *** <span class="o">[</span>all-recursive<span class="o">]</span> Error 1
+</div><div class="line bash">make<span class="o">[</span>7<span class="o">]</span>: Leaving directory <span class="s1">&#39;/home/rexdf/prog/gpg4win/src/playground/build/gnutls-2.12.23-build/doc&#39;</span>
+</div><div class="line bash">Makefile:1290: recipe <span class="k">for </span>target <span class="s1">&#39;all&#39;</span> failed
+</div><div class="line bash">make<span class="o">[</span>6<span class="o">]</span>: *** <span class="o">[</span>all<span class="o">]</span> Error 2
+</div><div class="line bash">make<span class="o">[</span>6<span class="o">]</span>: Leaving directory <span class="s1">&#39;/home/rexdf/prog/gpg4win/src/playground/build/gnutls-2.12.23-build/doc&#39;</span>
+</div><div class="line bash">Makefile:1222: recipe <span class="k">for </span>target <span class="s1">&#39;all-recursive&#39;</span> failed
+</div><div class="line bash">make<span class="o">[</span>5<span class="o">]</span>: *** <span class="o">[</span>all-recursive<span class="o">]</span> Error 1
+</div><div class="line bash">make<span class="o">[</span>5<span class="o">]</span>: Leaving directory <span class="s1">&#39;/home/rexdf/prog/gpg4win/src/playground/build/gnutls-2.12.23-build&#39;</span>
+</div><div class="line bash">Makefile:1151: recipe <span class="k">for </span>target <span class="s1">&#39;all&#39;</span> failed
+</div><div class="line bash">make<span class="o">[</span>4<span class="o">]</span>: *** <span class="o">[</span>all<span class="o">]</span> Error 2
+</div><div class="line bash">make<span class="o">[</span>4<span class="o">]</span>: Leaving directory <span class="s1">&#39;/home/rexdf/prog/gpg4win/src/playground/build/gnutls-2.12.23-build&#39;</span>
+</div><div class="line bash">gpg4win.mk:476: recipe <span class="k">for </span>target <span class="s1">&#39;stamps/stamp-gnutls-03-make&#39;</span> failed
+</div><div class="line bash">make<span class="o">[</span>3<span class="o">]</span>: *** <span class="o">[</span>stamps/stamp-gnutls-03-make<span class="o">]</span> Error 2
+</div><div class="line bash">make<span class="o">[</span>3<span class="o">]</span>: Leaving directory <span class="s1">&#39;/home/rexdf/prog/gpg4win/src&#39;</span>
+</div><div class="line bash">Makefile:963: recipe <span class="k">for </span>target <span class="s1">&#39;all-recursive&#39;</span> failed
+</div><div class="line bash">make<span class="o">[</span>2<span class="o">]</span>: *** <span class="o">[</span>all-recursive<span class="o">]</span> Error 1
+</div><div class="line bash">make<span class="o">[</span>2<span class="o">]</span>: Leaving directory <span class="s1">&#39;/home/rexdf/prog/gpg4win/src&#39;</span>
+</div><div class="line bash">Makefile:722: recipe <span class="k">for </span>target <span class="s1">&#39;all-recursive&#39;</span> failed
+</div><div class="line bash">make<span class="o">[</span>1<span class="o">]</span>: *** <span class="o">[</span>all-recursive<span class="o">]</span> Error 1
+</div><div class="line bash">make<span class="o">[</span>1<span class="o">]</span>: Leaving directory <span class="s1">&#39;/home/rexdf/prog/gpg4win&#39;</span>
+</div><div class="line bash">Makefile:660: recipe <span class="k">for </span>target <span class="s1">&#39;all&#39;</span> failed
+</div><div class="line bash">make: *** <span class="o">[</span>all<span class="o">]</span> Error 2
+</div></pre></td></tr></table></div></figure></notextile></div>
+<p>这个错误和前面的错误不同了，这个是兼容问题了gnutls的texi兼容texinfo的4.x版本，而Archlinx版本是5.2-2(甚至Ubuntu都是5.2)。</p>
+<p>不过幸运的是Archlinux降级比较方便，而且texinfo似乎没有被任何包依赖。执行如下命令降级。 从这个<a href="http://www.filewatcher.com/m/texinfo-4.13a-4-x86_64.pkg.tar.xz.686840-0.html" target="_blank">页面</a>选择一个mirror下载。</p>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption>降级texinfo命令<a href="http://blog.rexdf.org">MyBlog</a></figcaption><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div></pre></td><td class="main code"><pre><div class="line bash">wget ftp://debian.linux.org.tw/pub/CLE/pub/ArchLinux/current/os/x86_64/texinfo-4.13a-4-x86_64.pkg.tar.xz
+</div><div class="line bash">sudo pacman -U texinfo-4.13a-4-x86_64.pkg.tar.xz
+</div></pre></td></tr></table></div></figure></notextile></div>
+<p>提示信息如下</p>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption>降级texinfo提示信息<a href="http://blog.rexdf.org">MyBlog</a></figcaption><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div><div data-line="5" class="line-number"></div><div data-line="6" class="line-number"></div><div data-line="7" class="line-number"></div><div data-line="8" class="line-number"></div><div data-line="9" class="line-number"></div><div data-line="10" class="line-number"></div><div data-line="11" class="line-number"></div><div data-line="12" class="line-number"></div><div data-line="13" class="line-number"></div><div data-line="14" class="line-number"></div><div data-line="15" class="line-number"></div><div data-line="16" class="line-number"></div><div data-line="17" class="line-number"></div></pre></td><td class="main code"><pre><div class="line bash">正在加载软件包...
+</div><div class="line bash">警告：正在降级软件包 texinfo <span class="o">(</span>5.2-2 <span class="o">=</span>&gt; 4.13a-4<span class="o">)</span>
+</div><div class="line bash">正在解决依赖关系...
+</div><div class="line bash">正在查找相互冲突...
+</div><div class="line bash"> </div><div class="line bash">软件包 <span class="o">(</span>1<span class="o">)</span>: texinfo-4.13a-4
+</div><div class="line bash"> </div><div class="line bash">全部安装大小： 2.34 MiB
+</div><div class="line bash">净更新大小： -5.47 MiB
+</div><div class="line bash"> </div><div class="line bash">:: 进行安装吗？ <span class="o">[</span>Y/n<span class="o">]</span> y
+</div><div class="line bash"><span class="o">(</span>1/1<span class="o">)</span> 正在检查密钥环里的密钥                                                      <span class="o">[</span><span class="c">##############################################] 100%</span>
+</div><div class="line bash"><span class="o">(</span>1/1<span class="o">)</span> 正在检查软件包完整性                                                        <span class="o">[</span><span class="c">##############################################] 100%</span>
+</div><div class="line bash"><span class="o">(</span>1/1<span class="o">)</span> 正在加载软件包文件                                                          <span class="o">[</span><span class="c">##############################################] 100%</span>
+</div><div class="line bash"><span class="o">(</span>1/1<span class="o">)</span> 正在检查文件冲突                                                            <span class="o">[</span><span class="c">##############################################] 100%</span>
+</div><div class="line bash"><span class="o">(</span>1/1<span class="o">)</span> 正在检查可用硬盘空间                                                        <span class="o">[</span><span class="c">##############################################] 100%</span>
+</div><div class="line bash"><span class="o">(</span>1/1<span class="o">)</span> 降级中 texinfo
+</div></pre></td></tr></table></div></figure></notextile></div>
+<p>然后再次执行make.</p>
+<h2 id="section-8">错误6</h2>
+<ul>
+<li>无法获取”gtk-tut” 的文件状态(stat): 没有那个文件或目录</li>
+</ul>
+<p>提示信息如下</p>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption>gtk-2.24编译错误信息<a href="http://blog.rexdf.org">MyBlog</a></figcaption><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div><div data-line="5" class="line-number"></div><div data-line="6" class="line-number"></div><div data-line="7" class="line-number"></div><div data-line="8" class="line-number"></div><div data-line="9" class="line-number"></div><div data-line="10" class="line-number"></div><div data-line="11" class="line-number"></div><div data-line="12" class="line-number"></div><div data-line="13" class="line-number"></div><div data-line="14" class="line-number"></div><div data-line="15" class="line-number"></div><div data-line="16" class="line-number"></div><div data-line="17" class="line-number"></div><div data-line="18" class="line-number"></div><div data-line="19" class="line-number"></div><div data-line="20" class="line-number"></div><div data-line="21" class="line-number"></div><div data-line="22" class="line-number"></div><div data-line="23" class="line-number"></div><div data-line="24" class="line-number"></div><div data-line="25" class="line-number"></div><div data-line="26" class="line-number"></div><div data-line="27" class="line-number"></div><div data-line="28" class="line-number"></div><div data-line="29" class="line-number"></div><div data-line="30" class="line-number"></div><div data-line="31" class="line-number"></div><div data-line="32" class="line-number"></div></pre></td><td class="main code"><pre><div class="line bash">                            window<span class="o">)</span>;
+</div><div class="line bash">  gtk_widget_show <span class="o">(</span>button<span class="o">)</span>;
+</div><div class="line bash">  gtk_widget_show <span class="o">(</span>window<span class="o">)</span>;
+</div><div class="line bash">  gtk_main <span class="o">()</span>;
+</div><div class="line bash">  <span class="k">return </span>0;
+</div><div class="line bash"><span class="o">}</span>Done.
+</div><div class="line bash">mv: 无法获取<span class="s2">&quot;gtk-tut&quot;</span> 的文件状态<span class="o">(</span>stat<span class="o">)</span>: 没有那个文件或目录
+</div><div class="line bash">mkdir: 无法创建目录<span class="s2">&quot;html/images&quot;</span>: 没有那个文件或目录
+</div><div class="line bash">cp: 目标<span class="s2">&quot;html/images&quot;</span> 不是目录
+</div><div class="line bash">Makefile:645: recipe <span class="k">for </span>target <span class="s1">&#39;html&#39;</span> failed
+</div><div class="line bash">make<span class="o">[</span>7<span class="o">]</span>: *** <span class="o">[</span>html<span class="o">]</span> Error 1
+</div><div class="line bash">make<span class="o">[</span>7<span class="o">]</span>: Leaving directory <span class="s1">&#39;/home/rexdf/prog/gpg4win/src/playground/build/gtk+-2.24.24-build/docs/tutorial&#39;</span>
+</div><div class="line bash">Makefile:493: recipe <span class="k">for </span>target <span class="s1">&#39;all-recursive&#39;</span> failed
+</div><div class="line bash">make<span class="o">[</span>6<span class="o">]</span>: *** <span class="o">[</span>all-recursive<span class="o">]</span> Error 1
+</div><div class="line bash">make<span class="o">[</span>6<span class="o">]</span>: Leaving directory <span class="s1">&#39;/home/rexdf/prog/gpg4win/src/playground/build/gtk+-2.24.24-build/docs&#39;</span>
+</div><div class="line bash">Makefile:719: recipe <span class="k">for </span>target <span class="s1">&#39;all-recursive&#39;</span> failed
+</div><div class="line bash">make<span class="o">[</span>5<span class="o">]</span>: *** <span class="o">[</span>all-recursive<span class="o">]</span> Error 1
+</div><div class="line bash">make<span class="o">[</span>5<span class="o">]</span>: Leaving directory <span class="s1">&#39;/home/rexdf/prog/gpg4win/src/playground/build/gtk+-2.24.24-build&#39;</span>
+</div><div class="line bash">Makefile:610: recipe <span class="k">for </span>target <span class="s1">&#39;all&#39;</span> failed
+</div><div class="line bash">make<span class="o">[</span>4<span class="o">]</span>: *** <span class="o">[</span>all<span class="o">]</span> Error 2
+</div><div class="line bash">make<span class="o">[</span>4<span class="o">]</span>: Leaving directory <span class="s1">&#39;/home/rexdf/prog/gpg4win/src/playground/build/gtk+-2.24.24-build&#39;</span>
+</div><div class="line bash">gpg4win.mk:476: recipe <span class="k">for </span>target <span class="s1">&#39;stamps/stamp-gtk+-03-make&#39;</span> failed
+</div><div class="line bash">make<span class="o">[</span>3<span class="o">]</span>: *** <span class="o">[</span>stamps/stamp-gtk+-03-make<span class="o">]</span> Error 2
+</div><div class="line bash">make<span class="o">[</span>3<span class="o">]</span>: Leaving directory <span class="s1">&#39;/home/rexdf/prog/gpg4win/src&#39;</span>
+</div><div class="line bash">Makefile:963: recipe <span class="k">for </span>target <span class="s1">&#39;all-recursive&#39;</span> failed
+</div><div class="line bash">make<span class="o">[</span>2<span class="o">]</span>: *** <span class="o">[</span>all-recursive<span class="o">]</span> Error 1
+</div><div class="line bash">make<span class="o">[</span>2<span class="o">]</span>: Leaving directory <span class="s1">&#39;/home/rexdf/prog/gpg4win/src&#39;</span>
+</div><div class="line bash">Makefile:722: recipe <span class="k">for </span>target <span class="s1">&#39;all-recursive&#39;</span> failed
+</div><div class="line bash">make<span class="o">[</span>1<span class="o">]</span>: *** <span class="o">[</span>all-recursive<span class="o">]</span> Error 1
+</div><div class="line bash">make<span class="o">[</span>1<span class="o">]</span>: Leaving directory <span class="s1">&#39;/home/rexdf/prog/gpg4win&#39;</span>
+</div><div class="line bash">Makefile:660: recipe <span class="k">for </span>target <span class="s1">&#39;all&#39;</span> failed
+</div><div class="line bash">make: *** <span class="o">[</span>all<span class="o">]</span> Error 2
+</div></pre></td></tr></table></div></figure></notextile></div>
+<p>这个是在编译gtk2.24的html版本doc的时候出错了。</p>
+<p>在这封<a href="https://mail.gnome.org/archives/gtk-list/2011-March/msg00014.html" target="_blank">邮件</a>里面提到了同样的问题。</p>
+<p>因为我们是在编译gpg4win，而不是gtk，所以doc完全可以忽略的。因此我采用了比较粗暴的hacking。</p>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption>修改gtk的doc问题<a href="http://blog.rexdf.org">MyBlog</a></figcaption><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div></pre></td><td class="main code"><pre><div class="line bash">vim /home/rexdf/prog/gpg4win/src/playground/build/gtk+-2.24.24-build/docs/Makefile
+</div></pre></td></tr></table></div></figure></notextile></div>
+<p>查找tutorial，找到<code>SUBDIRS = tutorial faq reference tools</code>一行，直接删除tutorial和faq两项。我的在444行。</p>
+<p>结果如下图</p>
+<p><img src="/images/gpg4win-2.png" alt="结果图" class="center fancybox"></p>
+<p>然后再次执行make.</p>
+<h2 id="section-9">错误7</h2>
+<ul>
+<li>找不到libgcc_s_sjlj-1.dll-x和libstdc++-6.dll-x</li>
+</ul>
+<p>具体错误信息如下</p>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption>找不到libstdc++-6.dll-x<a href="http://blog.rexdf.org">MyBlog</a></figcaption><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div><div data-line="5" class="line-number"></div><div data-line="6" class="line-number"></div><div data-line="7" class="line-number"></div><div data-line="8" class="line-number"></div><div data-line="9" class="line-number"></div><div data-line="10" class="line-number"></div><div data-line="11" class="line-number"></div><div data-line="12" class="line-number"></div><div data-line="13" class="line-number"></div><div data-line="14" class="line-number"></div><div data-line="15" class="line-number"></div><div data-line="16" class="line-number"></div><div data-line="17" class="line-number"></div><div data-line="18" class="line-number"></div></pre></td><td class="main code"><pre><div class="line bash"> - g4wihelp::stopsound
+</div><div class="line bash">File: <span class="s2">&quot;/home/rexdf/prog/gpg4win/src/libstdc++-6.dll-x&quot;</span> -&gt; no files found.
+</div><div class="line bash">Usage: File <span class="o">[</span>/nonfatal<span class="o">]</span> <span class="o">[</span>/a<span class="o">]</span> <span class="o">([</span>/r<span class="o">]</span> <span class="o">[</span>/x filespec <span class="o">[</span>...<span class="o">]]</span> filespec <span class="o">[</span>...<span class="o">]</span> |
+</div><div class="line bash">   /oname<span class="o">=</span>outfile one_file_only<span class="o">)</span>
+</div><div class="line bash">!include: error in script: <span class="s2">&quot;inst-gpg4win.nsi&quot;</span> on line 93
+</div><div class="line bash">!include: error in script: <span class="s2">&quot;inst-sections.nsi&quot;</span> on line 22
+</div><div class="line bash">Error in script <span class="s2">&quot;./gpg4win.nsi&quot;</span> on line 223 -- aborting creation process
+</div><div class="line bash">Makefile:1461: recipe <span class="k">for </span>target <span class="s1">&#39;gpg4win-2.2.2-beta3.exe&#39;</span> failed
+</div><div class="line bash">make<span class="o">[</span>3<span class="o">]</span>: *** <span class="o">[</span>gpg4win-2.2.2-beta3.exe<span class="o">]</span> Error 1
+</div><div class="line bash">make<span class="o">[</span>3<span class="o">]</span>: Leaving directory <span class="s1">&#39;/home/rexdf/prog/gpg4win/src&#39;</span>
+</div><div class="line bash">Makefile:963: recipe <span class="k">for </span>target <span class="s1">&#39;all-recursive&#39;</span> failed
+</div><div class="line bash">make<span class="o">[</span>2<span class="o">]</span>: *** <span class="o">[</span>all-recursive<span class="o">]</span> Error 1
+</div><div class="line bash">make<span class="o">[</span>2<span class="o">]</span>: Leaving directory <span class="s1">&#39;/home/rexdf/prog/gpg4win/src&#39;</span>
+</div><div class="line bash">Makefile:722: recipe <span class="k">for </span>target <span class="s1">&#39;all-recursive&#39;</span> failed
+</div><div class="line bash">make<span class="o">[</span>1<span class="o">]</span>: *** <span class="o">[</span>all-recursive<span class="o">]</span> Error 1
+</div><div class="line bash">make<span class="o">[</span>1<span class="o">]</span>: Leaving directory <span class="s1">&#39;/home/rexdf/prog/gpg4win&#39;</span>
+</div><div class="line bash">Makefile:660: recipe <span class="k">for </span>target <span class="s1">&#39;all&#39;</span> failed
+</div><div class="line bash">make: *** <span class="o">[</span>all<span class="o">]</span> Error 2
+</div></pre></td></tr></table></div></figure></notextile></div>
+<p>解决命令</p>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption>拷贝两个缺失的dll-x<a href="http://blog.rexdf.org">MyBlog</a></figcaption><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div></pre></td><td class="main code"><pre><div class="line bash">cp /usr/i686-w64-mingw32/bin/libgcc_s_sjlj-1.dll src/libgcc_s_sjlj-1.dll-x
+</div><div class="line bash">cp /usr/i686-w64-mingw32/bin/libstdc++-6.dll src/libstdc++-6.dll-x
+</div></pre></td></tr></table></div></figure></notextile></div>
+<h2 id="section-10">错误8</h2>
+<ul>
+<li>找不到pinentry-w32.exe和pinentry-qt4.exe</li>
+</ul>
+<p>具体错误信息如下</p>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption>找不到pinentry-w32.exe<a href="http://blog.rexdf.org">MyBlog</a></figcaption><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div><div data-line="5" class="line-number"></div><div data-line="6" class="line-number"></div><div data-line="7" class="line-number"></div><div data-line="8" class="line-number"></div><div data-line="9" class="line-number"></div><div data-line="10" class="line-number"></div><div data-line="11" class="line-number"></div><div data-line="12" class="line-number"></div><div data-line="13" class="line-number"></div><div data-line="14" class="line-number"></div><div data-line="15" class="line-number"></div><div data-line="16" class="line-number"></div><div data-line="17" class="line-number"></div><div data-line="18" class="line-number"></div></pre></td><td class="main code"><pre><div class="line bash"> - g4wihelp::stopsound
+</div><div class="line bash">File: <span class="s2">&quot;playground/install/pkgs/pinentry-0.8.4-beta8/bin/pinentry-w32.exe&quot;</span> -&gt; no files found.
+</div><div class="line bash">Usage: File <span class="o">[</span>/nonfatal<span class="o">]</span> <span class="o">[</span>/a<span class="o">]</span> <span class="o">([</span>/r<span class="o">]</span> <span class="o">[</span>/x filespec <span class="o">[</span>...<span class="o">]]</span> filespec <span class="o">[</span>...<span class="o">]</span> |
+</div><div class="line bash">   /oname<span class="o">=</span>outfile one_file_only<span class="o">)</span>
+</div><div class="line bash">!include: error in script: <span class="s2">&quot;inst-pinentry.nsi&quot;</span> on line 38
+</div><div class="line bash">!include: error in script: <span class="s2">&quot;inst-sections.nsi&quot;</span> on line 141
+</div><div class="line bash">Error in script <span class="s2">&quot;./gpg4win.nsi&quot;</span> on line 223 -- aborting creation process
+</div><div class="line bash">Makefile:1461: recipe <span class="k">for </span>target <span class="s1">&#39;gpg4win-2.2.2-beta3.exe&#39;</span> failed
+</div><div class="line bash">make<span class="o">[</span>3<span class="o">]</span>: *** <span class="o">[</span>gpg4win-2.2.2-beta3.exe<span class="o">]</span> Error 1
+</div><div class="line bash">make<span class="o">[</span>3<span class="o">]</span>: Leaving directory <span class="s1">&#39;/home/rexdf/prog/gpg4win/src&#39;</span>
+</div><div class="line bash">Makefile:963: recipe <span class="k">for </span>target <span class="s1">&#39;all-recursive&#39;</span> failed
+</div><div class="line bash">make<span class="o">[</span>2<span class="o">]</span>: *** <span class="o">[</span>all-recursive<span class="o">]</span> Error 1
+</div><div class="line bash">make<span class="o">[</span>2<span class="o">]</span>: Leaving directory <span class="s1">&#39;/home/rexdf/prog/gpg4win/src&#39;</span>
+</div><div class="line bash">Makefile:722: recipe <span class="k">for </span>target <span class="s1">&#39;all-recursive&#39;</span> failed
+</div><div class="line bash">make<span class="o">[</span>1<span class="o">]</span>: *** <span class="o">[</span>all-recursive<span class="o">]</span> Error 1
+</div><div class="line bash">make<span class="o">[</span>1<span class="o">]</span>: Leaving directory <span class="s1">&#39;/home/rexdf/prog/gpg4win&#39;</span>
+</div><div class="line bash">Makefile:660: recipe <span class="k">for </span>target <span class="s1">&#39;all&#39;</span> failed
+</div><div class="line bash">make: *** <span class="o">[</span>all<span class="o">]</span> Error 2
+</div></pre></td></tr></table></div></figure></notextile></div>
+<p>解决命令</p>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption>拷贝两个缺失的pinentry-*.exe<a href="http://blog.rexdf.org">MyBlog</a></figcaption><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div></pre></td><td class="main code"><pre><div class="line bash">cp src/playground/build/pinentry-0.8.4-beta8-build/w32/pinentry-w32.exe src/playground/install/pkgs/pinentry-0.8.4-beta8/bin/pinentry-w32.exe
+</div><div class="line bash">cp src/playground/build/pinentry-0.8.4-beta8-build/qt4/pinentry-qt4.exe src/playground/install/pkgs/pinentry-0.8.4-beta8/bin/pinentry-qt4.exe
+</div></pre></td></tr></table></div></figure></notextile></div>
+<p>然后执行make.</p>
+<h2 id="section-11">错误9</h2>
+<ul>
+<li>找不到gpgex.dll</li>
+</ul>
+<p>具体错误信息如下</p>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption>找不到gpgex.dll<a href="http://blog.rexdf.org">MyBlog</a></figcaption><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div><div data-line="5" class="line-number"></div><div data-line="6" class="line-number"></div><div data-line="7" class="line-number"></div><div data-line="8" class="line-number"></div><div data-line="9" class="line-number"></div><div data-line="10" class="line-number"></div><div data-line="11" class="line-number"></div><div data-line="12" class="line-number"></div><div data-line="13" class="line-number"></div><div data-line="14" class="line-number"></div><div data-line="15" class="line-number"></div><div data-line="16" class="line-number"></div><div data-line="17" class="line-number"></div></pre></td><td class="main code"><pre><div class="line bash">File: <span class="s2">&quot;playground/install-ex/pkgs/gpgex-1.0.1/bin/gpgex.dll&quot;</span> -&gt; no files found.
+</div><div class="line bash">Usage: File <span class="o">[</span>/nonfatal<span class="o">]</span> <span class="o">[</span>/a<span class="o">]</span> <span class="o">([</span>/r<span class="o">]</span> <span class="o">[</span>/x filespec <span class="o">[</span>...<span class="o">]]</span> filespec <span class="o">[</span>...<span class="o">]</span> |
+</div><div class="line bash">   /oname<span class="o">=</span>outfile one_file_only<span class="o">)</span>
+</div><div class="line bash">!include: error in script: <span class="s2">&quot;inst-gpgex.nsi&quot;</span> on line 87
+</div><div class="line bash">!include: error in script: <span class="s2">&quot;inst-sections.nsi&quot;</span> on line 162
+</div><div class="line bash">Error in script <span class="s2">&quot;./gpg4win.nsi&quot;</span> on line 223 -- aborting creation process
+</div><div class="line bash">Makefile:1461: recipe <span class="k">for </span>target <span class="s1">&#39;gpg4win-2.2.2-beta3.exe&#39;</span> failed
+</div><div class="line bash">make<span class="o">[</span>3<span class="o">]</span>: *** <span class="o">[</span>gpg4win-2.2.2-beta3.exe<span class="o">]</span> Error 1
+</div><div class="line bash">make<span class="o">[</span>3<span class="o">]</span>: Leaving directory <span class="s1">&#39;/home/rexdf/prog/gpg4win/src&#39;</span>
+</div><div class="line bash">Makefile:963: recipe <span class="k">for </span>target <span class="s1">&#39;all-recursive&#39;</span> failed
+</div><div class="line bash">make<span class="o">[</span>2<span class="o">]</span>: *** <span class="o">[</span>all-recursive<span class="o">]</span> Error 1
+</div><div class="line bash">make<span class="o">[</span>2<span class="o">]</span>: Leaving directory <span class="s1">&#39;/home/rexdf/prog/gpg4win/src&#39;</span>
+</div><div class="line bash">Makefile:722: recipe <span class="k">for </span>target <span class="s1">&#39;all-recursive&#39;</span> failed
+</div><div class="line bash">make<span class="o">[</span>1<span class="o">]</span>: *** <span class="o">[</span>all-recursive<span class="o">]</span> Error 1
+</div><div class="line bash">make<span class="o">[</span>1<span class="o">]</span>: Leaving directory <span class="s1">&#39;/home/rexdf/prog/gpg4win&#39;</span>
+</div><div class="line bash">Makefile:660: recipe <span class="k">for </span>target <span class="s1">&#39;all&#39;</span> failed
+</div><div class="line bash">make: *** <span class="o">[</span>all<span class="o">]</span> Error 2
+</div></pre></td></tr></table></div></figure></notextile></div>
+<p>解决般办法</p>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption>拷贝gpgex.dll<a href="http://blog.rexdf.org">MyBlog</a></figcaption><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div></pre></td><td class="main code"><pre><div class="line bash">mkdir -p src/playground/install-ex/pkgs/gpgex-1.0.1/bin/
+</div><div class="line bash">cp src/playground/build/gpgex-1.0.1-build/src/gpgex.dll src/playground/install-ex/pkgs/gpgex-1.0.1/bin/gpgex.dll
+</div></pre></td></tr></table></div></figure></notextile></div>
+<p>然后执行make. 结果如下如。</p>
+<p><img src="/images/gpg4win-3.png" alt="结果图" class="center fancybox"></p>
+<h2 id="section-12">补充错误</h2>
+<ul>
+<li>缺少stow等configure的fail。</li>
+</ul>
+<p>对于configure阶段的error我都是没有列出来的因为不记得了。大体的解决思路是缺少什么首先<code>pacman -S</code>然后<code>yaourt -S</code>，如果找不到则到网上搜索对应于Archlinux的包名称。因为Redhat系列、Debian系列与Archlinux系列一些包，特别是dev和header后缀的一些包，在Archlinux中都是不存在的，只要安装对应的主包即可。</p>
+<h1 id="section-13">收尾工作</h1>
+<p>在Archlinux中执行<code>sudo pacman -Syu</code>把texinfo升级回去。缺少libwinpthread-1.dll在/usr/i686-w64-mingw32/bin/下面，scp复制出来，放到Gpg4win的Windows安装目录就好了，注意时机，越早越好，否则会有一些组件注册失败。</p>
+<h1 id="section-14">结果</h1>
+<p><img src="/images/gpg4win-4.png" alt="结果图" class="center fancybox"></p>
+<p><img src="/images/gpg4win-5.png" alt="结果图" class="center fancybox"></p>
+<p><img src="/images/gpg4win-6.png" alt="结果图" class="center fancybox"></p>
+<p><img src="/images/gpg4win-7.png" alt="结果图" class="center fancybox"></p>
+<p><img src="/images/gpg4win-8.png" alt="结果图" class="center fancybox"></p>
+<p><img src="/images/gpg4win-9.png" alt="结果图" class="center fancybox"></p>
+<p>不知道怎么回事虽然configure的时候是选的w32,但是Claws-Mail还是被编译成64位的了，在32位XP下面无法打开Claws-Mail。</p>
+<p><img src="/images/gpg4win-10.png" alt="结果图" class="center fancybox"></p>
+<p><img src="/images/gpg4win-11.png" alt="结果图" class="center fancybox"></p>
+</div>
+<footer>
+<p class="meta">
+<span class="byline author vcard">Posted by <span class="fn">Rexdf</span></span>
+<time class="data-article month-09 season-autumn" datetime="2014-09-24T11:59:26+08:00" pubdate><span class="month">Sep</span> <span class="day">24th</span> <span class="year">2014</span></time>
+<span class="categories">
+<a class="category" href="/blog/categories/gnu/">GNU</a>
+</span>
+</p>
+<div class="sharing">
+</div>
+<p class="meta">
+<a class="basic-alignment left" href="/blog/2014/09/20/wan-quan-jie-jue-windowsquan-xian-wen-ti/" title="Previous Post: 完全解决Windows权限问题">&laquo; 完全解决Windows权限问题</a>
+<a class="basic-alignment right" href="/blog/2014/09/26/octopressbo-ke-geng-xin-ri-zhi/" title="Next Post: octopress博客更新日志">octopress博客更新日志 &raquo;</a>
+</p>
+</footer>
+</article>
+<section>
+<h1>Comments</h1>
+<div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
+</div>
+<aside class="sidebar">
+<section>
+<h1>Categories</h1>
+<ul id="categories">
+<li class="category"><a href="/blog/categories/acm/">ACM <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/algorithm/">Algorithm <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/assembly/">Assembly <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/cygwin/">Cygwin <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/gnu/">GNU <sup>8</sup></a></li>
+<li class="category"><a href="/blog/categories/math/">Math <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/octopress/">Octopress <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/programming/">Programming <sup>6</sup></a></li>
+<li class="category"><a href="/blog/categories/security/">Security <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sublime/">Sublime <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/synology/">Synology <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sysadmin/">SysAdmin <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/web/">Web <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/windows/">Windows <sup>7</sup></a></li>
+<li class="category"><a href="/blog/categories/proxmox/">proxmox <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/ri-chang/">日常 <sup>37</sup></a></li>
+</ul>
+</section>
+<section>
+<h1>Recent Posts</h1>
+<ul id="recent_posts">
+<li class="post">
+<a href="/blog/2024/12/16/fu-wu-qi-wa-kuang-bing-du-de-cha-sha/">服务器挖矿病毒的查杀</a>
+</li>
+<li class="post">
+<a href="/blog/2021/07/11/apple-m1-bian-yi-tensorflow/">Apple M1 编译tensorflow</a>
+</li>
+<li class="post">
+<a href="/blog/2021/02/27/chromiumbian-ma-qi-wen-ti/">Chromium编码器问题</a>
+</li>
+<li class="post">
+<a href="/blog/2020/12/13/proxmoxbi-ji/">Proxmox笔记</a>
+</li>
+<li class="post">
+<a href="/blog/2020/11/15/lun-yan-du-yu-shen-du/">论广度与深度</a>
+</li>
+</ul>
+</section>
+<section>
+<iframe frameborder="0" scrolling="no" referrerpolicy="unsafe-url" style="width:283px;height:200px" src="https://t.rexdf.org/?m=app&a=showwidget&name=rexdf&type=1&width=283px&height=500px"></iframe>
+</section>
+<section>
+<h1>GitHub Repos</h1>
+<ul id="gh_repos">
+<li class="loading">Status updating...</li>
+</ul>
+<a href="https://github.com/rexdf">@rexdf</a> on GitHub
+<script type="text/javascript">$(document).ready(function(){if(!window.jXHR){var e=document.createElement("script");e.type="text/javascript",e.src="/javascripts/libs/jXHR.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}github.showRepos({user:"rexdf",count:0,skip_forks:!0,target:"#gh_repos"})})</script>
+</section>
+</aside>
+</div>
+</div>
+<footer role="contentinfo"><p>
+<span class="credit">Copyright &copy; 2024 - Rexdf -</span> |
+<span class="credit">Powered by <a name="bottoms" target="_blank" href="http://octopress.org">Octopress</a></span> |
+<span class="credit">Theme by ：<a href="https://blog.rexdf.org/" target="_blank" rel="theme">Rexdf</a></span> |
+<span class="credit">Host by：<a href="https://github.com/" target="_blank" rel="host">Github.com</a></span> |
+<span class="credit">版权声明：<a href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" target="_blank" rel="license">CC BY-NC-SA 3.0</a><img src="https://analytics.rexdf.net/piwik.php?idsite=1&amp;rec=1" style="border:0" alt="" referrerpolicy="no-referrer-when-downgrade"></span>|
+<span class="credit"><a href="/sitemap.xml" rel="sitemap">sitemap</a></span>
+</p>
+<script type="text/javascript" src="https://tajs.qq.com/stats?sId=30296377" charset="UTF-8"></script>
+</footer>
+<script type="text/javascript">var disqus_shortname="rexdf",disqus_identifier="https://i.rexdf.org/blog/2014/09/24/bian-yi-gpg4win/",disqus_url="https://i.rexdf.org/blog/2014/09/24/bian-yi-gpg4win/",disqus_script="embed.js";!function(){var e=document.createElement("script");e.type="text/javascript",e.async=!0,e.src="//"+disqus_shortname+".disqus.com/"+disqus_script,(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(e)}()</script>
+<script type="text/javascript">$(function(){$(".entry-content").each(function(t){var r=t;$(this).find("img.fancybox").each(function(){var t=$(this),a=t.attr("title"),n=t.attr("class");t.removeAttr("class"),t.wrap('<a href="'+this.src+'" class="'+n+'" rel="gallery'+r+'" />'),""!=a&&t.parent().attr("title",a)})}),$(".fancybox").fancybox()})</script>
+</body>
+</html>

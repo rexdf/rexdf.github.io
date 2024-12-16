@@ -1,0 +1,218 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<script type="text/javascript">var _speedMark=new Date</script>
+<meta charset="utf-8">
+<title>三大Web Server分析(Apache、Lighttpd、Nginx) - Rexdf</title>
+<meta name="author" content="Rexdf">
+<meta name="description" content="一、软件介绍 1. Lighttpd Lighttpd是一个具有非常低的内存开销，CPU占用率低，效能好，以及丰富的模块等特点。Lighttpd是众多OpenSource轻量级 的webserver中较为优秀的一个。支持FastCGI，CGI，Auth，输出压缩（Output Compress）， &hellip;">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' data: https://hm.baidu.com https://tajs.qq.com https://ssl.google-analytics.com https://static.rexdf.org https://*.disquscdn.com https://rexdf.disqus.com https://api.github.com https://ssl.google-analytics.com https://disqus.com https://analytics.rexdf.net; connect-src 'self' https://static.rexdf.org https://analytics.rexdf.net https://hm.baidu.com; img-src data: https://*; font-src data: https://*; child-src 'none'; style-src 'self' 'unsafe-inline' https://*; frame-src 'self' https://t.rexdf.org http://t.rexdf.org https://rexdf.disqus.com https://disqus.com">
+<link rel="canonical" href="https://i.rexdf.org/blog/2012/07/15/san-da-Web-Server-fen-xi-ApacheLighttpdNginx">
+<link rel="dns-prefetch" href="https://static.rexdf.org/">
+<link href="/favicon.ico" rel="icon">
+<link id="main-css" href="/stylesheets/screen.css" media="screen,projection" rel="stylesheet" type="text/css" title="pc">
+<link href="/stylesheets/screen_mobile.css" rel="alternate stylesheet" type="text/css" title="mobile">
+<link href="/atom.xml" rel="alternate" title="Rexdf" type="application/atom+xml">
+<script src="/javascripts/libs/jquery.min.js"></script>
+<script src="/javascripts/octopress-rexdf.min.js" type="text/javascript"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+      
+      toggle_theme();
+  });
+</script>
+<script type="text/javascript" async src="https://static.rexdf.org/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript">var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-55590409-1"]),_gaq.push(["_trackPageview"]),function(){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(t,e)}()</script>
+<script>var _hmt=_hmt||[];!function(){var e=document.createElement("script");e.src="//hm.baidu.com/hm.js?32192d95b89fbefa0875c4c95adb1412";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}()</script>
+<script src="/javascripts/fancybox/jquery.fancybox.pack.js"></script>
+<link rel="stylesheet" type="text/css" href="/javascripts/fancybox/jquery.fancybox.css">
+<script type="text/javascript">var _paq=_paq||[];_paq.push(["trackPageView"]),_paq.push(["enableLinkTracking"]),function(){var e="https://analytics.rexdf.net/";_paq.push(["setTrackerUrl",e+"piwik.php"]),_paq.push(["setSiteId","1"]);var a=document,t=a.createElement("script"),p=a.getElementsByTagName("script")[0];t.type="text/javascript",t.async=!0,t.defer=!0,t.src=e+"piwik.js",p.parentNode.insertBefore(t,p)}()</script>
+</head>
+<body class="low-contrast-linen-wptouch-bg">
+<header role="banner"><hgroup>
+<h1 id="header-title"><a href="/">Rexdf</a></h1>
+<h2 id="subtitle">The devil is in the Details.</h2>
+</hgroup>
+</header>
+<nav role="navigation"><ul class="subscription" data-subscription="rss">
+<li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+</ul>
+<form action="https://google.com/search" method="get">
+<fieldset role="search">
+<input type="hidden" name="q" value="site:i.rexdf.org">
+<input class="search" type="text" name="q" results="0" placeholder="Search">
+</fieldset>
+</form>
+<ul class="main-navigation">
+<li><a href="/">Blog</a></li>
+<li><a href="/blog/archives/">Archives</a></li>
+<li><a href="/idea/">Idea</a></li>
+<li><a href="/share/">Share</a></li>
+<li><a href="/books/">Books</a></li>
+<li><a href="/donate/">Donate</a></li>
+<li><a target="_blank" href="https://blog.rexdf.org" style="font-family:Shadows Into Light">Main-Blog</a></li>
+</ul>
+</nav>
+<div id="main">
+<div id="content">
+<div>
+<article class="hentry" role="article">
+<header>
+<h1 class="entry-title">三大Web Server分析(Apache、Lighttpd、Nginx)</h1>
+<p class="meta">
+<time class="data-article month-07 season-summer" datetime="2012-07-15T00:57:00+08:00" pubdate><span class="month">Jul</span> <span class="day">15th</span> <span class="year">2012</span></time>
+| <a href="#disqus_thread" data-disqus-identifier="https://i.rexdf.org">Comments</a>
+</p>
+</header>
+<div class="entry-content"><h1 id="section">一、软件介绍</h1>
+<h2 id="lighttpd"><strong>1. Lighttpd</strong></h2>
+<p>Lighttpd是一个具有非常低的内存开销，CPU占用率低，效能好，以及丰富的模块等特点。Lighttpd是众多OpenSource轻量级 的webserver中较为优秀的一个。支持FastCGI，CGI，Auth，输出压缩（Output Compress），URL重写，Alias等重要功能。 Lighttpd使用FastCGI方式运行PHP，它会使用很少的PHP进程响应很大的并发量。 FastCGI的优点在于：</p>
+<ul>
+<li>从稳定性上看，FastCGI是以独立的进程池运行来CGI，单独一个进程死掉，系统可以很轻易的丢弃，然后重新分配新的进程来运行逻 辑。</li>
+<li>从安全性上看，FastCGI和宿主的server完全独立，FastCGI怎么down也不会把Server搞垮。</li>
+<li>从性能上看，FastCGI把动态逻辑的处理从server中分离出来，大负荷的IO处理还是留给宿主server，这样宿主 server可以一 心一意作IO，对于一个普通的动态网页来说，逻辑处理可能只有一小部分，大量的图片等静态IO处理完全不需要逻辑程序的参与（注1）。</li>
+<li>从扩展性上讲，FastCGI是一个中立的技术标准，完全可以支持任何语言写的处理程序（PHP，Java，Python……）。</li>
+</ul>
+<h2 id="apache"><strong>2. Apache</strong></h2>
+<p>Apache是世界排名第一的web服务器，根据<a href="http://news.netcraft.com/">Netcraft</a> 所作的调查，世界上百分之五十以上的web服务器在使用 Apache。 1995年4月，最早的Apache（0.6.2版）由Apache Group公布发行。Apache Ggroup 是一个完全通过Internet进行运作的非盈利机构，由它来决定Apache Web服务器的标准发行版中应该包含哪些内容。Apache准许任何人修改隐错，提供新的特征和将它移植到新的平台上，以及其它的工作。当新的代码被提交 给Apache Group时，该团体审核它的具体内容，进行测试，如果认为满意，该代码就会被集成到Apache的主要发行版中。 Apache 的特性:</p>
+<ul>
+<li>几乎可以运行在所有的计算机平台上</li>
+<li>支持最新的http/1.1协议</li>
+<li>单而且强有力的基于文件的配置（httpd.conf）</li>
+<li>支持通用网关接口（CGI）</li>
+<li>支持虚拟主机</li>
+<li>支持HTTP认证</li>
+<li>集成Perl</li>
+<li>集成的代理服务器</li>
+<li>可以通过web浏览器监视服务器的状态，可以自定义日志</li>
+<li>支持服务器端包含命令（SSI）</li>
+<li>支持安全socket层（SSL）</li>
+<li>具有用户会话过程的跟踪能力</li>
+<li>支持FastCGI</li>
+<li>支持JavaServlets</li>
+</ul>
+<h2 id="nginx"><strong>3. Nginx</strong></h2>
+<p>Nginx是俄罗斯人编写的十分轻量级的HTTP服务器（Nginx的发音为“Engine X”），是一个高性能的HTTP和反向代理服务器，同时也是一个IMAP/POP3/SMTP 代理服务器。Nginx是由俄罗斯人Igor·Sysoev为俄罗斯访问量第二的Rambler.ru站点开发。 Nginx以事件驱动的方式编写，所以有非常好的性能，同时也是一个非常高效的反向代理、负载平衡。其拥有匹配Lighttpd的性能，同时还没有 Lighttpd的内存泄漏问题，而且Lighttpd的mod_proxy也有一些问题并且很久没有更新。但是Nginx并不支持CGI方式运行，原因 是可以减少因此带来的一些程序上的漏洞。所以必须使用FastCGI方式来执行PHP程序。 Nginx做为HTTP服务器，有以下几项基本特性：</p>
+<ul>
+<li>处理静态文件、索引文件以及自动索引；打开文件描述符缓冲。</li>
+<li>无缓存的反向代理加速，简单的负载均衡和容错。</li>
+<li>FastCGI，简单的负载均衡和容错。</li>
+<li>模块化的结构。包括Gzipping，Byte Ranges，Chunked Responses，以及SSI-filter等filter。如果由FastCGI或其它代理服务器处理单页中存在的多个SSI，则这项处理可以并行运 行，而不需要相互等待。</li>
+<li>Nginx专为性能优化而开发，性能是其最重要的考量，实现上非常注重效率。它支持内核Poll模型，能经受高负载的考验，有报告表明能 支持高达50，000个并发连接数。</li>
+<li>Nginx具有很高的稳定性。其它HTTP服务器，当遇到访问的峰值，或者有人恶意发起慢速连接时，也很可能会导致服务器物理内存耗尽频 繁交换， 失去响应，只能重启服务器。例如当前Apache一旦上到200个以上进程，Web响应速度就明显非常缓慢了。而Nginx采取了分阶段资源分配技术，使 得它的CPU与内存占用率非常低。Nginx官方表示保持10，000个没有活动的连接，它只占2.5M内存，所以类似DOS这样的攻击对Nginx来说 基本上是毫无用处的。就稳定性而言，Nginx比Lighthttpd更胜一筹。</li>
+<li>Nginx支持热部署。它的启动特别容易，并且几乎可以做到7*24不间断运行，即使运行数个月也不需要重新启动。你还能够在不间断服务 的情况下，对软件版本进行进行升级。</li>
+</ul>
+<h1 id="web">二、三种WEB服务器的比较</h1>
+<p>  注：在相对比较大的网站，节约下来的服务器成本无疑是客观的。而有些小型网站往往服务器不多，如果采用Apache 这类传统 Web 服务器，似乎也还能撑过去。但有其很明显的弊端： Apache 在处理流量爆发的时候(比如爬虫或者是 Digg 效应) 很容易过载，这样的情况下采用 Nginx 最为合适。 建议方案：</p>
+<ol>
+<li>Apache 后台服务器（主要处理PHP及一些功能请求 如：中文url）</li>
+<li>Nginx  前端服务器（利用它占用系统资源少得优势来处理静态页面大量请求）</li>
+<li>Lighttpd 图片服务器 总体来说，随着Nginx功能得完善将使他成为今后Web Server的主流。</li>
+</ol>
+</div>
+<footer>
+<p class="meta">
+<span class="byline author vcard">Posted by <span class="fn">Rexdf</span></span>
+<time class="data-article month-07 season-summer" datetime="2012-07-15T00:57:00+08:00" pubdate><span class="month">Jul</span> <span class="day">15th</span> <span class="year">2012</span></time>
+</p>
+<div class="sharing">
+</div>
+<p class="meta">
+<a class="basic-alignment left" href="/blog/2012/07/15/Nginx-he-lighttpd-dui-bi/" title="Previous Post: Nginx和lighttpd对比">&laquo; Nginx和lighttpd对比</a>
+<a class="basic-alignment right" href="/blog/2012/07/30/zhe-teng-ri-ji/" title="Next Post: 折腾日记">折腾日记 &raquo;</a>
+</p>
+</footer>
+</article>
+<section>
+<h1>Comments</h1>
+<div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
+</div>
+<aside class="sidebar">
+<section>
+<h1>Categories</h1>
+<ul id="categories">
+<li class="category"><a href="/blog/categories/acm/">ACM <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/algorithm/">Algorithm <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/assembly/">Assembly <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/cygwin/">Cygwin <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/gnu/">GNU <sup>8</sup></a></li>
+<li class="category"><a href="/blog/categories/math/">Math <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/octopress/">Octopress <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/programming/">Programming <sup>6</sup></a></li>
+<li class="category"><a href="/blog/categories/security/">Security <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sublime/">Sublime <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/synology/">Synology <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sysadmin/">SysAdmin <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/web/">Web <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/windows/">Windows <sup>7</sup></a></li>
+<li class="category"><a href="/blog/categories/proxmox/">proxmox <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/ri-chang/">日常 <sup>37</sup></a></li>
+</ul>
+</section>
+<section>
+<h1>Recent Posts</h1>
+<ul id="recent_posts">
+<li class="post">
+<a href="/blog/2024/12/16/fu-wu-qi-wa-kuang-bing-du-de-cha-sha/">服务器挖矿病毒的查杀</a>
+</li>
+<li class="post">
+<a href="/blog/2021/07/11/apple-m1-bian-yi-tensorflow/">Apple M1 编译tensorflow</a>
+</li>
+<li class="post">
+<a href="/blog/2021/02/27/chromiumbian-ma-qi-wen-ti/">Chromium编码器问题</a>
+</li>
+<li class="post">
+<a href="/blog/2020/12/13/proxmoxbi-ji/">Proxmox笔记</a>
+</li>
+<li class="post">
+<a href="/blog/2020/11/15/lun-yan-du-yu-shen-du/">论广度与深度</a>
+</li>
+</ul>
+</section>
+<section>
+<iframe frameborder="0" scrolling="no" referrerpolicy="unsafe-url" style="width:283px;height:200px" src="https://t.rexdf.org/?m=app&a=showwidget&name=rexdf&type=1&width=283px&height=500px"></iframe>
+</section>
+<section>
+<h1>GitHub Repos</h1>
+<ul id="gh_repos">
+<li class="loading">Status updating...</li>
+</ul>
+<a href="https://github.com/rexdf">@rexdf</a> on GitHub
+<script type="text/javascript">$(document).ready(function(){if(!window.jXHR){var e=document.createElement("script");e.type="text/javascript",e.src="/javascripts/libs/jXHR.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}github.showRepos({user:"rexdf",count:0,skip_forks:!0,target:"#gh_repos"})})</script>
+</section>
+</aside>
+</div>
+</div>
+<footer role="contentinfo"><p>
+<span class="credit">Copyright &copy; 2024 - Rexdf -</span> |
+<span class="credit">Powered by <a name="bottoms" target="_blank" href="http://octopress.org">Octopress</a></span> |
+<span class="credit">Theme by ：<a href="https://blog.rexdf.org/" target="_blank" rel="theme">Rexdf</a></span> |
+<span class="credit">Host by：<a href="https://github.com/" target="_blank" rel="host">Github.com</a></span> |
+<span class="credit">版权声明：<a href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" target="_blank" rel="license">CC BY-NC-SA 3.0</a><img src="https://analytics.rexdf.net/piwik.php?idsite=1&amp;rec=1" style="border:0" alt="" referrerpolicy="no-referrer-when-downgrade"></span>|
+<span class="credit"><a href="/sitemap.xml" rel="sitemap">sitemap</a></span>
+</p>
+<script type="text/javascript" src="https://tajs.qq.com/stats?sId=30296377" charset="UTF-8"></script>
+</footer>
+<script type="text/javascript">var disqus_shortname="rexdf",disqus_identifier="https://i.rexdf.org/blog/2012/07/15/san-da-Web-Server-fen-xi-ApacheLighttpdNginx/",disqus_url="https://i.rexdf.org/blog/2012/07/15/san-da-Web-Server-fen-xi-ApacheLighttpdNginx/",disqus_script="embed.js";!function(){var e=document.createElement("script");e.type="text/javascript",e.async=!0,e.src="//"+disqus_shortname+".disqus.com/"+disqus_script,(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(e)}()</script>
+<script type="text/javascript">$(function(){$(".entry-content").each(function(t){var r=t;$(this).find("img.fancybox").each(function(){var t=$(this),a=t.attr("title"),n=t.attr("class");t.removeAttr("class"),t.wrap('<a href="'+this.src+'" class="'+n+'" rel="gallery'+r+'" />'),""!=a&&t.parent().attr("title",a)})}),$(".fancybox").fancybox()})</script>
+</body>
+</html>

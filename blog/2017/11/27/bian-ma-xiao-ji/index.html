@@ -1,0 +1,300 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<script type="text/javascript">var _speedMark=new Date</script>
+<meta charset="utf-8">
+<title>编码小记 - Rexdf</title>
+<meta name="author" content="Rexdf">
+<meta name="description" content="编码获取 十六进制 十进制 测试编码 一些资料整理 汉字的国标 一些编码常识 ANSI Unicode UTF-8 UTF-16 UCS-2 BIG5 Shift-JIS 偶尔我们会想获取汉字的编码，然而似乎网上随手一搜，在线转换工具倒是有不少只是好像都不太能满足真实需求。 &hellip;">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' data: https://hm.baidu.com https://tajs.qq.com https://ssl.google-analytics.com https://static.rexdf.org https://*.disquscdn.com https://rexdf.disqus.com https://api.github.com https://ssl.google-analytics.com https://disqus.com https://analytics.rexdf.net; connect-src 'self' https://static.rexdf.org https://analytics.rexdf.net https://hm.baidu.com; img-src data: https://*; font-src data: https://*; child-src 'none'; style-src 'self' 'unsafe-inline' https://*; frame-src 'self' https://t.rexdf.org http://t.rexdf.org https://rexdf.disqus.com https://disqus.com">
+<link rel="canonical" href="https://i.rexdf.org/blog/2017/11/27/bian-ma-xiao-ji">
+<link rel="dns-prefetch" href="https://static.rexdf.org/">
+<link href="/favicon.ico" rel="icon">
+<link id="main-css" href="/stylesheets/screen.css" media="screen,projection" rel="stylesheet" type="text/css" title="pc">
+<link href="/stylesheets/screen_mobile.css" rel="alternate stylesheet" type="text/css" title="mobile">
+<link href="/atom.xml" rel="alternate" title="Rexdf" type="application/atom+xml">
+<script src="/javascripts/libs/jquery.min.js"></script>
+<script src="/javascripts/octopress-rexdf.min.js" type="text/javascript"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+      
+      toggle_theme();
+  });
+</script>
+<script type="text/javascript" async src="https://static.rexdf.org/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript">var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-55590409-1"]),_gaq.push(["_trackPageview"]),function(){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(t,e)}()</script>
+<script>var _hmt=_hmt||[];!function(){var e=document.createElement("script");e.src="//hm.baidu.com/hm.js?32192d95b89fbefa0875c4c95adb1412";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}()</script>
+<script src="/javascripts/fancybox/jquery.fancybox.pack.js"></script>
+<link rel="stylesheet" type="text/css" href="/javascripts/fancybox/jquery.fancybox.css">
+<script type="text/javascript">var _paq=_paq||[];_paq.push(["trackPageView"]),_paq.push(["enableLinkTracking"]),function(){var e="https://analytics.rexdf.net/";_paq.push(["setTrackerUrl",e+"piwik.php"]),_paq.push(["setSiteId","1"]);var a=document,t=a.createElement("script"),p=a.getElementsByTagName("script")[0];t.type="text/javascript",t.async=!0,t.defer=!0,t.src=e+"piwik.js",p.parentNode.insertBefore(t,p)}()</script>
+</head>
+<body class="low-contrast-linen-wptouch-bg">
+<header role="banner"><hgroup>
+<h1 id="header-title"><a href="/">Rexdf</a></h1>
+<h2 id="subtitle">The devil is in the Details.</h2>
+</hgroup>
+</header>
+<nav role="navigation"><ul class="subscription" data-subscription="rss">
+<li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+</ul>
+<form action="https://google.com/search" method="get">
+<fieldset role="search">
+<input type="hidden" name="q" value="site:i.rexdf.org">
+<input class="search" type="text" name="q" results="0" placeholder="Search">
+</fieldset>
+</form>
+<ul class="main-navigation">
+<li><a href="/">Blog</a></li>
+<li><a href="/blog/archives/">Archives</a></li>
+<li><a href="/idea/">Idea</a></li>
+<li><a href="/share/">Share</a></li>
+<li><a href="/books/">Books</a></li>
+<li><a href="/donate/">Donate</a></li>
+<li><a target="_blank" href="https://blog.rexdf.org" style="font-family:Shadows Into Light">Main-Blog</a></li>
+</ul>
+</nav>
+<div id="main">
+<div id="content">
+<div>
+<article class="hentry" role="article">
+<header>
+<h1 class="entry-title">编码小记</h1>
+<p class="meta">
+<time class="data-article month-11 season-autumn" datetime="2017-11-27T12:54:46+08:00" pubdate><span class="month">Nov</span> <span class="day">27th</span> <span class="year">2017</span></time>
+| <a href="#disqus_thread" data-disqus-identifier="https://i.rexdf.org">Comments</a>
+</p>
+</header>
+<div class="entry-content"><ul class="markdown-toc">
+<li><a href="#section">编码获取</a><ul>
+<li><a href="#section-1">十六进制</a></li>
+<li><a href="#section-2">十进制</a></li>
+<li><a href="#section-3">测试编码</a></li>
+</ul>
+</li>
+<li><a href="#section-4">一些资料整理</a><ul>
+<li><a href="#section-5">汉字的国标</a></li>
+<li><a href="#section-6">一些编码常识</a><ul>
+<li><a href="#ansi">ANSI</a></li>
+<li><a href="#unicode-utf-8-utf-16-ucs-2">Unicode UTF-8 UTF-16 UCS-2</a></li>
+<li><a href="#big5-shift-jis">BIG5 Shift-JIS</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>偶尔我们会想获取汉字的编码，然而似乎网上随手一搜，在线转换工具倒是有不少只是好像都不太能满足真实需求。</p>
+<p>也许你会想到notepad++按照编码保存，然后用二进制打开。当然这在Windows下不失为不错的办法。</p>
+<p>鉴于UTF-8推荐的越来越多，我就来列举下它对于中文来说的缺点。</p>
+<p>顺便也说说对于汉字，UTF-8其实并不适合保存。虽然因为现在互联网应用交换的绝大部分都是html/css/js的原因，utf-8格式大行其道。但是对于中国的常规应用来说，其实不需要用UTF-8表示。</p>
+<p>简单点说：对于一个以英语为主，偶尔会需要显示一两个汉字，那么utf-8优势巨大。对于基本上是汉字，只需要偶尔显示一两个英文缩写的应用。GBK或者UTF-16优势巨大。</p>
+<p>原因在于汉字、日语都被UTF-8都被编码到了三字节，然而其中的有效位只有两字节，剩下一字节是用来做标志位的。也就是每个汉字要多浪费一个字节。而且UTF-8是变长编码，从1到4都会出现，对于字符串函数实际上很不方便。当然对于库函数丰富的今天这不算大问题，只是进行了一次内码转换而已。 而且3字节的汉字，中间夹杂着1字节的ASCII字符，这种编码在内存中处理，实际上非常麻烦的，不停要做移位操作，连简单的字符个数都是O(n)的。</p>
+<p>好了批判完了，写点有用的。</p>
+<h1 id="section">编码获取</h1>
+<p>我的方法是用Python，简单轻量级。</p>
+<h2 id="section-1">十六进制</h2>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div></pre></td><td class="main code"><pre><div class="line python"><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">binascii</span>
+</div><div class="line python"><span class="o">&gt;&gt;&gt;</span> <span class="n">binascii</span><span class="o">.</span><span class="n">hexlify</span><span class="p">(</span><span class="s">&#39;我们&#39;</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s">&#39;utf-16le&#39;</span><span class="p">))</span>
+</div><div class="line python"><span class="n">b</span><span class="s">&#39;1162ec4e&#39;</span>
+</div></pre></td></tr></table></div></figure></notextile></div>
+<h2 id="section-2">十进制</h2>
+<p>这是是给 <code>ALT + 数字</code> 这种输入法用的。 需要注意的是，这里要用大端。</p>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div></pre></td><td class="main code"><pre><div class="line python"><span class="o">&gt;&gt;&gt;</span> <span class="nb">int</span><span class="o">.</span><span class="n">from_bytes</span><span class="p">(</span><span class="s">&#39;我&#39;</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s">&#39;gbk&#39;</span><span class="p">)[:</span><span class="mi">2</span><span class="p">],</span><span class="s">&#39;big&#39;</span><span class="p">)</span>
+</div><div class="line python"><span class="mi">52946</span>
+</div></pre></td></tr></table></div></figure></notextile></div>
+<p>中文Windows下面按住Alt键，快速输入52946，就会出现汉字<code>我</code>.</p>
+<h2 id="section-3">测试编码</h2>
+<p>我们来测试下本文的markdown，上面的文本。</p>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div><div data-line="5" class="line-number"></div></pre></td><td class="main code"><pre><div class="line python"><span class="o">&gt;&gt;&gt;</span> <span class="n">s</span><span class="o">=</span><span class="s">&#39;&#39;&#39;...&#39;&#39;&#39;</span>
+</div><div class="line python"><span class="o">&gt;&gt;&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">binascii</span><span class="o">.</span><span class="n">hexlify</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s">&#39;utf-16le&#39;</span><span class="p">)))</span>
+</div><div class="line python"><span class="mi">2716</span>
+</div><div class="line python"><span class="o">&gt;&gt;&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">binascii</span><span class="o">.</span><span class="n">hexlify</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s">&#39;utf-8&#39;</span><span class="p">)))</span>
+</div><div class="line python"><span class="mi">3094</span>
+</div></pre></td></tr></table></div></figure></notextile></div>
+<p><code>0xfffe</code>是BOM，可以发现UTF-8对常见汉字编码确实要多一个字节的。</p>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div><div data-line="5" class="line-number"></div><div data-line="6" class="line-number"></div><div data-line="7" class="line-number"></div><div data-line="8" class="line-number"></div><div data-line="9" class="line-number"></div><div data-line="10" class="line-number"></div></pre></td><td class="main code"><pre><div class="line python"><span class="o">&gt;&gt;&gt;</span> <span class="n">binascii</span><span class="o">.</span><span class="n">hexlify</span><span class="p">(</span><span class="s">&#39;我们&#39;</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s">&#39;utf-16&#39;</span><span class="p">))</span>
+</div><div class="line python"><span class="n">b</span><span class="s">&#39;fffe1162ec4e&#39;</span>
+</div><div class="line python"><span class="o">&gt;&gt;&gt;</span> <span class="n">binascii</span><span class="o">.</span><span class="n">hexlify</span><span class="p">(</span><span class="s">&#39;我们&#39;</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s">&#39;utf-16le&#39;</span><span class="p">))</span>
+</div><div class="line python"><span class="n">b</span><span class="s">&#39;1162ec4e&#39;</span>
+</div><div class="line python"><span class="o">&gt;&gt;&gt;</span> <span class="n">binascii</span><span class="o">.</span><span class="n">hexlify</span><span class="p">(</span><span class="s">&#39;我们&#39;</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s">&#39;gbk&#39;</span><span class="p">))</span>
+</div><div class="line python"><span class="n">b</span><span class="s">&#39;ced2c3c7&#39;</span>
+</div><div class="line python"><span class="o">&gt;&gt;&gt;</span> <span class="n">binascii</span><span class="o">.</span><span class="n">hexlify</span><span class="p">(</span><span class="s">&#39;我们&#39;</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s">&#39;gb18030&#39;</span><span class="p">))</span>
+</div><div class="line python"><span class="n">b</span><span class="s">&#39;ced2c3c7&#39;</span>
+</div><div class="line python"><span class="o">&gt;&gt;&gt;</span> <span class="n">binascii</span><span class="o">.</span><span class="n">hexlify</span><span class="p">(</span><span class="s">&#39;我们&#39;</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s">&#39;utf-8&#39;</span><span class="p">))</span>
+</div><div class="line python"><span class="n">b</span><span class="s">&#39;e68891e4bbac&#39;</span>
+</div></pre></td></tr></table></div></figure></notextile></div>
+<h1 id="section-4">一些资料整理</h1>
+<h2 id="section-5">汉字的国标</h2>
+<table>
+<thead>
+<tr>
+<th>编码</th>
+<th>生效日期</th>
+<th>备注</th>
+<th>编码范围</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GB2312</td>
+<td>1981.5.1</td>
+<td>GB2312编码共收录汉字6763个，其中一级汉字3755个，二级汉字3008个。同时，GB2312编码收录了包括拉丁字母、希腊字母、日文平假名及片假名字母、俄语西里尔字母在内的682个全角字符。</td>
+<td>A1A1－FEFE(41377-65278)其中汉字编码范围：B0A1-F7FE(45217-63486)。</td>
+</tr>
+<tr>
+<td>GBK</td>
+<td>1995.12.15</td>
+<td>GBK编码，是对GB2312编码的扩展，因此完全兼容GB2312-80标准。GBK编码依然采用双字节编码方案，其编码范围：8140－FEFE，剔除xx7F码位，共23940个码位。共收录汉字和图形符号21886个，其中汉字（包括部首和构件）21003个，图形符号883个。</td>
+<td>8140－FEFE (33088-65278)</td>
+</tr>
+<tr>
+<td>GB18030-2000</td>
+<td>2000.3.17</td>
+<td>是对GBK编码的扩充，覆盖中文、日文、朝鲜语和中国少数民族文字，其中收录27484个汉字。GB18030字符集采用单字节、双字节和四字节三种方式对字符编码。兼容GBK和GB2312字符集。</td>
+<td>采用单字节、双字节、四字节分段编码方案，具体码位见特性。GB18030向下兼容ASCII码和GBK编码。</td>
+</tr>
+<tr>
+<td>GB18030-2005</td>
+<td>.</td>
+<td>最主要的变化是增加了CJK统一汉字扩充B。它还去掉了单字节编码的欧元符号0x80）。GB18030有1611668个码位，在GB18030-2005中定义了76556个字符。</td>
+<td>.</td>
+</tr>
+</tbody>
+</table>
+<p>GBK 的代码页是936，GBK18030的代码页是54936.</p>
+<h2 id="section-6">一些编码常识</h2>
+<h3 id="ansi">ANSI</h3>
+<p>Windows记事本的ANSI编码</p>
+<p>ANSI (American National Standards Institute) 美国国家标准学会的缩写。 在简体中文Windows操作系统中，ANSI 编码代表 GBK 编码；在繁体中文操作系统中,ANSI编码代表Big5编码；在日文Windows操作系统中，ANSI 编码代表 Shift_JIS 编码。</p>
+<h3 id="unicode-utf-8-utf-16-ucs-2">Unicode UTF-8 UTF-16 UCS-2</h3>
+<p>关于Unicode与UTF-8 UTF-16 UCS-2的关系</p>
+<p>Unicode(统一码、万国码、单一码、标准万国码)编码就是为表达任意语言的任意字符而设计。特点: 一个字符代表一个code，不存在二义性，而且这套标准也会随着需求不断的拓展。由非盈利机构 The Unicode Consortium 负责，官网为 <a href="http://www.unicode.org/">http://www.unicode.org/</a></p>
+<p>Unicode是一个标准，只规定了某个字符应该对应哪一个code，但是并没有规定这个字符应该用即为字节来存储。规定用几个字节存储字符的是Unicode的不同实现，譬如UTF-8，UTF-16, UTF-32等。</p>
+<p>所以 UTF-8 UTF-16 的编码范围都是全部的Unicode字符集的。</p>
+<p>UTF-8是采用变长的编码方式，为1~6个字节，但通常我们只把它看作单字节或三字节的实现，因为其它情况实在少见。。</p>
+<p>Unicode编码中，最常用的字符其实是0-65535，因此针对这点产生了UTF-16方案。 UTF-16将0–65535范围内的字符编码成2个字节，超过这个的用4个字节编码。(因此基本可以认为是双字节的) UTF-16是完全对应于UCS-2的，即把UCS-2规定的代码点通过Big Endian或Little Endian方式直接保存下来。所以UTF-16采用2个字节来存储Unicode。UTF-16也可以表示UCS-4的部分字符，所以UTF-16也采用4个字节来存储Unicode。 UTF16编码是Unicode最直接的实现方式，通常我们在windows上新建文本文件后保存为Unicode编码，其实就是保存为UTF16编码。</p>
+<h3 id="big5-shift-jis">BIG5 Shift-JIS</h3>
+<p>其他汉字编码BIG5 Shift-JIS</p>
+<p>BIG5编码又称大五码，是繁体中文字符集编码标准，共收录13060个中文字，其中有二字为重复编码。BIG5重复地收录了两个相同的字：“兀、兀”（A461及C94A)、“嗀、嗀”(DCD1及DDFC)。编码范围8140－FEFE(33088-65278) 其中汉字编码范围：A440-F9DC(42048-63964) BIG5采用双字节编码，使用两个字节来表示一个字符。高位字节使用了0x81-0xFE，低位字节使用了0x40-0x7E，及0xA1-0xFE</p>
+<p>Shift-Jis比较特殊，不连续，需要校验合法性，而且有特殊的转换公式与技巧，有时会在代码中看到。</p>
+<p>ASCII字符 (0x20-0x7E)，但“\”被“¥”取代 ASCII控制字符（0x00-0x1F、0x7F） JIS X 0201标准内的半角标点及片假名（0xA1-0xDF） 在部分操作系统中，0xA0用来放置“不换行空格”。</p>
+<p>以下字符在Shift_JIS使用两个字节来表示。</p>
+<ul>
+<li>JIS X 0208字集的所有字符</li>
+</ul>
+<p>“第一位字节”使用0x81-0x9F、0xE0-0xEF（共47个） “第二位字节”使用0x40-0x7E、0x80-0xFC（共188个）</p>
+<ul>
+<li>使用者定义区</li>
+</ul>
+<p>“第一位字节”使用0xF0-0xFC（共13个） “第二位字节”使用0x40-0x7E、0x80-0xFC（共188个）</p>
+<p>在Shift_JIS编码表中，并未使用0xFD、0xFE及0xFF。</p>
+<p>在微软及IBM的日语电脑系统中，在0xFA、0xFB及0xFC的两字节区域，加入了388个JIS X 0208没有收录的符号和汉字。</p>
+</div>
+<footer>
+<p class="meta">
+<span class="byline author vcard">Posted by <span class="fn">Rexdf</span></span>
+<time class="data-article month-11 season-autumn" datetime="2017-11-27T12:54:46+08:00" pubdate><span class="month">Nov</span> <span class="day">27th</span> <span class="year">2017</span></time>
+<span class="categories">
+<a class="category" href="/blog/categories/ri-chang/">日常</a>
+</span>
+</p>
+<div class="sharing">
+</div>
+<p class="meta">
+<a class="basic-alignment left" href="/blog/2015/09/04/win10sdkde-tou-wen-jian-wen-ti/" title="Previous Post: Win10SDK的头文件问题">&laquo; Win10SDK的头文件问题</a>
+<a class="basic-alignment right" href="/blog/2018/09/10/bo-ke-qie-huan-diao-cha/" title="Next Post: 博客切换调查">博客切换调查 &raquo;</a>
+</p>
+</footer>
+</article>
+<section>
+<h1>Comments</h1>
+<div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
+</div>
+<aside class="sidebar">
+<section>
+<h1>Categories</h1>
+<ul id="categories">
+<li class="category"><a href="/blog/categories/acm/">ACM <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/algorithm/">Algorithm <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/assembly/">Assembly <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/cygwin/">Cygwin <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/gnu/">GNU <sup>8</sup></a></li>
+<li class="category"><a href="/blog/categories/math/">Math <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/octopress/">Octopress <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/programming/">Programming <sup>6</sup></a></li>
+<li class="category"><a href="/blog/categories/security/">Security <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sublime/">Sublime <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/synology/">Synology <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sysadmin/">SysAdmin <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/web/">Web <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/windows/">Windows <sup>7</sup></a></li>
+<li class="category"><a href="/blog/categories/proxmox/">proxmox <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/ri-chang/">日常 <sup>37</sup></a></li>
+</ul>
+</section>
+<section>
+<h1>Recent Posts</h1>
+<ul id="recent_posts">
+<li class="post">
+<a href="/blog/2024/12/16/fu-wu-qi-wa-kuang-bing-du-de-cha-sha/">服务器挖矿病毒的查杀</a>
+</li>
+<li class="post">
+<a href="/blog/2021/07/11/apple-m1-bian-yi-tensorflow/">Apple M1 编译tensorflow</a>
+</li>
+<li class="post">
+<a href="/blog/2021/02/27/chromiumbian-ma-qi-wen-ti/">Chromium编码器问题</a>
+</li>
+<li class="post">
+<a href="/blog/2020/12/13/proxmoxbi-ji/">Proxmox笔记</a>
+</li>
+<li class="post">
+<a href="/blog/2020/11/15/lun-yan-du-yu-shen-du/">论广度与深度</a>
+</li>
+</ul>
+</section>
+<section>
+<iframe frameborder="0" scrolling="no" referrerpolicy="unsafe-url" style="width:283px;height:200px" src="https://t.rexdf.org/?m=app&a=showwidget&name=rexdf&type=1&width=283px&height=500px"></iframe>
+</section>
+<section>
+<h1>GitHub Repos</h1>
+<ul id="gh_repos">
+<li class="loading">Status updating...</li>
+</ul>
+<a href="https://github.com/rexdf">@rexdf</a> on GitHub
+<script type="text/javascript">$(document).ready(function(){if(!window.jXHR){var e=document.createElement("script");e.type="text/javascript",e.src="/javascripts/libs/jXHR.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}github.showRepos({user:"rexdf",count:0,skip_forks:!0,target:"#gh_repos"})})</script>
+</section>
+</aside>
+</div>
+</div>
+<footer role="contentinfo"><p>
+<span class="credit">Copyright &copy; 2024 - Rexdf -</span> |
+<span class="credit">Powered by <a name="bottoms" target="_blank" href="http://octopress.org">Octopress</a></span> |
+<span class="credit">Theme by ：<a href="https://blog.rexdf.org/" target="_blank" rel="theme">Rexdf</a></span> |
+<span class="credit">Host by：<a href="https://github.com/" target="_blank" rel="host">Github.com</a></span> |
+<span class="credit">版权声明：<a href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" target="_blank" rel="license">CC BY-NC-SA 3.0</a><img src="https://analytics.rexdf.net/piwik.php?idsite=1&amp;rec=1" style="border:0" alt="" referrerpolicy="no-referrer-when-downgrade"></span>|
+<span class="credit"><a href="/sitemap.xml" rel="sitemap">sitemap</a></span>
+</p>
+<script type="text/javascript" src="https://tajs.qq.com/stats?sId=30296377" charset="UTF-8"></script>
+</footer>
+<script type="text/javascript">var disqus_shortname="rexdf",disqus_identifier="https://i.rexdf.org/blog/2017/11/27/bian-ma-xiao-ji/",disqus_url="https://i.rexdf.org/blog/2017/11/27/bian-ma-xiao-ji/",disqus_script="embed.js";!function(){var e=document.createElement("script");e.type="text/javascript",e.async=!0,e.src="//"+disqus_shortname+".disqus.com/"+disqus_script,(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(e)}()</script>
+<script type="text/javascript">$(function(){$(".entry-content").each(function(t){var r=t;$(this).find("img.fancybox").each(function(){var t=$(this),a=t.attr("title"),n=t.attr("class");t.removeAttr("class"),t.wrap('<a href="'+this.src+'" class="'+n+'" rel="gallery'+r+'" />'),""!=a&&t.parent().attr("title",a)})}),$(".fancybox").fancybox()})</script>
+</body>
+</html>

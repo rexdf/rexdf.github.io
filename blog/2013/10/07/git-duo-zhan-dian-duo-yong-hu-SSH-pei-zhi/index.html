@@ -1,0 +1,236 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<script type="text/javascript">var _speedMark=new Date</script>
+<meta charset="utf-8">
+<title>git多站点多用户SSH配置 - Rexdf</title>
+<meta name="author" content="Rexdf">
+<meta name="description" content="git默认情况下会在~/.ssh/id_rsa获取认证信息，但是如果有多个账户在github或者多个不同的站点同步的话，就需要配置了，虽然有不少站点支持上传id_rsa.pub公钥但是个人还是推荐不同的站点使用不同密钥对，这样有利于养成良好的安全习惯。首先是生成新的密钥对， &hellip;">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' data: https://hm.baidu.com https://tajs.qq.com https://ssl.google-analytics.com https://static.rexdf.org https://*.disquscdn.com https://rexdf.disqus.com https://api.github.com https://ssl.google-analytics.com https://disqus.com https://analytics.rexdf.net; connect-src 'self' https://static.rexdf.org https://analytics.rexdf.net https://hm.baidu.com; img-src data: https://*; font-src data: https://*; child-src 'none'; style-src 'self' 'unsafe-inline' https://*; frame-src 'self' https://t.rexdf.org http://t.rexdf.org https://rexdf.disqus.com https://disqus.com">
+<link rel="canonical" href="https://i.rexdf.org/blog/2013/10/07/git-duo-zhan-dian-duo-yong-hu-SSH-pei-zhi">
+<link rel="dns-prefetch" href="https://static.rexdf.org/">
+<link href="/favicon.ico" rel="icon">
+<link id="main-css" href="/stylesheets/screen.css" media="screen,projection" rel="stylesheet" type="text/css" title="pc">
+<link href="/stylesheets/screen_mobile.css" rel="alternate stylesheet" type="text/css" title="mobile">
+<link href="/atom.xml" rel="alternate" title="Rexdf" type="application/atom+xml">
+<script src="/javascripts/libs/jquery.min.js"></script>
+<script src="/javascripts/octopress-rexdf.min.js" type="text/javascript"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+      
+      toggle_theme();
+  });
+</script>
+<script type="text/javascript" async src="https://static.rexdf.org/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript">var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-55590409-1"]),_gaq.push(["_trackPageview"]),function(){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(t,e)}()</script>
+<script>var _hmt=_hmt||[];!function(){var e=document.createElement("script");e.src="//hm.baidu.com/hm.js?32192d95b89fbefa0875c4c95adb1412";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}()</script>
+<script src="/javascripts/fancybox/jquery.fancybox.pack.js"></script>
+<link rel="stylesheet" type="text/css" href="/javascripts/fancybox/jquery.fancybox.css">
+<script type="text/javascript">var _paq=_paq||[];_paq.push(["trackPageView"]),_paq.push(["enableLinkTracking"]),function(){var e="https://analytics.rexdf.net/";_paq.push(["setTrackerUrl",e+"piwik.php"]),_paq.push(["setSiteId","1"]);var a=document,t=a.createElement("script"),p=a.getElementsByTagName("script")[0];t.type="text/javascript",t.async=!0,t.defer=!0,t.src=e+"piwik.js",p.parentNode.insertBefore(t,p)}()</script>
+</head>
+<body class="low-contrast-linen-wptouch-bg">
+<header role="banner"><hgroup>
+<h1 id="header-title"><a href="/">Rexdf</a></h1>
+<h2 id="subtitle">The devil is in the Details.</h2>
+</hgroup>
+</header>
+<nav role="navigation"><ul class="subscription" data-subscription="rss">
+<li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+</ul>
+<form action="https://google.com/search" method="get">
+<fieldset role="search">
+<input type="hidden" name="q" value="site:i.rexdf.org">
+<input class="search" type="text" name="q" results="0" placeholder="Search">
+</fieldset>
+</form>
+<ul class="main-navigation">
+<li><a href="/">Blog</a></li>
+<li><a href="/blog/archives/">Archives</a></li>
+<li><a href="/idea/">Idea</a></li>
+<li><a href="/share/">Share</a></li>
+<li><a href="/books/">Books</a></li>
+<li><a href="/donate/">Donate</a></li>
+<li><a target="_blank" href="https://blog.rexdf.org" style="font-family:Shadows Into Light">Main-Blog</a></li>
+</ul>
+</nav>
+<div id="main">
+<div id="content">
+<div>
+<article class="hentry" role="article">
+<header>
+<h1 class="entry-title">git多站点多用户SSH配置</h1>
+<p class="meta">
+<time class="data-article month-10 season-autumn" datetime="2013-10-07T14:57:00+08:00" pubdate><span class="month">Oct</span> <span class="day">7th</span> <span class="year">2013</span></time>
+| <a href="#disqus_thread" data-disqus-identifier="https://i.rexdf.org">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>git默认情况下会在~/.ssh/id_rsa获取认证信息，但是如果有多个账户在github或者多个不同的站点同步的话，就需要配置了，虽然有不少站点支持上传id_rsa.pub公钥但是个人还是推荐不同的站点使用不同密钥对，这样有利于养成良好的安全习惯。首先是生成新的密钥对，下面详细说一下Windows平台上Cygwin上面的情况，这个平台最近越发喜欢用，因为最近更新比较频繁，与新的Win8系统兼容基本没有问题。而我需要用的Ruby和Perl现在都不单独下载了(或者即使下载了，但是不会加到Path里面需要用的使用在命令行上面手动SET PATH=ruby;%PATH%这样)，因为Cygwin集成的环境很不错很多Ruby程序都是直接运行的。好了下面说多站点账户git的ssh配置方法：</p>
+<h3 id="section">1.生成密钥</h3>
+<p>生成密钥需要使用ssh-keygen命令，此命令会提示保存目录</p>
+<pre><code>ssh-keygen -t rsa -C 'rexdf@vip.qq.com'
+</code></pre>
+<p>[caption id=”attachment_1848” align=”alignnone” width=”997”]<img src="/wp-content/uploads/2013/10/ssh-1.png" alt="ssh-keygen"> ssh-keygen[/caption] 成功后可以执行下面这句(实际上可以不用)，使ssh识别</p>
+<pre><code>ssh-add ～/.ssh/id_rsa_zend
+</code></pre>
+<h3 id="section-1">2.上传密钥</h3>
+<p>到你的网站设置你的id_rsa_zend.pub，在github上面则是复制其中的文本内容，有的网站则是上传此文件.</p>
+<h3 id="config">3.配置config</h3>
+<p>在~/.ssh/下面编辑config文件如果没有</p>
+<pre><code># Default github user(first@mail.com)
+Host github.com
+HostName github.com
+User git
+IdentityFile ~/.ssh/id_rsa
+
+# second user(second@mail.com)
+Host mysite
+HostName git.mysite.com
+User git_mysite
+IdentityFile ~/.ssh/id_rsa_second
+</code></pre>
+<p>[caption id=”attachment_1849” align=”alignnone” width=”308”]<img src="/wp-content/uploads/2013/10/ssh-2.png" alt="config文件"> config文件[/caption]</p>
+<h3 id="url">4.修改URL</h3>
+<p>git clone ssh://[用户名@]URL 这里需要把URL的主机部分替换成mysite这样就可以自动使用新的密钥了。</p>
+<pre><code>git clone ssh://git_mysite@mysite/repo/app.git
+</code></pre>
+<h3 id="section-2">5.问题解决</h3>
+<p>这里会涉及到Cygwin在Win上面第一个bug，不过Linux下面按照上面是没有问题的。正常情况应该会出现下面的画面</p>
+<pre><code>Bad owner or permissions on /home/rexdf/.ssh/config
+fatal: The remote end hung up unexpectedly
+</code></pre>
+<p>[caption id=”attachment_1850” align=”alignnone” width=”680”]<img src="/wp-content/uploads/2013/10/ssh-3.png" alt="config权限"> config权限[/caption] 以及</p>
+<pre><code>@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@         WARNING: UNPROTECTED PRIVATE KEY FILE!          @
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+Permissions 0660 for '/home/rexdf/.ssh/id_rsa' are too open.
+It is required that your private key files are NOT accessible by others.
+This private key will be ignored.
+bad permissions: ignore key: /home/rexdf/.ssh/id_rsa
+Permission denied (publickey,gssapi-keyex,gssapi-with-mic).
+fatal: The remote end hung up unexpectedly
+</code></pre>
+<p>[caption id=”attachment_1851” align=”alignnone” width=”947”]<img src="/wp-content/uploads/2013/10/ssh-4.png" alt="Permissions 0660 for '/home/rexdf/.ssh/id_rsa' are too open."> Permissions 0660 for ‘/home/rexdf/.ssh/id_rsa’ are too open.[/caption] 而且即使你进入.ssh 执行</p>
+<pre><code>chmod 600 id_rsa id_rsa_zend config
+</code></pre>
+<p>却问题依然，执行ls -l结果如下</p>
+<pre><code>$ ls -l
+total 12
+-rw-rw---- 1 rexdf None  538 Oct  7 11:34 config
+-rw-rw---- 1 rexdf None 1679 Oct  6 13:43 id_rsa
+-rw-rw-r-- 1 rexdf None  394 Oct  6 13:43 id_rsa.pub
+-rw-rw---- 1 rexdf None 1675 Oct  7 11:24 id_rsa_zend
+-rw-rw-r-- 1 rexdf None  398 Oct  7 11:24 id_rsa_zend.pub
+-rw-rw-r-- 1 rexdf None  420 Oct  6 13:44 known_hosts
+</code></pre>
+<p>可以看到id_rsa id_rsa_zend config三个文件权限都是660而不是600(需要提醒下，如果文件系统是FAT32，则不需要往下看了，NTFS才支持权限)。是Cygwin的bug吗？是的。是chmod命令根本没用吗？不完全是。实际上你可以执行chmod 1 config看看，可以正确执行的。问题在于上面显示的那个None，这个是Linux的用户组，对应的是组权限而在Cygwin对于None的组是没法赋予权限的，于是组权限就等于拥有者的权限了。解决办法是随便赋予一个组然后再chmod就OK了。</p>
+<pre><code>chgrp Users id_rsa_zend id_rsa config
+chmod 600 id_rsa_zend id_rsa config
+</code></pre>
+<p>[caption id=”attachment<em>1852” align=”alignnone” width=”775”]<img src="/wp-content/uploads/2013/10/ssh-6.png" alt="权限修改"> 权限修改[/caption] [caption id=”attachment</em>1853” align=”alignnone” width=”797”]<img src="http://blog.rexdf.org/wp-content/uploads/2013/10/ssh-8.png" alt="git成功"> git成功[/caption]</p>
+</div>
+<footer>
+<p class="meta">
+<span class="byline author vcard">Posted by <span class="fn">Rexdf</span></span>
+<time class="data-article month-10 season-autumn" datetime="2013-10-07T14:57:00+08:00" pubdate><span class="month">Oct</span> <span class="day">7th</span> <span class="year">2013</span></time>
+</p>
+<div class="sharing">
+</div>
+<p class="meta">
+<a class="basic-alignment left" href="/blog/2013/10/07/jia-kuai-DNS-shua-xin-de-ban-fa/" title="Previous Post: 加快DNS刷新的办法">&laquo; 加快DNS刷新的办法</a>
+<a class="basic-alignment right" href="/blog/2013/10/09/pan-duan-IE-fei-IE-de-ji-zhong-fang-fa/" title="Next Post: 判断IE非IE的几种方法">判断IE非IE的几种方法 &raquo;</a>
+</p>
+</footer>
+</article>
+<section>
+<h1>Comments</h1>
+<div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
+</div>
+<aside class="sidebar">
+<section>
+<h1>Categories</h1>
+<ul id="categories">
+<li class="category"><a href="/blog/categories/acm/">ACM <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/algorithm/">Algorithm <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/assembly/">Assembly <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/cygwin/">Cygwin <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/gnu/">GNU <sup>8</sup></a></li>
+<li class="category"><a href="/blog/categories/math/">Math <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/octopress/">Octopress <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/programming/">Programming <sup>6</sup></a></li>
+<li class="category"><a href="/blog/categories/security/">Security <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sublime/">Sublime <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/synology/">Synology <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sysadmin/">SysAdmin <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/web/">Web <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/windows/">Windows <sup>7</sup></a></li>
+<li class="category"><a href="/blog/categories/proxmox/">proxmox <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/ri-chang/">日常 <sup>37</sup></a></li>
+</ul>
+</section>
+<section>
+<h1>Recent Posts</h1>
+<ul id="recent_posts">
+<li class="post">
+<a href="/blog/2024/12/16/fu-wu-qi-wa-kuang-bing-du-de-cha-sha/">服务器挖矿病毒的查杀</a>
+</li>
+<li class="post">
+<a href="/blog/2021/07/11/apple-m1-bian-yi-tensorflow/">Apple M1 编译tensorflow</a>
+</li>
+<li class="post">
+<a href="/blog/2021/02/27/chromiumbian-ma-qi-wen-ti/">Chromium编码器问题</a>
+</li>
+<li class="post">
+<a href="/blog/2020/12/13/proxmoxbi-ji/">Proxmox笔记</a>
+</li>
+<li class="post">
+<a href="/blog/2020/11/15/lun-yan-du-yu-shen-du/">论广度与深度</a>
+</li>
+</ul>
+</section>
+<section>
+<iframe frameborder="0" scrolling="no" referrerpolicy="unsafe-url" style="width:283px;height:200px" src="https://t.rexdf.org/?m=app&a=showwidget&name=rexdf&type=1&width=283px&height=500px"></iframe>
+</section>
+<section>
+<h1>GitHub Repos</h1>
+<ul id="gh_repos">
+<li class="loading">Status updating...</li>
+</ul>
+<a href="https://github.com/rexdf">@rexdf</a> on GitHub
+<script type="text/javascript">$(document).ready(function(){if(!window.jXHR){var e=document.createElement("script");e.type="text/javascript",e.src="/javascripts/libs/jXHR.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}github.showRepos({user:"rexdf",count:0,skip_forks:!0,target:"#gh_repos"})})</script>
+</section>
+</aside>
+</div>
+</div>
+<footer role="contentinfo"><p>
+<span class="credit">Copyright &copy; 2024 - Rexdf -</span> |
+<span class="credit">Powered by <a name="bottoms" target="_blank" href="http://octopress.org">Octopress</a></span> |
+<span class="credit">Theme by ：<a href="https://blog.rexdf.org/" target="_blank" rel="theme">Rexdf</a></span> |
+<span class="credit">Host by：<a href="https://github.com/" target="_blank" rel="host">Github.com</a></span> |
+<span class="credit">版权声明：<a href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" target="_blank" rel="license">CC BY-NC-SA 3.0</a><img src="https://analytics.rexdf.net/piwik.php?idsite=1&amp;rec=1" style="border:0" alt="" referrerpolicy="no-referrer-when-downgrade"></span>|
+<span class="credit"><a href="/sitemap.xml" rel="sitemap">sitemap</a></span>
+</p>
+<script type="text/javascript" src="https://tajs.qq.com/stats?sId=30296377" charset="UTF-8"></script>
+</footer>
+<script type="text/javascript">var disqus_shortname="rexdf",disqus_identifier="https://i.rexdf.org/blog/2013/10/07/git-duo-zhan-dian-duo-yong-hu-SSH-pei-zhi/",disqus_url="https://i.rexdf.org/blog/2013/10/07/git-duo-zhan-dian-duo-yong-hu-SSH-pei-zhi/",disqus_script="embed.js";!function(){var e=document.createElement("script");e.type="text/javascript",e.async=!0,e.src="//"+disqus_shortname+".disqus.com/"+disqus_script,(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(e)}()</script>
+<script type="text/javascript">$(function(){$(".entry-content").each(function(t){var r=t;$(this).find("img.fancybox").each(function(){var t=$(this),a=t.attr("title"),n=t.attr("class");t.removeAttr("class"),t.wrap('<a href="'+this.src+'" class="'+n+'" rel="gallery'+r+'" />'),""!=a&&t.parent().attr("title",a)})}),$(".fancybox").fancybox()})</script>
+</body>
+</html>

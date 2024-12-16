@@ -1,0 +1,323 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<script type="text/javascript">var _speedMark=new Date</script>
+<meta charset="utf-8">
+<title>Daemon程序的原理和实现[转] - Rexdf</title>
+<meta name="author" content="Rexdf">
+<meta name="description" content="一、引言 Daemon程序是一直运行的服务端程序，又称为守护进程。 二、Daemon程序简介 Daemon是长时间运行的进程，通常在系统启动后就运行，在系统关闭时才结束。一般说Daemon程序在后台运行，是因为它没有控制终端，无法和前台的用户交互。Daemon程序一般都作为服务程序使用， &hellip;">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' data: https://hm.baidu.com https://tajs.qq.com https://ssl.google-analytics.com https://static.rexdf.org https://*.disquscdn.com https://rexdf.disqus.com https://api.github.com https://ssl.google-analytics.com https://disqus.com https://analytics.rexdf.net; connect-src 'self' https://static.rexdf.org https://analytics.rexdf.net https://hm.baidu.com; img-src data: https://*; font-src data: https://*; child-src 'none'; style-src 'self' 'unsafe-inline' https://*; frame-src 'self' https://t.rexdf.org http://t.rexdf.org https://rexdf.disqus.com https://disqus.com">
+<link rel="canonical" href="https://i.rexdf.org/blog/2013/11/22/Daemon-cheng-xu-de-yuan-li-he-shi-xian-zhuan">
+<link rel="dns-prefetch" href="https://static.rexdf.org/">
+<link href="/favicon.ico" rel="icon">
+<link id="main-css" href="/stylesheets/screen.css" media="screen,projection" rel="stylesheet" type="text/css" title="pc">
+<link href="/stylesheets/screen_mobile.css" rel="alternate stylesheet" type="text/css" title="mobile">
+<link href="/atom.xml" rel="alternate" title="Rexdf" type="application/atom+xml">
+<script src="/javascripts/libs/jquery.min.js"></script>
+<script src="/javascripts/octopress-rexdf.min.js" type="text/javascript"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+      
+      toggle_theme();
+  });
+</script>
+<script type="text/javascript" async src="https://static.rexdf.org/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript">var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-55590409-1"]),_gaq.push(["_trackPageview"]),function(){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(t,e)}()</script>
+<script>var _hmt=_hmt||[];!function(){var e=document.createElement("script");e.src="//hm.baidu.com/hm.js?32192d95b89fbefa0875c4c95adb1412";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}()</script>
+<script src="/javascripts/fancybox/jquery.fancybox.pack.js"></script>
+<link rel="stylesheet" type="text/css" href="/javascripts/fancybox/jquery.fancybox.css">
+<script type="text/javascript">var _paq=_paq||[];_paq.push(["trackPageView"]),_paq.push(["enableLinkTracking"]),function(){var e="https://analytics.rexdf.net/";_paq.push(["setTrackerUrl",e+"piwik.php"]),_paq.push(["setSiteId","1"]);var a=document,t=a.createElement("script"),p=a.getElementsByTagName("script")[0];t.type="text/javascript",t.async=!0,t.defer=!0,t.src=e+"piwik.js",p.parentNode.insertBefore(t,p)}()</script>
+</head>
+<body class="low-contrast-linen-wptouch-bg">
+<header role="banner"><hgroup>
+<h1 id="header-title"><a href="/">Rexdf</a></h1>
+<h2 id="subtitle">The devil is in the Details.</h2>
+</hgroup>
+</header>
+<nav role="navigation"><ul class="subscription" data-subscription="rss">
+<li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+</ul>
+<form action="https://google.com/search" method="get">
+<fieldset role="search">
+<input type="hidden" name="q" value="site:i.rexdf.org">
+<input class="search" type="text" name="q" results="0" placeholder="Search">
+</fieldset>
+</form>
+<ul class="main-navigation">
+<li><a href="/">Blog</a></li>
+<li><a href="/blog/archives/">Archives</a></li>
+<li><a href="/idea/">Idea</a></li>
+<li><a href="/share/">Share</a></li>
+<li><a href="/books/">Books</a></li>
+<li><a href="/donate/">Donate</a></li>
+<li><a target="_blank" href="https://blog.rexdf.org" style="font-family:Shadows Into Light">Main-Blog</a></li>
+</ul>
+</nav>
+<div id="main">
+<div id="content">
+<div>
+<article class="hentry" role="article">
+<header>
+<h1 class="entry-title">Daemon程序的原理和实现[转]</h1>
+<p class="meta">
+<time class="data-article month-11 season-autumn" datetime="2013-11-22T22:24:00+08:00" pubdate><span class="month">Nov</span> <span class="day">22nd</span> <span class="year">2013</span></time>
+| <a href="#disqus_thread" data-disqus-identifier="https://i.rexdf.org">Comments</a>
+</p>
+</header>
+<div class="entry-content"><h3 id="section">一、引言</h3>
+<p>Daemon程序是一直运行的服务端程序，又称为守护进程。</p>
+<h3 id="daemon">二、Daemon程序简介</h3>
+<p>Daemon是长时间运行的进程，通常在系统启动后就运行，在系统关闭时才结束。一般说Daemon程序在后台运行，是因为它没有控制终端，无法和前台的用户交互。Daemon程序一般都作为服务程序使用，等待客户端程序与它通信。我们也把运行的Daemon程序称作守护进程。</p>
+<h3 id="daemon-1">三、Daemon程序编写规则</h3>
+<p>编写Daemon程序有一些基本的规则，以避免不必要的麻烦。 1、首先是程序运行后调用fork，并让父进程退出。子进程获得一个新的进程ID，但继承了父进程的进程组ID。 2、调用setsid创建一个新的session，使自己成为新session和新进程组的leader，并使进程没有控制终端(tty)。 3、改变当前工作目录至根目录，以免影响可加载文件系统。或者也可以改变到某些特定的目录。 4、设置文件创建mask为0，避免创建文件时权限的影响。 5、关闭不需要的打开文件描述符。因为Daemon程序在后台执行，不需要于终端交互，通常就关闭STDIN、STDOUT和STDERR。其它根据实际情况处理。 另一个问题是Daemon程序不能和终端交互，也就无法使用printf方法输出信息了。我 们可以使用syslog机制来实现信息的输出，方便程序的调试。在使用syslog前需要首先启动syslogd程序，关于syslogd程序的使用请参 考它的man page，或相关文档，我们就不在这里讨论了。</p>
+<h3 id="daemon-2">四、一个Daemon程序的例子</h3>
+<p>编译运行环境为Redhat Linux。 我们新建一个daemontest.c程序，文件内容如下：</p>
+<pre><code>#include &lt;unistd.h&gt;
+#include &lt;sys/types.h&gt;
+#include &lt;sys/stat.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;syslog.h&gt;
+#include &lt;signal.h&gt;
+
+int daemon_init(void) 
+{ 
+	pid_t pid; 
+	if((pid = fork()) &lt; 0) 
+		return(-1); 
+	else if(pid != 0) 
+		exit(0); /* parent exit */ 
+	/* child continues */ 
+	
+	setsid(); /* become session leader */ 
+	chdir("/"); /* change working directory */ 
+	umask(0); /* clear file mode creation mask */ 
+	close(0); /* close stdin */ 
+	close(1); /* close stdout */ 
+	close(2); /* close stderr */ 
+	return(0); 
+} 
+
+void sig_term(int signo) 
+{ 
+	if(signo == SIGTERM) 
+	/* catched signal sent by kill(1) command */ 
+	{ 
+		syslog(LOG_INFO, "program terminated."); 
+		closelog(); 
+		exit(0); 
+	} 
+} 
+
+int main(void) 
+{ 
+	if(daemon_init() == -1) 
+	{ 
+		printf("can't fork self\n"); 
+		exit(0); 
+	} 
+
+	openlog("daemontest", LOG_PID, LOG_USER); 
+	syslog(LOG_INFO, "program started."); 
+	signal(SIGTERM, sig_term); /* arrange to catch the signal */ 
+	while(1) 
+	{ 
+		sleep(1); /* put your main program here */ 
+	} 
+	return(0); 
+} 
+</code></pre>
+<p>使用如下命令编译该程序： gcc -Wall -o daemontest daemontest.c编译完成后生成名为daemontest的程序，执行./daemontest来测试程序的运行。 使用ps axj命令可以显示系统中已运行的daemon程序的信息，包括进程ID、session ID、控制终端等内容。 部分显示内容： PPID PID PGID SID TTY TPGID STAT UID TIME COMMAND 1098 1101 1101 1074 pts/1 1101 S 0 0:00 -bash 1 1581 777 777 ? -1 S 500 0:13 gedit 1 1650 1650 1650 ? -1 S 500 0:00 ./daemontest 794 1654 1654 794 pts/0 1654 R 500 0:00 ps axj 从中可以看到daemontest程序运行的进程号为1650。 我们再来看看/var/log/messages文件中的信息： Apr 7 22:00:32 localhost daemontest[1650]: program started. 显示了我们在程序中希望输出的信息。 我们再使用kill 1650命令来杀死这个进程，/var/log/messages文件中就会有如下的信息： Apr 7 22:11:10 localhost daemontest[1650]: program terminated. 使用ps axj命令检查，发现系统中daemontest进程已经没有了。</p>
+<h3 id="section-1">五、另一个例子</h3>
+<pre><code>// start_daemon: 启动守护进程
+void start_daemon()
+{
+    int pid;
+    FILE *fp;
+
+    if(pid = fork())
+    {
+         // 这里是父进程的处理过程，把子进程的 pid 写入 PIDFILE 防止重复
+         fp = fopen(PIDFILE, “w”);
+         fprintf(fp, “%d”, pid);
+
+         // 关闭父进程
+         exit(0);
+    }
+
+    // 子进程的初始化在 main 函数里，这里也可以放一些
+}
+
+// anti_dup: 防止重复
+void anti_dup()
+{
+    FILE *fp;
+    int pid;
+
+    if(fp = fopen(PIDFILE, “r”))
+    {
+        fscanf(fp, “%d”, &amp;pid);
+        if(kill(pid, 0) == 0)
+        {
+            printf(”daemon already running!\n”);
+            fclose(fp);
+            exit(1);
+        }
+    }
+}
+
+// close_daemon: 退出守护进程
+void close_daemon()
+{
+    FILE *fp;
+    int pid;
+
+    if(fp = fopen(PIDFILE, “r”))
+    {
+        fscanf(fp, “%d”, &amp;pid);
+        if(kill(pid, 0) == -1) // 0 信号用来检测进程是否存在
+        {
+            printf(”daemon not running!\n”);
+            fclose(fp);
+            exit(1);
+        }
+        else
+        {
+            kill(pid, 9); // 9 信号用来杀死进程
+            fclose(fp);
+            exit(1);
+        }
+    }
+}
+
+int main(int argc, char *argv[])
+{
+    if ((argc == 2) &amp;&amp; (strcmp(”quit”, argv[1]) == 0))
+    {
+        close_daemon();
+    }
+    anti_dup();
+    start_daemon();
+
+    /* TODO: 一些初始化工作，放在这里 */
+
+    // 主循环
+    while (1)
+    {
+        /* TODO: 工作代码，可以定义成若干个工作函数 */
+        printf(”Hello World!\n”);
+
+        // 休息一会儿
+        sleep(5);
+    }
+
+    return 0;
+}
+</code></pre>
+</div>
+<footer>
+<p class="meta">
+<span class="byline author vcard">Posted by <span class="fn">Rexdf</span></span>
+<time class="data-article month-11 season-autumn" datetime="2013-11-22T22:24:00+08:00" pubdate><span class="month">Nov</span> <span class="day">22nd</span> <span class="year">2013</span></time>
+</p>
+<div class="sharing">
+</div>
+<p class="meta">
+<a class="basic-alignment left" href="/blog/2013/11/22/Unix-huan-jing-gao-ji-bian-cheng-dan-shi-li-shou-hu-jin-cheng-de-shi-xian-zhuan/" title="Previous Post: 《Unix环境高级编程》：单实例守护进程的实现 [转]">&laquo; 《Unix环境高级编程》：单实例守护进程的实现 [转]</a>
+<a class="basic-alignment right" href="/blog/2013/11/22/Linux-Shell/" title="Next Post: Linux Shell">Linux Shell &raquo;</a>
+</p>
+</footer>
+</article>
+<section>
+<h1>Comments</h1>
+<div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
+</div>
+<aside class="sidebar">
+<section>
+<h1>Categories</h1>
+<ul id="categories">
+<li class="category"><a href="/blog/categories/acm/">ACM <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/algorithm/">Algorithm <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/assembly/">Assembly <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/cygwin/">Cygwin <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/gnu/">GNU <sup>8</sup></a></li>
+<li class="category"><a href="/blog/categories/math/">Math <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/octopress/">Octopress <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/programming/">Programming <sup>6</sup></a></li>
+<li class="category"><a href="/blog/categories/security/">Security <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sublime/">Sublime <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/synology/">Synology <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sysadmin/">SysAdmin <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/web/">Web <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/windows/">Windows <sup>7</sup></a></li>
+<li class="category"><a href="/blog/categories/proxmox/">proxmox <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/ri-chang/">日常 <sup>37</sup></a></li>
+</ul>
+</section>
+<section>
+<h1>Recent Posts</h1>
+<ul id="recent_posts">
+<li class="post">
+<a href="/blog/2024/12/16/fu-wu-qi-wa-kuang-bing-du-de-cha-sha/">服务器挖矿病毒的查杀</a>
+</li>
+<li class="post">
+<a href="/blog/2021/07/11/apple-m1-bian-yi-tensorflow/">Apple M1 编译tensorflow</a>
+</li>
+<li class="post">
+<a href="/blog/2021/02/27/chromiumbian-ma-qi-wen-ti/">Chromium编码器问题</a>
+</li>
+<li class="post">
+<a href="/blog/2020/12/13/proxmoxbi-ji/">Proxmox笔记</a>
+</li>
+<li class="post">
+<a href="/blog/2020/11/15/lun-yan-du-yu-shen-du/">论广度与深度</a>
+</li>
+</ul>
+</section>
+<section>
+<iframe frameborder="0" scrolling="no" referrerpolicy="unsafe-url" style="width:283px;height:200px" src="https://t.rexdf.org/?m=app&a=showwidget&name=rexdf&type=1&width=283px&height=500px"></iframe>
+</section>
+<section>
+<h1>GitHub Repos</h1>
+<ul id="gh_repos">
+<li class="loading">Status updating...</li>
+</ul>
+<a href="https://github.com/rexdf">@rexdf</a> on GitHub
+<script type="text/javascript">$(document).ready(function(){if(!window.jXHR){var e=document.createElement("script");e.type="text/javascript",e.src="/javascripts/libs/jXHR.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}github.showRepos({user:"rexdf",count:0,skip_forks:!0,target:"#gh_repos"})})</script>
+</section>
+</aside>
+</div>
+</div>
+<footer role="contentinfo"><p>
+<span class="credit">Copyright &copy; 2024 - Rexdf -</span> |
+<span class="credit">Powered by <a name="bottoms" target="_blank" href="http://octopress.org">Octopress</a></span> |
+<span class="credit">Theme by ：<a href="https://blog.rexdf.org/" target="_blank" rel="theme">Rexdf</a></span> |
+<span class="credit">Host by：<a href="https://github.com/" target="_blank" rel="host">Github.com</a></span> |
+<span class="credit">版权声明：<a href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" target="_blank" rel="license">CC BY-NC-SA 3.0</a><img src="https://analytics.rexdf.net/piwik.php?idsite=1&amp;rec=1" style="border:0" alt="" referrerpolicy="no-referrer-when-downgrade"></span>|
+<span class="credit"><a href="/sitemap.xml" rel="sitemap">sitemap</a></span>
+</p>
+<script type="text/javascript" src="https://tajs.qq.com/stats?sId=30296377" charset="UTF-8"></script>
+</footer>
+<script type="text/javascript">var disqus_shortname="rexdf",disqus_identifier="https://i.rexdf.org/blog/2013/11/22/Daemon-cheng-xu-de-yuan-li-he-shi-xian-zhuan/",disqus_url="https://i.rexdf.org/blog/2013/11/22/Daemon-cheng-xu-de-yuan-li-he-shi-xian-zhuan/",disqus_script="embed.js";!function(){var e=document.createElement("script");e.type="text/javascript",e.async=!0,e.src="//"+disqus_shortname+".disqus.com/"+disqus_script,(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(e)}()</script>
+<script type="text/javascript">$(function(){$(".entry-content").each(function(t){var r=t;$(this).find("img.fancybox").each(function(){var t=$(this),a=t.attr("title"),n=t.attr("class");t.removeAttr("class"),t.wrap('<a href="'+this.src+'" class="'+n+'" rel="gallery'+r+'" />'),""!=a&&t.parent().attr("title",a)})}),$(".fancybox").fancybox()})</script>
+</body>
+</html>

@@ -1,0 +1,194 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<script type="text/javascript">var _speedMark=new Date</script>
+<meta charset="utf-8">
+<title>jQuery offset，position，offsetParent，scrollLeft，scrollTop Html控件定位 Css Position属 - Rexdf</title>
+<meta name="author" content="Rexdf">
+<meta name="description" content="定位应用：点击一个按钮，然后在按钮的右边弹出一个提示框 1，提示框相对于屏幕进行定位，那么使用offset来取得当前按钮相对于body的top和left，然后通过$(‘body’).prepend(tipContent);把提示控件加到body下 注意tipContent采用absolute定位， &hellip;">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' data: https://hm.baidu.com https://tajs.qq.com https://ssl.google-analytics.com https://static.rexdf.org https://*.disquscdn.com https://rexdf.disqus.com https://api.github.com https://ssl.google-analytics.com https://disqus.com https://analytics.rexdf.net; connect-src 'self' https://static.rexdf.org https://analytics.rexdf.net https://hm.baidu.com; img-src data: https://*; font-src data: https://*; child-src 'none'; style-src 'self' 'unsafe-inline' https://*; frame-src 'self' https://t.rexdf.org http://t.rexdf.org https://rexdf.disqus.com https://disqus.com">
+<link rel="canonical" href="https://i.rexdf.org/blog/2012/06/23/jQuery-offsetpositionoffsetParentscrollLeftscrollTop-html-kong-jian-ding-wei-css-position-shu">
+<link rel="dns-prefetch" href="https://static.rexdf.org/">
+<link href="/favicon.ico" rel="icon">
+<link id="main-css" href="/stylesheets/screen.css" media="screen,projection" rel="stylesheet" type="text/css" title="pc">
+<link href="/stylesheets/screen_mobile.css" rel="alternate stylesheet" type="text/css" title="mobile">
+<link href="/atom.xml" rel="alternate" title="Rexdf" type="application/atom+xml">
+<script src="/javascripts/libs/jquery.min.js"></script>
+<script src="/javascripts/octopress-rexdf.min.js" type="text/javascript"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+      
+      toggle_theme();
+  });
+</script>
+<script type="text/javascript" async src="https://static.rexdf.org/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript">var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-55590409-1"]),_gaq.push(["_trackPageview"]),function(){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(t,e)}()</script>
+<script>var _hmt=_hmt||[];!function(){var e=document.createElement("script");e.src="//hm.baidu.com/hm.js?32192d95b89fbefa0875c4c95adb1412";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}()</script>
+<script src="/javascripts/fancybox/jquery.fancybox.pack.js"></script>
+<link rel="stylesheet" type="text/css" href="/javascripts/fancybox/jquery.fancybox.css">
+<script type="text/javascript">var _paq=_paq||[];_paq.push(["trackPageView"]),_paq.push(["enableLinkTracking"]),function(){var e="https://analytics.rexdf.net/";_paq.push(["setTrackerUrl",e+"piwik.php"]),_paq.push(["setSiteId","1"]);var a=document,t=a.createElement("script"),p=a.getElementsByTagName("script")[0];t.type="text/javascript",t.async=!0,t.defer=!0,t.src=e+"piwik.js",p.parentNode.insertBefore(t,p)}()</script>
+</head>
+<body class="low-contrast-linen-wptouch-bg">
+<header role="banner"><hgroup>
+<h1 id="header-title"><a href="/">Rexdf</a></h1>
+<h2 id="subtitle">The devil is in the Details.</h2>
+</hgroup>
+</header>
+<nav role="navigation"><ul class="subscription" data-subscription="rss">
+<li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+</ul>
+<form action="https://google.com/search" method="get">
+<fieldset role="search">
+<input type="hidden" name="q" value="site:i.rexdf.org">
+<input class="search" type="text" name="q" results="0" placeholder="Search">
+</fieldset>
+</form>
+<ul class="main-navigation">
+<li><a href="/">Blog</a></li>
+<li><a href="/blog/archives/">Archives</a></li>
+<li><a href="/idea/">Idea</a></li>
+<li><a href="/share/">Share</a></li>
+<li><a href="/books/">Books</a></li>
+<li><a href="/donate/">Donate</a></li>
+<li><a target="_blank" href="https://blog.rexdf.org" style="font-family:Shadows Into Light">Main-Blog</a></li>
+</ul>
+</nav>
+<div id="main">
+<div id="content">
+<div>
+<article class="hentry" role="article">
+<header>
+<h1 class="entry-title">jQuery offset，position，offsetParent，scrollLeft，scrollTop Html控件定位 Css Position属</h1>
+<p class="meta">
+<time class="data-article month-06 season-summer" datetime="2012-06-23T16:45:00+08:00" pubdate><span class="month">Jun</span> <span class="day">23rd</span> <span class="year">2012</span></time>
+| <a href="#disqus_thread" data-disqus-identifier="https://i.rexdf.org">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>定位应用：点击一个按钮，然后在按钮的右边弹出一个提示框 1，提示框相对于屏幕进行定位，那么使用offset来取得当前按钮相对于body的top和left，然后通过$(‘body’).prepend(tipContent);把提示控件加到body下 注意tipContent采用absolute定位，并设置top，left的值，当把tipContent加到body的最前面时，由于tipContent前面没有任何东西，因此它就是以body为基准根据top，left的值进行定位</p>
+<p>Javascript代码</p>
+<ol>
+<li>$(this).offset().left;</li>
+<li>$(this).offset().top;</li>
+<li>$(‘body’).prepend(tipContent);</li>
+</ol>
+<p>2，提示框相对于点击的按钮进行定位(即提示框出现在按钮的旁边)，那么使用position来取得当前按钮相对于offset parent的top和left，，然后通过$(this).after(tipContent);;把提示控件加到按钮的后面(兄弟节点)，因此被追加的提示控件的offset parent和按钮的offset parent一定是相同的！，也就变相达到了提示控件相对于 按钮 进行定位的效果！ // 注意tipContent采用absolute定位，当把tipContent加到按钮后面后（兄弟节点，他们有相同的offset parent） // absolute：绝对定位，元素相对于它的第一个被定位的祖先元素（offset parent非static）来进行定位,由于按钮和提示控件并排在一起，不管 被用来作为基准的第一个被定位的祖先元素（非static）是谁，按钮和提示控件相对于 基准控件的top，left距离都是可以简单地通过+-进行平移操作！</p>
+<p>Javascript代码</p>
+<ol>
+<li>$(this).position().left;</li>
+<li>$(this).position().top;</li>
+<li>$(this).after(tipContent);</li>
+</ol>
+<p><strong>offset:偏移、平移、位移</strong> <strong>offset()</strong>:获取匹配元素集合中的第一个元素相对于document的当前坐标值（相对于body左上角的left， top的值）。 返回的对象包含两个整形属性：top 和 left。 如果把一个元素定位到已经存在的元素的上面（特别地做拖拽操作的时候）， .offset()方法更加有用。 <strong>position()</strong>:获取当前匹配元素集合中的第一个元素相对于offset parent的当前坐标值（相对于offset parent元素左上角的left， top的值）。 返回的对象包含两个整形属性：top 和 left。 如果要让一个元素靠近另外一个元素进行定位，并且这2个元素被包含在另外一个DOM元素中， .position()方法更加有用。 jquery不支持取得相对于隐藏元素、或者包含borders, margins, padding属性的body元素的坐标。（对offset（）和position（）方法都是！） <strong>offsetParent()</strong>：取得被定位后最近的祖先元素！ 给你一个jQuery对象，它的offsetParent()方法会在 DOM树中搜索所有这个jQuery对象的祖先元素，并返回一个表示离这个元素最近的祖先元素的jQuery对象。 一个元素说被定位指的是它包含一个CSS定位属性（position）,并且其值为relative,absolute或者fixed。其值不是css position属性的默认值static！ offsetParent属性返回一个对象的引用，这个对象是距离调用offsetParent的元素最近的（在包含层次中最靠近的），并且是已进行过CSS定位的容器元素。 如果这个容器元素未进行CSS定位, 则offsetParent属性的取值为根元素(在标准兼容模式下为html元素；在怪异呈现模式下为body元素)的引用。 当容器元素的style.display 被设置为 “none”时（译注：IE和Opera除外），offsetParent属性 返回 null。 <strong>scrollLeft()：</strong>获取匹配元素集合中的第一个元素相对于水平滚动条左边的距离。 这个距离等于从被选中元素到水平滚动条左边的像素值。如果滚动条非常左、或者元素不能被滚动，那么这个值为0. <strong>scrollTop()</strong>：获取匹配元素集合中的第一个元素相对于纵向滚动条上边的距离。 这个距离等于从被选中元素到纵向滚动条上边的像素值。如果滚动条非常上、或者元素不能被滚动，那么这个值为0. 注意：当一个元素被隐藏后，调用scrollTop， scrollLeft（）或者animate()方法是不会正常工作的。 css position属性：position属性指出一个元素的定位方法。有4种可能值：static, relative, absolute or fixed：</p>
+<ul>
+<li>static：默认值，元素按照在文档流中出现的顺序渲染</li>
+<li>absolute：绝对定位，元素相对于它的第一个被定位的祖先元素（非static）来进行定位</li>
+<li>fixed：元素相对于浏览器window进行定位</li>
+<li>relative：元素相对与它的正常位置进行定位，因此”left:20”就表示在元素正常位置的基础上，左移20像素的距离。 参考<a href="http://js8.in/602.html">http://js8.in/602.html</a>中的结论： 使用position()方法时事实上是把该元素当绝对定位来处理，获取的是该元素相当于最近的一个拥有绝对或者相对定位的父元素的偏移位置 使用position()方法时如果其所有的父元素都为默认定位（static）方式，则其处理方式和offset()一样，是当前窗口的相对偏移 使用offset()方法不管该元素如何定位，也不管其父元素如何定位，都是获取的该元素相对于当前视口的偏移</li>
+</ul>
+</div>
+<footer>
+<p class="meta">
+<span class="byline author vcard">Posted by <span class="fn">Rexdf</span></span>
+<time class="data-article month-06 season-summer" datetime="2012-06-23T16:45:00+08:00" pubdate><span class="month">Jun</span> <span class="day">23rd</span> <span class="year">2012</span></time>
+</p>
+<div class="sharing">
+</div>
+<p class="meta">
+<a class="basic-alignment left" href="/blog/2012/06/23/javascript-gai-bian-div-wei-zhi/" title="Previous Post: javascript改变div位置">&laquo; javascript改变div位置</a>
+<a class="basic-alignment right" href="/blog/2012/06/24/GAE-shi-wan/" title="Next Post: GAE试玩">GAE试玩 &raquo;</a>
+</p>
+</footer>
+</article>
+<section>
+<h1>Comments</h1>
+<div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
+</div>
+<aside class="sidebar">
+<section>
+<h1>Categories</h1>
+<ul id="categories">
+<li class="category"><a href="/blog/categories/acm/">ACM <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/algorithm/">Algorithm <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/assembly/">Assembly <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/cygwin/">Cygwin <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/gnu/">GNU <sup>8</sup></a></li>
+<li class="category"><a href="/blog/categories/math/">Math <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/octopress/">Octopress <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/programming/">Programming <sup>6</sup></a></li>
+<li class="category"><a href="/blog/categories/security/">Security <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sublime/">Sublime <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/synology/">Synology <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sysadmin/">SysAdmin <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/web/">Web <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/windows/">Windows <sup>7</sup></a></li>
+<li class="category"><a href="/blog/categories/proxmox/">proxmox <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/ri-chang/">日常 <sup>37</sup></a></li>
+</ul>
+</section>
+<section>
+<h1>Recent Posts</h1>
+<ul id="recent_posts">
+<li class="post">
+<a href="/blog/2024/12/16/fu-wu-qi-wa-kuang-bing-du-de-cha-sha/">服务器挖矿病毒的查杀</a>
+</li>
+<li class="post">
+<a href="/blog/2021/07/11/apple-m1-bian-yi-tensorflow/">Apple M1 编译tensorflow</a>
+</li>
+<li class="post">
+<a href="/blog/2021/02/27/chromiumbian-ma-qi-wen-ti/">Chromium编码器问题</a>
+</li>
+<li class="post">
+<a href="/blog/2020/12/13/proxmoxbi-ji/">Proxmox笔记</a>
+</li>
+<li class="post">
+<a href="/blog/2020/11/15/lun-yan-du-yu-shen-du/">论广度与深度</a>
+</li>
+</ul>
+</section>
+<section>
+<iframe frameborder="0" scrolling="no" referrerpolicy="unsafe-url" style="width:283px;height:200px" src="https://t.rexdf.org/?m=app&a=showwidget&name=rexdf&type=1&width=283px&height=500px"></iframe>
+</section>
+<section>
+<h1>GitHub Repos</h1>
+<ul id="gh_repos">
+<li class="loading">Status updating...</li>
+</ul>
+<a href="https://github.com/rexdf">@rexdf</a> on GitHub
+<script type="text/javascript">$(document).ready(function(){if(!window.jXHR){var e=document.createElement("script");e.type="text/javascript",e.src="/javascripts/libs/jXHR.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}github.showRepos({user:"rexdf",count:0,skip_forks:!0,target:"#gh_repos"})})</script>
+</section>
+</aside>
+</div>
+</div>
+<footer role="contentinfo"><p>
+<span class="credit">Copyright &copy; 2024 - Rexdf -</span> |
+<span class="credit">Powered by <a name="bottoms" target="_blank" href="http://octopress.org">Octopress</a></span> |
+<span class="credit">Theme by ：<a href="https://blog.rexdf.org/" target="_blank" rel="theme">Rexdf</a></span> |
+<span class="credit">Host by：<a href="https://github.com/" target="_blank" rel="host">Github.com</a></span> |
+<span class="credit">版权声明：<a href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" target="_blank" rel="license">CC BY-NC-SA 3.0</a><img src="https://analytics.rexdf.net/piwik.php?idsite=1&amp;rec=1" style="border:0" alt="" referrerpolicy="no-referrer-when-downgrade"></span>|
+<span class="credit"><a href="/sitemap.xml" rel="sitemap">sitemap</a></span>
+</p>
+<script type="text/javascript" src="https://tajs.qq.com/stats?sId=30296377" charset="UTF-8"></script>
+</footer>
+<script type="text/javascript">var disqus_shortname="rexdf",disqus_identifier="https://i.rexdf.org/blog/2012/06/23/jQuery-offsetpositionoffsetParentscrollLeftscrollTop-html-kong-jian-ding-wei-css-position-shu/",disqus_url="https://i.rexdf.org/blog/2012/06/23/jQuery-offsetpositionoffsetParentscrollLeftscrollTop-html-kong-jian-ding-wei-css-position-shu/",disqus_script="embed.js";!function(){var s=document.createElement("script");s.type="text/javascript",s.async=!0,s.src="//"+disqus_shortname+".disqus.com/"+disqus_script,(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(s)}()</script>
+<script type="text/javascript">$(function(){$(".entry-content").each(function(t){var r=t;$(this).find("img.fancybox").each(function(){var t=$(this),a=t.attr("title"),n=t.attr("class");t.removeAttr("class"),t.wrap('<a href="'+this.src+'" class="'+n+'" rel="gallery'+r+'" />'),""!=a&&t.parent().attr("title",a)})}),$(".fancybox").fancybox()})</script>
+</body>
+</html>

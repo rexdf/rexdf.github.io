@@ -1,0 +1,1000 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<script type="text/javascript">var _speedMark=new Date</script>
+<meta charset="utf-8">
+<title>Rexdf</title>
+<meta name="author" content="Rexdf">
+<meta name="description" content="很简单的一个插件，现在支持汉化Sublime Text2，Sublime Text3。全部系统Win64、Win32，Linux64，Linux32，OSX等，可以随意来回切换简体中文、繁体中文、日语、英语，无需重启SublimeText。 ">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' data: https://hm.baidu.com https://tajs.qq.com https://ssl.google-analytics.com https://static.rexdf.org https://*.disquscdn.com https://rexdf.disqus.com https://api.github.com https://ssl.google-analytics.com https://disqus.com https://analytics.rexdf.net; connect-src 'self' https://static.rexdf.org https://analytics.rexdf.net https://hm.baidu.com; img-src data: https://*; font-src data: https://*; child-src 'none'; style-src 'self' 'unsafe-inline' https://*; frame-src 'self' https://t.rexdf.org http://t.rexdf.org https://rexdf.disqus.com https://disqus.com">
+<link rel="canonical" href="https://i.rexdf.org/blog/page/14">
+<link rel="dns-prefetch" href="https://static.rexdf.org/">
+<link href="/favicon.ico" rel="icon">
+<link id="main-css" href="/stylesheets/screen.css" media="screen,projection" rel="stylesheet" type="text/css" title="pc">
+<link href="/stylesheets/screen_mobile.css" rel="alternate stylesheet" type="text/css" title="mobile">
+<link href="/atom.xml" rel="alternate" title="Rexdf" type="application/atom+xml">
+<script src="/javascripts/libs/jquery.min.js"></script>
+<script src="/javascripts/octopress-rexdf.min.js" type="text/javascript"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+      
+      toggle_theme();
+  });
+</script>
+<script type="text/javascript" async src="https://static.rexdf.org/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript">var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-55590409-1"]),_gaq.push(["_trackPageview"]),function(){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(t,e)}()</script>
+<script>var _hmt=_hmt||[];!function(){var e=document.createElement("script");e.src="//hm.baidu.com/hm.js?32192d95b89fbefa0875c4c95adb1412";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}()</script>
+<script src="/javascripts/fancybox/jquery.fancybox.pack.js"></script>
+<link rel="stylesheet" type="text/css" href="/javascripts/fancybox/jquery.fancybox.css">
+<script type="text/javascript">var _paq=_paq||[];_paq.push(["trackPageView"]),_paq.push(["enableLinkTracking"]),function(){var e="https://analytics.rexdf.net/";_paq.push(["setTrackerUrl",e+"piwik.php"]),_paq.push(["setSiteId","1"]);var a=document,t=a.createElement("script"),p=a.getElementsByTagName("script")[0];t.type="text/javascript",t.async=!0,t.defer=!0,t.src=e+"piwik.js",p.parentNode.insertBefore(t,p)}()</script>
+</head>
+<body class="low-contrast-linen-wptouch-bg">
+<header role="banner"><hgroup>
+<h1 id="header-title"><a href="/">Rexdf</a></h1>
+<h2 id="subtitle">The devil is in the Details.</h2>
+</hgroup>
+</header>
+<nav role="navigation"><ul class="subscription" data-subscription="rss">
+<li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+</ul>
+<form action="https://google.com/search" method="get">
+<fieldset role="search">
+<input type="hidden" name="q" value="site:i.rexdf.org">
+<input class="search" type="text" name="q" results="0" placeholder="Search">
+</fieldset>
+</form>
+<ul class="main-navigation">
+<li><a href="/">Blog</a></li>
+<li><a href="/blog/archives/">Archives</a></li>
+<li><a href="/idea/">Idea</a></li>
+<li><a href="/share/">Share</a></li>
+<li><a href="/books/">Books</a></li>
+<li><a href="/donate/">Donate</a></li>
+<li><a target="_blank" href="https://blog.rexdf.org" style="font-family:Shadows Into Light">Main-Blog</a></li>
+</ul>
+</nav>
+<div id="main">
+<div id="content">
+<div class="blog-index">
+<article>
+<header>
+<h1 class="entry-title">[置顶]<a href="/blog/2015/05/15/fa-bu-yi-ge-sublimeyi-hua-cha-jian/">发布一个sublime汉化插件</a></h1>
+<p class="meta">
+<time class="data-article month-05 season-spring" datetime="2015-05-15T11:19:01+08:00" pubdate><span class="month">May</span> <span class="day">15th</span> <span class="year">2015</span></time>
+| <a href="/blog/2015/05/15/fa-bu-yi-ge-sublimeyi-hua-cha-jian/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2015/05/15/fa-bu-yi-ge-sublimeyi-hua-cha-jian/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>很简单的一个插件，现在支持汉化Sublime Text2，Sublime Text3。全部系统Win64、Win32，Linux64，Linux32，OSX等，可以随意来回切换简体中文、繁体中文、日语、英语，无需重启SublimeText。</p>
+</div>
+<footer>
+<a rel="full-article" href="/blog/2015/05/15/fa-bu-yi-ge-sublimeyi-hua-cha-jian/">Read on &rarr;</a>
+</footer>
+</article>
+<article>
+<header>
+<h1 class="entry-title"><a href="/blog/2013/03/23/Codeforces-176-A/">Codeforces 176 A</a></h1>
+<p class="meta">
+<time class="data-article month-03 season-spring" datetime="2013-03-23T19:05:00+08:00" pubdate><span class="month">Mar</span> <span class="day">23rd</span> <span class="year">2013</span></time>
+| <a href="/blog/2013/03/23/Codeforces-176-A/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2013/03/23/Codeforces-176-A/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>A. IQ Test</p>
+<p>time limit per test</p>
+<p>2 seconds</p>
+<p>memory limit per test</p>
+<p>256 megabytes</p>
+<p>input</p>
+<p>standard input</p>
+<p>output</p>
+<p>standard output</p>
+<p>In the city of Ultima Thule job applicants are often offered an IQ test. The test is as follows: the person gets a piece of squared paper with a 4 × 4 square painted on it. Some of the square’s cells are painted black and others are painted white. Your task is to repaint at most one cell the other color so that the picture has a 2 × 2 square, completely consisting of cells of the same color. If the initial picture already has such a square, the person should just say so and the test will be completed. Your task is to write a program that determines whether it is possible to pass the test. You cannot pass the test if either repainting any cell or no action doesn’t result in a 2 × 2 square, consisting of cells of the same color.</p>
+<p>Input</p>
+<p>Four lines contain four characters each: the <em>j</em>-th character of the <em>i</em>-th line equals “.” if the cell in the <em>i</em>-th row and the <em>j</em>-th column of the square is painted white, and “#”, if the cell is black.</p>
+<p>Output</p>
+<p>Print “YES” (without the quotes), if the test can be passed and “NO” (without the quotes) otherwise.</p>
+<p>Sample test(s)</p>
+<p>input</p>
+<pre><code>#### .#.. #### ....
+</code></pre>
+<p>output</p>
+<pre><code>YES
+</code></pre>
+<p>input</p>
+<pre><code>#### .... #### ....
+</code></pre>
+<p>output</p>
+<pre><code>NO
+</code></pre>
+<p>Note</p>
+<p>In the first test sample it is enough to repaint the first cell in the second row. After such repainting the required 2 × 2 square is on the intersection of the 1-st and 2-nd row with the 1-st and 2-nd column.</p>
+<pre><code>#include &lt;iostream&gt;
+#include &lt;cstdio&gt;
+#include &lt;cstdlib&gt;
+
+using namespace std;
+
+char s[5][5];
+
+bool Fit(int x,int y)
+{
+    int w=0,b=0;
+    for(int i=0;i&lt;2;i++)
+      for(int j=0;j&lt;2;j++)
+        if('.'==s[x+i][y+j])w++;
+        else b++;
+    //cout&lt;&lt;x&lt;&lt;" "&lt;&lt;y&lt;&lt;" "&lt;&lt;w&lt;&lt;" "&lt;&lt;b&lt;&lt;endl;
+    return w!=b;
+}
+
+int main()
+{
+    
+    for(int i=0;i&lt;4;i++)
+      cin&gt;&gt;s[i];
+    int flag=0;
+    for(int i=0;i&lt;3;i++)
+    {
+        if(flag)break;
+        for(int j=0;j&lt;3;j++)
+          if(Fit(i,j))
+          {
+              flag=1;
+              break;
+          }
+    }
+    if(flag)cout&lt;&lt;"YES"&lt;&lt;endl;
+    else cout&lt;&lt;"NO"&lt;&lt;endl;
+    return 0;
+}
+</code></pre>
+</div>
+</article>
+<article>
+<header>
+<h1 class="entry-title"><a href="/blog/2013/03/23/Codeforces-176-B/">Codeforces 176 B</a></h1>
+<p class="meta">
+<time class="data-article month-03 season-spring" datetime="2013-03-23T19:03:00+08:00" pubdate><span class="month">Mar</span> <span class="day">23rd</span> <span class="year">2013</span></time>
+| <a href="/blog/2013/03/23/Codeforces-176-B/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2013/03/23/Codeforces-176-B/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>B. Pipeline</p>
+<p>time limit per test</p>
+<p>2 seconds</p>
+<p>memory limit per test</p>
+<p>256 megabytes</p>
+<p>input</p>
+<p>standard input</p>
+<p>output</p>
+<p>standard output</p>
+<p>Vova, the Ultimate Thule new shaman, wants to build a pipeline. As there are exactly <em>n</em> houses in Ultimate Thule, Vova wants the city to have exactly <em>n</em> pipes, each such pipe should be connected to the water supply. A pipe can be connected to the water supply if there’s water flowing out of it. Initially Vova has only one pipe with flowing water. Besides, Vova has several splitters. A splitter is a construction that consists of one input (it can be connected to a water pipe) and <em>x</em> output pipes. When a splitter is connected to a water pipe, water flows from each output pipe. You can assume that the output pipes are ordinary pipes. For example, you can connect water supply to such pipe if there’s water flowing out from it. At most one splitter can be connected to any water pipe.   <img src="http://codeforces.ru/renderer/fe36a68df20f211fa02a3944a3a69a31cd279b07.png" alt="">The figure shows a 4-output splitter  Vova has one splitter of each kind: with 2, 3, 4, …, <em>k</em> outputs. Help Vova use the minimum number of splitters to build the required pipeline or otherwise state that it’s impossible. Vova needs the pipeline to have exactly <em>n</em> pipes with flowing out water. Note that some of those pipes can be the output pipes of the splitters.</p>
+<p>Input</p>
+<p>The first line contains two space-separated integers <em>n</em> and <em>k</em> (1 ≤ <em>n</em> ≤ 1018, 2 ≤ <em>k</em> ≤ 109). Please, do not use the %lld specifier to read or write 64-bit integers in С++. It is preferred to use the cin, cout streams or the %I64dspecifier.</p>
+<p>Output</p>
+<p>Print a single integer — the minimum number of splitters needed to build the pipeline. If it is impossible to build a pipeline with the given splitters, print -1.</p>
+<p>Sample test(s)</p>
+<p>input</p>
+<pre><code>4 3
+</code></pre>
+<p>output</p>
+<pre><code>2
+</code></pre>
+<p>input</p>
+<pre><code>5 5
+</code></pre>
+<p>output</p>
+<pre><code>1
+</code></pre>
+<p>input</p>
+<pre><code>8 4
+</code></pre>
+<p>output</p>
+<pre><code>-1
+
+
+#include &lt;iostream&gt; 
+#include &lt;cstdio&gt;
+#include &lt;cstdlib&gt;
+#include &lt;cstring&gt;
+#include &lt;cmath&gt;
+
+using namespace std;
+
+int main()
+{
+    long long n,tmp,temp;
+    long long k;
+    long double dtmp;
+    //巨郁闷！被1000000000 999999999叉掉了，而只要换成long double就OK了 
+    cin&gt;&gt;n&gt;&gt;k;
+    tmp=(k-1)*k/2+1;
+    //cout&lt;&lt;tmp&lt;&lt;endl;
+    if(n&gt;tmp)cout&lt;&lt;-1&lt;&lt;endl;
+    else
+    {
+        dtmp=(2.0*k-1)*(2.0*k-1)-8.0*(n-1);
+        //cout&lt;&lt;dtmp&lt;&lt;endl;
+        dtmp=(2.0*k-1-sqrt(dtmp))/2.0;
+        temp=dtmp;
+        if(dtmp&gt;temp)temp++;
+        //if(dtmp==temp)cout&lt;&lt;"!"&lt;&lt;endl;
+        if(dtmp&lt;0)temp=1;
+        //cout&lt;&lt;dtmp&lt;&lt;endl;
+        cout&lt;&lt;temp&lt;&lt;endl;
+    }
+    return 0;
+}
+</code></pre>
+</div>
+</article>
+<article>
+<header>
+<h1 class="entry-title"><a href="/blog/2013/03/22/Topcoder-hao-ti-tui-jian-by-bai-yi-shao-nian/">Topcoder好题推荐 (by 白衣少年)</a></h1>
+<p class="meta">
+<time class="data-article month-03 season-spring" datetime="2013-03-22T20:43:00+08:00" pubdate><span class="month">Mar</span> <span class="day">22nd</span> <span class="year">2013</span></time>
+| <a href="/blog/2013/03/22/Topcoder-hao-ti-tui-jian-by-bai-yi-shao-nian/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2013/03/22/Topcoder-hao-ti-tui-jian-by-bai-yi-shao-nian/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>推荐的好题不一定是难题，但往往带有那么一点代表性。凡是由别人推荐的题目，偶会加上推荐人ID和blog地址。偶自己推荐的题目，偶会尽量推荐一份简洁的代码。当天推荐的题会以红色标记。</p>
+<h3 id="single-round-match"><strong><em>Single Round Match</em></strong></h3>
+</div>
+</article>
+<article>
+<header>
+<h1 class="entry-title"><a href="/blog/2013/03/22/Codeforces-175-C/">Codeforces 175 C</a></h1>
+<p class="meta">
+<time class="data-article month-03 season-spring" datetime="2013-03-22T20:40:00+08:00" pubdate><span class="month">Mar</span> <span class="day">22nd</span> <span class="year">2013</span></time>
+| <a href="/blog/2013/03/22/Codeforces-175-C/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2013/03/22/Codeforces-175-C/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>C. Building Permutation</p>
+<p>time limit per test</p>
+<p>2 seconds</p>
+<p>memory limit per test</p>
+<p>256 megabytes</p>
+<p>input</p>
+<p>standard input</p>
+<p>output</p>
+<p>standard output</p>
+<p>Permutation <em>p</em> is an ordered set of integers <em>p</em>1,  <em>p</em>2,  …,  <em>p__n</em>, consisting of <em>n</em> distinct positive integers, each of them doesn’t exceed <em>n</em>. We’ll denote the <em>i</em>-th element of permutation <em>p</em> as <em>p__i</em>. We’ll call number <em>n</em> the size or the length of permutation <em>p</em>1,  <em>p</em>2,  …,  <em>p__n</em>. You have a sequence of integers <em>a</em>1, <em>a</em>2, …, <em>a__n</em>. In one move, you are allowed to decrease or increase any number by one. Count the minimum number of moves, needed to build a permutation from this sequence.</p>
+<p>Input</p>
+<p>The first line contains integer <em>n</em> (1 ≤ <em>n</em> ≤ 3·105) — the size of the sought permutation. The second line contains <em>n</em> integers_a<em>1, _a</em>2, …, <em>a__n</em> ( - 109 ≤ <em>a__i</em> ≤ 109).</p>
+<p>Output</p>
+<p>Print a single number — the minimum number of moves. Please, do not use the %lld specifier to read or write 64-bit integers in С++. It is preferred to use the cin, cout streams or the %I64dspecifier.</p>
+<p>Sample test(s)</p>
+<p>input</p>
+<pre><code>2 3 0
+</code></pre>
+<p>output</p>
+<pre><code>2
+</code></pre>
+<p>input</p>
+<pre><code>3 -1 -1 2
+</code></pre>
+<p>output</p>
+<pre><code>6
+</code></pre>
+<p>Note</p>
+<p>In the first sample you should decrease the first number by one and then increase the second number by one. The resulting permutation is (2, 1). In the second sample you need 6 moves to build permutation (1, 3, 2).</p>
+<pre><code>#include &lt;iostream&gt;
+#include &lt;cstdio&gt;
+#include &lt;cstring&gt;
+#include &lt;algorithm&gt;
+
+using namespace std;
+
+long long a[300005];
+
+
+int main()
+{
+    int n;
+    long long ans,tmp;
+    cin&gt;&gt;n;
+    for(int i=0;i&lt;n;i++)cin&gt;&gt;a[i];
+    sort(a,a+n);
+    ans=0;
+    for(int i=0;i&lt;n;i++)
+    {
+        tmp=(long long)(i+1)-a[i];
+        if(tmp&lt;0)ans-=tmp;
+        else ans+=tmp;
+    }
+    cout&lt;&lt;ans&lt;&lt;endl;
+    return 0;
+}
+</code></pre>
+</div>
+</article>
+<article>
+<header>
+<h1 class="entry-title"><a href="/blog/2013/03/22/Codeforces-175-B/">Codeforces 175 B</a></h1>
+<p class="meta">
+<time class="data-article month-03 season-spring" datetime="2013-03-22T20:39:00+08:00" pubdate><span class="month">Mar</span> <span class="day">22nd</span> <span class="year">2013</span></time>
+| <a href="/blog/2013/03/22/Codeforces-175-B/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2013/03/22/Codeforces-175-B/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>B. Find Marble</p>
+<p>time limit per test</p>
+<p>2 seconds</p>
+<p>memory limit per test</p>
+<p>256 megabytes</p>
+<p>input</p>
+<p>standard input</p>
+<p>output</p>
+<p>standard output</p>
+<p>Petya and Vasya are playing a game. Petya’s got <em>n</em> non-transparent glasses, standing in a row. The glasses’ positions are indexed with integers from 1 to <em>n</em> from left to right. Note that the positions are indexed but the glasses are not. First Petya puts a marble under the glass in position <em>s</em>. Then he performs some (possibly zero) shuffling operations. One shuffling operation means moving the glass from the first position to position <em>p</em>1, the glass from the second position to position <em>p</em>2 and so on. That is, a glass goes from position <em>i</em> to position <em>p__i</em>. Consider all glasses are moving simultaneously during one shuffling operation. When the glasses are shuffled, the marble doesn’t travel from one glass to another: it moves together with the glass it was initially been put in. After all shuffling operations Petya shows Vasya that the ball has moved to position <em>t</em>. Vasya’s task is to say what minimum number of shuffling operations Petya has performed or determine that Petya has made a mistake and the marble could not have got from position <em>s_to position _t</em>.</p>
+<p>Input</p>
+<p>The first line contains three integers: <em>n</em>, <em>s</em>, <em>t</em> (1 ≤ <em>n</em> ≤ 105; 1 ≤ <em>s</em>, <em>t</em> ≤ <em>n</em>) — the number of glasses, the ball’s initial and final position. The second line contains <em>n</em> space-separated integers: <em>p</em>1, <em>p</em>2, …, <em>p__n</em> (1 ≤ <em>p__i</em> ≤ <em>n</em>) — the shuffling operation parameters. It is guaranteed that all <em>p__i</em>’s are distinct. Note that <em>s</em> can equal <em>t</em>.</p>
+<p>Output</p>
+<p>If the marble can move from position <em>s</em> to position <em>t</em>, then print on a single line a non-negative integer — the minimum number of shuffling operations, needed to get the marble to position <em>t</em>. If it is impossible, print number -1.</p>
+<p>Sample test(s)</p>
+<p>input</p>
+<pre><code>4 2 1 2 3 4 1
+</code></pre>
+<p>output</p>
+<pre><code>3
+</code></pre>
+<p>input</p>
+<pre><code>4 3 3 4 1 3 2
+</code></pre>
+<p>output</p>
+<pre><code>0
+</code></pre>
+<p>input</p>
+<pre><code>4 3 4 1 2 3 4
+</code></pre>
+<p>output</p>
+<pre><code>-1
+</code></pre>
+<p>input</p>
+<pre><code>3 1 3 2 1 3
+</code></pre>
+<p>output</p>
+<pre><code>-1
+
+
+#include &lt;iostream&gt;
+#include &lt;cstdio&gt;
+#include &lt;cstring&gt;
+
+using namespace std;
+
+int a[100005];
+int b[100005];
+
+int main()
+{
+    int n,s,t,tmp,ans=0,err=0;
+    cin&gt;&gt;n&gt;&gt;s&gt;&gt;t;
+    for(int i=1;i&lt;=n;i++)
+      cin&gt;&gt;a[i];
+    tmp=s;
+    while(t!=tmp)
+    {
+        if(b[tmp])
+        {
+            err=1;
+            t++;
+            cout
+            break;
+        }
+        b[tmp]=1;
+        tmp=a[tmp];
+        ans++;
+    }
+    if(err)cout&lt;&lt;-1&lt;&lt;endl;
+    else cout&lt;&lt;ans&lt;&lt;endl;
+    return 0;
+}
+</code></pre>
+</div>
+</article>
+<article>
+<header>
+<h1 class="entry-title"><a href="/blog/2013/03/22/Codeforces-175-A/">Codeforces 175 A</a></h1>
+<p class="meta">
+<time class="data-article month-03 season-spring" datetime="2013-03-22T20:37:00+08:00" pubdate><span class="month">Mar</span> <span class="day">22nd</span> <span class="year">2013</span></time>
+| <a href="/blog/2013/03/22/Codeforces-175-A/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2013/03/22/Codeforces-175-A/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>A. Slightly Decreasing Permutations</p>
+<p>time limit per test</p>
+<p>2 seconds</p>
+<p>memory limit per test</p>
+<p>256 megabytes</p>
+<p>input</p>
+<p>standard input</p>
+<p>output</p>
+<p>standard output</p>
+<p>Permutation <em>p</em> is an ordered set of integers <em>p</em>1,  <em>p</em>2,  …,  <em>p__n</em>, consisting of <em>n</em> distinct positive integers, each of them doesn’t exceed <em>n</em>. We’ll denote the <em>i</em>-th element of permutation <em>p</em> as <em>p__i</em>. We’ll call number <em>n</em> the size or the length of permutation <em>p</em>1,  <em>p</em>2,  …,  <em>p__n</em>. The decreasing coefficient of permutation <em>p</em>1, <em>p</em>2, …, <em>p__n</em> is the number of such <em>i</em> (1 ≤ <em>i</em> &lt; <em>n</em>), that <em>p__i</em> &gt; <em>p__i</em> + 1. You have numbers <em>n</em> and <em>k</em>. Your task is to print the permutation of length <em>n</em> with decreasing coefficient <em>k</em>.</p>
+<p>Input</p>
+<p>The single line contains two space-separated integers: <em>n</em>, <em>k</em> (1 ≤ <em>n</em> ≤ 105, 0 ≤ <em>k</em> &lt; <em>n</em>) — the permutation length and the decreasing coefficient.</p>
+<p>Output</p>
+<p>In a single line print <em>n</em> space-separated integers: <em>p</em>1, <em>p</em>2, …, <em>p__n</em> — the permutation of length <em>n</em> with decreasing coefficient <em>k</em>. If there are several permutations that meet this condition, print any of them. It is guaranteed that the permutation with the sought parameters exists.</p>
+<p>Sample test(s)</p>
+<p>input</p>
+<pre><code>5 2
+</code></pre>
+<p>output</p>
+<pre><code>1 5 2 4 3
+</code></pre>
+<p>input</p>
+<pre><code>3 0
+</code></pre>
+<p>output</p>
+<pre><code>1 2 3
+</code></pre>
+<p>input</p>
+<pre><code>3 2
+</code></pre>
+<p>output</p>
+<pre><code>3 2 1
+</code></pre>
+<p> </p>
+<pre><code>#include &lt;iostream&gt;
+#include &lt;cstdio&gt;
+#include &lt;cstring&gt;
+
+using namespace std;
+
+
+int main()
+{
+    int n,k;
+    cin&gt;&gt;n&gt;&gt;k;
+    cout&lt;&lt;(k+1);
+    for(int i=k;i&gt;0;i--)
+      cout&lt;&lt;" "&lt;&lt;i;
+    for(int i=k+2;i&lt;=n;i++)
+      cout&lt;&lt;" "&lt;&lt;i;
+    cout&lt;&lt;endl;
+    return 0;
+}
+</code></pre>
+</div>
+</article>
+<article>
+<header>
+<h1 class="entry-title"><a href="/blog/2013/03/22/zhuan-C-zhong-huo-qu-gao-jing-du-shi-jian-cha/">[转]C++中获取高精度时间差</a></h1>
+<p class="meta">
+<time class="data-article month-03 season-spring" datetime="2013-03-22T20:35:00+08:00" pubdate><span class="month">Mar</span> <span class="day">22nd</span> <span class="year">2013</span></time>
+| <a href="/blog/2013/03/22/zhuan-C-zhong-huo-qu-gao-jing-du-shi-jian-cha/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2013/03/22/zhuan-C-zhong-huo-qu-gao-jing-du-shi-jian-cha/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p><a href="http://www.cppblog.com/guodongshan/archive/2010/10/06/128818.html">C++中获取高精度时间差</a></p>
+<p>解决一个问题通常有多种方法， 我们总想找到最高效的，所以需要对比不同算法执行所用的时间。可惜的是，C++中提供的方法一般只能精确到毫秒级。 提供一种更加精确的方法。编写一个函数，可以在C++中这样写：</p>
+<pre><code>__declspec (naked) unsigned __int64 GetCpuCycle( void )
+{
+    _asm
+    {
+        rdtsc
+        ret
+    }
+}
+</code></pre>
+<p>RDTSC的返回值存放在EDX EAX中， EDX为高32位，EAX为低32位。这里的 RDTSC 指令( Read Time Stamp Counter )， 获得CPU的高精度时间戳。 这样以来我们就可以在随处获得当前的CPU自上电以来的时间周期数了：</p>
+<p>unsigned __int64 iCpuCycle = GetCpuCycle();</p>
+<p>根据这个数字我们可以计算出上电以来所经历的时间( 秒s )：</p>
+<p>second = iCpuCycle / CPU主频率( HZ ); 1GHZ = 1,000 MHZ = 1,000,000 KHZ = 1,000,000,000 HZ;</p>
+<p>获取两次作差就可以得到运行的时间了。其实没必要换算成时间，关注差值就行了。</p>
+<p>PS：</p>
+<p>可以放心一个unsigned __int64 不会溢出 - - 可以计算一下你的CPU能保存多少年的时间。。</p>
+<p>根据这一方法有几个好处： 一是精度高，二是函数调用开销最小，三是平台限制小，四是具有和CPU主频相对应的直接关系。。。 但是由于精度高，得到的数字浮动比较大。。</p>
+</div>
+</article>
+<article>
+<header>
+<h1 class="entry-title"><a href="/blog/2013/03/18/Codeforces-Round-173-Div-2-Yet-Another-Number-Game/">Codeforces Round #173 (Div. 2) Yet Another Number Game</a></h1>
+<p class="meta">
+<time class="data-article month-03 season-spring" datetime="2013-03-18T11:15:00+08:00" pubdate><span class="month">Mar</span> <span class="day">18th</span> <span class="year">2013</span></time>
+| <a href="/blog/2013/03/18/Codeforces-Round-173-Div-2-Yet-Another-Number-Game/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2013/03/18/Codeforces-Round-173-Div-2-Yet-Another-Number-Game/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>D. Yet Another Number Game</p>
+<p>time limit per test</p>
+<p>2 seconds</p>
+<p>memory limit per test</p>
+<p>256 megabytes</p>
+<p>input</p>
+<p>standard input</p>
+<p>output</p>
+<p>standard output</p>
+<p>Since most contestants do not read this part, I have to repeat that Bitlandians are quite weird. They have their own jobs, their own working method, their own lives, their own sausages and their own games! Since you are so curious about Bitland, I’ll give you the chance of peeking at one of these games. BitLGM and BitAryo are playing yet another of their crazy-looking genius-needed Bitlandish games. They’ve got a sequence of <em>n</em> non-negative integers <em>a</em>1, <em>a</em>2, …, <em>a__n</em>. The players make moves in turns. BitLGM moves first. Each player can and must do one of the two following actions in his turn:  </p>
+<ul>
+<li>Take one of the integers (we’ll denote it as <em>a__i</em>). Choose integer <em>x</em> (1 ≤ <em>x</em> ≤ <em>a__i</em>). And then decrease <em>a__i</em> by <em>x</em>, that is, apply assignment:<em>a__i</em> = <em>a__i</em> - <em>x</em>.</li>
+<li>Choose integer <em>x</em> <img src="http://codeforces.ru/renderer/9bcd77b1a4d70adef53560c92a78c087c5d0039f.png" alt="">. And then decrease all <em>a__i</em> by <em>x</em>, that is, apply assignment: <em>a__i</em> = <em>a__i</em> - <em>x</em>, for all <em>i</em>.   The player who cannot make a move loses. You’re given the initial sequence <em>a</em>1, <em>a</em>2, …, <em>a__n</em>. Determine who wins, if both players plays optimally well and if BitLGM and BitAryo start playing the described game in this sequence.</li>
+</ul>
+<p>Input</p>
+<p>The first line contains an integer <em>n</em> (1 ≤ <em>n</em> ≤ 3). The next line contains <em>n</em> integers <em>a</em>1, <em>a</em>2, …, <em>a__n</em> (0 ≤ <em>a__i</em> &lt; 300).</p>
+<p>Output</p>
+<p>Write the name of the winner (provided that both players play optimally well). Either “BitLGM” or “BitAryo” (without the quotes).</p>
+<p>Sample test(s)</p>
+<p>input</p>
+<pre><code>2 1 1
+</code></pre>
+<p>output</p>
+<pre><code>BitLGM
+</code></pre>
+<p>input</p>
+<pre><code>2 1 2
+</code></pre>
+<p>output</p>
+<pre><code>BitAryo
+</code></pre>
+<p>input</p>
+<pre><code>3 1 2 1
+</code></pre>
+<p>output</p>
+<pre><code>BitLGM
+
+
+#include &lt;iostream&gt;
+#include &lt;cstdio&gt;
+#include &lt;cstdlib&gt;
+#include &lt;cstring&gt;
+
+using namespace std;
+
+int tab2[305][305];
+int tab3[305][305][305];
+
+int check2(int x,int y)
+{
+	if(0==x &amp;&amp; 0==y)return 1;
+	int Min=x&lt;y?x:y;
+	for(int i=Min;i&gt;=0;i--)
+	  if(1==tab2[x-i][y-i])return 0;
+	for(int i=0;i&lt;=y;i++)
+	  if(1==tab2[x][i])return 0;
+	for(int i=0;i&lt;=x;i++)
+	  if(1==tab2[i][y])return 0;
+	return 1;
+}
+
+void mark2(int x,int y)
+{
+	for(int i=0;;i++)
+	{
+		if(x+i&gt;303 || y+i&gt;303)break;
+		tab2[x+i][y+i]=0;
+	}
+	for(int i=0;i&lt;303;i++)
+	{
+		tab2[x][i]=0;
+		tab2[i][y]=0;
+	}
+	tab2[x][y]=1;
+}
+
+void inital2()
+{
+	memset(tab2,-1,sizeof(tab2));
+	//tab2[0][0]=1;
+	for(int i=0;i&lt;303;i++)
+	  for(int j=0;j&lt;303;j++)
+	  {
+	  	if(tab2[i][j]!=-1)continue;
+	  	if(check2(i,j))
+	  	{
+	  		mark2(i,j);
+	  		mark2(j,i);
+	  	}
+	  }
+	/*
+	for(int i=0;i&lt;10;i++)
+	{
+	  for(int j=0;j&lt;10;j++)
+	    cout&lt;&lt;tab2[i][j]&lt;&lt;" ";
+	  cout&lt;&lt;endl;
+	}
+	*/
+}
+
+int check3(int x,int y,int z)
+{
+	if(0==x &amp;&amp; 0==y &amp;&amp; 0==z)return 1;
+	int Min=x&lt;y?x:y;
+	Min=Min&lt;z?Min:z;
+	for(int i=Min;i&gt;=0;i--)
+	  if(1==tab3[x-i][y-i][z-i])return 0;
+	for(int i=0;i&lt;=z;i++)
+	  if(1==tab3[x][y][i])return 0;
+	for(int i=0;i&lt;=y;i++)
+	  if(1==tab3[x][i][z])return 0;
+	for(int i=0;i&lt;=x;i++)
+	  if(1==tab3[i][y][z])return 0;
+	return 1;
+}
+
+void mark3(int x,int y,int z)
+{
+	for(int i=0;;i++)
+	{
+		if(x+i&gt;303 || y+i&gt;303 || z+i&gt;303)break;
+		tab3[x+i][y+i][z+i]=0;
+	}
+	for(int i=0;i&lt;303;i++)
+	{
+		tab3[x][y][i]=0;
+		tab3[x][i][z]=0;
+		tab3[i][y][z]=0;
+	}
+	tab3[x][y][z]=1;
+}
+
+void inital3()
+{
+	memset(tab3,-1,sizeof(tab3));
+	//tab2[0][0]=1;
+	for(int i=0;i&lt;303;i++)
+	  for(int j=0;j&lt;303;j++)
+	    for(int k=0;k&lt;303;k++)
+		  {
+		  	if(tab3[i][j][k]!=-1)continue;
+		  	if(check3(i,j,k))
+		  	{
+		  		mark3(i,j,k);
+		  		mark3(i,k,j);
+		  		mark3(k,i,j);
+		  		
+		  		mark3(j,i,k);
+		  		mark3(j,k,i);
+		  		mark3(k,j,i);
+		  	}
+		  }
+	/*
+	for(int i=0;i&lt;10;i++)
+	{
+	    cout&lt;&lt;i&lt;&lt;endl;
+	  for(int k=0;k&lt;10;k++)
+	   {
+		  for(int j=0;j&lt;10;j++)
+		    cout&lt;&lt;tab3[i][k][j]&lt;&lt;" ";
+		  cout&lt;&lt;endl;
+	   }
+	   cout&lt;&lt;endl;
+	}
+	*/
+}
+
+int main()
+{
+	int n;
+	int a[5];
+	cin&gt;&gt;n;
+	if(1==n)
+	{
+		cin&gt;&gt;a[0];
+		if(a[0])cout&lt;&lt;"BitLGM"&lt;&lt;endl;
+		else cout&lt;&lt;"BitAryo"&lt;&lt;endl;
+	}
+	else if(2==n)
+	{
+		inital2();
+		cin&gt;&gt;a[0]&gt;&gt;a[1];
+		//cout&lt;&lt;tab2[a[0]][a[1]]&lt;&lt;endl;
+		if(tab2[a[0]][a[1]])cout&lt;&lt;"BitAryo"&lt;&lt;endl;
+		else cout&lt;&lt;"BitLGM"&lt;&lt;endl;
+	}
+	else if(3==n)
+	{
+		inital3();
+		cin&gt;&gt;a[0]&gt;&gt;a[1]&gt;&gt;a[2];
+		if(tab3[a[0]][a[1]][a[2]])cout&lt;&lt;"BitAryo"&lt;&lt;endl;
+		else cout&lt;&lt;"BitLGM"&lt;&lt;endl;
+	}
+	return 0;
+}
+</code></pre>
+</div>
+</article>
+<article>
+<header>
+<h1 class="entry-title"><a href="/blog/2013/03/18/Codeforces-Round-173-Div-2-XOR-and-OR/">Codeforces Round #173 (Div. 2) XOR and Or</a></h1>
+<p class="meta">
+<time class="data-article month-03 season-spring" datetime="2013-03-18T11:13:00+08:00" pubdate><span class="month">Mar</span> <span class="day">18th</span> <span class="year">2013</span></time>
+| <a href="/blog/2013/03/18/Codeforces-Round-173-Div-2-XOR-and-OR/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2013/03/18/Codeforces-Round-173-Div-2-XOR-and-OR/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>C. XOR and OR</p>
+<p>time limit per test</p>
+<p>2 seconds</p>
+<p>memory limit per test</p>
+<p>256 megabytes</p>
+<p>input</p>
+<p>standard input</p>
+<p>output</p>
+<p>standard output</p>
+<p>The Bitlandians are quite weird people. They do everything differently. They have a different alphabet so they have a different definition for a string. A Bitlandish string is a string made only of characters “0” and “1”. BitHaval (the mayor of Bitland) loves to play with Bitlandish strings. He takes some Bitlandish string <em>a</em>, and applies several (possibly zero) operations to it. In one operation the mayor may take any two adjacent characters of a string, define one of them as <em>x</em> and the other one as <em>y</em>. Then he calculates two values <em>p</em> and <em>q</em>: <em>p</em> = <em>x</em> <em>xor</em> <em>y</em>, <em>q</em> = <em>x</em> <em>or</em> <em>y</em>. Then he replaces one of the two taken characters by <em>p</em> and the other one by <em>q</em>. The <em>xor</em> operation means the bitwise excluding OR operation. The <em>or</em> operation is the bitwise OR operation. So for example one operation can transform string 11 to string 10 or to string 01. String 1 cannot be transformed into any other string. You’ve got two Bitlandish strings <em>a</em> and <em>b</em>. Your task is to check if it is possible for BitHaval to transform string <em>a</em> to string <em>b</em> in several (possibly zero) described operations.</p>
+<p>Input</p>
+<p>The first line contains Bitlandish string <em>a</em>, the second line contains Bitlandish string <em>b</em>. The strings can have different lengths. It is guaranteed that the given strings only consist of characters “0” and “1”. The strings are not empty, their length doesn’t exceed 106.</p>
+<p>Output</p>
+<p>Print “YES” if <em>a</em> can be transformed into <em>b</em>, otherwise print “NO”. Please do not print the quotes.</p>
+<p>Sample test(s)</p>
+<p>input</p>
+<pre><code>11 10
+</code></pre>
+<p>output</p>
+<pre><code>YES
+</code></pre>
+<p>input</p>
+<pre><code>1 01
+</code></pre>
+<p>output</p>
+<pre><code>NO
+</code></pre>
+<p>input</p>
+<pre><code>000 101
+</code></pre>
+<p>output</p>
+<pre><code>NO
+</code></pre>
+<p> </p>
+<pre><code>#include &lt;iostream&gt;
+#include &lt;cstdio&gt;
+#include &lt;cstdlib&gt;
+#include &lt;cstring&gt;
+
+using namespace std;
+
+int main()
+{
+	char c;
+	int ones1=0,zero1=0,ones2=0,zero2=0;
+	int fs=1;
+	while(c=getchar())
+	{
+		if(1==fs)
+		{
+			if(c=='\n')fs=2;
+			else if(c=='1')ones1++;
+			else zero1++;
+		}
+		else
+		{
+			if(c=='\n')break;
+			else if(c=='1')ones2++;
+			else zero2++;
+		}
+	}
+	if(((ones2 &amp;&amp; ones1) || ones2==ones1) &amp;&amp; ones1+zero1==ones2+zero2)
+	  cout&lt;&lt;"YES"&lt;&lt;endl;
+	else cout&lt;&lt;"NO"&lt;&lt;endl;
+	//system("pause");
+	return 0;
+}
+</code></pre>
+</div>
+</article>
+<article>
+<header>
+<h1 class="entry-title"><a href="/blog/2013/03/17/Codeforces-Round-173-Div-2-Painting-Eggs/">Codeforces Round #173 (Div. 2) Painting Eggs</a></h1>
+<p class="meta">
+<time class="data-article month-03 season-spring" datetime="2013-03-17T13:48:00+08:00" pubdate><span class="month">Mar</span> <span class="day">17th</span> <span class="year">2013</span></time>
+| <a href="/blog/2013/03/17/Codeforces-Round-173-Div-2-Painting-Eggs/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2013/03/17/Codeforces-Round-173-Div-2-Painting-Eggs/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>B. Painting Eggs</p>
+<p>time limit per test</p>
+<p>5 seconds</p>
+<p>memory limit per test</p>
+<p>256 megabytes</p>
+<p>input</p>
+<p>standard input</p>
+<p>output</p>
+<p>standard output</p>
+<p>The Bitlandians are quite weird people. They have very peculiar customs. As is customary, Uncle J. wants to have <em>n</em> eggs painted for Bitruz (an ancient Bitland festival). He has asked G. and A. to do the work. The kids are excited because just as is customary, they’re going to be paid for the job! Overall uncle J. has got <em>n</em> eggs. G. named his price for painting each egg. Similarly, A. named his price for painting each egg. It turns out that for each egg the sum of the money both A. and G. want for the painting equals 1000. Uncle J. wants to distribute the eggs between the children so as to give each egg to exactly one child. Also, Uncle J. wants the total money paid to A. to be different from the total money paid to G. by no more than 500. Help Uncle J. Find the required distribution of eggs or otherwise say that distributing the eggs in the required manner is impossible.</p>
+<p>Input</p>
+<p>The first line contains integer <em>n</em> (1 ≤ <em>n</em> ≤ 106) — the number of eggs. Next <em>n</em> lines contain two integers <em>a__i</em> and <em>g__i</em> each (0 ≤ <em>a__i</em>, <em>g__i</em> ≤ 1000; <em>a__i</em> + <em>g__i</em> = 1000): <em>a__i</em> is the price said by A. for the <em>i</em>-th egg and <em>g__i</em> is the price said by G. for the <em>i</em>-th egg.</p>
+<p>Output</p>
+<table>
+<tbody>
+<tr>
+<td>If it is impossible to assign the painting, print “-1” (without quotes). Otherwise print a string, consisting of <em>n</em> letters “G” and “A”. The <em>i</em>-th letter of this string should represent the child who will get the <em>i</em>-th egg in the required distribution. Letter “A” represents A. and letter “G” represents G. If we denote the money Uncle J. must pay A. for the painting as <em>S__a</em>, and the money Uncle J. must pay G. for the painting as <em>S__g</em>, then this inequality must hold: </td>
+<td><em>S__a</em>  -  <em>S__g</em></td>
+<td>  ≤  500. If there are several solutions, you are allowed to print any of them.</td>
+</tr>
+</tbody>
+</table>
+<p>Sample test(s)</p>
+<p>input</p>
+<pre><code>2 1 999 999 1
+</code></pre>
+<p>output</p>
+<pre><code>AG
+</code></pre>
+<p>input</p>
+<pre><code>3 400 600 400 600 400 600
+</code></pre>
+<p>output</p>
+<pre><code>AGA
+
+
+#include &lt;iostream&gt;
+#include &lt;cstdio&gt;
+#include &lt;cstdlib&gt;
+#include &lt;algorithm&gt;
+
+using namespace std;
+
+const int MAXN=1000005;
+
+struct egg
+{
+	int a,g;
+	int id;
+	char ch;
+}eggs[MAXN];
+int n;
+
+bool operator&lt;(const egg a,const egg b)
+{
+	return a.a&lt;b.a;
+}
+
+int cmp(const void *a,const void *b)
+{
+	return ((egg *)a)-&gt;id &lt; ((egg *)b)-&gt;id;
+}
+
+int Abs(int a)
+{
+	if(a&lt;0)return -a;
+	return a;
+}
+
+int main()
+{
+	int ans1,ans2,ans;
+	int st,ed;
+	int tmp1,tmp2;
+	while(cin&gt;&gt;n)
+	{
+		for(int i=0;i&lt;n;i++)
+		{
+			cin&gt;&gt;eggs[i].a&gt;&gt;eggs[i].g;
+			eggs[i].id=i;
+		}
+		sort(eggs,eggs+n);
+		ans1=0;ans2=0;
+		st=0;ed=n-1;
+		while(st&lt;=ed)
+		{
+			tmp1=Abs(ans1+eggs[st].a-ans2);
+			tmp2=Abs(ans2+eggs[ed].g-ans1);
+			if(tmp1&lt;=Abs(ans2-ans1))
+			{
+				ans1+=eggs[st].a;
+				eggs[st].ch='A';
+				st++;
+			}
+			else if(tmp2&lt;=Abs(ans2-ans1))
+			{
+				//if(ans2+eggs[ed].g)
+				ans2+=eggs[ed].g;
+				eggs[ed].ch='G';
+				ed--;
+			}
+			else if(tmp1&lt;=tmp2)
+			{
+				ans1+=eggs[st].a;
+				eggs[st].ch='A';
+				st++;
+			}
+			else
+			{
+				ans2+=eggs[ed].g;
+				eggs[ed].ch='G';
+				ed--;
+			}
+		}
+		ans=ans1-ans2;
+		if(ans&lt;0)ans=-ans;
+		if(ans&gt;500)cout&lt;&lt;-1&lt;&lt;endl;
+		else
+		{
+			qsort(eggs,n,sizeof(egg),cmp);
+			for(int i=0;i&lt;n;i++)
+			  cout&lt;&lt;eggs[i].ch;
+			cout&lt;&lt;endl;
+		}
+	}
+	//system("pause");
+	return 0;
+}
+</code></pre>
+</div>
+</article>
+<div class="pagination">
+<a class="prev" href="/blog/page/15/">&larr; Older</a>
+<a href="/blog/archives">Blog Archives</a>
+<a class="next" href="/blog/page/13/">Newer &rarr;</a>
+</div>
+</div>
+<aside class="sidebar">
+<section>
+<h1>Categories</h1>
+<ul id="categories">
+<li class="category"><a href="/blog/categories/acm/">ACM <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/algorithm/">Algorithm <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/assembly/">Assembly <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/cygwin/">Cygwin <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/gnu/">GNU <sup>8</sup></a></li>
+<li class="category"><a href="/blog/categories/math/">Math <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/octopress/">Octopress <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/programming/">Programming <sup>6</sup></a></li>
+<li class="category"><a href="/blog/categories/security/">Security <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sublime/">Sublime <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/synology/">Synology <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sysadmin/">SysAdmin <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/web/">Web <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/windows/">Windows <sup>7</sup></a></li>
+<li class="category"><a href="/blog/categories/proxmox/">proxmox <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/ri-chang/">日常 <sup>37</sup></a></li>
+</ul>
+</section>
+<section>
+<h1>Recent Posts</h1>
+<ul id="recent_posts">
+<li class="post">
+<a href="/blog/2024/12/16/fu-wu-qi-wa-kuang-bing-du-de-cha-sha/">服务器挖矿病毒的查杀</a>
+</li>
+<li class="post">
+<a href="/blog/2021/07/11/apple-m1-bian-yi-tensorflow/">Apple M1 编译tensorflow</a>
+</li>
+<li class="post">
+<a href="/blog/2021/02/27/chromiumbian-ma-qi-wen-ti/">Chromium编码器问题</a>
+</li>
+<li class="post">
+<a href="/blog/2020/12/13/proxmoxbi-ji/">Proxmox笔记</a>
+</li>
+<li class="post">
+<a href="/blog/2020/11/15/lun-yan-du-yu-shen-du/">论广度与深度</a>
+</li>
+</ul>
+</section>
+<section>
+<iframe frameborder="0" scrolling="no" referrerpolicy="unsafe-url" style="width:283px;height:200px" src="https://t.rexdf.org/?m=app&a=showwidget&name=rexdf&type=1&width=283px&height=500px"></iframe>
+</section>
+<section>
+<h1>GitHub Repos</h1>
+<ul id="gh_repos">
+<li class="loading">Status updating&#8230;</li>
+</ul>
+<a href="https://github.com/rexdf">@rexdf</a> on GitHub
+<script type="text/javascript">$(document).ready(function(){if(!window.jXHR){var e=document.createElement("script");e.type="text/javascript",e.src="/javascripts/libs/jXHR.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}github.showRepos({user:"rexdf",count:0,skip_forks:!0,target:"#gh_repos"})})</script>
+</section>
+</aside>
+</div>
+</div>
+<footer role="contentinfo"><p>
+<span class="credit">Copyright &copy; 2024 - Rexdf -</span> |
+<span class="credit">Powered by <a name="bottoms" target="_blank" href="http://octopress.org">Octopress</a></span> |
+<span class="credit">Theme by ：<a href="https://blog.rexdf.org/" target="_blank" rel="theme">Rexdf</a></span> |
+<span class="credit">Host by：<a href="https://github.com/" target="_blank" rel="host">Github.com</a></span> |
+<span class="credit">版权声明：<a href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" target="_blank" rel="license">CC BY-NC-SA 3.0</a><img src="https://analytics.rexdf.net/piwik.php?idsite=1&amp;rec=1" style="border:0" alt="" referrerpolicy="no-referrer-when-downgrade"></span>|
+<span class="credit"><a href="/sitemap.xml" rel="sitemap">sitemap</a></span>
+</p>
+<script type="text/javascript" src="https://tajs.qq.com/stats?sId=30296377" charset="UTF-8"></script>
+</footer>
+<script type="text/javascript">var disqus_shortname="rexdf",disqus_script="count.js";!function(){var e=document.createElement("script");e.type="text/javascript",e.async=!0,e.src="//"+disqus_shortname+".disqus.com/"+disqus_script,(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(e)}()</script>
+<script type="text/javascript">$(function(){$(".entry-content").each(function(t){var r=t;$(this).find("img.fancybox").each(function(){var t=$(this),a=t.attr("title"),n=t.attr("class");t.removeAttr("class"),t.wrap('<a href="'+this.src+'" class="'+n+'" rel="gallery'+r+'" />'),""!=a&&t.parent().attr("title",a)})}),$(".fancybox").fancybox()})</script>
+</body>
+</html>

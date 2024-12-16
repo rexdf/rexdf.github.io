@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Web | Rexdf]]></title>
+  <link href="https://i.rexdf.org/blog/categories/web/atom.xml" rel="self"/>
+  <link href="https://i.rexdf.org/"/>
+  <updated>2024-12-16T23:11:13+08:00</updated>
+  <id>https://i.rexdf.org/</id>
+  <author>
+    <name><![CDATA[Rexdf]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Css生成内容]]></title>
+    <link href="https://i.rexdf.org/blog/2014/11/06/csssheng-cheng-nei-rong/"/>
+    <updated>2014-11-06T21:30:47+08:00</updated>
+    <id>https://i.rexdf.org/blog/2014/11/06/csssheng-cheng-nei-rong</id>
+    <content type="html"><![CDATA[<p>css即层叠样式表(Cascading Style Sheets)，一般主要是用来修饰效果，页面布局等。但是也是可以用来修改内容的，这在有些时候非常有用。
+<!-- more --></p>
+
+<p>html:</p>
+
+<p><code>html html http://blog.rexdf.org MyBlog
+&lt;div class="task" data-task-owner="Joe"&gt;mop kitchen&lt;/div&gt;
+&lt;div class="task" data-task-owner="Charles" data-apos="1"&gt;vacuum hallway&lt;/div&gt;
+</code></p>
+
+<p>css:</p>
+
+<p><code>css css http://blog.rexdf.org MyBlog
+div.task:before { content: attr(data-task-owner)"'s task - " ; }
+div.task[data-apos]:before { content: attr(data-task-owner)"' task - " ; }
+</code></p>
+
+<p>result:</p>
+
+<pre><code>Joe's task - mop kitchen
+Charles' task - vacuum hallway
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[彩色的特殊符号]]></title>
+    <link href="https://i.rexdf.org/blog/2014/10/20/cai-se-de-te-shu-fu-hao/"/>
+    <updated>2014-10-20T15:31:57+08:00</updated>
+    <id>https://i.rexdf.org/blog/2014/10/20/cai-se-de-te-shu-fu-hao</id>
+    <content type="html"><![CDATA[<p>第一次见到这种符号实际上是在Mac上面，<code>brew install</code>结束的时候会出现一杯金黄色的啤酒，这个在Cygwin的Terminal下面也是能够显示的，只不过是黑白的酒杯而已。一天我好奇，百度了一下，才发现主流浏览器已经完全支持这种符号字体，不过IE和Cygwin一样显示成黑白的而已。对这些符号支持最好的我发现是火狐，他的地址栏和html页面均是按彩色显示的。而IE11则是地址栏和页面均支持按黑白显示。Chrome和Opera则是地址栏支持显示，页面显示为方框。今天无意中发现QQ聊天里面也是支持的，而且是彩色的，可以用在昵称上面。另外我写作本文的MarkdownPad也是支持黑白显示的(预览部分依然是方框)。</p>
+
+<!-- more -->
+
+<div style="clear:both;word-wrap:break-word;overflow:hidden">
+👄💪🎄👑🍺👦👧🎤👙
+
+
+
+😉🏡🏊🍺🚬💊
+
+
+
+☀️🌅🐱✈️🌎️⛺️🌳🚴🍺🌃🎵🎶 
+
+
+
+™®💯
+
+
+
+☺😊😀😀😁😁😂😯😃😃😄😄😐😯😉😈😇😆😅😑😕😠😬😡😢😴😨😧😦😥😤😣😮🔰💄👞👟👑👒🎩🎩👗👖👕👔⌚👓🎓👘👙👠👡👢👚👜💲💳💰👛👝🎒💼🐕🐶🐩🐈🐱🐀🐁🐔🐓🐰🐇🐢🐹🐭🐣🐥🐤🐦🐏🐑🐐🐗🐴🐮🐄🐂🐃🐺🏠🏡🏢🏣🏤🏥🏦⛲⛪🏫🏪🏩🏨🏧🏬🏰🏭🗻🗼🗽🗽🗿🛁🚿🔩🚿🔨🔧💈⚓🔝🔙🔛🔜🔚⏳⌛♍♌♋♊♉♈⏰♎♏♐♑♒♓⛎🚱🚰🚯🚮🚻🔯🔱💩👶👧👨👩👴👭👥👤👥👮👱👲👳👽💀👺👻👻💇💆💃💃👣👄❤💙💔💜💛💚💔👍👆💘💗💞👍👇✊✌☝👆👇👐👏👋👉👈👉👐🀄🎯📻📀📷🎬🎨🎮🃏🎴🎮🎭🎯 
+
+
+😵😮😏😬😑😲😟😐👲👳😕😦😧😯👮👷😶😈👿😇💂👶👱😼🙀👼👦👧👸😿😹😺👨👩😸😾👹😻👴👵😽👺🙈✨💤💨🌟🙉🙊💫👂👀💥💀👽💢👃💦👅💩🔥💧👄👍👎👌👊✊✌️👋🙌👈👉👇👆👐✋🙏☝️👏💪🚶🏃💃👫👪🙆👰👰🙎🙅💁🙍🙇🙋👭💏💆🎩👑💇💑👯💅👒👟👚👜👝👗👞👡🎽👛👓👖👠👢👘🎀🌂👙👕👔💼💄❤️💘💬👥💞💖👤💎💕💍💓💛💙💜💚❤️💔💗💋💭🍭🍇🍬🍒🍭🍐🍠🍯🍉🍎🍓🍆🍅🍑🍏🍊🍈🌽🍌🍋
+
+
+😁😔😊😜😳👄😱😌😍😣😓😏😭😒😄😖😲😉😘😝😂😡😠😥😷😪😨😰😠😃😙☺👿💪👊👍✌👎👆👇🎂🍺☕🎄🌹💝💍💔💣👑⭐💦🚄🏆💰💤💩✈🚄🚲🚀👩👨👧👦🐵🐙🐷🐍🐨🐮🐸🐛🐠🐶🐯🐳🐳🐭💀👻👼💄🌂👜👙⚡☁☀☔🌙❄⭕🔫🔫🎤🎸🎵⚽🏀 
+
+
+🎁☕🍺🍺🌂🍜🍻🍺🚄🚺🚹🏁☔✨🐔🐬✨⭐☔🐬🐬💦🐔🐍⭐👼💀🐶🐭🐰👉🐱🐹🐗🐻🐯🐮⭐☀🐬🐬🐛☀🐧🐛✨☀🐬❗🎈💿🎈💿💿🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈🌺🌺🌺🌺🌺🌺🌺🌺🌺🌺🌺🌺🌵🌵🌵🌵🌵🌵🌵🌴🌴🌴🌴🌴🌴🌴🔔🔔🔔🔔🔔🔥🔥🔥🔥🔥🔥
+
+</div>
+
+<p>火狐显示如下</p>
+
+<p><img src="/images/firefox.png" alt="Firefox" class="center fancybox" /></p>
+
+<p>IE11显示如下</p>
+
+<p><img src="/images/ie.png" alt="IE11" class="center fancybox" /></p>
+
+<p>Chrome显示如下</p>
+
+<p><img src="/images/chrome.png" alt="Chrome" class="center fancybox" /></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Grunt批量压缩图片]]></title>
+    <link href="https://i.rexdf.org/blog/2014/10/05/gruntpi-liang-ya-suo-tu-pian/"/>
+    <updated>2014-10-05T11:53:02+08:00</updated>
+    <id>https://i.rexdf.org/blog/2014/10/05/gruntpi-liang-ya-suo-tu-pian</id>
+    <content type="html"><![CDATA[<ul class="markdown-toc">
+  <li><a href="#section">0.小写文件扩展名</a></li>
+  <li><a href="#section-1">1.准备目录</a></li>
+  <li><a href="#packagejson">2.初始化package.json</a></li>
+  <li><a href="#section-2">3.安装依赖</a></li>
+  <li><a href="#gruntfilejs">3.配置gruntfile.js</a></li>
+  <li><a href="#section-3">4.开始压缩</a></li>
+</ul>
+
+<p>对于web上面的图片，我们往往都是可以进行一下有损压缩的，因为Web传输数据量一直是一个优化的关键。传统的压缩方法已经很多了，有Imagemagick/GraphicsMagick这样的专业批量处理软件。</p>
+
+<!-- more -->
+
+<p>这次我用的是grunt，准确点说是 <a href="https://github.com/gruntjs/grunt-contrib-imagemin" target="_blank">grunt-contrib-imagemin</a> 。因为我是CPU是最多支持8个线程同时运行，所以node直接开了8个线程，把CPU搞到100%了，感觉应该很高效，如下如。而且因为node对Windows原生支持了之后，大部分node工具也已经原生支持Windows了！</p>
+
+<p><img src="/images/cpu.png" alt="CPU占用100%" class="center fancybox" /></p>
+
+<p>我是用来压缩上传到Wordpress的图片的，实际上其他用途也是可以的。</p>
+
+<h2 id="section">0.小写文件扩展名</h2>
+
+<p>有些web系统上区别PNG和png的，这样容易造成问题。可以用如下Linux命令(Cygwin的也可以，但是Windows的cmd里面那个rename不行)</p>
+
+<pre><code>rename PNG png src/*.PNG
+rename 's/\.JPG$/.jpg/' *.JPG #这个只会替换最后的后缀
+</code></pre>
+
+<h2 id="section-1">1.准备目录</h2>
+
+<p>新建一个文件夹，其下面新建两个目录src和dest，src用来放需要压缩的图片，dist用来放生成的图片。</p>
+
+<h2 id="packagejson">2.初始化package.json</h2>
+
+<p>cmd到这个文件下面，执行<code>grunt-init</code>.(需要先装过grunt-init，执行<code>npm install -g grunt-init</code>)</p>
+
+<p>另外npm init也可初始化一个package.json</p>
+
+<h2 id="section-2">3.安装依赖</h2>
+
+<pre><code>npm install grunt --save-dev
+npm install grunt-contrib-imagemin --save-dev
+</code></pre>
+
+<p>结果如下如</p>
+
+<p><img src="/images/grunt-install.png" alt="安装grunt-contrib-imagemin" class="center fancybox" /></p>
+
+<h2 id="gruntfilejs">3.配置gruntfile.js</h2>
+
+<p>新建一个文件名为gruntfile.js的文件，写入如下内容</p>
+
+<p>```js gruntfile.js http://blog.rexdf.org MyBlog
+module.exports = function(grunt) {
+    grunt.initConfig({
+        imagemin: { // Task
+            dynamic: { // Another target
+                options: { // Target options
+                    optimizationLevel: 7,
+                    pngquant: true
+                },
+                files: [{
+                    expand: true, // Enable dynamic expansion
+                    cwd: ‘src/’, // Src matches are relative to this path
+                    src: [’*.{png,jpg,gif}’], // Actual patterns to match
+                    dest: ‘dist/’ // Destination path prefix
+                }]
+            }
+        }
+    });</p>
+
+<pre><code>grunt.loadNpmTasks('grunt-contrib-imagemin');
+grunt.registerTask('default', ['imagemin']); }; ```
+</code></pre>
+
+<h2 id="section-3">4.开始压缩</h2>
+
+<p>直接运行<code>grunt</code>然后等待就好了。</p>
+
+<p><img src="/images/grunt-run.png" alt="grunt" class="center fancybox" /></p>
+]]></content>
+  </entry>
+  
+</feed>

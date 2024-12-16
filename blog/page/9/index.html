@@ -1,0 +1,592 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<script type="text/javascript">var _speedMark=new Date</script>
+<meta charset="utf-8">
+<title>Rexdf</title>
+<meta name="author" content="Rexdf">
+<meta name="description" content="很简单的一个插件，现在支持汉化Sublime Text2，Sublime Text3。全部系统Win64、Win32，Linux64，Linux32，OSX等，可以随意来回切换简体中文、繁体中文、日语、英语，无需重启SublimeText。 ">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' data: https://hm.baidu.com https://tajs.qq.com https://ssl.google-analytics.com https://static.rexdf.org https://*.disquscdn.com https://rexdf.disqus.com https://api.github.com https://ssl.google-analytics.com https://disqus.com https://analytics.rexdf.net; connect-src 'self' https://static.rexdf.org https://analytics.rexdf.net https://hm.baidu.com; img-src data: https://*; font-src data: https://*; child-src 'none'; style-src 'self' 'unsafe-inline' https://*; frame-src 'self' https://t.rexdf.org http://t.rexdf.org https://rexdf.disqus.com https://disqus.com">
+<link rel="canonical" href="https://i.rexdf.org/blog/page/9">
+<link rel="dns-prefetch" href="https://static.rexdf.org/">
+<link href="/favicon.ico" rel="icon">
+<link id="main-css" href="/stylesheets/screen.css" media="screen,projection" rel="stylesheet" type="text/css" title="pc">
+<link href="/stylesheets/screen_mobile.css" rel="alternate stylesheet" type="text/css" title="mobile">
+<link href="/atom.xml" rel="alternate" title="Rexdf" type="application/atom+xml">
+<script src="/javascripts/libs/jquery.min.js"></script>
+<script src="/javascripts/octopress-rexdf.min.js" type="text/javascript"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+      
+      toggle_theme();
+  });
+</script>
+<script type="text/javascript" async src="https://static.rexdf.org/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript">var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-55590409-1"]),_gaq.push(["_trackPageview"]),function(){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(t,e)}()</script>
+<script>var _hmt=_hmt||[];!function(){var e=document.createElement("script");e.src="//hm.baidu.com/hm.js?32192d95b89fbefa0875c4c95adb1412";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}()</script>
+<script src="/javascripts/fancybox/jquery.fancybox.pack.js"></script>
+<link rel="stylesheet" type="text/css" href="/javascripts/fancybox/jquery.fancybox.css">
+<script type="text/javascript">var _paq=_paq||[];_paq.push(["trackPageView"]),_paq.push(["enableLinkTracking"]),function(){var e="https://analytics.rexdf.net/";_paq.push(["setTrackerUrl",e+"piwik.php"]),_paq.push(["setSiteId","1"]);var a=document,t=a.createElement("script"),p=a.getElementsByTagName("script")[0];t.type="text/javascript",t.async=!0,t.defer=!0,t.src=e+"piwik.js",p.parentNode.insertBefore(t,p)}()</script>
+</head>
+<body class="low-contrast-linen-wptouch-bg">
+<header role="banner"><hgroup>
+<h1 id="header-title"><a href="/">Rexdf</a></h1>
+<h2 id="subtitle">The devil is in the Details.</h2>
+</hgroup>
+</header>
+<nav role="navigation"><ul class="subscription" data-subscription="rss">
+<li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+</ul>
+<form action="https://google.com/search" method="get">
+<fieldset role="search">
+<input type="hidden" name="q" value="site:i.rexdf.org">
+<input class="search" type="text" name="q" results="0" placeholder="Search">
+</fieldset>
+</form>
+<ul class="main-navigation">
+<li><a href="/">Blog</a></li>
+<li><a href="/blog/archives/">Archives</a></li>
+<li><a href="/idea/">Idea</a></li>
+<li><a href="/share/">Share</a></li>
+<li><a href="/books/">Books</a></li>
+<li><a href="/donate/">Donate</a></li>
+<li><a target="_blank" href="https://blog.rexdf.org" style="font-family:Shadows Into Light">Main-Blog</a></li>
+</ul>
+</nav>
+<div id="main">
+<div id="content">
+<div class="blog-index">
+<article>
+<header>
+<h1 class="entry-title">[置顶]<a href="/blog/2015/05/15/fa-bu-yi-ge-sublimeyi-hua-cha-jian/">发布一个sublime汉化插件</a></h1>
+<p class="meta">
+<time class="data-article month-05 season-spring" datetime="2015-05-15T11:19:01+08:00" pubdate><span class="month">May</span> <span class="day">15th</span> <span class="year">2015</span></time>
+| <a href="/blog/2015/05/15/fa-bu-yi-ge-sublimeyi-hua-cha-jian/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2015/05/15/fa-bu-yi-ge-sublimeyi-hua-cha-jian/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>很简单的一个插件，现在支持汉化Sublime Text2，Sublime Text3。全部系统Win64、Win32，Linux64，Linux32，OSX等，可以随意来回切换简体中文、繁体中文、日语、英语，无需重启SublimeText。</p>
+</div>
+<footer>
+<a rel="full-article" href="/blog/2015/05/15/fa-bu-yi-ge-sublimeyi-hua-cha-jian/">Read on &rarr;</a>
+</footer>
+</article>
+<article>
+<header>
+<h1 class="entry-title"><a href="/blog/2013/11/22/CSS-you-xian-ji-wen-ti/">CSS优先级问题</a></h1>
+<p class="meta">
+<time class="data-article month-11 season-autumn" datetime="2013-11-22T22:01:00+08:00" pubdate><span class="month">Nov</span> <span class="day">22nd</span> <span class="year">2013</span></time>
+| <a href="/blog/2013/11/22/CSS-you-xian-ji-wen-ti/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2013/11/22/CSS-you-xian-ji-wen-ti/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>今天遇到一个较为奇怪的css选择器问题，主要是利用两个伪类选择器进行表格样式的设置。 下面的代码我是开始的，按照一般思路，自然是希望鼠标指向的优先级最高，起初我没有用important。加上important后下面的两行代码生效了，但是上面的两行依然不正确。 由于本身就不太懂CSS的优先级于是逐一尝试，尝试在tr:hover前面加上table也均不见效。</p>
+<pre><code>#content tr:hover{color:#00f !important}
+#content td:nth-of-type(even){color: #111;}
+
+#content td:hover{background:#CADBEC !important}
+#content tr:nth-of-type(odd) td { background: #f2f7fc; }
+</code></pre>
+<p>正准备去掉这个效果时，然后发一个stack overflow，或者报Chrome的bug。然而测试发现IE 11和Firefox也是同样的效果，于是这显然是某种标准了，即使错误，也应该是一种CSS标准意义的了。仔细观察发现重点了，之前都一直在想color和background的表现怎么不一样，而忽略了tr后面自然接了一个td，于是找到了问题的关键。加了一个td之后一切就如所需要的了，鼠标指向优先级最高(当然不能高过内嵌的)。 正确代码如下，虽然尝试出来不过比较费解的是td td这种是不是嵌套表格的事儿！不管它了，有空再研究下CSS的四维优先级。</p>
+<pre><code>#content tr:hover{color:#00f !important}
+#content td:nth-of-type(even) td{color: #111;}
+
+#content td:hover{background:#CADBEC !important}
+#content tr:nth-of-type(odd) td { background: #f2f7fc; }
+</code></pre>
+</div>
+</article>
+<article>
+<header>
+<h1 class="entry-title"><a href="/blog/2013/11/22/PHP-lian-jie-MySQL-de-API/">PHP链接MySQL的API</a></h1>
+<p class="meta">
+<time class="data-article month-11 season-autumn" datetime="2013-11-22T20:59:00+08:00" pubdate><span class="month">Nov</span> <span class="day">22nd</span> <span class="year">2013</span></time>
+| <a href="/blog/2013/11/22/PHP-lian-jie-MySQL-de-API/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2013/11/22/PHP-lian-jie-MySQL-de-API/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>最近在服务器上面源码编译PHP和Apache以及Nginx组合测试，然而发现了一些问题。一般现在虚拟主机提供都是5.2、5.3较为前沿一些的提供5.4。自己编译当然越新越好，其中又一次编译configure的参数直接复制了一份过来，没有加上–with-mysql只加了–with-mysqli，以前从来感觉不出这两个的区别，编译出来跑一个phpinfo就以为OK了。结果放了一个网站上去打开一看一直是空白页，还以为编译失败了，害我花了一个多小时重新编译一次。然后测试phpinfo正常，才想到去看error_log，才发现是mysql_connect未定义，而且说的是已经废弃。这才发现原来php5.5.x会提示已经废弃的mysql_connect。然而到php官网找到<a href="http://www.php.net/manual/zh/mysqlinfo.api.choosing.php">如下</a>文档。</p>
+<p>ext/mysqli PDO_MySQL ext/mysql</p>
+<p>PHP version introduced 5.0 5.1 2.0</p>
+<p>Included with PHP 5.x Yes Yes Yes</p>
+<p>Development status Active Active Maintenance only</p>
+<p>Lifecycle Active Active
+<strong>Deprecated</strong></p>
+<p>Recommended for new projects Yes Yes No</p>
+<p>OOP Interface Yes Yes No</p>
+<p>Procedural Interface Yes No Yes</p>
+<p>API supports non-blocking, asynchronous queries with mysqlnd Yes No No</p>
+<p>Persistent Connections Yes Yes Yes</p>
+<p>API supports Charsets Yes Yes Yes</p>
+<p>API supports server-side Prepared Statements Yes Yes No</p>
+<p>API supports client-side Prepared Statements No Yes No</p>
+<p>API supports Stored Procedures Yes Yes No</p>
+<p>API supports Multiple Statements Yes Most No</p>
+<p>API supports Transactions Yes Yes No</p>
+<p>Transactions can be controlled with SQL Yes Yes Yes</p>
+<p>Supports all MySQL 5.1+ functionality Yes Most No</p>
+</div>
+</article>
+<article>
+<header>
+<h1 class="entry-title"><a href="/blog/2013/11/22/Eclipse-ban-ben-shi/">Eclipse版本史</a></h1>
+<p class="meta">
+<time class="data-article month-11 season-autumn" datetime="2013-11-22T20:44:00+08:00" pubdate><span class="month">Nov</span> <span class="day">22nd</span> <span class="year">2013</span></time>
+| <a href="/blog/2013/11/22/Eclipse-ban-ben-shi/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2013/11/22/Eclipse-ban-ben-shi/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>2001年11月7日 ，Eclipse 1.0发布 半年之后，2002年6月27日Eclipse进入了2.0时代。2.0时代的Eclipse经历了2.0和2.1两个大的版本。其中2.0在 之后又推出了2.0.1和2.0.2，而之后在2003年3月27日推出的2.1版本，也接连推出了2.1.1，2.1.2和2.1.3三个后续修订版本。 2004年6月25日 对Eclipse来说是一个值得记住的日子，进入3.0时代的Eclipse采用了OSGi运行时架构。这一年 Eclipse基金会成立，这也标志着Eclipse即将进入一个新的时代。3.0后有两个小的修订版本3.0.1和3.0.2。详细的发布时间信息请参 看Eclipse官网http://archive.eclipse.org/eclipse/downloads/index.php 2005年6月27日 Eclipse 3.1发布，之所以要特别提一下3.1，是因为从这个版本开始一直到还没有发布的3.5版，形成了一个以木星卫星名称相关的系列。1610年，著名的科学 家伽利略通过对木卫1-木卫4的观察，提出了反驳地心说的证据，木卫1-木卫4因此也被称之为伽利略四大卫星（木星还有很多之后发现的其它卫星）。这四大 卫星还被分别赋予了四个神话传说中人物的名字： 木卫1：IO，伊奥 木卫2：Europa，欧罗巴 木卫3：Ganymede，盖尼米德.(值得一提的是早于伽利略2000年前,有记录表明战国时期中国的甘德在公元前346年就已发现了木卫3) 木卫4：Callisto，卡里斯托 (取这四个人的名字，一个很重要的原因可能就在于这四个人物都以俊美著称) 但是Eclipse从3.1到3.4的命名（codename）并非按照木卫1-4的顺序，而是根据这四颗卫星距离木星从近到远的顺序，因此 Eclipse 3.1就使用了木星已知卫星中第1近的木卫1——IO来命名，Eclipse 3.2就使用木卫4——Callisto距木星（所有木卫中）第4近，Eclipse 3.3采用了木卫2——Europa（第6近），剩下最远的木卫3–Ganaymede就送给了Eclipse 3.4。 下面是目前已知的版本代号 Eclipse 3.1 版本代号 IO 【木卫1，伊奥】 Eclipse 3.2 版本代号 Callisto 【木卫四，卡里斯托 】 Eclipse 3.3 版本代号 Eruopa 【木卫二，欧罗巴 】 Eclipse 3.4 版本代号 Ganymede 【木卫三，盖尼米德 】 Eclipse 3.5 版本代号 Galileo 【伽利略】 Eclipse 3.6 版本代号 Helios 【太阳神】 Eclipse 3.7 版本代号 Indigo 【靛青】2011年6月22日 Eclipse 3.7 版本代号 Juno 2012年6月27日 Eclipse 4.3 版本代号 Kepler 2013年6月26日 Eclipse 4.4 版本代号 Luna 2014年6月25日（计划） 下面内容引用自<a href="http://zh.wikipedia.org/wiki/Eclipse">维基百科</a></p>
+<p>代号 平台版本 项目 主要版本发行日期 SR1发行日期 SR2发行日期</p>
+<p>N/A 3.0 <a href="http://www.eclipse.org/org/press-release/jun212004r30pr.html">[1]</a>
+N/A 2004年6月21日 N/A N/A</p>
+<p>N/A 3.1 N/A 2005年6月28日 N/A N/A</p>
+<p>Callisto 3.2
+<a href="http://www.eclipse.org/callisto/callistoprojects.php">Callisto projects</a>
+2006年6月30日 N/A N/A</p>
+<p>Europa 3.3
+<a href="http://wiki.eclipse.org/index.php/Europa_Simultaneous_Release">Europa projects</a>
+2007年6月29日 2007年9月28日 2008年2月29日</p>
+<p>Ganymede 3.4
+<a href="http://wiki.eclipse.org/index.php/Ganymede_Simultaneous_Release">Ganymede projects</a>
+2008年6月25日 2008年9月24日 2009年2月25日</p>
+<p>Galileo 3.5
+<a href="http://wiki.eclipse.org/Galileo">Galileo projects</a>
+2009年6月24日 2009年9月25日 2010年2月26日</p>
+<p>Helios 3.6
+<a href="http://wiki.eclipse.org/index.php/Helios">Helios projects</a>
+2010年6月23日 2010年9月24日 2011年2月25日</p>
+<p>Indigo 3.7
+<a href="http://wiki.eclipse.org/Indigo">Indigo projects</a>
+2011年6月22日 2011年9月23日 2012年2月24日</p>
+<p>Juno 4.2 <a href="http://www.eclipse.org/org/press-release/20120627_junorelease.php">[2]</a>
+<a href="http://wiki.eclipse.org/Juno">Juno projects</a>
+2012年6月27日 2012年9月28日 2013年2月22日</p>
+<p>Kepler
+<strong>4.3</strong>
+<a href="http://wiki.eclipse.org/Kepler">Kepler projects</a>
+2013年6月26日 2013年9月27日（计划） 2014年2月28日（计划）</p>
+<p>Luna 4.4
+<a href="http://wiki.eclipse.org/Luna">Luna projects</a>
+2014年6月25日（计划） N/A N/A</p>
+</div>
+</article>
+<article>
+<header>
+<h1 class="entry-title"><a href="/blog/2013/11/16/Linux-de-M-fu-hao-cuo-wu/">Linux的^M符号错误</a></h1>
+<p class="meta">
+<time class="data-article month-11 season-autumn" datetime="2013-11-16T16:21:00+08:00" pubdate><span class="month">Nov</span> <span class="day">16th</span> <span class="year">2013</span></time>
+| <a href="/blog/2013/11/16/Linux-de-M-fu-hao-cuo-wu/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2013/11/16/Linux-de-M-fu-hao-cuo-wu/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>自己写了一份sh脚本扔到服务器上面准备后台执行，用的nohup结果错误如下：</p>
+<pre><code>[rexdf-pc rexdf]\&gt; $HOME"misc/install.sh" &gt; $HOME"install.log" &amp; tail -f $HOME"install.log"
+[1] 321655
+bash: /home/rexdf/misc/install.sh: /bin/bash^M: bad interpreter: No such file or directory
+</code></pre>
+<p>起初一直不明白这个错误的意思是什么，好半天才明白 ^M是因为Win的换行引起的。可是我是用sublime建立文件啊！于是UltraStudio打开，果然没有提示dos格式转换。 说起来，百度搜索还是有比谷歌好的地方的。谷歌基本没法识别符号(在做函数搜索画图的时候除外)，或者说搜索索引没有对任何符号建立过。虽然谷歌的语义搜索确实比百度强很多，只要谷歌搜索的有结果的，基本都是相关的，百度某些技术词汇基本没有相关的内容被索引。但是搜索^M这个就没有了，另外比如${}这个也是没有的。但是百度就有，而且很多。 这里解决方案很多， 0)dos2unix</p>
+<pre><code>$ dos2unix misc/*
+dos2unix: Skipping misc/action_hooks, not a regular file.
+dos2unix: converting file misc/build_nginx to Unix format ...
+dos2unix: converting file misc/build_node to Unix format ...
+dos2unix: converting file misc/build_php to Unix format ...
+dos2unix: converting file misc/build_php_libs to Unix format ...
+dos2unix: converting file misc/make.sh to Unix format ...
+dos2unix: Skipping misc/tmpl, not a regular file.
+</code></pre>
+<p>1)使用工具 cat 和 tr 方法如下：</p>
+<pre><code>bash$ cat -v startqftest.sh |tr -d "^M" &gt; qf.sh
+</code></pre>
+<p>其中 startqftest.sh 是存在问题的脚本， qf.sh是新生成的文件。</p>
+<pre><code>sed 's/^M//' test.sh &gt; back.sh^M是Ctrl+v Ctrl+m
+</code></pre>
+<p>解释一下， cat 可以查看许多不可见这符， cat -t 显示TAB 为 ^I cat -e 显示行尾为 $, cat -v 显示不可见字符，用^M表示，所以^M 2)直接tr</p>
+<pre><code>tr -d "\015"&lt;oldfilename&gt; newfilename
+</code></pre>
+<p>3)vim a)若你的vim版本大于7.1，并想用dos显示和保存，如下语句：</p>
+<pre><code>:e ++ff=dos
+</code></pre>
+<p>b)若你的vim版本小于等于7.1，又想把文章按照dos格式显示和保存，如下语句：</p>
+<pre><code>:set ff=dos
+:%s/\r\+$//e
+</code></pre>
+<p>c)若你的vim版本小于等于7.1，又想把文章按照unix格式显示和保存，如下语句：</p>
+<pre><code>:set ff=unix
+:%s/\r\+$//e
+</code></pre>
+<p>4)UltraEdit 保存的时候有一个选项.可以选择。打开的时候，如果是Linux格式也会提示转换dos格式，点否就好。</p>
+</div>
+</article>
+<article>
+<header>
+<h1 class="entry-title"><a href="/blog/2013/11/14/EaskTalk-qian-yi-wen-ti/">EaskTalk迁移问题</a></h1>
+<p class="meta">
+<time class="data-article month-11 season-autumn" datetime="2013-11-14T16:45:00+08:00" pubdate><span class="month">Nov</span> <span class="day">14th</span> <span class="year">2013</span></time>
+| <a href="/blog/2013/11/14/EaskTalk-qian-yi-wen-ti/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2013/11/14/EaskTalk-qian-yi-wen-ti/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>这几天用EasyTalk建的微博突然无法访问，但是透过篱笆可以访问，按照我谨慎的习惯，一般应该不是我自己导致主机被(和睦)樯。不过问题在这里总是要解决的，于是乎立即想到了迁移主机。因为微博和博客一样都是认真对待的，不想数据丢失。于是首先备份数据库，直接MyphpAdmin导出总表。然后导出所有的public目录。(本来都不打算用服务器的文件，本地是有的，但是因为有图片上传过，肯定是存在了目录里面)。 然后迁移的时候就出现了:”您浏览的页面暂时发生了异常!请稍后再试～”。主要就是这个问题。 首先由于要使用UC_center，所以顺便装了一个Discuz，Discuz相对来说比较轻松。要修改的文件有下面几个: /discuz/config/config_global.php /discuz/config/config_ucenter.php /disucz/uc_client/data/cache/apps.php /disucz/uc_server/data/cache/apps.php 这几个文件后面的两个比较容易忽视。实际上修改了也是无效的，推荐不要修改。现在可以先进直接入discuz的后台，然后进入UC_Center Adminstation里面，应用配置里面看一下，会发现应用基本都是链接不上的。这个信息应该是写到了数据库的。所以刚才那两个文件修改是没有用的，因为那是cache文件。在这里点击”编辑”修改下，主要的就是物理路径的绝对路径问题，如果带有自己home目录的那种虚拟主机或者云主机，变化的home目录需要改变过来。改好以后就可以看到红叉变成绿色的勾了。 对于EasyTalk，我起初只是改了下面两个个文件 /config.inc.php /api/uc_client/config.inc.php 可是一直就是一直就是”您浏览的页面暂时发生了异常!请稍后再试～”，强调下UC_DBTABLEPRE可能会带有前缀，这个前缀是数据库的名字，如果需要修改也必须修改，/discuz/config/config_ucenter.php里面也是一样的。 现在问题就不是数据库名的问题了。我开启了/config.inc.php里面的APP_DEBUG’=&gt;true,也没看到什么有用的错误信息。一番查找之后，发现问题根本在于ThinkPHP框架的缓存机制，在/Admin和/Home目录下面有个Runtime文件夹。对比原始安装包，发现是没有这两个目录的，那么显然就是运行时生成的。起初以为只是缓存作用，就把Runtime文件夹直接删除，后来发现错误信息依旧。 正确的解决办法是将两个~Runtime.php打开，修改home目录，数据库配置(分别在开头和结尾地方)。(网上似乎有人说删除~Runtime.php也是可以的。) 现在就OK啦！</p>
+</div>
+</article>
+<article>
+<header>
+<h1 class="entry-title"><a href="/blog/2013/11/05/xian-jian-5-qian-yu-xian-jian-wu/">仙剑5前与仙剑五</a></h1>
+<p class="meta">
+<time class="data-article month-11 season-autumn" datetime="2013-11-05T05:09:00+08:00" pubdate><span class="month">Nov</span> <span class="day">5th</span> <span class="year">2013</span></time>
+| <a href="/blog/2013/11/05/xian-jian-5-qian-yu-xian-jian-wu/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2013/11/05/xian-jian-5-qian-yu-xian-jian-wu/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>奇怪于网上评价大都是仙剑五前好评如潮，更有甚者说第一次玩哭了。我玩仙剑四的时候，是真的玩哭了好几处的，基本上CG动画的每一处都是一个情感高潮，没有凑数的。 说仙剑五不好，基本可以接受。锁定视角就是很烦的(据说自由视角更加糟糕)，剧情情感不太流畅，游戏bug较多(我玩出了两个云帆同时出现，可以从某些人物穿过去，比如丹枫谷的狐狸)。我几次对剧情进行了预览，知道了结局，大概剧情方向，玩起来感觉还算可以。 再说说仙剑五前，玩起来游戏系统升级较大，也许可玩性变强了，但是从仙剑四开始基本我都是用修改器来打怪的，基本上不喜欢过于复杂的战斗系统，玩仙剑，主要还是想细细品一下剧情。五前很多恶心的支线设定，很多恶心的打法。总之玩法上，好久才有些适应，这是其一。因为知道结局， 暮菖兰出场就感到恶心，反正对她这种卑鄙无耻的人不喜欢，而且还直接导致了主角的悲剧结局，所以玩的时候就在想，不要让 暮菖兰跟着不就一切ok了，然后我就不玩了。 再来说说五前和五，相比之前各代，战斗系统进行了巨大升级(仙3简直没法玩，那个时间条慢的！)，游戏画面在五前也达到了较高水准。剧情上，我暂时排序是4&gt;1&gt;5&gt;5q，因为没玩过2、3(实际上是没法玩下去)，不好评价。对于五前这种类型的，知道bug人物的，我实在没法深入剧情。 可以给出一个综合评价，仙剑一开dosbox加完美绿色补丁版本的，玩起来还可以，不过电脑上画面太差，我在5230上第一次玩过了大部分剧情，然后现在android有多个版本。手机上玩还是很适合的。剧情A，可玩性A，画面A(手机画面用户感觉)。以此为标准。 仙剑2，按照传闻剧情评价。剧情B，可玩性A，画面C(只有电脑版)。 仙剑3，剧情部分依赖电视剧理解。剧情A+，可玩性A+，画面A+。这里面用到了阵法，我基本还是搞不明白，而且那么多分支对话，还有武器养成。画面不怎么样，但是有3D视角。 仙剑4，通关过了。剧情A+++，可玩性A，画面A+。这个很对我的胃口，有左右ctrl+4/9，外加修改器。另外主线还加了配音。 仙剑5，还在玩。剧情A，可玩性A+，画面A++。可以开高特效，操作舒服。 仙剑5前，不太想继续玩。剧情A，可玩性A++，画面A++。剧情还算比较复杂级别的，而且作为五的一部分理解。 另外新仙剑、仙剑3外传，仙剑客栈都是都没启动过。除了仙剑客栈，其他应该都和原游戏基本一个级别。</p>
+</div>
+</article>
+<article>
+<header>
+<h1 class="entry-title"><a href="/blog/2013/11/05/guan-yu-xu-ni-ji-wan-xian-jian-5-sheng-yin-sha-ya-de-wen-ti/">关于虚拟机玩仙剑5声音沙哑的问题</a></h1>
+<p class="meta">
+<time class="data-article month-11 season-autumn" datetime="2013-11-05T03:26:00+08:00" pubdate><span class="month">Nov</span> <span class="day">5th</span> <span class="year">2013</span></time>
+| <a href="/blog/2013/11/05/guan-yu-xu-ni-ji-wan-xian-jian-5-sheng-yin-sha-ya-de-wen-ti/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2013/11/05/guan-yu-xu-ni-ji-wan-xian-jian-5-sheng-yin-sha-ya-de-wen-ti/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>先前在1366<em>736的屏幕上，用虚拟机玩仙剑5，基本没有什么问题. 现在买了一块新的1920</em>1080的屏幕，同时把系统也升级到win8.1，我没有开特效，无论把游戏xp系统分辨率调成什么样的都是很沙哑的了，尝试过改桌面的分辨率，游戏的分辨率，甚至禁用视觉样式，关掉vmware.exe的scaling(貌似win8.1一装好就是125%的，不知道是不是我屏幕装好的时候在原始的win8测试的时候调试的那个数据被导入过来的，还是win8.1系统自己原始的配置)，好了不扯远了，回到问题上面来。问题就是，画面非常的流畅，但是声音异常，人物说话就更加明显的沙哑。感觉主角的声音都变了一个人一样。本来不以为可以解决，度娘里面只有的居然就是管用的。解决方案就是：虚拟机里面开启一个media player最小化，然后开启游戏，声音就完全正常了。这不是坑爹么！！ 不知道这个问题为何我现在才遇到，貌似度娘提问的是问的vmware8，但我的10.0.1了，问题还在，这么说应该是xp的哪个什么问题了吗？ 现在开着1366<em>736高特效，然后启用Unity Mode，那个爽啊，1920</em>1080的平面左边开着攻略，右边开着游戏，打起来顺手多了。不过最近不能多玩了，简单记下。</p>
+</div>
+</article>
+<article>
+<header>
+<h1 class="entry-title"><a href="/blog/2013/11/02/mou-zhu-ming-da-xue-de-yi-ge-hang-zheng-ye-mian/">某著名大学的一个行政页面</a></h1>
+<p class="meta">
+<time class="data-article month-11 season-autumn" datetime="2013-11-02T16:16:00+08:00" pubdate><span class="month">Nov</span> <span class="day">2nd</span> <span class="year">2013</span></time>
+| <a href="/blog/2013/11/02/mou-zhu-ming-da-xue-de-yi-ge-hang-zheng-ye-mian/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2013/11/02/mou-zhu-ming-da-xue-de-yi-ge-hang-zheng-ye-mian/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>下面是某著名大学的行政页面，请注意是页面源码，不是我截取的部分代码，我想…… 唉，还是算了，发火不好的。</p>
+<pre><code>&lt;script language="javaScript" type=""&gt;
+var dwh = "null";
+//处理左侧树的点击事件
+function hitTree(code,txt,deep,isleaf,key,action){
+    var u = action;
+    
+    //处理打印dwh
+    if(code.indexOf("800002")&gt;-1){
+    	u = u.replace("amp;","");
+    	if("null" != dwh &amp;&amp; dwh.length &gt; 0){
+    		u = u + "&amp;dwh=" + dwh;
+    	}
+    }
+    
+	//判断是否是学生查询目录
+	if("null" == dwh &amp;&amp; (code.indexOf("700001")&gt;-1) || (code.indexOf("700002")&gt;-1) || code.indexOf("600001")&gt;-1 || code.indexOf("500003")&gt;-1){
+		window.open(u,"","width=900,height=600,top=100,left=100,location=no,resizable=no,toolbar=no,menubar=no,scrollbars=yes");
+	}else{
+    	centerFrame.location.href = u;
+	}
+}
+&lt;/script&gt;
+&lt;body topmargin=0 bottommargin=0 onLoad="doIframheight()"&gt;
+	&lt;center&gt;
+		&lt;table border="0" cellpadding="0" cellspacing="0" width=768&gt;
+			&lt;tr&gt;
+
+				&lt;td&gt;
+					&lt;table width=100% border="0" cellpadding="0" cellspacing="0"&gt;
+						&lt;tr&gt;
+							&lt;iframe name"=mainframe " id="mainframe" frameborder="0"
+								border="0" src="/yjszs/wsbm/top.jsp?userName=xxxxxxxxx@yjszsss"
+								scrolling="no" width=768 height=200&gt;&lt;/iframe&gt;
+						&lt;/tr&gt;
+						&lt;tr&gt;
+							&lt;table width=100% border="0" cellpadding="0" cellspacing="0"&gt;
+								&lt;tr&gt;
+									&lt;td&gt;
+										&lt;iframe scrolling="no" marginwidth="0" marginheight="0"
+											name="leftmenu" border="0" frameborder="0"
+											src="common.yjszspagecontroller.do?m=showTree" scrolling="no"
+											width=187 height=900&gt;
+									&lt;/td&gt;
+									&lt;td&gt;
+										&lt;iframe scrolling="yes" noresize="true" marginwidth="4"
+											border="0" frameborder="0" marginheight="1"
+											name="centerFrame" src="search.ksNotice.do?m=lookList" width=581 height=900
+											target="_self"&gt;
+									&lt;/td&gt;
+								&lt;/tr&gt;
+							&lt;/table&gt;
+						&lt;/tr&gt;
+						&lt;tr&gt;
+							&lt;iframe scrolling="no" noresize="true" marginwidth="0" border="0"
+								frameborder="0" marginheight="0" src="/yjszs/wsbm/bottom.jsp" width=768
+								heigth=40&gt;&lt;/iframe&gt;
+						&lt;tr&gt;
+					&lt;/table&gt;
+
+				&lt;/td&gt;
+		&lt;/table&gt;
+	&lt;/center&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+&lt;SCRIPT FOR=window EVENT=onload LANGUAGE="JScript"&gt;
+function doIframheight(){
+if(leftmenu.document.body.scrollHeight&gt;centerFrame.document.body.scrollHeight)
+ {
+ document.leftmenu.height=leftmenu.document.body.scrollHeight;
+ document.centerFrame.height=leftmenu.document.body.scrollHeight;
+ document.callleftmenu.height=leftmenu.document.body.scrollHeight;
+ }
+ else{
+ document.leftmenu.height=centerFrame.document.body.scrollHeight;
+ document.centerFrame.height=centerFrame.document.body.scrollHeight;
+ document.callleftmenu.height=centerFrame.document.body.scrollHeight;
+ }
+ 
+ }
+
+&lt;/SCRIPT&gt;
+</code></pre>
+</div>
+</article>
+<article>
+<header>
+<h1 class="entry-title"><a href="/blog/2013/10/28/yi-zhe/">医者</a></h1>
+<p class="meta">
+<time class="data-article month-10 season-autumn" datetime="2013-10-28T14:56:00+08:00" pubdate><span class="month">Oct</span> <span class="day">28th</span> <span class="year">2013</span></time>
+| <a href="/blog/2013/10/28/yi-zhe/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2013/10/28/yi-zhe/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>家乡这边有一个远近闻名的骨折医生，传说是民国时期一名军人传授密技，当然具体我没有去调查，只是记叙下我的见闻。 是个纯中医，貌似架子很大，被反复关了好几次，都没有透露此密法。挂号、开方和抓药分别由不同的人负责，而药方可以带走的，但是据说至今依然没有人研究出此密法。 而关于此人生平，貌似有两儿一女。据说当初给此密法的军人曾经说过此法可保其一生衣食无忧，但不可作威作福，否则必然无好结果。此人似乎是没有作威作福的，但是似乎没有好结果。在其多次被关押期间，其村里人曾集体去求过情。当然对外100的药方，村里是只要20元的。最让人不解的是，在其早逝之后，其二子也陆续病逝。在其去世后，其二子继承了衣钵，依然按照原来的流程风格看病。但是看病的人都发现了其虚弱的体质，说话没底气声音很低。三人均是此症状。 现在由其女继续为人看病。 总觉得事情后面还有故事，而且此密法是什么样的？据说周围几个县区的人都过来看病，但是在其身体虚弱后，每天看固定人数，即使还排着长长的队，依然推到第二天。为何这么多中医都没有搞懂，可以看药方，可以研究药。是否没法研究出来，我是不懂的，但是大家依然只去他那里看病。他们也仅限骨折损伤之类的，超过180天的不看，不属于此类的不看。其二子的死亡恐怕也是有内幕的。 本文故事完全按照我的见闻所写，因爸妈去那里抓过药，所以我也是从爸妈那里听来的。</p>
+</div>
+</article>
+<article>
+<header>
+<h1 class="entry-title"><a href="/blog/2013/10/23/ma-dan-yu-fa/">妈蛋语法</a></h1>
+<p class="meta">
+<time class="data-article month-10 season-autumn" datetime="2013-10-23T15:50:00+08:00" pubdate><span class="month">Oct</span> <span class="day">23rd</span> <span class="year">2013</span></time>
+| <a href="/blog/2013/10/23/ma-dan-yu-fa/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2013/10/23/ma-dan-yu-fa/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><pre><code>/* Markdown语法简单介绍 */
+/* 表示段落只需要连续两个回车就可以了 */
+/* 各级标题 */
+/* 第一种是在标题前面加上1~6个”#”表示”&lt;h1&gt;”~”&lt;h6&gt;” */
+/* 第二种是在标题下面另起一行，输入四个以上的等号“=”来表示”&lt;h1&gt;”，输入四个以上的减号“-”来表示”&lt;h2&gt;” */
+/* h1,h2,h3,..... */
+# Hello
+## Hello
+.....
+/* 列表 ,+是UL，数字是OL */
++ Python
++ Ruby
++ Lisp
+1. Python
+2. Ruby
+3. Lisp
++ Abacus
+* answer
++ Bubbles
+1. bunk
+2. bupkis
++ BELITTLER
+3. burper
++ Cunning
+/* 链接*/
+[sebug](http://rexdf.org/)
+&lt;http://rexdf.org/&gt;
+&lt;链接&gt; ：这种形式只是简单的标出链接；
+[文字](链接 “标题”)：给文字添加链接，其中标题是可选的；
+[文字][标记]：给文字添加链接，链接在下面的一个以[标记]开头的新行（一般是文章末尾）给出。或者直接以[文字][]这种形式编写，在下面的新行中使用[文字]:链接的形式声明链接。
+/* 代码和引用 */
+# 插入一句代码，把代码用 (`) 符号包围起来即可，如果插入一大段代码也很简单，在代码的每一行之前加四个空格。
+/* 使用引用 blockquote*/
+&gt;Code Share
+&gt; &gt; Code Share
+/* 使用图片*/
+![rexdf.org](http://rexdf.org/hotlink.png "rexdf.org")
+/* 其他 */
+/* 粗体和斜体：用星号”*”或者下划线”_” */
+/* 一个表示斜体； */
+/* 两个表示粗体； */
+/* 三个表示粗斜体 */
+*单星号*
+_单下划线_
+**双星号**
+__双下划线__
+/* 转义符：”\”。只要给不希望被转义的字符前面加上\就可以了 */
+/* 水平线：使用三个以上的”*”或”-”来表示。这些星号跟减号之间可以用空格，如果减号没有空格，那它必须在单独的一个段落里，要不它会被识别为标题的 */
+#还有更多请参考下面链接资料
+</code></pre>
+<p>显示为如下</p>
+<p>/* Markdown语法简单介绍 */</p>
+<p>/* 表示段落只需要连续两个回车就可以了 */</p>
+<p>/* 各级标题 */</p>
+<p>/* 第一种是在标题前面加上1~6个”#”表示”&lt;h1&gt;”~”&lt;h6&gt;” */</p>
+<p>/* 第二种是在标题下面另起一行，输入四个以上的等号“=”来表示”&lt;h1&gt;”，输入四个以上的减号“-”来表示”&lt;h2&gt;” */</p>
+<p>/* h1,h2,h3,….. */</p>
+<h1 id="hello">Hello</h1>
+<h2 id="hello-1">Hello</h2>
+<p>…..</p>
+<p>/* 列表 ,+是UL，数字是OL */</p>
+<ul>
+<li>
+<p>Python</p>
+</li>
+<li>
+<p>Ruby</p>
+</li>
+<li>
+<p>Lisp</p>
+</li>
+</ul>
+<ol>
+<li>
+<p>Python</p>
+</li>
+<li>
+<p>Ruby</p>
+</li>
+<li>
+<p>Lisp</p>
+</li>
+</ol>
+<ul>
+<li>
+<p>Abacus</p>
+</li>
+<li>
+<p>answer</p>
+</li>
+<li>
+<p>Bubbles</p>
+</li>
+</ul>
+<ol>
+<li>
+<p>bunk</p>
+</li>
+<li>
+<p>bupkis</p>
+</li>
+</ol>
+<ul>
+<li>BELITTLER</li>
+</ul>
+<ol>
+<li>burper</li>
+</ol>
+<ul>
+<li>Cunning</li>
+</ul>
+<p>/* 链接*/</p>
+<p><a href="http://rexdf.org/">sebug</a></p>
+<p><a href="http://rexdf.org/">http://rexdf.org/</a></p>
+<p>/* 代码和引用 */</p>
+<h1 id="section">插入一句代码，把代码用 (`) 符号包围起来即可，如果插入一大段代码也很简单，在代码的每一行之前加四个空格。</h1>
+<p>/* 使用引用 blockquote*/</p>
+<blockquote>
+<p>Code Share</p>
+</blockquote>
+<blockquote>
+<blockquote>
+<p>Code Share</p>
+</blockquote>
+</blockquote>
+<p>/* 使用图片*/</p>
+<p><img src="http://rexdf.org/hotlink.png" alt="rexdf.org" title="rexdf.org"></p>
+<p>/* 其他 */</p>
+<p>/* 粗体和斜体：用星号”*”或者下划线”_” */</p>
+<p>/* 一个表示斜体； */</p>
+<p>/* 两个表示粗体； */</p>
+<p>/* 三个表示粗斜体 */</p>
+<p><em>单星号</em></p>
+<p><em>单下划线</em></p>
+<p><strong>双星号</strong></p>
+<p><strong>双下划线</strong></p>
+<h1 id="section-1">还有更多请参考下面链接资料</h1>
+</div>
+</article>
+<div class="pagination">
+<a class="prev" href="/blog/page/10/">&larr; Older</a>
+<a href="/blog/archives">Blog Archives</a>
+<a class="next" href="/blog/page/8/">Newer &rarr;</a>
+</div>
+</div>
+<aside class="sidebar">
+<section>
+<h1>Categories</h1>
+<ul id="categories">
+<li class="category"><a href="/blog/categories/acm/">ACM <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/algorithm/">Algorithm <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/assembly/">Assembly <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/cygwin/">Cygwin <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/gnu/">GNU <sup>8</sup></a></li>
+<li class="category"><a href="/blog/categories/math/">Math <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/octopress/">Octopress <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/programming/">Programming <sup>6</sup></a></li>
+<li class="category"><a href="/blog/categories/security/">Security <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sublime/">Sublime <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/synology/">Synology <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sysadmin/">SysAdmin <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/web/">Web <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/windows/">Windows <sup>7</sup></a></li>
+<li class="category"><a href="/blog/categories/proxmox/">proxmox <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/ri-chang/">日常 <sup>37</sup></a></li>
+</ul>
+</section>
+<section>
+<h1>Recent Posts</h1>
+<ul id="recent_posts">
+<li class="post">
+<a href="/blog/2024/12/16/fu-wu-qi-wa-kuang-bing-du-de-cha-sha/">服务器挖矿病毒的查杀</a>
+</li>
+<li class="post">
+<a href="/blog/2021/07/11/apple-m1-bian-yi-tensorflow/">Apple M1 编译tensorflow</a>
+</li>
+<li class="post">
+<a href="/blog/2021/02/27/chromiumbian-ma-qi-wen-ti/">Chromium编码器问题</a>
+</li>
+<li class="post">
+<a href="/blog/2020/12/13/proxmoxbi-ji/">Proxmox笔记</a>
+</li>
+<li class="post">
+<a href="/blog/2020/11/15/lun-yan-du-yu-shen-du/">论广度与深度</a>
+</li>
+</ul>
+</section>
+<section>
+<iframe frameborder="0" scrolling="no" referrerpolicy="unsafe-url" style="width:283px;height:200px" src="https://t.rexdf.org/?m=app&a=showwidget&name=rexdf&type=1&width=283px&height=500px"></iframe>
+</section>
+<section>
+<h1>GitHub Repos</h1>
+<ul id="gh_repos">
+<li class="loading">Status updating&#8230;</li>
+</ul>
+<a href="https://github.com/rexdf">@rexdf</a> on GitHub
+<script type="text/javascript">$(document).ready(function(){if(!window.jXHR){var e=document.createElement("script");e.type="text/javascript",e.src="/javascripts/libs/jXHR.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}github.showRepos({user:"rexdf",count:0,skip_forks:!0,target:"#gh_repos"})})</script>
+</section>
+</aside>
+</div>
+</div>
+<footer role="contentinfo"><p>
+<span class="credit">Copyright &copy; 2024 - Rexdf -</span> |
+<span class="credit">Powered by <a name="bottoms" target="_blank" href="http://octopress.org">Octopress</a></span> |
+<span class="credit">Theme by ：<a href="https://blog.rexdf.org/" target="_blank" rel="theme">Rexdf</a></span> |
+<span class="credit">Host by：<a href="https://github.com/" target="_blank" rel="host">Github.com</a></span> |
+<span class="credit">版权声明：<a href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" target="_blank" rel="license">CC BY-NC-SA 3.0</a><img src="https://analytics.rexdf.net/piwik.php?idsite=1&amp;rec=1" style="border:0" alt="" referrerpolicy="no-referrer-when-downgrade"></span>|
+<span class="credit"><a href="/sitemap.xml" rel="sitemap">sitemap</a></span>
+</p>
+<script type="text/javascript" src="https://tajs.qq.com/stats?sId=30296377" charset="UTF-8"></script>
+</footer>
+<script type="text/javascript">var disqus_shortname="rexdf",disqus_script="count.js";!function(){var e=document.createElement("script");e.type="text/javascript",e.async=!0,e.src="//"+disqus_shortname+".disqus.com/"+disqus_script,(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(e)}()</script>
+<script type="text/javascript">$(function(){$(".entry-content").each(function(t){var r=t;$(this).find("img.fancybox").each(function(){var t=$(this),a=t.attr("title"),n=t.attr("class");t.removeAttr("class"),t.wrap('<a href="'+this.src+'" class="'+n+'" rel="gallery'+r+'" />'),""!=a&&t.parent().attr("title",a)})}),$(".fancybox").fancybox()})</script>
+</body>
+</html>

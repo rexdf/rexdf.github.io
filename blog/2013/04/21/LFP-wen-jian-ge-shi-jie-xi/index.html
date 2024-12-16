@@ -1,0 +1,208 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<script type="text/javascript">var _speedMark=new Date</script>
+<meta charset="utf-8">
+<title>LFP文件格式解析 - Rexdf</title>
+<meta name="author" content="Rexdf">
+<meta name="description" content="经过一番折腾，在我的64位Win8上面也装上了GSTreamer的Python绑定，然后就开始玩behnam-python-lfp-reader，之后经过搜索，发现了一个标准C语言版本的，和一个用php类写的版本。 1.lfptools 当然先clone下来 git clone git:// &hellip;">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' data: https://hm.baidu.com https://tajs.qq.com https://ssl.google-analytics.com https://static.rexdf.org https://*.disquscdn.com https://rexdf.disqus.com https://api.github.com https://ssl.google-analytics.com https://disqus.com https://analytics.rexdf.net; connect-src 'self' https://static.rexdf.org https://analytics.rexdf.net https://hm.baidu.com; img-src data: https://*; font-src data: https://*; child-src 'none'; style-src 'self' 'unsafe-inline' https://*; frame-src 'self' https://t.rexdf.org http://t.rexdf.org https://rexdf.disqus.com https://disqus.com">
+<link rel="canonical" href="https://i.rexdf.org/blog/2013/04/21/LFP-wen-jian-ge-shi-jie-xi">
+<link rel="dns-prefetch" href="https://static.rexdf.org/">
+<link href="/favicon.ico" rel="icon">
+<link id="main-css" href="/stylesheets/screen.css" media="screen,projection" rel="stylesheet" type="text/css" title="pc">
+<link href="/stylesheets/screen_mobile.css" rel="alternate stylesheet" type="text/css" title="mobile">
+<link href="/atom.xml" rel="alternate" title="Rexdf" type="application/atom+xml">
+<script src="/javascripts/libs/jquery.min.js"></script>
+<script src="/javascripts/octopress-rexdf.min.js" type="text/javascript"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+      
+      toggle_theme();
+  });
+</script>
+<script type="text/javascript" async src="https://static.rexdf.org/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript">var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-55590409-1"]),_gaq.push(["_trackPageview"]),function(){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(t,e)}()</script>
+<script>var _hmt=_hmt||[];!function(){var e=document.createElement("script");e.src="//hm.baidu.com/hm.js?32192d95b89fbefa0875c4c95adb1412";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}()</script>
+<script src="/javascripts/fancybox/jquery.fancybox.pack.js"></script>
+<link rel="stylesheet" type="text/css" href="/javascripts/fancybox/jquery.fancybox.css">
+<script type="text/javascript">var _paq=_paq||[];_paq.push(["trackPageView"]),_paq.push(["enableLinkTracking"]),function(){var e="https://analytics.rexdf.net/";_paq.push(["setTrackerUrl",e+"piwik.php"]),_paq.push(["setSiteId","1"]);var a=document,t=a.createElement("script"),p=a.getElementsByTagName("script")[0];t.type="text/javascript",t.async=!0,t.defer=!0,t.src=e+"piwik.js",p.parentNode.insertBefore(t,p)}()</script>
+</head>
+<body class="low-contrast-linen-wptouch-bg">
+<header role="banner"><hgroup>
+<h1 id="header-title"><a href="/">Rexdf</a></h1>
+<h2 id="subtitle">The devil is in the Details.</h2>
+</hgroup>
+</header>
+<nav role="navigation"><ul class="subscription" data-subscription="rss">
+<li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+</ul>
+<form action="https://google.com/search" method="get">
+<fieldset role="search">
+<input type="hidden" name="q" value="site:i.rexdf.org">
+<input class="search" type="text" name="q" results="0" placeholder="Search">
+</fieldset>
+</form>
+<ul class="main-navigation">
+<li><a href="/">Blog</a></li>
+<li><a href="/blog/archives/">Archives</a></li>
+<li><a href="/idea/">Idea</a></li>
+<li><a href="/share/">Share</a></li>
+<li><a href="/books/">Books</a></li>
+<li><a href="/donate/">Donate</a></li>
+<li><a target="_blank" href="https://blog.rexdf.org" style="font-family:Shadows Into Light">Main-Blog</a></li>
+</ul>
+</nav>
+<div id="main">
+<div id="content">
+<div>
+<article class="hentry" role="article">
+<header>
+<h1 class="entry-title">LFP文件格式解析</h1>
+<p class="meta">
+<time class="data-article month-04 season-spring" datetime="2013-04-21T19:55:00+08:00" pubdate><span class="month">Apr</span> <span class="day">21st</span> <span class="year">2013</span></time>
+| <a href="#disqus_thread" data-disqus-identifier="https://i.rexdf.org">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>经过一番折腾，在我的64位Win8上面也装上了GSTreamer的Python绑定，然后就开始玩behnam-python-lfp-reader，之后经过搜索，发现了一个标准C语言版本的，和一个用php类写的版本。</p>
+<h1 id="lfptools">1.lfptools</h1>
+<p>当然先clone下来</p>
+<pre><code>git clone git://github.com/nrpatel/lfptools.git
+</code></pre>
+<p>然后进入MingW</p>
+<pre><code>cd /e/work/lfptools/
+make
+</code></pre>
+<p>成功编译 <img src="/wp-content/uploads/2013/04/lfptools.png" alt="lfptools"> 现在就分析下源代码了 main函数进入之后解析命令行第一个参数，并调用lfp_create打开，过程大约就是，算出文件长度并填入表中(二进制到位中间转换过一次)，然后整个按照二进制文件读取出来。 接着便是调用lfp_file_check检测是否是lfp格式的文件，lfp格式文件开头标志为0x89, 0x4C, 0x46, 0x50, 0x0D, 0x0A, 0x1A, 0x0A。 下一步就是解析lfp文件了，lfp数据是一块一块的，每块都有一个魔术头3+1byte，然后就是块的长度，这是一个32bit的整数，而且大端方式，转换成正常整数即是数据块长度，之后就是45bit SHA1+35bit Blank,接下去就是声明长度的块数据了。数据块识别好以后就是识别数据块的类型，首先寻找一个“”包含的字符串，从处理上看，应该包括以下几种类型： LFP_RAW_IMAGE应该就是普通的图片格式了，调用converted_image函数处理，似乎就是把3<em>8bit的数据转换成如下的两个16位数据。 <img src="http://blog.rexdf.org/wp-content/uploads/2013/04/image1.png" alt="image"> LFP_JSON 数据名字,假设其他不是”imageRef”标识的 LFP_DEPTH_LUT 深度信息，是4</em>8bit一个32位的float格式。用”depth”（包括引号)标识 LFP_LUT 是Lytro第二版本有的，用”lut”（包括引号)标识 LFP_JPEG 是JPEG格式数据,用”image”（包括引号)标识 LFP_BLOCK_OF_IMAGES 这个是H264块,用”blockOfImagesRef”（包括引号)标识</p>
+<h1 id="behnam-python-lfp-reader">2.behnam-python-lfp-reader</h1>
+<pre><code>git clone git://github.com/behnam/python-lfp-reader.git
+</code></pre>
+<p>主要是装Gstreamer的Python绑定比较麻烦，不能用google code的10.7那个OSSBuild，要用2012的那个，而且不能同时安装这个两个。不过奇怪的是在ＸＰ系统上那么快，为何在我的系统上几乎要几分钟来执行import gst命令。左键换焦点，中键全聚焦，右键小幅度变化视角。对于代码的分析，没有太大的欲望。所以也就只是调试下这个项目代码而已。 <img src="/wp-content/uploads/2013/04/lfp-reader.png" alt="lfp reader"></p>
+<h1 id="lytro-image-viewer">3.Lytro: Image Viewer</h1>
+<pre><code>git clone git://github.com/maxvw/php-lytro.git
+</code></pre>
+<p>这个是php版本的，本来打算放到博客空间上面的，但是才发现博客是采用php5.2，开了tips问了下，说是不可以，要我买VPS可以自己折腾，想想这个空间大约6月份就到期了，就不续费好了。回到这个软件上了，这个是用php实现的，用了namespace等，用OO的思想实现的，图片进行缓存。 <img src="/wp-content/uploads/2013/04/imageviewer.png" alt="imageviewer">经过一番折腾，在我的64位Win8上面也装上了GSTreamer的Python绑定，然后就开始玩behnam-python-lfp-reader，之后经过搜索，发现了一个标准C语言版本的，和一个用php类写的版本。</p>
+<h1 id="lfptools-1">1.lfptools</h1>
+<p>当然先clone下来</p>
+<pre><code>git clone git://github.com/nrpatel/lfptools.git
+</code></pre>
+<p>然后进入MingW</p>
+<pre><code>cd /e/work/lfptools/
+make
+</code></pre>
+<p>成功编译 <img src="/wp-content/uploads/2013/04/lfptools.png" alt="lfptools"> <img src="http://blog.rexdf.org/wp-content/uploads/2013/04/lfptools2.png" alt="lfptools2"> 现在就分析下源代码了 main函数进入之后解析命令行第一个参数，并调用lfp_create打开，过程大约就是，算出文件长度并填入表中(二进制到位中间转换过一次)，然后整个按照二进制文件读取出来。 接着便是调用lfp_file_check检测是否是lfp格式的文件，lfp格式文件开头标志为0x89, 0x4C, 0x46, 0x50, 0x0D, 0x0A, 0x1A, 0x0A。 下一步就是解析lfp文件了，lfp数据是一块一块的，每块都有一个魔术头3+1byte，然后就是块的长度，这是一个32bit的整数，而且大端方式，转换成正常整数即是数据块长度，之后就是45bit SHA1+35bit Blank,接下去就是声明长度的块数据了。数据块识别好以后就是识别数据块的类型，首先寻找一个“”包含的字符串，从处理上看，应该包括以下几种类型： LFP_RAW_IMAGE应该就是普通的图片格式了，调用converted_image函数处理，似乎就是把3<em>8bit的数据转换成如下的两个16位数据。 <img src="http://blog.rexdf.org/wp-content/uploads/2013/04/image1.png" alt="image"> LFP_JSON 数据名字,假设其他不是”imageRef”标识的 LFP_DEPTH_LUT 深度信息，是4</em>8bit一个32位的float格式。用”depth”（包括引号)标识 LFP_LUT 是Lytro第二版本有的，用”lut”（包括引号)标识 LFP_JPEG 是JPEG格式数据,用”image”（包括引号)标识 LFP_BLOCK_OF_IMAGES 这个是H264块,用”blockOfImagesRef”（包括引号)标识</p>
+<h1 id="behnam-python-lfp-reader-1">2.behnam-python-lfp-reader</h1>
+<pre><code>git clone git://github.com/behnam/python-lfp-reader.git
+</code></pre>
+<p>主要是装Gstreamer的Python绑定比较麻烦，不能用google code的10.7那个OSSBuild，要用2012的那个，而且不能同时安装这个两个。不过奇怪的是在ＸＰ系统上那么快，为何在我的系统上几乎要几分钟来执行import gst命令。左键换焦点，中键全聚焦，右键小幅度变化视角。对于代码的分析，没有太大的欲望。所以也就只是调试下这个项目代码而已。 <img src="/wp-content/uploads/2013/04/lfp-reader.png" alt="lfp reader"></p>
+<h1 id="lytro-image-viewer-1">3.Lytro: Image Viewer</h1>
+<pre><code>git clone git://github.com/maxvw/php-lytro.git
+</code></pre>
+<p>这个是php版本的，本来打算放到博客空间上面的，但是才发现博客是采用php5.2，开了tips问了下，说是不可以，要我买VPS可以自己折腾，想想这个空间大约6月份就到期了，就不续费好了。回到这个软件上了，这个是用php实现的，用了namespace等，用OO的思想实现的，图片进行缓存。</p>
+</div>
+<footer>
+<p class="meta">
+<span class="byline author vcard">Posted by <span class="fn">Rexdf</span></span>
+<time class="data-article month-04 season-spring" datetime="2013-04-21T19:55:00+08:00" pubdate><span class="month">Apr</span> <span class="day">21st</span> <span class="year">2013</span></time>
+</p>
+<div class="sharing">
+</div>
+<p class="meta">
+<a class="basic-alignment left" href="/blog/2013/04/18/da-jia-hao/" title="Previous Post: 大家好">&laquo; 大家好</a>
+<a class="basic-alignment right" href="/blog/2013/04/28/ce-shi-shu-xue-gong-shi/" title="Next Post: 测试数学公式">测试数学公式 &raquo;</a>
+</p>
+</footer>
+</article>
+<section>
+<h1>Comments</h1>
+<div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
+</div>
+<aside class="sidebar">
+<section>
+<h1>Categories</h1>
+<ul id="categories">
+<li class="category"><a href="/blog/categories/acm/">ACM <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/algorithm/">Algorithm <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/assembly/">Assembly <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/cygwin/">Cygwin <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/gnu/">GNU <sup>8</sup></a></li>
+<li class="category"><a href="/blog/categories/math/">Math <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/octopress/">Octopress <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/programming/">Programming <sup>6</sup></a></li>
+<li class="category"><a href="/blog/categories/security/">Security <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sublime/">Sublime <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/synology/">Synology <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sysadmin/">SysAdmin <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/web/">Web <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/windows/">Windows <sup>7</sup></a></li>
+<li class="category"><a href="/blog/categories/proxmox/">proxmox <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/ri-chang/">日常 <sup>37</sup></a></li>
+</ul>
+</section>
+<section>
+<h1>Recent Posts</h1>
+<ul id="recent_posts">
+<li class="post">
+<a href="/blog/2024/12/16/fu-wu-qi-wa-kuang-bing-du-de-cha-sha/">服务器挖矿病毒的查杀</a>
+</li>
+<li class="post">
+<a href="/blog/2021/07/11/apple-m1-bian-yi-tensorflow/">Apple M1 编译tensorflow</a>
+</li>
+<li class="post">
+<a href="/blog/2021/02/27/chromiumbian-ma-qi-wen-ti/">Chromium编码器问题</a>
+</li>
+<li class="post">
+<a href="/blog/2020/12/13/proxmoxbi-ji/">Proxmox笔记</a>
+</li>
+<li class="post">
+<a href="/blog/2020/11/15/lun-yan-du-yu-shen-du/">论广度与深度</a>
+</li>
+</ul>
+</section>
+<section>
+<iframe frameborder="0" scrolling="no" referrerpolicy="unsafe-url" style="width:283px;height:200px" src="https://t.rexdf.org/?m=app&a=showwidget&name=rexdf&type=1&width=283px&height=500px"></iframe>
+</section>
+<section>
+<h1>GitHub Repos</h1>
+<ul id="gh_repos">
+<li class="loading">Status updating...</li>
+</ul>
+<a href="https://github.com/rexdf">@rexdf</a> on GitHub
+<script type="text/javascript">$(document).ready(function(){if(!window.jXHR){var e=document.createElement("script");e.type="text/javascript",e.src="/javascripts/libs/jXHR.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}github.showRepos({user:"rexdf",count:0,skip_forks:!0,target:"#gh_repos"})})</script>
+</section>
+</aside>
+</div>
+</div>
+<footer role="contentinfo"><p>
+<span class="credit">Copyright &copy; 2024 - Rexdf -</span> |
+<span class="credit">Powered by <a name="bottoms" target="_blank" href="http://octopress.org">Octopress</a></span> |
+<span class="credit">Theme by ：<a href="https://blog.rexdf.org/" target="_blank" rel="theme">Rexdf</a></span> |
+<span class="credit">Host by：<a href="https://github.com/" target="_blank" rel="host">Github.com</a></span> |
+<span class="credit">版权声明：<a href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" target="_blank" rel="license">CC BY-NC-SA 3.0</a><img src="https://analytics.rexdf.net/piwik.php?idsite=1&amp;rec=1" style="border:0" alt="" referrerpolicy="no-referrer-when-downgrade"></span>|
+<span class="credit"><a href="/sitemap.xml" rel="sitemap">sitemap</a></span>
+</p>
+<script type="text/javascript" src="https://tajs.qq.com/stats?sId=30296377" charset="UTF-8"></script>
+</footer>
+<script type="text/javascript">var disqus_shortname="rexdf",disqus_identifier="https://i.rexdf.org/blog/2013/04/21/LFP-wen-jian-ge-shi-jie-xi/",disqus_url="https://i.rexdf.org/blog/2013/04/21/LFP-wen-jian-ge-shi-jie-xi/",disqus_script="embed.js";!function(){var e=document.createElement("script");e.type="text/javascript",e.async=!0,e.src="//"+disqus_shortname+".disqus.com/"+disqus_script,(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(e)}()</script>
+<script type="text/javascript">$(function(){$(".entry-content").each(function(t){var r=t;$(this).find("img.fancybox").each(function(){var t=$(this),a=t.attr("title"),n=t.attr("class");t.removeAttr("class"),t.wrap('<a href="'+this.src+'" class="'+n+'" rel="gallery'+r+'" />'),""!=a&&t.parent().attr("title",a)})}),$(".fancybox").fancybox()})</script>
+</body>
+</html>

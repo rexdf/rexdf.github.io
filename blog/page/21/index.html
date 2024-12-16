@@ -1,0 +1,330 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<script type="text/javascript">var _speedMark=new Date</script>
+<meta charset="utf-8">
+<title>Rexdf</title>
+<meta name="author" content="Rexdf">
+<meta name="description" content="很简单的一个插件，现在支持汉化Sublime Text2，Sublime Text3。全部系统Win64、Win32，Linux64，Linux32，OSX等，可以随意来回切换简体中文、繁体中文、日语、英语，无需重启SublimeText。 ">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' data: https://hm.baidu.com https://tajs.qq.com https://ssl.google-analytics.com https://static.rexdf.org https://*.disquscdn.com https://rexdf.disqus.com https://api.github.com https://ssl.google-analytics.com https://disqus.com https://analytics.rexdf.net; connect-src 'self' https://static.rexdf.org https://analytics.rexdf.net https://hm.baidu.com; img-src data: https://*; font-src data: https://*; child-src 'none'; style-src 'self' 'unsafe-inline' https://*; frame-src 'self' https://t.rexdf.org http://t.rexdf.org https://rexdf.disqus.com https://disqus.com">
+<link rel="canonical" href="https://i.rexdf.org/blog/page/21">
+<link rel="dns-prefetch" href="https://static.rexdf.org/">
+<link href="/favicon.ico" rel="icon">
+<link id="main-css" href="/stylesheets/screen.css" media="screen,projection" rel="stylesheet" type="text/css" title="pc">
+<link href="/stylesheets/screen_mobile.css" rel="alternate stylesheet" type="text/css" title="mobile">
+<link href="/atom.xml" rel="alternate" title="Rexdf" type="application/atom+xml">
+<script src="/javascripts/libs/jquery.min.js"></script>
+<script src="/javascripts/octopress-rexdf.min.js" type="text/javascript"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+      
+      toggle_theme();
+  });
+</script>
+<script type="text/javascript" async src="https://static.rexdf.org/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript">var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-55590409-1"]),_gaq.push(["_trackPageview"]),function(){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(t,e)}()</script>
+<script>var _hmt=_hmt||[];!function(){var e=document.createElement("script");e.src="//hm.baidu.com/hm.js?32192d95b89fbefa0875c4c95adb1412";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}()</script>
+<script src="/javascripts/fancybox/jquery.fancybox.pack.js"></script>
+<link rel="stylesheet" type="text/css" href="/javascripts/fancybox/jquery.fancybox.css">
+<script type="text/javascript">var _paq=_paq||[];_paq.push(["trackPageView"]),_paq.push(["enableLinkTracking"]),function(){var e="https://analytics.rexdf.net/";_paq.push(["setTrackerUrl",e+"piwik.php"]),_paq.push(["setSiteId","1"]);var a=document,t=a.createElement("script"),p=a.getElementsByTagName("script")[0];t.type="text/javascript",t.async=!0,t.defer=!0,t.src=e+"piwik.js",p.parentNode.insertBefore(t,p)}()</script>
+</head>
+<body class="low-contrast-linen-wptouch-bg">
+<header role="banner"><hgroup>
+<h1 id="header-title"><a href="/">Rexdf</a></h1>
+<h2 id="subtitle">The devil is in the Details.</h2>
+</hgroup>
+</header>
+<nav role="navigation"><ul class="subscription" data-subscription="rss">
+<li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+</ul>
+<form action="https://google.com/search" method="get">
+<fieldset role="search">
+<input type="hidden" name="q" value="site:i.rexdf.org">
+<input class="search" type="text" name="q" results="0" placeholder="Search">
+</fieldset>
+</form>
+<ul class="main-navigation">
+<li><a href="/">Blog</a></li>
+<li><a href="/blog/archives/">Archives</a></li>
+<li><a href="/idea/">Idea</a></li>
+<li><a href="/share/">Share</a></li>
+<li><a href="/books/">Books</a></li>
+<li><a href="/donate/">Donate</a></li>
+<li><a target="_blank" href="https://blog.rexdf.org" style="font-family:Shadows Into Light">Main-Blog</a></li>
+</ul>
+</nav>
+<div id="main">
+<div id="content">
+<div class="blog-index">
+<article>
+<header>
+<h1 class="entry-title">[置顶]<a href="/blog/2015/05/15/fa-bu-yi-ge-sublimeyi-hua-cha-jian/">发布一个sublime汉化插件</a></h1>
+<p class="meta">
+<time class="data-article month-05 season-spring" datetime="2015-05-15T11:19:01+08:00" pubdate><span class="month">May</span> <span class="day">15th</span> <span class="year">2015</span></time>
+| <a href="/blog/2015/05/15/fa-bu-yi-ge-sublimeyi-hua-cha-jian/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2015/05/15/fa-bu-yi-ge-sublimeyi-hua-cha-jian/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>很简单的一个插件，现在支持汉化Sublime Text2，Sublime Text3。全部系统Win64、Win32，Linux64，Linux32，OSX等，可以随意来回切换简体中文、繁体中文、日语、英语，无需重启SublimeText。</p>
+</div>
+<footer>
+<a rel="full-article" href="/blog/2015/05/15/fa-bu-yi-ge-sublimeyi-hua-cha-jian/">Read on &rarr;</a>
+</footer>
+</article>
+<article>
+<header>
+<h1 class="entry-title"><a href="/blog/2011/11/24/oracle-zhong-shi-yong-dan-yin-hao--he-shuang-yin-hao/">Oracle 中使用单引号和双引号</a></h1>
+<p class="meta">
+<time class="data-article month-11 season-autumn" datetime="2011-11-24T08:11:00+08:00" pubdate><span class="month">Nov</span> <span class="day">24th</span> <span class="year">2011</span></time>
+| <a href="/blog/2011/11/24/oracle-zhong-shi-yong-dan-yin-hao--he-shuang-yin-hao/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2011/11/24/oracle-zhong-shi-yong-dan-yin-hao--he-shuang-yin-hao/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><ol>
+<li>在ORACLE中，单引号有两个作用:  </li>
+<li>  1:字符串是由单引号引用  </li>
+<li>  2:转义。  </li>
+<li>单引号的使用是就近配对，即就近原则。而在单引号充当转义角色时相对不好理解  </li>
+<li>1.从第二个单引号开始被视为转义符，如果第二个单引号后面还有单引号（哪怕只有一个）。        </li>
+<li>SQL&gt; select ’’’‘ result from dual;  </li>
+<li>RESULT  </li>
+<li>-—–  </li>
+<li>‘      </li>
+<li>第二个单引号被作为转义符,第三个单引号被转义,可将sql写成这样更好理解:  </li>
+<li>select ’ ’‘ ’ from dual;  </li>
+<li>output:’  </li>
+<li>//  </li>
+<li>
+<table>
+<tbody>
+<tr>
+<td>2.连接符‘</td>
+<td> </td>
+<td>’导致了新一轮的转义：  </td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<table>
+<tbody>
+<tr>
+<td>  连接符号‘</td>
+<td> </td>
+<td>’左右的单引号没有任何的关系，</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ol>
+</div>
+</article>
+<article>
+<header>
+<h1 class="entry-title"><a href="/blog/2011/11/23/ru-he-zai-Oracle-zhong-fu-zhi-biao-jie-gou-he-biao-shu-ju/">如何在Oracle中复制表结构和表数据</a></h1>
+<p class="meta">
+<time class="data-article month-11 season-autumn" datetime="2011-11-23T22:44:00+08:00" pubdate><span class="month">Nov</span> <span class="day">23rd</span> <span class="year">2011</span></time>
+| <a href="/blog/2011/11/23/ru-he-zai-Oracle-zhong-fu-zhi-biao-jie-gou-he-biao-shu-ju/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2011/11/23/ru-he-zai-Oracle-zhong-fu-zhi-biao-jie-gou-he-biao-shu-ju/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>1. 复制表结构及其数据： create table table_name_new as select * from table_name_old   2. 只复制表结构： create table table_name_new as select * from table_name_old where 1=2; 或者： create table table_name_new like table_name_old   3. 只复制表数据： 如果两个表结构一样： insert into table_name_new select * from table_name_old 如果两个表结构不一样： insert into table_name_new(column1,column2…) select column1,column2… from table_name_old</p>
+</div>
+</article>
+<article>
+<header>
+<h1 class="entry-title"><a href="/blog/2011/11/23/AUDIT-IN-SESSION-CURRENT-wu-fa-NOAUDIT/">AUDIT in SESSION CURRENT无法NOAUDIT</a></h1>
+<p class="meta">
+<time class="data-article month-11 season-autumn" datetime="2011-11-23T21:53:00+08:00" pubdate><span class="month">Nov</span> <span class="day">23rd</span> <span class="year">2011</span></time>
+| <a href="/blog/2011/11/23/AUDIT-IN-SESSION-CURRENT-wu-fa-NOAUDIT/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2011/11/23/AUDIT-IN-SESSION-CURRENT-wu-fa-NOAUDIT/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>前两天看文档提到AUDIT IN SESSION CURRENT方式，无法通过NOAUDIT命令取消审计，只有用户退出连接审计设置才自动结束。</p>
+<p>先来看正常的审计特点：</p>
+<p>SQL&gt; conn yangtk/yangtk 已连接。 SQL&gt; create table t<em>1 (id number); 表已创建。 SQL&gt; select owner, obj_name, action_name 2 from user_audit_trail 3 where action_name = ‘CREATE TABLE’ 4 and timestamp &gt; trunc(sysdate); 未选定行 SQL&gt; audit create table; 审计已成功。 SQL&gt; create table t</em>2 (id number); 表已创建。 SQL&gt; select owner, obj_name, action_name 2 from user_audit_trail 3 where action_name = ‘CREATE TABLE’ 4 and timestamp &gt; trunc(sysdate); 未选定行 SQL&gt; conn yangtk/yangtk 已连接。 SQL&gt; create table t<em>3 (id number); 表已创建。 SQL&gt; select owner, obj_name, action_name 2 from user_audit_trail 3 where action_name = ‘CREATE TABLE’ 4 and timestamp &gt; trunc(sysdate); OWNER OBJ_NAME ACTION_NAME -——— ———- —————————- YANGTK T</em>3 CREATE TABLE SQL&gt; noaudit create table; 审计未成功。 SQL&gt; create table t<em>4 (id number); 表已创建。 SQL&gt; select owner, obj_name, action_name 2 from user_audit_trail 3 where action_name = ‘CREATE TABLE’ 4 and timestamp &gt; trunc(sysdate); OWNER OBJ_NAME ACTION_NAME -——— ———- —————————- YANGTK T</em>3 CREATE TABLE YANGTK T<em>4 CREATE TABLE SQL&gt; conn yangtk/yangtk 已连接。 SQL&gt; create table t</em>5 (id number); 表已创建。 SQL&gt; select owner, obj_name, action_name 2 from user_audit_trail 3 where action_name = ‘CREATE TABLE’ 4 and timestamp &gt; trunc(sysdate); OWNER OBJ_NAME ACTION_NAME -——— ———- —————————- YANGTK T<em>3 CREATE TABLE YANGTK T</em>4 CREATE TABLE</p>
+<p>这说明审计的设置和取消都只对命令发出后的会话有效，而已经在运行的会话是不受这个命令影响的。</p>
+<p>新特性IN SESSION CURRENT方式改变了这一点，使得审计对且仅对当前会话生效：</p>
+<p>SQL&gt; audit create table in session current; 审计已成功。 SQL&gt; create table t<em>6 (id number); 表已创建。 SQL&gt; select owner, obj_name, action_name 2 from user_audit_trail 3 where action_name = ‘CREATE TABLE’ 4 and timestamp &gt; trunc(sysdate); OWNER OBJ_NAME ACTION_NAME -——— ———- —————————- YANGTK T</em>3 CREATE TABLE YANGTK T<em>4 CREATE TABLE YANGTK T</em>6 CREATE TABLE</p>
+<p>由于Oracle没有提供NOAUDIT IN SESSION CURRENT语法，而直接NOAUDIT又对当前会话不生效，显然是没有办法取消IN SESSION CURRENT的审计设置的。</p>
+<p>SQL&gt; noaudit create table in session current; noaudit create table in session current * 第1行出现错误: ORA-46342:不能对IN SESSION子句执行NOAUDIT命令</p>
+</div>
+</article>
+<article>
+<header>
+<h1 class="entry-title"><a href="/blog/2011/11/23/create-sequence/">Create Sequence</a></h1>
+<p class="meta">
+<time class="data-article month-11 season-autumn" datetime="2011-11-23T21:50:00+08:00" pubdate><span class="month">Nov</span> <span class="day">23rd</span> <span class="year">2011</span></time>
+| <a href="/blog/2011/11/23/create-sequence/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2011/11/23/create-sequence/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>在oracle中sequence就是所谓的序列号，每次取的时候它会自动增加，一般用在需要按 序列号排序的地方。 1、 create sequence 你首先要有create sequence或者create any sequence权限， create sequence emp_sequence INCREMENT BY 1 – 每次加几个 START WITH 1 – 从1开始计数 NOMAXVALUE – 不设置最大值 NOCYCLE – 一直累加，不循环 CACHE 10; 一旦定义了emp_sequence，你就可以用CURRVAL，NEXTVAL CURRVAL=返回sequence的当前值 NEXTVAL=增加sequence的值，然后返回sequence值 比如： emp_sequence.CURRVAL emp_sequence.NEXTVAL 可以使用sequence的地方： - 不包含子查询、snapshot、VIEW的 SELECT 语句 - INSERT语句的子查询中 - NSERT语句的VALUES中 - UPDATE 的 SET中 可以看如下例子： INSERT INTO emp VALUES (empseq.nextval, ‘LEWIS’, ‘CLERK’,7902, SYSDATE, 1200, NULL, 20); SELECT empseq.currval FROM DUAL; 但是要注意的是： - 第一次NEXTVAL返回的是初始值；随后的NEXTVAL会自动增加你定义的INCREMENT BY值， 然后返回增加后的值。CURRVAL 总是返回当前sequence的值，但是在第一次NEXTVAL 初始化之后才能使用CURRVAL，否则会出错。一次NEXTVAL会增加一次sequence的值， 所以如果你在同一个语句里面使用多个NEXTVAL，其值就是不一样的。明白？ - 如果指定CACHE值，oracle就可以预先在内存里面放置一些sequence，这样存取的快 些。 cache里面的取完后，oracle自动再取一组到cache。 使用cache或许会跳号， 比如 数据库突然不正常down掉（shutdown abort),cache中的sequence就会丢失. 所以可 以在create sequence的时候用nocache防止这种情况。 2、 Alter sequence 你或者是该sequence的owner，或者有ALTER ANY sequence权限才能改动sequence。 可 以alter除start值之外的所有sequence参数。如果想要改变start值，必须drop sequence 再re-create。例子： ALTER sequence emp_sequence INCREMENT BY 10 MAXVALUE 10000 CYCLE – 到10000后从头开始 NOCACHE; 影响sequence的初始化参数： sequence_CACHE_ENTRIES = 设置能同时被cache的sequence数目。 可以很简单的Drop sequence DROP sequence order_seq; 结束</p>
+</div>
+</article>
+<article>
+<header>
+<h1 class="entry-title"><a href="/blog/2011/11/23/dui-yu-Oracle-suo-de-yi-xie-li-lun-zong-jie/">对于Oracle锁的一些理论总结</a></h1>
+<p class="meta">
+<time class="data-article month-11 season-autumn" datetime="2011-11-23T21:42:00+08:00" pubdate><span class="month">Nov</span> <span class="day">23rd</span> <span class="year">2011</span></time>
+| <a href="/blog/2011/11/23/dui-yu-Oracle-suo-de-yi-xie-li-lun-zong-jie/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2011/11/23/dui-yu-Oracle-suo-de-yi-xie-li-lun-zong-jie/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>首先什么是锁呢？可以理解为他是对一种共享资源并发访问的一种控制：） 在数据库中，基本的锁类型有两类，分别是 X-排他锁：如果对象被一个排他锁给琐住，那么按照锁的相容性来讲其他会话就不能够在对这个会话所加锁的对象加任何的锁。 S-共享锁：如果对象被一个共享锁给锁住，那么按照锁的相容性来讲其他会话除了S锁本身，都不能对这个会话所加锁的对象加任何的锁。 那么在Oracle数据库中呢，锁是多粒度的，而且他的锁类型可以分三大类 1.DML lock:目的是为了保护数据完整性 2.DDL lock:目的是为了保护数据库对象的结构 3.一些内部锁和latch:目的是为了保护数据库的内部结构 这里呢，主要想介绍一下DML锁，因为其他类型的锁基本上只会保持很短的一段时间 DML锁呢共有两种 1.row level lock  2.table level lock 1.TX(row level lock） 先 介绍一下行级锁吧，其实很多人都认为在数据库中，行级锁就是锁定一行（注意我想说Oracle在数据行上面只有排他锁X，而没有共享锁之类的其他锁）。很 多朋友认为一个数据表里有多少行，就会有多少个行级别锁，在Oracle却不是这样，其实需要澄清的是，Oracle对于行级锁是事务级的。也就是说当一 个事务发起一个更新(update)命令时，无论事务所涉及的行有多少，那么Oracle只会分配一个TX锁，所以在这里Oracle是不会像其他数据库 一样有锁的升级(lock escalation)，而且这中锁升级也并不是数据库的特性，但是他会执行锁的转换，Oracle会尽可能的在最低级别加锁。因此对于开销来讲1个锁的 开销和1000000个锁的开销其实是一样的，都没有什么开销。而且Oracle也不会像其他数据库一样来通过维护一个锁的列表来管理锁的资源（比如 DB2，通过LOCKLIST，MAXLOCKS两个参数来度量锁的开销），因为对于DB2来说,锁是一种稀有的资源,需要对锁的使用呢,进行监控,系统 开销就必然很大,而Oracle在锁的维护上就大大的减少了开销，而且也不会出现因为锁数量不够时引起的问题（锁升级-&gt;死锁）. 让我们来对比一下DB2和Oracle在行级的加锁过程 DB2 -—– 加锁的时候 1,找到想锁定那一行的地址 2.在locklist中排队(其实这种锁管理器就是一种串行化的设备,这样做的好处是可以有效的避免活锁) 3.锁定列表 4.搜索列表,看看别人是否已经对我要加锁的那一样上了锁 5,如果没有,则在列表中创建一个entry,表明我已经锁住了这一行 6.对列表解锁 解锁的时候 1.再次进行排队 2.锁住我们的列表 3.在这个列表中搜索,释放我们的锁 4,对列解锁 我们看DB2对于锁管理的开销还是比较的大,锁越多表明,这个操作花的时间就越长,开销就比较大. 那么Oracle是怎么来做的呢?咱们来看一下: 当我想要加锁的时候 1.找到要锁定的一行. 2.定位那一样,然后加锁 对,没错就是这么的简单.让你看到Oracle的实现就是这么的piece of cake!!Oracle不需要传统的锁管理器,事务只是找数据如果数据没有被加锁,则加锁. 那么Oracle没有了锁管理器,看似简单的问题,他是怎么实现的呢? 这 就要从数据块说起,在Oracle中,其最小的逻辑单元就是block,在每一个block头部,都保留有一个ITL的事务列表.每当一个事务要修改 block中所保留的行的时候,就会在在ITL的SLOT中记录一项.而每一行的行首还有一个Lock byte用来表示行的锁定,因此未commit的事务用ITL的slot和lock byte来表示那些被封锁的行. 刚才说过,Oracle的行 级锁是TX,是事务级的.如果一个事务要修改被另一个事务更新还没有提交的数据时,他就会阻塞.等待锁的释放,但是等待的绝对不是行的锁,而是事务锁 (TX)的释放.所以真正的TX锁释放了(而不是隐式的那些行).被阻塞的事务才可以继续进行.所以即使你加了savepoint也无用,回滚到某一个 savepoint只能释放某些隐式行上的锁,但是不能释放真正的事务锁. 那么ITL中的SLOT的数量是由谁决定的呢?其实一个slot项一般会占用block的24个字节,在建对象的时候会通过指定initrans和 maxtrans来设置slot的数目.需要注意的是Oracle 10g中这个maxtrans的设置已经被废弃,意思是说,即使我们指定了maxtrans,Oracle也会忽略这个限制,只要block有空 间,Oracle就会不受约束的扩大ITL中的slot. 2.TM(table level lock) 表级锁,其实就是向表加 锁了(废话嘛).那么在对一个表加锁之前,数据库需要做一些判断,首先是他要对表加的这个锁是否与表中所加的这个锁相容.其次,还要检查该锁是否与表中的 每一行上的锁相容,对于这一点如果我一个表里面有很多的行,那么如果我要对一个表加锁的话,就需要遍历表中的所有行,来查看锁的相容性,这对数据库来讲无 疑是高性能的一个障碍.所以呢,Oracle引出了一个意向锁的概念. 那么什么是意向锁呢?如果我给了一个节点加了一个意向锁,就表示我要对其下 层节点加一个同等类型的锁,意思也就是说要对一个节点加锁,就要先在其上层节点上加个意向锁,这样一来,如果我要对一个表加锁的话,那么只要判断和意向锁 的相容性就好了,不需要再遍历表中的行来检查每一行的锁了,这样系统的效率就大大提高了. 意向锁有那些类型呢? 1.Intent share lock(意向共享锁 IS):如果要对一个对象加S锁,那么首先就要在其上层节点加IS锁 2.Intent exclusive lock(意向排他锁 IX):如果要对一个对象加X锁,首先也要对其上级节点加IX锁. 3.Shared intent exclusive lock(共享意向排他锁):如果一个事务对某个表加了SIX锁的话,则表示整个事务要读取整个的表,同时又会更新个别行. 这样我们可以总结一下,在对数据库对象加锁的时候就有5种 X , S , IX , IS ,  SIX 因此Oracle的DML锁,在行级只有X锁,在TM级有5种就是我们刚刚提到的:X , S , IX , IS , SIX 表示起来就是,S , X , RS , RX , SRX 我 们可以看到，通常的DML操作（SELECT…FOR UPDATE、INSERT、UPDATE、DELETE），在表级获得的只是意向锁（RS或RX），其真正的封锁粒度还是在行级；另外，Oracle数 据库的一个显著特点是，在缺省情况下，单纯地读数据（SELECT）并不加锁，Oracle通过回滚段（Rollback segment）来保证用户不读“脏”数据。这些都极大地提高了系统的并发程度。(撤消对读取的块所做的块修改)由于意向锁及数据行上锁标志位的引入，极 大地减小了Oracle维护行级锁的开销，这些技术的应用使Oracle能够高效地处理高度并发的事务请求。 最后,给出两个表格是IT PUBer的朋友提供的:</p>
+<p>       T2</p>
+<p>T1</p>
+</div>
+</article>
+<article>
+<header>
+<h1 class="entry-title"><a href="/blog/2011/11/23/Oracle-de-suo-ji-zhi-gui-na-zong-jie/">Oracle的锁机制归纳总结</a></h1>
+<p class="meta">
+<time class="data-article month-11 season-autumn" datetime="2011-11-23T21:40:00+08:00" pubdate><span class="month">Nov</span> <span class="day">23rd</span> <span class="year">2011</span></time>
+| <a href="/blog/2011/11/23/Oracle-de-suo-ji-zhi-gui-na-zong-jie/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2011/11/23/Oracle-de-suo-ji-zhi-gui-na-zong-jie/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>锁是防止在两个事务操作同一个数据源（表或行）时交互破坏数据的一种机制。Oracle采用封锁技术保证并发操作的可串行性。Oracle的锁分为两大类：数据锁（也称DML锁）和字典锁。字典锁是Oracle DBMS内部用于对字典表的封锁。字典锁包括语法分析锁和DDL锁，由DBMS在必要的时候自动加锁和释放锁，用户无机控制。 Oracle主要提供了5种数据锁：共享锁（Share Table Lock，简称S锁）、排它锁（Exclusive Table Lock，简称X锁）、行级锁（Row Share Table Lock，简称RS锁）、行级排它锁（Row Exclusive Table Lock，简称RX锁）和共享行级排它锁（Share Row Exclusive Table Lock，简称SRX锁）。其封锁粒度包括行级和表级。 1. 共享锁（Share Table Lock，S）： 加锁语法：Lock Table TableName In Share Mode; 允许的操作：一个共享锁由一个事务控制，仅允许其它事务查询被锁定的表。一个有效的共享锁明确地用Select … For update形式锁定行，或执行Lock Table TableName In Share Mode语法锁定整个表，不允许被其它事务更新。允许多个事务在同一个表上加共享锁，这种情况下不允许在该表上加锁的事务更新表（即使有一个事务控制的是形如Select Row … for update这样行锁也是不被允许的）。因此，仅有一个事务的一个共享锁可以更新该表如果其它事务也有相同的事务在该表上的话。 禁止的操作：一个共享锁由一个事务来控制，防止其它事务更新该表或执行下面的语句： LOCK TABLE TableName IN SHARE ROW EXCLUSIVE MODE; LOCK TABLE TableName IN ROW EXCLUSIVE MODE; 2. 排它锁（Exclusive Table Lock，X）： 排它锁是在锁机制中限制最多的一种锁类型，允许加排它锁的事务独自控制对表的写权限。 加锁语法：Lock Table TableName In Exclusive Mode; 允许的操作：在一个表中只能有一个事务对该表实行排它锁，排它锁仅允许其它的事务查询该表。 禁止的操作：拥有排外锁的事务禁止其它事务执行其它任何DML类型的语句或在该表上加任何其它类型的锁。 定义排它锁的语法： LOCK TABLE TableName IN EXCLUSIVE MODE; 3. 行级锁（Row Share Table Lock，RS）： 一个行级锁（有时称为Subshare Table Lock，简称SS，子共享锁）需要该事务在被锁定行的表上用update的形式加锁。当有下面语句被执行的时候行级锁自动加在操作的表上。 SELECT &#8230; FROM TableName&#8230; FOR UPDATE OF &#8230; ; LOCK TABLE TableName IN ROW SHARE MODE; 行级锁（Row Share Table Lock）在锁类型中是限制最少的，也是在表的并发程度中使用程度最高的。 允许的操作：行级共享锁由一个事务控制，允许其它事务查询、插入、更新、删除或同时在同一张表上锁定行。因此其它事务可以同时在同一张表上得到行级锁、共享行级排它锁、行级排它锁、排它锁。参见数据锁的相容矩阵图 禁止的操作：拥有行级锁的事务不允许其它事务执行排它锁，即： Lock Table TableName In Exclusive Mode; 4. 行级排它锁（Row Exclusive Table Lock，RX）： 行级排它锁（亦称为Subexclusive Table Lock，简称SX，子排它锁）通常需要事务拥有的锁在表上被更新一行或多行。当有下面语句被执行的时候行级排它锁被加在操作的表上。 INSERT INTO TableName&#8230; ; UPDATE TableName&#8230; ; DELETE FROM TableName&#8230; ; LOCK TABLE TableName IN ROW EXCLUSIVE MODE; 行级排它锁比行级锁稍微多一些限制。 允许的操作：在数据锁的相容矩阵图很容易看出行级排它锁由一个事务拥有允许其它事务执行查询、修改、插入、删除或同时在同一张表上锁定行。执有行级排它锁的事务允许其它事务在同一张表上同时得到共享锁和行级排它锁。 禁止的操作：行级排它锁由一个事务拥有防止其它事务手动锁定表来排除其它事务的读写权。因此，其它事务不允许在同一张表上使用以下的语句来执行锁事务。 LOCK TABLE table IN SHARE MODE; LOCK TABLE table IN SHARE EXCLUSIVE MODE; LOCK TABLE table IN EXCLUSIVE MODE 5. 共享行级排它锁（Share Row Exclusive Table Lock，SRX）： 共享行级排它锁有时也称共享子排它锁（Share Subexclusive Table Lock，SSX），它比共享锁有更多限制。定义共享行级排它锁的语法为： Lock Table TableName In Share Row Exclusive Mode; 允许的操作：仅允许一个事务在某一时刻得到行级排它锁。拥有行级排它锁事务允许其它事务在被锁定的表上执行查询或使用Select … From TableName For update…来准确在锁定行而不能更新行。 禁止的操作：拥有行级排它锁的事务不允许其它事务有除共享锁外的其它形式的锁加在同一张表上或更新该表。即下面的语句是不被允许的： LOCK TABLE TableName IN SHARE MODE; LOCK TABLE TableName IN SHARE ROW EXCLUSIVE MODE; LOCK TABLE TableName IN ROW EXCLUSIVE MODE; LOCK TABLE TableName IN EXCLUSIVE MODE; DML语句获得的DML自动锁（Oracle隐含锁） DML自动锁的相容矩阵图： X：排它锁、RS：行级共享锁、RX：行级排它锁、S、共享锁、RSX：行级共享排它锁 DML语句 有行级锁 锁类型 SELECT … FROM table INSERT INTO table … X RX UPDATE table … X RX DELETE FROM table … X RX SELECT … FROM table … FOR UPDATE OF … X RS LOCK TABLE table IN … ROW SHARE MODE RS ROW EXCLUSIVE MODE RX SHARE MODE S SHARE EXCLUSIVE MODE SRX EXCLUSIVE MODE X 数据字典中与锁有关的表或视图 V<em>$LOCKED_OBJECT V</em>$LOCKS_WITH_COLLISIONS V<em>$LOCK_ACTIVITY V</em>$LOCK_ELEMENT V_$_LOCK DBMS_LOCK V$DLM_ALL_LOCKS V$DLM_LOCKS V$ENQUEUE_LOCK V$GLOBAL_BLOCKED_LOCKS V$LOCK V$LOCKED_OBJECT V$LOCKS_WITH_COLLISIONS V$LOCK_ACTIVITY V$LOCK_ELEMENT V$_LOCK 解锁及Kill Session: 使用下面的语法查出锁并杀掉Session。 SELECT A.SID,A.SERIAL#,A.USERNAME,B.TYPE FROM V$SESSION A,V$LOCK B WHERE A.SID=B.SID; ALTER SYSTEM KILL SESSION ‘SID,SERIAL#’;</p>
+</div>
+</article>
+<article>
+<header>
+<h1 class="entry-title"><a href="/blog/2011/11/22/shi-pin-zai-hui-shou-zai-zai-hui-shou-pei-yue-dao-meng-kong-jian/">视频: 再回首，再再回首……配乐 盗梦空间</a></h1>
+<p class="meta">
+<time class="data-article month-11 season-autumn" datetime="2011-11-22T20:36:00+08:00" pubdate><span class="month">Nov</span> <span class="day">22nd</span> <span class="year">2011</span></time>
+| <a href="/blog/2011/11/22/shi-pin-zai-hui-shou-zai-zai-hui-shou-pei-yue-dao-meng-kong-jian/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2011/11/22/shi-pin-zai-hui-shou-zai-zai-hui-shou-pei-yue-dao-meng-kong-jian/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>http://v.youku.com/v_show/id_XMzE4OTY0ODQ0.html</p>
+</div>
+</article>
+<article>
+<header>
+<h1 class="entry-title"><a href="/blog/2011/11/22/san-wei-chong-liang-ji-ren-wu-de-xiang-ji-qu-shi-ye-xu-hui-gei-zhe-ge-shi-jie-de-wan-qiu-dai-lai-bei-ai-de-yun-cai/">三位重量级人物的相继去世，也许会给这个世界的晚秋带来悲哀的云彩。</a></h1>
+<p class="meta">
+<time class="data-article month-11 season-autumn" datetime="2011-11-22T20:30:00+08:00" pubdate><span class="month">Nov</span> <span class="day">22nd</span> <span class="year">2011</span></time>
+| <a href="/blog/2011/11/22/san-wei-chong-liang-ji-ren-wu-de-xiang-ji-qu-shi-ye-xu-hui-gei-zhe-ge-shi-jie-de-wan-qiu-dai-lai-bei-ai-de-yun-cai/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2011/11/22/san-wei-chong-liang-ji-ren-wu-de-xiang-ji-qu-shi-ye-xu-hui-gei-zhe-ge-shi-jie-de-wan-qiu-dai-lai-bei-ai-de-yun-cai/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p><a href="http://www.cnbeta.com/articles/160114.htm">http://www.cnbeta.com/articles/160114.htm</a> Dennis MacAlistair Ritchie，丹尼斯·里奇，C语言之父，Unix之父，（1941年9月9日－2011年10月8日[3]） <a href="http://www.iteye.com/news/23146">http://www.iteye.com/news/23146</a> John Maccarthy ，约翰·麦卡锡，Lisp语言发明者，“人工智能之父”（1927年9月4日 - 2011年10月24日） <a href="http://www.apple.com/stevejobs/">http://www.apple.com/stevejobs/</a> Steve Jobs，史蒂夫·乔布斯，Apple创始人，“苹果教父”（1955年2月24日-2011年10月5日） 2011年10月，注定不是一个平常的十月，三个 ; 足以表达。 三位重量级人物的相继去世，也许会给这个世界的晚秋带来悲哀的云彩。 不过，请不要伤心，他们只是提前上船，让我们默默祝愿他们在船上一切都好！ 最后，请允许我提前预告，我们的“PHP每月通讯”可能也要用上 ; 了。 一直以来，“PHP每月通讯”的主要推荐者只有“三妈”和极少数订阅者（深表致敬）。 没有更多的人来推荐，我们将面临无米可炊的境地，“PHP每月通讯”就只能杯具的使用伟大的 ; 了。 我曾看到有人写过： 乔布斯，麦卡锡，丹尼斯·里奇，最近都去世了 我和他们的区别在于， 他们虽然不在这个世界了，但他们改变了世界。 我虽然暂时还活着，但还是碌碌无为。 请马上动手，不要碌碌无为，马上动手推荐，你可以选择让我们继续留下，真的，这个可以有！！！</p>
+</div>
+</article>
+<article>
+<header>
+<h1 class="entry-title"><a href="/blog/2011/11/22/fa-xian-kuai-su-fa-bu-dui-IE-zhi-chi-de-fei-chang-hao/">发现快速发布对IE支持的非常好</a></h1>
+<p class="meta">
+<time class="data-article month-11 season-autumn" datetime="2011-11-22T18:26:00+08:00" pubdate><span class="month">Nov</span> <span class="day">22nd</span> <span class="year">2011</span></time>
+| <a href="/blog/2011/11/22/fa-xian-kuai-su-fa-bu-dui-IE-zhi-chi-de-fei-chang-hao/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2011/11/22/fa-xian-kuai-su-fa-bu-dui-IE-zhi-chi-de-fei-chang-hao/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>这个编辑环境在IE支持也是非常好的~~</p>
+</div>
+</article>
+<article>
+<header>
+<h1 class="entry-title"><a href="/blog/2011/11/19/zhuan-zai-Apache-Rewrite-gui-ze-xiang-jie/">[转载]Apache Rewrite 规则详解</a></h1>
+<p class="meta">
+<time class="data-article month-11 season-autumn" datetime="2011-11-19T22:29:00+08:00" pubdate><span class="month">Nov</span> <span class="day">19th</span> <span class="year">2011</span></time>
+| <a href="/blog/2011/11/19/zhuan-zai-Apache-Rewrite-gui-ze-xiang-jie/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2011/11/19/zhuan-zai-Apache-Rewrite-gui-ze-xiang-jie/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><table>
+<tbody>
+<tr>
+<td>Apache Rewrite 规则详解 2010-07-19 10:16 Apache Rewrite 规则详解 在开篇之前： 我想说这篇文章其实是我刚刚接触Rewrite的时候学习的文档，应属转载，但是在这里我不想写明原地址，原因是文章中大多数给出的配置命令经实验都是错误的。需要原文的可以在谷歌上搜索一下”Apache Rewrite 规则详解” 好在我对正则表达式有所了解，把原文的代码都通过自己的理解改写了一下，并都能够达到题设的要求，并联想需求添加了例子。 本文是经过我实验后修改有效的，如果还是出现500错误请去掉 # 及后面的注释（也许有些环境不支持中文注解），如果还是错误请在下面给我留言。 1、Rewrite规则简介： Rewirte主要的功能就是实现URL的跳转，它的正则表达式是基于Perl语言。可基于服务器级的(httpd.conf)和目录级的(.htaccess)两种方式。如果要想用到rewrite模块，必须先安装或加载rewrite模块。方法有两种一种是编译apache的时候就直接安装rewrite模块，别一种是编译apache时以DSO模式安装apache,然后再利用源码和apxs来安装rewrite模块。 基于服务器级的(httpd.conf)有两种方法，一种是在httpd.conf的全局下直接利用RewriteEngine on来打开rewrite功能;另一种是在局部里利用RewriteEngine on来打开rewrite功能,下面将会举例说明，需要注意的是,必须在每个virtualhost里用RewriteEngine on来打开rewrite功能。否则virtualhost里没有RewriteEngine on它里面的规则也不会生效。 基于目录级的(.htaccess),要注意一点那就是必须打开此目录的FollowSymLinks属性且在.htaccess里要声明RewriteEngine on。 2、举例说明： 例一.下面是在一个虚拟主机里定义的规则。功能是把client请求的主机前缀不是www.kiya.cn和70.40.213.183都跳转到主机前缀为http://www.kiya.cn，避免相同内容的网页有多个指向的域名，如http://kiya.cn。 NameVirtualHost 70.40.213.183:80 ServerAdmin slj@kiya.cn DocumentRoot “/web” ServerName kiya.cn RewriteEngine on #打开rewirte功能 RewriteCond %{HTTP_HOST} !^www.kiya.cn [NC] #声明Client请求的主机中前缀不是www.kiya.cn，其中 [NC] 的意思是忽略大小写 RewriteCond %{HTTP_HOST} !^70.40.213.183 [NC] #声明Client请求的主机中前缀不是70.40.213.183，其中 [NC] 的意思是忽略大小写 RewriteCond %{HTTP_HOST} !^$ #声明Client请求的主机中前缀不为空 RewriteRule ^(.<em>) http://www.kiya.cn/ [L] #含义是如果Client请求的主机中的前缀符合上述条件，则直接进行跳转到http://www.kiya.cn/,[L]意味着立即停止重写操作，并不再应用其他重写规则。这里的.</em>是指匹配所有URL中不包含换行字符，()括号的功能是把所有的字符做一个标记，以便于后面的应用.就是引用前面里的(.<em>)字符。 例二.将输入 en.sicasoft.com 的域名时跳转到www.sicasoft.com RewriteEngine on RewriteCond %{HTTP_HOST} ^en.sicasoft.com [NC] RewriteRule ^(.</em>) http://www.sicasoft.com/ [L] 例三.赛卡软件近期更换了域名，新域名为www.sicasoft.com, 更加简短好记。这时需要将原来的域名ss.kiya.cn, 以及论坛所在地址ss.kiya.cn/bbs/定向到新的域名，以便用户可以找到，并且使原来的论坛 URL 继续有效而不出现 404 未找到，比如原来的http://ss.kiya.cn/bbs/tread-60.html, 让它在新的域名下继续有效，点击后转发到http://bbs.sicasoft.com/tread-60.html，而其他网页，如原先的http://ss.kiya.cn/purchase不会到二级域名bbs.sicasoft.com/purchase上，而是到www.sicasoft.com/purchase 按照这样的要求重定向规则应该这样写： RewriteEngine On RewriteCond %{REQUEST_URI} ^/bbs/ RewriteRule ^bbs/(.<em>) http://bbs.sicasoft.com/$1 [R=permanent,L] RewriteCond %{REQUEST_URI} !^/bbs/ RewriteRule ^(.</em>) http://www.sicasoft.com/$1 [R=permanent,L] 3.Apache mod_rewrite规则重写的标志一览 1) R<a href="force redirect">=code</a> 强制外部重定向 强制在替代字符串加上http://thishost[:thisport]/前缀重定向到外部的URL.如果code不指定，将用缺省的302 HTTP状态码。 2) F(force URL to be forbidden)禁用URL,返回403HTTP状态码。 3) G(force URL to be gone) 强制URL为GONE，返回410HTTP状态码。 4) P(force proxy) 强制使用代理转发。 5) L(last rule) 表明当前规则是最后一条规则，停止分析以后规则的重写。 6) N(next round) 重新从第一条规则开始运行重写过程。 7) C(chained with next rule) 与下一条规则关联 如果规则匹配则正常处理，该标志无效，如果不匹配，那么下面所有关联的规则都跳过。 8) T=MIME-type(force MIME type) 强制MIME类型 9) NS (used only if no internal sub-request) 只用于不是内部子请求 10) NC(no case) 不区分大小写 11) QSA(query string append) 追加请求字符串 12) NE(no URI escaping of output) 不在输出转义特殊字符 例如：RewriteRule /foo/(.<em>) /bar?arg=P1%3d$1 [R,NE] 将能正确的将/foo/zoo转换成/bar?arg=P1=zoo 13) PT(pass through to next handler) 传递给下一个处理 例如： RewriteRule ^/abc(.</em>) /def$1 [PT] # 将会交给/def规则处理 Alias /def /ghi 14) S=num(skip next rule(s)) 跳过num条规则 15) E=VAR:VAL(set environment variable) 设置环境变量 4.Apache rewrite例子集合 URL重定向 例子一: 同时达到下面两个要求： 1.用http://www.zzz.com/xxx.php 来访问 http://www.zzz.com/xxx/ 2.用http://yyy.zzz.com 来访问 http://www.zzz.com/user.php?username=yyy 的功能 RewriteEngine On RewriteCond %{HTTP_HOST} ^www.zzz.com RewriteCond %{REQUEST_URI} !^user.php$ RewriteCond %{REQUEST_URI} .php$ RewriteRule (.<em>).php$ http://www.zzz.com/$1/ [R] RewriteCond %{HTTP_HOST} !^www.zzz.com RewriteRule ^(.+) %{HTTP_HOST} [C] RewriteRule ^([^.]+).zzz.com http://www.zzz.com/user.php?username=$1 例子二： /type.php?typeid=</em> –&gt; /type<em>.html /type.php?typeid=</em>&amp;page;=* –&gt; /type<em>page</em>.html RewriteRule ^/type([0-9]+).html$ /type.php?typeid=$1 [PT] RewriteRule ^/type([0-9]+)page([0-9]+).html$ /type.php?typeid=$1&amp;page;=$2 [PT] 5.使用Apache的URL Rewrite配置多用户虚拟服务器 要实现这个功能，首先要在DNS服务器上打开域名的泛域名解析（自己做或者找域名服务商做）。比如，我就把 <em>.kiya.us和 *.kiya.cn全部解析到了我的IP地址70.40.213.183上。 然后，看一下我的Apache中关于</em>.kiya.us的虚拟主机的设定。 ServerAdmin webmaster@kiya.us DocumentRoot /home/www/www.kiya.us ServerName dns.kiya.us ServerAlias dns.kiya.us kiya.us *.kiya.us CustomLog /var/log/httpd/osa/access_log.log” common ErrorLog /var/log/httpd/osa/error_log.log” AllowOverride None Order deny,allow #AddDefaultCharset GB2312 RewriteEngine on RewriteCond %{HTTP_HOST} ^[^.]+.kiya.(cn</td>
+<td>us)$ RewriteRule ^(.+) %{HTTP_HOST}$1 [C] RewriteRule ^([^.]+).kiya.(cn</td>
+<td>us)(.<em>)$ /home/www/www.kiya.us/sylvan$3?un=$1&amp;%{QUERY_STRING} [L] 在这段设定中，我把</em>.kiya.cn和*.kiya.us 的Document Root都设定到了 /home/www/www.kiya.us 继续看下去，在这里我就配置了URL Rewrite规则。 RewriteEngine on #打开URL Rewrite功能 RewriteCond %{HTTP_HOST} ^[^.]+.kiya.(cn</td>
+<td>us)$ #匹配条件，如果用户输入的URL中主机名是类似 xxxx.kiya.us 或者 xxxx.kiya.cn 就执行下面一句 RewriteRule ^(.+) %{HTTP_HOST}$1 [C] #把用户输入完整的地址（GET方式的参数除外）作为参数传给下一个规则，[C]是Chain串联下一个规则的意思 RewriteRule ^([^.]+).kiya.(cn</td>
+<td>us)(.*)$ /home/www/dev.kiya.us/sylvan$3?un=$1&amp;%{QUERY_STRING} [L] # 最关键的是这一句，使用证则表达式解析用户输入的URL地址，把主机名中的用户名信息作为名为un的参数传给/home/www/dev.kiya.us目录下的脚本，并在后面跟上用户输入的GET方式的传入参数。并指明这是最后一条规则（[L</td>
+</tr>
+</tbody>
+</table>
+</div>
+</article>
+<div class="pagination">
+<a class="prev" href="/blog/page/22/">&larr; Older</a>
+<a href="/blog/archives">Blog Archives</a>
+<a class="next" href="/blog/page/20/">Newer &rarr;</a>
+</div>
+</div>
+<aside class="sidebar">
+<section>
+<h1>Categories</h1>
+<ul id="categories">
+<li class="category"><a href="/blog/categories/acm/">ACM <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/algorithm/">Algorithm <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/assembly/">Assembly <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/cygwin/">Cygwin <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/gnu/">GNU <sup>8</sup></a></li>
+<li class="category"><a href="/blog/categories/math/">Math <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/octopress/">Octopress <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/programming/">Programming <sup>6</sup></a></li>
+<li class="category"><a href="/blog/categories/security/">Security <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sublime/">Sublime <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/synology/">Synology <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sysadmin/">SysAdmin <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/web/">Web <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/windows/">Windows <sup>7</sup></a></li>
+<li class="category"><a href="/blog/categories/proxmox/">proxmox <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/ri-chang/">日常 <sup>37</sup></a></li>
+</ul>
+</section>
+<section>
+<h1>Recent Posts</h1>
+<ul id="recent_posts">
+<li class="post">
+<a href="/blog/2024/12/16/fu-wu-qi-wa-kuang-bing-du-de-cha-sha/">服务器挖矿病毒的查杀</a>
+</li>
+<li class="post">
+<a href="/blog/2021/07/11/apple-m1-bian-yi-tensorflow/">Apple M1 编译tensorflow</a>
+</li>
+<li class="post">
+<a href="/blog/2021/02/27/chromiumbian-ma-qi-wen-ti/">Chromium编码器问题</a>
+</li>
+<li class="post">
+<a href="/blog/2020/12/13/proxmoxbi-ji/">Proxmox笔记</a>
+</li>
+<li class="post">
+<a href="/blog/2020/11/15/lun-yan-du-yu-shen-du/">论广度与深度</a>
+</li>
+</ul>
+</section>
+<section>
+<iframe frameborder="0" scrolling="no" referrerpolicy="unsafe-url" style="width:283px;height:200px" src="https://t.rexdf.org/?m=app&a=showwidget&name=rexdf&type=1&width=283px&height=500px"></iframe>
+</section>
+<section>
+<h1>GitHub Repos</h1>
+<ul id="gh_repos">
+<li class="loading">Status updating&#8230;</li>
+</ul>
+<a href="https://github.com/rexdf">@rexdf</a> on GitHub
+<script type="text/javascript">$(document).ready(function(){if(!window.jXHR){var e=document.createElement("script");e.type="text/javascript",e.src="/javascripts/libs/jXHR.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}github.showRepos({user:"rexdf",count:0,skip_forks:!0,target:"#gh_repos"})})</script>
+</section>
+</aside>
+</div>
+</div>
+<footer role="contentinfo"><p>
+<span class="credit">Copyright &copy; 2024 - Rexdf -</span> |
+<span class="credit">Powered by <a name="bottoms" target="_blank" href="http://octopress.org">Octopress</a></span> |
+<span class="credit">Theme by ：<a href="https://blog.rexdf.org/" target="_blank" rel="theme">Rexdf</a></span> |
+<span class="credit">Host by：<a href="https://github.com/" target="_blank" rel="host">Github.com</a></span> |
+<span class="credit">版权声明：<a href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" target="_blank" rel="license">CC BY-NC-SA 3.0</a><img src="https://analytics.rexdf.net/piwik.php?idsite=1&amp;rec=1" style="border:0" alt="" referrerpolicy="no-referrer-when-downgrade"></span>|
+<span class="credit"><a href="/sitemap.xml" rel="sitemap">sitemap</a></span>
+</p>
+<script type="text/javascript" src="https://tajs.qq.com/stats?sId=30296377" charset="UTF-8"></script>
+</footer>
+<script type="text/javascript">var disqus_shortname="rexdf",disqus_script="count.js";!function(){var e=document.createElement("script");e.type="text/javascript",e.async=!0,e.src="//"+disqus_shortname+".disqus.com/"+disqus_script,(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(e)}()</script>
+<script type="text/javascript">$(function(){$(".entry-content").each(function(t){var r=t;$(this).find("img.fancybox").each(function(){var t=$(this),a=t.attr("title"),n=t.attr("class");t.removeAttr("class"),t.wrap('<a href="'+this.src+'" class="'+n+'" rel="gallery'+r+'" />'),""!=a&&t.parent().attr("title",a)})}),$(".fancybox").fancybox()})</script>
+</body>
+</html>

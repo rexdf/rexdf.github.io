@@ -1,0 +1,284 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<script type="text/javascript">var _speedMark=new Date</script>
+<meta charset="utf-8">
+<title>如何扩展群晖的basic分区容量 - Rexdf</title>
+<meta name="author" content="Rexdf">
+<meta name="description" content="1. 磁盘对拷 2. 测试群晖开机 3. 修改分区大小 3.4 参考资料 美亚买了一个14T的硬盘，经历两周从德国邮寄收到了。拆出硬盘，准备换入群晖，发现硬盘分区已经没有了，最小的那个分区是一个4T的硬盘，而且是当初的第一个硬盘，上面有群晖的系统分区。 本文主要记录操作过程，总时间不长， &hellip;">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' data: https://hm.baidu.com https://tajs.qq.com https://ssl.google-analytics.com https://static.rexdf.org https://*.disquscdn.com https://rexdf.disqus.com https://api.github.com https://ssl.google-analytics.com https://disqus.com https://analytics.rexdf.net; connect-src 'self' https://static.rexdf.org https://analytics.rexdf.net https://hm.baidu.com; img-src data: https://*; font-src data: https://*; child-src 'none'; style-src 'self' 'unsafe-inline' https://*; frame-src 'self' https://t.rexdf.org http://t.rexdf.org https://rexdf.disqus.com https://disqus.com">
+<link rel="canonical" href="https://i.rexdf.org/blog/2020/11/11/ru-he-kuo-zhan-qun-hui-de-basicfen-qu-rong-liang">
+<link rel="dns-prefetch" href="https://static.rexdf.org/">
+<link href="/favicon.ico" rel="icon">
+<link id="main-css" href="/stylesheets/screen.css" media="screen,projection" rel="stylesheet" type="text/css" title="pc">
+<link href="/stylesheets/screen_mobile.css" rel="alternate stylesheet" type="text/css" title="mobile">
+<link href="/atom.xml" rel="alternate" title="Rexdf" type="application/atom+xml">
+<script src="/javascripts/libs/jquery.min.js"></script>
+<script src="/javascripts/octopress-rexdf.min.js" type="text/javascript"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+      
+      toggle_theme();
+  });
+</script>
+<script type="text/javascript" async src="https://static.rexdf.org/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript">var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-55590409-1"]),_gaq.push(["_trackPageview"]),function(){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(t,e)}()</script>
+<script>var _hmt=_hmt||[];!function(){var e=document.createElement("script");e.src="//hm.baidu.com/hm.js?32192d95b89fbefa0875c4c95adb1412";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}()</script>
+<script src="/javascripts/fancybox/jquery.fancybox.pack.js"></script>
+<link rel="stylesheet" type="text/css" href="/javascripts/fancybox/jquery.fancybox.css">
+<script type="text/javascript">var _paq=_paq||[];_paq.push(["trackPageView"]),_paq.push(["enableLinkTracking"]),function(){var e="https://analytics.rexdf.net/";_paq.push(["setTrackerUrl",e+"piwik.php"]),_paq.push(["setSiteId","1"]);var a=document,t=a.createElement("script"),p=a.getElementsByTagName("script")[0];t.type="text/javascript",t.async=!0,t.defer=!0,t.src=e+"piwik.js",p.parentNode.insertBefore(t,p)}()</script>
+</head>
+<body class="low-contrast-linen-wptouch-bg">
+<header role="banner"><hgroup>
+<h1 id="header-title"><a href="/">Rexdf</a></h1>
+<h2 id="subtitle">The devil is in the Details.</h2>
+</hgroup>
+</header>
+<nav role="navigation"><ul class="subscription" data-subscription="rss">
+<li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+</ul>
+<form action="https://google.com/search" method="get">
+<fieldset role="search">
+<input type="hidden" name="q" value="site:i.rexdf.org">
+<input class="search" type="text" name="q" results="0" placeholder="Search">
+</fieldset>
+</form>
+<ul class="main-navigation">
+<li><a href="/">Blog</a></li>
+<li><a href="/blog/archives/">Archives</a></li>
+<li><a href="/idea/">Idea</a></li>
+<li><a href="/share/">Share</a></li>
+<li><a href="/books/">Books</a></li>
+<li><a href="/donate/">Donate</a></li>
+<li><a target="_blank" href="https://blog.rexdf.org" style="font-family:Shadows Into Light">Main-Blog</a></li>
+</ul>
+</nav>
+<div id="main">
+<div id="content">
+<div>
+<article class="hentry" role="article">
+<header>
+<h1 class="entry-title">如何扩展群晖的basic分区容量</h1>
+<p class="meta">
+<time class="data-article month-11 season-autumn" datetime="2020-11-11T22:28:32+08:00" pubdate><span class="month">Nov</span> <span class="day">11th</span> <span class="year">2020</span></time>
+| <a href="#disqus_thread" data-disqus-identifier="https://i.rexdf.org">Comments</a>
+</p>
+</header>
+<div class="entry-content"><ul class="markdown-toc">
+<li><a href="#section">1. 磁盘对拷</a></li>
+<li><a href="#section-1">2. 测试群晖开机</a></li>
+<li><a href="#section-2">3. 修改分区大小</a></li>
+<li><a href="#section-5">3.4 参考资料</a></li>
+</ul>
+<p>美亚买了一个14T的硬盘，经历两周从德国邮寄收到了。拆出硬盘，准备换入群晖，发现硬盘分区已经没有了，最小的那个分区是一个4T的硬盘，而且是当初的第一个硬盘，上面有群晖的系统分区。</p>
+<p>本文主要记录操作过程，总时间不长，白天在上班，大概花了大概11+3个小时完成从4T到14T无损迁移，并且被群晖系统识别为全部容量。</p>
+<h3 id="section">1. 磁盘对拷</h3>
+<p>这个工具大概比较多，我用的Diskgenius，用的双盘位的硬盘盒, 直接 工具 -&gt; 克隆磁盘 -&gt; 源磁盘选4T那个盘，目标磁盘选14T的磁盘，复制所有扇区。</p>
+<p>一看时间需要12个小时，我就睡觉去了，早上起来，刚好拷完，用了大概11个小时。</p>
+<h3 id="section-1">2. 测试群晖开机</h3>
+<p>14T的磁盘插入群晖，可以正常开机。 似乎问题解决了，<strong>然而群晖只能识别成4T</strong>。 在群晖系统网页里面试了下，没有扩展按钮。</p>
+<h3 id="section-2">3. 修改分区大小</h3>
+<p>因为当初对这台群晖定位是灵活，都是用的basic btrfs建立的分区。群晖关机，拔下硬盘，用便携的硬盘盒插入PC，diskgenius只能识别出里面的一个EXT4分区，另外的几个分区似乎没法识别Linux Raid分区</p>
+<p><img src="/images/synology_partitions.png" alt="synology partitions" class="center fancybox"></p>
+<h4 id="ubuntu">3.1 用Ubuntu挂载</h4>
+<p>无奈只能用Linux挂载了，虽然用虚拟机大概也可以。但是我这里刚好有一台物理机，所以就把硬盘盒弹出插入Ubuntu系统了。</p>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div></pre></td><td class="main code"><pre><div class="line plain">mdadm --readwrite /dev/md3
+</div><div class="line plain">dmsetup remove_all
+</div></pre></td></tr></table></div></figure></notextile></div>
+<h4 id="section-3">3.2 修改分区大小</h4>
+<p>先尝试了下面的命令。</p>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div></pre></td><td class="main code"><pre><div class="line plain">mdadm --grow --size max /dev/md3
+</div><div class="line plain">resize2fs /dev/md3
+</div></pre></td></tr></table></div></figure></notextile></div>
+<p>第一条命令提示扩展raid到了3.6T，这显然不是我要的。</p>
+<p>用fdisk -l 看了下</p>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div><div data-line="5" class="line-number"></div><div data-line="6" class="line-number"></div><div data-line="7" class="line-number"></div><div data-line="8" class="line-number"></div><div data-line="9" class="line-number"></div><div data-line="10" class="line-number"></div><div data-line="11" class="line-number"></div><div data-line="12" class="line-number"></div><div data-line="13" class="line-number"></div><div data-line="14" class="line-number"></div><div data-line="15" class="line-number"></div><div data-line="16" class="line-number"></div><div data-line="17" class="line-number"></div><div data-line="18" class="line-number"></div></pre></td><td class="main code"><pre><div class="line plain">Disk /dev/sdd：12.75 TiB，14000519643136 字节，27344764928 个扇区
+</div><div class="line plain">Disk model: WDC WD140abcd-xx
+</div><div class="line plain">单元：扇区 / 1 * 512 = 512 字节
+</div><div class="line plain">扇区大小(逻辑/物理)：512 字节 / 4096 字节
+</div><div class="line plain">I/O 大小(最小/最佳)：4096 字节 / 4096 字节
+</div><div class="line plain">磁盘标签类型：gpt
+</div><div class="line plain">磁盘标识符：00000000-0000-0000-0000-000000000000
+</div><div class="line plain"> </div><div class="line plain">设备          起点       末尾       扇区  大小 类型
+</div><div class="line plain">/dev/sdd1     2048    4982527    4980480  2.4G Linux RAID
+</div><div class="line plain">/dev/sdd2  4982528    9176831    4194304    2G Linux RAID
+</div><div class="line plain">/dev/sdd3  9437184 7813832351 7804395168  3.6T Linux RAID
+</div><div class="line plain"> </div><div class="line plain"> </div><div class="line plain">Disk /dev/md3：3.65 TiB，3995849261056 字节，7804393088 个扇区
+</div><div class="line plain">单元：扇区 / 1 * 512 = 512 字节
+</div><div class="line plain">扇区大小(逻辑/物理)：512 字节 / 4096 字节
+</div><div class="line plain">I/O 大小(最小/最佳)：4096 字节 / 4096 字节
+</div></pre></td></tr></table></div></figure></notextile></div>
+<p>好家伙，分区只有3.6T，再怎么扩展肯定都是扩展不上去了。解决办法也是很简单，直接强行改分区大小好了。试了下fdisk，没找到改分区大小的命令。然后试了下gparted，这个图形界面的工具。可以修改分区前后的空闲空间大小，好像也没法改变分区自己的大小。(其实用diskgenius拷贝完毕，就想过改分区大小，diskgenius菜单是灰色的(我是付费高级版本))。 最后大小parted命令好像支持，也很简单。</p>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div><div data-line="5" class="line-number"></div><div data-line="6" class="line-number"></div><div data-line="7" class="line-number"></div><div data-line="8" class="line-number"></div><div data-line="9" class="line-number"></div><div data-line="10" class="line-number"></div><div data-line="11" class="line-number"></div><div data-line="12" class="line-number"></div><div data-line="13" class="line-number"></div><div data-line="14" class="line-number"></div><div data-line="15" class="line-number"></div><div data-line="16" class="line-number"></div><div data-line="17" class="line-number"></div><div data-line="18" class="line-number"></div><div data-line="19" class="line-number"></div><div data-line="20" class="line-number"></div><div data-line="21" class="line-number"></div><div data-line="22" class="line-number"></div><div data-line="23" class="line-number"></div><div data-line="24" class="line-number"></div><div data-line="25" class="line-number"></div><div data-line="26" class="line-number"></div><div data-line="27" class="line-number"></div><div data-line="28" class="line-number"></div><div data-line="29" class="line-number"></div><div data-line="30" class="line-number"></div><div data-line="31" class="line-number"></div><div data-line="32" class="line-number"></div><div data-line="33" class="line-number"></div></pre></td><td class="main code"><pre><div class="line plain">parted /dev/sdd
+</div><div class="line plain">root@xxxx:~# parted /dev/sdd
+</div><div class="line plain">GNU Parted 3.3
+</div><div class="line plain">使用 /dev/sdd
+</div><div class="line plain">欢迎使用 GNU Parted！输入 'help' 来查看命令列表。
+</div><div class="line plain">(parted) print
+</div><div class="line plain">型号：ATA WDC WD140abcd-xx (scsi)
+</div><div class="line plain">磁盘 /dev/sdd: 14.0TB
+</div><div class="line plain">扇区大小 (逻辑/物理)：512B/4096B
+</div><div class="line plain">分区表：gpt
+</div><div class="line plain">磁盘标志：
+</div><div class="line plain"> </div><div class="line plain">编号  起始点  结束点  大小    文件系统        名称  标志
+</div><div class="line plain"> 1    1049kB  2551MB  2550MB  ext4                  raid
+</div><div class="line plain"> 2    2551MB  4699MB  2147MB  linux-swap(v1)        raid
+</div><div class="line plain"> 3    4832MB  4001GB  3996GB                        raid
+</div><div class="line plain"> </div><div class="line plain">(parted) resizepart
+</div><div class="line plain">分区编号？ 3
+</div><div class="line plain">结束点？  [4001GB]? 14.0TB
+</div><div class="line plain">(parted) print
+</div><div class="line plain">型号：ATA WDC WD140abcd-xx (scsi)
+</div><div class="line plain">磁盘 /dev/sdd: 14.0TB
+</div><div class="line plain">扇区大小 (逻辑/物理)：512B/4096B
+</div><div class="line plain">分区表：gpt
+</div><div class="line plain">磁盘标志：
+</div><div class="line plain"> </div><div class="line plain">编号  起始点  结束点  大小    文件系统        名称  标志
+</div><div class="line plain"> 1    1049kB  2551MB  2550MB  ext4                  raid
+</div><div class="line plain"> 2    2551MB  4699MB  2147MB  linux-swap(v1)        raid
+</div><div class="line plain"> 3    4832MB  14.0TB  14.0TB                        raid
+</div><div class="line plain"> </div><div class="line plain">(parted) quit
+</div></pre></td></tr></table></div></figure></notextile></div>
+<p>用fdisk看了下</p>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div><div data-line="5" class="line-number"></div><div data-line="6" class="line-number"></div><div data-line="7" class="line-number"></div><div data-line="8" class="line-number"></div><div data-line="9" class="line-number"></div><div data-line="10" class="line-number"></div><div data-line="11" class="line-number"></div><div data-line="12" class="line-number"></div><div data-line="13" class="line-number"></div><div data-line="14" class="line-number"></div><div data-line="15" class="line-number"></div><div data-line="16" class="line-number"></div><div data-line="17" class="line-number"></div><div data-line="18" class="line-number"></div></pre></td><td class="main code"><pre><div class="line plain">Disk /dev/sdd：12.75 TiB，14000519643136 字节，27344764928 个扇区
+</div><div class="line plain">Disk model: WDC WD140abcd-xx
+</div><div class="line plain">单元：扇区 / 1 * 512 = 512 字节
+</div><div class="line plain">扇区大小(逻辑/物理)：512 字节 / 4096 字节
+</div><div class="line plain">I/O 大小(最小/最佳)：4096 字节 / 4096 字节
+</div><div class="line plain">磁盘标签类型：gpt
+</div><div class="line plain">磁盘标识符：00000000-0000-0000-0000-000000000000
+</div><div class="line plain"> </div><div class="line plain">设备          起点        末尾        扇区  大小 类型
+</div><div class="line plain">/dev/sdd1     2048     4982527     4980480  2.4G Linux RAID
+</div><div class="line plain">/dev/sdd2  4982528     9176831     4194304    2G Linux RAID
+</div><div class="line plain">/dev/sdd3  9437184 27343750000 27334312817 12.7T Linux RAID
+</div><div class="line plain"> </div><div class="line plain"> </div><div class="line plain">Disk /dev/md3：3.65 TiB，3995849277440 字节，7804393120 个扇区
+</div><div class="line plain">单元：扇区 / 1 * 512 = 512 字节
+</div><div class="line plain">扇区大小(逻辑/物理)：512 字节 / 4096 字节
+</div><div class="line plain">I/O 大小(最小/最佳)：4096 字节 / 4096 字节
+</div></pre></td></tr></table></div></figure></notextile></div>
+<p>分区层面似乎解决了</p>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div><div data-line="5" class="line-number"></div><div data-line="6" class="line-number"></div></pre></td><td class="main code"><pre><div class="line plain">root@xxxx:~# mdadm --grow --size max /dev/md3
+</div><div class="line plain">mdadm: component size of /dev/md3 has been set to 13667155384K
+</div><div class="line plain">root@xxxx:~# resize2fs /dev/md3
+</div><div class="line plain">resize2fs 1.45.5 (07-Jan-2020)
+</div><div class="line plain">resize2fs: 超级块中的幻数有错 尝试打开 /dev/md3 时
+</div><div class="line plain">找不到有效的文件系统超级块。
+</div></pre></td></tr></table></div></figure></notextile></div>
+<p>为了安心用<code>mount /dev/md3 /mnt</code> 然后看了下，文件都还在。于是<code>umount /mnt</code>,拔下硬盘。</p>
+<h4 id="section-4">3.3 群晖扩展分区</h4>
+<p>拔下硬盘插入群晖，开机。一看还是4T，但是磁盘管理里面多了一个扩展按钮，点一下就变成了12.22T了 。至此问题完美解决，无损迁移4T到14T了。</p>
+<h3 id="section-5">3.4 参考资料</h3>
+<ol>
+<li><a href="https://www.synology.com/en-us/knowledgebase/DSM/tutorial/Storage/How_can_I_recover_data_from_my_DiskStation_using_a_PC" target="_blank">How can I recover data on my Synology NAS using a PC?</a></li>
+<li><a href="https://www.tecmint.com/parted-command-to-create-resize-rescue-linux-disk-partitions/" target="_blank">8 Linux ‘Parted’ Commands to Create, Resize and Rescue Disk Partitions</a></li>
+</ol>
+</div>
+<footer>
+<p class="meta">
+<span class="byline author vcard">Posted by <span class="fn">Rexdf</span></span>
+<time class="data-article month-11 season-autumn" datetime="2020-11-11T22:28:32+08:00" pubdate><span class="month">Nov</span> <span class="day">11th</span> <span class="year">2020</span></time>
+<span class="categories">
+<a class="category" href="/blog/categories/synology/">Synology</a>, <a class="category" href="/blog/categories/ri-chang/">日常</a>
+</span>
+</p>
+<div class="sharing">
+</div>
+<p class="meta">
+<a class="basic-alignment left" href="/blog/2020/09/20/shu-mei-pai-bi-ji/" title="Previous Post: 树莓派笔记">&laquo; 树莓派笔记</a>
+<a class="basic-alignment right" href="/blog/2020/11/15/lun-yan-du-yu-shen-du/" title="Next Post: 论广度与深度">论广度与深度 &raquo;</a>
+</p>
+</footer>
+</article>
+<section>
+<h1>Comments</h1>
+<div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
+</div>
+<aside class="sidebar">
+<section>
+<h1>Categories</h1>
+<ul id="categories">
+<li class="category"><a href="/blog/categories/acm/">ACM <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/algorithm/">Algorithm <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/assembly/">Assembly <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/cygwin/">Cygwin <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/gnu/">GNU <sup>8</sup></a></li>
+<li class="category"><a href="/blog/categories/math/">Math <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/octopress/">Octopress <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/programming/">Programming <sup>6</sup></a></li>
+<li class="category"><a href="/blog/categories/security/">Security <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sublime/">Sublime <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/synology/">Synology <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sysadmin/">SysAdmin <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/web/">Web <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/windows/">Windows <sup>7</sup></a></li>
+<li class="category"><a href="/blog/categories/proxmox/">proxmox <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/ri-chang/">日常 <sup>37</sup></a></li>
+</ul>
+</section>
+<section>
+<h1>Recent Posts</h1>
+<ul id="recent_posts">
+<li class="post">
+<a href="/blog/2024/12/16/fu-wu-qi-wa-kuang-bing-du-de-cha-sha/">服务器挖矿病毒的查杀</a>
+</li>
+<li class="post">
+<a href="/blog/2021/07/11/apple-m1-bian-yi-tensorflow/">Apple M1 编译tensorflow</a>
+</li>
+<li class="post">
+<a href="/blog/2021/02/27/chromiumbian-ma-qi-wen-ti/">Chromium编码器问题</a>
+</li>
+<li class="post">
+<a href="/blog/2020/12/13/proxmoxbi-ji/">Proxmox笔记</a>
+</li>
+<li class="post">
+<a href="/blog/2020/11/15/lun-yan-du-yu-shen-du/">论广度与深度</a>
+</li>
+</ul>
+</section>
+<section>
+<iframe frameborder="0" scrolling="no" referrerpolicy="unsafe-url" style="width:283px;height:200px" src="https://t.rexdf.org/?m=app&a=showwidget&name=rexdf&type=1&width=283px&height=500px"></iframe>
+</section>
+<section>
+<h1>GitHub Repos</h1>
+<ul id="gh_repos">
+<li class="loading">Status updating...</li>
+</ul>
+<a href="https://github.com/rexdf">@rexdf</a> on GitHub
+<script type="text/javascript">$(document).ready(function(){if(!window.jXHR){var e=document.createElement("script");e.type="text/javascript",e.src="/javascripts/libs/jXHR.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}github.showRepos({user:"rexdf",count:0,skip_forks:!0,target:"#gh_repos"})})</script>
+</section>
+</aside>
+</div>
+</div>
+<footer role="contentinfo"><p>
+<span class="credit">Copyright &copy; 2024 - Rexdf -</span> |
+<span class="credit">Powered by <a name="bottoms" target="_blank" href="http://octopress.org">Octopress</a></span> |
+<span class="credit">Theme by ：<a href="https://blog.rexdf.org/" target="_blank" rel="theme">Rexdf</a></span> |
+<span class="credit">Host by：<a href="https://github.com/" target="_blank" rel="host">Github.com</a></span> |
+<span class="credit">版权声明：<a href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" target="_blank" rel="license">CC BY-NC-SA 3.0</a><img src="https://analytics.rexdf.net/piwik.php?idsite=1&amp;rec=1" style="border:0" alt="" referrerpolicy="no-referrer-when-downgrade"></span>|
+<span class="credit"><a href="/sitemap.xml" rel="sitemap">sitemap</a></span>
+</p>
+<script type="text/javascript" src="https://tajs.qq.com/stats?sId=30296377" charset="UTF-8"></script>
+</footer>
+<script type="text/javascript">var disqus_shortname="rexdf",disqus_identifier="https://i.rexdf.org/blog/2020/11/11/ru-he-kuo-zhan-qun-hui-de-basicfen-qu-rong-liang/",disqus_url="https://i.rexdf.org/blog/2020/11/11/ru-he-kuo-zhan-qun-hui-de-basicfen-qu-rong-liang/",disqus_script="embed.js";!function(){var e=document.createElement("script");e.type="text/javascript",e.async=!0,e.src="//"+disqus_shortname+".disqus.com/"+disqus_script,(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(e)}()</script>
+<script type="text/javascript">$(function(){$(".entry-content").each(function(t){var r=t;$(this).find("img.fancybox").each(function(){var t=$(this),a=t.attr("title"),n=t.attr("class");t.removeAttr("class"),t.wrap('<a href="'+this.src+'" class="'+n+'" rel="gallery'+r+'" />'),""!=a&&t.parent().attr("title",a)})}),$(".fancybox").fancybox()})</script>
+</body>
+</html>

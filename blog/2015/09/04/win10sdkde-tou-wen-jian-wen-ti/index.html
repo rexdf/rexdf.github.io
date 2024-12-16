@@ -1,0 +1,236 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<script type="text/javascript">var _speedMark=new Date</script>
+<meta charset="utf-8">
+<title>Win10SDK的头文件问题 - Rexdf</title>
+<meta name="author" content="Rexdf">
+<meta name="description" content="起因是在Win10上面ycmd补全Windows的头文件没有Win8.1的全了，最明显的就是一堆idl文件没有了。然后我折腾了一会ycm_extra_conf.py，发现问题的关键在于clang上。 clang是我自己从源码编译3.8.0版本。执行clang -v -E -x c++ -得如下内容 &hellip;">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' data: https://hm.baidu.com https://tajs.qq.com https://ssl.google-analytics.com https://static.rexdf.org https://*.disquscdn.com https://rexdf.disqus.com https://api.github.com https://ssl.google-analytics.com https://disqus.com https://analytics.rexdf.net; connect-src 'self' https://static.rexdf.org https://analytics.rexdf.net https://hm.baidu.com; img-src data: https://*; font-src data: https://*; child-src 'none'; style-src 'self' 'unsafe-inline' https://*; frame-src 'self' https://t.rexdf.org http://t.rexdf.org https://rexdf.disqus.com https://disqus.com">
+<link rel="canonical" href="https://i.rexdf.org/blog/2015/09/04/win10sdkde-tou-wen-jian-wen-ti">
+<link rel="dns-prefetch" href="https://static.rexdf.org/">
+<link href="/favicon.ico" rel="icon">
+<link id="main-css" href="/stylesheets/screen.css" media="screen,projection" rel="stylesheet" type="text/css" title="pc">
+<link href="/stylesheets/screen_mobile.css" rel="alternate stylesheet" type="text/css" title="mobile">
+<link href="/atom.xml" rel="alternate" title="Rexdf" type="application/atom+xml">
+<script src="/javascripts/libs/jquery.min.js"></script>
+<script src="/javascripts/octopress-rexdf.min.js" type="text/javascript"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+      
+      toggle_theme();
+  });
+</script>
+<script type="text/javascript" async src="https://static.rexdf.org/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript">var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-55590409-1"]),_gaq.push(["_trackPageview"]),function(){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(t,e)}()</script>
+<script>var _hmt=_hmt||[];!function(){var e=document.createElement("script");e.src="//hm.baidu.com/hm.js?32192d95b89fbefa0875c4c95adb1412";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}()</script>
+<script src="/javascripts/fancybox/jquery.fancybox.pack.js"></script>
+<link rel="stylesheet" type="text/css" href="/javascripts/fancybox/jquery.fancybox.css">
+<script type="text/javascript">var _paq=_paq||[];_paq.push(["trackPageView"]),_paq.push(["enableLinkTracking"]),function(){var e="https://analytics.rexdf.net/";_paq.push(["setTrackerUrl",e+"piwik.php"]),_paq.push(["setSiteId","1"]);var a=document,t=a.createElement("script"),p=a.getElementsByTagName("script")[0];t.type="text/javascript",t.async=!0,t.defer=!0,t.src=e+"piwik.js",p.parentNode.insertBefore(t,p)}()</script>
+</head>
+<body class="low-contrast-linen-wptouch-bg">
+<header role="banner"><hgroup>
+<h1 id="header-title"><a href="/">Rexdf</a></h1>
+<h2 id="subtitle">The devil is in the Details.</h2>
+</hgroup>
+</header>
+<nav role="navigation"><ul class="subscription" data-subscription="rss">
+<li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+</ul>
+<form action="https://google.com/search" method="get">
+<fieldset role="search">
+<input type="hidden" name="q" value="site:i.rexdf.org">
+<input class="search" type="text" name="q" results="0" placeholder="Search">
+</fieldset>
+</form>
+<ul class="main-navigation">
+<li><a href="/">Blog</a></li>
+<li><a href="/blog/archives/">Archives</a></li>
+<li><a href="/idea/">Idea</a></li>
+<li><a href="/share/">Share</a></li>
+<li><a href="/books/">Books</a></li>
+<li><a href="/donate/">Donate</a></li>
+<li><a target="_blank" href="https://blog.rexdf.org" style="font-family:Shadows Into Light">Main-Blog</a></li>
+</ul>
+</nav>
+<div id="main">
+<div id="content">
+<div>
+<article class="hentry" role="article">
+<header>
+<h1 class="entry-title">Win10SDK的头文件问题</h1>
+<p class="meta">
+<time class="data-article month-09 season-autumn" datetime="2015-09-04T16:29:12+08:00" pubdate><span class="month">Sep</span> <span class="day">4th</span> <span class="year">2015</span></time>
+| <a href="#disqus_thread" data-disqus-identifier="https://i.rexdf.org">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>起因是在Win10上面ycmd补全Windows的头文件没有Win8.1的全了，最明显的就是一堆idl文件没有了。然后我折腾了一会ycm_extra_conf.py，发现问题的关键在于clang上。
+</p>
+<p>clang是我自己从源码编译3.8.0版本。执行<code>clang -v -E -x c++ -</code>得如下内容:</p>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption>command<a href="http://blog.rexdf.org">MyBlog</a></figcaption><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div><div data-line="5" class="line-number"></div><div data-line="6" class="line-number"></div><div data-line="7" class="line-number"></div><div data-line="8" class="line-number"></div><div data-line="9" class="line-number"></div><div data-line="10" class="line-number"></div><div data-line="11" class="line-number"></div><div data-line="12" class="line-number"></div><div data-line="13" class="line-number"></div><div data-line="14" class="line-number"></div><div data-line="15" class="line-number"></div><div data-line="16" class="line-number"></div><div data-line="17" class="line-number"></div><div data-line="18" class="line-number"></div><div data-line="19" class="line-number"></div><div data-line="20" class="line-number"></div><div data-line="21" class="line-number"></div></pre></td><td class="main code"><pre><div class="line bat">X:\llvim<span class="m">3</span>.<span class="m">8</span>.<span class="m">0</span>\bin<span class="p">&gt;</span><span class="n">clang</span> -v -E -x c++ -
+</div><div class="line bat">clang version <span class="m">3</span>.<span class="m">8</span>.<span class="m">0</span> (trunk <span class="m">246839</span>)
+</div><div class="line bat">Target: x<span class="m">86</span>_<span class="m">64</span>-pc-windows-msvc
+</div><div class="line bat">Thread model: posix
+</div><div class="line bat">InstalledDir: X:\llvim<span class="m">3</span>.<span class="m">8</span>.<span class="m">0</span>\bin
+</div><div class="line bat"> <span class="s2">&quot;X:\\llvim3.8.0\\bin\\clang.exe&quot;</span> -cc<span class="m">1</span> -triple x<span class="m">86</span>_<span class="m">64</span>-pc-windows-msvc<span class="m">18</span>.<span class="m">0</span>.<span class="m">0</span> -E -disable-free -disable-llvm-verifier -main-file-name - -mrelocation-model pic -pic-level <span class="m">2</span> -mthread
+</div><div class="line bat">-model posix -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x<span class="m">86-64</span> -momit-leaf-frame-pointer -v -dwarf-column-info -resource-dir &quot;X:\\llvim<span class="m">3</span>.<span class="m">8</span>.<span class="m">0</span>\\bi
+</div><div class="line bat">n\\..\\lib\\clang\\<span class="m">3</span>.<span class="m">8</span>.<span class="m">0</span><span class="s2">&quot; -internal-isystem &quot;</span>X:\\llvim<span class="m">3</span>.<span class="m">8</span>.<span class="m">0</span>\\bin\\..\\lib\\clang\\<span class="m">3</span>.<span class="m">8</span>.<span class="m">0</span>\\include<span class="s2">&quot; -internal-isystem &quot;</span>C:\\Program Files (x<span class="m">86</span>)\\Microsoft Visual Studio <span class="m">14</span>.<span class="m">0</span>\\VC\\in
+</div><div class="line bat">clude<span class="s2">&quot; -internal-isystem &quot;</span>C:\\Program Files (x<span class="m">86</span>)\\Windows Kits\\<span class="m">10</span>\\include\\shared<span class="s2">&quot; -internal-isystem &quot;</span>C:\\Program Files (x<span class="m">86</span>)\\Windows Kits\\<span class="m">10</span>\\include\\um<span class="s2">&quot; -internal-isystem &quot;</span>C:\\Progr
+</div><div class="line bat">am Files (x<span class="m">86</span>)\\Windows Kits\\<span class="m">10</span>\\include\\winrt<span class="s2">&quot; -fdeprecated-macro -fdebug-compilation-dir &quot;</span>X:\\llvim<span class="m">3</span>.<span class="m">8</span>.<span class="m">0</span>\\bin&quot; -ferror-limit <span class="m">19</span> -fmessage-length <span class="m">189</span> -mstackrealign -fms-exten
+</div><div class="line bat">sions -fms-compatibility -fms-compatibility-version<span class="o">=</span><span class="m">18</span> -std<span class="o">=</span>c++<span class="m">11</span> -fno-threadsafe-statics -fdelayed-template-parsing -fobjc-runtime<span class="o">=</span>gcc -fdiagnostics-show-option -fcolor-diagnostics -o - -x
+</div><div class="line bat"> c++ -
+</div><div class="line bat">clang -cc<span class="m">1</span> version <span class="m">3</span>.<span class="m">8</span>.<span class="m">0</span> based upon LLVM <span class="m">3</span>.<span class="m">8</span>.<span class="m">0</span>svn default target x<span class="m">86</span>_<span class="m">64</span>-pc-windows-msvc
+</div><div class="line bat">ignoring nonexistent directory <span class="s2">&quot;C:\Program Files (x86)\Windows Kits\10\include\shared&quot;</span>
+</div><div class="line bat">ignoring nonexistent directory <span class="s2">&quot;C:\Program Files (x86)\Windows Kits\10\include\um&quot;</span>
+</div><div class="line bat">ignoring nonexistent directory <span class="s2">&quot;C:\Program Files (x86)\Windows Kits\10\include\winrt&quot;</span>
+</div><div class="line bat">#include <span class="s2">&quot;...&quot;</span> search starts here:
+</div><div class="line bat">#include &lt;...<span class="p">&gt;</span> <span class="n">search</span> starts here:
+</div><div class="line bat"> X:\llvim<span class="m">3</span>.<span class="m">8</span>.<span class="m">0</span>\bin\..\lib\clang\<span class="m">3</span>.<span class="m">8</span>.<span class="m">0</span>\include
+</div><div class="line bat"> C:\Program Files (x<span class="m">86</span>)\Microsoft Visual Studio <span class="m">14</span>.<span class="m">0</span>\VC\include
+</div><div class="line bat">End of search list.
+</div></pre></td></tr></table></div></figure></notextile></div>
+<p>去Windows Kits目录里面一看，发现C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\shared这个目录才是对的。</p>
+<p>蹭蹭地跑去llvm社区maillist求助，得到修改<code>clang/lib/Driver/MSVCToolChain.cpp</code>的提示，看来下，要做似乎挺简单。然而我习惯每天更新llvm源码，哪天心情不好就会重新编译，所以改源码似乎不是上策。于是想到了linux每天都做的事情，<code>ln -s</code>啊！</p>
+<p>新建快捷方式，复制进去。不行依然找不到。</p>
+<p>然后依稀记得以前见过NTFS的硬链接和软连接。于是问题迎刃而解了。具体方法参考<a href="http://tilt.lib.tsinghua.edu.cn/node/480" target="_blank">这里</a>。</p>
+<p>下载<a href="http://www.microsoft.com/technet/sysinternals/FileAndDisk/Junction.mspx" target="_blank">Junction</a>，然后<code>junction shared 10.0.10240.0\shared</code>即可，对另外五个目录同样方法。</p>
+<p>再次测试</p>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption>command<a href="http://blog.rexdf.org">MyBlog</a></figcaption><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div><div data-line="5" class="line-number"></div><div data-line="6" class="line-number"></div><div data-line="7" class="line-number"></div><div data-line="8" class="line-number"></div><div data-line="9" class="line-number"></div><div data-line="10" class="line-number"></div><div data-line="11" class="line-number"></div><div data-line="12" class="line-number"></div><div data-line="13" class="line-number"></div><div data-line="14" class="line-number"></div><div data-line="15" class="line-number"></div><div data-line="16" class="line-number"></div><div data-line="17" class="line-number"></div><div data-line="18" class="line-number"></div><div data-line="19" class="line-number"></div><div data-line="20" class="line-number"></div><div data-line="21" class="line-number"></div></pre></td><td class="main code"><pre><div class="line bat">X:\\llvim<span class="m">3</span>.<span class="m">8</span>.<span class="m">0</span>\bin<span class="p">&gt;</span><span class="n">clang</span> -v -E -x c++ -
+</div><div class="line bat">clang version <span class="m">3</span>.<span class="m">8</span>.<span class="m">0</span> (trunk <span class="m">246839</span>)
+</div><div class="line bat">Target: x<span class="m">86</span>_<span class="m">64</span>-pc-windows-msvc
+</div><div class="line bat">Thread model: posix
+</div><div class="line bat">InstalledDir: X:\llvim<span class="m">3</span>.<span class="m">8</span>.<span class="m">0</span>\bin
+</div><div class="line bat"> <span class="s2">&quot;X:\\llvim3.8.0\\bin\\clang.exe&quot;</span> -cc<span class="m">1</span> -triple x<span class="m">86</span>_<span class="m">64</span>-pc-windows-msvc<span class="m">18</span>.<span class="m">0</span>.<span class="m">0</span> -E -disable-free -disable-llvm-verifier -main-file-name - -mrelocation-model pic -pic-level <span class="m">2</span> -mthread
+</div><div class="line bat">-model posix -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x<span class="m">86-64</span> -momit-leaf-frame-pointer -v -dwarf-column-info -resource-dir &quot;X:\\llvim<span class="m">3</span>.<span class="m">8</span>.<span class="m">0</span>\\bi
+</div><div class="line bat">n\\..\\lib\\clang\\<span class="m">3</span>.<span class="m">8</span>.<span class="m">0</span><span class="s2">&quot; -internal-isystem &quot;</span>X:\\llvim<span class="m">3</span>.<span class="m">8</span>.<span class="m">0</span>\\bin\\..\\lib\\clang\\<span class="m">3</span>.<span class="m">8</span>.<span class="m">0</span>\\include<span class="s2">&quot; -internal-isystem &quot;</span>C:\\Program Files (x<span class="m">86</span>)\\Microsoft Visual Studio <span class="m">14</span>.<span class="m">0</span>\\VC\\in
+</div><div class="line bat">clude<span class="s2">&quot; -internal-isystem &quot;</span>C:\\Program Files (x<span class="m">86</span>)\\Windows Kits\\<span class="m">10</span>\\include\\shared<span class="s2">&quot; -internal-isystem &quot;</span>C:\\Program Files (x<span class="m">86</span>)\\Windows Kits\\<span class="m">10</span>\\include\\um<span class="s2">&quot; -internal-isystem &quot;</span>C:\\Progr
+</div><div class="line bat">am Files (x<span class="m">86</span>)\\Windows Kits\\<span class="m">10</span>\\include\\winrt<span class="s2">&quot; -fdeprecated-macro -fdebug-compilation-dir &quot;</span>X:\\llvim<span class="m">3</span>.<span class="m">8</span>.<span class="m">0</span>\\bin&quot; -ferror-limit <span class="m">19</span> -fmessage-length <span class="m">189</span> -mstackrealign -fms-exten
+</div><div class="line bat">sions -fms-compatibility -fms-compatibility-version<span class="o">=</span><span class="m">18</span> -std<span class="o">=</span>c++<span class="m">11</span> -fno-threadsafe-statics -fdelayed-template-parsing -fobjc-runtime<span class="o">=</span>gcc -fdiagnostics-show-option -fcolor-diagnostics -o - -x
+</div><div class="line bat"> c++ -
+</div><div class="line bat">clang -cc<span class="m">1</span> version <span class="m">3</span>.<span class="m">8</span>.<span class="m">0</span> based upon LLVM <span class="m">3</span>.<span class="m">8</span>.<span class="m">0</span>svn default target x<span class="m">86</span>_<span class="m">64</span>-pc-windows-msvc
+</div><div class="line bat">#include <span class="s2">&quot;...&quot;</span> search starts here:
+</div><div class="line bat">#include &lt;...<span class="p">&gt;</span> <span class="n">search</span> starts here:
+</div><div class="line bat"> X:\llvim<span class="m">3</span>.<span class="m">8</span>.<span class="m">0</span>\bin\..\lib\clang\<span class="m">3</span>.<span class="m">8</span>.<span class="m">0</span>\include
+</div><div class="line bat"> C:\Program Files (x<span class="m">86</span>)\Microsoft Visual Studio <span class="m">14</span>.<span class="m">0</span>\VC\include
+</div><div class="line bat"> C:\Program Files (x<span class="m">86</span>)\Windows Kits\<span class="m">10</span>\include\shared
+</div><div class="line bat"> C:\Program Files (x<span class="m">86</span>)\Windows Kits\<span class="m">10</span>\include\um
+</div><div class="line bat"> C:\Program Files (x<span class="m">86</span>)\Windows Kits\<span class="m">10</span>\include\winrt
+</div><div class="line bat">End of search list.
+</div></pre></td></tr></table></div></figure></notextile></div>
+<p>然后ycmd就可以在Windows上面补全Win10 Kits的头文件了。</p>
+<p>补充:</p>
+<p>刚刚发现实际上<code>mklink</code>可以干同样的事情。</p>
+<p>Windows里面“连接”分四种：硬链接(Hard link)、联接(针对目录,Directory Junction)、符号连接(symbolic link)、快捷方式(Shortcut).前三种对应于mklink的三种参数 <code>/h</code> <code>/j</code> <code>/d</code> 。而且mklink是vista以后系统自带的。这样就方便很多了。对于本文的问题用 <code>mklink /j</code> 即可。</p>
+<p>而广为人知的快捷方式，实际上是*.lnk文件，它内容就是网址或者文件地址(还可以包括快捷方式图标等文本信息)，有大小的一个文本文件，在Windows的文件API上面做了透明处理。似乎没有办法通过普通文本编辑器打开lnk文件而不跳转到它连接的文件。这就是可以把快捷方式到处拷贝剪切和改名。</p>
+<p>而硬链接、联接和符号连接属于NTFS文件系统底层一些的级别的。</p>
+<p>而通过右键属性观察，符号连接和快捷方式几乎一样。区别就是快捷方式可以拷贝到Fat32的优盘，而符号链接则只能存在NTFS文件系统上。</p>
+</div>
+<footer>
+<p class="meta">
+<span class="byline author vcard">Posted by <span class="fn">Rexdf</span></span>
+<time class="data-article month-09 season-autumn" datetime="2015-09-04T16:29:12+08:00" pubdate><span class="month">Sep</span> <span class="day">4th</span> <span class="year">2015</span></time>
+<span class="categories">
+<a class="category" href="/blog/categories/ri-chang/">日常</a>
+</span>
+</p>
+<div class="sharing">
+</div>
+<p class="meta">
+<a class="basic-alignment left" href="/blog/2015/08/31/vmwarexu-ni-ji-zai-yi-dong-ying-pan-shang-de-wen-ti/" title="Previous Post: vmware虚拟机在移动硬盘上的问题">&laquo; vmware虚拟机在移动硬盘上的问题</a>
+<a class="basic-alignment right" href="/blog/2017/11/27/bian-ma-xiao-ji/" title="Next Post: 编码小记">编码小记 &raquo;</a>
+</p>
+</footer>
+</article>
+<section>
+<h1>Comments</h1>
+<div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
+</div>
+<aside class="sidebar">
+<section>
+<h1>Categories</h1>
+<ul id="categories">
+<li class="category"><a href="/blog/categories/acm/">ACM <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/algorithm/">Algorithm <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/assembly/">Assembly <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/cygwin/">Cygwin <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/gnu/">GNU <sup>8</sup></a></li>
+<li class="category"><a href="/blog/categories/math/">Math <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/octopress/">Octopress <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/programming/">Programming <sup>6</sup></a></li>
+<li class="category"><a href="/blog/categories/security/">Security <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sublime/">Sublime <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/synology/">Synology <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sysadmin/">SysAdmin <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/web/">Web <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/windows/">Windows <sup>7</sup></a></li>
+<li class="category"><a href="/blog/categories/proxmox/">proxmox <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/ri-chang/">日常 <sup>37</sup></a></li>
+</ul>
+</section>
+<section>
+<h1>Recent Posts</h1>
+<ul id="recent_posts">
+<li class="post">
+<a href="/blog/2024/12/16/fu-wu-qi-wa-kuang-bing-du-de-cha-sha/">服务器挖矿病毒的查杀</a>
+</li>
+<li class="post">
+<a href="/blog/2021/07/11/apple-m1-bian-yi-tensorflow/">Apple M1 编译tensorflow</a>
+</li>
+<li class="post">
+<a href="/blog/2021/02/27/chromiumbian-ma-qi-wen-ti/">Chromium编码器问题</a>
+</li>
+<li class="post">
+<a href="/blog/2020/12/13/proxmoxbi-ji/">Proxmox笔记</a>
+</li>
+<li class="post">
+<a href="/blog/2020/11/15/lun-yan-du-yu-shen-du/">论广度与深度</a>
+</li>
+</ul>
+</section>
+<section>
+<iframe frameborder="0" scrolling="no" referrerpolicy="unsafe-url" style="width:283px;height:200px" src="https://t.rexdf.org/?m=app&a=showwidget&name=rexdf&type=1&width=283px&height=500px"></iframe>
+</section>
+<section>
+<h1>GitHub Repos</h1>
+<ul id="gh_repos">
+<li class="loading">Status updating...</li>
+</ul>
+<a href="https://github.com/rexdf">@rexdf</a> on GitHub
+<script type="text/javascript">$(document).ready(function(){if(!window.jXHR){var e=document.createElement("script");e.type="text/javascript",e.src="/javascripts/libs/jXHR.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}github.showRepos({user:"rexdf",count:0,skip_forks:!0,target:"#gh_repos"})})</script>
+</section>
+</aside>
+</div>
+</div>
+<footer role="contentinfo"><p>
+<span class="credit">Copyright &copy; 2024 - Rexdf -</span> |
+<span class="credit">Powered by <a name="bottoms" target="_blank" href="http://octopress.org">Octopress</a></span> |
+<span class="credit">Theme by ：<a href="https://blog.rexdf.org/" target="_blank" rel="theme">Rexdf</a></span> |
+<span class="credit">Host by：<a href="https://github.com/" target="_blank" rel="host">Github.com</a></span> |
+<span class="credit">版权声明：<a href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" target="_blank" rel="license">CC BY-NC-SA 3.0</a><img src="https://analytics.rexdf.net/piwik.php?idsite=1&amp;rec=1" style="border:0" alt="" referrerpolicy="no-referrer-when-downgrade"></span>|
+<span class="credit"><a href="/sitemap.xml" rel="sitemap">sitemap</a></span>
+</p>
+<script type="text/javascript" src="https://tajs.qq.com/stats?sId=30296377" charset="UTF-8"></script>
+</footer>
+<script type="text/javascript">var disqus_shortname="rexdf",disqus_identifier="https://i.rexdf.org/blog/2015/09/04/win10sdkde-tou-wen-jian-wen-ti/",disqus_url="https://i.rexdf.org/blog/2015/09/04/win10sdkde-tou-wen-jian-wen-ti/",disqus_script="embed.js";!function(){var e=document.createElement("script");e.type="text/javascript",e.async=!0,e.src="//"+disqus_shortname+".disqus.com/"+disqus_script,(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(e)}()</script>
+<script type="text/javascript">$(function(){$(".entry-content").each(function(t){var r=t;$(this).find("img.fancybox").each(function(){var t=$(this),a=t.attr("title"),n=t.attr("class");t.removeAttr("class"),t.wrap('<a href="'+this.src+'" class="'+n+'" rel="gallery'+r+'" />'),""!=a&&t.parent().attr("title",a)})}),$(".fancybox").fancybox()})</script>
+</body>
+</html>

@@ -1,0 +1,839 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: 日常 | Rexdf]]></title>
+  <link href="https://i.rexdf.org/blog/categories/ri-chang/atom.xml" rel="self"/>
+  <link href="https://i.rexdf.org/"/>
+  <updated>2024-12-16T23:11:13+08:00</updated>
+  <id>https://i.rexdf.org/</id>
+  <author>
+    <name><![CDATA[Rexdf]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[服务器挖矿病毒的查杀]]></title>
+    <link href="https://i.rexdf.org/blog/2024/12/16/fu-wu-qi-wa-kuang-bing-du-de-cha-sha/"/>
+    <updated>2024-12-16T22:58:09+08:00</updated>
+    <id>https://i.rexdf.org/blog/2024/12/16/fu-wu-qi-wa-kuang-bing-du-de-cha-sha</id>
+    <content type="html"><![CDATA[<ul class="markdown-toc">
+  <li><a href="#section">1. 一些病毒域名</a></li>
+  <li><a href="#ip">2. 一些病毒ip</a></li>
+  <li><a href="#ip-v6">3. 一些病毒ip v6</a></li>
+  <li><a href="#section-1">4. 一些病毒代码</a></li>
+</ul>
+
+<p>本文讲了最近一两年遇到的一些挖矿病毒，虽然不知道怎么感染的，但是一直在公司系统中反复进化了几次，还挺有特色，通过谷歌似乎也搜索不到一些域名，本着曝光的目的发一下博客。</p>
+
+<!--more-->
+
+<h1 id="section">1. 一些病毒域名</h1>
+
+<p>应该是一些CC控制器的域名，主要是太有特色，看起来很不像域名，感觉又像是一个大机构的域名</p>
+
+<p>```
+audio.cpi.sh
+audio.pci.sh
+retry.sshd.fail
+service.ssh.run
+gpu.cpi.sh
+gpu.pci.sh
+pid.ssh.run
+init.cpi.sh
+nvidia.cpi.sh
+open.ssh.run
+reboot.sshd.fail
+retry.ssh.run
+eu.sshd.fail
+init.ssh.run
+codex.ssh.run
+irc.sshd.fail
+login.ssh.run
+lib.sshd.fail
+lib.ssh.fail
+sbin.download
+network.sshd.run
+open.sshd.run
+retry.sshd.run
+slot1.pci.sh
+login.sshd.run
+pid.sshd.run
+codex.sshd.run
+init.pci.sh
+error.sshd.run
+eu.ssh.fail
+nvidia.pci.sh
+reboot.ssh.fail
+irc.ssh.fail
+service.sshd.run
+init.sshd.run</p>
+
+<p>```</p>
+
+<h1 id="ip">2. 一些病毒ip</h1>
+
+<p>这些ip大概是病毒的ip</p>
+
+<p><code>
+3.163.125.19
+5.250.178.69
+15.204.198.198
+18.173.117.128
+23.228.66.219
+24.144.68.252
+24.144.69.125
+24.199.68.241
+45.125.0.6
+45.79.33.42
+59.5.106.105
+82.76.255.62
+85.215.204.106
+94.125.182.255
+104.192.7.239
+104.248.100.245
+124.221.5.37
+138.68.113.5
+139.59.206.74
+143.244.208.21
+146.190.4.21
+146.190.12.201
+152.228.218.54
+154.38.114.42
+159.65.136.167
+172.83.156.122
+172.104.170.240
+178.128.242.134
+185.198.56.60
+185.117.74.172
+194.164.174.213
+194.233.80.217
+199.247.27.41
+209.38.6.242
+209.38.174.34
+209.38.180.198
+212.227.166.174
+212.227.231.142
+212.227.239.116
+212.227.241.109
+216.225.202.220
+217.160.36.159
+</code></p>
+
+<h1 id="ip-v6">3. 一些病毒ip v6</h1>
+
+<p><code>
+2a06:3d81:a::2
+2607:8500:154::2
+2a05:9341:11::2
+2610:150:8019::1:a102
+2605:6440:1007::6667
+2604:6600:2000:27::6667
+</code></p>
+
+<h1 id="section-1">4. 一些病毒代码</h1>
+
+<p><code>
+TODO
+主要是进程隐藏
+xmrig挖矿
+开机隐藏
+</code></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Apple M1 编译tensorflow]]></title>
+    <link href="https://i.rexdf.org/blog/2021/07/11/apple-m1-bian-yi-tensorflow/"/>
+    <updated>2021-07-11T16:58:21+08:00</updated>
+    <id>https://i.rexdf.org/blog/2021/07/11/apple-m1-bian-yi-tensorflow</id>
+    <content type="html"><![CDATA[<ul class="markdown-toc">
+  <li><a href="#python">0. python环境</a></li>
+  <li><a href="#bazel">1. bazel版本</a></li>
+  <li><a href="#section">2. 尝试</a></li>
+  <li><a href="#section-1">3. 依赖解决</a>    <ul>
+      <li><a href="#libclang">3.1 libclang</a></li>
+      <li><a href="#numpy">3.2 numpy</a></li>
+      <li><a href="#grpcio">3.3 grpcio</a></li>
+      <li><a href="#h5py">3.4 h5py</a></li>
+    </ul>
+  </li>
+  <li><a href="#section-2">4. 编译</a></li>
+  <li><a href="#bazel-build---configopt-tensorflowtoolspippackagebuildpippackage">bazel build –config=opt //tensorflow/tools/pip_package:build_pip_package</a></li>
+  <li><a href="#section-3">5. 测试</a></li>
+  <li><a href="#tensorflow-metal-pluggabledevice">6. tensorflow-metal PluggableDevice</a></li>
+  <li><a href="#section-4">7. 参考资料</a></li>
+</ul>
+
+<p>本文记录了一个周日下午的日常。想来苹果这M1大概都出来半年了， M2/M1X都开始有传闻了，tensorflow应该支持得差不多了，实际情况似乎还是没有原生的官方二进制release。本文是记录的M1原生的编译，大概还有给Terminal开Rosetta 2 和 <a href="https://github.com/conda-forge/miniforge" target="_blank">Miniforge</a>两种方法本文不讨论.</p>
+
+<!--more-->
+
+<h1 id="python">0. python环境</h1>
+
+<p>M1支持的python版本大概是3.8.5+和python3.9.1+。</p>
+
+<p><code>
+pyenv install 3.8.11
+pyenv virtualenv 3.8.11 tf3811
+pyenv activate tf3811
+pip install -U pip wheel
+</code></p>
+
+<h1 id="bazel">1. bazel版本</h1>
+
+<p>当前tensorflow官网给出最新的支持<a href="https://www.tensorflow.org/install/source#macos" target="_blank">bazel版本是3.7.2</a>，即使是最新的master分支也是锁死在3.99.0版本上，而bazel的<a href="https://github.com/bazelbuild/bazel/releases" target="_blank">release二进制</a>从4.1开始才支持darwin-arm64的二进制release。</p>
+
+<p>所以就打算直接用4.1版本的bazel了。对tensorflow的代码打一个patch。</p>
+
+<p>```
+diff –git a/configure.py b/configure.py
+index 4f096b87550..9f7e16bd29a 100644
+— a/configure.py
++++ b/configure.py
+@@ -50,7 +50,8 @@ _TF_WORKSPACE_ROOT = ‘’
+ _TF_BAZELRC = ‘’
+ _TF_CURRENT_BAZEL_VERSION = None
+ _TF_MIN_BAZEL_VERSION = ‘3.7.2’
+-_TF_MAX_BAZEL_VERSION = ‘3.99.0’
++#_TF_MAX_BAZEL_VERSION = ‘3.99.0’
++_TF_MAX_BAZEL_VERSION = ‘5.0.0’</p>
+
+<p>NCCL_LIB_PATHS = [
+ ‘lib64/’, ‘lib/powerpc64le-linux-gnu/’, ‘lib/x86_64-linux-gnu/’, ‘’
+```</p>
+
+<h1 id="section">2. 尝试</h1>
+
+<p>bazel版本解决后按照官方的编译教程直接往下一路编译就正常了。似乎很简单是么？那我就不会写本文来记录了(<em>^_^</em>)</p>
+
+<p>首先我们安装两个python依赖的时候大概是<code>pip install numpy</code>会安装1.21.0。 但是目前tensorflow的master分支依赖的<code>~=1.19.2</code>。 然后我们会注意到一个libclang的错误。</p>
+
+<h1 id="section-1">3. 依赖解决</h1>
+
+<h2 id="libclang">3.1 libclang</h2>
+
+<p>```</p>
+
+<p>wget https://github.com/llvm/llvm-project/releases/download/llvmorg-11.1.0/llvm-11.1.0.src.tar.xz
+tar xf llvm-project-11.1.0.src.tar.xz
+mv llvm-project-11.1.0.src llvm-project-11.1.0
+cd llvm-project-11.1.0
+mkdir build
+cd build
+brew install gcc g++
+cmake ../llvm -DLLVM_ENABLE_PROJECTS=clang -DBUILD_SHARED_LIBS=OFF -DLLVM_ENABLE_TERMINFO=OFF -DLLVM_TARGETS_TO_BUILD=X86 -DCMAKE_BUILD_TYPE=MinSizeRel -DCMAKE_CXX_FLAGS_MINSIZEREL=”-Os -s -DNDEBUG -static-libgcc -static-libstdc++” -DCMAKE_C_COMPILER=gcc-11 -DCMAKE_CXX_COMPILER=g++-11 -DCMAKE_OSX_DEPLOYMENT_TARGET=10.9</p>
+
+<p>make libclang -j$(sysctl -n hw.ncpu)</p>
+
+<p>cd ../..
+wget https://github.com/sighingnow/libclang/archive/refs/tags/llvm-11.1.0.tar.gz</p>
+
+<p>tar xvf llvm-11.1.0.tar.gz
+cd libclang-llvm-11.1.0
+ cp ../llvm-project-11.1.0/build/lib/libclang.dylib native/
+pip install -v .
+# python setup.py build
+# python setup.py install</p>
+
+<p>```</p>
+
+<h2 id="numpy">3.2 numpy</h2>
+
+<p><code>
+brew install openblas
+OPENBLAS="$(brew --prefix openblas)" pip install numpy==1.19.5
+</code></p>
+
+<h2 id="grpcio">3.3 grpcio</h2>
+
+<p><code>
+CFLAGS="-I /opt/homebrew/opt/openssl/include" LDFLAGS="-L /opt/homebrew/opt/openssl/lib" GRPC_PYTHON_BUILD_SYSTEM_OPENSSL=1 GRPC_PYTHON_BUILD_SYSTEM_ZLIB=1 pip install  grpcio==1.38.1
+</code></p>
+
+<h2 id="h5py">3.4 h5py</h2>
+
+<p><code>
+brew install hdf5
+HDF5_DIR=/opt/homebrew/opt/hdf5 pip3 install --no-build-isolation h5py==3.1.0
+</code></p>
+
+<h1 id="section-2">4. 编译</h1>
+
+<p>```
+#!/bin/bash</p>
+
+<p>set -e</p>
+
+<p>pushd tensorflow
+git pull</p>
+
+<p>export TEST_TMPDIR=$HOME/tmp</p>
+
+<p>bazel –output_user_root=$HOME/bazel build –config=opt //tensorflow/tools/pip_package:build_pip_package</p>
+
+<h1 id="bazel-build---configopt-tensorflowtoolspippackagebuildpippackage">bazel build –config=opt //tensorflow/tools/pip_package:build_pip_package</h1>
+
+<p>./bazel-bin/tensorflow/tools/pip_package/build_pip_package $HOME</p>
+
+<p>popd</p>
+
+<p>```</p>
+
+<h1 id="section-3">5. 测试</h1>
+
+<p>```
+pushd $HOME/models/official/vision/image_classification
+export MODEL_DIR=”$HOME/models”
+export DATA_DIR=”$HOME/data”
+export NUM_GPUS=”0”</p>
+
+<p>export PYTHONPATH=$PYTHONPATH:$HOME/models</p>
+
+<p>python3 mnist_main.py \
+  –model_dir=$MODEL_DIR \
+  –data_dir=$DATA_DIR \
+  –train_epochs=10 \
+  –distribution_strategy=one_device \
+  –num_gpus=0 \
+  –download
+```</p>
+
+<p>运行的结果</p>
+
+<p><code>
+...
+58/58 [==============================] - ETA: 0s - loss: 1.4935 - sparse_categorical_accuracy: 0.54532021-07-11 18:30:40.523279: W tensorflow/core/grappler/optimizers/data/auto_shard.cc:461] The `assert_cardinality` transformation is currently not handled by the auto-shard rewrite and will be removed.
+58/58 [==============================] - 19s 312ms/step - loss: 1.4935 - sparse_categorical_accuracy: 0.5453 - val_loss: 0.5256 - val_sparse_categorical_accuracy: 0.8397
+Epoch 2/10
+58/58 [==============================] - ETA: 0s - loss: 0.4501 - sparse_categorical_accuracy: 0.85792021-07-11 18:31:00.658115: W tensorflow/core/framework/dataset.cc:679] Input of GeneratorDatasetOp::Dataset will not be optimized because the dataset does not implement the AsGraphDefInternal() method needed to apply optimizations.
+58/58 [==============================] - 20s 344ms/step - loss: 0.4501 - sparse_categorical_accuracy: 0.8579 - val_loss: 0.2695 - val_sparse_categorical_accuracy: 0.9229
+Epoch 3/10
+58/58 [==============================] - 20s 341ms/step - loss: 0.2812 - sparse_categorical_accuracy: 0.9153 - val_loss: 0.1970 - val_sparse_categorical_accuracy: 0.9427
+...
+</code></p>
+
+<p>简直被Nvidia的显卡15ms/step暴击。Intel的260ms/step要慢。</p>
+
+<h1 id="tensorflow-metal-pluggabledevice">6. tensorflow-metal PluggableDevice</h1>
+
+<p>参考<a href="https://developer.apple.com/metal/tensorflow-plugin/" target="_blank">tensorflow-mental</a>。</p>
+
+<p>```
+wget https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-MacOSX-arm64.sh</p>
+
+<p>bash Miniforge3-MacOSX-arm64.sh</p>
+
+<p>…</p>
+
+<p>conda create -n tf39 python=3.9
+conda activate tf39
+conda install -c apple tensorflow-deps
+python -m pip install tensorflow-macos
+python -m pip install tensorflow-metal</p>
+
+<p>```</p>
+
+<p>结果</p>
+
+<p><code>
+58/58 [==============================] - ETA: 0s - loss: 1.5647 - sparse_categorical_accuracy: 0.52392021-07-11 18:51:53.772789: W tensorflow/core/grappler/optimizers/data/auto_shard.cc:461] The `assert_cardinality` transformation is currently not handled by the auto-shard rewrite and will be removed.
+2021-07-11 18:51:53.799144: I tensorflow/core/grappler/optimizers/custom_graph_optimizer_registry.cc:112] Plugin optimizer for device_type GPU is enabled.
+2021-07-11 18:51:53.801124: I tensorflow/core/grappler/optimizers/custom_graph_optimizer_registry.cc:112] Plugin optimizer for device_type GPU is enabled.
+2021-07-11 18:51:53.844207: I tensorflow/core/grappler/optimizers/custom_graph_optimizer_registry.cc:112] Plugin optimizer for device_type GPU is enabled.
+58/58 [==============================] - 8s 100ms/step - loss: 1.5647 - sparse_categorical_accuracy: 0.5239 - val_loss: 0.5425 - val_sparse_categorical_accuracy: 0.8359
+Epoch 2/10
+58/58 [==============================] - ETA: 0s - loss: 0.4310 - sparse_categorical_accuracy: 0.86482021-07-11 18:51:59.418133: I tensorflow/core/grappler/optimizers/custom_graph_optimizer_registry.cc:112] Plugin optimizer for device_type GPU is enabled.
+2021-07-11 18:51:59.420233: I tensorflow/core/grappler/optimizers/custom_graph_optimizer_registry.cc:112] Plugin optimizer for device_type GPU is enabled.
+58/58 [==============================] - 5s 95ms/step - loss: 0.4310 - sparse_categorical_accuracy: 0.8648 - val_loss: 0.2834 - val_sparse_categorical_accuracy: 0.9180
+Epoch 3/10
+58/58 [==============================] - ETA: 0s - loss: 0.2663 - sparse_categorical_accuracy: 0.91952021-07-11 18:52:05.022747: I tensorflow/core/grappler/optimizers/custom_graph_optimizer_registry.cc:112] Plugin optimizer for device_type GPU is enabled.
+2021-07-11 18:52:05.025100: I tensorflow/core/grappler/optimizers/custom_graph_optimizer_registry.cc:112] Plugin optimizer for device_type GPU is enabled.
+58/58 [==============================] - 6s 96ms/step - loss: 0.2663 - sparse_categorical_accuracy: 0.9195 - val_loss: 0.1869 - val_sparse_categorical_accuracy: 0.9452
+Epoch 4/10
+58/58 [==============================] - ETA: 0s - loss: 0.2088 - sparse_categorical_accuracy: 0.93692021-07-11 18:52:10.479798: I tensorflow/core/grappler/optimizers/custom_graph_optimizer_registry.cc:112] Plugin optimizer for device_type GPU is enabled.
+2021-07-11 18:52:10.482146: I tensorflow/core/grappler/optimizers/custom_graph_optimizer_registry.cc:112] Plugin optimizer for device_type GPU is enabled.
+58/58 [==============================] - 5s 94ms/step - loss: 0.2088 - sparse_categorical_accuracy: 0.9369 - val_loss: 0.1528 - val_sparse_categorical_accuracy: 0.9548
+Epoch 5/10
+58/58 [==============================] - ETA: 0s - loss: 0.1774 - sparse_categorical_accuracy: 0.94642021-07-11 18:52:15.953144: I tensorflow/core/grappler/optimizers/custom_graph_optimizer_registry.cc:112] Plugin optimizer for device_type GPU is enabled.
+2021-07-11 18:52:15.955539: I tensorflow/core/grappler/optimizers/custom_graph_optimizer_registry.cc:112] Plugin optimizer for device_type GPU is enabled.
+58/58 [==============================] - 5s 94ms/step - loss: 0.1774 - sparse_categorical_accuracy: 0.9464 - val_loss: 0.1292 - val_sparse_categorical_accuracy: 0.9602
+</code></p>
+
+<p>95ms/step还算可以吧。差不多是1060的35ms/step的三分之一。</p>
+
+<h1 id="section-4">7. 参考资料</h1>
+
+<ol>
+  <li><a href="https://towardsdatascience.com/installing-tensorflow-on-the-m1-mac-410bb36b776" target="_blank">Installing TensorFlow on the M1 Mac</a></li>
+  <li><a href="https://github.com/h5py/h5py/issues/1810" target="_blank">Fails to build from source on MacOS 11 + M1</a> </li>
+  <li><a href="https://alexslobodnik.medium.com/apple-m1-python-pandas-and-homebrew-20f14828ccc7" target="_blank">Apple M1, Python, Pandas, and Homebrew</a></li>
+  <li><a href="https://github.com/numpy/numpy/issues/17807" target="_blank">BLD: fail to build on Apple M1</a></li>
+  <li><a href="https://stackoverflow.com/questions/66640705/how-can-i-install-grpcio-on-an-apple-m1-silicon-laptop" target="_blank">How can I install GRPCIO on an Apple M1 Silicon laptop?</a></li>
+  <li><a href="https://github.com/sighingnow/libclang/blob/master/.github/workflows/libclang-macosx-amd64.yml" target="_blank">libclang/.github/workflows/libclang-macosx-amd64.yml</a></li>
+</ol>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Chromium编码器问题]]></title>
+    <link href="https://i.rexdf.org/blog/2021/02/27/chromiumbian-ma-qi-wen-ti/"/>
+    <updated>2021-02-27T20:20:00+08:00</updated>
+    <id>https://i.rexdf.org/blog/2021/02/27/chromiumbian-ma-qi-wen-ti</id>
+    <content type="html"><![CDATA[<ul class="markdown-toc">
+  <li><a href="#section">问题解决</a></li>
+  <li><a href="#section-1">编译配置</a>    <ul>
+      <li><a href="#section-2">目录结构</a></li>
+      <li><a href="#begintoworkx64bat">_begin_to_work_x64.bat</a></li>
+      <li><a href="#buildbat">build.bat</a></li>
+      <li><a href="#buildx642bat">buildx64_2.bat</a></li>
+      <li><a href="#buildx862bat">buildx86_2.bat</a></li>
+      <li><a href="#mybuildargsgn">mybuild\args.gn</a></li>
+    </ul>
+  </li>
+  <li><a href="#proprietarycodecs--true">proprietary_codecs = true</a></li>
+  <li><a href="#syzygyoptimize--true">syzygy_optimize = true</a></li>
+  <li><a href="#usejumbobuild--true">use_jumbo_build = true</a></li>
+  <li><a href="#x64arch--skylake-avx512">x64_arch = “skylake-avx512”</a>    <ul>
+      <li><a href="#mybuild86argsgn">mybuild86\args.gn</a></li>
+    </ul>
+  </li>
+  <li><a href="#syzygyoptimize--true-1">syzygy_optimize = true</a></li>
+  <li><a href="#usejumbobuild--true-1">use_jumbo_build = true</a>    <ul>
+      <li><a href="#section-3">额外的笔记</a></li>
+    </ul>
+  </li>
+  <li><a href="#section-4">这个参数会导致错误</a></li>
+  <li><a href="#section-5">这个一般不需要</a></li>
+  <li><a href="#section-6">32位的加一行</a></li>
+  <li><a href="#section-7">编译消耗</a></li>
+  <li><a href="#section-8">参考资料</a></li>
+</ul>
+
+<p>本文记录chromium编译遇到的问题。 Windows上的Chrome浏览器一直都用着一个自己编译的版本。然而最近几个月的编译发现了Twitter的视频似乎没法播放，而Youtube的视频依然是正常的。</p>
+
+<!--more-->
+
+<h1 id="section">问题解决</h1>
+
+<p><img src="/images/twitter_not_play.png" alt="The media could not be played" class="center fancybox" /></p>
+
+<p>如上图所示。 搜索了一圈，尝试了重置浏览器(重新指定一个cache目录)和修改<a href="chrome://about">chrome://about</a>似乎都没效果。</p>
+
+<p>但是编译的时候有报一个错误’use_h254’编译选项未定义。那就变有什么编码器不支持了。然后搜了下确实现在默认不带h254的解码器了。但是用<code>proprietary_codecs = true</code>就可以再次启用。</p>
+
+<p><img src="/images/twitter_play.png" alt="Twitter video" class="center fancybox" /></p>
+
+<h1 id="section-1">编译配置</h1>
+
+<p>下面这个配置是我2015年写的一个自动化脚本，大概一直用到现在2021年，中间可能有几次优化，但是大体上都是2015年那会写的。</p>
+
+<p>首先假设下面的目录树在某个目录，那么其上一级目录要有<code>depot_tools</code>文件夹，然后把如下内容填入。按照如下笔记拖下源码。这个大概20~30分钟就好了。</p>
+
+<p>```
+更新工具链
+gclient runhooks</p>
+
+<p>出现问题时使用:
+git reset –hard origin/master</p>
+
+<p>更新代码
+git rebase-update
+gclient sync
+```</p>
+
+<h2 id="section-2">目录结构</h2>
+
+<p>```
+│  <em>begin_to_work_x64.bat
+│
+├─build_result
+├─chromium
+│      build.bat
+│      buildx64</em>2.bat
+│      buildx86_2.bat
+│
+└─src
+    └─out
+        ├─mybuild
+        │      args.gn
+        │
+        └─mybuild86
+                args.gn</p>
+
+<p>```</p>
+
+<h2 id="begintoworkx64bat">_begin_to_work_x64.bat</h2>
+
+<p>```
+@echo off
+chcp 437
+cd /d  %~dp0chromium
+rem call ..\setup_and_clean.bat
+set str=%~dp0
+path=%str%..\depot_tools;%path%
+set DEPOT_TOOLS_WIN_TOOLCHAIN=0
+rem set NO_AUTH_BOTO_CONFIG=%~dp0boto.cfg
+rem %comspec% /k “C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat” amd64
+%comspec% /k “C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars64.bat”</p>
+
+<p>```</p>
+
+<h2 id="buildbat">build.bat</h2>
+
+<p>```
+@echo off</p>
+
+<p>cd /d %~dp0src</p>
+
+<p>set path=%~dp0....\depot_tools;%path%
+set DEPOT_TOOLS_WIN_TOOLCHAIN=0
+set VERSION_NUMVER=91.0.4432.1</p>
+
+<p>if exist out (
+ rd /s /q out
+)</p>
+
+<p>xcopy %~dp0..\src %~dp0src /E /I /s</p>
+
+<p>call gn gen out/mybuild64 –ide=vs
+call gn gen –ide=vs –filters=//chrome out/Default64</p>
+
+<p>call gn gen out/mybuild 
+call gn gen out/mybuild86</p>
+
+<p>if not exist ....\build_result\%VERSION_NUMVER% (
+  mkdir  ....\build_result\%VERSION_NUMVER%
+)</p>
+
+<p>if not exist ....\build_result\%VERSION_NUMVER%\x86 (
+  mkdir  ....\build_result\%VERSION_NUMVER%\x86
+)</p>
+
+<p>if not exist ....\build_result\%VERSION_NUMVER%\x86\chrome.packed.7z (
+    call ..\buildx86_2.bat %VERSION_NUMVER%
+)</p>
+
+<p>if not exist ....\build_result\%VERSION_NUMVER%\x64 (
+  mkdir  ....\build_result\%VERSION_NUMVER%\x64
+)</p>
+
+<p>if not exist ....\build_result\%VERSION_NUMVER%\x64\chrome.packed.7z (
+    call ..\buildx64_2.bat %VERSION_NUMVER%
+)</p>
+
+<p>rem shutdown -s -t 600</p>
+
+<p>pause
+```</p>
+
+<h2 id="buildx642bat">buildx64_2.bat</h2>
+
+<p>```
+@echo off</p>
+
+<p>cd /d %~dp0src</p>
+
+<p>set path=%~dp0....\depot_tools;%path%
+set DEPOT_TOOLS_WIN_TOOLCHAIN=0</p>
+
+<p>if [%1]==[] goto error</p>
+
+<p>ninja -C out/mybuild chrome
+ninja -C out/mybuild chromedriver
+ninja -C out/mybuild mini_installer</p>
+
+<p>for %%i in (chrome.packed.7z,chromedriver.exe,mini_installer.exe,setup.exe) do (
+    if exist out\mybuild\%%i (
+        copy out\mybuild\%%i ....\build_result\%1\x64\
+    )
+)</p>
+
+<p>REM copy out\mybuild\chrome.packed.7z ....\build_result\%1\x64\
+REM copy out\mybuild\chromedriver.exe ....\build_result\%1\x64\
+REM copy out\mybuild\setup.exe ....\build_result\%1\x64\</p>
+
+<p>ninja -C out/mybuild -t graph all &gt; ....\build_result\%1\deps.dot</p>
+
+<p>ninja -C out/mybuild -t targets &gt; ....\build_result\%1\targets.txt</p>
+
+<p>if [%2] neq [] (
+    rd /s /q out\mybuild
+)</p>
+
+<p>echo Done.
+GOTO :EOF</p>
+
+<p>:error
+echo Need a version number.</p>
+
+<p>```</p>
+
+<h2 id="buildx862bat">buildx86_2.bat</h2>
+
+<p>```
+@echo off</p>
+
+<p>cd /d %~dp0src</p>
+
+<p>set path=%~dp0....\depot_tools;%path%
+set DEPOT_TOOLS_WIN_TOOLCHAIN=0</p>
+
+<p>if [%1]==[] goto error</p>
+
+<p>ninja -C out/mybuild86 chrome
+ninja -C out/mybuild86 chromedriver
+ninja -C out/mybuild86 mini_installer</p>
+
+<p>for %%i in (chrome.packed.7z,chromedriver.exe,mini_installer.exe,setup.exe) do (
+    if exist out\mybuild86\%%i (
+        copy out\mybuild86\%%i ....\build_result\%1\x86\
+    )
+)</p>
+
+<p>REM copy out\mybuild86\chrome.packed.7z ....\build_result\%1\x86\
+REM copy out\mybuild86\chromedriver.exe ....\build_result\%1\x86\
+REM copy out\mybuild86\mini_installer.exe ....\build_result\%1\x86\
+if [%2] neq [] (
+    rd /s /q out\mybuild86
+)</p>
+
+<p>echo Done.
+GOTO :EOF</p>
+
+<p>:error
+echo Need a version number.</p>
+
+<p>```</p>
+
+<h2 id="mybuildargsgn">mybuild\args.gn</h2>
+
+<p>```
+# Build arguments go here.
+# See “gn args <out_dir> --list" for available build arguments.
+# enable_nacl = false</out_dir></p>
+
+<p>ffmpeg_branding = “Chrome”</p>
+
+<p>is_component_build = false
+is_debug = false
+is_official_build = true</p>
+
+<h1 id="proprietarycodecs--true">proprietary_codecs = true</h1>
+<p># remove_webcore_debug_symbols = true
+rtc_use_h264 = true</p>
+
+<p>symbol_level = 1
+blink_symbol_level = 1</p>
+
+<h1 id="syzygyoptimize--true">syzygy_optimize = true</h1>
+
+<h1 id="usejumbobuild--true">use_jumbo_build = true</h1>
+<p>media_use_ffmpeg = true
+media_use_libvpx = true
+proprietary_codecs = true
+# use_openh264 = true</p>
+
+<p>google_api_key = “no”
+google_default_client_id = “no”
+google_default_client_secret = “no”</p>
+
+<h1 id="x64arch--skylake-avx512">x64_arch = “skylake-avx512”</h1>
+<p>```</p>
+
+<h2 id="mybuild86argsgn">mybuild86\args.gn</h2>
+
+<p>```
+# Build arguments go here.
+# See “gn args <out_dir> --list" for available build arguments.
+enable_nacl = false</out_dir></p>
+
+<p>ffmpeg_branding = “Chrome”</p>
+
+<p>is_component_build = false
+is_debug = false
+is_official_build = true</p>
+
+<p>proprietary_codecs = true
+#remove_webcore_debug_symbols = true
+rtc_use_h264 = true</p>
+
+<p>symbol_level = 1
+blink_symbol_level = 1</p>
+
+<h1 id="syzygyoptimize--true-1">syzygy_optimize = true</h1>
+
+<p>media_use_ffmpeg = true
+media_use_libvpx = true
+proprietary_codecs = true
+# use_openh264 = true</p>
+
+<h1 id="usejumbobuild--true-1">use_jumbo_build = true</h1>
+
+<p>target_cpu = “x86”</p>
+
+<p>google_api_key = “no”
+google_default_client_id = “no”
+google_default_client_secret = “no”</p>
+
+<p>```</p>
+
+<h2 id="section-3">额外的笔记</h2>
+
+<p>```</p>
+
+<p>生成编译文件目录
+gn gen out/Default</p>
+
+<p>配置编译参数
+gn args out\mybuild</p>
+
+<p>列出全部参数
+gn args out\mybuild –list</p>
+
+<p>编译
+ninja -C out/Default chrome</p>
+
+<p>ninja -C out/mybuild86 chrome &amp;&amp; ninja -C out/mybuild chrome</p>
+
+<p>参数</p>
+
+<p>is_component_build = false
+is_debug = false
+symbol_level = 0
+enable_nacl = false
+remove_webcore_debug_symbols = true
+use_openh264 = true
+rtc_use_h264 = true
+ffmpeg_branding = “Chrome”</p>
+
+<h1 id="section-4">这个参数会导致错误</h1>
+<p>enable_wifi_display = true</p>
+
+<p>syzygy_optimize = true</p>
+
+<h1 id="section-5">这个一般不需要</h1>
+<p>is_win_fastlink = true</p>
+
+<h1 id="section-6">32位的加一行</h1>
+<p>target_cpu = “x86”</p>
+
+<p>google_api_key = “no”
+google_default_client_id = “no”
+google_default_client_secret = “no”
+```</p>
+
+<h1 id="section-7">编译消耗</h1>
+
+<p>chrome编译似乎给100GB内存，32独占物理核，编译依然是2小时左右，时间和我笔记本32GB-8750H时间差不多。不像firefox只要20分钟就能编译完成，似乎远远快于笔记本。</p>
+
+<p>磁盘嘛，一个版本大概50GB,给足100GB笔记满足，如果像我上面脚本一样要编译x86和x64大概需要200GB-300GB的磁盘剩余空间。</p>
+
+<p><img src="/images/chrome_build.png" alt="ESXI Chromium build" class="center fancybox" /></p>
+
+<h1 id="section-8">参考资料</h1>
+
+<ol>
+  <li><a href="https://gist.github.com/jedi4ever/d095656ae0f0eca4a83ebb2b331da367" target="_blank">Building chromium on OSX</a></li>
+  <li><a href="https://chromium.woolyss.com/" target="_blank">The free and open-source project behind Google Chrome</a></li>
+  <li><a href="https://chromium.googlesource.com/chromium/src/+/master/docs/windows_build_instructions.md" target="_blank">Checking out and Building Chromium for Windows</a></li>
+</ol>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Proxmox笔记]]></title>
+    <link href="https://i.rexdf.org/blog/2020/12/13/proxmoxbi-ji/"/>
+    <updated>2020-12-13T20:27:56+08:00</updated>
+    <id>https://i.rexdf.org/blog/2020/12/13/proxmoxbi-ji</id>
+    <content type="html"><![CDATA[<ul class="markdown-toc">
+  <li><a href="#section">1. 切换到非订阅源</a></li>
+  <li><a href="#letsencrypt">2. Letsencrypt证书</a></li>
+  <li><a href="#pveroot">3. pve_root扩容</a></li>
+  <li><a href="#section-1">扩展文件系统</a>    <ul>
+      <li><a href="#section-2">4. 参考资料</a></li>
+    </ul>
+  </li>
+</ul>
+
+<p>本文记录proxmox使用过程中的一些基本笔记。</p>
+
+<!--more-->
+
+<h3 id="section">1. 切换到非订阅源</h3>
+
+<p>这个会影响到更新，默认装然就是enterprise的。</p>
+
+<p>```
+ apt install sudo</p>
+
+<p>sudo mv /etc/apt/sources.list.d/pve-enterprise.list /etc/apt/sources.list.d/pve-enterprise.list.disabled</p>
+
+<p>sudo echo “deb http://download.proxmox.com/debian/pve buster pve-no-subscription” &gt; /etc/apt/sources.list.d/pve-no-subscription.list
+```</p>
+
+<h3 id="letsencrypt">2. Letsencrypt证书</h3>
+
+<p>```
+  curl https://get.acme.sh | sh
+  export DP_Id=”12345”
+   export DP_Key=”abcdfabcdfabcdfabcdefabcdef12121212”
+  /root/.acme.sh/acme.sh  –issue  –dns dns_dp  –standalone  -d pve.example.com</p>
+
+<p>/root/.acme.sh/acme.sh  –installcert  -d pve.example.com  \
+    –certpath /etc/pve/local/pveproxy-ssl.pem \
+    –keypath /etc/pve/local/pveproxy-ssl.key  \
+     –capath  /etc/pve/local/pveproxy-ssl.pem  \
+      –reloadcmd  “systemctl restart pveproxy”
+```</p>
+
+<h3 id="pveroot">3. pve_root扩容</h3>
+
+<p>我这是软路由，系统盘是系统自带的一个16GB的mstata。用<a href="https://www.ventoy.net/en/download.html">ventory</a>装好系统后，根目录<code>/</code>所在的分区只有3.5GB，偶尔<code>apt upgrade</code>都会导致磁盘不足，于是有了本节的代码。</p>
+
+<p>```
+df -Th</p>
+
+<p>vgdisplay #卷组查看
+pvdisplay #物理卷查看
+lvdisplay #逻辑卷参考
+#我们要扩展的就是lvdisplay里的/dev/pve/root
+lvextend -L5G /dev/pve/root
+#lvextend -L+1G /dev/pve/root</p>
+
+<h1 id="section-1">扩展文件系统</h1>
+<p>resize2fs /dev/pve/root</p>
+
+<p>```</p>
+
+<h3 id="section-2">4. 参考资料</h3>
+
+<ol>
+  <li><a href="https://tldp.org/HOWTO/LVM-HOWTO/extendlv.html" target="_blank">Extending a logical volume</a></li>
+  <li><a href="https://gist.github.com/dergachev/6828967" target="_blank">enlarge-proxmox-root-partition.sh </a></li>
+</ol>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[论广度与深度]]></title>
+    <link href="https://i.rexdf.org/blog/2020/11/15/lun-yan-du-yu-shen-du/"/>
+    <updated>2020-11-15T21:14:19+08:00</updated>
+    <id>https://i.rexdf.org/blog/2020/11/15/lun-yan-du-yu-shen-du</id>
+    <content type="html"><![CDATA[
+<p>最近发觉自己注意力又被发散了。感觉好多事情要处理。然而被生活办证琐事折腾中让我又从中抽离出来，重新审视注意到问题了。</p>
+
+<!--more-->
+
+<p>其实自己内心一直比较贪心。有一堆设想和计划。比如按自己喜好实现一门语言做到编译到各种平台，比如js、x86,arm等。鼓捣一个稳定可靠的分布式个人存储系统，带透明加密，跨洲T级数据可靠同步，多后端(磁盘，Ceph，OSS, onedrive,gdrive). 鼓捣一个编译系统，至少可以随意起arm、mipse、x86_64 linux、windows编译环境，最好还能和我的gitlab集成起来。这些闲下来散步时都是有所考虑，但是似乎一年多了，还没有任何进展。想起来疫情期间也似乎也没有任何这方面的考虑，当然出差北京还了猫就和bct分了。让我有更多的时间来考虑这些事情了。</p>
+
+<p>仔细想想，我发现我经常会被一些最新的技术比如rust、go、Haskell耗去不少经历，然而也并没有深入下去。这样最后结果就好像其实什么都了解一点，而且花费了大把的时间。但是其实都没到足够使用的地步。大抵上我的一些知识都是这种结构的。这样带来好处是似乎没有我没听说过或者不能在非常短时间内基本掌握的常规知识，但是往深了就和大家一样了。</p>
+
+<p>结论就是，要有所取舍。有所为，有所不为。</p>
+]]></content>
+  </entry>
+  
+</feed>

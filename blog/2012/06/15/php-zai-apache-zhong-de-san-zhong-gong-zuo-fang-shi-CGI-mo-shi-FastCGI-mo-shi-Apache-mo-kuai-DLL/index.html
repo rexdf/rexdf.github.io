@@ -1,0 +1,174 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<script type="text/javascript">var _speedMark=new Date</script>
+<meta charset="utf-8">
+<title>php在apache中的三种工作方式：CGI模式、FastCGI模式、Apache 模块DLL - Rexdf</title>
+<meta name="author" content="Rexdf">
+<meta name="description" content="下面是Windows的设置问题： 一、CGI模式与模块模式比较： PHP在apache中两种工作方式的区别(CGI模式、Apache 模块DLL) 这两种工作方式的安装： PHP 在 Apache 2.0 中的 CGI 方式 ScriptAlias /PHP/ “c:/PHP/” AddType &hellip;">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' data: https://hm.baidu.com https://tajs.qq.com https://ssl.google-analytics.com https://static.rexdf.org https://*.disquscdn.com https://rexdf.disqus.com https://api.github.com https://ssl.google-analytics.com https://disqus.com https://analytics.rexdf.net; connect-src 'self' https://static.rexdf.org https://analytics.rexdf.net https://hm.baidu.com; img-src data: https://*; font-src data: https://*; child-src 'none'; style-src 'self' 'unsafe-inline' https://*; frame-src 'self' https://t.rexdf.org http://t.rexdf.org https://rexdf.disqus.com https://disqus.com">
+<link rel="canonical" href="https://i.rexdf.org/blog/2012/06/15/php-zai-apache-zhong-de-san-zhong-gong-zuo-fang-shi-CGI-mo-shi-FastCGI-mo-shi-Apache-mo-kuai-DLL">
+<link rel="dns-prefetch" href="https://static.rexdf.org/">
+<link href="/favicon.ico" rel="icon">
+<link id="main-css" href="/stylesheets/screen.css" media="screen,projection" rel="stylesheet" type="text/css" title="pc">
+<link href="/stylesheets/screen_mobile.css" rel="alternate stylesheet" type="text/css" title="mobile">
+<link href="/atom.xml" rel="alternate" title="Rexdf" type="application/atom+xml">
+<script src="/javascripts/libs/jquery.min.js"></script>
+<script src="/javascripts/octopress-rexdf.min.js" type="text/javascript"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+      
+      toggle_theme();
+  });
+</script>
+<script type="text/javascript" async src="https://static.rexdf.org/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript">var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-55590409-1"]),_gaq.push(["_trackPageview"]),function(){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(t,e)}()</script>
+<script>var _hmt=_hmt||[];!function(){var e=document.createElement("script");e.src="//hm.baidu.com/hm.js?32192d95b89fbefa0875c4c95adb1412";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}()</script>
+<script src="/javascripts/fancybox/jquery.fancybox.pack.js"></script>
+<link rel="stylesheet" type="text/css" href="/javascripts/fancybox/jquery.fancybox.css">
+<script type="text/javascript">var _paq=_paq||[];_paq.push(["trackPageView"]),_paq.push(["enableLinkTracking"]),function(){var e="https://analytics.rexdf.net/";_paq.push(["setTrackerUrl",e+"piwik.php"]),_paq.push(["setSiteId","1"]);var a=document,t=a.createElement("script"),p=a.getElementsByTagName("script")[0];t.type="text/javascript",t.async=!0,t.defer=!0,t.src=e+"piwik.js",p.parentNode.insertBefore(t,p)}()</script>
+</head>
+<body class="low-contrast-linen-wptouch-bg">
+<header role="banner"><hgroup>
+<h1 id="header-title"><a href="/">Rexdf</a></h1>
+<h2 id="subtitle">The devil is in the Details.</h2>
+</hgroup>
+</header>
+<nav role="navigation"><ul class="subscription" data-subscription="rss">
+<li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+</ul>
+<form action="https://google.com/search" method="get">
+<fieldset role="search">
+<input type="hidden" name="q" value="site:i.rexdf.org">
+<input class="search" type="text" name="q" results="0" placeholder="Search">
+</fieldset>
+</form>
+<ul class="main-navigation">
+<li><a href="/">Blog</a></li>
+<li><a href="/blog/archives/">Archives</a></li>
+<li><a href="/idea/">Idea</a></li>
+<li><a href="/share/">Share</a></li>
+<li><a href="/books/">Books</a></li>
+<li><a href="/donate/">Donate</a></li>
+<li><a target="_blank" href="https://blog.rexdf.org" style="font-family:Shadows Into Light">Main-Blog</a></li>
+</ul>
+</nav>
+<div id="main">
+<div id="content">
+<div>
+<article class="hentry" role="article">
+<header>
+<h1 class="entry-title">php在apache中的三种工作方式：CGI模式、FastCGI模式、Apache 模块DLL</h1>
+<p class="meta">
+<time class="data-article month-06 season-summer" datetime="2012-06-15T14:13:00+08:00" pubdate><span class="month">Jun</span> <span class="day">15th</span> <span class="year">2012</span></time>
+| <a href="#disqus_thread" data-disqus-identifier="https://i.rexdf.org">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>下面是Windows的设置问题： 一、CGI模式与模块模式比较： PHP在apache中两种工作方式的区别(CGI模式、Apache 模块DLL) 这两种工作方式的安装： PHP 在 Apache 2.0 中的 CGI 方式 ScriptAlias /PHP/ “c:/PHP/” AddType application/x-httpd-PHP .PHP # 对 PHP 4 用这行 Action application/x-httpd-PHP “/PHP/PHP.exe” # 对 PHP 5 用这行 Action application/x-httpd-PHP “/PHP/PHP-cgi.exe” PHP 在 Apache 2.0 中的模块方式 # 对 PHP 4 用这两行： LoadModule PHP4_module “c:/PHP/PHP4apache2.dll” # 别忘了从 sapi 目录中把 PHP4apache2.dll 拷贝出来！ AddType application/x-httpd-PHP .PHP # 对 PHP 5 用这两行： LoadModule PHP5_module “c:/PHP/PHP5apache2.dll” AddType application/x-httpd-PHP .PHP # 配置 PHP.ini 的路径 PHPIniDir “C:/PHP” 这两种工作方式的区别： 在CGI模式下，如果客户机请求一个PHP文件，Web服务器就调用PHP.exe去解释这个文件，然后再把解释的结果以网页的形式返回给客户机； 而在模块化(DLL)中，PHP是与Web服务器一起启动并运行的。 所以从某种角度上来说，以apache模块方式安装的 PHP4有着比CGI模式更好的安全性以及更好的执行效率和速度。 二、FastCGI运行模式分析： FastCGI 模式运行 PHP 的优点： 以 FastCGI 模式运行 PHP 有几个主要的好处。首先就是 PHP 出错的时候不会搞垮 Apache，只是 PHP 自己的进程当掉（但 FastCGI 会立即重新启动一个新 PHP 进程来代替当掉的进程）。其次 FastCGI 模式运行 PHP 比 ISAPI 模式性能更好（我本来用 ApacheBench 进行了测试，但忘了保存结果，大家有兴趣可以自己测试）。 最后，就是可以同时运行 PHP5 和 PHP4。参考下面的配置文件，分别建立了两个虚拟主机，其中一个使用 PHP5，另一个使用 PHP4。 LoadModule fastcgi_module modules/mod_fastcgi-2.4.2-AP13.dll ScriptAlias /fcgi-PHP5/ “d:/usr/local/PHP-5.0.4/” FastCgiServer “d:/usr/local/PHP-5.0.4/PHP-cgi.exe” -processes 3 ScriptAlias /fcgi-PHP4/ “d:/usr/local/PHP-4.3.11/” FastCgiServer “d:/usr/local/PHP-4.3.11/PHP.exe” Listen 80 NameVirtualHost *:80 DocumentRoot d:/www Options Indexes FollowSymlinks MultiViews ServerName PHP5.localhost AddType application/x-httpd-fastPHP5 .PHP Action application/x-httpd-fastPHP5 “/fcgi-PHP5/PHP-cgi.exe” IndexOptions FancyIndexing FoldersFirst Options Indexes FollowSymLinks MultiViews AllowOverride None Order allow,deny Allow from all Listen 8080 NameVirtualHost *:8080 DocumentRoot d:/www Options Indexes FollowSymlinks MultiViews ServerName PHP4.localhost AddType application/x-httpd-fastPHP4 .PHP Action application/x-httpd-fastPHP4 “/fcgi-PHP4/PHP.exe” Options Indexes FollowSymLinks MultiViews AllowOverride None Order allow,deny Allow from all 使用上面的配置，访问http://localhost/就使用 PHP5，而访问http://localhost:8080/就使用 PHP4。所以只要合理配置，就可以让不同的虚拟主机使用不同版本的 PHP。 FastCGI 模式的一些缺点： 从 实际使用来看，用 FastCGI 模式更适合生产环境的服务器。但对于开发用机器来说就不太合适。因为当使用 Zend Studio 调试程序时，由于 FastCGI 会认为 PHP 进程超时，从而在页面返回 500 错误。这一点让人非常恼火，所以我在开发机器上还是换回了 ISAPI 模式。 最后，在 Windows 中以 FastCGI 模式存在潜在的安全漏洞。因为我还没有找到如何在 Windows 环境下实现 HTML” target=”_blank”&gt;SuEXEC 的方法，因此 PHP 的进程总是以最高权限运行，这从安全角度来看显然不是个好消息。</p>
+</div>
+<footer>
+<p class="meta">
+<span class="byline author vcard">Posted by <span class="fn">Rexdf</span></span>
+<time class="data-article month-06 season-summer" datetime="2012-06-15T14:13:00+08:00" pubdate><span class="month">Jun</span> <span class="day">15th</span> <span class="year">2012</span></time>
+</p>
+<div class="sharing">
+</div>
+<p class="meta">
+<a class="basic-alignment left" href="/blog/2012/06/14/you-hua-ji-hua/" title="Previous Post: 优化计划">&laquo; 优化计划</a>
+<a class="basic-alignment right" href="/blog/2012/06/16/xu-du-ba-bi-ye-ji-chao-qiang-zhen-rong-e-gao-pei-yin-bi-ye-bi-ye/" title="Next Post: 胥渡吧：毕业季超强阵容恶搞配音《毕业，毕业》">胥渡吧：毕业季超强阵容恶搞配音《毕业，毕业》 &raquo;</a>
+</p>
+</footer>
+</article>
+<section>
+<h1>Comments</h1>
+<div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
+</div>
+<aside class="sidebar">
+<section>
+<h1>Categories</h1>
+<ul id="categories">
+<li class="category"><a href="/blog/categories/acm/">ACM <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/algorithm/">Algorithm <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/assembly/">Assembly <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/cygwin/">Cygwin <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/gnu/">GNU <sup>8</sup></a></li>
+<li class="category"><a href="/blog/categories/math/">Math <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/octopress/">Octopress <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/programming/">Programming <sup>6</sup></a></li>
+<li class="category"><a href="/blog/categories/security/">Security <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sublime/">Sublime <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/synology/">Synology <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sysadmin/">SysAdmin <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/web/">Web <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/windows/">Windows <sup>7</sup></a></li>
+<li class="category"><a href="/blog/categories/proxmox/">proxmox <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/ri-chang/">日常 <sup>37</sup></a></li>
+</ul>
+</section>
+<section>
+<h1>Recent Posts</h1>
+<ul id="recent_posts">
+<li class="post">
+<a href="/blog/2024/12/16/fu-wu-qi-wa-kuang-bing-du-de-cha-sha/">服务器挖矿病毒的查杀</a>
+</li>
+<li class="post">
+<a href="/blog/2021/07/11/apple-m1-bian-yi-tensorflow/">Apple M1 编译tensorflow</a>
+</li>
+<li class="post">
+<a href="/blog/2021/02/27/chromiumbian-ma-qi-wen-ti/">Chromium编码器问题</a>
+</li>
+<li class="post">
+<a href="/blog/2020/12/13/proxmoxbi-ji/">Proxmox笔记</a>
+</li>
+<li class="post">
+<a href="/blog/2020/11/15/lun-yan-du-yu-shen-du/">论广度与深度</a>
+</li>
+</ul>
+</section>
+<section>
+<iframe frameborder="0" scrolling="no" referrerpolicy="unsafe-url" style="width:283px;height:200px" src="https://t.rexdf.org/?m=app&a=showwidget&name=rexdf&type=1&width=283px&height=500px"></iframe>
+</section>
+<section>
+<h1>GitHub Repos</h1>
+<ul id="gh_repos">
+<li class="loading">Status updating...</li>
+</ul>
+<a href="https://github.com/rexdf">@rexdf</a> on GitHub
+<script type="text/javascript">$(document).ready(function(){if(!window.jXHR){var e=document.createElement("script");e.type="text/javascript",e.src="/javascripts/libs/jXHR.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}github.showRepos({user:"rexdf",count:0,skip_forks:!0,target:"#gh_repos"})})</script>
+</section>
+</aside>
+</div>
+</div>
+<footer role="contentinfo"><p>
+<span class="credit">Copyright &copy; 2024 - Rexdf -</span> |
+<span class="credit">Powered by <a name="bottoms" target="_blank" href="http://octopress.org">Octopress</a></span> |
+<span class="credit">Theme by ：<a href="https://blog.rexdf.org/" target="_blank" rel="theme">Rexdf</a></span> |
+<span class="credit">Host by：<a href="https://github.com/" target="_blank" rel="host">Github.com</a></span> |
+<span class="credit">版权声明：<a href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" target="_blank" rel="license">CC BY-NC-SA 3.0</a><img src="https://analytics.rexdf.net/piwik.php?idsite=1&amp;rec=1" style="border:0" alt="" referrerpolicy="no-referrer-when-downgrade"></span>|
+<span class="credit"><a href="/sitemap.xml" rel="sitemap">sitemap</a></span>
+</p>
+<script type="text/javascript" src="https://tajs.qq.com/stats?sId=30296377" charset="UTF-8"></script>
+</footer>
+<script type="text/javascript">var disqus_shortname="rexdf",disqus_identifier="https://i.rexdf.org/blog/2012/06/15/php-zai-apache-zhong-de-san-zhong-gong-zuo-fang-shi-CGI-mo-shi-FastCGI-mo-shi-Apache-mo-kuai-DLL/",disqus_url="https://i.rexdf.org/blog/2012/06/15/php-zai-apache-zhong-de-san-zhong-gong-zuo-fang-shi-CGI-mo-shi-FastCGI-mo-shi-Apache-mo-kuai-DLL/",disqus_script="embed.js";!function(){var s=document.createElement("script");s.type="text/javascript",s.async=!0,s.src="//"+disqus_shortname+".disqus.com/"+disqus_script,(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(s)}()</script>
+<script type="text/javascript">$(function(){$(".entry-content").each(function(t){var r=t;$(this).find("img.fancybox").each(function(){var t=$(this),a=t.attr("title"),n=t.attr("class");t.removeAttr("class"),t.wrap('<a href="'+this.src+'" class="'+n+'" rel="gallery'+r+'" />'),""!=a&&t.parent().attr("title",a)})}),$(".fancybox").fancybox()})</script>
+</body>
+</html>

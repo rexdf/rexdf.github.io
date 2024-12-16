@@ -1,0 +1,1176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Octopress | Rexdf]]></title>
+  <link href="https://i.rexdf.org/blog/categories/octopress/atom.xml" rel="self"/>
+  <link href="https://i.rexdf.org/"/>
+  <updated>2024-12-16T23:11:13+08:00</updated>
+  <id>https://i.rexdf.org/</id>
+  <author>
+    <name><![CDATA[Rexdf]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[更新了下博客主题]]></title>
+    <link href="https://i.rexdf.org/blog/2018/09/14/geng-xin-liao-xia-bo-ke-zhu-ti/"/>
+    <updated>2018-09-14T17:33:45+08:00</updated>
+    <id>https://i.rexdf.org/blog/2018/09/14/geng-xin-liao-xia-bo-ke-zhu-ti</id>
+    <content type="html"><![CDATA[<ul class="markdown-toc">
+  <li><a href="#fancybox">1. fancybox</a></li>
+  <li><a href="#section">2. 文章置顶</a></li>
+</ul>
+
+<p>今天更新了下博客主题，记录下内容。</p>
+
+<!--more-->
+
+<p>前一篇文章有几张图片，看起来有点模糊，所以考虑加个fancybox，顺便也把置顶解决了下。</p>
+
+<h2 id="fancybox">1. fancybox</h2>
+
+<p>用的是纯前端的解决方案，没有用jekyll插件的方式。插件方式可以参考 <a href="http://caiknife.github.io/blog/2013/10/02/fancybox-plugin-for-octopress/" target="_blank">给博客写了个 Fancybox 的插件</a>。 因为过多使用一些没有必要的Liquid标记，会对markdown文章造成污染，不利于迁移操作。</p>
+
+<p>我主要是参考的 <a href="https://blog.ewal.net/octopress-customizations/" target="_blank">Octopress Customizations</a> 和 <a href="http://devma.cn/blog/2016/03/29/zai-octopresszhong-tian-jia-tu-pian-fang-da/" target="_blank">在Octopress中添加图片放大</a>，不过主要是前者，因为我的图片都没有用img标记。</p>
+
+<p>具体来说，用如下方式表示图片</p>
+
+<p><code>
+![GitLab CI/CD](/images/gitlab1.png){: .center .fancybox}
+</code></p>
+
+<p>后面那个<code>{: .center .fancybox}</code>是kramdown的class标记。 接下来下载<a href="http://fancyapps.com/fancybox/" target="_blank">fancybox</a>，把source目录里面的内容解压到<code>source/javascripts/fancybox</code>。然后只要改下模板，head区域导入fancybox的css和js以及footer区域执行触发fancybox。</p>
+
+<p><code>html head http://blog.rexdf.org MyBlog
+&lt;script src="https://i.rexdf.org/javascripts/fancybox/jquery.fancybox.pack.js"&gt;&lt;/script&gt;
+&lt;link rel="stylesheet" type="text/css" href="https://i.rexdf.org/javascripts/fancybox/jquery.fancybox.css" /&gt;
+</code></p>
+
+<p>与</p>
+
+<p><code>html footer http://blog.rexdf.org MyBlog
+&lt;script type="text/javascript"&gt;
+$(function() {
+  $('.entry-content').each(function(i){
+    var _i = i;
+    $(this).find('img.fancybox').each(function(){
+      var img = $(this);
+      var title = img.attr("title");
+      var classes = img.attr("class");
+      img.removeAttr("class");
+      img.wrap('&lt;a href="'+this.src+'" class="' + classes + '" rel="gallery'+_i+'" /&gt;');
+      if (title != "") {
+        img.parent().attr("title", title);
+      }
+    });
+  });
+  $('.fancybox').fancybox();
+});
+&lt;/script&gt;
+</code></p>
+
+<h2 id="section">2. 文章置顶</h2>
+
+<p>因为octopress背靠的jekyll这座大山，背后社区是比较庞大的。静态博客程序的star<a href="https://www.staticgen.com/" target="_blank">排行榜</a>上，Jekyll是排第一的，遇到问题比较容易搜索到解决办法。</p>
+
+<p>所以我用的是 <a href="https://tamouse.github.io/swaac/jekyll/2017/09/04/jekyll-making-posts-sticky-redux/" target="_blank">Jekyll: Making Posts Sticky Redux</a> 中的第一种方法。也就是修改<code>source/index.html</code>和<code>source/_includes/article.html</code></p>
+
+<p>```html source/index.html http://blog.rexdf.org MyBlog
+…
+&lt;div class="blog-index"&gt;
+  </p>
+
+<p>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    &lt;article&gt;
+      
+  <header>
+    
+      <h1 class="entry-title">[置顶]<a href="/blog/2015/05/15/fa-bu-yi-ge-sublimeyi-hua-cha-jian/">发布一个sublime汉化插件</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<time class="data-article month-05 season-spring" datetime="2015-05-15T11:19:01+08:00" pubdate><span class='month'>May</span> <span class='day'>15th</span> <span class='year'>2015</span></time>
+        
+           | <a href="/blog/2015/05/15/fa-bu-yi-ge-sublimeyi-hua-cha-jian/#disqus_thread"
+             data-disqus-identifier="https://i.rexdf.org/blog/2015/05/15/fa-bu-yi-ge-sublimeyi-hua-cha-jian/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>很简单的一个插件，现在支持汉化Sublime Text2，Sublime Text3。全部系统Win64、Win32，Linux64，Linux32，OSX等，可以随意来回切换简体中文、繁体中文、日语、英语，无需重启SublimeText。</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2015/05/15/fa-bu-yi-ge-sublimeyi-hua-cha-jian/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    &lt;/article&gt;
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  </p>
+
+<p>
+  
+…
+&lt;/div&gt;
+```</p>
+
+<p>在<code>source/_includes/article.html</code>中适当地方加上如下内容就好了。</p>
+
+<p><code>html source/_includes/article.html http://blog.rexdf.org MyBlog
+
+</code></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[博客切换调查]]></title>
+    <link href="https://i.rexdf.org/blog/2018/09/10/bo-ke-qie-huan-diao-cha/"/>
+    <updated>2018-09-10T16:43:52+08:00</updated>
+    <id>https://i.rexdf.org/blog/2018/09/10/bo-ke-qie-huan-diao-cha</id>
+    <content type="html"><![CDATA[<ul class="markdown-toc">
+  <li><a href="#hexo">hexo</a>    <ul>
+      <li><a href="#section">缺点</a>        <ul>
+          <li><a href="#section-1">标题自动转拼音</a></li>
+          <li><a href="#section-2">文章置顶</a></li>
+          <li><a href="#section-3">隐藏文章</a></li>
+          <li><a href="#section-4">私有扩展</a></li>
+        </ul>
+      </li>
+      <li><a href="#section-5">优点</a>        <ul>
+          <li><a href="#section-6">搜索</a></li>
+          <li><a href="#section-7">多语言</a></li>
+          <li><a href="#section-8">移动友好</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><a href="#hugo">Hugo待补充</a></li>
+  <li><a href="#section-9">结论</a></li>
+</ul>
+
+<p>一段时间没有更新博客了，记录倒是一直都有的，养成了写操作日志的习惯，要是发出来得有100多篇，不过可能包含不少敏感内容，而且操作日志也算不上什么创造性的内容，就此作罢。</p>
+
+<p>嗯，这个博客主题确实有点儿过时了。</p>
+
+<!--more-->
+
+<p>比如<a href="https://hexo.io" target="_blank">hexo</a>或者<a href="https://gohugo.io" target="_blank">hugo</a>，采用的人就很多。做个hexo主题似乎就可轻松收割上千stars (<a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">https://github.com/yscoder/hexo-theme-indigo</a> )，乃至成功的到了上万stars (<a href="https://github.com/iissnan/hexo-theme-next" target="_blank">https://github.com/iissnan/hexo-theme-next</a>)。</p>
+
+<h1 id="hexo">hexo</h1>
+
+<p>先尝试了下hexo NexT主题，用的来自 <a href="https://github.com/theme-next/hexo-theme-next" target="_blank">https://github.com/theme-next/hexo-theme-next</a> 最新版，把octopress里面的_posts目录拷贝过去，运行<code>hexo s</code>，一切正常。 跑起来似乎还不错，主题也是全新的。</p>
+
+<p><img src="/images/hexo-theme.png" alt="hexo theme" class="center fancybox" /></p>
+
+<p>然而，很快我就发现一些痛点并没有被解决，而且一些octopress的特性被扔掉了。</p>
+
+<h2 id="section">缺点</h2>
+
+<h3 id="section-1">标题自动转拼音</h3>
+
+<p><code>bash new_post http://blog.rexdf.org MyBlog
+rake new_post["博客切换调查"]
+mkdir -p source/_posts
+Creating new post: source/_posts/2018-09-10-bo-ke-qie-huan-diao-cha.markdown
+</code></p>
+
+<p>据我观察，似乎很多hexo博主文章url就是汉字，另外一部分手工翻译的英文。</p>
+
+<h3 id="section-2">文章置顶</h3>
+
+<p>有点儿想把sublime汉化插件那篇文章置顶下，折腾了一圈，发现没有好的解决办法，找到了两三个workaround(<a href="https://github.com/iissnan/hexo-theme-next/issues/415#issuecomment-193756827" target="_blank">1</a> <a href="https://github.com/netcan/hexo-generator-index-pin-top" target="_blank">2</a>)，但是看评论似乎都有bug，而且随着hexo官方升级以及NexT主题升级，随时会broken，这就是我一贯不喜欢nodejs项目的原因，包依赖非常脆弱。</p>
+
+<h3 id="section-3">隐藏文章</h3>
+
+<p>同样想隐藏部分文章，而且这个需求可以继续细化。部分只是不想在首页上显示，有的是想作为草稿撤回。</p>
+
+<h3 id="section-4">私有扩展</h3>
+
+<p>Octopress用了有这么几年了，改动过很多地方，添加了一些私有扩展，暂时hexo没有找到想要的功能。</p>
+
+<h2 id="section-5">优点</h2>
+
+<h3 id="section-6">搜索</h3>
+
+<p>有Algolia Search，另外还可以用纯js做的前端本地搜索。</p>
+
+<h3 id="section-7">多语言</h3>
+
+<p>似乎hexo从开始就考虑了多语言支持，这比octopress的那个插件要好很多。</p>
+
+<h3 id="section-8">移动友好</h3>
+
+<p>毕竟前端语言写的</p>
+
+<h1 id="hugo">Hugo待补充</h1>
+
+<p>留空</p>
+
+<h1 id="section-9">结论</h1>
+
+<p>暂时结论，自己改Octopress/Jekyll的主题，虽然生成时候相对nodejs、golang要慢一点，但是都是静态博客，敲下回车就去泡咖啡了，谁在乎生成的快慢！</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Octopress博客更新日志]]></title>
+    <link href="https://i.rexdf.org/blog/2014/09/26/octopressbo-ke-geng-xin-ri-zhi/"/>
+    <updated>2014-09-26T16:25:37+08:00</updated>
+    <id>https://i.rexdf.org/blog/2014/09/26/octopressbo-ke-geng-xin-ri-zhi</id>
+    <content type="html"><![CDATA[<ul class="markdown-toc">
+  <li><a href="#cdn">1.CDN加速</a></li>
+  <li><a href="#section">2.增加分类列表</a>    <ul>
+      <li><a href="#section-1">2.1.注册插件</a></li>
+      <li><a href="#aside">2.2建立aside模板</a></li>
+      <li><a href="#css">2.3添加CSS</a></li>
+    </ul>
+  </li>
+  <li><a href="#cdn-1">3.图像CDN加速</a>    <ul>
+      <li><a href="#markdowncdn">3.1原生markdown语法CDN加速(原创)</a></li>
+      <li><a href="#octopress">3.2 Octopress定义的语法加速</a></li>
+    </ul>
+  </li>
+  <li><a href="#pygment">4.Pygment错误</a></li>
+  <li><a href="#configuration">5.大量Configuration信息</a></li>
+</ul>
+
+<p>Octopress用了应该超过一年了，感觉还不错，看到了不少迁移到基于Python的Pelican和基于nodejs的Hexo，不过暂时我还没打算迁移过去。因为到现在才刚刚适应Jekyll的环境，虽然生成的时候确实非常之慢。</p>
+
+<!-- more -->
+
+<h2 id="cdn">1.CDN加速</h2>
+
+<ul>
+  <li>全站静态文件启动cdn加速。</li>
+</ul>
+
+<p>这个似乎并不困难，但是我现在有200多篇blog，一篇篇来改显然不现实。我希望的是可以自动化替换，并且可以随时修改的。</p>
+
+<p>暂时我没有发现scss和ruby变量通用的方法，所以scss里面专用一个变量，在octopress/sass/screen.scss的第三行加入一行<code>$cdn_prefix:"http:cdn.example.com"</code>，这样便可以在各个scss文件中使用这个变量了。注意的是，scss语法中，字符替换和ruby的类似。是这样使用的：<code>background: $page-bg image-url('#{$cdn_prefix}/images/back_gb.jpg') top center fixed;</code>，也就是说，<code>'#{$var}'</code>这个<code>$var</code>会被替换。</p>
+
+<p>另外一个便是ruby代码和html模板中的变量。ruby代码中我使用的是<code>Jekyll.configuration({})['cdn_prefix']</code>来读取<code>_config.yml</code>中的配置，而html中则是使用<code>{ { site.cdn_prefix } }</code>来替换字符。</p>
+
+<h2 id="section">2.增加分类列表</h2>
+
+<ul>
+  <li>category list tag</li>
+</ul>
+
+<p>这个网上解决方案很多，而且还有云标签等不同的实现。问题是网上找的的好像都不支持中文。原因是他们处理超链接的时候没有采用Jekyll的默认方式，而是自作聪明写了一段代码。下面是我的代码。</p>
+
+<h3 id="section-1">2.1.注册插件</h3>
+
+<p>在<code>plugins/</code>增加<code>category_list_tag.rb</code>文件，内容如下</p>
+
+<p>```ruby plugins/category_list_tag.rb http://blog.rexdf.org MyBlog mark:9-10
+module Jekyll
+  class CategoryListTag &lt; Liquid::Tag
+    def render(context)
+      html = “”
+      categories = context.registers[:site].categories.keys
+      categories.sort.each do |category|
+        posts_in_category = context.registers[:site].categories[category].size
+        category_dir = context.registers[:site].config[‘category_dir’]
+        #category_url = File.join(category_dir, category.gsub(/_|\P{Word}/, ‘-‘).gsub(/-{2,}/, ‘-‘).downcase)
+        html « “&lt;li class='category'&gt;<a href="https://i.rexdf.org/#{category_dir}/#{category.to_url}/">#{category} (#{posts_in_category})</a>&lt;/li&gt;\n”
+      end
+      html
+    end
+  end
+end</p>
+
+<p>Liquid::Template.register_tag(‘category_list’, Jekyll::CategoryListTag)
+```</p>
+
+<p>这里重点是第10行，<code>#{category.to_url}</code>是关键，这样对中文的支持就没有问题了。ruby会自动把汉字转换成拼音，日语转换成罗马字母。</p>
+
+<h3 id="aside">2.2建立aside模板</h3>
+
+<p>然后新建 <code>source/_inclide/custom/asides/category_list.html</code>，内容如下：</p>
+
+<p>```html source/_inclide/custom/asides/category_list.html http://blog.rexdf.org MyBlog</p>
+<section>
+  <h1>Categories</h1>
+  <ul id="categories">
+    { % category_list % }
+  </ul>
+</section>
+<p>```</p>
+
+<h3 id="css">2.3添加CSS</h3>
+
+<p>修改<code>sass/custom/_styles.scss</code>，添加如下内容，这个自定义符合自己主题搭配的就好。</p>
+
+<p><code>scss sass/custom/_styles.scss http://blog.rexdf.org MyBlog
+#markdown-toc:before {
+  content: "目录";
+  font-weight: bold;
+}
+ul#markdown-toc {
+  list-style: none;
+  float: right;
+  @include shadow-box;
+  background-color: white;
+  border: 0.5em solid rgba(224, 224, 248, 0.1);
+  padding:5px;
+  margin-left:10px;
+}
+</code></p>
+
+<h2 id="cdn-1">3.图像CDN加速</h2>
+
+<p>这里只是具体地讲一下，图像有两种。一个是markdown自身的，另一个是octopress/jekyll定义的。</p>
+
+<h3 id="markdowncdn">3.1原生markdown语法CDN加速(原创)</h3>
+<p>这个比较麻烦，曾经一年多我都没有解决。前两天无意中解决了。过程不详细叙述了。这里只是简要说明下过程。因为我用的是<code>kramdown</code>，所以如果你是用的<code>rdiscount</code>，那么不用看这个了。</p>
+
+<p>这里是系统级别的hacking，也就是给kramdown进行一个强制的硬编码。(我是这么想的，在自己的电脑上，kramdown被依赖到的可能性非常低。所以我就放心地hacking了。)</p>
+
+<p>在Cygwin的gem都是被安装在了<code>~/.gem/ruby/gems</code>下面，而Linux下面除了这个目录，还可能在<code>/usr/lib/ruby/gems/2.1.0/gems/</code>下面，可以通过<code>gem env</code>查看你系统的gem存放目录。在这里目录下面应该会发现一个<code>kramdown-***</code>目录，这个目录下面<code>lib/kramdown/converter/html.rb</code>，打开这个文件，搜索<code>convert_img</code>，会找到一个<code>def convert_img(el, indent)</code>定义的函数。原始的应该只有一行。我们要打一个patch，变成如下:</p>
+
+<p><code>ruby lib/kramdown/converter/html.rb http://blog.rexdf.org MyBlog mark:2-4
+def convert_img(el, indent)
+    if !(el.attr['src'].match(/^http/))
+       el.attr['src'] = Jekyll.configuration({})['cdn_prefix'] + el.attr['src']
+    end
+    "&lt;img#{html_attributes(el.attr)} /&gt;"
+end
+</code></p>
+
+<p>这里我用了<code>_config.yml</code>里面增加的一个变量<code>cdn_prefix</code>，如果你嫌麻烦硬编码也是可以的，只是这样下次修改cdn的时候方便些。</p>
+
+<h3 id="octopress">3.2 Octopress定义的语法加速</h3>
+<p>这个比较简单，网上到处都有，简单叙述下。
+修改<code>plugins/image_tag.rb</code>,如下</p>
+
+<p><code>ruby plugins/image_tag.rb http://blog.rexdf.org MyBlog start:31 mark:36
+...
+        else
+          @img['alt']    = @img['title'].gsub!(/"/, '&amp;#34;') if @img['title']
+        end
+        @img['class'].gsub!(/"/, '') if @img['class']
+        @img['src'] = Jekyll.configuration({})['cdn_prefix'] + @img['src'] if @img['src'][0] == '/'
+      end
+      super
+</code></p>
+
+<p>也就是增加第36行，这里也是用了<code>_config.yml</code>里面增加的一个变量<code>cdn_prefix</code>，你完全可以硬编码。</p>
+
+<h2 id="pygment">4.Pygment错误</h2>
+
+<p>较常见的是如下的错误</p>
+
+<pre><code>Error:  Pygments can't parse unknown language: &lt;/p&gt;
+</code></pre>
+
+<p>这个有一个辅助解决办法是修改<code>plugins/pygments_code.rb</code>,如下</p>
+
+<p><code>ruby plugins/pygments_code.rb http://blog.rexdf.org MyBlog start:26 mark:27
+rescue MentosError
+   raise "Pygments can't parse unknown language: #{lang}#{code}."
+end
+</code></p>
+
+<p>家下来可以根据出错提示，修改博客的markdown原文就好。</p>
+
+<h2 id="configuration">5.大量Configuration信息</h2>
+
+<p>实际上每执行一次<code>Jekyll.configuration({})['cdn_prefix']</code>都会输出一次。如果不想见到满屏的这个提示。请按照修改<code>kramdown</code>的方法，修改<code>lib/jekyll.rb</code>，注释掉一行<code>$stdout.puts "Configuration from #{config_file}"</code>。如果是2.4版本请修改<code>/usr/lib/ruby/gems/2.1.0/gems/jekyll-2.4.0/lib/jekyll/configuration.rb</code>，就是注释掉一行 <code>Jekyll.logger.info "Configuration file:", file</code>。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[妈蛋语法]]></title>
+    <link href="https://i.rexdf.org/blog/2013/10/23/ma-dan-yu-fa/"/>
+    <updated>2013-10-23T15:50:00+08:00</updated>
+    <id>https://i.rexdf.org/blog/2013/10/23/ma-dan-yu-fa</id>
+    <content type="html"><![CDATA[<pre><code>/* Markdown语法简单介绍 */
+/* 表示段落只需要连续两个回车就可以了 */
+/* 各级标题 */
+/* 第一种是在标题前面加上1~6个”#”表示”&lt;h1&gt;”~”&lt;h6&gt;” */
+/* 第二种是在标题下面另起一行，输入四个以上的等号“=”来表示”&lt;h1&gt;”，输入四个以上的减号“-”来表示”&lt;h2&gt;” */
+/* h1,h2,h3,..... */
+# Hello
+## Hello
+.....
+/* 列表 ,+是UL，数字是OL */
++ Python
++ Ruby
++ Lisp
+1. Python
+2. Ruby
+3. Lisp
++ Abacus
+* answer
++ Bubbles
+1. bunk
+2. bupkis
++ BELITTLER
+3. burper
++ Cunning
+/* 链接*/
+[sebug](http://rexdf.org/)
+&lt;http://rexdf.org/&gt;
+&lt;链接&gt; ：这种形式只是简单的标出链接；
+[文字](链接 “标题”)：给文字添加链接，其中标题是可选的；
+[文字][标记]：给文字添加链接，链接在下面的一个以[标记]开头的新行（一般是文章末尾）给出。或者直接以[文字][]这种形式编写，在下面的新行中使用[文字]:链接的形式声明链接。
+/* 代码和引用 */
+# 插入一句代码，把代码用 (`) 符号包围起来即可，如果插入一大段代码也很简单，在代码的每一行之前加四个空格。
+/* 使用引用 blockquote*/
+&gt;Code Share
+&gt; &gt; Code Share
+/* 使用图片*/
+![rexdf.org](http://rexdf.org/hotlink.png "rexdf.org")
+/* 其他 */
+/* 粗体和斜体：用星号”*”或者下划线”_” */
+/* 一个表示斜体； */
+/* 两个表示粗体； */
+/* 三个表示粗斜体 */
+*单星号*
+_单下划线_
+**双星号**
+__双下划线__
+/* 转义符：”\”。只要给不希望被转义的字符前面加上\就可以了 */
+/* 水平线：使用三个以上的”*”或”-”来表示。这些星号跟减号之间可以用空格，如果减号没有空格，那它必须在单独的一个段落里，要不它会被识别为标题的 */
+#还有更多请参考下面链接资料
+</code></pre>
+
+<p>显示为如下</p>
+
+<p>/* Markdown语法简单介绍 */</p>
+
+<p>/* 表示段落只需要连续两个回车就可以了 */</p>
+
+<p>/* 各级标题 */</p>
+
+<p>/* 第一种是在标题前面加上1~6个”#”表示”&lt;h1&gt;”~”&lt;h6&gt;” */</p>
+
+<p>/* 第二种是在标题下面另起一行，输入四个以上的等号“=”来表示”&lt;h1&gt;”，输入四个以上的减号“-”来表示”&lt;h2&gt;” */</p>
+
+<p>/* h1,h2,h3,….. */</p>
+
+<h1 id="hello">Hello</h1>
+
+<h2 id="hello-1">Hello</h2>
+
+<p>…..</p>
+
+<p>/* 列表 ,+是UL，数字是OL */</p>
+
+<ul>
+  <li>
+    <p>Python</p>
+  </li>
+  <li>
+    <p>Ruby</p>
+  </li>
+  <li>
+    <p>Lisp</p>
+  </li>
+</ul>
+
+<ol>
+  <li>
+    <p>Python</p>
+  </li>
+  <li>
+    <p>Ruby</p>
+  </li>
+  <li>
+    <p>Lisp</p>
+  </li>
+</ol>
+
+<ul>
+  <li>
+    <p>Abacus</p>
+  </li>
+  <li>
+    <p>answer</p>
+  </li>
+  <li>
+    <p>Bubbles</p>
+  </li>
+</ul>
+
+<ol>
+  <li>
+    <p>bunk</p>
+  </li>
+  <li>
+    <p>bupkis</p>
+  </li>
+</ol>
+
+<ul>
+  <li>BELITTLER</li>
+</ul>
+
+<ol>
+  <li>burper</li>
+</ol>
+
+<ul>
+  <li>Cunning</li>
+</ul>
+
+<p>/* 链接*/</p>
+
+<p><a href="http://rexdf.org/">sebug</a></p>
+
+<p><a href="http://rexdf.org/">http://rexdf.org/</a></p>
+
+<p>/* 代码和引用 */</p>
+
+<h1 id="section">插入一句代码，把代码用 (`) 符号包围起来即可，如果插入一大段代码也很简单，在代码的每一行之前加四个空格。</h1>
+
+<p>/* 使用引用 blockquote*/</p>
+
+<blockquote>
+  <p>Code Share</p>
+</blockquote>
+
+<blockquote>
+  <blockquote>
+    <p>Code Share</p>
+  </blockquote>
+</blockquote>
+
+<p>/* 使用图片*/</p>
+
+<p><img src="http://rexdf.org/hotlink.png" alt="rexdf.org" title="rexdf.org" /></p>
+
+<p>/* 其他 */</p>
+
+<p>/* 粗体和斜体：用星号”*”或者下划线”_” */</p>
+
+<p>/* 一个表示斜体； */</p>
+
+<p>/* 两个表示粗体； */</p>
+
+<p>/* 三个表示粗斜体 */</p>
+
+<p><em>单星号</em></p>
+
+<p><em>单下划线</em></p>
+
+<p><strong>双星号</strong></p>
+
+<p><strong>双下划线</strong></p>
+
+<h1 id="section-1">还有更多请参考下面链接资料</h1>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Octopress代码高亮]]></title>
+    <link href="https://i.rexdf.org/blog/2013/10/23/octopress-dai-ma-gao-liang/"/>
+    <updated>2013-10-23T12:20:00+08:00</updated>
+    <id>https://i.rexdf.org/blog/2013/10/23/octopress-dai-ma-gao-liang</id>
+    <content type="html"><![CDATA[<h1 id="section">语法高亮</h1>
+
+<h2 id="section-1">语法</h2>
+
+<pre><code>``` [language] [title] [url] [link text] [linenos:false] [start:#] [mark:#,#-#]
+code snippet
+```
+</code></pre>
+
+<h3 id="section-2">说明</h3>
+
+<pre><code> [language] - Used by the syntax highlighter. Passing 'plain' disables highlighting.
+ [title] - Add a figcaption to your code block.
+ [url] - Download or reference link for your code.
+ [Link text] - Text for the link, defaults to 'link'.
+</code></pre>
+
+<h3 id="section-3">例子1</h3>
+
+<pre><code>``` ruby Discover if a number is prime http://www.noulakaz.net/weblog/2007/03/18/a-regular-expression-to-check-for-prime-numbers/ Source Article
+ class Fixnum
+   def prime?
+     ('1' * self) !~ /^1?$|^(11+?)\1+$/
+   end
+ end
+```
+</code></pre>
+
+<p>显示成</p>
+
+<p><code>ruby Discover if a number is prime http://www.noulakaz.net/weblog/2007/03/18/a-regular-expression-to-check-for-prime-numbers/ Source Article
+ class Fixnum
+   def prime?
+     ('1' * self) !~ /^1?$|^(11+?)\1+$/
+   end
+ end
+</code></p>
+
+<h3 id="section-4">例子2.</h3>
+
+<pre><code>``` matlab MathJax Example http://blog.rexdf.org MyBlog
+\begin{align*}
+  &amp; \phi(x,y) = \phi \left(\sum_{i=1}^n x_ie_i, \sum_{j=1}^n y_je_j \right)
+  = \sum_{i=1}^n \sum_{j=1}^n x_i y_j \phi(e_i, e_j) = \\
+  &amp; (x_1, \ldots, x_n) \left( \begin{array}{ccc}
+      \phi(e_1, e_1) &amp; \cdots &amp; \phi(e_1, e_n) \\
+      \vdots &amp; \ddots &amp; \vdots \\
+      \phi(e_n, e_1) &amp; \cdots &amp; \phi(e_n, e_n)
+    \end{array} \right)
+  \left( \begin{array}{c}
+      y_1 \\
+      \vdots \\
+      y_n
+    \end{array} \right)
+\end{align*}
+```
+</code></pre>
+
+<p>则为</p>
+
+<p><code>matlab MathJax Example http://blog.rexdf.org MyBlog
+\begin{align*}
+  &amp; \phi(x,y) = \phi \left(\sum_{i=1}^n x_ie_i, \sum_{j=1}^n y_je_j \right)
+  = \sum_{i=1}^n \sum_{j=1}^n x_i y_j \phi(e_i, e_j) = \\
+  &amp; (x_1, \ldots, x_n) \left( \begin{array}{ccc}
+      \phi(e_1, e_1) &amp; \cdots &amp; \phi(e_1, e_n) \\
+      \vdots &amp; \ddots &amp; \vdots \\
+      \phi(e_n, e_1) &amp; \cdots &amp; \phi(e_n, e_n)
+    \end{array} \right)
+  \left( \begin{array}{c}
+      y_1 \\
+      \vdots \\
+      y_n
+    \end{array} \right)
+\end{align*}
+</code></p>
+
+<h3 id="section-5">例子3</h3>
+
+<p>这个</p>
+
+<pre><code>{ % jsfiddle 3h5A4/3 %}
+</code></pre>
+
+<p>神奇一些(说明markdown的bug，所以我在{和%之间加了空格，应该去掉)</p>
+
+<p><iframe style="width: 100%; height: 300px" frameborder="0" seamless="seamless" src="http://jsfiddle.net/3h5A4/3/embedded/js,resources,html,css,result/light/"></iframe></p>
+
+<h3 id="section-6">例子4</h3>
+
+<p>这个也是</p>
+
+<pre><code>{ % gist 2436351 %}
+</code></pre>
+
+<p>显示为</p>
+
+<p><div><script src='https://gist.github.com/2436351.js'></script>
+<noscript><pre><code>var parser = document.createElement('a');
+parser.href = &quot;http://example.com:3000/pathname/?search=test#hash&quot;;
+
+parser.protocol; // =&gt; &quot;http:&quot;
+parser.host;     // =&gt; &quot;example.com&quot;
+parser.port;     // =&gt; &quot;3000&quot;
+parser.pathname; // =&gt; &quot;/pathname/&quot;
+parser.search;   // =&gt; &quot;?search=test&quot;
+parser.hash;     // =&gt; &quot;#hash&quot;</code></pre></noscript></div>
+</p>
+
+<h3 id="section-7">例子5</h3>
+
+<p>更加神奇的</p>
+
+<pre><code>{ % gist 996818 %}
+</code></pre>
+
+<p>显示为</p>
+
+<p><div><script src='https://gist.github.com/996818.js'></script>
+<noscript><pre><code>@@ -590,7 +590,7 @@ class SpritesTest &lt; Test::Unit::TestCase
+  it &quot;should generate a sprite from nested folders&quot; do
+    css = render &lt;&lt;-SCSS
+-     @import &quot;nested/*.png&quot;;
++     @import &quot;nested/**/*.png&quot;;
+      @include all-nested-sprites;
+    SCSS
+    assert_correct css, &lt;&lt;-CSS</code></pre></noscript></div>
+</p>
+]]></content>
+  </entry>
+  
+</feed>

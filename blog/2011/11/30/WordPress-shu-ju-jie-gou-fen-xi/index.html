@@ -1,0 +1,176 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<script type="text/javascript">var _speedMark=new Date</script>
+<meta charset="utf-8">
+<title>WordPress 数据结构分析 - Rexdf</title>
+<meta name="author" content="Rexdf">
+<meta name="description" content="WordPress 数据结构分析 牛哥 发表于 11-22 12:32 WordPress仅仅用了10 个表:wp_comments, wp_links, wp_options, wp_postmeta, wp_posts, wp_term_relationships, &hellip;">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' data: https://hm.baidu.com https://tajs.qq.com https://ssl.google-analytics.com https://static.rexdf.org https://*.disquscdn.com https://rexdf.disqus.com https://api.github.com https://ssl.google-analytics.com https://disqus.com https://analytics.rexdf.net; connect-src 'self' https://static.rexdf.org https://analytics.rexdf.net https://hm.baidu.com; img-src data: https://*; font-src data: https://*; child-src 'none'; style-src 'self' 'unsafe-inline' https://*; frame-src 'self' https://t.rexdf.org http://t.rexdf.org https://rexdf.disqus.com https://disqus.com">
+<link rel="canonical" href="https://i.rexdf.org/blog/2011/11/30/WordPress-shu-ju-jie-gou-fen-xi">
+<link rel="dns-prefetch" href="https://static.rexdf.org/">
+<link href="/favicon.ico" rel="icon">
+<link id="main-css" href="/stylesheets/screen.css" media="screen,projection" rel="stylesheet" type="text/css" title="pc">
+<link href="/stylesheets/screen_mobile.css" rel="alternate stylesheet" type="text/css" title="mobile">
+<link href="/atom.xml" rel="alternate" title="Rexdf" type="application/atom+xml">
+<script src="/javascripts/libs/jquery.min.js"></script>
+<script src="/javascripts/octopress-rexdf.min.js" type="text/javascript"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+      
+      toggle_theme();
+  });
+</script>
+<script type="text/javascript" async src="https://static.rexdf.org/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript">var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-55590409-1"]),_gaq.push(["_trackPageview"]),function(){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(t,e)}()</script>
+<script>var _hmt=_hmt||[];!function(){var e=document.createElement("script");e.src="//hm.baidu.com/hm.js?32192d95b89fbefa0875c4c95adb1412";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}()</script>
+<script src="/javascripts/fancybox/jquery.fancybox.pack.js"></script>
+<link rel="stylesheet" type="text/css" href="/javascripts/fancybox/jquery.fancybox.css">
+<script type="text/javascript">var _paq=_paq||[];_paq.push(["trackPageView"]),_paq.push(["enableLinkTracking"]),function(){var e="https://analytics.rexdf.net/";_paq.push(["setTrackerUrl",e+"piwik.php"]),_paq.push(["setSiteId","1"]);var a=document,t=a.createElement("script"),p=a.getElementsByTagName("script")[0];t.type="text/javascript",t.async=!0,t.defer=!0,t.src=e+"piwik.js",p.parentNode.insertBefore(t,p)}()</script>
+</head>
+<body class="low-contrast-linen-wptouch-bg">
+<header role="banner"><hgroup>
+<h1 id="header-title"><a href="/">Rexdf</a></h1>
+<h2 id="subtitle">The devil is in the Details.</h2>
+</hgroup>
+</header>
+<nav role="navigation"><ul class="subscription" data-subscription="rss">
+<li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+</ul>
+<form action="https://google.com/search" method="get">
+<fieldset role="search">
+<input type="hidden" name="q" value="site:i.rexdf.org">
+<input class="search" type="text" name="q" results="0" placeholder="Search">
+</fieldset>
+</form>
+<ul class="main-navigation">
+<li><a href="/">Blog</a></li>
+<li><a href="/blog/archives/">Archives</a></li>
+<li><a href="/idea/">Idea</a></li>
+<li><a href="/share/">Share</a></li>
+<li><a href="/books/">Books</a></li>
+<li><a href="/donate/">Donate</a></li>
+<li><a target="_blank" href="https://blog.rexdf.org" style="font-family:Shadows Into Light">Main-Blog</a></li>
+</ul>
+</nav>
+<div id="main">
+<div id="content">
+<div>
+<article class="hentry" role="article">
+<header>
+<h1 class="entry-title">WordPress 数据结构分析</h1>
+<p class="meta">
+<time class="data-article month-11 season-autumn" datetime="2011-11-30T20:33:00+08:00" pubdate><span class="month">Nov</span> <span class="day">30th</span> <span class="year">2011</span></time>
+| <a href="#disqus_thread" data-disqus-identifier="https://i.rexdf.org">Comments</a>
+</p>
+</header>
+<div class="entry-content"><h1 id="wordpress-">WordPress 数据结构分析</h1>
+<p><a href="http://my.oschina.net/u/163913">牛哥</a> 发表于 11-22 12:32</p>
+<p>WordPress仅仅用了10 个表:wp_comments, wp_links, wp_options, wp_postmeta, wp_posts, wp_term_relationships, wp_term_taxonomy, wp_terms, wp_usermeta, wp_users 按照功能大致分为五类 用户信息: wp_users和wp_usermeta 链接信息: wp_links 文章及评论信息: wp_posts、wp_postmeta、wp_comments 对分类，链接分类，标签管理: wp_term，wp_term_relationships,wp_term_taxonomy 全局设置信息: wp_options wp_posts 博客发表”文章”存放的地方就是这个wp_posts表了。这个表里存放的除了普通的文章之外，还有附件和页面（page）的一些信息。 post_type 字段是用来区分文章类型的。如果post_type是’post’，那么就是文章，如果是’page’,那么就是页面，如果是’attachment’, 那么就是附件了. wp_postmeta 这个表很简单，只有 meta_id, post_id, meta_key, meta_value 这四个字段。post_id 是相关 “文章” 的id。meta_value 是longtext类型的，这里仅是用来存储值。在撰写文章的时候，在编辑框下面有一个 Custom Fields 的选项，我们可以在这里添加post的meta信息。 wp_comments 比较重要的两个字段是 comment_post_ID 和 comment_approved，前一个用来指示这条评论隶属于哪一篇文章，后一个用来记录审核状况。还有一个比较有意思的是这个 commnet_agent 字段，可以利用这个字段来统计一下用户浏览器类型。 wp_users 用户帐号表。存储用户名、密码还有一些用户的基本信息。 wp_usermeta 类似上面的 wp_postmeta，存储一些其他的用户信息。 wp_options 用来记录Wordpress的一些设置和选项。里面有一个blog_id字段，这个应该是用在MU版里面来标示不同的 Blog 的。autoload这个字段用来控制是否选项总是被WordPress或者插件导入并缓存来使用，或者是否只是在要求的情况下才被导入。 wp_links 用来存储 Blogroll 里面的链接。 wp_terms 它保存（term）的基本信息。name 就是 term 的名字，slug 是用于使得 URL 友好化。term_group 是用于把相似的 terms 集合在一起。term_id 是term的唯一ID。 wp_term_taxonomy 分类信息,是对wp_terms中的信息的关系信息补充，有所属类型(category,link_category,tag)，详细描述所拥有文章(链接)数量。 wp_term_relationships 把 posts和links这些对象和term_taxonomy表中的term_taxonomy_id联系起来的关系表，object_id是与不同的对 象关联，例如wp_posts中的ID（wp_links中的link_id）等，term_taxonomy_id就是关联 wp_term_taxonomy中的term_taxonomy_id。 WordPress使用MySQL数据库。作为一个开发者，我们有必要掌握WordPress数据库的基本构造，并在自己的插件或主题中使用他们。 截至WordPress3.0，WordPress一共有以下11个表。这里加上了默认的表前缀 wp_ 。 wp_commentmeta：存储评论的元数据 wp_comments：存储评论 wp_links：存储友情链接（Blogroll） wp_options：存储WordPress系统选项和插件、主题配置 wp_postmeta：存储文章（包括页面、上传文件、修订）的元数据 wp_posts：存储文章（包括页面、上传文件、修订） wp_terms：存储每个目录、标签 wp_term_relationships：存储每个文章、链接和对应分类的关系 wp_term_taxonomy：存储每个目录、标签所对应的分类 wp_usermeta：存储用户的元数据 wp_users：存储用户 在WordPress的数据库结构中，存储系统选项和插件配置的wp_options表是比较独立的结构，在后文中会提到，它采用了key-value模式存储，这样做的好处是易于拓展，各个插件都可以轻松地在这里存储自己的配置。 post，comment，user 则是三个基本表加上拓展表的组合。以wp_users为例，wp_users已经存储了每个用户会用到的基本信息，比如 login_name、display_name、 password、email等常用信息，但如果我们还要存储一些不常用的数据，最好的做法不是去在表后加上一列，去破坏默认的表结构，而是将数据存在 wp_usermeta中。wp_usermeta这个拓展表和wp_options表有类似的结构，我们可以在这里存储每个用户的QQ号码、手机号码、 登录WordPress后台的主题选项等等。 比较难以理解的是term，即wp_terms、wp_term_relationships、wp_term_taxonomy。在 WordPress的系统里，我们常见的分类有文章的分类、链接的分类，实际上还有TAG，它也是一种特殊的分类方式，我们甚至还可以创建自己的分类方 法。WordPress 将所有的分类及分类方法、对应结构都记录在这三个表中。wp_terms记录了每个分类的名字以及基本信息，如本站分为“WordPress开发”、 “WPCEO插件”等，这里的分类指广义上的分类，所以每个TAG也是一个“分类”。wp_term_taxonomy记录了每个分类所归属的分类方法， 如“WordPress开发”、“WPCEO插件”是文章分类（category），放置友情链接的“我的朋友”、“我的同事”分类属于友情链接分类 （link_category）。wp_term_relationships记录了每个文章（或链接）所对应的分类方法。 庆幸的是，关于term的使用，WordPress中相关函数的使用方法还是比较清晰明了，我们就没必要纠结于它的构造了。     在上文中我们已经介绍了WordPress数据库中各个表的作用，本文将继续介绍每个表中每个列的作用。WordPress官方文档已经有比较详细的表格，本文仅对常用数据进行介绍。 wp_commentmeta meta_id：自增唯一ID comment_id：对应评论ID meta_key：键名 meta_value：键值 wp_comments comment_ID：自增唯一ID comment_post_ID：对应文章ID comment_author：评论者 comment_author_email：评论者邮箱 comment_author_url：评论者网址 comment_author_IP：评论者IP comment_date：评论时间 comment_date_gmt：评论时间（GMT+0时间） comment_content：评论正文 comment_karma：未知 comment_approved：评论是否被批准 comment_agent：评论者的USER AGENT comment_type：评论类型(pingback/普通) comment_parent：父评论ID user_id：评论者用户ID（不一定存在） wp_links link_id：自增唯一ID link_url：链接URL link_name：链接标题 link_image：链接图片 link_target：链接打开方式 link_description：链接描述 link_visible：是否可见（Y/N） link_owner：添加者用户ID link_rating：评分等级 link_updated：未知 link_rel：XFN关系 link_notes：XFN注释 link_rss：链接RSS地址   wp_options option_id：自增唯一ID blog_id：博客ID，用于多用户博客，默认0 option_name：键名 option_value：键值 autoload：在WordPress载入时自动载入（yes/no）   wp_postmeta meta_id：自增唯一ID post_id：对应文章ID meta_key：键名 meta_value：键值   wp_posts ID：自增唯一ID post_author：对应作者ID post_date：发布时间 post_date_gmt：发布时间（GMT+0时间） post_content：正文 post_title：标题 post_excerpt：摘录 post_status：文章状态（publish/auto-draft/inherit等） comment_status：评论状态（open/closed） ping_status：PING状态（open/closed） post_password：文章密码 post_name：文章缩略名 to_ping：未知 pinged：已经PING过的链接 post_modified：修改时间 post_modified_gmt：修改时间（GMT+0时间） post_content_filtered：未知 post_parent：父文章，主要用于PAGE guid：未知 menu_order：排序ID post_type：文章类型（post/page等） post_mime_type：MIME类型 comment_count：评论总数   wp_terms term_id：分类ID name：分类名 slug：缩略名 term_group：未知 wp_term_relationships object_id：对应文章ID/链接ID term_taxonomy_id：对应分类方法ID term_order：排序 wp_term_taxonomy</p>
+</div>
+<footer>
+<p class="meta">
+<span class="byline author vcard">Posted by <span class="fn">Rexdf</span></span>
+<time class="data-article month-11 season-autumn" datetime="2011-11-30T20:33:00+08:00" pubdate><span class="month">Nov</span> <span class="day">30th</span> <span class="year">2011</span></time>
+</p>
+<div class="sharing">
+</div>
+<p class="meta">
+<a class="basic-alignment left" href="/blog/2011/11/27/ai-qing-gong-yu-3-bao-xiao-jie-mu-xiu-wan-zheng-ban/" title="Previous Post: 爱情公寓3爆笑揭幕秀 完整版">&laquo; 爱情公寓3爆笑揭幕秀 完整版</a>
+<a class="basic-alignment right" href="/blog/2011/12/02/CDN-nei-rong-fen-fa-wang-luo-ji-shu-yuan-li/" title="Next Post: CDN（内容分发网络）技术原理">CDN（内容分发网络）技术原理 &raquo;</a>
+</p>
+</footer>
+</article>
+<section>
+<h1>Comments</h1>
+<div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
+</div>
+<aside class="sidebar">
+<section>
+<h1>Categories</h1>
+<ul id="categories">
+<li class="category"><a href="/blog/categories/acm/">ACM <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/algorithm/">Algorithm <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/assembly/">Assembly <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/cygwin/">Cygwin <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/gnu/">GNU <sup>8</sup></a></li>
+<li class="category"><a href="/blog/categories/math/">Math <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/octopress/">Octopress <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/programming/">Programming <sup>6</sup></a></li>
+<li class="category"><a href="/blog/categories/security/">Security <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sublime/">Sublime <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/synology/">Synology <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sysadmin/">SysAdmin <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/web/">Web <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/windows/">Windows <sup>7</sup></a></li>
+<li class="category"><a href="/blog/categories/proxmox/">proxmox <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/ri-chang/">日常 <sup>37</sup></a></li>
+</ul>
+</section>
+<section>
+<h1>Recent Posts</h1>
+<ul id="recent_posts">
+<li class="post">
+<a href="/blog/2024/12/16/fu-wu-qi-wa-kuang-bing-du-de-cha-sha/">服务器挖矿病毒的查杀</a>
+</li>
+<li class="post">
+<a href="/blog/2021/07/11/apple-m1-bian-yi-tensorflow/">Apple M1 编译tensorflow</a>
+</li>
+<li class="post">
+<a href="/blog/2021/02/27/chromiumbian-ma-qi-wen-ti/">Chromium编码器问题</a>
+</li>
+<li class="post">
+<a href="/blog/2020/12/13/proxmoxbi-ji/">Proxmox笔记</a>
+</li>
+<li class="post">
+<a href="/blog/2020/11/15/lun-yan-du-yu-shen-du/">论广度与深度</a>
+</li>
+</ul>
+</section>
+<section>
+<iframe frameborder="0" scrolling="no" referrerpolicy="unsafe-url" style="width:283px;height:200px" src="https://t.rexdf.org/?m=app&a=showwidget&name=rexdf&type=1&width=283px&height=500px"></iframe>
+</section>
+<section>
+<h1>GitHub Repos</h1>
+<ul id="gh_repos">
+<li class="loading">Status updating...</li>
+</ul>
+<a href="https://github.com/rexdf">@rexdf</a> on GitHub
+<script type="text/javascript">$(document).ready(function(){if(!window.jXHR){var e=document.createElement("script");e.type="text/javascript",e.src="/javascripts/libs/jXHR.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}github.showRepos({user:"rexdf",count:0,skip_forks:!0,target:"#gh_repos"})})</script>
+</section>
+</aside>
+</div>
+</div>
+<footer role="contentinfo"><p>
+<span class="credit">Copyright &copy; 2024 - Rexdf -</span> |
+<span class="credit">Powered by <a name="bottoms" target="_blank" href="http://octopress.org">Octopress</a></span> |
+<span class="credit">Theme by ：<a href="https://blog.rexdf.org/" target="_blank" rel="theme">Rexdf</a></span> |
+<span class="credit">Host by：<a href="https://github.com/" target="_blank" rel="host">Github.com</a></span> |
+<span class="credit">版权声明：<a href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" target="_blank" rel="license">CC BY-NC-SA 3.0</a><img src="https://analytics.rexdf.net/piwik.php?idsite=1&amp;rec=1" style="border:0" alt="" referrerpolicy="no-referrer-when-downgrade"></span>|
+<span class="credit"><a href="/sitemap.xml" rel="sitemap">sitemap</a></span>
+</p>
+<script type="text/javascript" src="https://tajs.qq.com/stats?sId=30296377" charset="UTF-8"></script>
+</footer>
+<script type="text/javascript">var disqus_shortname="rexdf",disqus_identifier="https://i.rexdf.org/blog/2011/11/30/WordPress-shu-ju-jie-gou-fen-xi/",disqus_url="https://i.rexdf.org/blog/2011/11/30/WordPress-shu-ju-jie-gou-fen-xi/",disqus_script="embed.js";!function(){var e=document.createElement("script");e.type="text/javascript",e.async=!0,e.src="//"+disqus_shortname+".disqus.com/"+disqus_script,(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(e)}()</script>
+<script type="text/javascript">$(function(){$(".entry-content").each(function(t){var r=t;$(this).find("img.fancybox").each(function(){var t=$(this),a=t.attr("title"),n=t.attr("class");t.removeAttr("class"),t.wrap('<a href="'+this.src+'" class="'+n+'" rel="gallery'+r+'" />'),""!=a&&t.parent().attr("title",a)})}),$(".fancybox").fancybox()})</script>
+</body>
+</html>

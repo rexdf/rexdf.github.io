@@ -1,0 +1,312 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<script type="text/javascript">var _speedMark=new Date</script>
+<meta charset="utf-8">
+<title>三分钟新建shadowsocks服务器 - Rexdf</title>
+<meta name="author" content="Rexdf">
+<meta name="description" content="新建主机 安装shadowsocks 配置shadowsocks 启动shadowsocks 系统安全设置 ssh配置 iptables配置 内核参数调整 维护笔记 Shadowsocks速度真的是没话说啊！我自己也尝试折腾过l2tp/ipsec，在winxp/win8.1下面均可以登陆， &hellip;">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' data: https://hm.baidu.com https://tajs.qq.com https://ssl.google-analytics.com https://static.rexdf.org https://*.disquscdn.com https://rexdf.disqus.com https://api.github.com https://ssl.google-analytics.com https://disqus.com https://analytics.rexdf.net; connect-src 'self' https://static.rexdf.org https://analytics.rexdf.net https://hm.baidu.com; img-src data: https://*; font-src data: https://*; child-src 'none'; style-src 'self' 'unsafe-inline' https://*; frame-src 'self' https://t.rexdf.org http://t.rexdf.org https://rexdf.disqus.com https://disqus.com">
+<link rel="canonical" href="https://i.rexdf.org/blog/2014/10/12/san-fen-zhong-xin-jian-shadowsocksfu-wu-qi">
+<link rel="dns-prefetch" href="https://static.rexdf.org/">
+<link href="/favicon.ico" rel="icon">
+<link id="main-css" href="/stylesheets/screen.css" media="screen,projection" rel="stylesheet" type="text/css" title="pc">
+<link href="/stylesheets/screen_mobile.css" rel="alternate stylesheet" type="text/css" title="mobile">
+<link href="/atom.xml" rel="alternate" title="Rexdf" type="application/atom+xml">
+<script src="/javascripts/libs/jquery.min.js"></script>
+<script src="/javascripts/octopress-rexdf.min.js" type="text/javascript"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+      
+      toggle_theme();
+  });
+</script>
+<script type="text/javascript" async src="https://static.rexdf.org/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript">var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-55590409-1"]),_gaq.push(["_trackPageview"]),function(){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(t,e)}()</script>
+<script>var _hmt=_hmt||[];!function(){var e=document.createElement("script");e.src="//hm.baidu.com/hm.js?32192d95b89fbefa0875c4c95adb1412";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}()</script>
+<script src="/javascripts/fancybox/jquery.fancybox.pack.js"></script>
+<link rel="stylesheet" type="text/css" href="/javascripts/fancybox/jquery.fancybox.css">
+<script type="text/javascript">var _paq=_paq||[];_paq.push(["trackPageView"]),_paq.push(["enableLinkTracking"]),function(){var e="https://analytics.rexdf.net/";_paq.push(["setTrackerUrl",e+"piwik.php"]),_paq.push(["setSiteId","1"]);var a=document,t=a.createElement("script"),p=a.getElementsByTagName("script")[0];t.type="text/javascript",t.async=!0,t.defer=!0,t.src=e+"piwik.js",p.parentNode.insertBefore(t,p)}()</script>
+</head>
+<body class="low-contrast-linen-wptouch-bg">
+<header role="banner"><hgroup>
+<h1 id="header-title"><a href="/">Rexdf</a></h1>
+<h2 id="subtitle">The devil is in the Details.</h2>
+</hgroup>
+</header>
+<nav role="navigation"><ul class="subscription" data-subscription="rss">
+<li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+</ul>
+<form action="https://google.com/search" method="get">
+<fieldset role="search">
+<input type="hidden" name="q" value="site:i.rexdf.org">
+<input class="search" type="text" name="q" results="0" placeholder="Search">
+</fieldset>
+</form>
+<ul class="main-navigation">
+<li><a href="/">Blog</a></li>
+<li><a href="/blog/archives/">Archives</a></li>
+<li><a href="/idea/">Idea</a></li>
+<li><a href="/share/">Share</a></li>
+<li><a href="/books/">Books</a></li>
+<li><a href="/donate/">Donate</a></li>
+<li><a target="_blank" href="https://blog.rexdf.org" style="font-family:Shadows Into Light">Main-Blog</a></li>
+</ul>
+</nav>
+<div id="main">
+<div id="content">
+<div>
+<article class="hentry" role="article">
+<header>
+<h1 class="entry-title">三分钟新建shadowsocks服务器</h1>
+<p class="meta">
+<time class="data-article month-10 season-autumn" datetime="2014-10-12T17:35:24+08:00" pubdate><span class="month">Oct</span> <span class="day">12th</span> <span class="year">2014</span></time>
+| <a href="#disqus_thread" data-disqus-identifier="https://i.rexdf.org">Comments</a>
+</p>
+</header>
+<div class="entry-content"><ul class="markdown-toc">
+<li><a href="#section">新建主机</a></li>
+<li><a href="#shadowsocks">安装shadowsocks</a></li>
+<li><a href="#shadowsocks-1">配置shadowsocks</a></li>
+<li><a href="#shadowsocks-2">启动shadowsocks</a></li>
+<li><a href="#section-1">系统安全设置</a><ul>
+<li><a href="#ssh">ssh配置</a></li>
+<li><a href="#iptables">iptables配置</a></li>
+<li><a href="#section-2">内核参数调整</a></li>
+</ul>
+</li>
+<li><a href="#section-3">维护笔记</a></li>
+</ul>
+<p>Shadowsocks速度真的是没话说啊！我自己也尝试折腾过l2tp/ipsec，在winxp/win8.1下面均可以登陆，但是非常不稳定，大约浏览2个页面链接就会自动断开，大约是要配置iptables来忽略某些干扰包，但是据说速度并不佳所以放弃了。最重要的还是我发现在Ubuntu下面、Android下面无论如何也是连不上我自己配置的l2tp/ipsec的，只有win是能连上，还不稳定。</p>
+<p>快速搭建shadowsocks服务器一来是因为万一RP不高被盯上，更重要的是可以随时删掉服务器来节省费用。DO上面是按小时计费的，所以每新建一个服务器用不用至少都是略高于一个小时的费用的。shadowsocks和主服务器分离也是为安全出发考虑。</p>
+<p>下面是配置笔记，主要注重安全性。因为并不复杂，涉及密码较多，故没有做成脚本。</p>
+<h2 id="section">新建主机</h2>
+<p>这个无需赘言，这里新建的是LEMP主机。用完随手删掉主机。</p>
+<h2 id="shadowsocks">安装shadowsocks</h2>
+<pre><code>apt-get update &amp;&amp; apt-get -y upgrade
+apt-get install python-pip python-m2crypto supervisor iptables-persistent
+pip install shadowsocks
+</code></pre>
+<h2 id="shadowsocks-1">配置shadowsocks</h2>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption>/etc/shadowsocks.json<a href="http://blog.rexdf.org">MyBlog</a></figcaption><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div><div data-line="5" class="line-number"></div><div data-line="6" class="line-number"></div><div data-line="7" class="line-number"></div><div data-line="8" class="line-number"></div><div data-line="9" class="line-number"></div><div data-line="10" class="line-number"></div><div data-line="11" class="line-number"></div><div data-line="12" class="line-number"></div></pre></td><td class="main code"><pre><div class="line bash">nano /etc/shadowsocks.json
+</div><div class="line bash"><span class="o">{</span>
+</div><div class="line bash">    <span class="s2">&quot;server&quot;</span>:<span class="s2">&quot;my_server_ip&quot;</span>,
+</div><div class="line bash">    <span class="s2">&quot;server_port&quot;</span>:8388,
+</div><div class="line bash">    <span class="s2">&quot;local_address&quot;</span>: <span class="s2">&quot;127.0.0.1&quot;</span>,
+</div><div class="line bash">    <span class="s2">&quot;local_port&quot;</span>:1080,
+</div><div class="line bash">    <span class="s2">&quot;password&quot;</span>:<span class="s2">&quot;mypassword&quot;</span>,
+</div><div class="line bash">    <span class="s2">&quot;timeout&quot;</span>:600,
+</div><div class="line bash">    <span class="s2">&quot;method&quot;</span>:<span class="s2">&quot;aes-256-cfb&quot;</span>,
+</div><div class="line bash">    <span class="s2">&quot;fast_open&quot;</span>: <span class="nb">true</span>,
+</div><div class="line bash">    <span class="s2">&quot;workers&quot;</span>: 1
+</div><div class="line bash"><span class="o">}</span>
+</div></pre></td></tr></table></div></figure></notextile></div>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption>/etc/supervisor/conf.d/shadowsocks.conf<a href="http://blog.rexdf.org">MyBlog</a></figcaption><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div><div data-line="5" class="line-number"></div></pre></td><td class="main code"><pre><div class="line bash">nano /etc/supervisor/conf.d/shadowsocks.conf
+</div><div class="line bash"><span class="o">[</span>program:shadowsocks<span class="o">]</span>
+</div><div class="line bash"><span class="nb">command</span><span class="o">=</span>ssserver -c /etc/shadowsocks.json
+</div><div class="line bash"><span class="nv">autorestart</span><span class="o">=</span><span class="nb">true</span>
+</div><div class="line bash"><span class="nv">user</span><span class="o">=</span>nobody
+</div></pre></td></tr></table></div></figure></notextile></div>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption>/etc/default/supervisor<a href="http://blog.rexdf.org">MyBlog</a></figcaption><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div></pre></td><td class="main code"><pre><div class="line bash">nano /etc/default/supervisor
+</div><div class="line bash"><span class="nb">ulimit</span> -n 51200
+</div></pre></td></tr></table></div></figure></notextile></div>
+<h2 id="shadowsocks-2">启动shadowsocks</h2>
+<pre><code>service supervisor start
+supervisorctl reload
+</code></pre>
+<p>现在你就可以使用了，下面的属于安全方面的优化。不优化，使用起来也是没有问题，大不了随手删掉重建一个，所以大家都说一键安装shadowsocks的。</p>
+<h2 id="section-1">系统安全设置</h2>
+<pre><code>adduser xxx
+visudo
+xxx    ALL=(ALL:ALL) ALL
+
+service nginx stop
+update-rc.d -f nginx remove
+service mysql stop
+update-rc.d -f mysql remove
+service cron stop
+nano /etc/init/mysql.conf #注释掉start on一行
+</code></pre>
+<h3 id="ssh">ssh配置</h3>
+<p>注意下面，否则只能Web页面VNC登陆改配置 把root下面.ssh/authorized_keys复制到~/.ssh下面，同时权限要正确。 可以先su xxx，然后执行ssh xxx@127.0.0.1，会自动生成.ssh目录，然后拷贝authorized_keys。</p>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption>/etc/ssh/sshd_config<a href="http://blog.rexdf.org">MyBlog</a></figcaption><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div><div data-line="5" class="line-number"></div><div data-line="6" class="line-number"></div><div data-line="7" class="line-number"></div></pre></td><td class="main code"><pre><div class="line bash">nano /etc/ssh/sshd_config
+</div><div class="line bash">Port 1025-65536 <span class="c">#自己在范围内随便选一个数字即可</span>
+</div><div class="line bash">PermitRootLogin no
+</div><div class="line bash">AllowUsers xxx
+</div><div class="line bash">PermitEmptyPasswords no
+</div><div class="line bash">PasswordAuthentication no
+</div><div class="line bash">UsePAM no
+</div></pre></td></tr></table></div></figure></notextile></div>
+<p>重启ssh服务器</p>
+<pre><code>service ssh restart
+</code></pre>
+<p>这个问题吓了我一跳，如此有历史的低级攻击方式，现在还是规模很大，每次主机新建1个小时内就开始了，一大批的来自世界各地的攻击(我还是安静模式，系统只开了ssh端口和shadowsocks端口)。下面地方有tricks，我没有说明。</p>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption>/etc/hosts.allow<a href="http://blog.rexdf.org">MyBlog</a></figcaption><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div></pre></td><td class="main code"><pre><div class="line bash">nano /etc/hosts.allow
+</div><div class="line bash">sshd: your_ip/mask
+</div></pre></td></tr></table></div></figure></notextile></div>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption>/etc/hosts.deny<a href="http://blog.rexdf.org">MyBlog</a></figcaption><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div></pre></td><td class="main code"><pre><div class="line bash">nano /etc/hosts.deny
+</div><div class="line bash">sshd:ALL
+</div></pre></td></tr></table></div></figure></notextile></div>
+<h3 id="iptables">iptables配置</h3>
+<p><strong>下面这个不行</strong>，socks5的链接是双向的,浏览器发起的http、https链接会在动态端口范围内接收数据(49152 - 65535)，所以input需要非常大的范围的，白名单制限制过大。</p>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption>错误的iptables<a href="http://blog.rexdf.org">MyBlog</a></figcaption><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div></pre></td><td class="main code"><pre><div class="line bash">iptables -P INPUT DROP
+</div><div class="line bash">iptables -A INPUT -i eth0 -p tcp -s your_ip/mask --dport 22 -m state --state NEW,ESTABLISHED -j ACCEPT
+</div><div class="line bash">iptables -A INPUT -i eth0 -p tcp -s your_ip/mask --dport 8388 -m state --state NEW,ESTABLISHED -j ACCEPT
+</div><div class="line bash"><span class="c">#iptables -A OUTPUT -o eth0 -p tcp --sport 22 -m state --state ESTABLISHED -j ACCEPT</span>
+</div></pre></td></tr></table></div></figure></notextile></div>
+<p>只采用黑名单制，<strong>下面的可行</strong>。</p>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption>/etc/iptables/rules.v4<a href="http://blog.rexdf.org">MyBlog</a></figcaption><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div></pre></td><td class="main code"><pre><div class="line bash">nano /etc/iptables/rules.v4
+</div><div class="line bash">-A INPUT ! -s your_ip/mask -i eth0 -p tcp -m tcp --dport 22 -m state --state NEW,ESTABLISHED -j DROP
+</div><div class="line bash">-A INPUT ! -s your_ip/mask -i eth0 -p tcp -m tcp --dport 8388 -m state --state NEW,ESTABLISHED -j DROP
+</div></pre></td></tr></table></div></figure></notextile></div>
+<p>重新载入iptables规则</p>
+<pre><code>service iptables-persistent restart
+</code></pre>
+<h3 id="section-2">内核参数调整</h3>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption>/etc/sysctl.conf<a href="http://blog.rexdf.org">MyBlog</a></figcaption><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div><div data-line="5" class="line-number"></div><div data-line="6" class="line-number"></div><div data-line="7" class="line-number"></div><div data-line="8" class="line-number"></div><div data-line="9" class="line-number"></div><div data-line="10" class="line-number"></div><div data-line="11" class="line-number"></div><div data-line="12" class="line-number"></div><div data-line="13" class="line-number"></div><div data-line="14" class="line-number"></div><div data-line="15" class="line-number"></div><div data-line="16" class="line-number"></div><div data-line="17" class="line-number"></div><div data-line="18" class="line-number"></div><div data-line="19" class="line-number"></div><div data-line="20" class="line-number"></div><div data-line="21" class="line-number"></div><div data-line="22" class="line-number"></div><div data-line="23" class="line-number"></div><div data-line="24" class="line-number"></div><div data-line="25" class="line-number"></div></pre></td><td class="main code"><pre><div class="line bash">nano /etc/sysctl.conf
+</div><div class="line bash">net.ipv4.ip_forward <span class="o">=</span> 1
+</div><div class="line bash">net.ipv4.conf.all.accept_redirects <span class="o">=</span> 0
+</div><div class="line bash">net.ipv4.conf.all.send_redirects <span class="o">=</span> 0
+</div><div class="line bash">net.ipv4.conf.default.rp_filter <span class="o">=</span> 0
+</div><div class="line bash">net.ipv4.conf.default.accept_source_route <span class="o">=</span> 0
+</div><div class="line bash">net.ipv4.conf.default.send_redirects <span class="o">=</span> 0
+</div><div class="line bash">net.ipv4.icmp_ignore_bogus_error_responses <span class="o">=</span> 1
+</div><div class="line bash"> </div><div class="line bash">fs.file-max <span class="o">=</span> 51200
+</div><div class="line bash"> </div><div class="line bash">net.core.netdev_max_backlog <span class="o">=</span> 250000
+</div><div class="line bash">net.core.somaxconn <span class="o">=</span> 4096
+</div><div class="line bash"> </div><div class="line bash">net.ipv4.tcp_syncookies <span class="o">=</span> 1
+</div><div class="line bash">net.ipv4.tcp_tw_reuse <span class="o">=</span> 1
+</div><div class="line bash">net.ipv4.tcp_tw_recycle <span class="o">=</span> 0
+</div><div class="line bash">net.ipv4.tcp_fin_timeout <span class="o">=</span> 30
+</div><div class="line bash">net.ipv4.tcp_keepalive_time <span class="o">=</span> 1200
+</div><div class="line bash">net.ipv4.ip_local_port_range <span class="o">=</span> 10000 65000
+</div><div class="line bash">net.ipv4.tcp_max_syn_backlog <span class="o">=</span> 8192
+</div><div class="line bash">net.ipv4.tcp_max_tw_buckets <span class="o">=</span> 5000
+</div><div class="line bash">net.ipv4.tcp_fastopen <span class="o">=</span> 3
+</div><div class="line bash">net.ipv4.tcp_mtu_probing <span class="o">=</span> 1
+</div><div class="line bash">net.ipv4.tcp_congestion_control <span class="o">=</span> hybla
+</div></pre></td></tr></table></div></figure></notextile></div>
+<p>重新载入配置文件，使配置生效。</p>
+<pre><code>sysctl -p
+</code></pre>
+<h2 id="section-3">维护笔记</h2>
+<p>所有端口</p>
+<pre><code>netstat -anltp | grep "LISTEN"
+</code></pre>
+<p>所有链接</p>
+<pre><code>lsof -i
+</code></pre>
+<p>nginx开机启动</p>
+<pre><code>update-rc.d -f nginx disable
+update-rc.d nginx defaults
+</code></pre>
+</div>
+<footer>
+<p class="meta">
+<span class="byline author vcard">Posted by <span class="fn">Rexdf</span></span>
+<time class="data-article month-10 season-autumn" datetime="2014-10-12T17:35:24+08:00" pubdate><span class="month">Oct</span> <span class="day">12th</span> <span class="year">2014</span></time>
+<span class="categories">
+<a class="category" href="/blog/categories/sysadmin/">SysAdmin</a>, <a class="category" href="/blog/categories/ri-chang/">日常</a>
+</span>
+</p>
+<div class="sharing">
+</div>
+<p class="meta">
+<a class="basic-alignment left" href="/blog/2014/10/11/an-quan-wei-hu-ri-zhi/" title="Previous Post: 安全维护日志">&laquo; 安全维护日志</a>
+<a class="basic-alignment right" href="/blog/2014/10/20/cai-se-de-te-shu-fu-hao/" title="Next Post: 彩色的特殊符号">彩色的特殊符号 &raquo;</a>
+</p>
+</footer>
+</article>
+<section>
+<h1>Comments</h1>
+<div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
+</div>
+<aside class="sidebar">
+<section>
+<h1>Categories</h1>
+<ul id="categories">
+<li class="category"><a href="/blog/categories/acm/">ACM <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/algorithm/">Algorithm <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/assembly/">Assembly <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/cygwin/">Cygwin <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/gnu/">GNU <sup>8</sup></a></li>
+<li class="category"><a href="/blog/categories/math/">Math <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/octopress/">Octopress <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/programming/">Programming <sup>6</sup></a></li>
+<li class="category"><a href="/blog/categories/security/">Security <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sublime/">Sublime <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/synology/">Synology <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sysadmin/">SysAdmin <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/web/">Web <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/windows/">Windows <sup>7</sup></a></li>
+<li class="category"><a href="/blog/categories/proxmox/">proxmox <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/ri-chang/">日常 <sup>37</sup></a></li>
+</ul>
+</section>
+<section>
+<h1>Recent Posts</h1>
+<ul id="recent_posts">
+<li class="post">
+<a href="/blog/2024/12/16/fu-wu-qi-wa-kuang-bing-du-de-cha-sha/">服务器挖矿病毒的查杀</a>
+</li>
+<li class="post">
+<a href="/blog/2021/07/11/apple-m1-bian-yi-tensorflow/">Apple M1 编译tensorflow</a>
+</li>
+<li class="post">
+<a href="/blog/2021/02/27/chromiumbian-ma-qi-wen-ti/">Chromium编码器问题</a>
+</li>
+<li class="post">
+<a href="/blog/2020/12/13/proxmoxbi-ji/">Proxmox笔记</a>
+</li>
+<li class="post">
+<a href="/blog/2020/11/15/lun-yan-du-yu-shen-du/">论广度与深度</a>
+</li>
+</ul>
+</section>
+<section>
+<iframe frameborder="0" scrolling="no" referrerpolicy="unsafe-url" style="width:283px;height:200px" src="https://t.rexdf.org/?m=app&a=showwidget&name=rexdf&type=1&width=283px&height=500px"></iframe>
+</section>
+<section>
+<h1>GitHub Repos</h1>
+<ul id="gh_repos">
+<li class="loading">Status updating...</li>
+</ul>
+<a href="https://github.com/rexdf">@rexdf</a> on GitHub
+<script type="text/javascript">$(document).ready(function(){if(!window.jXHR){var e=document.createElement("script");e.type="text/javascript",e.src="/javascripts/libs/jXHR.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}github.showRepos({user:"rexdf",count:0,skip_forks:!0,target:"#gh_repos"})})</script>
+</section>
+</aside>
+</div>
+</div>
+<footer role="contentinfo"><p>
+<span class="credit">Copyright &copy; 2024 - Rexdf -</span> |
+<span class="credit">Powered by <a name="bottoms" target="_blank" href="http://octopress.org">Octopress</a></span> |
+<span class="credit">Theme by ：<a href="https://blog.rexdf.org/" target="_blank" rel="theme">Rexdf</a></span> |
+<span class="credit">Host by：<a href="https://github.com/" target="_blank" rel="host">Github.com</a></span> |
+<span class="credit">版权声明：<a href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" target="_blank" rel="license">CC BY-NC-SA 3.0</a><img src="https://analytics.rexdf.net/piwik.php?idsite=1&amp;rec=1" style="border:0" alt="" referrerpolicy="no-referrer-when-downgrade"></span>|
+<span class="credit"><a href="/sitemap.xml" rel="sitemap">sitemap</a></span>
+</p>
+<script type="text/javascript" src="https://tajs.qq.com/stats?sId=30296377" charset="UTF-8"></script>
+</footer>
+<script type="text/javascript">var disqus_shortname="rexdf",disqus_identifier="https://i.rexdf.org/blog/2014/10/12/san-fen-zhong-xin-jian-shadowsocksfu-wu-qi/",disqus_url="https://i.rexdf.org/blog/2014/10/12/san-fen-zhong-xin-jian-shadowsocksfu-wu-qi/",disqus_script="embed.js";!function(){var s=document.createElement("script");s.type="text/javascript",s.async=!0,s.src="//"+disqus_shortname+".disqus.com/"+disqus_script,(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(s)}()</script>
+<script type="text/javascript">$(function(){$(".entry-content").each(function(t){var r=t;$(this).find("img.fancybox").each(function(){var t=$(this),a=t.attr("title"),n=t.attr("class");t.removeAttr("class"),t.wrap('<a href="'+this.src+'" class="'+n+'" rel="gallery'+r+'" />'),""!=a&&t.parent().attr("title",a)})}),$(".fancybox").fancybox()})</script>
+</body>
+</html>

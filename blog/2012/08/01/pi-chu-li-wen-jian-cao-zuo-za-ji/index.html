@@ -1,0 +1,355 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<script type="text/javascript">var _speedMark=new Date</script>
+<meta charset="utf-8">
+<title>批处理文件操作杂记 - Rexdf</title>
+<meta name="author" content="Rexdf">
+<meta name="description" content="由于某些原因，一些文件夹出现了前缀..和后缀.hider.hider，而且文件加里包含文件夹和文件，应该是肯定在1000的工作量的，尝试用纯的批处理写出来，不过一直到最后都还是没有弄明白用什么办法可以刚刚把匹配后的字符串取出来，应该用正则可以办到，但是没有找到系统介绍批处理中正则的资料， &hellip;">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' data: https://hm.baidu.com https://tajs.qq.com https://ssl.google-analytics.com https://static.rexdf.org https://*.disquscdn.com https://rexdf.disqus.com https://api.github.com https://ssl.google-analytics.com https://disqus.com https://analytics.rexdf.net; connect-src 'self' https://static.rexdf.org https://analytics.rexdf.net https://hm.baidu.com; img-src data: https://*; font-src data: https://*; child-src 'none'; style-src 'self' 'unsafe-inline' https://*; frame-src 'self' https://t.rexdf.org http://t.rexdf.org https://rexdf.disqus.com https://disqus.com">
+<link rel="canonical" href="https://i.rexdf.org/blog/2012/08/01/pi-chu-li-wen-jian-cao-zuo-za-ji">
+<link rel="dns-prefetch" href="https://static.rexdf.org/">
+<link href="/favicon.ico" rel="icon">
+<link id="main-css" href="/stylesheets/screen.css" media="screen,projection" rel="stylesheet" type="text/css" title="pc">
+<link href="/stylesheets/screen_mobile.css" rel="alternate stylesheet" type="text/css" title="mobile">
+<link href="/atom.xml" rel="alternate" title="Rexdf" type="application/atom+xml">
+<script src="/javascripts/libs/jquery.min.js"></script>
+<script src="/javascripts/octopress-rexdf.min.js" type="text/javascript"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+      
+      toggle_theme();
+  });
+</script>
+<script type="text/javascript" async src="https://static.rexdf.org/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript">var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-55590409-1"]),_gaq.push(["_trackPageview"]),function(){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(t,e)}()</script>
+<script>var _hmt=_hmt||[];!function(){var e=document.createElement("script");e.src="//hm.baidu.com/hm.js?32192d95b89fbefa0875c4c95adb1412";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}()</script>
+<script src="/javascripts/fancybox/jquery.fancybox.pack.js"></script>
+<link rel="stylesheet" type="text/css" href="/javascripts/fancybox/jquery.fancybox.css">
+<script type="text/javascript">var _paq=_paq||[];_paq.push(["trackPageView"]),_paq.push(["enableLinkTracking"]),function(){var e="https://analytics.rexdf.net/";_paq.push(["setTrackerUrl",e+"piwik.php"]),_paq.push(["setSiteId","1"]);var a=document,t=a.createElement("script"),p=a.getElementsByTagName("script")[0];t.type="text/javascript",t.async=!0,t.defer=!0,t.src=e+"piwik.js",p.parentNode.insertBefore(t,p)}()</script>
+</head>
+<body class="low-contrast-linen-wptouch-bg">
+<header role="banner"><hgroup>
+<h1 id="header-title"><a href="/">Rexdf</a></h1>
+<h2 id="subtitle">The devil is in the Details.</h2>
+</hgroup>
+</header>
+<nav role="navigation"><ul class="subscription" data-subscription="rss">
+<li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+</ul>
+<form action="https://google.com/search" method="get">
+<fieldset role="search">
+<input type="hidden" name="q" value="site:i.rexdf.org">
+<input class="search" type="text" name="q" results="0" placeholder="Search">
+</fieldset>
+</form>
+<ul class="main-navigation">
+<li><a href="/">Blog</a></li>
+<li><a href="/blog/archives/">Archives</a></li>
+<li><a href="/idea/">Idea</a></li>
+<li><a href="/share/">Share</a></li>
+<li><a href="/books/">Books</a></li>
+<li><a href="/donate/">Donate</a></li>
+<li><a target="_blank" href="https://blog.rexdf.org" style="font-family:Shadows Into Light">Main-Blog</a></li>
+</ul>
+</nav>
+<div id="main">
+<div id="content">
+<div>
+<article class="hentry" role="article">
+<header>
+<h1 class="entry-title">批处理文件操作杂记</h1>
+<p class="meta">
+<time class="data-article month-08 season-summer" datetime="2012-08-01T00:07:00+08:00" pubdate><span class="month">Aug</span> <span class="day">1st</span> <span class="year">2012</span></time>
+| <a href="#disqus_thread" data-disqus-identifier="https://i.rexdf.org">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>由于某些原因，一些文件夹出现了前缀..和后缀.hider.hider，而且文件加里包含文件夹和文件，应该是肯定在1000的工作量的，尝试用纯的批处理写出来，不过一直到最后都还是没有弄明白用什么办法可以刚刚把匹配后的字符串取出来，应该用正则可以办到，但是没有找到系统介绍批处理中正则的资料，故想写一个c++程序来处理。无奈，不调用复杂的系统API似乎还是很难做到（我还没系统研究io.h和direct.h里面到底包含哪些函数），而WinAPI似乎总是希望传达你一个宏大的思想，需要注意的细节太多。 最总写成了如下版本的两个文件，先是批处理</p>
+<pre><code>@echo off&amp;setlocal enabledelayedexpansion
+
+PATH I:\tmp\Orginal\
+a.exe
+for /r %%a in (dir /ad) do (
+
+     cd %%~pa
+     a.exe
+)
+
+
+#include   &lt;stdio.h&gt; 
+#include   &lt;io.h&gt; 
+#include   &lt;direct.h&gt; 
+#include &lt;cstring&gt;
+#include &lt;iostream&gt;
+
+
+using namespace std;
+
+
+typedef   struct   _finddata_t   file_block; 
+
+int main() 
+{ 
+    file_block   f_block; 
+    long   handle,retcode; 
+    int flag;
+    handle=_findfirst("*",&amp;f_block); 
+    do{
+        printf( "%-12s\n ",f_block.name);
+        char tmp[1505],fn[1257];
+        strcpy(fn,f_block.name);
+        flag=1;
+        while(fn[0]=='.')
+        {
+            int l=strlen(fn);
+            for(int i=1;i&lt;=l;i++)
+              fn[i-1]=fn[i];
+            flag=0;
+        }
+        {
+            int len=strlen(fn);
+            for(int i=0;i&lt;len-1;i++)
+              if(fn[i]=='.' &amp;&amp; fn[i+1]=='h' &amp;&amp; fn[i+2]=='i' &amp;&amp; fn[i+3]=='d'
+                 &amp;&amp; fn[i+4]=='e' &amp;&amp; fn[i+5]=='r')
+                 fn[i]='\0',flag=0;
+        }
+        /*
+        if(flag)
+        {
+            cout&lt;&lt;fn&lt;&lt;endl;
+            continue;
+        }
+        */
+        strcpy(tmp,"ren \"");
+        strcat(tmp,f_block.name);
+        strcat(tmp,"\" \"");
+        strcat(tmp,fn);
+        strcat(tmp,"\"");
+        cout&lt;&lt;"$"&lt;&lt;tmp&lt;&lt;endl;
+        system(tmp);
+        retcode=_findnext(handle,&amp;f_block); 
+    }while(retcode==0); 
+    printf( "\n   end   of   diretory\n "); 
+    //system("pause");
+    return 0;
+}
+</code></pre>
+<p>  另外附一份批处理的资料</p>
+<pre><code>批处理文件小结因为很多游戏资源的处理都是通过DOS批处理文件来进行的，所以必须要了解批处理文件的语法。下面把比较重要的内容一一列举出来。
+注意command.com和cmd.exe是不同的东西。command.com是MS-DOS的命令解释器（shell），没有它，大部分的Windows系统都是无法引导的，从MS-DOS到WinXP都需要它。cmd.exe是更高级的shell，它提供了许多环境变量，支持的平台是WinNT、Win2K、WinXP、Vista和Win7。而且二者的命令行参数也是不一样的。
+下面所说的都是基于cmd.exe的。
+
+&gt;&gt;&gt; @
+描述：从 DOS 3.3 开始，可以用它来隐藏DOS命令的显示。注意，只是隐藏命令，并不会隐藏命令的输出。
+语法：放在任何DOS命令前面；也可以放在批处理文件名的前面。
+示例：
+@echo OFF 将隐藏这七个后续字母的显示
+
+&gt;&gt;&gt; %0 - %9
+描述：用于引用命令行上的参数。
+语法：%0是命令行的批处理命令。%1 - %9是后面的九个参数。
+示例：
+E:\MYBATCH DOC A: 命令行
+COPY *.%1 %2      MYBATCH.BAT文件内容：只有一行。复制所有的DOC文件到软驱。
+
+&gt;&gt;&gt; %variable%
+描述：引用变量。比较简单，直接示例。
+示例：
+echo The current search path is: %PATH%
+set USER=John
+if %USER%==John goto LABEL
+
+当Command Extensions启用时，有下面几个系统变量：
+echo %cd%             显示当前目录。如果当前目录是各个驱动器的根目录，则后面有反斜杠\；反之则没有。
+echo %date%
+echo %time%
+echo %random%         0到32767之间的随机数
+echo %errorlevel%     见下文
+echo %cmdextversion%  见下文
+echo %cmdcmdline%     命令行
+
+变量值替换：
+@echo OFF
+set USER_PROMPT=Please input a string:
+echo %USER_PROMPT:~7,5%       变量值的临时替换。offset=7，length=5。也就是input这五个字母。
+echo %USER_PROMPT:~7%         不指定length，则默认是后面全部。也就是 input a string: 这一大串。
+echo %USER_PROMPT:~-7%        offset为负值，则从后往前数。length还是往后全部。也就是string:这七个字母。
+echo %USER_PROMPT:~-7,6%      length为6，则为string这六个字母。
+echo %USER_PROMPT%            原来的变量值不变。
+pause
+
+延迟变量展开：
+@echo off
+set VAR=before
+if "%VAR%" == "before" (
+set VAR=after
+echo %VAR%                    会输出什么？很大可能是before，而不是after。因为默认情况下，“延迟变量展开”（delayed environment variable expansion）是禁用的。
+)
+一般来说，这可不是我们想要的。因为默认情况下，cmd.exe在读入批处理文件之后，立刻把变量VAR全部展开成before了，然后才开始执行脚本。
+cmd.exe的/v开关可以打开，以支持“延迟变量展开”，使得变量可以在执行阶段变化。然后变量的使用也要变化：
+@echo off
+set VAR=before
+if "%VAR%" == "before" (
+set VAR=after
+echo !VAR!                  此时会输出after。
+echo %VAR%                  还是输出before。
+)
+
+同样，下面的程序：
+set FILE_LIST=
+for %i in (*) do set FILE_LIST=!FILE_LIST! %i
+echo !FILE_LIST!              输出当前目录的所有文件
+echo %FILE_LIST%              也输出当前目录的所有文件，为什么？
+
+可以用setlocal enabledelayedexpansion在批处理文件中打开该选项。
+
+&gt;&gt;&gt; echo
+描述：控制DOS命令与注释的显示与否。
+语法：echo [ON|OFF|message|.]
+示例：
+echo  显示当前echo状态是开是关
+echo ON | OFF 不言自明
+echo Processing... 在屏幕上显示 Processing... 这条消息
+echo %USER%  在屏幕上显示 USER 变量的值
+echo.  显示一个空行
+echo Y|Del *.*  删除所有文件，在问：Are you sure 的时候，用Y来响应。
+
+&gt;&gt;&gt; call
+描述：调用别的批处理文件。
+语法：
+从 DOS 3.3 开始：call [drive:][path]filename [batch-parameters]
+DOS 3.3 以前的版本：command /c [drive:][path]filename [batch-parameters]
+
+&gt;&gt;&gt; for
+描述：最重要的命令之一。很复杂。所以，下面的语法和示例要搀在一起来讲，就叫“用法”吧。
+用法：它可以直接应用于命令行，当然也可以用于批处理文件内部。但是二者的使用是有差别的。
+命令行的语法格式：FOR %variable IN (set) DO command [command-parameters]
+1&gt; 注意，其参数格式是%variable，如果用于批处理文件，则为%%variable。
+2&gt; variable是从a到z的字母，大小写敏感。
+3&gt; set是一个或多个文件。互相之间用空格或逗号隔开。支持通佩符。
+例：
+for %%i in (A,C,D) do dir %%i *.* 显示这几个驱动器的所有文件
+for %%i in (*.*) do @echo %%i 显示当前目录的所有文件
+
+当cmd.exe的 command extensions 开关打开时（默认就是打开），for命令还支持 /D /R /L /F 四个选项（大小写不敏感）。
+
+/D
+描述：目录操作
+语法：FOR /D %variable IN (set) DO command [command-parameters]
+示例：
+for /d %%i in (*) do @echo %%i 显示当前目录的所有子目录
+for /d %%i in ("%cd%\*") do @echo %%i 显示这些子目录的完整路径，加上双引号是为了表示带空格的目录，如果%cd%带空格的话。
+for /d %%i in (c:\*) do @echo %%i 显示c盘下所有子目录
+for /d %%i in (???) do @echo %%i 显示只有1-3个字母的目录
+
+/R
+描述：大概是recursive的意思。会递归遍历文件夹。
+语法：FOR /R [[drive:]path
+</code></pre>
+</div>
+<footer>
+<p class="meta">
+<span class="byline author vcard">Posted by <span class="fn">Rexdf</span></span>
+<time class="data-article month-08 season-summer" datetime="2012-08-01T00:07:00+08:00" pubdate><span class="month">Aug</span> <span class="day">1st</span> <span class="year">2012</span></time>
+</p>
+<div class="sharing">
+</div>
+<p class="meta">
+<a class="basic-alignment left" href="/blog/2012/07/30/zhe-teng-ri-ji/" title="Previous Post: 折腾日记">&laquo; 折腾日记</a>
+<a class="basic-alignment right" href="/blog/2012/08/01/winAPI-da-quan/" title="Next Post: winAPI大全">winAPI大全 &raquo;</a>
+</p>
+</footer>
+</article>
+<section>
+<h1>Comments</h1>
+<div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
+</div>
+<aside class="sidebar">
+<section>
+<h1>Categories</h1>
+<ul id="categories">
+<li class="category"><a href="/blog/categories/acm/">ACM <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/algorithm/">Algorithm <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/assembly/">Assembly <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/cygwin/">Cygwin <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/gnu/">GNU <sup>8</sup></a></li>
+<li class="category"><a href="/blog/categories/math/">Math <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/octopress/">Octopress <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/programming/">Programming <sup>6</sup></a></li>
+<li class="category"><a href="/blog/categories/security/">Security <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sublime/">Sublime <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/synology/">Synology <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sysadmin/">SysAdmin <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/web/">Web <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/windows/">Windows <sup>7</sup></a></li>
+<li class="category"><a href="/blog/categories/proxmox/">proxmox <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/ri-chang/">日常 <sup>37</sup></a></li>
+</ul>
+</section>
+<section>
+<h1>Recent Posts</h1>
+<ul id="recent_posts">
+<li class="post">
+<a href="/blog/2024/12/16/fu-wu-qi-wa-kuang-bing-du-de-cha-sha/">服务器挖矿病毒的查杀</a>
+</li>
+<li class="post">
+<a href="/blog/2021/07/11/apple-m1-bian-yi-tensorflow/">Apple M1 编译tensorflow</a>
+</li>
+<li class="post">
+<a href="/blog/2021/02/27/chromiumbian-ma-qi-wen-ti/">Chromium编码器问题</a>
+</li>
+<li class="post">
+<a href="/blog/2020/12/13/proxmoxbi-ji/">Proxmox笔记</a>
+</li>
+<li class="post">
+<a href="/blog/2020/11/15/lun-yan-du-yu-shen-du/">论广度与深度</a>
+</li>
+</ul>
+</section>
+<section>
+<iframe frameborder="0" scrolling="no" referrerpolicy="unsafe-url" style="width:283px;height:200px" src="https://t.rexdf.org/?m=app&a=showwidget&name=rexdf&type=1&width=283px&height=500px"></iframe>
+</section>
+<section>
+<h1>GitHub Repos</h1>
+<ul id="gh_repos">
+<li class="loading">Status updating...</li>
+</ul>
+<a href="https://github.com/rexdf">@rexdf</a> on GitHub
+<script type="text/javascript">$(document).ready(function(){if(!window.jXHR){var e=document.createElement("script");e.type="text/javascript",e.src="/javascripts/libs/jXHR.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}github.showRepos({user:"rexdf",count:0,skip_forks:!0,target:"#gh_repos"})})</script>
+</section>
+</aside>
+</div>
+</div>
+<footer role="contentinfo"><p>
+<span class="credit">Copyright &copy; 2024 - Rexdf -</span> |
+<span class="credit">Powered by <a name="bottoms" target="_blank" href="http://octopress.org">Octopress</a></span> |
+<span class="credit">Theme by ：<a href="https://blog.rexdf.org/" target="_blank" rel="theme">Rexdf</a></span> |
+<span class="credit">Host by：<a href="https://github.com/" target="_blank" rel="host">Github.com</a></span> |
+<span class="credit">版权声明：<a href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" target="_blank" rel="license">CC BY-NC-SA 3.0</a><img src="https://analytics.rexdf.net/piwik.php?idsite=1&amp;rec=1" style="border:0" alt="" referrerpolicy="no-referrer-when-downgrade"></span>|
+<span class="credit"><a href="/sitemap.xml" rel="sitemap">sitemap</a></span>
+</p>
+<script type="text/javascript" src="https://tajs.qq.com/stats?sId=30296377" charset="UTF-8"></script>
+</footer>
+<script type="text/javascript">var disqus_shortname="rexdf",disqus_identifier="https://i.rexdf.org/blog/2012/08/01/pi-chu-li-wen-jian-cao-zuo-za-ji/",disqus_url="https://i.rexdf.org/blog/2012/08/01/pi-chu-li-wen-jian-cao-zuo-za-ji/",disqus_script="embed.js";!function(){var e=document.createElement("script");e.type="text/javascript",e.async=!0,e.src="//"+disqus_shortname+".disqus.com/"+disqus_script,(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(e)}()</script>
+<script type="text/javascript">$(function(){$(".entry-content").each(function(t){var r=t;$(this).find("img.fancybox").each(function(){var t=$(this),a=t.attr("title"),n=t.attr("class");t.removeAttr("class"),t.wrap('<a href="'+this.src+'" class="'+n+'" rel="gallery'+r+'" />'),""!=a&&t.parent().attr("title",a)})}),$(".fancybox").fancybox()})</script>
+</body>
+</html>

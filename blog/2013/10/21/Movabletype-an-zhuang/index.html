@@ -1,0 +1,224 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<script type="text/javascript">var _speedMark=new Date</script>
+<meta charset="utf-8">
+<title>Movabletype安装 - Rexdf</title>
+<meta name="author" content="Rexdf">
+<meta name="description" content="大名鼎鼎的Movable Type(简称MT)，曾经风靡一时，后来因为种种原因被Wordpress赶超，虽然当初勉为其难地开源又转为收费，其中的折腾自是不用多说，但是在很多人心中依然认为只有MT才算是真正的博客系统，写作发布，静态化的博客速度简直不是一般的快。 &hellip;">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' data: https://hm.baidu.com https://tajs.qq.com https://ssl.google-analytics.com https://static.rexdf.org https://*.disquscdn.com https://rexdf.disqus.com https://api.github.com https://ssl.google-analytics.com https://disqus.com https://analytics.rexdf.net; connect-src 'self' https://static.rexdf.org https://analytics.rexdf.net https://hm.baidu.com; img-src data: https://*; font-src data: https://*; child-src 'none'; style-src 'self' 'unsafe-inline' https://*; frame-src 'self' https://t.rexdf.org http://t.rexdf.org https://rexdf.disqus.com https://disqus.com">
+<link rel="canonical" href="https://i.rexdf.org/blog/2013/10/21/Movabletype-an-zhuang">
+<link rel="dns-prefetch" href="https://static.rexdf.org/">
+<link href="/favicon.ico" rel="icon">
+<link id="main-css" href="/stylesheets/screen.css" media="screen,projection" rel="stylesheet" type="text/css" title="pc">
+<link href="/stylesheets/screen_mobile.css" rel="alternate stylesheet" type="text/css" title="mobile">
+<link href="/atom.xml" rel="alternate" title="Rexdf" type="application/atom+xml">
+<script src="/javascripts/libs/jquery.min.js"></script>
+<script src="/javascripts/octopress-rexdf.min.js" type="text/javascript"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+      
+      toggle_theme();
+  });
+</script>
+<script type="text/javascript" async src="https://static.rexdf.org/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript">var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-55590409-1"]),_gaq.push(["_trackPageview"]),function(){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(t,e)}()</script>
+<script>var _hmt=_hmt||[];!function(){var e=document.createElement("script");e.src="//hm.baidu.com/hm.js?32192d95b89fbefa0875c4c95adb1412";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}()</script>
+<script src="/javascripts/fancybox/jquery.fancybox.pack.js"></script>
+<link rel="stylesheet" type="text/css" href="/javascripts/fancybox/jquery.fancybox.css">
+<script type="text/javascript">var _paq=_paq||[];_paq.push(["trackPageView"]),_paq.push(["enableLinkTracking"]),function(){var e="https://analytics.rexdf.net/";_paq.push(["setTrackerUrl",e+"piwik.php"]),_paq.push(["setSiteId","1"]);var a=document,t=a.createElement("script"),p=a.getElementsByTagName("script")[0];t.type="text/javascript",t.async=!0,t.defer=!0,t.src=e+"piwik.js",p.parentNode.insertBefore(t,p)}()</script>
+</head>
+<body class="low-contrast-linen-wptouch-bg">
+<header role="banner"><hgroup>
+<h1 id="header-title"><a href="/">Rexdf</a></h1>
+<h2 id="subtitle">The devil is in the Details.</h2>
+</hgroup>
+</header>
+<nav role="navigation"><ul class="subscription" data-subscription="rss">
+<li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+</ul>
+<form action="https://google.com/search" method="get">
+<fieldset role="search">
+<input type="hidden" name="q" value="site:i.rexdf.org">
+<input class="search" type="text" name="q" results="0" placeholder="Search">
+</fieldset>
+</form>
+<ul class="main-navigation">
+<li><a href="/">Blog</a></li>
+<li><a href="/blog/archives/">Archives</a></li>
+<li><a href="/idea/">Idea</a></li>
+<li><a href="/share/">Share</a></li>
+<li><a href="/books/">Books</a></li>
+<li><a href="/donate/">Donate</a></li>
+<li><a target="_blank" href="https://blog.rexdf.org" style="font-family:Shadows Into Light">Main-Blog</a></li>
+</ul>
+</nav>
+<div id="main">
+<div id="content">
+<div>
+<article class="hentry" role="article">
+<header>
+<h1 class="entry-title">Movabletype安装</h1>
+<p class="meta">
+<time class="data-article month-10 season-autumn" datetime="2013-10-21T02:04:00+08:00" pubdate><span class="month">Oct</span> <span class="day">21st</span> <span class="year">2013</span></time>
+| <a href="#disqus_thread" data-disqus-identifier="https://i.rexdf.org">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>大名鼎鼎的Movable Type(简称MT)，曾经风靡一时，后来因为种种原因被Wordpress赶超，虽然当初勉为其难地开源又转为收费，其中的折腾自是不用多说，但是在很多人心中依然认为只有MT才算是真正的博客系统，写作发布，静态化的博客速度简直不是一般的快。 我首先是发现Openshift可以支持Perl，于是想安装MT试试，采用了github源git直接安装，结果Openshift发现里面有一个makefile还是怎么的，上传上去后一直编译中，开始不懂以为perl是要编译的，后来才知道其实他是在检测依赖关系，把出现过的脚本全部依赖库都检测一遍，然后最后就出现了Error，好像一直是在Oracle DB的链接库上，这是显然的。搜索解决方案中惊讶的发现Openshift上面可以编译程序,居然可以ssh进去之后wget一个per16.3.1.tar的源码然后解压编译一个自己的源码，可以参考<a href="https://github.com/dns/OpenShift-DIY-Perl">这里</a>，我在想Openshift是不是可以做一个OJ了，居然支持编译，简直就是VPS啊！！ Google里面似乎没有人说直接在上面成功搭建过MT，但是有人尝试失败过，我经过一些尝试最后发现了只要在.openshift/marker/下面touch一个hot_deploy就不会重新编译了，而且git push之后的代码结构是不会变的。这样就可以相当于ftp上传的效果了(发现如果支持git，那么git比ftp一般快不止一个数量级，具体原因还有待分析)，另外还有一些参数enable_cpan_tests, force_clean_build等switch可以设置。参考<a href="http://openshift.github.io/">这里</a>，在document里面有，但是现在是404错误，不知道是不是github的问题(CNAME需要设置子目录吗？)。 接着继续讲Openshift上的安装，无意中在一次hot_deploy的情况下，我进去了安装界面，然后非常意外的，点击下一步下一步，最后进入了博客系统，还发布了一遍表示兴奋的<a href="http://bk.rexdf.org">“文章</a>，于是立马绑上了一个域名，然后就问题也出现了，发现再次写一遍的时候不停的Gateway Time Out，起初我还能忍受，后来发现简直点一下鼠标出现一次，需要不停刷新，于是乱掉了，重复发了那么多文章我都不知道，然后发布，居然也成功了，不过今天进去再次写一点发布的时候就一直Gateway Time Out了，没办法，放弃吧。想到是静态化的，何不本地生成，网络发布，于是Win8下试着安装，我不想用Stawberry Perl或者ActivePerl，虽然这两个以前一直安装，但是自从发现Cygwin最近常更新之后就再也不用那两个了。这样包需要自己安装首先</p>
+<pre><code>perl -MCPAN -e "shell"
+</code></pre>
+<p>在没有安装CPAN的时候shell是需要加引号的，安装好之后就无所谓了，这里有一个trick的地方是要选no，不要自动配置</p>
+<pre><code>Would you like to configure as much as possible automatically? [yes]
+</code></pre>
+<p>选了no之后就有一系列的配置，这里需要自己手动安装同时打开Cygwin的包安装器setup-x86.exe(或者setup-x86_64.exe)，发现提示什么没有就安装什么，目录是在cygwin/bin，推荐把所有的执行程序都改成/bin/xx.exe就可以了，当然exe省掉是可以的，而且更有Linux的味道。这样就把Per的CPAN安装好了，再次执行</p>
+<pre><code>perl -MCPAN -e "shell"
+</code></pre>
+<p>进入</p>
+<pre><code>cpan shell -- CPAN exploration and modules installation (v2.00)
+Enter 'h' for help.
+
+cpan[1]&gt; 
+</code></pre>
+<p>这时就可以安装CPAN里面的包了，一个推荐的安装是</p>
+<pre><code>notest install Dancer Mojolicious DBD::Pg DBD::SQLite DBD::mysql DBI Image::Size CGI::Cookie IPC::Run Authen::SASL Cache::Memcached Cache::File Crypt::SSLeay GD Crypt::DSA XML::Parser Digest::SHA1 Plack Imager XML::Atom XMLRPC::Transport::HTTP::Plack Net::SMTP::SSL DBD::SQLite2 Cache::File CGI::PSGI GD CGI::Parse::PSGI Image::Magick Imager DBD::Pg HTML::Template
+</code></pre>
+<p>执行完了quit退出。需要说明的是需要先在Cygwin里面安装好GD和Image Magick等包，还有就是Cygwin的各个c/c++编译包是要的，在devel目录下面好像是有三套不同的开发包的，分别针对MingW和Cygwin以及gnu gcc本身的，一般我都是全部安装(指这三套，不是所有语言比如fortan我就百分百不会安装)。 接下去就是配置cgi-bin目录问题了，这里不能用cgi-bin专用目录，因为ScriptAlias /cgi-bin/ “D:/Users/Rexdf/php/Web/cgi-bin/”这样做的就是CGI目录，会把其下面全部文件都当做cgi程序执行，这样的话一个html文件也会被当做脚本执行，然后提示500服务器内部错误，解决办法是把这一行注释掉，然后让它成为普通目录，配置下面的语句，可以在vhosts.conf里面，也可以在httpd.conf里面</p>
+<pre><code>&lt;Directory "D:/Users/Rexdf/php/Web/cgi-bin"&gt;
+    AllowOverride All 
+    Options +ExecCGI
+    AddHandler cgi-script .cgi .pl
+    Allow from all
+    Order allow,deny 
+&lt;/Directory&gt;
+</code></pre>
+<p>这里关键的即使Options +ExecCGI了，同时也要在AddType application/x-httpd-php .php这一行上面一些地方添加AddHandler cgi-script .cgi .pl，这样就可以了。 接下去就是Cygwin里面的perl如何连接数据库的问题了，自然最好的选择是Mysql（好像可以支持SQLite，但是我没配置成功），Cygwin的包里面有Mysql的Server也有Mysql的Client，我们需要的只有Client，因为我系统已经安装了最新5.6.12而且正打算升级到5.6.14，不必使用Cygwin里面的5.5.31什么的。一般会遇到如下的错误： Error: Can’t connect to local MySQL server through socket ‘/var/run/mysql.sock’ 需要做的就是配置Mysql Client，把D:\Users\rexdf\cygwin\usr\share\mysql里面的my-huge.cnf复制到D:\Users\rexdf\cygwin\etc\my.cnf，可以用如下命令</p>
+<pre><code>cp /usr/share/mysql/my-huge.cnf /etc/my.cnf
+</code></pre>
+<p>同时编辑其中内容，在client最后添加一行protocol = TCP。然后做如下的两个测试 1.命令行测试</p>
+<pre><code>mysql -h 127.0.0.1 -P 3306 -u root -P
+</code></pre>
+<p>输入密码如果进入数据库并显示5.6.12数据库的欢迎信息，那么就client是OK的了。 2.Perl的DBD::msqyl测试 脚本如下</p>
+<pre><code>#!bin/perl
+use DBI;
+my $dbname = "movabletype_db";#这个数据库现在phpMyAdmin里面建立好
+my $location = "127.0.0.1";
+my $port = "3306"; #这是mysql的缺省
+my $database = "DBI:mysql:$dbname:$location:$port";
+my $db_user = "root";
+my $db_pass = "您的密码";
+my $dbh = DBI-&gt;connect($database,$db_user,$db_pass);
+my $sql = "SELECT first_name,last_name FROM $table ORDER BY first_name";
+my $sth = $dbh-&gt;prepare($sql);
+$sth-&gt;execute() or die "无法执行SQL语句:$dbh-&gt;errstr"; 
+$dbh-&gt;disconnect;#断开数据库连接
+</code></pre>
+<p>如果看到的是无法执行SQL，而不是Error: Can’t connect to local MySQL server through socket ‘/var/run/mysql.sock’，那么恭喜你成功了，可以进入下一步的正式安装了，先下载</p>
+<pre><code>git clone https://github.com/movabletype/movabletype.git
+</code></pre>
+</div>
+<footer>
+<p class="meta">
+<span class="byline author vcard">Posted by <span class="fn">Rexdf</span></span>
+<time class="data-article month-10 season-autumn" datetime="2013-10-21T02:04:00+08:00" pubdate><span class="month">Oct</span> <span class="day">21st</span> <span class="year">2013</span></time>
+</p>
+<div class="sharing">
+</div>
+<p class="meta">
+<a class="basic-alignment left" href="/blog/2013/10/17/tu-cao-xia-QQ-you-xiang/" title="Previous Post: 吐槽下QQ邮箱">&laquo; 吐槽下QQ邮箱</a>
+<a class="basic-alignment right" href="/blog/2013/10/21/tui-jian-yi-ge-you-qian-tu-de-kai-yuan-ruan-jian-OpenSearchServer/" title="Next Post: 推荐一个有前途的开源软件--OpenSearchServer">推荐一个有前途的开源软件--OpenSearchServer &raquo;</a>
+</p>
+</footer>
+</article>
+<section>
+<h1>Comments</h1>
+<div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
+</div>
+<aside class="sidebar">
+<section>
+<h1>Categories</h1>
+<ul id="categories">
+<li class="category"><a href="/blog/categories/acm/">ACM <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/algorithm/">Algorithm <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/assembly/">Assembly <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/cygwin/">Cygwin <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/gnu/">GNU <sup>8</sup></a></li>
+<li class="category"><a href="/blog/categories/math/">Math <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/octopress/">Octopress <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/programming/">Programming <sup>6</sup></a></li>
+<li class="category"><a href="/blog/categories/security/">Security <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sublime/">Sublime <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/synology/">Synology <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sysadmin/">SysAdmin <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/web/">Web <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/windows/">Windows <sup>7</sup></a></li>
+<li class="category"><a href="/blog/categories/proxmox/">proxmox <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/ri-chang/">日常 <sup>37</sup></a></li>
+</ul>
+</section>
+<section>
+<h1>Recent Posts</h1>
+<ul id="recent_posts">
+<li class="post">
+<a href="/blog/2024/12/16/fu-wu-qi-wa-kuang-bing-du-de-cha-sha/">服务器挖矿病毒的查杀</a>
+</li>
+<li class="post">
+<a href="/blog/2021/07/11/apple-m1-bian-yi-tensorflow/">Apple M1 编译tensorflow</a>
+</li>
+<li class="post">
+<a href="/blog/2021/02/27/chromiumbian-ma-qi-wen-ti/">Chromium编码器问题</a>
+</li>
+<li class="post">
+<a href="/blog/2020/12/13/proxmoxbi-ji/">Proxmox笔记</a>
+</li>
+<li class="post">
+<a href="/blog/2020/11/15/lun-yan-du-yu-shen-du/">论广度与深度</a>
+</li>
+</ul>
+</section>
+<section>
+<iframe frameborder="0" scrolling="no" referrerpolicy="unsafe-url" style="width:283px;height:200px" src="https://t.rexdf.org/?m=app&a=showwidget&name=rexdf&type=1&width=283px&height=500px"></iframe>
+</section>
+<section>
+<h1>GitHub Repos</h1>
+<ul id="gh_repos">
+<li class="loading">Status updating...</li>
+</ul>
+<a href="https://github.com/rexdf">@rexdf</a> on GitHub
+<script type="text/javascript">$(document).ready(function(){if(!window.jXHR){var e=document.createElement("script");e.type="text/javascript",e.src="/javascripts/libs/jXHR.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}github.showRepos({user:"rexdf",count:0,skip_forks:!0,target:"#gh_repos"})})</script>
+</section>
+</aside>
+</div>
+</div>
+<footer role="contentinfo"><p>
+<span class="credit">Copyright &copy; 2024 - Rexdf -</span> |
+<span class="credit">Powered by <a name="bottoms" target="_blank" href="http://octopress.org">Octopress</a></span> |
+<span class="credit">Theme by ：<a href="https://blog.rexdf.org/" target="_blank" rel="theme">Rexdf</a></span> |
+<span class="credit">Host by：<a href="https://github.com/" target="_blank" rel="host">Github.com</a></span> |
+<span class="credit">版权声明：<a href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" target="_blank" rel="license">CC BY-NC-SA 3.0</a><img src="https://analytics.rexdf.net/piwik.php?idsite=1&amp;rec=1" style="border:0" alt="" referrerpolicy="no-referrer-when-downgrade"></span>|
+<span class="credit"><a href="/sitemap.xml" rel="sitemap">sitemap</a></span>
+</p>
+<script type="text/javascript" src="https://tajs.qq.com/stats?sId=30296377" charset="UTF-8"></script>
+</footer>
+<script type="text/javascript">var disqus_shortname="rexdf",disqus_identifier="https://i.rexdf.org/blog/2013/10/21/Movabletype-an-zhuang/",disqus_url="https://i.rexdf.org/blog/2013/10/21/Movabletype-an-zhuang/",disqus_script="embed.js";!function(){var e=document.createElement("script");e.type="text/javascript",e.async=!0,e.src="//"+disqus_shortname+".disqus.com/"+disqus_script,(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(e)}()</script>
+<script type="text/javascript">$(function(){$(".entry-content").each(function(t){var r=t;$(this).find("img.fancybox").each(function(){var t=$(this),a=t.attr("title"),n=t.attr("class");t.removeAttr("class"),t.wrap('<a href="'+this.src+'" class="'+n+'" rel="gallery'+r+'" />'),""!=a&&t.parent().attr("title",a)})}),$(".fancybox").fancybox()})</script>
+</body>
+</html>

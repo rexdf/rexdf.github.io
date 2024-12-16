@@ -1,0 +1,184 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<script type="text/javascript">var _speedMark=new Date</script>
+<meta charset="utf-8">
+<title>5种方法立刻写出更好的CSS代码(转) - Rexdf</title>
+<meta name="author" content="Rexdf">
+<meta name="description" content="文章转自：http://www.yeeyan.com/articles/view/toydime/30047 简介 当然，每个人都可以编写CSS代码，甚至你现在已经让它为你的项目工作了。但是CSS还可以更好吗？开始用这5个Tips改进你的CSS吧！ 1.重置 首先，很认真的告诉你， &hellip;">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' data: https://hm.baidu.com https://tajs.qq.com https://ssl.google-analytics.com https://static.rexdf.org https://*.disquscdn.com https://rexdf.disqus.com https://api.github.com https://ssl.google-analytics.com https://disqus.com https://analytics.rexdf.net; connect-src 'self' https://static.rexdf.org https://analytics.rexdf.net https://hm.baidu.com; img-src data: https://*; font-src data: https://*; child-src 'none'; style-src 'self' 'unsafe-inline' https://*; frame-src 'self' https://t.rexdf.org http://t.rexdf.org https://rexdf.disqus.com https://disqus.com">
+<link rel="canonical" href="https://i.rexdf.org/blog/2013/12/25/5-zhong-fang-fa-li-ke-xie-chu-geng-hao-de-CSS-dai-ma-zhuan">
+<link rel="dns-prefetch" href="https://static.rexdf.org/">
+<link href="/favicon.ico" rel="icon">
+<link id="main-css" href="/stylesheets/screen.css" media="screen,projection" rel="stylesheet" type="text/css" title="pc">
+<link href="/stylesheets/screen_mobile.css" rel="alternate stylesheet" type="text/css" title="mobile">
+<link href="/atom.xml" rel="alternate" title="Rexdf" type="application/atom+xml">
+<script src="/javascripts/libs/jquery.min.js"></script>
+<script src="/javascripts/octopress-rexdf.min.js" type="text/javascript"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+      
+      toggle_theme();
+  });
+</script>
+<script type="text/javascript" async src="https://static.rexdf.org/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript">var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-55590409-1"]),_gaq.push(["_trackPageview"]),function(){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(t,e)}()</script>
+<script>var _hmt=_hmt||[];!function(){var e=document.createElement("script");e.src="//hm.baidu.com/hm.js?32192d95b89fbefa0875c4c95adb1412";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}()</script>
+<script src="/javascripts/fancybox/jquery.fancybox.pack.js"></script>
+<link rel="stylesheet" type="text/css" href="/javascripts/fancybox/jquery.fancybox.css">
+<script type="text/javascript">var _paq=_paq||[];_paq.push(["trackPageView"]),_paq.push(["enableLinkTracking"]),function(){var e="https://analytics.rexdf.net/";_paq.push(["setTrackerUrl",e+"piwik.php"]),_paq.push(["setSiteId","1"]);var a=document,t=a.createElement("script"),p=a.getElementsByTagName("script")[0];t.type="text/javascript",t.async=!0,t.defer=!0,t.src=e+"piwik.js",p.parentNode.insertBefore(t,p)}()</script>
+</head>
+<body class="low-contrast-linen-wptouch-bg">
+<header role="banner"><hgroup>
+<h1 id="header-title"><a href="/">Rexdf</a></h1>
+<h2 id="subtitle">The devil is in the Details.</h2>
+</hgroup>
+</header>
+<nav role="navigation"><ul class="subscription" data-subscription="rss">
+<li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+</ul>
+<form action="https://google.com/search" method="get">
+<fieldset role="search">
+<input type="hidden" name="q" value="site:i.rexdf.org">
+<input class="search" type="text" name="q" results="0" placeholder="Search">
+</fieldset>
+</form>
+<ul class="main-navigation">
+<li><a href="/">Blog</a></li>
+<li><a href="/blog/archives/">Archives</a></li>
+<li><a href="/idea/">Idea</a></li>
+<li><a href="/share/">Share</a></li>
+<li><a href="/books/">Books</a></li>
+<li><a href="/donate/">Donate</a></li>
+<li><a target="_blank" href="https://blog.rexdf.org" style="font-family:Shadows Into Light">Main-Blog</a></li>
+</ul>
+</nav>
+<div id="main">
+<div id="content">
+<div>
+<article class="hentry" role="article">
+<header>
+<h1 class="entry-title">5种方法立刻写出更好的CSS代码(转)</h1>
+<p class="meta">
+<time class="data-article month-12 season-winter" datetime="2013-12-25T22:00:00+08:00" pubdate><span class="month">Dec</span> <span class="day">25th</span> <span class="year">2013</span></time>
+| <a href="#disqus_thread" data-disqus-identifier="https://i.rexdf.org">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>文章转自：http://www.yeeyan.com/articles/view/toydime/30047 简介 当然，每个人都可以编写CSS代码，甚至你现在已经让它为你的项目工作了。但是CSS还可以更好吗？开始用这5个Tips改进你的CSS吧！</p>
+<h3 id="section">1.重置</h3>
+<p>首先，很认真的告诉你，总是要重置某些分类。无论你是使用 Eric Meyer Reset、YUI Reset 或者你自己编写的重置代码，只要使用就对了。 它能很简单的移除所有元素的填充（padding）和边距（margin）： html, body, div, h1, h2, h3, h4, h5, h6, ul, ol, dl, li, dt, dd, p, blockquote, pre, form, fieldset, table, th, td { margin: 0; padding: 0; } Eric Meyer Reset和YUI Reset都是非常强大的，但是对于我而言，它们走的太远了。我觉得你最终需要重置一切，然后重新定义所有元素的属性。这就是为什么Eric Meyer推荐更有效的使用（重置样式表），而你不要只是使用他的重置样式表，将它拖放到你的项目中。调整它（的重置样式表），建立属于自己的重置样式表。 噢，请停止使用： * { margin: 0; padding: 0; } 花更多的时间去制作它，当你移除了填充（padding）你认为单选按钮会发生什么变化？表单元素有时能够做些时髦的事情，所以最有效的方式就是将他们独立。</p>
+<h3 id="section-1">2.排序</h3>
+<p>一个小的测试 这个例子就是要让你思考如何更快的找到右边距属性？ Example#1 div#header h1 { z-index: 101; color: #000; position: relative; line-height: 24px; margin-right: 48px; border-bottom: 1px solid #dedede; font-size: 18px; } Example#2 div#header h1 { border-bottom: 1px solid #dedede; color: #000; font-size: 18px; line-height: 24px; margin-right: 48px; position: relative; z-index: 101;}你不能告诉我Example#2不能更快的找到右边距属性。根据字母排序你的元素属性。一致的创建你的CSS，将帮助你节省花费在寻找一个特殊属性的时间。 我知道一些人用这样的方法去组织代码，其他人又用另一种方法去组织，但是在我的公司，我们协商一致做出决定，所有的代码都将按照字母排序来组织。通过这样组织代码与其他人协同工作一定是有帮助的。当我碰到属性没有按照字母排序的层叠样式表我每一次都会退缩。</p>
+<h3 id="section-2">3.组织</h3>
+<p>你应该组织你的样式表以致相关的内容靠在一起，更简单的找到想要的。使用更有效的注解。举个例子，这是我如何构造我的层叠样式表： /<strong>**<em>Reset</em></strong><strong>/ 移除元素的填充（padding）和边距（margin）。 /</strong><strong><em>Basic Elements</em></strong><strong>/ 定义基本元素的样式: body, h1-h6, ul, ol, a, p, 等. /</strong><strong><em>Generic Classes</em></strong><strong>/ 定义简单的风格，好像浮动的某一侧, 移除元素的下边距, 等当然，它们大部分都与我们希望的语义不相关,但是它们是高效处理代码所必须的。 /</strong><strong><em>Basic Layout</em></strong><strong>/ 定义基本的模板: header, footer等. 帮助定义网页布局的基本元素 /</strong><strong><em>Header</em></strong><strong>/ 定义所有Hearder元素 /</strong><strong><em>Content</em></strong><strong>/ 定义所有内容框内的元素 /</strong><strong><em>Footer</em></strong><strong>/ 定义所有Footer的元素 /</strong><strong><em>Etc</em></strong>**/ 定义其他的选择器。 通过注解和归类相似元素的分组，将更快的找到你想要的。</p>
+<h3 id="section-3">4.一致性</h3>
+<p>无论你决定使用什么方式去编写代码，保持一致。我已经对全部放在1行VS多行的CSS编写编写方式的争论感到乏味和疲倦。这是不需要争辩的。每个人都有自己的观点，所以选择一种你喜欢的工作方式，并在所有的样式表中保持一致。 就我个人而言，我将使用两者结合的方式。如果一个选择器超过了3个属性，我将截断它采用多行的方式编写。 div#header { float: left; width: 100%; } div#header div.column { border-right: 1px solid #ccc; float: rightright; margin-right: 50px; padding: 10px; width: 300px; } div#header h1 { float: left; position: relative; width: 250px; } 所以找到你喜欢的工作方式然后保持一致。</p>
+<h3 id="section-4">5.从正确的地方开始</h3>
+<p>在完成标记语言之前不要去尝试靠近你的样式表。 当我准备分割一张网页的时候，创建CSS文件之前，我需要预览并且标记body开标签到body的闭合标签之间的所有文档。我不会增加额外的DIV ,ID,或者类选择器。我将会添加一些一般的DIV，就好像hearder、content、footer.因为我知道这些东西是现实存在的。 通过先标记文档，你将不会碰到本已注定的divities1和classitis2麻烦!/<em>You only need to add in that stuff once you have begun to write the CSS and realize that you are going to need another hook to accomplish what you are trying to achieve.</em>/(原文未译）。 利用CSS子选择器指定子元素；不要只是机械的给元素添加类或者ID选择器。记住：没有一个良好的格式化文档（或者标记结构）CSS是无价值的。 总结 这些Tips能够帮助我更好的完成CSS代码的编写。但是这并不意味着这张列表的结束，接下来我将会去带来一些其他的与大家分享。 你有什么更好的Tips帮助我们完善CSS代码？</p>
+</div>
+<footer>
+<p class="meta">
+<span class="byline author vcard">Posted by <span class="fn">Rexdf</span></span>
+<time class="data-article month-12 season-winter" datetime="2013-12-25T22:00:00+08:00" pubdate><span class="month">Dec</span> <span class="day">25th</span> <span class="year">2013</span></time>
+</p>
+<div class="sharing">
+</div>
+<p class="meta">
+<a class="basic-alignment left" href="/blog/2013/12/18/mi-ma-an-quan-ce-lve/" title="Previous Post: 密码安全策略">&laquo; 密码安全策略</a>
+<a class="basic-alignment right" href="/blog/2013/12/25/css-zhi-after-after-zhuan/" title="Next Post: css之:after ::after(转)">css之:after ::after(转) &raquo;</a>
+</p>
+</footer>
+</article>
+<section>
+<h1>Comments</h1>
+<div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
+</div>
+<aside class="sidebar">
+<section>
+<h1>Categories</h1>
+<ul id="categories">
+<li class="category"><a href="/blog/categories/acm/">ACM <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/algorithm/">Algorithm <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/assembly/">Assembly <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/cygwin/">Cygwin <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/gnu/">GNU <sup>8</sup></a></li>
+<li class="category"><a href="/blog/categories/math/">Math <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/octopress/">Octopress <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/programming/">Programming <sup>6</sup></a></li>
+<li class="category"><a href="/blog/categories/security/">Security <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sublime/">Sublime <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/synology/">Synology <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sysadmin/">SysAdmin <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/web/">Web <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/windows/">Windows <sup>7</sup></a></li>
+<li class="category"><a href="/blog/categories/proxmox/">proxmox <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/ri-chang/">日常 <sup>37</sup></a></li>
+</ul>
+</section>
+<section>
+<h1>Recent Posts</h1>
+<ul id="recent_posts">
+<li class="post">
+<a href="/blog/2024/12/16/fu-wu-qi-wa-kuang-bing-du-de-cha-sha/">服务器挖矿病毒的查杀</a>
+</li>
+<li class="post">
+<a href="/blog/2021/07/11/apple-m1-bian-yi-tensorflow/">Apple M1 编译tensorflow</a>
+</li>
+<li class="post">
+<a href="/blog/2021/02/27/chromiumbian-ma-qi-wen-ti/">Chromium编码器问题</a>
+</li>
+<li class="post">
+<a href="/blog/2020/12/13/proxmoxbi-ji/">Proxmox笔记</a>
+</li>
+<li class="post">
+<a href="/blog/2020/11/15/lun-yan-du-yu-shen-du/">论广度与深度</a>
+</li>
+</ul>
+</section>
+<section>
+<iframe frameborder="0" scrolling="no" referrerpolicy="unsafe-url" style="width:283px;height:200px" src="https://t.rexdf.org/?m=app&a=showwidget&name=rexdf&type=1&width=283px&height=500px"></iframe>
+</section>
+<section>
+<h1>GitHub Repos</h1>
+<ul id="gh_repos">
+<li class="loading">Status updating...</li>
+</ul>
+<a href="https://github.com/rexdf">@rexdf</a> on GitHub
+<script type="text/javascript">$(document).ready(function(){if(!window.jXHR){var e=document.createElement("script");e.type="text/javascript",e.src="/javascripts/libs/jXHR.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}github.showRepos({user:"rexdf",count:0,skip_forks:!0,target:"#gh_repos"})})</script>
+</section>
+</aside>
+</div>
+</div>
+<footer role="contentinfo"><p>
+<span class="credit">Copyright &copy; 2024 - Rexdf -</span> |
+<span class="credit">Powered by <a name="bottoms" target="_blank" href="http://octopress.org">Octopress</a></span> |
+<span class="credit">Theme by ：<a href="https://blog.rexdf.org/" target="_blank" rel="theme">Rexdf</a></span> |
+<span class="credit">Host by：<a href="https://github.com/" target="_blank" rel="host">Github.com</a></span> |
+<span class="credit">版权声明：<a href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" target="_blank" rel="license">CC BY-NC-SA 3.0</a><img src="https://analytics.rexdf.net/piwik.php?idsite=1&amp;rec=1" style="border:0" alt="" referrerpolicy="no-referrer-when-downgrade"></span>|
+<span class="credit"><a href="/sitemap.xml" rel="sitemap">sitemap</a></span>
+</p>
+<script type="text/javascript" src="https://tajs.qq.com/stats?sId=30296377" charset="UTF-8"></script>
+</footer>
+<script type="text/javascript">var disqus_shortname="rexdf",disqus_identifier="https://i.rexdf.org/blog/2013/12/25/5-zhong-fang-fa-li-ke-xie-chu-geng-hao-de-CSS-dai-ma-zhuan/",disqus_url="https://i.rexdf.org/blog/2013/12/25/5-zhong-fang-fa-li-ke-xie-chu-geng-hao-de-CSS-dai-ma-zhuan/",disqus_script="embed.js";!function(){var e=document.createElement("script");e.type="text/javascript",e.async=!0,e.src="//"+disqus_shortname+".disqus.com/"+disqus_script,(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(e)}()</script>
+<script type="text/javascript">$(function(){$(".entry-content").each(function(t){var r=t;$(this).find("img.fancybox").each(function(){var t=$(this),a=t.attr("title"),n=t.attr("class");t.removeAttr("class"),t.wrap('<a href="'+this.src+'" class="'+n+'" rel="gallery'+r+'" />'),""!=a&&t.parent().attr("title",a)})}),$(".fancybox").fancybox()})</script>
+</body>
+</html>

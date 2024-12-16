@@ -1,0 +1,202 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<script type="text/javascript">var _speedMark=new Date</script>
+<meta charset="utf-8">
+<title>判断IE非IE的几种方法 - Rexdf</title>
+<meta name="author" content="Rexdf">
+<meta name="description" content="由于浏览器存在各种各样的差异，特别是IE与其他内核浏览器则往往需要特别区分开来对待，但是这种情况直到IE10才缓解，IE10就不支持条件注释了，而对一些CSS3和HTML5新的特性的支持也变得较为友好了。 1.js判断ie非ie的几种方法 以前最短的IE判定借助于IE不支持垂直制表符的特性搞出来的 &hellip;">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' data: https://hm.baidu.com https://tajs.qq.com https://ssl.google-analytics.com https://static.rexdf.org https://*.disquscdn.com https://rexdf.disqus.com https://api.github.com https://ssl.google-analytics.com https://disqus.com https://analytics.rexdf.net; connect-src 'self' https://static.rexdf.org https://analytics.rexdf.net https://hm.baidu.com; img-src data: https://*; font-src data: https://*; child-src 'none'; style-src 'self' 'unsafe-inline' https://*; frame-src 'self' https://t.rexdf.org http://t.rexdf.org https://rexdf.disqus.com https://disqus.com">
+<link rel="canonical" href="https://i.rexdf.org/blog/2013/10/09/pan-duan-IE-fei-IE-de-ji-zhong-fang-fa">
+<link rel="dns-prefetch" href="https://static.rexdf.org/">
+<link href="/favicon.ico" rel="icon">
+<link id="main-css" href="/stylesheets/screen.css" media="screen,projection" rel="stylesheet" type="text/css" title="pc">
+<link href="/stylesheets/screen_mobile.css" rel="alternate stylesheet" type="text/css" title="mobile">
+<link href="/atom.xml" rel="alternate" title="Rexdf" type="application/atom+xml">
+<script src="/javascripts/libs/jquery.min.js"></script>
+<script src="/javascripts/octopress-rexdf.min.js" type="text/javascript"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+      
+      toggle_theme();
+  });
+</script>
+<script type="text/javascript" async src="https://static.rexdf.org/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript">var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-55590409-1"]),_gaq.push(["_trackPageview"]),function(){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(t,e)}()</script>
+<script>var _hmt=_hmt||[];!function(){var e=document.createElement("script");e.src="//hm.baidu.com/hm.js?32192d95b89fbefa0875c4c95adb1412";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}()</script>
+<script src="/javascripts/fancybox/jquery.fancybox.pack.js"></script>
+<link rel="stylesheet" type="text/css" href="/javascripts/fancybox/jquery.fancybox.css">
+<script type="text/javascript">var _paq=_paq||[];_paq.push(["trackPageView"]),_paq.push(["enableLinkTracking"]),function(){var e="https://analytics.rexdf.net/";_paq.push(["setTrackerUrl",e+"piwik.php"]),_paq.push(["setSiteId","1"]);var a=document,t=a.createElement("script"),p=a.getElementsByTagName("script")[0];t.type="text/javascript",t.async=!0,t.defer=!0,t.src=e+"piwik.js",p.parentNode.insertBefore(t,p)}()</script>
+</head>
+<body class="low-contrast-linen-wptouch-bg">
+<header role="banner"><hgroup>
+<h1 id="header-title"><a href="/">Rexdf</a></h1>
+<h2 id="subtitle">The devil is in the Details.</h2>
+</hgroup>
+</header>
+<nav role="navigation"><ul class="subscription" data-subscription="rss">
+<li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+</ul>
+<form action="https://google.com/search" method="get">
+<fieldset role="search">
+<input type="hidden" name="q" value="site:i.rexdf.org">
+<input class="search" type="text" name="q" results="0" placeholder="Search">
+</fieldset>
+</form>
+<ul class="main-navigation">
+<li><a href="/">Blog</a></li>
+<li><a href="/blog/archives/">Archives</a></li>
+<li><a href="/idea/">Idea</a></li>
+<li><a href="/share/">Share</a></li>
+<li><a href="/books/">Books</a></li>
+<li><a href="/donate/">Donate</a></li>
+<li><a target="_blank" href="https://blog.rexdf.org" style="font-family:Shadows Into Light">Main-Blog</a></li>
+</ul>
+</nav>
+<div id="main">
+<div id="content">
+<div>
+<article class="hentry" role="article">
+<header>
+<h1 class="entry-title">判断IE非IE的几种方法</h1>
+<p class="meta">
+<time class="data-article month-10 season-autumn" datetime="2013-10-09T21:30:00+08:00" pubdate><span class="month">Oct</span> <span class="day">9th</span> <span class="year">2013</span></time>
+| <a href="#disqus_thread" data-disqus-identifier="https://i.rexdf.org">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>由于浏览器存在各种各样的差异，特别是IE与其他内核浏览器则往往需要特别区分开来对待，但是这种情况直到IE10才缓解，IE10就不支持条件注释了，而对一些CSS3和HTML5新的特性的支持也变得较为友好了。</p>
+<h3 id="jsieie">1.js判断ie非ie的几种方法</h3>
+<p>以前最短的IE判定借助于IE不支持垂直制表符的特性搞出来的。 <code>var ie = !+"\v1";</code> 仅仅需要7bytes！参见这篇文章，<a href="http://webreflection.blogspot.com/2009/01/32-bytes-to-know-if-your-browser-is-ie.html">《32 bytes, ehr … 9, ehr … 7!!! to know if your browser is IE》</a>，讲述外国人是如何把IE的判定从32 bytes一步步缩简成7 bytes!的故事 但这纪录今年1月8日被一个俄国人打破了，现在只要6 bytes!它利用了IE与标准浏览器在处理数组的toString方法的差异做成的。对于标准游览器，如果数组里面最后一个字符为逗号，JS引擎会自动剔除它。详见<a href="https://developer.mozilla.org/en/Core_JavaScript_1.5_Guide/Literals#Array_Literals">这里</a> 司徒正美–全世界最短的IE判定 一文，也提到了只有6byte的判断ie与非ie的方法。其 代码如下： [runcode][/runcode] 其实有很多判断的方法，大都是根据浏览器的特性来的。 比如库prototype的方法是：!! (window.attachEvent &amp;&amp; navigator.userAgent.indexOf(‘Opera’) === -1) 。就是根据ie支持window.attachEvent添加侦听事件，非ie用window.addEventListener添加侦听事件来判断的。 navigator.userAgent.indexOf(‘Opera’) === -1是因为opara浏览器能伪装成ie.如果!!(window.attachEvent )为真，就是ie；反之，如果!window.addEventListener为真，也可以判断为ie. Ext使用的是!”1”[0],他利用IE无法使用数组下标访问字符串的特性来判断。在ie8下好像有问题。 在!+[1,]还未被发现前，判断ie最短的表达式是 !+”/v1”.它利用的是ie不支持垂直制表符的特性。 以前还有一个常用方法是document.all，由于opera浏览器能伪装成ie。可以这样写:!!(document.all &amp;&amp; navigator.userAgent.indexOf(‘Opera’) === -1). 还有很多，先记这几条，便于工作时查阅。</p>
+<pre><code>&lt;h4&gt;1.+[1,]&lt;/h4&gt;
+&lt;h4&gt;2.!+"/v1"&lt;/h4&gt;
+&lt;h4&gt;3.!!(window.attachEvent &amp;amp;&amp;amp; navigator.userAgent.indexOf('Opera') === -1)&lt;/h4&gt;
+&lt;h4&gt;4.!!(!window.addEventListener&amp;amp;&amp;amp; navigator.userAgent.indexOf('Opera') === -1)&lt;/h4&gt;
+&lt;h4&gt;5.!!(document.all &amp;amp;&amp;amp; navigator.userAgent.indexOf('Opera') === -1)&lt;/h4&gt;
+</code></pre>
+<h3 id="section">2.条件注释判断浏览器</h3>
+<!--[if !IE]><!--[if IE]><!--[if lt IE 6]><!--[if gte IE 6]> <!--[if !IE]><!-->
+<p>除IE外都可识别<!--<![endif]--><!--[if IE]> 所有的IE可识别 <![endif]--><!--[if IE 6]> 仅IE6可识别 <![endif]--><!--[if lt IE 6]> IE6以及IE6以下版本可识别 <![endif]--><!--[if gte IE 6]> IE6以及IE6以上版本可识别 <![endif]--><!--[if IE 7]> 仅IE7可识别 <![endif]--><!--[if lt IE 7]> IE7以及IE7以下版本可识别 <![endif]--><!--[if gte IE 7]> IE7以及IE7以上版本可识别 <![endif]--><!--[if IE 8]> 仅IE8可识别 <![endif]--><!--[if IE 9]> 仅IE9可识别 <![endif]--></p>
+<p>项目 范例 说明</p>
+<p>! [if !IE] The NOT operator. This is placed immediately in front of the <em>feature</em>, <em>operator</em>, or <em>subexpression</em> to reverse the Boolean meaning of the expression. NOT运算符。这是摆立即在前面的_功能<em>，_操作员</em>，或_子表达式_扭转布尔表达式的意义。</p>
+<p>lt [if lt IE 5.5] The less-than operator. Returns true if the first argument is less than the second argument. 小于运算符。如果第一个参数小于第二个参数，则返回true。</p>
+<p>lte [if lte IE 6] The less-than or equal operator. Returns true if the first argument is less than or equal to the second argument. 小于或等于运算。如果第一个参数是小于或等于第二个参数，则返回true。</p>
+<p>gt [if gt IE 5] The greater-than operator. Returns true if the first argument is greater than the second argument. 大于运算符。如果第一个参数大于第二个参数，则返回true。</p>
+<p>gte [if gte IE 7] The greater-than or equal operator. Returns true if the first argument is greater than or equal to the second argument. 大于或等于运算。如果第一个参数是大于或等于第二个参数，则返回true。</p>
+<p>( ) [if !(IE 7)] Subexpression operators. Used in conjunction with boolean operators to create more complex expressions. 子表达式运营商。在与布尔运算符用于创建更复杂的表达式。</p>
+<p>&amp; [if (gt IE 5)&amp;(lt IE 7)] The AND operator. Returns true if all subexpressions evaluate to true AND运算符。如果所有的子表达式计算结果为true，返回true</p>
+<p>| [if (IE 6)|(IE 7)] The OR operator. Returns true if any of the subexpressions evaluates to true. OR运算符。返回true，如果子表达式计算结果为true。
+<!--[if lt IE 9]> 加载CSS1 <!--[else]> 加载CSS2 <![endif]--> 这样有效是有效,但是用HTML VALIDATOR里,报错,因为这个不符合XHTML 1.1的规范, 如果把ELSE语句去掉,则正确. 方法1： 加载CSS2<!--[if lt IE 9]> 加载CSS1(可以把要重写的写在这里). <![endif]--></p>
+<h3 id="php">3.PHP服务端判断</h3>
+<pre><code>&lt;?php if(strstr($_SERVER["HTTP_USER_AGENT"],"MSIE 7.0")){ 
+echo '这是IE7';
+}else{
+echo '不是IE7';
+} ?&gt;
+</code></pre>
+</div>
+<footer>
+<p class="meta">
+<span class="byline author vcard">Posted by <span class="fn">Rexdf</span></span>
+<time class="data-article month-10 season-autumn" datetime="2013-10-09T21:30:00+08:00" pubdate><span class="month">Oct</span> <span class="day">9th</span> <span class="year">2013</span></time>
+</p>
+<div class="sharing">
+</div>
+<p class="meta">
+<a class="basic-alignment left" href="/blog/2013/10/07/git-duo-zhan-dian-duo-yong-hu-SSH-pei-zhi/" title="Previous Post: git多站点多用户SSH配置">&laquo; git多站点多用户SSH配置</a>
+<a class="basic-alignment right" href="/blog/2013/10/09/zheng-ze-biao-da-shi/" title="Next Post: 正则表达式">正则表达式 &raquo;</a>
+</p>
+</footer>
+</article>
+<section>
+<h1>Comments</h1>
+<div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
+</div>
+<aside class="sidebar">
+<section>
+<h1>Categories</h1>
+<ul id="categories">
+<li class="category"><a href="/blog/categories/acm/">ACM <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/algorithm/">Algorithm <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/assembly/">Assembly <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/cygwin/">Cygwin <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/gnu/">GNU <sup>8</sup></a></li>
+<li class="category"><a href="/blog/categories/math/">Math <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/octopress/">Octopress <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/programming/">Programming <sup>6</sup></a></li>
+<li class="category"><a href="/blog/categories/security/">Security <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sublime/">Sublime <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/synology/">Synology <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sysadmin/">SysAdmin <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/web/">Web <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/windows/">Windows <sup>7</sup></a></li>
+<li class="category"><a href="/blog/categories/proxmox/">proxmox <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/ri-chang/">日常 <sup>37</sup></a></li>
+</ul>
+</section>
+<section>
+<h1>Recent Posts</h1>
+<ul id="recent_posts">
+<li class="post">
+<a href="/blog/2024/12/16/fu-wu-qi-wa-kuang-bing-du-de-cha-sha/">服务器挖矿病毒的查杀</a>
+</li>
+<li class="post">
+<a href="/blog/2021/07/11/apple-m1-bian-yi-tensorflow/">Apple M1 编译tensorflow</a>
+</li>
+<li class="post">
+<a href="/blog/2021/02/27/chromiumbian-ma-qi-wen-ti/">Chromium编码器问题</a>
+</li>
+<li class="post">
+<a href="/blog/2020/12/13/proxmoxbi-ji/">Proxmox笔记</a>
+</li>
+<li class="post">
+<a href="/blog/2020/11/15/lun-yan-du-yu-shen-du/">论广度与深度</a>
+</li>
+</ul>
+</section>
+<section>
+<iframe frameborder="0" scrolling="no" referrerpolicy="unsafe-url" style="width:283px;height:200px" src="https://t.rexdf.org/?m=app&a=showwidget&name=rexdf&type=1&width=283px&height=500px"></iframe>
+</section>
+<section>
+<h1>GitHub Repos</h1>
+<ul id="gh_repos">
+<li class="loading">Status updating...</li>
+</ul>
+<a href="https://github.com/rexdf">@rexdf</a> on GitHub
+<script type="text/javascript">$(document).ready(function(){if(!window.jXHR){var e=document.createElement("script");e.type="text/javascript",e.src="/javascripts/libs/jXHR.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}github.showRepos({user:"rexdf",count:0,skip_forks:!0,target:"#gh_repos"})})</script>
+</section>
+</aside>
+</div>
+</div>
+<footer role="contentinfo"><p>
+<span class="credit">Copyright &copy; 2024 - Rexdf -</span> |
+<span class="credit">Powered by <a name="bottoms" target="_blank" href="http://octopress.org">Octopress</a></span> |
+<span class="credit">Theme by ：<a href="https://blog.rexdf.org/" target="_blank" rel="theme">Rexdf</a></span> |
+<span class="credit">Host by：<a href="https://github.com/" target="_blank" rel="host">Github.com</a></span> |
+<span class="credit">版权声明：<a href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" target="_blank" rel="license">CC BY-NC-SA 3.0</a><img src="https://analytics.rexdf.net/piwik.php?idsite=1&amp;rec=1" style="border:0" alt="" referrerpolicy="no-referrer-when-downgrade"></span>|
+<span class="credit"><a href="/sitemap.xml" rel="sitemap">sitemap</a></span>
+</p>
+<script type="text/javascript" src="https://tajs.qq.com/stats?sId=30296377" charset="UTF-8"></script>
+</footer>
+<script type="text/javascript">var disqus_shortname="rexdf",disqus_identifier="https://i.rexdf.org/blog/2013/10/09/pan-duan-IE-fei-IE-de-ji-zhong-fang-fa/",disqus_url="https://i.rexdf.org/blog/2013/10/09/pan-duan-IE-fei-IE-de-ji-zhong-fang-fa/",disqus_script="embed.js";!function(){var e=document.createElement("script");e.type="text/javascript",e.async=!0,e.src="//"+disqus_shortname+".disqus.com/"+disqus_script,(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(e)}()</script>
+<script type="text/javascript">$(function(){$(".entry-content").each(function(t){var r=t;$(this).find("img.fancybox").each(function(){var t=$(this),a=t.attr("title"),n=t.attr("class");t.removeAttr("class"),t.wrap('<a href="'+this.src+'" class="'+n+'" rel="gallery'+r+'" />'),""!=a&&t.parent().attr("title",a)})}),$(".fancybox").fancybox()})</script>
+</body>
+</html>

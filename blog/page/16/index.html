@@ -1,0 +1,599 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<script type="text/javascript">var _speedMark=new Date</script>
+<meta charset="utf-8">
+<title>Rexdf</title>
+<meta name="author" content="Rexdf">
+<meta name="description" content="很简单的一个插件，现在支持汉化Sublime Text2，Sublime Text3。全部系统Win64、Win32，Linux64，Linux32，OSX等，可以随意来回切换简体中文、繁体中文、日语、英语，无需重启SublimeText。 ">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' data: https://hm.baidu.com https://tajs.qq.com https://ssl.google-analytics.com https://static.rexdf.org https://*.disquscdn.com https://rexdf.disqus.com https://api.github.com https://ssl.google-analytics.com https://disqus.com https://analytics.rexdf.net; connect-src 'self' https://static.rexdf.org https://analytics.rexdf.net https://hm.baidu.com; img-src data: https://*; font-src data: https://*; child-src 'none'; style-src 'self' 'unsafe-inline' https://*; frame-src 'self' https://t.rexdf.org http://t.rexdf.org https://rexdf.disqus.com https://disqus.com">
+<link rel="canonical" href="https://i.rexdf.org/blog/page/16">
+<link rel="dns-prefetch" href="https://static.rexdf.org/">
+<link href="/favicon.ico" rel="icon">
+<link id="main-css" href="/stylesheets/screen.css" media="screen,projection" rel="stylesheet" type="text/css" title="pc">
+<link href="/stylesheets/screen_mobile.css" rel="alternate stylesheet" type="text/css" title="mobile">
+<link href="/atom.xml" rel="alternate" title="Rexdf" type="application/atom+xml">
+<script src="/javascripts/libs/jquery.min.js"></script>
+<script src="/javascripts/octopress-rexdf.min.js" type="text/javascript"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+      
+      toggle_theme();
+  });
+</script>
+<script type="text/javascript" async src="https://static.rexdf.org/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript">var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-55590409-1"]),_gaq.push(["_trackPageview"]),function(){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(t,e)}()</script>
+<script>var _hmt=_hmt||[];!function(){var e=document.createElement("script");e.src="//hm.baidu.com/hm.js?32192d95b89fbefa0875c4c95adb1412";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}()</script>
+<script src="/javascripts/fancybox/jquery.fancybox.pack.js"></script>
+<link rel="stylesheet" type="text/css" href="/javascripts/fancybox/jquery.fancybox.css">
+<script type="text/javascript">var _paq=_paq||[];_paq.push(["trackPageView"]),_paq.push(["enableLinkTracking"]),function(){var e="https://analytics.rexdf.net/";_paq.push(["setTrackerUrl",e+"piwik.php"]),_paq.push(["setSiteId","1"]);var a=document,t=a.createElement("script"),p=a.getElementsByTagName("script")[0];t.type="text/javascript",t.async=!0,t.defer=!0,t.src=e+"piwik.js",p.parentNode.insertBefore(t,p)}()</script>
+</head>
+<body class="low-contrast-linen-wptouch-bg">
+<header role="banner"><hgroup>
+<h1 id="header-title"><a href="/">Rexdf</a></h1>
+<h2 id="subtitle">The devil is in the Details.</h2>
+</hgroup>
+</header>
+<nav role="navigation"><ul class="subscription" data-subscription="rss">
+<li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+</ul>
+<form action="https://google.com/search" method="get">
+<fieldset role="search">
+<input type="hidden" name="q" value="site:i.rexdf.org">
+<input class="search" type="text" name="q" results="0" placeholder="Search">
+</fieldset>
+</form>
+<ul class="main-navigation">
+<li><a href="/">Blog</a></li>
+<li><a href="/blog/archives/">Archives</a></li>
+<li><a href="/idea/">Idea</a></li>
+<li><a href="/share/">Share</a></li>
+<li><a href="/books/">Books</a></li>
+<li><a href="/donate/">Donate</a></li>
+<li><a target="_blank" href="https://blog.rexdf.org" style="font-family:Shadows Into Light">Main-Blog</a></li>
+</ul>
+</nav>
+<div id="main">
+<div id="content">
+<div class="blog-index">
+<article>
+<header>
+<h1 class="entry-title">[置顶]<a href="/blog/2015/05/15/fa-bu-yi-ge-sublimeyi-hua-cha-jian/">发布一个sublime汉化插件</a></h1>
+<p class="meta">
+<time class="data-article month-05 season-spring" datetime="2015-05-15T11:19:01+08:00" pubdate><span class="month">May</span> <span class="day">15th</span> <span class="year">2015</span></time>
+| <a href="/blog/2015/05/15/fa-bu-yi-ge-sublimeyi-hua-cha-jian/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2015/05/15/fa-bu-yi-ge-sublimeyi-hua-cha-jian/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>很简单的一个插件，现在支持汉化Sublime Text2，Sublime Text3。全部系统Win64、Win32，Linux64，Linux32，OSX等，可以随意来回切换简体中文、繁体中文、日语、英语，无需重启SublimeText。</p>
+</div>
+<footer>
+<a rel="full-article" href="/blog/2015/05/15/fa-bu-yi-ge-sublimeyi-hua-cha-jian/">Read on &rarr;</a>
+</footer>
+</article>
+<article>
+<header>
+<h1 class="entry-title"><a href="/blog/2012/11/03/xie-dai-ma-de-xiao-nv-hai-zhuan-zi-Dream-qun/">写代码的小女孩（转自Dream群）</a></h1>
+<p class="meta">
+<time class="data-article month-11 season-autumn" datetime="2012-11-03T23:49:00+08:00" pubdate><span class="month">Nov</span> <span class="day">3rd</span> <span class="year">2012</span></time>
+| <a href="/blog/2012/11/03/xie-dai-ma-de-xiao-nv-hai-zhuan-zi-Dream-qun/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2012/11/03/xie-dai-ma-de-xiao-nv-hai-zhuan-zi-Dream-qun/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>天冷极了，下着雪，又快黑了。这是NOIP的前夜。在这又冷又黑的晚上，一个衣衫破烂的小女孩在机房敲着代码。她从班里逃出来的时候还拿着一本算导，但是有什么用呢？那是一本很破旧的书——那么大，一向是她妈妈垫桌角的。她默写SPFA的时候，年级主任突然冲进机房，吓得她把算导都丢掉了。书叫一个学数竞捡起来拿着跑了。他说，他可以用那本书当草纸，证明切比雪夫定理。 　　小女孩只好自己写二叉堆，一双小脚冻得红一块青一块的。她面前的草纸堆得满满的，上面全是DP转移方程。这一整天，没有一个OJ让她AC一道题，她已经交了32遍采药了。 　　可怜的小女孩！她又冷又饿，浑身战栗地写着二叉堆。CRT显示器发出的光落在她的枯黄的长头发上，那干枯的头发打成卷儿披在肩上，看上去就像二叉树，不过她没注意这些。每个显示器里都透出光来，机房里飘着一股CPU发糊的怪味，因为这是NOIP前夜——她可忘不了这个。 她在主函数前面停了下来，蜷着趴在键盘上。她觉得更冷了。她不敢回家，因为她还没调完二叉堆，没写对一个DP方程，教练一定会骂她的。再说，换成别的数据结构，一样写不出来。这些题都太水，虽然神犇都写过题解了，但是题解上一般都只有三个字：傻X题。 　　她几乎绝望了。啊，哪怕一个函数不会RE，对她也是有好处的！她每写一遍程序，跑出来的结果就不一样，要是她有数据，她就知道哪一个程序是算对了的。她得不到数据了，因为机房上不去网了，全校的网速都让隔壁的年级主任拿来下小电影了。如果能保证下一个程序能AC，她就敢再写几十KB的代码，但是她是不敢啊，她怕又算出来一个奇葩的结果来。 　　她新建了一个cpp重写了程序。编译通过了了，样例过了。这次，她感觉自己站在IOI的考场中AK。学校的大门上，贴着“我校学生以国际金牌向110周年校庆献礼”的条幅。在班级内的非诚勿扰中，全班男生都给她留了灯。这时候，程序又RE了，她面前只有cmd上的黑底白字。 　　她又写了一道模拟。这一回，她坐在美丽的二叉堆下。这棵二叉堆，比她在丽洁代码中看到的常数还要小，还要短。眼前是许多优美动人的ASCII码，那些都是她写的程序，各种可爱的指针在跳跃着，满世界都是系统栈，都在向她眨眼睛。小女孩向眼前的系统栈伸出手去。这时候，眼前的ASCII码还在，条幅还在，指针还在，年级主任还是和蔼地微笑着。只见那些代码那些指针越升越高越升越高，最后成了在天空中闪烁的星星。有一颗星星落下来了，在天空中划出了一道细长的红光。 “有一个什么人快要死了。”小女孩说。唯一疼她的学长保送之前告诉过她：一颗星星落下来，就有一个灵魂要到上帝那儿去了。 　　她notepad++中又写了一个快排。这一回，她把能用的IDE都用了。学长出现在亮光里，是那么温和，那么慈爱。 “学长！”小女孩叫起来，“啊！请把我带走吧！我知道，系统栈一溢出，您就会不见的，像那校门的条幅，浮点数的精度，循环队列的空间一个样，就会不见的！” 　　她赶紧编译了5KB的高精度模板，要把学长留住。一大把程序发出强烈的光，把机房照得跟白天一样明亮。学长从来没有像现在这样高♂大，这样帅气。她把小女孩抱起来，搂在怀里。她们俩在光明和快乐中飞走了，越飞越高，飞到那没有DP，没有图论，也没有数据结构的地方去了。 　　第二天清晨，这个小女孩坐在机房里，两腮通红，嘴上带着微笑。她死了，在NOIP的前夜死了。NOIP Day1的太阳升起来了，照在她小小的尸体上。小女孩坐在那儿，显示器上还有一坨编译过的代码。 　　“她想好好复习复赛。”人们说。谁也不知道她曾经看到过多么美丽的东西，她曾经多么幸福，跟着她学长一起走向新世界的幸福中去。</p>
+</div>
+</article>
+<article>
+<header>
+<h1 class="entry-title"><a href="/blog/2012/11/02/SQL-Server-2008-shu-ju-dao-chu/">SQL Server 2008 数据导出</a></h1>
+<p class="meta">
+<time class="data-article month-11 season-autumn" datetime="2012-11-02T12:56:00+08:00" pubdate><span class="month">Nov</span> <span class="day">2nd</span> <span class="year">2012</span></time>
+| <a href="/blog/2012/11/02/SQL-Server-2008-shu-ju-dao-chu/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2012/11/02/SQL-Server-2008-shu-ju-dao-chu/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>最近虽然是内忙外闲的状态，便有了不少的事儿纠结着，当然收获也还是不少的，真心的希望是可以的。 由于老师一个未完成的项目需要人帮忙，便沾了点儿C#和SQL Server的网站。技术细节后面想到了整理下再发日志。这得从我习惯用最新的版本的软件说起，我笔记本是Win8加上VS2012的平台，发布机器上还算可以用了SQL Server2008 Express加VS2010，由于向后兼容性的考虑我也装了SQL Server 2008、SQL Server 2008 R2两个版本，连续折腾了好久，后来装上Express还是不行，干脆我用一套SQL语句，拷过去再替换掉连接语句，上周以前我我曾经无意中导出了SQL Server 2008 R2的数据到了Insert into语句，这样就像MYSQL备份一样了，不用考虑版本间的差异问题。但是奇怪的事情就是发生了，我拷给老师的机器的时候，老师问了一句怎么导出来的，然后我就尝试着导出，结果怎么都没找着，一直到今天，网上搜索，大部分都是关于2005的自己写一个过程来导出的。无意中还是被我再次发现了，只是过程太过“艰难”！ 在 数据库名 上点击右键选择 任务，子菜单选择 生成脚本 。然后就不用多说了，自己操作就好了！</p>
+</div>
+</article>
+<article>
+<header>
+<h1 class="entry-title"><a href="/blog/2012/10/22/Sunnet-34/">Sunnet 34</a></h1>
+<p class="meta">
+<time class="data-article month-10 season-autumn" datetime="2012-10-22T21:38:00+08:00" pubdate><span class="month">Oct</span> <span class="day">22nd</span> <span class="year">2012</span></time>
+| <a href="/blog/2012/10/22/Sunnet-34/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2012/10/22/Sunnet-34/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>Lyke as a ship that through the ocean wyde, By conduct of some star doth make her way, Whenas a storme hath dimd her trusty guyde, Out if her course doth wander far astray. So I whose star, that wont with her bright ray, Me to direct, with cloudes is overcast, Doe wander now in darkness and dismay, Through hidden perils round about me plast. Yet hope I well, that when this storm is past My Helice, the lodestar of my lyfe Will shine again, and looke on me at last, With lovely light to cleare my cloudy grief. Till then I wander carefull comfortlesse, In secret sorrow and sad pensivenesse.</p>
+</div>
+</article>
+<article>
+<header>
+<h1 class="entry-title"><a href="/blog/2012/10/22/To-Daffodils/">To Daffodils</a></h1>
+<p class="meta">
+<time class="data-article month-10 season-autumn" datetime="2012-10-22T21:28:00+08:00" pubdate><span class="month">Oct</span> <span class="day">22nd</span> <span class="year">2012</span></time>
+| <a href="/blog/2012/10/22/To-Daffodils/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2012/10/22/To-Daffodils/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>Fair daffodils, we weep to see You haste away so soon; As yet the early-rising sun Has not attained his noon: Stay,stay, Until the hastening day Has run But to the evensong; And, having prayed together,we Will go with you along!   We have short time to stay as you, We have as short a spring; As quick a growth to meet decay, As you or anything. We die, As your hours do, and dry Away Like to the summer’s rain, Or as the pearls of morning’s drew, Ne’er to be found again.</p>
+</div>
+</article>
+<article>
+<header>
+<h1 class="entry-title"><a href="/blog/2012/10/22/A-Red-Red-Rose/">A Red,Red Rose</a></h1>
+<p class="meta">
+<time class="data-article month-10 season-autumn" datetime="2012-10-22T21:21:00+08:00" pubdate><span class="month">Oct</span> <span class="day">22nd</span> <span class="year">2012</span></time>
+| <a href="/blog/2012/10/22/A-Red-Red-Rose/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2012/10/22/A-Red-Red-Rose/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>O my Luve’s like a red,red rose That’s newly sprung in June: O my Luve’s like the melodie That’s sweetly play’d in tune.   As fair art thou, my bonnie lass, So deep in luve am I: And I will luve thee still, my dear, Till a’ the seas gang dry.   Till a’ the seas gang dry, my dear, And the rocks melt wi’ the sun; I will luve thee still, my dear, While the sands o’ life shall run.   And fare thee well, my only Luve! And fare thee well a while! And I will come again, my Luve, Tho’ it were ten thousand miles.</p>
+</div>
+</article>
+<article>
+<header>
+<h1 class="entry-title"><a href="/blog/2012/08/01/winAPI-da-quan/">winAPI大全</a></h1>
+<p class="meta">
+<time class="data-article month-08 season-summer" datetime="2012-08-01T00:20:00+08:00" pubdate><span class="month">Aug</span> <span class="day">1st</span> <span class="year">2012</span></time>
+| <a href="/blog/2012/08/01/winAPI-da-quan/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2012/08/01/winAPI-da-quan/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>winAPI大全                                       </p>
+<h1 id="api">1. API之网络函数</h1>
+<p>WNetAddConnection 创建同一个网络资源的永久性连接 WNetAddConnection2 创建同一个网络资源的连接 WNetAddConnection3 创建同一个网络资源的连接 WNetCancelConnection 结束一个网络连接 WNetCancelConnection2 结束一个网络连接 WNetCloseEnum 结束一次枚举操作 WNetConnectionDialog 启动一个标准对话框，以便建立同网络资源的连接 WNetDisconnectDialog 启动一个标准对话框，以便断开同网络资源的连接 WNetEnumResource 枚举网络资源 WNetGetConnection 获取本地或已连接的一个资源的网络名称 WNetGetLastError 获取网络错误的扩展错误信息 WNetGetUniversalName 获取网络中一个文件的远程名称以及/或者UNC（统一命名规范）名称 WNetGetUser 获取一个网络资源用以连接的名字 WNetOpenEnum 启动对网络资源进行枚举的过程  </p>
+<h1 id="api-1">2. API之消息函数</h1>
+<p>BroadcastSystemMessage 将一条系统消息广播给系统中所有的顶级窗口 GetMessagePos 取得消息队列中上一条消息处理完毕时的鼠标指针屏幕位置 GetMessageTime 取得消息队列中上一条消息处理完毕时的时间 PostMessage 将一条消息投递到指定窗口的消息队列 PostThreadMessage 将一条消息投递给应用程序 RegisterWindowMessage 获取分配给一个字串标识符的消息编号 ReplyMessage 答复一个消息 SendMessage 调用一个窗口的窗口函数，将一条消息发给那个窗口 SendMessageCallback 将一条消息发给窗口 SendMessageTimeout 向窗口发送一条消息 SendNotifyMessage 向窗口发送一条消息</p>
+<h1 id="api-2">3. API之文件处理函数</h1>
+<p>CloseHandle 关闭一个内核对象。其中包括文件、文件映射、进程、线程、安全和同步对象等 CompareFileTime 对比两个文件的时间 CopyFile 复制文件 CreateDirectory 创建一个新目录 CreateFile 打开和创建文件、管道、邮槽、通信服务、设备以及控制台 CreateFileMapping 创建一个新的文件映射对象 DeleteFile 删除指定文件 DeviceIoControl 对设备执行指定的操作 DosDateTimeToFileTime 将DOS日期和时间值转换成一个 win32 FILETIME 值 FileTimeToDosDateTime 将一个 win32 FILETIME 值转换成DOS日期和时间值 FileTimeToLocalFileTime 将一个FILETIME结构转换成本地时间 FileTimeToSystemTime 根据一个FILETIME结构的内容，装载一个SYSTEMTIME结构 FindClose 关闭由FindFirstFile函数创建的一个搜索句柄 FindFirstFile 根据文件名查找文件</p>
+</div>
+</article>
+<article>
+<header>
+<h1 class="entry-title"><a href="/blog/2012/08/01/pi-chu-li-wen-jian-cao-zuo-za-ji/">批处理文件操作杂记</a></h1>
+<p class="meta">
+<time class="data-article month-08 season-summer" datetime="2012-08-01T00:07:00+08:00" pubdate><span class="month">Aug</span> <span class="day">1st</span> <span class="year">2012</span></time>
+| <a href="/blog/2012/08/01/pi-chu-li-wen-jian-cao-zuo-za-ji/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2012/08/01/pi-chu-li-wen-jian-cao-zuo-za-ji/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>由于某些原因，一些文件夹出现了前缀..和后缀.hider.hider，而且文件加里包含文件夹和文件，应该是肯定在1000的工作量的，尝试用纯的批处理写出来，不过一直到最后都还是没有弄明白用什么办法可以刚刚把匹配后的字符串取出来，应该用正则可以办到，但是没有找到系统介绍批处理中正则的资料，故想写一个c++程序来处理。无奈，不调用复杂的系统API似乎还是很难做到（我还没系统研究io.h和direct.h里面到底包含哪些函数），而WinAPI似乎总是希望传达你一个宏大的思想，需要注意的细节太多。 最总写成了如下版本的两个文件，先是批处理</p>
+<pre><code>@echo off&amp;setlocal enabledelayedexpansion
+
+PATH I:\tmp\Orginal\
+a.exe
+for /r %%a in (dir /ad) do (
+
+     cd %%~pa
+     a.exe
+)
+
+
+#include   &lt;stdio.h&gt; 
+#include   &lt;io.h&gt; 
+#include   &lt;direct.h&gt; 
+#include &lt;cstring&gt;
+#include &lt;iostream&gt;
+
+
+using namespace std;
+
+
+typedef   struct   _finddata_t   file_block; 
+
+int main() 
+{ 
+    file_block   f_block; 
+    long   handle,retcode; 
+    int flag;
+    handle=_findfirst("*",&amp;f_block); 
+    do{
+        printf( "%-12s\n ",f_block.name);
+        char tmp[1505],fn[1257];
+        strcpy(fn,f_block.name);
+        flag=1;
+        while(fn[0]=='.')
+        {
+            int l=strlen(fn);
+            for(int i=1;i&lt;=l;i++)
+              fn[i-1]=fn[i];
+            flag=0;
+        }
+        {
+            int len=strlen(fn);
+            for(int i=0;i&lt;len-1;i++)
+              if(fn[i]=='.' &amp;&amp; fn[i+1]=='h' &amp;&amp; fn[i+2]=='i' &amp;&amp; fn[i+3]=='d'
+                 &amp;&amp; fn[i+4]=='e' &amp;&amp; fn[i+5]=='r')
+                 fn[i]='\0',flag=0;
+        }
+        /*
+        if(flag)
+        {
+            cout&lt;&lt;fn&lt;&lt;endl;
+            continue;
+        }
+        */
+        strcpy(tmp,"ren \"");
+        strcat(tmp,f_block.name);
+        strcat(tmp,"\" \"");
+        strcat(tmp,fn);
+        strcat(tmp,"\"");
+        cout&lt;&lt;"$"&lt;&lt;tmp&lt;&lt;endl;
+        system(tmp);
+        retcode=_findnext(handle,&amp;f_block); 
+    }while(retcode==0); 
+    printf( "\n   end   of   diretory\n "); 
+    //system("pause");
+    return 0;
+}
+</code></pre>
+<p>  另外附一份批处理的资料</p>
+<pre><code>批处理文件小结因为很多游戏资源的处理都是通过DOS批处理文件来进行的，所以必须要了解批处理文件的语法。下面把比较重要的内容一一列举出来。
+注意command.com和cmd.exe是不同的东西。command.com是MS-DOS的命令解释器（shell），没有它，大部分的Windows系统都是无法引导的，从MS-DOS到WinXP都需要它。cmd.exe是更高级的shell，它提供了许多环境变量，支持的平台是WinNT、Win2K、WinXP、Vista和Win7。而且二者的命令行参数也是不一样的。
+下面所说的都是基于cmd.exe的。
+
+&gt;&gt;&gt; @
+描述：从 DOS 3.3 开始，可以用它来隐藏DOS命令的显示。注意，只是隐藏命令，并不会隐藏命令的输出。
+语法：放在任何DOS命令前面；也可以放在批处理文件名的前面。
+示例：
+@echo OFF 将隐藏这七个后续字母的显示
+
+&gt;&gt;&gt; %0 - %9
+描述：用于引用命令行上的参数。
+语法：%0是命令行的批处理命令。%1 - %9是后面的九个参数。
+示例：
+E:\MYBATCH DOC A: 命令行
+COPY *.%1 %2      MYBATCH.BAT文件内容：只有一行。复制所有的DOC文件到软驱。
+
+&gt;&gt;&gt; %variable%
+描述：引用变量。比较简单，直接示例。
+示例：
+echo The current search path is: %PATH%
+set USER=John
+if %USER%==John goto LABEL
+
+当Command Extensions启用时，有下面几个系统变量：
+echo %cd%             显示当前目录。如果当前目录是各个驱动器的根目录，则后面有反斜杠\；反之则没有。
+echo %date%
+echo %time%
+echo %random%         0到32767之间的随机数
+echo %errorlevel%     见下文
+echo %cmdextversion%  见下文
+echo %cmdcmdline%     命令行
+
+变量值替换：
+@echo OFF
+set USER_PROMPT=Please input a string:
+echo %USER_PROMPT:~7,5%       变量值的临时替换。offset=7，length=5。也就是input这五个字母。
+echo %USER_PROMPT:~7%         不指定length，则默认是后面全部。也就是 input a string: 这一大串。
+echo %USER_PROMPT:~-7%        offset为负值，则从后往前数。length还是往后全部。也就是string:这七个字母。
+echo %USER_PROMPT:~-7,6%      length为6，则为string这六个字母。
+echo %USER_PROMPT%            原来的变量值不变。
+pause
+
+延迟变量展开：
+@echo off
+set VAR=before
+if "%VAR%" == "before" (
+set VAR=after
+echo %VAR%                    会输出什么？很大可能是before，而不是after。因为默认情况下，“延迟变量展开”（delayed environment variable expansion）是禁用的。
+)
+一般来说，这可不是我们想要的。因为默认情况下，cmd.exe在读入批处理文件之后，立刻把变量VAR全部展开成before了，然后才开始执行脚本。
+cmd.exe的/v开关可以打开，以支持“延迟变量展开”，使得变量可以在执行阶段变化。然后变量的使用也要变化：
+@echo off
+set VAR=before
+if "%VAR%" == "before" (
+set VAR=after
+echo !VAR!                  此时会输出after。
+echo %VAR%                  还是输出before。
+)
+
+同样，下面的程序：
+set FILE_LIST=
+for %i in (*) do set FILE_LIST=!FILE_LIST! %i
+echo !FILE_LIST!              输出当前目录的所有文件
+echo %FILE_LIST%              也输出当前目录的所有文件，为什么？
+
+可以用setlocal enabledelayedexpansion在批处理文件中打开该选项。
+
+&gt;&gt;&gt; echo
+描述：控制DOS命令与注释的显示与否。
+语法：echo [ON|OFF|message|.]
+示例：
+echo  显示当前echo状态是开是关
+echo ON | OFF 不言自明
+echo Processing... 在屏幕上显示 Processing... 这条消息
+echo %USER%  在屏幕上显示 USER 变量的值
+echo.  显示一个空行
+echo Y|Del *.*  删除所有文件，在问：Are you sure 的时候，用Y来响应。
+
+&gt;&gt;&gt; call
+描述：调用别的批处理文件。
+语法：
+从 DOS 3.3 开始：call [drive:][path]filename [batch-parameters]
+DOS 3.3 以前的版本：command /c [drive:][path]filename [batch-parameters]
+
+&gt;&gt;&gt; for
+描述：最重要的命令之一。很复杂。所以，下面的语法和示例要搀在一起来讲，就叫“用法”吧。
+用法：它可以直接应用于命令行，当然也可以用于批处理文件内部。但是二者的使用是有差别的。
+命令行的语法格式：FOR %variable IN (set) DO command [command-parameters]
+1&gt; 注意，其参数格式是%variable，如果用于批处理文件，则为%%variable。
+2&gt; variable是从a到z的字母，大小写敏感。
+3&gt; set是一个或多个文件。互相之间用空格或逗号隔开。支持通佩符。
+例：
+for %%i in (A,C,D) do dir %%i *.* 显示这几个驱动器的所有文件
+for %%i in (*.*) do @echo %%i 显示当前目录的所有文件
+
+当cmd.exe的 command extensions 开关打开时（默认就是打开），for命令还支持 /D /R /L /F 四个选项（大小写不敏感）。
+
+/D
+描述：目录操作
+语法：FOR /D %variable IN (set) DO command [command-parameters]
+示例：
+for /d %%i in (*) do @echo %%i 显示当前目录的所有子目录
+for /d %%i in ("%cd%\*") do @echo %%i 显示这些子目录的完整路径，加上双引号是为了表示带空格的目录，如果%cd%带空格的话。
+for /d %%i in (c:\*) do @echo %%i 显示c盘下所有子目录
+for /d %%i in (???) do @echo %%i 显示只有1-3个字母的目录
+
+/R
+描述：大概是recursive的意思。会递归遍历文件夹。
+语法：FOR /R [[drive:]path
+</code></pre>
+</div>
+</article>
+<article>
+<header>
+<h1 class="entry-title"><a href="/blog/2012/07/30/zhe-teng-ri-ji/">折腾日记</a></h1>
+<p class="meta">
+<time class="data-article month-07 season-summer" datetime="2012-07-30T18:18:00+08:00" pubdate><span class="month">Jul</span> <span class="day">30th</span> <span class="year">2012</span></time>
+| <a href="/blog/2012/07/30/zhe-teng-ri-ji/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2012/07/30/zhe-teng-ri-ji/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>昨晚没有刷题，早上8点就醒了，没事做。便折腾了一下网站。<br>
+因为听说**Cloud比较好用，便尝试着用了下，暂时买找到窍门，下载Cygwin大约近10G的大小了（我有完整版安装软件的癖好），而使用BitVise似乎无从下手，只有等待完全装好Cygwin后再说了。<br>
+虽然现在海盗湾已经重新开张，但是上次海盗湾停止运营前的一个版本，22G的数据库被我下载了下来，单从配置来看是需要lighttpd服务器跑的。</p>
+<h1 id="apache">1.Apache下面尝试</h1>
+<p>我尝试着在Apache下跑跑，问题不少，应该是可以完美移植的，关键在于路径重写上面：</p>
+<pre><code># These are my mod_rewrite rules:
+url.rewrite = (
+	"^/browse$" =&gt; "/cats.php",
+	"^/browse/(\d+)$" =&gt; "/browse.php?cat=$1",
+	"^/browse/(\d+)/(\d+)$" =&gt; "/browse.php?cat=$1&amp;page=$2",
+	"^/recent$" =&gt; "/browse.php",
+	"^/recent/(\d+)$" =&gt; "/browse.php?page=$1",
+	"^/search/([^/]+)$" =&gt; "/browse.php?q=$1",
+	"^/search/([^/]+)/(\d+)$" =&gt; "/browse.php?q=$1&amp;page=$2",
+	"^/s\?(.+)$" =&gt; "/browse.php?$1&amp;redir",
+	"^/details/(\d+)$" =&gt; "/details.php?id=$1",
+	"^/details/(\d+)/(.+)$" =&gt; "/details.php?id=$1&amp;q=$2",
+	"^/torrent/(\d+)$" =&gt; "/torrent.php?id=$1",
+	"^/about$" =&gt; "/about.php",
+	"^/about\?(.+)$" =&gt; "/about.php?$1",
+	"^/searchplugin$" =&gt; "/searchplugin.php",
+)
+</code></pre>
+<h1 id="rewrite">2.神奇的Rewrite伪静态规则转换工具</h1>
+<p>被我无意中找到一个神奇的网站<a href="http://www.onexin.net/rewrite.php">http://www.onexin.net/rewrite.php</a>，可以转化配置文件，先从lighttpd转换到Nginx，然后再逆向到apache，如此一来，居然真的可以跑起来，看到了站点的内容：</p>
+<pre><code>RewriteEngine on
+RewriteRule ^browse$ cats.php
+RewriteRule ^browse/(d+)$ browse.php?cat=$1
+RewriteRule ^browse/(d+)/(d+)$ browse.php?cat=$1&amp;page=$2
+RewriteRule ^recent$ browse.php
+RewriteRule ^recent/(d+)$ browse.php?page=$1
+RewriteRule ^search/([^/]+)$ browse.php?q=$1
+RewriteRule ^search/([^/]+)/(d+)$ browse.php?q=$1&amp;page=$2
+RewriteRule ^s?(.+)$ browse.php?$1&amp;redir
+RewriteRule ^details/(d+)$ details.php?id=$1
+RewriteRule ^details/(d+)/(.+)$ details.php?id=$1&amp;q=$2
+RewriteRule ^torrent/(d+)$ torrent.php?id=$1
+RewriteRule ^about$ about.php
+RewriteRule ^about?(.+)$ about.php?$1
+RewriteRule ^searchplugin$ searchplugin.php
+</code></pre>
+<p>  <img src="/wp-content/uploads/2012/07/Aa-1024x518.jpg" alt=""> 图片中的链接是正确的，但是不知道.htaccess 哪里写得不好，好像无论访问哪里都会被重定向到/recent，所以决定试下lighttpd。</p>
+<h1 id="lighttpd-for-windows">3.LightTPD for Windows</h1>
+<p>虽然知道在Cygwin下面是可以直接编译Linux版本的Lighttpd的，但是如果要那么做，我觉得还不如重启，但是Cygwin还在10G左右的在线完整版安装中。于是 到<a href="http://en.wlmp-project.net">http://en.wlmp-project.net</a>下载了LightTPD for Windows，挺小的只有5M多一点，简单的配置之后，却是怎么也跑不起来。</p>
+<pre><code>2012-07-30 18:01:22: (server.c.628) trying to read configuration (test mode)
+2012-07-30 18:01:22: (configfile.c.1278) a default document-root has to be set
+2012-07-30 18:01:22: (server.c.664) setting default values failed
+</code></pre>
+<p>纠结中，试了下打开命令行，把当前目录换到LightTPD.exe所在的目录，再次运行LightTPD.exe -f conf/lighttpd.conf就Ok了。估计即使不在LightTPD.exe所在目录，-f后面传绝对目录也应该是可以的。</p>
+<h1 id="php">4.php异常</h1>
+<p>然后打开php却出了莫名的问题：<img src="/wp-content/uploads/2012/07/BB-1024x617.jpg" alt=""></p>
+<pre><code>Warning: PHP Startup: Unable to load dynamic library 'D:/Users/Rexdf/php545/ext\php_interbase.dll' - The specified module could not be found. in Unknown on line 0
+
+Warning: PHP Startup: Unable to load dynamic library 'D:/Users/Rexdf/php545/ext\php_zip.dll' - The specified module could not be found. in Unknown on line 0
+ X-Powered-By: PHP/5.4.5 Content-Type: text/html; charset=utf-8
+</code></pre>
+<p>  网上说“ 解决的办法有两个： 1 将这些依赖的dll拷贝到％windir％/system32下 2 或者将PHP5的安装目录添加到%PATH%中。 无论那个都可以很好地达到我们地目的。 够简单的，但是有时候还就想不到哪儿去。 到底哪些扩展依赖哪些dll呢？以下列表可以帮助我们回答这个问题：</p>
+<pre><code>php_curl.dll CURL, Client URL library functions Requires: libeay32.dll, ssleay32.dll (bundled)
+php_domxml.dll DOM XML functions PHP &lt;= 4.2.0 requires: libxml2.dll
+(bundled) PHP &gt;= 4.3.0 requires: iconv.dll (bundled)
+php_fdf.dll FDF: Forms Data Format functions. Requires: fdftk.dll
+gnu_gettext.dll (bundled), PHP &gt;= 4.2.3 requires libintl-1.dll,
+php_iconv.dll ICONV characterset conversion Requires: iconv-1.3.dll
+php_ingres.dll Ingres II functions Requires: Ingres II libraries
+php_interbase.dll InterBase functions Requires: gds32.dll (bundled)
+php_java.dll Java functions PHP &lt;= 4.0.6 requires: jvm.dll (bundled)
+php_ldap.dll LDAP functions PHP &lt;= 4.2.0 requires libsasl.dll(bundled),
+PHP &gt;= 4.3.0 requires libeay32.dll,ssleay32.dll (bundled)
+php_mcrypt.dll Mcrypt Encryption functions Requires: libmcrypt.dll
+php_mhash.dll Mhash functions PHP &gt;= 4.3.0 requires: libmhash.dll (bundled)
+php_mcrypt.dll Mcrypt Encryption functions Requires: libmcrypt.dll
+php_mhash.dll Mhash functions PHP &gt;= 4.3.0 requires: libmhash.dll (bundled)
+php_msql.dll mSQL functions Requires: msql.dll (bundled)
+php_mssql.dll MSSQL functions Requires: ntwdblib.dll (bundled)
+php_mysql.dll MySQL functions PHP &gt;= 5.0.0, requires libmysql.dll (bundled)
+php_mysqli.dll MySQLi functions PHP &gt;= 5.0.0, requires libmysqli.dll (bundled)
+php_oci8.dll Oracle 8 functions Requires: Oracle 8.1+ client libraries
+php_openssl.dll OpenSSL functions Requires: libeay32.dll (bundled)
+php_oracle.dll Oracle functions Requires: Oracle 7 client libraries
+php_sybase_ct.dll Sybase functions Requires: Sybase client libraries
+php_xmlrpc.dll XML-RPC functions PHP &gt;= 4.2.1 requires: iconv.dll (bundled)
+php_xslt.dll XSLT functions PHP &lt;= 4.2.0 requires sablot.dll, expat.dll (bundled).
+PHP &gt;= 4.2.1 requires sablot.dll, expat.dll, iconv.dll (bundled).
+</code></pre>
+<p>” 我只是试了下第二种方法，无果。包括关闭了命令行，重新启动Lighttpd。</p>
+<h1 id="ok">5.本地的海盗湾OK了</h1>
+<p>无奈，直接在php.ini注释掉了extension=php_zip.dll和extension=php_interbase.dll,然后自然就OK了，当然主要原因是我没找到gds32.dll 和php_zip.dll依赖文件。不然可以尝试Regsvr32试试。下面是最后截图： <img src="/wp-content/uploads/2012/07/C1.jpg" alt=""></p>
+</div>
+</article>
+<article>
+<header>
+<h1 class="entry-title"><a href="/blog/2012/07/15/san-da-Web-Server-fen-xi-ApacheLighttpdNginx/">三大Web Server分析(Apache、Lighttpd、Nginx)</a></h1>
+<p class="meta">
+<time class="data-article month-07 season-summer" datetime="2012-07-15T00:57:00+08:00" pubdate><span class="month">Jul</span> <span class="day">15th</span> <span class="year">2012</span></time>
+| <a href="/blog/2012/07/15/san-da-Web-Server-fen-xi-ApacheLighttpdNginx/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2012/07/15/san-da-Web-Server-fen-xi-ApacheLighttpdNginx/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><h1 id="section">一、软件介绍</h1>
+<h2 id="lighttpd"><strong>1. Lighttpd</strong></h2>
+<p>Lighttpd是一个具有非常低的内存开销，CPU占用率低，效能好，以及丰富的模块等特点。Lighttpd是众多OpenSource轻量级 的webserver中较为优秀的一个。支持FastCGI，CGI，Auth，输出压缩（Output Compress），URL重写，Alias等重要功能。 Lighttpd使用FastCGI方式运行PHP，它会使用很少的PHP进程响应很大的并发量。 FastCGI的优点在于：</p>
+<ul>
+<li>从稳定性上看，FastCGI是以独立的进程池运行来CGI，单独一个进程死掉，系统可以很轻易的丢弃，然后重新分配新的进程来运行逻 辑。</li>
+<li>从安全性上看，FastCGI和宿主的server完全独立，FastCGI怎么down也不会把Server搞垮。</li>
+<li>从性能上看，FastCGI把动态逻辑的处理从server中分离出来，大负荷的IO处理还是留给宿主server，这样宿主 server可以一 心一意作IO，对于一个普通的动态网页来说，逻辑处理可能只有一小部分，大量的图片等静态IO处理完全不需要逻辑程序的参与（注1）。</li>
+<li>从扩展性上讲，FastCGI是一个中立的技术标准，完全可以支持任何语言写的处理程序（PHP，Java，Python……）。</li>
+</ul>
+<h2 id="apache"><strong>2. Apache</strong></h2>
+<p>Apache是世界排名第一的web服务器，根据<a href="http://news.netcraft.com/">Netcraft</a> 所作的调查，世界上百分之五十以上的web服务器在使用 Apache。 1995年4月，最早的Apache（0.6.2版）由Apache Group公布发行。Apache Ggroup 是一个完全通过Internet进行运作的非盈利机构，由它来决定Apache Web服务器的标准发行版中应该包含哪些内容。Apache准许任何人修改隐错，提供新的特征和将它移植到新的平台上，以及其它的工作。当新的代码被提交 给Apache Group时，该团体审核它的具体内容，进行测试，如果认为满意，该代码就会被集成到Apache的主要发行版中。 Apache 的特性:</p>
+<ul>
+<li>几乎可以运行在所有的计算机平台上</li>
+<li>支持最新的http/1.1协议</li>
+<li>单而且强有力的基于文件的配置（httpd.conf）</li>
+<li>支持通用网关接口（CGI）</li>
+<li>支持虚拟主机</li>
+<li>支持HTTP认证</li>
+<li>集成Perl</li>
+<li>集成的代理服务器</li>
+<li>可以通过web浏览器监视服务器的状态，可以自定义日志</li>
+<li>支持服务器端包含命令（SSI）</li>
+<li>支持安全socket层（SSL）</li>
+<li>具有用户会话过程的跟踪能力</li>
+<li>支持FastCGI</li>
+<li>支持JavaServlets</li>
+</ul>
+<h2 id="nginx"><strong>3. Nginx</strong></h2>
+<p>Nginx是俄罗斯人编写的十分轻量级的HTTP服务器（Nginx的发音为“Engine X”），是一个高性能的HTTP和反向代理服务器，同时也是一个IMAP/POP3/SMTP 代理服务器。Nginx是由俄罗斯人Igor·Sysoev为俄罗斯访问量第二的Rambler.ru站点开发。 Nginx以事件驱动的方式编写，所以有非常好的性能，同时也是一个非常高效的反向代理、负载平衡。其拥有匹配Lighttpd的性能，同时还没有 Lighttpd的内存泄漏问题，而且Lighttpd的mod_proxy也有一些问题并且很久没有更新。但是Nginx并不支持CGI方式运行，原因 是可以减少因此带来的一些程序上的漏洞。所以必须使用FastCGI方式来执行PHP程序。 Nginx做为HTTP服务器，有以下几项基本特性：</p>
+<ul>
+<li>处理静态文件、索引文件以及自动索引；打开文件描述符缓冲。</li>
+<li>无缓存的反向代理加速，简单的负载均衡和容错。</li>
+<li>FastCGI，简单的负载均衡和容错。</li>
+<li>模块化的结构。包括Gzipping，Byte Ranges，Chunked Responses，以及SSI-filter等filter。如果由FastCGI或其它代理服务器处理单页中存在的多个SSI，则这项处理可以并行运 行，而不需要相互等待。</li>
+<li>Nginx专为性能优化而开发，性能是其最重要的考量，实现上非常注重效率。它支持内核Poll模型，能经受高负载的考验，有报告表明能 支持高达50，000个并发连接数。</li>
+<li>Nginx具有很高的稳定性。其它HTTP服务器，当遇到访问的峰值，或者有人恶意发起慢速连接时，也很可能会导致服务器物理内存耗尽频 繁交换， 失去响应，只能重启服务器。例如当前Apache一旦上到200个以上进程，Web响应速度就明显非常缓慢了。而Nginx采取了分阶段资源分配技术，使 得它的CPU与内存占用率非常低。Nginx官方表示保持10，000个没有活动的连接，它只占2.5M内存，所以类似DOS这样的攻击对Nginx来说 基本上是毫无用处的。就稳定性而言，Nginx比Lighthttpd更胜一筹。</li>
+<li>Nginx支持热部署。它的启动特别容易，并且几乎可以做到7*24不间断运行，即使运行数个月也不需要重新启动。你还能够在不间断服务 的情况下，对软件版本进行进行升级。</li>
+</ul>
+<h1 id="web">二、三种WEB服务器的比较</h1>
+<p>  注：在相对比较大的网站，节约下来的服务器成本无疑是客观的。而有些小型网站往往服务器不多，如果采用Apache 这类传统 Web 服务器，似乎也还能撑过去。但有其很明显的弊端： Apache 在处理流量爆发的时候(比如爬虫或者是 Digg 效应) 很容易过载，这样的情况下采用 Nginx 最为合适。 建议方案：</p>
+<ol>
+<li>Apache 后台服务器（主要处理PHP及一些功能请求 如：中文url）</li>
+<li>Nginx  前端服务器（利用它占用系统资源少得优势来处理静态页面大量请求）</li>
+<li>Lighttpd 图片服务器 总体来说，随着Nginx功能得完善将使他成为今后Web Server的主流。</li>
+</ol>
+</div>
+</article>
+<article>
+<header>
+<h1 class="entry-title"><a href="/blog/2012/07/15/Nginx-he-lighttpd-dui-bi/">Nginx和lighttpd对比</a></h1>
+<p class="meta">
+<time class="data-article month-07 season-summer" datetime="2012-07-15T00:41:00+08:00" pubdate><span class="month">Jul</span> <span class="day">15th</span> <span class="year">2012</span></time>
+| <a href="/blog/2012/07/15/Nginx-he-lighttpd-dui-bi/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2012/07/15/Nginx-he-lighttpd-dui-bi/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><h1 id="section"><strong>背景</strong></h1>
+<p>lighttpd和nginx是近年来两个流行的高性能web server。nginx在近几年冒起很快，根据netcraft对2010年2月所有网站域名的web server市场份额调查显示，nginx占据第4位，已明显超越了lighttpd，如下图示： 百度有一些服务使用lighttpd，我们希望对 nginx开展调研，并和lighttpd进行对比。</p>
+<h1 id="section-1"><strong>概述</strong></h1>
+<p>Nginx和lighttpd基本上是同质的，都是采用基于epoll/kqueue/select的全异步事件模型，可以轻松地维持大量的连接，不惧怕慢连接攻击。两者都提供了丰富的HTTP服务功能，例如压缩、url rewrite、虚拟主机、SSL、proxy等等。 Nginx大量模仿了apache的设计风格，比如模块的定义、装配、以及配置数据的解析和组织方式等等。Lighttpd则是自己设计的一套。 和lighttpd相比，Nginx做事更加精细，它提供的一些比较特别。 Nginx的代码入手更困难一些（主观看法）。举个例子，Nginx内部的HTTP状态迁移是比较隐性的，它通过一系列的handler赋值来实现，如果要完整地追踪一次HTTP请求的处理过程，比较费劲。这个就说明，一旦出了问题，追查比较困难。而lighttpd的代码中有一个显式的HTTP状态迁移，一目了然，相比之下比较好看一些。 扩展模块开发方面，nginx的module模仿了apache的设计和实现方式，和lighttpd是完全不同的。主观感觉上nginx模块开发的入门门槛更高一些，因为必须弄清楚nginx的内部运行机制才好确认你写的代码到底有没有问题和隐患。 和lighttpd一样，nginx同样存在着开发文档很少的问题。最好的文档还是源码本身。</p>
+<h1 id="section-2"><strong>功能</strong></h1>
+<p>Nginx完全不支持动态库so，所以它的模块都必须静态编译，且不能动态加载。要加载哪些模块，模块按照怎样的顺序执行，都是在编译期由 configure指定的，如果要调整，也只能重新编译一遍，无法通过改配置来实现。在这方面，Lighttpd做得比nginx好。Lighttpd支 持动态so，并且可以在配置文件中调整各模块的先后顺序，在某些应用场景下，调整模块的先后顺序是很有用的。 条件配置语法的灵活性，lighttpd比nginx要好一些。Lighttpd可以很方便地配置成这样： $HTTP[“url”] =~ “…” { Proxy-core.backends = (“10.1.1.1:8080”, “10.1.1.2:8080”, …) Proxy-core.balancer = “round-robin” Proxy-core.protocol = “http” …… } $HTTP[“host”] =~ “…” { Access.deny-all = “enable” } $HTTP[“useragent”] =~ “…” { url.redirect = (“” =&gt; “http://example.com/”) url.redirect-code = 302 } $HTTP[“url”] =~ “…” { $HTTP[“querystring”] =~ “…” { $HTTP[“referer”] =~ “…” { … } } } 在nginx中，如果模块本身没提供条件支持的话，需要依赖rewrite模块做一次内部跳转，把变化反映到url上，再通过location使其生效。 在一些具体的功能点上，nginx和lighttpd各有特点： 有一些比较细节的地方，nginx考虑得比lighttpd周全，比如nginx可以配置HTTP头部的长度、HTTP请求的读写超时 等，lighttpd的官方版本是不支持的，百度对此进行了改良。再例如nginx可以配置listen队列长度、nginx进程起来后 挂在哪个CPU核上运行，lighttpd现在还不支持。 Nginx的proxy功能比lighttpd强大，主要是proxy cache，另外还有一些细节上的处理。比如nginx支持4xx/5xx错误自动重试下一个后端。但是Lighttpd的proxy现在还支持scgi 和ajp两种后端转发协议，nginx不支持。 Nginx有一些比较有特色的功能module，例如： 1）secure_link，可以用来防盗链，目前在CDN上有应用。这个功能很不错，可以考虑在lighttpd上开发相应的模块。 2）geoip，用户给配置一个ip地理信息数据文件，nginx可以以此为根据，判断客户端ip来自哪个国家和城市。</p>
+<h1 id="section-3"><strong>性能</strong></h1>
+<p>根据简单性能对比，Nginx的性能比lighttpd略好。原因可能有以下几方面： 1. Lighttpd启动了几个辅助线程，有加锁竞争行为，这样会使性能有所降低（线程个数是可配的，这里还有优化的余地）；nginx完全不涉及线程，不加锁。 2. Lighttpd有动态so，nginx全静态编译，动态库执行效率比静态慢大约5%~10%左右。 3. Nginx在细节优化上可能做得更好一些。例如nginx的epoll是ET（边缘触发）的，而lighttpd的epoll是LT（水平触发）的。 nginx的性能要好一些，不过对大多数应用来说，lighttpd的性能指标已够用了，一个系统主要的瓶颈往往是在后端。由于lighttpd具有动态模块的加载能力，适合非常需要灵活配置的场合。 总体而言，nginx和lighttpd都是非常好的web server选择。</p>
+</div>
+</article>
+<div class="pagination">
+<a class="prev" href="/blog/page/17/">&larr; Older</a>
+<a href="/blog/archives">Blog Archives</a>
+<a class="next" href="/blog/page/15/">Newer &rarr;</a>
+</div>
+</div>
+<aside class="sidebar">
+<section>
+<h1>Categories</h1>
+<ul id="categories">
+<li class="category"><a href="/blog/categories/acm/">ACM <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/algorithm/">Algorithm <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/assembly/">Assembly <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/cygwin/">Cygwin <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/gnu/">GNU <sup>8</sup></a></li>
+<li class="category"><a href="/blog/categories/math/">Math <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/octopress/">Octopress <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/programming/">Programming <sup>6</sup></a></li>
+<li class="category"><a href="/blog/categories/security/">Security <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sublime/">Sublime <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/synology/">Synology <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sysadmin/">SysAdmin <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/web/">Web <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/windows/">Windows <sup>7</sup></a></li>
+<li class="category"><a href="/blog/categories/proxmox/">proxmox <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/ri-chang/">日常 <sup>37</sup></a></li>
+</ul>
+</section>
+<section>
+<h1>Recent Posts</h1>
+<ul id="recent_posts">
+<li class="post">
+<a href="/blog/2024/12/16/fu-wu-qi-wa-kuang-bing-du-de-cha-sha/">服务器挖矿病毒的查杀</a>
+</li>
+<li class="post">
+<a href="/blog/2021/07/11/apple-m1-bian-yi-tensorflow/">Apple M1 编译tensorflow</a>
+</li>
+<li class="post">
+<a href="/blog/2021/02/27/chromiumbian-ma-qi-wen-ti/">Chromium编码器问题</a>
+</li>
+<li class="post">
+<a href="/blog/2020/12/13/proxmoxbi-ji/">Proxmox笔记</a>
+</li>
+<li class="post">
+<a href="/blog/2020/11/15/lun-yan-du-yu-shen-du/">论广度与深度</a>
+</li>
+</ul>
+</section>
+<section>
+<iframe frameborder="0" scrolling="no" referrerpolicy="unsafe-url" style="width:283px;height:200px" src="https://t.rexdf.org/?m=app&a=showwidget&name=rexdf&type=1&width=283px&height=500px"></iframe>
+</section>
+<section>
+<h1>GitHub Repos</h1>
+<ul id="gh_repos">
+<li class="loading">Status updating&#8230;</li>
+</ul>
+<a href="https://github.com/rexdf">@rexdf</a> on GitHub
+<script type="text/javascript">$(document).ready(function(){if(!window.jXHR){var e=document.createElement("script");e.type="text/javascript",e.src="/javascripts/libs/jXHR.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}github.showRepos({user:"rexdf",count:0,skip_forks:!0,target:"#gh_repos"})})</script>
+</section>
+</aside>
+</div>
+</div>
+<footer role="contentinfo"><p>
+<span class="credit">Copyright &copy; 2024 - Rexdf -</span> |
+<span class="credit">Powered by <a name="bottoms" target="_blank" href="http://octopress.org">Octopress</a></span> |
+<span class="credit">Theme by ：<a href="https://blog.rexdf.org/" target="_blank" rel="theme">Rexdf</a></span> |
+<span class="credit">Host by：<a href="https://github.com/" target="_blank" rel="host">Github.com</a></span> |
+<span class="credit">版权声明：<a href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" target="_blank" rel="license">CC BY-NC-SA 3.0</a><img src="https://analytics.rexdf.net/piwik.php?idsite=1&amp;rec=1" style="border:0" alt="" referrerpolicy="no-referrer-when-downgrade"></span>|
+<span class="credit"><a href="/sitemap.xml" rel="sitemap">sitemap</a></span>
+</p>
+<script type="text/javascript" src="https://tajs.qq.com/stats?sId=30296377" charset="UTF-8"></script>
+</footer>
+<script type="text/javascript">var disqus_shortname="rexdf",disqus_script="count.js";!function(){var e=document.createElement("script");e.type="text/javascript",e.async=!0,e.src="//"+disqus_shortname+".disqus.com/"+disqus_script,(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(e)}()</script>
+<script type="text/javascript">$(function(){$(".entry-content").each(function(t){var r=t;$(this).find("img.fancybox").each(function(){var t=$(this),a=t.attr("title"),n=t.attr("class");t.removeAttr("class"),t.wrap('<a href="'+this.src+'" class="'+n+'" rel="gallery'+r+'" />'),""!=a&&t.parent().attr("title",a)})}),$(".fancybox").fancybox()})</script>
+</body>
+</html>

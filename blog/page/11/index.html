@@ -1,0 +1,622 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<script type="text/javascript">var _speedMark=new Date</script>
+<meta charset="utf-8">
+<title>Rexdf</title>
+<meta name="author" content="Rexdf">
+<meta name="description" content="很简单的一个插件，现在支持汉化Sublime Text2，Sublime Text3。全部系统Win64、Win32，Linux64，Linux32，OSX等，可以随意来回切换简体中文、繁体中文、日语、英语，无需重启SublimeText。 ">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' data: https://hm.baidu.com https://tajs.qq.com https://ssl.google-analytics.com https://static.rexdf.org https://*.disquscdn.com https://rexdf.disqus.com https://api.github.com https://ssl.google-analytics.com https://disqus.com https://analytics.rexdf.net; connect-src 'self' https://static.rexdf.org https://analytics.rexdf.net https://hm.baidu.com; img-src data: https://*; font-src data: https://*; child-src 'none'; style-src 'self' 'unsafe-inline' https://*; frame-src 'self' https://t.rexdf.org http://t.rexdf.org https://rexdf.disqus.com https://disqus.com">
+<link rel="canonical" href="https://i.rexdf.org/blog/page/11">
+<link rel="dns-prefetch" href="https://static.rexdf.org/">
+<link href="/favicon.ico" rel="icon">
+<link id="main-css" href="/stylesheets/screen.css" media="screen,projection" rel="stylesheet" type="text/css" title="pc">
+<link href="/stylesheets/screen_mobile.css" rel="alternate stylesheet" type="text/css" title="mobile">
+<link href="/atom.xml" rel="alternate" title="Rexdf" type="application/atom+xml">
+<script src="/javascripts/libs/jquery.min.js"></script>
+<script src="/javascripts/octopress-rexdf.min.js" type="text/javascript"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+      
+      toggle_theme();
+  });
+</script>
+<script type="text/javascript" async src="https://static.rexdf.org/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript">var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-55590409-1"]),_gaq.push(["_trackPageview"]),function(){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(t,e)}()</script>
+<script>var _hmt=_hmt||[];!function(){var e=document.createElement("script");e.src="//hm.baidu.com/hm.js?32192d95b89fbefa0875c4c95adb1412";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}()</script>
+<script src="/javascripts/fancybox/jquery.fancybox.pack.js"></script>
+<link rel="stylesheet" type="text/css" href="/javascripts/fancybox/jquery.fancybox.css">
+<script type="text/javascript">var _paq=_paq||[];_paq.push(["trackPageView"]),_paq.push(["enableLinkTracking"]),function(){var e="https://analytics.rexdf.net/";_paq.push(["setTrackerUrl",e+"piwik.php"]),_paq.push(["setSiteId","1"]);var a=document,t=a.createElement("script"),p=a.getElementsByTagName("script")[0];t.type="text/javascript",t.async=!0,t.defer=!0,t.src=e+"piwik.js",p.parentNode.insertBefore(t,p)}()</script>
+</head>
+<body class="low-contrast-linen-wptouch-bg">
+<header role="banner"><hgroup>
+<h1 id="header-title"><a href="/">Rexdf</a></h1>
+<h2 id="subtitle">The devil is in the Details.</h2>
+</hgroup>
+</header>
+<nav role="navigation"><ul class="subscription" data-subscription="rss">
+<li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+</ul>
+<form action="https://google.com/search" method="get">
+<fieldset role="search">
+<input type="hidden" name="q" value="site:i.rexdf.org">
+<input class="search" type="text" name="q" results="0" placeholder="Search">
+</fieldset>
+</form>
+<ul class="main-navigation">
+<li><a href="/">Blog</a></li>
+<li><a href="/blog/archives/">Archives</a></li>
+<li><a href="/idea/">Idea</a></li>
+<li><a href="/share/">Share</a></li>
+<li><a href="/books/">Books</a></li>
+<li><a href="/donate/">Donate</a></li>
+<li><a target="_blank" href="https://blog.rexdf.org" style="font-family:Shadows Into Light">Main-Blog</a></li>
+</ul>
+</nav>
+<div id="main">
+<div id="content">
+<div class="blog-index">
+<article>
+<header>
+<h1 class="entry-title">[置顶]<a href="/blog/2015/05/15/fa-bu-yi-ge-sublimeyi-hua-cha-jian/">发布一个sublime汉化插件</a></h1>
+<p class="meta">
+<time class="data-article month-05 season-spring" datetime="2015-05-15T11:19:01+08:00" pubdate><span class="month">May</span> <span class="day">15th</span> <span class="year">2015</span></time>
+| <a href="/blog/2015/05/15/fa-bu-yi-ge-sublimeyi-hua-cha-jian/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2015/05/15/fa-bu-yi-ge-sublimeyi-hua-cha-jian/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>很简单的一个插件，现在支持汉化Sublime Text2，Sublime Text3。全部系统Win64、Win32，Linux64，Linux32，OSX等，可以随意来回切换简体中文、繁体中文、日语、英语，无需重启SublimeText。</p>
+</div>
+<footer>
+<a rel="full-article" href="/blog/2015/05/15/fa-bu-yi-ge-sublimeyi-hua-cha-jian/">Read on &rarr;</a>
+</footer>
+</article>
+<article>
+<header>
+<h1 class="entry-title"><a href="/blog/2013/10/09/zheng-ze-biao-da-shi/">正则表达式</a></h1>
+<p class="meta">
+<time class="data-article month-10 season-autumn" datetime="2013-10-09T21:32:00+08:00" pubdate><span class="month">Oct</span> <span class="day">9th</span> <span class="year">2013</span></time>
+| <a href="/blog/2013/10/09/zheng-ze-biao-da-shi/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2013/10/09/zheng-ze-biao-da-shi/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>平时做网站经常要用正则表达式，下面是一些讲解和例子，仅供大家参考和修改使用</p>
+<p>下面是列表：</p>
+</div>
+<footer>
+<a rel="full-article" href="/blog/2013/10/09/zheng-ze-biao-da-shi/">Read on &rarr;</a>
+</footer>
+</article>
+<article>
+<header>
+<h1 class="entry-title"><a href="/blog/2013/10/09/pan-duan-IE-fei-IE-de-ji-zhong-fang-fa/">判断IE非IE的几种方法</a></h1>
+<p class="meta">
+<time class="data-article month-10 season-autumn" datetime="2013-10-09T21:30:00+08:00" pubdate><span class="month">Oct</span> <span class="day">9th</span> <span class="year">2013</span></time>
+| <a href="/blog/2013/10/09/pan-duan-IE-fei-IE-de-ji-zhong-fang-fa/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2013/10/09/pan-duan-IE-fei-IE-de-ji-zhong-fang-fa/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>由于浏览器存在各种各样的差异，特别是IE与其他内核浏览器则往往需要特别区分开来对待，但是这种情况直到IE10才缓解，IE10就不支持条件注释了，而对一些CSS3和HTML5新的特性的支持也变得较为友好了。</p>
+<h3 id="jsieie">1.js判断ie非ie的几种方法</h3>
+<p>以前最短的IE判定借助于IE不支持垂直制表符的特性搞出来的。 <code>var ie = !+"\v1";</code> 仅仅需要7bytes！参见这篇文章，<a href="http://webreflection.blogspot.com/2009/01/32-bytes-to-know-if-your-browser-is-ie.html">《32 bytes, ehr … 9, ehr … 7!!! to know if your browser is IE》</a>，讲述外国人是如何把IE的判定从32 bytes一步步缩简成7 bytes!的故事 但这纪录今年1月8日被一个俄国人打破了，现在只要6 bytes!它利用了IE与标准浏览器在处理数组的toString方法的差异做成的。对于标准游览器，如果数组里面最后一个字符为逗号，JS引擎会自动剔除它。详见<a href="https://developer.mozilla.org/en/Core_JavaScript_1.5_Guide/Literals#Array_Literals">这里</a> 司徒正美–全世界最短的IE判定 一文，也提到了只有6byte的判断ie与非ie的方法。其 代码如下： [runcode][/runcode] 其实有很多判断的方法，大都是根据浏览器的特性来的。 比如库prototype的方法是：!! (window.attachEvent &amp;&amp; navigator.userAgent.indexOf(‘Opera’) === -1) 。就是根据ie支持window.attachEvent添加侦听事件，非ie用window.addEventListener添加侦听事件来判断的。 navigator.userAgent.indexOf(‘Opera’) === -1是因为opara浏览器能伪装成ie.如果!!(window.attachEvent )为真，就是ie；反之，如果!window.addEventListener为真，也可以判断为ie. Ext使用的是!”1”[0],他利用IE无法使用数组下标访问字符串的特性来判断。在ie8下好像有问题。 在!+[1,]还未被发现前，判断ie最短的表达式是 !+”/v1”.它利用的是ie不支持垂直制表符的特性。 以前还有一个常用方法是document.all，由于opera浏览器能伪装成ie。可以这样写:!!(document.all &amp;&amp; navigator.userAgent.indexOf(‘Opera’) === -1). 还有很多，先记这几条，便于工作时查阅。</p>
+<pre><code>&lt;h4&gt;1.+[1,]&lt;/h4&gt;
+&lt;h4&gt;2.!+"/v1"&lt;/h4&gt;
+&lt;h4&gt;3.!!(window.attachEvent &amp;amp;&amp;amp; navigator.userAgent.indexOf('Opera') === -1)&lt;/h4&gt;
+&lt;h4&gt;4.!!(!window.addEventListener&amp;amp;&amp;amp; navigator.userAgent.indexOf('Opera') === -1)&lt;/h4&gt;
+&lt;h4&gt;5.!!(document.all &amp;amp;&amp;amp; navigator.userAgent.indexOf('Opera') === -1)&lt;/h4&gt;
+</code></pre>
+<h3 id="section">2.条件注释判断浏览器</h3>
+<!--[if !IE]><!--[if IE]><!--[if lt IE 6]><!--[if gte IE 6]> <!--[if !IE]><!-->
+<p>除IE外都可识别<!--<![endif]--><!--[if IE]> 所有的IE可识别 <![endif]--><!--[if IE 6]> 仅IE6可识别 <![endif]--><!--[if lt IE 6]> IE6以及IE6以下版本可识别 <![endif]--><!--[if gte IE 6]> IE6以及IE6以上版本可识别 <![endif]--><!--[if IE 7]> 仅IE7可识别 <![endif]--><!--[if lt IE 7]> IE7以及IE7以下版本可识别 <![endif]--><!--[if gte IE 7]> IE7以及IE7以上版本可识别 <![endif]--><!--[if IE 8]> 仅IE8可识别 <![endif]--><!--[if IE 9]> 仅IE9可识别 <![endif]--></p>
+<p>项目 范例 说明</p>
+<p>! [if !IE] The NOT operator. This is placed immediately in front of the <em>feature</em>, <em>operator</em>, or <em>subexpression</em> to reverse the Boolean meaning of the expression. NOT运算符。这是摆立即在前面的_功能<em>，_操作员</em>，或_子表达式_扭转布尔表达式的意义。</p>
+<p>lt [if lt IE 5.5] The less-than operator. Returns true if the first argument is less than the second argument. 小于运算符。如果第一个参数小于第二个参数，则返回true。</p>
+<p>lte [if lte IE 6] The less-than or equal operator. Returns true if the first argument is less than or equal to the second argument. 小于或等于运算。如果第一个参数是小于或等于第二个参数，则返回true。</p>
+<p>gt [if gt IE 5] The greater-than operator. Returns true if the first argument is greater than the second argument. 大于运算符。如果第一个参数大于第二个参数，则返回true。</p>
+<p>gte [if gte IE 7] The greater-than or equal operator. Returns true if the first argument is greater than or equal to the second argument. 大于或等于运算。如果第一个参数是大于或等于第二个参数，则返回true。</p>
+<p>( ) [if !(IE 7)] Subexpression operators. Used in conjunction with boolean operators to create more complex expressions. 子表达式运营商。在与布尔运算符用于创建更复杂的表达式。</p>
+<p>&amp; [if (gt IE 5)&amp;(lt IE 7)] The AND operator. Returns true if all subexpressions evaluate to true AND运算符。如果所有的子表达式计算结果为true，返回true</p>
+<p>| [if (IE 6)|(IE 7)] The OR operator. Returns true if any of the subexpressions evaluates to true. OR运算符。返回true，如果子表达式计算结果为true。
+<!--[if lt IE 9]> 加载CSS1 <!--[else]> 加载CSS2 <![endif]--> 这样有效是有效,但是用HTML VALIDATOR里,报错,因为这个不符合XHTML 1.1的规范, 如果把ELSE语句去掉,则正确. 方法1： 加载CSS2<!--[if lt IE 9]> 加载CSS1(可以把要重写的写在这里). <![endif]--></p>
+<h3 id="php">3.PHP服务端判断</h3>
+<pre><code>&lt;?php if(strstr($_SERVER["HTTP_USER_AGENT"],"MSIE 7.0")){ 
+echo '这是IE7';
+}else{
+echo '不是IE7';
+} ?&gt;
+</code></pre>
+</div>
+</article>
+<article>
+<header>
+<h1 class="entry-title"><a href="/blog/2013/10/07/git-duo-zhan-dian-duo-yong-hu-SSH-pei-zhi/">git多站点多用户SSH配置</a></h1>
+<p class="meta">
+<time class="data-article month-10 season-autumn" datetime="2013-10-07T14:57:00+08:00" pubdate><span class="month">Oct</span> <span class="day">7th</span> <span class="year">2013</span></time>
+| <a href="/blog/2013/10/07/git-duo-zhan-dian-duo-yong-hu-SSH-pei-zhi/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2013/10/07/git-duo-zhan-dian-duo-yong-hu-SSH-pei-zhi/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>git默认情况下会在~/.ssh/id_rsa获取认证信息，但是如果有多个账户在github或者多个不同的站点同步的话，就需要配置了，虽然有不少站点支持上传id_rsa.pub公钥但是个人还是推荐不同的站点使用不同密钥对，这样有利于养成良好的安全习惯。首先是生成新的密钥对，下面详细说一下Windows平台上Cygwin上面的情况，这个平台最近越发喜欢用，因为最近更新比较频繁，与新的Win8系统兼容基本没有问题。而我需要用的Ruby和Perl现在都不单独下载了(或者即使下载了，但是不会加到Path里面需要用的使用在命令行上面手动SET PATH=ruby;%PATH%这样)，因为Cygwin集成的环境很不错很多Ruby程序都是直接运行的。好了下面说多站点账户git的ssh配置方法：</p>
+<h3 id="section">1.生成密钥</h3>
+<p>生成密钥需要使用ssh-keygen命令，此命令会提示保存目录</p>
+<pre><code>ssh-keygen -t rsa -C 'rexdf@vip.qq.com'
+</code></pre>
+<p>[caption id=”attachment_1848” align=”alignnone” width=”997”]<img src="/wp-content/uploads/2013/10/ssh-1.png" alt="ssh-keygen"> ssh-keygen[/caption] 成功后可以执行下面这句(实际上可以不用)，使ssh识别</p>
+<pre><code>ssh-add ～/.ssh/id_rsa_zend
+</code></pre>
+<h3 id="section-1">2.上传密钥</h3>
+<p>到你的网站设置你的id_rsa_zend.pub，在github上面则是复制其中的文本内容，有的网站则是上传此文件.</p>
+<h3 id="config">3.配置config</h3>
+<p>在~/.ssh/下面编辑config文件如果没有</p>
+<pre><code># Default github user(first@mail.com)
+Host github.com
+HostName github.com
+User git
+IdentityFile ~/.ssh/id_rsa
+
+# second user(second@mail.com)
+Host mysite
+HostName git.mysite.com
+User git_mysite
+IdentityFile ~/.ssh/id_rsa_second
+</code></pre>
+<p>[caption id=”attachment_1849” align=”alignnone” width=”308”]<img src="/wp-content/uploads/2013/10/ssh-2.png" alt="config文件"> config文件[/caption]</p>
+<h3 id="url">4.修改URL</h3>
+<p>git clone ssh://[用户名@]URL 这里需要把URL的主机部分替换成mysite这样就可以自动使用新的密钥了。</p>
+<pre><code>git clone ssh://git_mysite@mysite/repo/app.git
+</code></pre>
+<h3 id="section-2">5.问题解决</h3>
+<p>这里会涉及到Cygwin在Win上面第一个bug，不过Linux下面按照上面是没有问题的。正常情况应该会出现下面的画面</p>
+<pre><code>Bad owner or permissions on /home/rexdf/.ssh/config
+fatal: The remote end hung up unexpectedly
+</code></pre>
+<p>[caption id=”attachment_1850” align=”alignnone” width=”680”]<img src="/wp-content/uploads/2013/10/ssh-3.png" alt="config权限"> config权限[/caption] 以及</p>
+<pre><code>@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@         WARNING: UNPROTECTED PRIVATE KEY FILE!          @
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+Permissions 0660 for '/home/rexdf/.ssh/id_rsa' are too open.
+It is required that your private key files are NOT accessible by others.
+This private key will be ignored.
+bad permissions: ignore key: /home/rexdf/.ssh/id_rsa
+Permission denied (publickey,gssapi-keyex,gssapi-with-mic).
+fatal: The remote end hung up unexpectedly
+</code></pre>
+<p>[caption id=”attachment_1851” align=”alignnone” width=”947”]<img src="/wp-content/uploads/2013/10/ssh-4.png" alt="Permissions 0660 for '/home/rexdf/.ssh/id_rsa' are too open."> Permissions 0660 for ‘/home/rexdf/.ssh/id_rsa’ are too open.[/caption] 而且即使你进入.ssh 执行</p>
+<pre><code>chmod 600 id_rsa id_rsa_zend config
+</code></pre>
+<p>却问题依然，执行ls -l结果如下</p>
+<pre><code>$ ls -l
+total 12
+-rw-rw---- 1 rexdf None  538 Oct  7 11:34 config
+-rw-rw---- 1 rexdf None 1679 Oct  6 13:43 id_rsa
+-rw-rw-r-- 1 rexdf None  394 Oct  6 13:43 id_rsa.pub
+-rw-rw---- 1 rexdf None 1675 Oct  7 11:24 id_rsa_zend
+-rw-rw-r-- 1 rexdf None  398 Oct  7 11:24 id_rsa_zend.pub
+-rw-rw-r-- 1 rexdf None  420 Oct  6 13:44 known_hosts
+</code></pre>
+<p>可以看到id_rsa id_rsa_zend config三个文件权限都是660而不是600(需要提醒下，如果文件系统是FAT32，则不需要往下看了，NTFS才支持权限)。是Cygwin的bug吗？是的。是chmod命令根本没用吗？不完全是。实际上你可以执行chmod 1 config看看，可以正确执行的。问题在于上面显示的那个None，这个是Linux的用户组，对应的是组权限而在Cygwin对于None的组是没法赋予权限的，于是组权限就等于拥有者的权限了。解决办法是随便赋予一个组然后再chmod就OK了。</p>
+<pre><code>chgrp Users id_rsa_zend id_rsa config
+chmod 600 id_rsa_zend id_rsa config
+</code></pre>
+<p>[caption id=”attachment<em>1852” align=”alignnone” width=”775”]<img src="/wp-content/uploads/2013/10/ssh-6.png" alt="权限修改"> 权限修改[/caption] [caption id=”attachment</em>1853” align=”alignnone” width=”797”]<img src="http://blog.rexdf.org/wp-content/uploads/2013/10/ssh-8.png" alt="git成功"> git成功[/caption]</p>
+</div>
+</article>
+<article>
+<header>
+<h1 class="entry-title"><a href="/blog/2013/10/07/jia-kuai-DNS-shua-xin-de-ban-fa/">加快DNS刷新的办法</a></h1>
+<p class="meta">
+<time class="data-article month-10 season-autumn" datetime="2013-10-07T13:30:00+08:00" pubdate><span class="month">Oct</span> <span class="day">7th</span> <span class="year">2013</span></time>
+| <a href="/blog/2013/10/07/jia-kuai-DNS-shua-xin-de-ban-fa/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2013/10/07/jia-kuai-DNS-shua-xin-de-ban-fa/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>最近服务器变得多了，CDN也很多，然后希望尝试综合利用这些资源。这里说下DNSPod的DNS加快刷新的办法，在Windows系统下面使用</p>
+<pre><code>ipconfig /flushdns
+</code></pre>
+<p>就额可以清空DNS缓存了，然后如果还没有好的话，强制用nslookup查询一下就会刷新了，比如执行</p>
+<pre><code>nslookup -qt=cname rexdf.org
+</code></pre>
+</div>
+</article>
+<article>
+<header>
+<h1 class="entry-title"><a href="/blog/2013/10/07/SSH-lian-jie-de-yi-xie-wen-ti/">SSH链接的一些问题</a></h1>
+<p class="meta">
+<time class="data-article month-10 season-autumn" datetime="2013-10-07T01:55:00+08:00" pubdate><span class="month">Oct</span> <span class="day">7th</span> <span class="year">2013</span></time>
+| <a href="/blog/2013/10/07/SSH-lian-jie-de-yi-xie-wen-ti/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2013/10/07/SSH-lian-jie-de-yi-xie-wen-ti/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>先执行</p>
+<pre><code>export TMOUT=100000
+ssh remote.host -D8099 -lrexdf
+</code></pre>
+<p>然后就可以开启全局的XX了，执行下面一句：</p>
+<pre><code>sudo service privoxy start
+</code></pre>
+<p>现在就可以不用插件直接使用了。 当然需要先配置一下，在/etc/ssh/ssh_config中增加</p>
+<pre><code>ServerAliveInterval 120 
+</code></pre>
+<p>，在/etc/privoxy/config中增加</p>
+<pre><code>forward-socks5 / 127.0.0.1:8099 .
+</code></pre>
+<p>为了更安全的使用可以启用洋(xx)葱，可以先sockets5下载下来然后直接执行就可以了，理论所Ubuntu自带的安全性应该好一些，据说此次棱(xx)镜项目NSA是进入了洋(xx)葱的网络的，而利用的就是绑定的火狐的漏洞在客户机上面移植木马。另外我发现直接使用洋(x)葱会有一定的问题。 然后就是一个SSH自动掉线的问题，在Win上面使用Putty和Bivse都是没有问题的，Ubuntu里面apt-get获取的Putty的移植版本似乎没有办法登陆。用上面的命令则是OK的。还有一个简便的方法保证不掉线，就是用top命令就可以了。因为配置需要重启或者重新登陆才能生效，我用的top命令解决的。 另外最近发现了海量的Java云。以前以为不会有Java的虚拟主机，现在发现好多好多Java,ruby,node.js,python,php甚至.net。 一个列表 Uhuru Jelastic Zendphp Appfog Dotcloud Cloud Foundary Heroku OpenShift ….</p>
+</div>
+</article>
+<article>
+<header>
+<h1 class="entry-title"><a href="/blog/2013/10/04/WordPress-an-quan-pian/">WordPress安全篇</a></h1>
+<p class="meta">
+<time class="data-article month-10 season-autumn" datetime="2013-10-04T04:14:00+08:00" pubdate><span class="month">Oct</span> <span class="day">4th</span> <span class="year">2013</span></time>
+| <a href="/blog/2013/10/04/WordPress-an-quan-pian/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2013/10/04/WordPress-an-quan-pian/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>先说说题外话，对于大名鼎鼎的Movable Type，今天第二次尝试安装(第一次是大二吧)，还是不知道问题在哪里，尝试了5.2.6和4.1.2两个版本，mt-check.cgi都说恭喜，可以继续，但是到了安装最后一步，就一直在初始化数据库，打开phpAdmin面板看到没有任何表新建，看了估计是空间对DBI::SQL做过了限制了。另外涉及到了一些技术实现的细节，现在不想公布在这里。主要的有插件实现和.htacess文件的实现。而对于后者今天再次鼓捣，则加入了安全口令和Hotlink保护。关键是Hotlink的正则，开始复制网上的一个代码，对非条件用的OR结果就悲剧了，我的网站显然是其中一个不是其中另一。最简单的任意匹配是RewriteCond %{HTTP_REFERER} !^http://(.+&#46;)?rexdf.org [NC] ，另一个版本是RewriteCond %{HTTP_REFERER} !^http://([^/]+&#46;)?rexdf.org [NC]，我测试过都是可以的匹配空白的就是RewriteCond %{HTTP_REFERER} !^$ ，另外关键点就是如果想要显示出另外一张图片，这里就有技巧了，不能使用本空间的，要么使用一条RewriteCond 来排除对这个文件本身的重写，要么使用另一个网址，否则会造成循环请求。下面给出两个可以用的 首先是使用外服务器的</p>
+<pre><code>RewriteCond %{HTTP_REFERER} !^$
+RewriteCond %{HTTP_REFERER} !^http://(.+.)?rexdf.org [NC]
+RewriteCond %{HTTP_REFERER} !^http://(.+.)?rexdf.net [NC]
+RewriteRule .*.(jpe?g|gif|bmp|png|mp3|mpg|mp4|mov|wav|wmv|css|js)$ http://rexdf.u.qiniudn.com/hotlink.png [NC,R,L]
+</code></pre>
+<p>以及另一条使用本服务器的图片</p>
+<pre><code>RewriteCond %{HTTP_REFERER} !^$
+RewriteCond %{REQUEST_URI} !^/hotlink.jpg [NC]
+RewriteCond %{HTTP_REFERER} !^http://(.+.)?rexdf.org [NC]
+RewriteCond %{HTTP_REFERER} !^http://(.+.)?rexdf.net [NC]
+RewriteRule .*\.(jpe?g|gif|bmp|png)$ http://rexdf.org/hotlink.jpg [L]
+</code></pre>
+<p> 未完待续</p>
+</div>
+</article>
+<article>
+<header>
+<h1 class="entry-title"><a href="/blog/2013/10/01/WordPress-shu-ju-ku-gai-ming/">WordPress数据库改名</a></h1>
+<p class="meta">
+<time class="data-article month-10 season-autumn" datetime="2013-10-01T21:49:00+08:00" pubdate><span class="month">Oct</span> <span class="day">1st</span> <span class="year">2013</span></time>
+| <a href="/blog/2013/10/01/WordPress-shu-ju-ku-gai-ming/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2013/10/01/WordPress-shu-ju-ku-gai-ming/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>今天突然想把默认的那个wp_数据库表前缀改一下，按照网上的方案一般就是直接在原始数据库上面改。但是考虑到可能改坏数据库，因为我不希望这么做。当然改数据库表名可以使用phpMyAdmin或者使用”alter table 表名 rename to 新表名” 都是可以的，但是改完之后还需要修改几个值，我特地装了一个新的Wordpress来重新做了一个表来验证，下面语句应该是对的(假设想改成blog_)：</p>
+<pre><code>UPDATE blog_usermeta SET meta_key ='blog_capabilities' WHERE meta_key ='wp_capabilities';
+UPDATE blog_usermeta SET meta_key ='blog_user_level' WHERE meta_key ='wp_user_level';
+UPDATE blog_options SET option_name='blog_user_roles' WHERE option_name='wp_user_roles'; 
+</code></pre>
+<p>然后我记起以前在做一个SQL Server的时候用的方法，导出成为SQL脚本然后修改脚本，然后修改脚本，但是此法我暂时还没有调试成功，问题较多，主要是编码问题；因为我不需要更换数据库位置，所以突然明白只需要复制表就好了，数据库空间我基本没怎么用，于是最终采用了第二种方法。</p>
+<h3 id="sql">1.SQL脚本修改法</h3>
+<p>通过phpMyAdmin导出wp_的表，二进制一定要选择十六进制格式，由于Wordpress Statistics插件的wp_statistics_visitor较大有4.5M，而且每分每秒都在增加行，开始一起导出所有wp_开头的数据库，使用wp_的通配符替换文本之后，无法执行，有12M+的大小。 然后把wp_statistics_visitor单独导出，wp_posts也单独导出了，然后余下的一起导出，分成三个文件。这时我也意思到存在一个问题，就是我曾经研究过Wordpress的数据库结构然后发过文章，所以wp_posts替换一定要使用严格的模式，比如替换 INSERT INTO <code>wp_posts</code> VALUES，而不是简单地替换wp_甚至wp_posts，当然这个的前提是我文章中没有这个语句，不然就得使用正则表达式替换行首了。 花了大约半个钟头把全部的前缀替换好了，包括那个需要改值的都一起替换了，实际上还是不止上面的三条，我发现的有六处(欢迎大家补充)：</p>
+<pre><code>UPDATE blog_usermeta SET meta_key ='blog_user-settings' WHERE meta_key ='wp_user-settings';
+UPDATE blog_usermeta SET meta_key ='blog_user-settings-time' WHERE meta_key ='wp_user-settings-time';
+UPDATE blog_usermeta SET meta_key ='blog_dashboard_quick_press_last_post_id' WHERE meta_key ='wp_dashboard_quick_press_last_post_id';
+UPDATE blog_usermeta SET meta_key ='blog_user_level' WHERE meta_key ='wp_user_level';
+UPDATE blog_usermeta SET meta_key ='blog_capabilities' WHERE meta_key ='wp_capabilities';
+UPDATE blog_options SET option_name='blog_user_roles' WHERE option_name='wp_user_roles';
+</code></pre>
+<h3 id="section">2.数据库复制法</h3>
+<p>这个方法优化了前面提到的各个问题直接写成了一个脚本，执行之后把wp_config.php中的$table_prefix改成blog即可了。</p>
+<pre><code>CREATE TABLE `blog_posts` (
+  `ID` bigint(20) unsigned NOT NULL auto_increment,
+  `post_author` bigint(20) unsigned NOT NULL default '0',
+  `post_date` datetime NOT NULL default '0000-00-00 00:00:00',
+  `post_date_gmt` datetime NOT NULL default '0000-00-00 00:00:00',
+  `post_content` longtext NOT NULL,
+  `post_title` text NOT NULL,
+  `post_excerpt` text NOT NULL,
+  `post_status` varchar(20) NOT NULL default 'publish',
+  `comment_status` varchar(20) NOT NULL default 'open',
+  `ping_status` varchar(20) NOT NULL default 'open',
+  `post_password` varchar(20) NOT NULL default '',
+  `post_name` varchar(200) NOT NULL default '',
+  `to_ping` text NOT NULL,
+  `pinged` text NOT NULL,
+  `post_modified` datetime NOT NULL default '0000-00-00 00:00:00',
+  `post_modified_gmt` datetime NOT NULL default '0000-00-00 00:00:00',
+  `post_content_filtered` longtext NOT NULL,
+  `post_parent` bigint(20) unsigned NOT NULL default '0',
+  `guid` varchar(255) NOT NULL default '',
+  `menu_order` int(11) NOT NULL default '0',
+  `post_type` varchar(20) NOT NULL default 'post',
+  `post_mime_type` varchar(100) NOT NULL default '',
+  `comment_count` bigint(20) NOT NULL default '0',
+  PRIMARY KEY  (`ID`),
+  KEY `post_name` (`post_name`),
+  KEY `type_status_date` (`post_type`,`post_status`,`post_date`,`ID`),
+  KEY `post_parent` (`post_parent`),
+  KEY `post_author` (`post_author`)
+) ENGINE=MyISAM AUTO_INCREMENT=1828 DEFAULT CHARSET=utf8 AUTO_INCREMENT=1828 ;
+
+insert into blog_posts select * from wp_posts;
+
+CREATE TABLE `blog_commentmeta` (
+  `meta_id` bigint(20) unsigned NOT NULL auto_increment,
+  `comment_id` bigint(20) unsigned NOT NULL default '0',
+  `meta_key` varchar(255) default NULL,
+  `meta_value` longtext,
+  PRIMARY KEY  (`meta_id`),
+  KEY `comment_id` (`comment_id`),
+  KEY `meta_key` (`meta_key`)
+) ENGINE=MyISAM AUTO_INCREMENT=4631 DEFAULT CHARSET=utf8 AUTO_INCREMENT=4631 ;
+
+insert into blog_commentmeta select * from wp_commentmeta;
+
+CREATE TABLE `blog_comments` (
+  `comment_ID` bigint(20) unsigned NOT NULL auto_increment,
+  `comment_post_ID` bigint(20) unsigned NOT NULL default '0',
+  `comment_author` tinytext NOT NULL,
+  `comment_author_email` varchar(100) NOT NULL default '',
+  `comment_author_url` varchar(200) NOT NULL default '',
+  `comment_author_IP` varchar(100) NOT NULL default '',
+  `comment_date` datetime NOT NULL default '0000-00-00 00:00:00',
+  `comment_date_gmt` datetime NOT NULL default '0000-00-00 00:00:00',
+  `comment_content` text NOT NULL,
+  `comment_karma` int(11) NOT NULL default '0',
+  `comment_approved` varchar(20) NOT NULL default '1',
+  `comment_agent` varchar(255) NOT NULL default '',
+  `comment_type` varchar(20) NOT NULL default '',
+  `comment_parent` bigint(20) unsigned NOT NULL default '0',
+  `user_id` bigint(20) unsigned NOT NULL default '0',
+  PRIMARY KEY  (`comment_ID`),
+  KEY `comment_post_ID` (`comment_post_ID`),
+  KEY `comment_approved_date_gmt` (`comment_approved`,`comment_date_gmt`),
+  KEY `comment_date_gmt` (`comment_date_gmt`),
+  KEY `comment_parent` (`comment_parent`)
+) ENGINE=MyISAM AUTO_INCREMENT=1566 DEFAULT CHARSET=utf8 AUTO_INCREMENT=1566 ;
+
+insert into blog_comments select * from wp_comments;
+
+CREATE TABLE `blog_links` (
+  `link_id` bigint(20) unsigned NOT NULL auto_increment,
+  `link_url` varchar(255) NOT NULL default '',
+  `link_name` varchar(255) NOT NULL default '',
+  `link_image` varchar(255) NOT NULL default '',
+  `link_target` varchar(25) NOT NULL default '',
+  `link_description` varchar(255) NOT NULL default '',
+  `link_visible` varchar(20) NOT NULL default 'Y',
+  `link_owner` bigint(20) unsigned NOT NULL default '1',
+  `link_rating` int(11) NOT NULL default '0',
+  `link_updated` datetime NOT NULL default '0000-00-00 00:00:00',
+  `link_rel` varchar(255) NOT NULL default '',
+  `link_notes` mediumtext NOT NULL,
+  `link_rss` varchar(255) NOT NULL default '',
+  PRIMARY KEY  (`link_id`),
+  KEY `link_visible` (`link_visible`)
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
+
+insert into blog_links select * from wp_links;
+
+CREATE TABLE `blog_options` (
+  `option_id` bigint(20) unsigned NOT NULL auto_increment,
+  `option_name` varchar(64) NOT NULL default '',
+  `option_value` longtext NOT NULL,
+  `autoload` varchar(20) NOT NULL default 'yes',
+  PRIMARY KEY  (`option_id`),
+  UNIQUE KEY `option_name` (`option_name`)
+) ENGINE=MyISAM AUTO_INCREMENT=90783 DEFAULT CHARSET=utf8 AUTO_INCREMENT=90783 ;
+
+insert into blog_options select * from wp_options;
+
+CREATE TABLE `blog_postmeta` (
+</code></pre>
+</div>
+</article>
+<article>
+<header>
+<h1 class="entry-title"><a href="/blog/2013/09/29/ce-shi-Android-ying-yong/">测试Android应用</a></h1>
+<p class="meta">
+<time class="data-article month-09 season-autumn" datetime="2013-09-29T10:55:00+08:00" pubdate><span class="month">Sep</span> <span class="day">29th</span> <span class="year">2013</span></time>
+| <a href="/blog/2013/09/29/ce-shi-Android-ying-yong/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2013/09/29/ce-shi-Android-ying-yong/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>来自手机 <img src="http://boke.rexdf.org/wp-content/uploads/2013/09/wpid-1309290000.jpg" alt="image"> <img src="http://boke.rexdf.org/wp-content/uploads/2013/09/wpid-1309290001.jpg" alt="image"> <img src="http://boke.rexdf.org/wp-content/uploads/2013/09/wpid-1309290002.jpg" alt="image">来自手机 <img src="http://boke.rexdf.org/wp-content/uploads/2013/09/wpid-1309290000.jpg" alt="image"> <img src="/wp-content/uploads/2013/09/wpid-1309290001.jpg" alt="image"> <img src="http://boke.rexdf.org/wp-content/uploads/2013/09/wpid-1309290002.jpg" alt="image">来自手机 <img src="http://boke.rexdf.org/wp-content/uploads/2013/09/wpid-1309290000.jpg" alt="image"> <img src="http://boke.rexdf.org/wp-content/uploads/2013/09/wpid-1309290001.jpg" alt="image"> <img src="http://boke.rexdf.org/wp-content/uploads/2013/09/wpid-1309290002.jpg" alt="image"></p>
+</div>
+</article>
+<article>
+<header>
+<h1 class="entry-title"><a href="/blog/2013/09/24/wang-zhan-geng-xin-ri-zhi/">网站更新日志</a></h1>
+<p class="meta">
+<time class="data-article month-09 season-autumn" datetime="2013-09-24T18:38:00+08:00" pubdate><span class="month">Sep</span> <span class="day">24th</span> <span class="year">2013</span></time>
+| <a href="/blog/2013/09/24/wang-zhan-geng-xin-ri-zhi/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2013/09/24/wang-zhan-geng-xin-ri-zhi/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>又更新了一次主题，这次没有较大的动作。主要是色彩搭配进行了更新，其次才是在功能上进行了修正以及更新。 最近写日志越来越喜欢用文本而不是可视化的方式编辑了，随便说一句那个啥qTranslate和相当多的东西是冲突的，时间显示我就是反复调整了多次才实验好的，另外如果wordpress的版本和qTranlate不搭配的情况下会出现各种问题，比如日志编辑器在IE下面就无法使用。</p>
+<h3 id="section">1.更新了各处的搭配色彩</h3>
+<p>对主显示颜色采用了777这个既不模糊也不黑的刺眼的色彩，让人眼难以长时间进行聚焦，实际上我故意采用这个颜色的。 这次无意发现了rgba的用法，鉴于大环境下谷歌都宣布不支持IE8了，我想只要是成为了W3C的标准的就尽管用吧，而且我不是那么的追求各个浏览器完全一致。调试的时候自然也是实验过了IE7的(当然主要是查看效果如何差，然后尽量添加冗余赋值弥补)。</p>
+<h3 id="tabindex">2.评论框的tabindex修正</h3>
+<p>这样按tab的时候就会正常跳到CAPTCHI的输入框了，这是改wp-include/comment-template.php实现的，记下了，以便下次升级时查阅修改。</p>
+<h3 id="captchicomment-form">3.CAPTCHI的comment form修改</h3>
+<h4 id="section-1">3.1对样式进行了定制（在设置中）</h4>
+<p>进行如下列css的修改定制，</p>
+<pre><code>input#captcha_code{ width: 150px;height: 30px;margin-left: 20px;}
+.captchaSizeDivLarge{  width:250px; padding-top:10px; }//去掉了height，很关键
+</code></pre>
+<h4 id="si-captchaphp">3.2然后对源码si-captcha.php进行如下修改</h4>
+<p>搜索comment form WP3，对si_captcha_comment_form_wp3进行如下修改：</p>
+<pre><code>//主要就是把标题和*号提前，图片和输入框放在同一行上面，并对全局进行了少量的css定制
+// this function adds the captcha to the comment form WP3
+function si_captcha_comment_form_wp3() {
+    global $si_captcha_url, $si_captcha_opt;
+
+    // skip the captcha if user is logged in and the settings allow
+    if (is_user_logged_in() &amp;&amp; $si_captcha_opt['si_captcha_perm'] == 'true') {
+       // skip the CAPTCHA display if the minimum capability is met
+       if ( current_user_can( $si_captcha_opt['si_captcha_perm_level'] ) ) {
+               // skip capthca
+               return true;
+       }
+    }
+
+// the captch html
+// Test for some required things, print error message right here if not OK.
+if ($this-&gt;si_captcha_check_requires()) {
+
+  $si_aria_required = ($si_captcha_opt['si_captcha_aria_required'] == 'true') ? ' aria-required="true" ' : '';
+
+// the captcha html - comment form 3.0+
+if (is_user_logged_in()) {
+      echo '&lt;br /&gt;';
+}
+
+echo '&lt;p&gt;';
+
+$label_string = '&lt;label id="captcha_code_label" for="captcha_code" &gt;';
+$label_string .= ($si_captcha_opt['si_captcha_label_captcha'] != '') ? $si_captcha_opt['si_captcha_label_captcha'] : __('CAPTCHA Code', 'si-captcha');
+$label_string .= '&lt;/label&gt;';
+$required_string = '&lt;span class="required"&gt;'.$si_captcha_opt['si_captcha_required_indicator']."&lt;/span&gt;\n";
+$input_string = '&lt;input id="captcha_code" name="captcha_code" type="text" size="6" tabindex=4 ' . $si_aria_required . ' /&gt;
+';
+
+ if ($si_captcha_opt['si_captcha_comment_label_position'] == 'label-required-input' || $si_captcha_opt['si_captcha_comment_label_position'] == 'left'  ) { // buddypress (label-required-input)(label left)
+      echo $label_string . $required_string . $input_string; // BP
+ } else if ($si_captcha_opt['si_captcha_comment_label_position'] == 'label-required-linebreak-input' ||  $si_captcha_opt['si_captcha_comment_label_position'] == 'top' ) {
+      echo $label_string . $required_string .'&lt;br /&gt;'. $input_string; // regular WP - twenty ten
+ } else if ($si_captcha_opt['si_captcha_comment_label_position'] == 'label-input-required' ||  $si_captcha_opt['si_captcha_comment_label_position'] == 'right' ) {
+      echo $label_string . $input_string . $required_string; // suffusion
+ } else if ($si_captcha_opt['si_captcha_comment_label_position'] == 'input-label-required' ) {
+      echo $label_string . $required_string . '&lt;/p&gt;'; // regular WP
+      echo '&lt;div ';
+      echo ($si_captcha_opt['si_captcha_captcha_small'] == 'true') ? 'class="captchaSizeDivSmall"' : 'class="captchaSizeDivLarge"';
+      echo '&gt;';
+      $this-&gt;si_captcha_captcha_html('si_image_com','com');
+      echo '&lt;/div&gt;';
+      echo '&lt;p&gt;'.$input_string;
+ } else {
+      echo $label_string . $required_string . '&lt;/p&gt;';  // regular WP
+      echo '&lt;div ';
+      echo ($si_captcha_opt['si_captcha_captcha_small'] == 'true') ? 'class="captchaSizeDivSmall"' : 'class="captchaSizeDivLarge"';
+      echo '&gt;';
+      $this-&gt;si_captcha_captcha_html('si_image_com','com');
+      echo '&lt;/div&gt;';
+      echo '&lt;p&gt;'.$input_string;
+ }
+echo '&lt;/p&gt;';
+
+}
+</code></pre>
+<h3 id="content-index">4.Content Index</h3>
+<p>以前标题和目录不能并列排版，我总以为是h标题的缘故，因为把一个p段落放在h标题前面，发现时可以的并列的。但是往往我要用目录的文章都是没有开头段落的，然后就很丑的排版，看起来总是很大一块空白。今天无意发现了一个文章也用了这个目录，调试的时候惊奇的发现他的h也可以并列排布，于是乎开始在我的页面上乱点一气，无意之中发现了一个非常关键的属性，在我的主题中有下面这样一个代码，发现注释掉了clear:both后就可以直接可以了。</p>
+<pre><code>h1, h2, h3, h4, h5, h6 {
+/*clear: both;*/
+font-weight: normal;
+}
+</code></pre>
+<h3 id="box-shadow--text-shadow">5.box-shadow &amp; text-shadow</h3>
+<p>本来我只是想搜索一个外发光类似的效果，无意中发现了</p>
+<pre><code>box-shadow: 0 0 10px #000;
+</code></pre>
+<p>这个神奇的代码，于是在各处进行了运用，然后测试了各大主流国际浏览器，基本都是正常显示的包括目录和广告都用了。text-shadow的更加方便地使用，然后在title和网站描述上面都使用了，形成了阴影文字和外发光文字。</p>
+<h3 id="css">6.css优先级问题</h3>
+<p>感觉到了这是一个无比复杂的问题，暂时还没掌握门道，感觉应该有什么很巧妙的法子来判断。主要问题出在div的class下面的ul使用 .divclass ul的优先级似乎比ul的id选择#ulid要高，我怎么都选不中，另外多层div嵌套的时候怎么似乎class也是可以隔着选择的，感觉很奇怪。下次有时间研究下DOM Tree，看网上似乎有说和内嵌元素与块元素等似乎很复杂的样子。</p>
+<h3 id="rss-widget">7.RSS Widget</h3>
+<p>修改样式在新窗口打开在default-widgets.php中。</p>
+<h3 id="section-2">8.添加链接</h3>
+<p>而且速度影响不大。好了，不多说了，直接把以下代码放入模板文件functions.php中就行了。</p>
+<pre><code>//3.5+添加链接
+add_filter( 'pre_option_link_manager_enabled', '__return_true' );
+</code></pre>
+<h3 id="cdn">9.CDN加速</h3>
+<h2 id="comments">Comments</h2>
+<p><strong><a href="#1563" title="2013-09-29 02:42:13">rexdf</a>:</strong> :keai: 测试一下ip</p>
+<p><strong><a href="#1565" title="2013-09-29 03:11:24">rexdf</a>:</strong> :yaohuang: 再次测试</p>
+</div>
+</article>
+<article>
+<header>
+<h1 class="entry-title"><a href="/blog/2013/09/15/xian-jian-si-pei-jiao-zha-ji-quan-ba-pian-he-ji-zhuan/">仙剑四配角札记（全八篇合集）[转]</a></h1>
+<p class="meta">
+<time class="data-article month-09 season-autumn" datetime="2013-09-15T22:27:00+08:00" pubdate><span class="month">Sep</span> <span class="day">15th</span> <span class="year">2013</span></time>
+| <a href="/blog/2013/09/15/xian-jian-si-pei-jiao-zha-ji-quan-ba-pian-he-ji-zhuan/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2013/09/15/xian-jian-si-pei-jiao-zha-ji-quan-ba-pian-he-ji-zhuan/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><h2 id="section">一 柳园一梦</h2>
+<p>憨 态可掬的柳波波，淡泊睿智的柳波母，忠心耿耿的裴剑——在天河菱纱出现之前，是他们陪伴梦璃走过了十七年的岁月。如果你细心地寻访寿阳的NPC，你会发现 梦璃这位在寿阳长大的少女于大多数城镇居民还是一个谜，梦璃足迹所致可谓非常有限，然而就在那有限的环境中，这位几乎足不出户的神秘千金长成了聪明稳重、 才貌双全的少女。柳府中除了梦璃外最重要的三个人，对这位对生人都存有戒心的少女的成长的影响是不可估量的。 柳波波对女儿的照顾也许比亲 生父亲还要更甚。游戏里有非常多次正面体现他对女儿的关心：女儿长大成人，他亲自寻觅良婿；女儿要去女萝岩调查，他满心担忧准备伙食；女儿要出门游历，他 备下香车宝马伙食送行……然而柳世封对女儿最可贵的地方并不在于这无微不至近于宠溺的疼爱，而是在于给她理解和信任、权利和自由。 不论有多少未知的危险，他还是愿意放女儿出去调查，只因为那是她的心愿；不论多么关心女儿的终身大事，他还是放弃包办女儿的婚姻，只因为她想自己做主；不论梦璃离家后他会多么难过寂寞，他还是送女儿离开，只因为那是她的追求。 他对梦璃也许就像常纪对丝缎，有着一份没有结果、隐于内心的倾慕。 裴剑：云公子。 裴剑：裴剑斗胆说一句，我家小姐从未出过远门，请好好照顾她。 这是很“闷”的裴剑唯一一次主动提出要求，为的是梦璃的平安。 裴剑：小姐……你多保重…… 柳 氏夫妇离开后，裴剑一个人凝望着梦璃远去的背影，头像表情其实并没有变，然而我却觉得他带了几分不易察觉的落寞和哀伤。裴剑也是将感情深藏于心的人，对柳 氏夫妇感情深厚得都要让他们认他做儿子了，私底下却还是一根筋地叫着“老爷”“夫人”。他叫梦璃始终是“小姐”，或许也早就知道他与梦璃的世界，终究还是 存在距离——亭亭而立风姿绰约的少女，可望而不可即。也不知居巢国事件后梦璃是否有与他告别，然而他能给她的，除了十几年的保护，就是最后的这一声没有当 面说出口的“保重”…… 离离香草生故乡，临行勿忘备行囊，香气幽幽愿君记，离香散尽是故乡。 那时候梦璃不懂得，何处是真正的故乡。但是有一天她终究明白—— 柳梦璃：幻瞑界便是我族故乡，我族宁可灭亡，也不会离开这里的…… 当亭亭玉立逐渐成熟的少女带着离乡草告别柳园的父母和裴大哥，谁又会料到，此一别，当真是一别永年呢？ 故事的结束，青鸾峰风景依然，然而那最初的柳园里不知是否已沧桑变幻。两位老人伴着离香草却不见戴草之人如何度过寂寞的晚年，而那个忠心耿耿曾经暗恋着小姐的裴剑是否最终找到了自己的幸福呢？</p>
+<h2 id="section-1">二、琴伤问情</h2>
+<p>“琴”一直是RPG中非常受青睐的武器，同一张琴可以弹奏出沁人心脾的旋律，也可以弹奏出去人性命的战歌，如此这般，琴原本清雅之气之中又有几分侠气，若是敌人之中有人以琴代剑，琴还会给人一份孤绝的寒意。 ——这一切的前提，琴既是乐器，也是武器。梦璃手中的箜篌也正是这一种琴，所以梦璃不仅是一个大家闺秀，也是一个行走江湖的女侠式人物。 然而琴姬不是。作为仙剑四中第二位出场的抚琴女子，她给人的感觉和梦璃是那么不同。 她曾经是女侠，但是她的武器是剑而不是琴，因为琴与剑在她的生命中扮演着不一样的角色：剑上寄托着她对寻仙的执着和对自由的向往；而琴上寄托的是她的内心情感——对于丈夫、对于尘世的那份眷念。 琴姬：我自幼喜爱音律，却更是仰慕世间的高人侠士，及笄之后便出门闯荡，仗着一身武艺惩奸除恶，倒也十分痛快。 琴姬：什么女侠，也不过是年少时的胡闹……后来我因音律结识了陈州秦家的独子，他虽不懂武功，也很文弱，却是我见过最好的人，没过多久他就将我迎娶入门。 琴姬和秦逸相识，是因为琴，琴姬离开秦逸，则是与剑为伴。幼时更向往仙侠生活的琴姬最终却选择了再不动用一身武艺，琴就成为她唯一的伴侣。这之间隔着一场爱情悲剧——琴姬在对自由与梦想的追寻中失落了爱情，秦逸在痛苦与思念中完结了一生。 两情相悦并不就意味着幸福，有一个好开始并不意味着好的结束。二人相爱却不能相守，纵使剑术精进，陈州的丈夫却永远是琴姬心头的牵念，而在他临终之时不能陪伴在他身边，更是琴姬一生的遗憾。琴姬在琴与剑中的抉择，恰恰代表了她生命最本质的追求——情。 琴姬：我与琴为伴，四海为家，走到哪里就是哪里了…我告诉自己，至少，要放下武功，尽心收搜历代的乐曲残谱，替相公了却生前心愿。我凭什么一死以求解脱呢？ 论痛苦，琴姬并不下于姜氏，然而面对痛苦琴姬的抉择却要比姜氏超然。她明白还有自己必须要做的事需要她去做，她要完成丈夫的意愿，收集残谱、四海为家，生命已经不可挽回，但是心愿还有机会了结，既然不能与他携手走完一生，在他死后为他尽一点心意总好过一死了之。 琴姬：不，他对我很好，我们在一起钻研曲谱，他还教我读书写字……那真是、是我一生中最快乐的一段日子…… 琴姬：可惜……不管我怎么做，也做不来知书达理的大家闺秀，让公公婆婆开心……   禄芙：我家小姐向来都很有主意，老爷在衙门里头痛的事情，小姐常常能想到一些不错的法子～ 宋旭鸣：上回城里莫名其妙闹毒虫，柳小姐说可以燃香驱虫，一试之下果然有效～但小姐她一直都只替柳大人出主意，自己却从不露面，连我都没见过她的长相…… 梦 璃并不是普通的养在深闺里不问世事的千金，而是可以参与城镇治理关心人民疾苦的责任感极强的女子。为寿阳城镇治理出主意、帮助城镇脱贫致富、帮助居民解决 虫灾——虽然梦璃对生人都有一定的戒心和疏远感，但她对寿阳民生问题可谓十分积极，而这些对于未出阁的女子来说，自然需要父亲的“授权”。在如此开明的家 庭环境下，梦璃的才能得以成长和发挥。 相比于偶尔“关心则乱”的柳世封，柳波母阮慈则要平和得多。柳家下人说若无贵客全家上下都会跟着柳 夫人吃斋，这大概也暗示着阮慈有着不同于常人的淡定和从容。想来和天青一见面就要把酒言欢不醉不休的柳世封年轻时也是热血之人，娶到这么一位慈眉善目既有 能力又可排遣离伤的贤内助也是好福气。 柳世封：唉，女儿养这么大，最后还是别人的…… 阮慈：老爷说什么呢～璃儿也还没嫁掉。 柳世封：……想到她以前小小的，一晃眼就这般亭亭玉立，却终究也要喜欢上别人，我、我这心里…… 阮慈：我说老爷啊～雏鸟离巢本是天经地义，儿女养大了，总有一天要离家的。至少……还有我陪着老爷，就算有朝一日老爷的头发牙齿都掉光了，我们两个在一起，总也是有个伴。 柳世封：夫人…… 阮慈：哎，何况裴剑也算你的半子，女儿虽走，儿子总还在吧～ 面对离别，阮慈的态度更为豁达，该走的终究会走，与其沉溺于离愁，不如以一份平和的心态去度过余生。起码还有所爱之人相伴左右，在宁静中终了一生。</p>
+<h2 id="comments">Comments</h2>
+<p><strong><a href="#1564" title="2013-09-29 02:58:00">rexdf</a>:</strong> :meng: IP测试</p>
+</div>
+</article>
+<div class="pagination">
+<a class="prev" href="/blog/page/12/">&larr; Older</a>
+<a href="/blog/archives">Blog Archives</a>
+<a class="next" href="/blog/page/10/">Newer &rarr;</a>
+</div>
+</div>
+<aside class="sidebar">
+<section>
+<h1>Categories</h1>
+<ul id="categories">
+<li class="category"><a href="/blog/categories/acm/">ACM <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/algorithm/">Algorithm <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/assembly/">Assembly <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/cygwin/">Cygwin <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/gnu/">GNU <sup>8</sup></a></li>
+<li class="category"><a href="/blog/categories/math/">Math <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/octopress/">Octopress <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/programming/">Programming <sup>6</sup></a></li>
+<li class="category"><a href="/blog/categories/security/">Security <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sublime/">Sublime <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/synology/">Synology <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sysadmin/">SysAdmin <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/web/">Web <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/windows/">Windows <sup>7</sup></a></li>
+<li class="category"><a href="/blog/categories/proxmox/">proxmox <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/ri-chang/">日常 <sup>37</sup></a></li>
+</ul>
+</section>
+<section>
+<h1>Recent Posts</h1>
+<ul id="recent_posts">
+<li class="post">
+<a href="/blog/2024/12/16/fu-wu-qi-wa-kuang-bing-du-de-cha-sha/">服务器挖矿病毒的查杀</a>
+</li>
+<li class="post">
+<a href="/blog/2021/07/11/apple-m1-bian-yi-tensorflow/">Apple M1 编译tensorflow</a>
+</li>
+<li class="post">
+<a href="/blog/2021/02/27/chromiumbian-ma-qi-wen-ti/">Chromium编码器问题</a>
+</li>
+<li class="post">
+<a href="/blog/2020/12/13/proxmoxbi-ji/">Proxmox笔记</a>
+</li>
+<li class="post">
+<a href="/blog/2020/11/15/lun-yan-du-yu-shen-du/">论广度与深度</a>
+</li>
+</ul>
+</section>
+<section>
+<iframe frameborder="0" scrolling="no" referrerpolicy="unsafe-url" style="width:283px;height:200px" src="https://t.rexdf.org/?m=app&a=showwidget&name=rexdf&type=1&width=283px&height=500px"></iframe>
+</section>
+<section>
+<h1>GitHub Repos</h1>
+<ul id="gh_repos">
+<li class="loading">Status updating&#8230;</li>
+</ul>
+<a href="https://github.com/rexdf">@rexdf</a> on GitHub
+<script type="text/javascript">$(document).ready(function(){if(!window.jXHR){var e=document.createElement("script");e.type="text/javascript",e.src="/javascripts/libs/jXHR.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}github.showRepos({user:"rexdf",count:0,skip_forks:!0,target:"#gh_repos"})})</script>
+</section>
+</aside>
+</div>
+</div>
+<footer role="contentinfo"><p>
+<span class="credit">Copyright &copy; 2024 - Rexdf -</span> |
+<span class="credit">Powered by <a name="bottoms" target="_blank" href="http://octopress.org">Octopress</a></span> |
+<span class="credit">Theme by ：<a href="https://blog.rexdf.org/" target="_blank" rel="theme">Rexdf</a></span> |
+<span class="credit">Host by：<a href="https://github.com/" target="_blank" rel="host">Github.com</a></span> |
+<span class="credit">版权声明：<a href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" target="_blank" rel="license">CC BY-NC-SA 3.0</a><img src="https://analytics.rexdf.net/piwik.php?idsite=1&amp;rec=1" style="border:0" alt="" referrerpolicy="no-referrer-when-downgrade"></span>|
+<span class="credit"><a href="/sitemap.xml" rel="sitemap">sitemap</a></span>
+</p>
+<script type="text/javascript" src="https://tajs.qq.com/stats?sId=30296377" charset="UTF-8"></script>
+</footer>
+<script type="text/javascript">var disqus_shortname="rexdf",disqus_script="count.js";!function(){var e=document.createElement("script");e.type="text/javascript",e.async=!0,e.src="//"+disqus_shortname+".disqus.com/"+disqus_script,(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(e)}()</script>
+<script type="text/javascript">$(function(){$(".entry-content").each(function(t){var r=t;$(this).find("img.fancybox").each(function(){var t=$(this),a=t.attr("title"),n=t.attr("class");t.removeAttr("class"),t.wrap('<a href="'+this.src+'" class="'+n+'" rel="gallery'+r+'" />'),""!=a&&t.parent().attr("title",a)})}),$(".fancybox").fancybox()})</script>
+</body>
+</html>

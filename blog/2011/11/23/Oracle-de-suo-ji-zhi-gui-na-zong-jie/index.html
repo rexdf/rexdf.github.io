@@ -1,0 +1,174 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<script type="text/javascript">var _speedMark=new Date</script>
+<meta charset="utf-8">
+<title>Oracle的锁机制归纳总结 - Rexdf</title>
+<meta name="author" content="Rexdf">
+<meta name="description" content="锁是防止在两个事务操作同一个数据源（表或行）时交互破坏数据的一种机制。Oracle采用封锁技术保证并发操作的可串行性。Oracle的锁分为两大类：数据锁（也称DML锁）和字典锁。字典锁是Oracle DBMS内部用于对字典表的封锁。字典锁包括语法分析锁和DDL锁， &hellip;">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' data: https://hm.baidu.com https://tajs.qq.com https://ssl.google-analytics.com https://static.rexdf.org https://*.disquscdn.com https://rexdf.disqus.com https://api.github.com https://ssl.google-analytics.com https://disqus.com https://analytics.rexdf.net; connect-src 'self' https://static.rexdf.org https://analytics.rexdf.net https://hm.baidu.com; img-src data: https://*; font-src data: https://*; child-src 'none'; style-src 'self' 'unsafe-inline' https://*; frame-src 'self' https://t.rexdf.org http://t.rexdf.org https://rexdf.disqus.com https://disqus.com">
+<link rel="canonical" href="https://i.rexdf.org/blog/2011/11/23/Oracle-de-suo-ji-zhi-gui-na-zong-jie">
+<link rel="dns-prefetch" href="https://static.rexdf.org/">
+<link href="/favicon.ico" rel="icon">
+<link id="main-css" href="/stylesheets/screen.css" media="screen,projection" rel="stylesheet" type="text/css" title="pc">
+<link href="/stylesheets/screen_mobile.css" rel="alternate stylesheet" type="text/css" title="mobile">
+<link href="/atom.xml" rel="alternate" title="Rexdf" type="application/atom+xml">
+<script src="/javascripts/libs/jquery.min.js"></script>
+<script src="/javascripts/octopress-rexdf.min.js" type="text/javascript"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+      
+      toggle_theme();
+  });
+</script>
+<script type="text/javascript" async src="https://static.rexdf.org/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript">var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-55590409-1"]),_gaq.push(["_trackPageview"]),function(){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(t,e)}()</script>
+<script>var _hmt=_hmt||[];!function(){var e=document.createElement("script");e.src="//hm.baidu.com/hm.js?32192d95b89fbefa0875c4c95adb1412";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}()</script>
+<script src="/javascripts/fancybox/jquery.fancybox.pack.js"></script>
+<link rel="stylesheet" type="text/css" href="/javascripts/fancybox/jquery.fancybox.css">
+<script type="text/javascript">var _paq=_paq||[];_paq.push(["trackPageView"]),_paq.push(["enableLinkTracking"]),function(){var e="https://analytics.rexdf.net/";_paq.push(["setTrackerUrl",e+"piwik.php"]),_paq.push(["setSiteId","1"]);var a=document,t=a.createElement("script"),p=a.getElementsByTagName("script")[0];t.type="text/javascript",t.async=!0,t.defer=!0,t.src=e+"piwik.js",p.parentNode.insertBefore(t,p)}()</script>
+</head>
+<body class="low-contrast-linen-wptouch-bg">
+<header role="banner"><hgroup>
+<h1 id="header-title"><a href="/">Rexdf</a></h1>
+<h2 id="subtitle">The devil is in the Details.</h2>
+</hgroup>
+</header>
+<nav role="navigation"><ul class="subscription" data-subscription="rss">
+<li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+</ul>
+<form action="https://google.com/search" method="get">
+<fieldset role="search">
+<input type="hidden" name="q" value="site:i.rexdf.org">
+<input class="search" type="text" name="q" results="0" placeholder="Search">
+</fieldset>
+</form>
+<ul class="main-navigation">
+<li><a href="/">Blog</a></li>
+<li><a href="/blog/archives/">Archives</a></li>
+<li><a href="/idea/">Idea</a></li>
+<li><a href="/share/">Share</a></li>
+<li><a href="/books/">Books</a></li>
+<li><a href="/donate/">Donate</a></li>
+<li><a target="_blank" href="https://blog.rexdf.org" style="font-family:Shadows Into Light">Main-Blog</a></li>
+</ul>
+</nav>
+<div id="main">
+<div id="content">
+<div>
+<article class="hentry" role="article">
+<header>
+<h1 class="entry-title">Oracle的锁机制归纳总结</h1>
+<p class="meta">
+<time class="data-article month-11 season-autumn" datetime="2011-11-23T21:40:00+08:00" pubdate><span class="month">Nov</span> <span class="day">23rd</span> <span class="year">2011</span></time>
+| <a href="#disqus_thread" data-disqus-identifier="https://i.rexdf.org">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>锁是防止在两个事务操作同一个数据源（表或行）时交互破坏数据的一种机制。Oracle采用封锁技术保证并发操作的可串行性。Oracle的锁分为两大类：数据锁（也称DML锁）和字典锁。字典锁是Oracle DBMS内部用于对字典表的封锁。字典锁包括语法分析锁和DDL锁，由DBMS在必要的时候自动加锁和释放锁，用户无机控制。 Oracle主要提供了5种数据锁：共享锁（Share Table Lock，简称S锁）、排它锁（Exclusive Table Lock，简称X锁）、行级锁（Row Share Table Lock，简称RS锁）、行级排它锁（Row Exclusive Table Lock，简称RX锁）和共享行级排它锁（Share Row Exclusive Table Lock，简称SRX锁）。其封锁粒度包括行级和表级。 1. 共享锁（Share Table Lock，S）： 加锁语法：Lock Table TableName In Share Mode; 允许的操作：一个共享锁由一个事务控制，仅允许其它事务查询被锁定的表。一个有效的共享锁明确地用Select … For update形式锁定行，或执行Lock Table TableName In Share Mode语法锁定整个表，不允许被其它事务更新。允许多个事务在同一个表上加共享锁，这种情况下不允许在该表上加锁的事务更新表（即使有一个事务控制的是形如Select Row … for update这样行锁也是不被允许的）。因此，仅有一个事务的一个共享锁可以更新该表如果其它事务也有相同的事务在该表上的话。 禁止的操作：一个共享锁由一个事务来控制，防止其它事务更新该表或执行下面的语句： LOCK TABLE TableName IN SHARE ROW EXCLUSIVE MODE; LOCK TABLE TableName IN ROW EXCLUSIVE MODE; 2. 排它锁（Exclusive Table Lock，X）： 排它锁是在锁机制中限制最多的一种锁类型，允许加排它锁的事务独自控制对表的写权限。 加锁语法：Lock Table TableName In Exclusive Mode; 允许的操作：在一个表中只能有一个事务对该表实行排它锁，排它锁仅允许其它的事务查询该表。 禁止的操作：拥有排外锁的事务禁止其它事务执行其它任何DML类型的语句或在该表上加任何其它类型的锁。 定义排它锁的语法： LOCK TABLE TableName IN EXCLUSIVE MODE; 3. 行级锁（Row Share Table Lock，RS）： 一个行级锁（有时称为Subshare Table Lock，简称SS，子共享锁）需要该事务在被锁定行的表上用update的形式加锁。当有下面语句被执行的时候行级锁自动加在操作的表上。 SELECT &#8230; FROM TableName&#8230; FOR UPDATE OF &#8230; ; LOCK TABLE TableName IN ROW SHARE MODE; 行级锁（Row Share Table Lock）在锁类型中是限制最少的，也是在表的并发程度中使用程度最高的。 允许的操作：行级共享锁由一个事务控制，允许其它事务查询、插入、更新、删除或同时在同一张表上锁定行。因此其它事务可以同时在同一张表上得到行级锁、共享行级排它锁、行级排它锁、排它锁。参见数据锁的相容矩阵图 禁止的操作：拥有行级锁的事务不允许其它事务执行排它锁，即： Lock Table TableName In Exclusive Mode; 4. 行级排它锁（Row Exclusive Table Lock，RX）： 行级排它锁（亦称为Subexclusive Table Lock，简称SX，子排它锁）通常需要事务拥有的锁在表上被更新一行或多行。当有下面语句被执行的时候行级排它锁被加在操作的表上。 INSERT INTO TableName&#8230; ; UPDATE TableName&#8230; ; DELETE FROM TableName&#8230; ; LOCK TABLE TableName IN ROW EXCLUSIVE MODE; 行级排它锁比行级锁稍微多一些限制。 允许的操作：在数据锁的相容矩阵图很容易看出行级排它锁由一个事务拥有允许其它事务执行查询、修改、插入、删除或同时在同一张表上锁定行。执有行级排它锁的事务允许其它事务在同一张表上同时得到共享锁和行级排它锁。 禁止的操作：行级排它锁由一个事务拥有防止其它事务手动锁定表来排除其它事务的读写权。因此，其它事务不允许在同一张表上使用以下的语句来执行锁事务。 LOCK TABLE table IN SHARE MODE; LOCK TABLE table IN SHARE EXCLUSIVE MODE; LOCK TABLE table IN EXCLUSIVE MODE 5. 共享行级排它锁（Share Row Exclusive Table Lock，SRX）： 共享行级排它锁有时也称共享子排它锁（Share Subexclusive Table Lock，SSX），它比共享锁有更多限制。定义共享行级排它锁的语法为： Lock Table TableName In Share Row Exclusive Mode; 允许的操作：仅允许一个事务在某一时刻得到行级排它锁。拥有行级排它锁事务允许其它事务在被锁定的表上执行查询或使用Select … From TableName For update…来准确在锁定行而不能更新行。 禁止的操作：拥有行级排它锁的事务不允许其它事务有除共享锁外的其它形式的锁加在同一张表上或更新该表。即下面的语句是不被允许的： LOCK TABLE TableName IN SHARE MODE; LOCK TABLE TableName IN SHARE ROW EXCLUSIVE MODE; LOCK TABLE TableName IN ROW EXCLUSIVE MODE; LOCK TABLE TableName IN EXCLUSIVE MODE; DML语句获得的DML自动锁（Oracle隐含锁） DML自动锁的相容矩阵图： X：排它锁、RS：行级共享锁、RX：行级排它锁、S、共享锁、RSX：行级共享排它锁 DML语句 有行级锁 锁类型 SELECT … FROM table INSERT INTO table … X RX UPDATE table … X RX DELETE FROM table … X RX SELECT … FROM table … FOR UPDATE OF … X RS LOCK TABLE table IN … ROW SHARE MODE RS ROW EXCLUSIVE MODE RX SHARE MODE S SHARE EXCLUSIVE MODE SRX EXCLUSIVE MODE X 数据字典中与锁有关的表或视图 V<em>$LOCKED_OBJECT V</em>$LOCKS_WITH_COLLISIONS V<em>$LOCK_ACTIVITY V</em>$LOCK_ELEMENT V_$_LOCK DBMS_LOCK V$DLM_ALL_LOCKS V$DLM_LOCKS V$ENQUEUE_LOCK V$GLOBAL_BLOCKED_LOCKS V$LOCK V$LOCKED_OBJECT V$LOCKS_WITH_COLLISIONS V$LOCK_ACTIVITY V$LOCK_ELEMENT V$_LOCK 解锁及Kill Session: 使用下面的语法查出锁并杀掉Session。 SELECT A.SID,A.SERIAL#,A.USERNAME,B.TYPE FROM V$SESSION A,V$LOCK B WHERE A.SID=B.SID; ALTER SYSTEM KILL SESSION ‘SID,SERIAL#’;</p>
+</div>
+<footer>
+<p class="meta">
+<span class="byline author vcard">Posted by <span class="fn">Rexdf</span></span>
+<time class="data-article month-11 season-autumn" datetime="2011-11-23T21:40:00+08:00" pubdate><span class="month">Nov</span> <span class="day">23rd</span> <span class="year">2011</span></time>
+</p>
+<div class="sharing">
+</div>
+<p class="meta">
+<a class="basic-alignment left" href="/blog/2011/11/22/shi-pin-zai-hui-shou-zai-zai-hui-shou-pei-yue-dao-meng-kong-jian/" title="Previous Post: 视频: 再回首，再再回首……配乐 盗梦空间">&laquo; 视频: 再回首，再再回首……配乐 盗梦空间</a>
+<a class="basic-alignment right" href="/blog/2011/11/23/dui-yu-Oracle-suo-de-yi-xie-li-lun-zong-jie/" title="Next Post: 对于Oracle锁的一些理论总结">对于Oracle锁的一些理论总结 &raquo;</a>
+</p>
+</footer>
+</article>
+<section>
+<h1>Comments</h1>
+<div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
+</div>
+<aside class="sidebar">
+<section>
+<h1>Categories</h1>
+<ul id="categories">
+<li class="category"><a href="/blog/categories/acm/">ACM <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/algorithm/">Algorithm <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/assembly/">Assembly <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/cygwin/">Cygwin <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/gnu/">GNU <sup>8</sup></a></li>
+<li class="category"><a href="/blog/categories/math/">Math <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/octopress/">Octopress <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/programming/">Programming <sup>6</sup></a></li>
+<li class="category"><a href="/blog/categories/security/">Security <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sublime/">Sublime <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/synology/">Synology <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sysadmin/">SysAdmin <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/web/">Web <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/windows/">Windows <sup>7</sup></a></li>
+<li class="category"><a href="/blog/categories/proxmox/">proxmox <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/ri-chang/">日常 <sup>37</sup></a></li>
+</ul>
+</section>
+<section>
+<h1>Recent Posts</h1>
+<ul id="recent_posts">
+<li class="post">
+<a href="/blog/2024/12/16/fu-wu-qi-wa-kuang-bing-du-de-cha-sha/">服务器挖矿病毒的查杀</a>
+</li>
+<li class="post">
+<a href="/blog/2021/07/11/apple-m1-bian-yi-tensorflow/">Apple M1 编译tensorflow</a>
+</li>
+<li class="post">
+<a href="/blog/2021/02/27/chromiumbian-ma-qi-wen-ti/">Chromium编码器问题</a>
+</li>
+<li class="post">
+<a href="/blog/2020/12/13/proxmoxbi-ji/">Proxmox笔记</a>
+</li>
+<li class="post">
+<a href="/blog/2020/11/15/lun-yan-du-yu-shen-du/">论广度与深度</a>
+</li>
+</ul>
+</section>
+<section>
+<iframe frameborder="0" scrolling="no" referrerpolicy="unsafe-url" style="width:283px;height:200px" src="https://t.rexdf.org/?m=app&a=showwidget&name=rexdf&type=1&width=283px&height=500px"></iframe>
+</section>
+<section>
+<h1>GitHub Repos</h1>
+<ul id="gh_repos">
+<li class="loading">Status updating...</li>
+</ul>
+<a href="https://github.com/rexdf">@rexdf</a> on GitHub
+<script type="text/javascript">$(document).ready(function(){if(!window.jXHR){var e=document.createElement("script");e.type="text/javascript",e.src="/javascripts/libs/jXHR.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}github.showRepos({user:"rexdf",count:0,skip_forks:!0,target:"#gh_repos"})})</script>
+</section>
+</aside>
+</div>
+</div>
+<footer role="contentinfo"><p>
+<span class="credit">Copyright &copy; 2024 - Rexdf -</span> |
+<span class="credit">Powered by <a name="bottoms" target="_blank" href="http://octopress.org">Octopress</a></span> |
+<span class="credit">Theme by ：<a href="https://blog.rexdf.org/" target="_blank" rel="theme">Rexdf</a></span> |
+<span class="credit">Host by：<a href="https://github.com/" target="_blank" rel="host">Github.com</a></span> |
+<span class="credit">版权声明：<a href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" target="_blank" rel="license">CC BY-NC-SA 3.0</a><img src="https://analytics.rexdf.net/piwik.php?idsite=1&amp;rec=1" style="border:0" alt="" referrerpolicy="no-referrer-when-downgrade"></span>|
+<span class="credit"><a href="/sitemap.xml" rel="sitemap">sitemap</a></span>
+</p>
+<script type="text/javascript" src="https://tajs.qq.com/stats?sId=30296377" charset="UTF-8"></script>
+</footer>
+<script type="text/javascript">var disqus_shortname="rexdf",disqus_identifier="https://i.rexdf.org/blog/2011/11/23/Oracle-de-suo-ji-zhi-gui-na-zong-jie/",disqus_url="https://i.rexdf.org/blog/2011/11/23/Oracle-de-suo-ji-zhi-gui-na-zong-jie/",disqus_script="embed.js";!function(){var e=document.createElement("script");e.type="text/javascript",e.async=!0,e.src="//"+disqus_shortname+".disqus.com/"+disqus_script,(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(e)}()</script>
+<script type="text/javascript">$(function(){$(".entry-content").each(function(t){var r=t;$(this).find("img.fancybox").each(function(){var t=$(this),a=t.attr("title"),n=t.attr("class");t.removeAttr("class"),t.wrap('<a href="'+this.src+'" class="'+n+'" rel="gallery'+r+'" />'),""!=a&&t.parent().attr("title",a)})}),$(".fancybox").fancybox()})</script>
+</body>
+</html>

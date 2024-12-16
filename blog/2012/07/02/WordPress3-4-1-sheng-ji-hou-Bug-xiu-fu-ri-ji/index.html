@@ -1,0 +1,353 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<script type="text/javascript">var _speedMark=new Date</script>
+<meta charset="utf-8">
+<title>WordPress3.4.1升级后Bug修复日记 - Rexdf</title>
+<meta name="author" content="Rexdf">
+<meta name="description" content="因为以前一直没有升级主题的习惯，一来主题自定义东西过多，好不容易改出来的东西不想因为升级而搞丢。最近升级版本到3.4.1，想把主题也升一下，备份后便升级了，可是问题一大串的。 国内视频网站无法自动替换 先是无法像Youtube或者GoogleVideo一样的使用那个正则表达式替换。 * 1. &hellip;">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' data: https://hm.baidu.com https://tajs.qq.com https://ssl.google-analytics.com https://static.rexdf.org https://*.disquscdn.com https://rexdf.disqus.com https://api.github.com https://ssl.google-analytics.com https://disqus.com https://analytics.rexdf.net; connect-src 'self' https://static.rexdf.org https://analytics.rexdf.net https://hm.baidu.com; img-src data: https://*; font-src data: https://*; child-src 'none'; style-src 'self' 'unsafe-inline' https://*; frame-src 'self' https://t.rexdf.org http://t.rexdf.org https://rexdf.disqus.com https://disqus.com">
+<link rel="canonical" href="https://i.rexdf.org/blog/2012/07/02/WordPress3-4-1-sheng-ji-hou-Bug-xiu-fu-ri-ji">
+<link rel="dns-prefetch" href="https://static.rexdf.org/">
+<link href="/favicon.ico" rel="icon">
+<link id="main-css" href="/stylesheets/screen.css" media="screen,projection" rel="stylesheet" type="text/css" title="pc">
+<link href="/stylesheets/screen_mobile.css" rel="alternate stylesheet" type="text/css" title="mobile">
+<link href="/atom.xml" rel="alternate" title="Rexdf" type="application/atom+xml">
+<script src="/javascripts/libs/jquery.min.js"></script>
+<script src="/javascripts/octopress-rexdf.min.js" type="text/javascript"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+      
+      toggle_theme();
+  });
+</script>
+<script type="text/javascript" async src="https://static.rexdf.org/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript">var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-55590409-1"]),_gaq.push(["_trackPageview"]),function(){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(t,e)}()</script>
+<script>var _hmt=_hmt||[];!function(){var e=document.createElement("script");e.src="//hm.baidu.com/hm.js?32192d95b89fbefa0875c4c95adb1412";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}()</script>
+<script src="/javascripts/fancybox/jquery.fancybox.pack.js"></script>
+<link rel="stylesheet" type="text/css" href="/javascripts/fancybox/jquery.fancybox.css">
+<script type="text/javascript">var _paq=_paq||[];_paq.push(["trackPageView"]),_paq.push(["enableLinkTracking"]),function(){var e="https://analytics.rexdf.net/";_paq.push(["setTrackerUrl",e+"piwik.php"]),_paq.push(["setSiteId","1"]);var a=document,t=a.createElement("script"),p=a.getElementsByTagName("script")[0];t.type="text/javascript",t.async=!0,t.defer=!0,t.src=e+"piwik.js",p.parentNode.insertBefore(t,p)}()</script>
+</head>
+<body class="low-contrast-linen-wptouch-bg">
+<header role="banner"><hgroup>
+<h1 id="header-title"><a href="/">Rexdf</a></h1>
+<h2 id="subtitle">The devil is in the Details.</h2>
+</hgroup>
+</header>
+<nav role="navigation"><ul class="subscription" data-subscription="rss">
+<li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+</ul>
+<form action="https://google.com/search" method="get">
+<fieldset role="search">
+<input type="hidden" name="q" value="site:i.rexdf.org">
+<input class="search" type="text" name="q" results="0" placeholder="Search">
+</fieldset>
+</form>
+<ul class="main-navigation">
+<li><a href="/">Blog</a></li>
+<li><a href="/blog/archives/">Archives</a></li>
+<li><a href="/idea/">Idea</a></li>
+<li><a href="/share/">Share</a></li>
+<li><a href="/books/">Books</a></li>
+<li><a href="/donate/">Donate</a></li>
+<li><a target="_blank" href="https://blog.rexdf.org" style="font-family:Shadows Into Light">Main-Blog</a></li>
+</ul>
+</nav>
+<div id="main">
+<div id="content">
+<div>
+<article class="hentry" role="article">
+<header>
+<h1 class="entry-title">WordPress3.4.1升级后Bug修复日记</h1>
+<p class="meta">
+<time class="data-article month-07 season-summer" datetime="2012-07-02T13:42:00+08:00" pubdate><span class="month">Jul</span> <span class="day">2nd</span> <span class="year">2012</span></time>
+| <a href="#disqus_thread" data-disqus-identifier="https://i.rexdf.org">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>因为以前一直没有升级主题的习惯，一来主题自定义东西过多，好不容易改出来的东西不想因为升级而搞丢。最近升级版本到3.4.1，想把主题也升一下，备份后便升级了，可是问题一大串的。</p>
+<h2 id="section">国内视频网站无法自动替换</h2>
+<p>先是无法像Youtube或者GoogleVideo一样的使用那个正则表达式替换。 * 1.把代码用FTP下载到本地，调试完全一样的代码。本地正常。 * 2.把WordPress的数据备份下来，本地导入测试正常。然后把服务器的数据库删掉，重新安装WordPress最新版，导入数据。依然无法替换Youku、Tudou等视频。 * 3.把服务器的数据库从Western Latin 改成UTF8，和本地到此数据库一样。 依然无法替换。 * 4.极端恼火，把服务器的所有WordPress文件夹内容全部删掉，暂时把http://blog.rexdf.org指向了GAE博客，做了一个暂时的反向代理。然后下载一个新的wordpress-3.4.1-zh_CN上传，重新安装，依然无法替换国内视频网站。但是确认Youtube的是可以被正常替换。 * 5.把翻译文件换成前一个带“中文本地化”菜单的，修改日志，把视频地址用&lt;p&gt;标签包起来（要知道我是有10多篇视频日志啊，反复改了3次）。老版本的文件可以正常利用正则表达式替换国内视频。 * 6.手动修改了/wp-content/languages/zh_CN.php，如下</p>
+<pre><code>&lt;?php
+/**
+ * WordPress China Localization Patches Collection
+ */
+
+/**
+ * Legacy database options cleanup
+ *
+ * Cleanup of all options that were introduced pre-3.4.
+ * To save time, this function is only to be called on admin pages.
+ *
+ * @since 3.4.0
+ */
+function zh_cn_l10n_legacy_option_cleanup() {
+  // 3.3 series
+  delete_site_option( 'zh_cn_l10n_preference_patches' );
+  
+  // 3.0.5, 3.1 series, 3.2 series
+  delete_site_option( 'zh_cn_language_pack_enable_chinese_fake_oembed' );
+  
+  // 3.0.1, 3.0.2, 3.0.3, 3.0.4
+  delete_site_option( 'zh_cn_language_pack_options_version' );
+  delete_site_option( 'zh_cn_language_pack_enable_backend_style_modifications' );
+  
+  // awkward ones...
+  delete_site_option( 'zh_cn_language_pack_enable_icpip_num_show' );
+  delete_site_option( 'zh_cn_language_pack_icpip_num' );
+  delete_site_option( 'zh_cn_language_pack_is_configured' );
+  
+}
+add_action( 'admin_init', 'zh_cn_l10n_legacy_option_cleanup' );
+
+
+/**
+ * Tudou wp_embed handler
+ *
+ * Embed code last updated:
+ *  Tue, 05 Jun 2012 22:23:03 -0400 
+ *
+ * Feel free to submit or correct URL formats here:
+ *  http://cn.wordpress.org/contact/
+ *
+ * @since 3.4.0
+ */
+function wp_embed_handler_tudou( $matches, $attr, $url, $rawattr ) {
+  $embed = sprintf(
+    '&lt;embed src="http://www.tudou.com/v/%1$s/&amp;resourceId=0_05_05_99&amp;bid=05/v.swf" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" wmode="opaque" width="480" height="400"&gt;&lt;/embed&gt;',
+    esc_attr( $matches['video_id'] ) );
+
+  return apply_filters( 'embed_tudou', $embed, $matches, $attr, $url, $rawattr );
+}
+wp_embed_register_handler( 'tudou', 
+  '#https?://(?:www\.)?tudou\.com/(?:programs/view|listplay/(?&lt;list_id&gt;[a-z0-9_=\-]+))/(?&lt;video_id&gt;[a-z0-9_=\-]+)#i', 
+  'wp_embed_handler_tudou' );
+
+
+/**
+ * 56.com wp_embed handler
+ *
+ * Embed code last updated:
+ *  Tue, 05 Jun 2012 23:03:29 -0400 
+ *
+ * Feel free to submit or correct URL formats here:
+ *  http://cn.wordpress.org/contact/
+ *
+ * @since 3.4.0
+ */
+function wp_embed_handler_56com( $matches, $attr, $url, $rawattr ) {
+  $matches['video_id'] = $matches['video_id1'] == '' ? 
+    $matches['video_id2'] : $matches['video_id1'];
+  
+  $embed = sprintf(
+    "&lt;embed src='http://player.56.com/v_%1\$s.swf'  type='application/x-shockwave-flash' width='480' height='405' allowFullScreen='true' allowNetworking='all' allowScriptAccess='always'&gt;&lt;/embed&gt;",
+    esc_attr( $matches['video_id'] ) );
+
+  return apply_filters( 'embed_56com', $embed, $matches, $attr, $url, $rawattr );
+}
+wp_embed_register_handler( '56com', 
+  '#https?://(?:www\.)?56\.com/[a-z0-9]+/(?:play_album\-aid\-[0-9]+_vid\-(?&lt;video_id1&gt;[a-z0-9_=\-]+)|v_(?&lt;video_id2&gt;[a-z0-9_=\-]+))#i', 
+  'wp_embed_handler_56com' );
+
+
+/**
+ * Youku wp_embed handler
+ *
+ * Embed code last updated:
+ *  Wed, 06 Jun 2012 00:36:11 -0400 
+ *
+ * Feel free to submit or correct URL formats here:
+ *  http://cn.wordpress.org/contact/
+ *
+ * @since 3.4.0
+ */
+function wp_embed_handler_youku( $matches, $attr, $url, $rawattr ) {
+  $embed = sprintf(
+    '&lt;embed src="http://player.youku.com/player.php/sid/%1$s/v.swf" allowFullScreen="true" quality="high" width="480" height="400" align="middle" allowScriptAccess="always" type="application/x-shockwave-flash"&gt;&lt;/embed&gt;',
+    esc_attr( $matches['video_id'] ) );
+
+  return apply_filters( 'embed_youku', $embed, $matches, $attr, $url, $rawattr );
+}
+wp_embed_register_handler( 'youku', 
+  '#https?://v\.youku\.com/v_show/id_(?&lt;video_id&gt;[a-z0-9_=\-]+)#i', 
+  'wp_embed_handler_youku' );
+
+
+/**
+ * Chinese administration screens style - enqueue stylesheet
+ *
+ * This patch serves as a work-around to fix the font-size and font-style.
+ *
+ * Submit better CSS rules here:
+ *  http://cn.wordpress.org/contact/
+ *
+ * @since 3.3.0
+ */
+function zh_cn_l10n_patch_admin_screens_style_enqueue_stylesheet() {
+  wp_register_style( 'zh-cn-l10n-administration-screens', 
+    content_url( ( WP_DEBUG ? '/languages/zh_CN-administration-screens.dev.css' : '/languages/zh_CN-administration-screens.css' ) ), 
+    array( 'wp-admin' ), 
+    '20111120');
+  wp_enqueue_style( 'zh-cn-l10n-administration-screens' );
+}
+add_action( 'admin_init', 
+  'zh_cn_l10n_patch_admin_screens_style_enqueue_stylesheet' );
+
+
+/**
+ * Chinese character count - register script
+ *
+ * This patch serves as a work-around to fix the built-in word-count.js.
+ * 
+ * The sum of Chinese characters and English words will show up in "word count"
+ * field once enabled.
+ *
+ * @since 3.3.0
+ */
+function zh_cn_l10n_patch_character_count_register_script() {
+  wp_deregister_script( 'word-count' );
+  wp_register_script( 'word-count', 
+    content_url( ( WP_DEBUG ? '/languages/zh_CN-word-count.dev.js' : '/languages/zh_CN-word-count.js' ) ), 
+    array( 'jquery' ), 
+    '20120605' );
+}
+add_action( 'admin_footer', 
+  'zh_cn_l10n_patch_character_count_register_script' );
+
+
+?&gt;
+
+
+&lt;?php
+
+/**
+ * 注册设置
+ *
+ * @since 3.0.1
+ */
+function zh_cn_language_pack_backend_register_settings() {
+    add_settings_field( 'zh_cn_language_pack_enable_chinese_fake_oembed',
+        '中国媒体嵌入',
+        'zh_cn_language_pack_embed_fake_oembed_settings',
+        'media',
+        'embeds' );
+
+    add_option( 'zh_cn_language_pack_enable_backend_style_modifications', 1 );
+    add_option( 'zh_cn_language_pack_enable_chinese_fake_oembed', 1 );
+    
+    register_setting( 'zh-cn-language-pack-general-settings',
+        'zh_cn_language_pack_enable_backend_style_modifications' );
+    register_setting( 'zh-cn-language-pack-general-settings',
+        'zh_cn_language_pack_enable_chinese_fake_oembed' );
+
+    register_setting( 'media',
+        'zh_cn_language_pack_enable_chinese_fake_oembed' );
+
+    // 从用户数据库移除旧设置项
+</code></pre>
+</div>
+<footer>
+<p class="meta">
+<span class="byline author vcard">Posted by <span class="fn">Rexdf</span></span>
+<time class="data-article month-07 season-summer" datetime="2012-07-02T13:42:00+08:00" pubdate><span class="month">Jul</span> <span class="day">2nd</span> <span class="year">2012</span></time>
+</p>
+<div class="sharing">
+</div>
+<p class="meta">
+<a class="basic-alignment left" href="/blog/2012/06/25/JQuery-zhong--id-zhao-bu-dao-JQuery-id-ke-yi/" title="Previous Post: JQuery中$(#id)找不到，JQuery(#id)可以">&laquo; JQuery中$(#id)找不到，JQuery(#id)可以</a>
+<a class="basic-alignment right" href="/blog/2012/07/03/ji-zhong-display-table-cell-de-ying-yong/" title="Next Post: 几种display:table-cell的应用">几种display:table-cell的应用 &raquo;</a>
+</p>
+</footer>
+</article>
+<section>
+<h1>Comments</h1>
+<div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
+</div>
+<aside class="sidebar">
+<section>
+<h1>Categories</h1>
+<ul id="categories">
+<li class="category"><a href="/blog/categories/acm/">ACM <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/algorithm/">Algorithm <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/assembly/">Assembly <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/cygwin/">Cygwin <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/gnu/">GNU <sup>8</sup></a></li>
+<li class="category"><a href="/blog/categories/math/">Math <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/octopress/">Octopress <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/programming/">Programming <sup>6</sup></a></li>
+<li class="category"><a href="/blog/categories/security/">Security <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sublime/">Sublime <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/synology/">Synology <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sysadmin/">SysAdmin <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/web/">Web <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/windows/">Windows <sup>7</sup></a></li>
+<li class="category"><a href="/blog/categories/proxmox/">proxmox <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/ri-chang/">日常 <sup>37</sup></a></li>
+</ul>
+</section>
+<section>
+<h1>Recent Posts</h1>
+<ul id="recent_posts">
+<li class="post">
+<a href="/blog/2024/12/16/fu-wu-qi-wa-kuang-bing-du-de-cha-sha/">服务器挖矿病毒的查杀</a>
+</li>
+<li class="post">
+<a href="/blog/2021/07/11/apple-m1-bian-yi-tensorflow/">Apple M1 编译tensorflow</a>
+</li>
+<li class="post">
+<a href="/blog/2021/02/27/chromiumbian-ma-qi-wen-ti/">Chromium编码器问题</a>
+</li>
+<li class="post">
+<a href="/blog/2020/12/13/proxmoxbi-ji/">Proxmox笔记</a>
+</li>
+<li class="post">
+<a href="/blog/2020/11/15/lun-yan-du-yu-shen-du/">论广度与深度</a>
+</li>
+</ul>
+</section>
+<section>
+<iframe frameborder="0" scrolling="no" referrerpolicy="unsafe-url" style="width:283px;height:200px" src="https://t.rexdf.org/?m=app&a=showwidget&name=rexdf&type=1&width=283px&height=500px"></iframe>
+</section>
+<section>
+<h1>GitHub Repos</h1>
+<ul id="gh_repos">
+<li class="loading">Status updating...</li>
+</ul>
+<a href="https://github.com/rexdf">@rexdf</a> on GitHub
+<script type="text/javascript">$(document).ready(function(){if(!window.jXHR){var e=document.createElement("script");e.type="text/javascript",e.src="/javascripts/libs/jXHR.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}github.showRepos({user:"rexdf",count:0,skip_forks:!0,target:"#gh_repos"})})</script>
+</section>
+</aside>
+</div>
+</div>
+<footer role="contentinfo"><p>
+<span class="credit">Copyright &copy; 2024 - Rexdf -</span> |
+<span class="credit">Powered by <a name="bottoms" target="_blank" href="http://octopress.org">Octopress</a></span> |
+<span class="credit">Theme by ：<a href="https://blog.rexdf.org/" target="_blank" rel="theme">Rexdf</a></span> |
+<span class="credit">Host by：<a href="https://github.com/" target="_blank" rel="host">Github.com</a></span> |
+<span class="credit">版权声明：<a href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" target="_blank" rel="license">CC BY-NC-SA 3.0</a><img src="https://analytics.rexdf.net/piwik.php?idsite=1&amp;rec=1" style="border:0" alt="" referrerpolicy="no-referrer-when-downgrade"></span>|
+<span class="credit"><a href="/sitemap.xml" rel="sitemap">sitemap</a></span>
+</p>
+<script type="text/javascript" src="https://tajs.qq.com/stats?sId=30296377" charset="UTF-8"></script>
+</footer>
+<script type="text/javascript">var disqus_shortname="rexdf",disqus_identifier="https://i.rexdf.org/blog/2012/07/02/WordPress3-4-1-sheng-ji-hou-Bug-xiu-fu-ri-ji/",disqus_url="https://i.rexdf.org/blog/2012/07/02/WordPress3-4-1-sheng-ji-hou-Bug-xiu-fu-ri-ji/",disqus_script="embed.js";!function(){var s=document.createElement("script");s.type="text/javascript",s.async=!0,s.src="//"+disqus_shortname+".disqus.com/"+disqus_script,(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(s)}()</script>
+<script type="text/javascript">$(function(){$(".entry-content").each(function(t){var r=t;$(this).find("img.fancybox").each(function(){var t=$(this),a=t.attr("title"),n=t.attr("class");t.removeAttr("class"),t.wrap('<a href="'+this.src+'" class="'+n+'" rel="gallery'+r+'" />'),""!=a&&t.parent().attr("title",a)})}),$(".fancybox").fancybox()})</script>
+</body>
+</html>

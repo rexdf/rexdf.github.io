@@ -1,0 +1,548 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<script type="text/javascript">var _speedMark=new Date</script>
+<meta charset="utf-8">
+<title>C如何返回double与longlong - Rexdf</title>
+<meta name="author" content="Rexdf">
+<meta name="description" content="MSVC 返回double 返回 long long gcc double long long clang double long long 我们学过汇编的都应该知道C语言的返回值，在x86机器上面都是用eax来实现的。而eax是32位的，所以返回值只能是int/long类型或者指针类型， &hellip;">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' data: https://hm.baidu.com https://tajs.qq.com https://ssl.google-analytics.com https://static.rexdf.org https://*.disquscdn.com https://rexdf.disqus.com https://api.github.com https://ssl.google-analytics.com https://disqus.com https://analytics.rexdf.net; connect-src 'self' https://static.rexdf.org https://analytics.rexdf.net https://hm.baidu.com; img-src data: https://*; font-src data: https://*; child-src 'none'; style-src 'self' 'unsafe-inline' https://*; frame-src 'self' https://t.rexdf.org http://t.rexdf.org https://rexdf.disqus.com https://disqus.com">
+<link rel="canonical" href="https://i.rexdf.org/blog/2015/04/23/cru-he-fan-hui-doubleyu-longlong">
+<link rel="dns-prefetch" href="https://static.rexdf.org/">
+<link href="/favicon.ico" rel="icon">
+<link id="main-css" href="/stylesheets/screen.css" media="screen,projection" rel="stylesheet" type="text/css" title="pc">
+<link href="/stylesheets/screen_mobile.css" rel="alternate stylesheet" type="text/css" title="mobile">
+<link href="/atom.xml" rel="alternate" title="Rexdf" type="application/atom+xml">
+<script src="/javascripts/libs/jquery.min.js"></script>
+<script src="/javascripts/octopress-rexdf.min.js" type="text/javascript"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+      
+      toggle_theme();
+  });
+</script>
+<script type="text/javascript" async src="https://static.rexdf.org/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript">var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-55590409-1"]),_gaq.push(["_trackPageview"]),function(){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(t,e)}()</script>
+<script>var _hmt=_hmt||[];!function(){var e=document.createElement("script");e.src="//hm.baidu.com/hm.js?32192d95b89fbefa0875c4c95adb1412";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}()</script>
+<script src="/javascripts/fancybox/jquery.fancybox.pack.js"></script>
+<link rel="stylesheet" type="text/css" href="/javascripts/fancybox/jquery.fancybox.css">
+<script type="text/javascript">var _paq=_paq||[];_paq.push(["trackPageView"]),_paq.push(["enableLinkTracking"]),function(){var e="https://analytics.rexdf.net/";_paq.push(["setTrackerUrl",e+"piwik.php"]),_paq.push(["setSiteId","1"]);var a=document,t=a.createElement("script"),p=a.getElementsByTagName("script")[0];t.type="text/javascript",t.async=!0,t.defer=!0,t.src=e+"piwik.js",p.parentNode.insertBefore(t,p)}()</script>
+</head>
+<body class="low-contrast-linen-wptouch-bg">
+<header role="banner"><hgroup>
+<h1 id="header-title"><a href="/">Rexdf</a></h1>
+<h2 id="subtitle">The devil is in the Details.</h2>
+</hgroup>
+</header>
+<nav role="navigation"><ul class="subscription" data-subscription="rss">
+<li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+</ul>
+<form action="https://google.com/search" method="get">
+<fieldset role="search">
+<input type="hidden" name="q" value="site:i.rexdf.org">
+<input class="search" type="text" name="q" results="0" placeholder="Search">
+</fieldset>
+</form>
+<ul class="main-navigation">
+<li><a href="/">Blog</a></li>
+<li><a href="/blog/archives/">Archives</a></li>
+<li><a href="/idea/">Idea</a></li>
+<li><a href="/share/">Share</a></li>
+<li><a href="/books/">Books</a></li>
+<li><a href="/donate/">Donate</a></li>
+<li><a target="_blank" href="https://blog.rexdf.org" style="font-family:Shadows Into Light">Main-Blog</a></li>
+</ul>
+</nav>
+<div id="main">
+<div id="content">
+<div>
+<article class="hentry" role="article">
+<header>
+<h1 class="entry-title">C如何返回double与longlong</h1>
+<p class="meta">
+<time class="data-article month-04 season-spring" datetime="2015-04-23T18:51:34+08:00" pubdate><span class="month">Apr</span> <span class="day">23rd</span> <span class="year">2015</span></time>
+| <a href="#disqus_thread" data-disqus-identifier="https://i.rexdf.org">Comments</a>
+</p>
+</header>
+<div class="entry-content"><ul class="markdown-toc">
+<li><a href="#msvc">MSVC</a><ul>
+<li><a href="#double">返回double</a></li>
+<li><a href="#long-long">返回 long long</a></li>
+</ul>
+</li>
+<li><a href="#gcc">gcc</a><ul>
+<li><a href="#double-1">double</a></li>
+<li><a href="#long-long-1">long long</a></li>
+</ul>
+</li>
+<li><a href="#clang">clang</a><ul>
+<li><a href="#double-2">double</a></li>
+<li><a href="#long-long-2">long long</a></li>
+</ul>
+</li>
+</ul>
+<p>我们学过汇编的都应该知道C语言的返回值，在x86机器上面都是用eax来实现的。而eax是32位的，所以返回值只能是int/long类型或者指针类型，在汇编里面都是dword。可是突然想到怎么实现返回64位值呢？难道会是指针？显然不太可能这样做。
+</p>
+<h2 id="msvc">MSVC</h2>
+<h3 id="double">返回double</h3>
+<p>实际上我们来试一下就知道了。</p>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption>a.c<a href="http://blog.rexdf.org">MyBlog</a></figcaption><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div><div data-line="5" class="line-number"></div><div data-line="6" class="line-number"></div><div data-line="7" class="line-number"></div><div data-line="8" class="line-number"></div><div data-line="9" class="line-number"></div><div data-line="10" class="line-number"></div><div data-line="11" class="line-number"></div></pre></td><td class="main code"><pre><div class="line c"><span class="cp">#include &lt;stdio.h&gt;</span>
+</div><div class="line c"> </div><div class="line c"><span class="kt">double</span> <span class="nf">test</span><span class="p">(){</span>
+</div><div class="line c">    <span class="k">return</span> <span class="mf">1.0</span><span class="p">;</span>
+</div><div class="line c"><span class="p">}</span>
+</div><div class="line c"> </div><div class="line c"><span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+</div><div class="line c">    <span class="kt">double</span> <span class="n">x</span> <span class="o">=</span> <span class="n">test</span><span class="p">();</span>
+</div><div class="line c">    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%f&quot;</span><span class="p">,</span> <span class="n">x</span><span class="p">);</span>
+</div><div class="line c">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</div><div class="line c"><span class="p">}</span>
+</div></pre></td></tr></table></div></figure></notextile></div>
+<p>执行<code>Cl /Fa a.c</code></p>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption>a.asm<a href="http://blog.rexdf.org">MyBlog</a></figcaption><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div><div data-line="5" class="line-number"></div><div data-line="6" class="line-number"></div><div data-line="7" class="line-number"></div><div data-line="8" class="line-number"></div><div data-line="9" class="line-number"></div><div data-line="10" class="line-number"></div><div data-line="11" class="line-number"></div><div data-line="12" class="line-number"></div><div data-line="13" class="line-number"></div><div data-line="14" class="line-number"></div><div data-line="15" class="line-number"></div><div data-line="16" class="line-number"></div><div data-line="17" class="line-number"></div><div data-line="18" class="line-number"></div><div data-line="19" class="line-number"></div><div data-line="20" class="line-number"></div><div data-line="21" class="line-number"></div><div data-line="22" class="line-number"></div><div data-line="23" class="line-number"></div><div data-line="24" class="line-number"></div><div data-line="25" class="line-number"></div><div data-line="26" class="line-number"></div><div data-line="27" class="line-number"></div><div data-line="28" class="line-number"></div><div data-line="29" class="line-number"></div><div data-line="30" class="line-number"></div><div data-line="31" class="line-number"></div><div data-line="32" class="line-number"></div><div data-line="33" class="line-number"></div><div data-line="34" class="line-number"></div><div data-line="35" class="line-number"></div><div data-line="36" class="line-number"></div><div data-line="37" class="line-number"></div><div data-line="38" class="line-number"></div><div data-line="39" class="line-number"></div><div data-line="40" class="line-number"></div><div data-line="41" class="line-number"></div><div data-line="42" class="line-number"></div><div data-line="43" class="line-number"></div><div data-line="44" class="line-number"></div><div data-line="45" class="line-number"></div><div data-line="46" class="line-number"></div><div data-line="47" class="line-number"></div><div data-line="48" class="line-number"></div><div data-line="49" class="line-number"></div><div data-line="50" class="line-number"></div><div data-line="51" class="line-number"></div><div data-line="52" class="line-number"></div><div data-line="53" class="line-number"></div><div data-line="54" class="line-number"></div><div data-line="55" class="line-number"></div><div data-line="56" class="line-number"></div><div data-line="57" class="line-number"></div><div data-line="58" class="line-number"></div><div data-line="59" class="line-number"></div><div data-line="60" class="line-number"></div><div data-line="61" class="line-number"></div><div data-line="62" class="line-number"></div><div data-line="63" class="line-number"></div><div data-line="64" class="line-number"></div><div data-line="65" class="line-number"></div></pre></td><td class="main code"><pre><div class="line nasm"><span class="c1">; Listing generated by Microsoft (R) Optimizing Compiler Version 18.00.31101.0 </span>
+</div><div class="line nasm"> </div><div class="line nasm">	<span class="nf">TITLE</span>	<span class="nv">a.c</span>
+</div><div class="line nasm">	<span class="nf">.686P</span>
+</div><div class="line nasm">	<span class="nf">.XMM</span>
+</div><div class="line nasm">	<span class="nf">include</span> <span class="nv">listing.inc</span>
+</div><div class="line nasm">	<span class="nf">.model</span>	<span class="nv">flat</span>
+</div><div class="line nasm"> </div><div class="line nasm"><span class="nf">INCLUDELIB</span> <span class="nv">LIBCMT</span>
+</div><div class="line nasm"><span class="nf">INCLUDELIB</span> <span class="nv">OLDNAMES</span>
+</div><div class="line nasm"> </div><div class="line nasm"><span class="nf">_DATA</span>	<span class="ow">SEG</span><span class="nv">MENT</span>
+</div><div class="line nasm"><span class="nf">$SG3047</span>	<span class="nv">DB</span>	<span class="s">&#39;%f&#39;</span><span class="p">,</span> <span class="mh">00H</span>
+</div><div class="line nasm"><span class="nf">_DATA</span>	<span class="nv">ENDS</span>
+</div><div class="line nasm"><span class="nf">PUBLIC</span>	<span class="nv">_test</span>
+</div><div class="line nasm"><span class="nf">PUBLIC</span>	<span class="nv">_main</span>
+</div><div class="line nasm"><span class="nf">PUBLIC</span>	<span class="nv">__real@3ff0000000000000</span>
+</div><div class="line nasm"><span class="nf">EXTRN</span>	<span class="nv">_printf</span><span class="p">:</span><span class="nv">PROC</span>
+</div><div class="line nasm"><span class="nf">EXTRN</span>	<span class="nv">__fltused</span><span class="p">:</span><span class="kt">DWORD</span>
+</div><div class="line nasm"><span class="c1">;	COMDAT __real@3ff0000000000000</span>
+</div><div class="line nasm"><span class="nf">CONST</span>	<span class="ow">SEG</span><span class="nv">MENT</span>
+</div><div class="line nasm"><span class="nf">__real@3ff0000000000000</span> <span class="nv">DQ</span> <span class="mi">03</span><span class="nv">ff0000000000000r</span>	<span class="c1">; 1</span>
+</div><div class="line nasm"><span class="nf">CONST</span>	<span class="nv">ENDS</span>
+</div><div class="line nasm"><span class="c1">; Function compile flags: /Odtp</span>
+</div><div class="line nasm"><span class="nf">_TEXT</span>	<span class="ow">SEG</span><span class="nv">MENT</span>
+</div><div class="line nasm"><span class="nf">_x$</span> <span class="err">=</span> <span class="o">-</span><span class="mi">8</span>						<span class="c1">; size = 8</span>
+</div><div class="line nasm"><span class="nf">_main</span>	<span class="nv">PROC</span>
+</div><div class="line nasm"><span class="c1">; File a.c</span>
+</div><div class="line nasm"><span class="c1">; Line 7</span>
+</div><div class="line nasm">	<span class="nf">push</span>	<span class="nb">ebp</span>
+</div><div class="line nasm">	<span class="nf">mov</span>	<span class="nb">ebp</span><span class="p">,</span> <span class="nb">esp</span>
+</div><div class="line nasm">	<span class="nf">sub</span>	<span class="nb">esp</span><span class="p">,</span> <span class="mi">8</span>
+</div><div class="line nasm"><span class="c1">; Line 8</span>
+</div><div class="line nasm">	<span class="nf">call</span>	<span class="nv">_test</span>
+</div><div class="line nasm">	<span class="nf">fstp</span>	<span class="kt">QWORD</span> <span class="nv">PTR</span> <span class="nv">_x$</span><span class="p">[</span><span class="nb">ebp</span><span class="p">]</span>
+</div><div class="line nasm"><span class="c1">; Line 9</span>
+</div><div class="line nasm">	<span class="nf">sub</span>	<span class="nb">esp</span><span class="p">,</span> <span class="mi">8</span>
+</div><div class="line nasm">	<span class="nf">movsd</span>	<span class="nv">xmm0</span><span class="p">,</span> <span class="kt">QWORD</span> <span class="nv">PTR</span> <span class="nv">_x$</span><span class="p">[</span><span class="nb">ebp</span><span class="p">]</span>
+</div><div class="line nasm">	<span class="nf">movsd</span>	<span class="kt">QWORD</span> <span class="nv">PTR</span> <span class="p">[</span><span class="nb">esp</span><span class="p">],</span> <span class="nv">xmm0</span>
+</div><div class="line nasm">	<span class="nf">push</span>	<span class="nv">OFFSET</span> <span class="kc">$</span><span class="nv">SG3047</span>
+</div><div class="line nasm">	<span class="nf">call</span>	<span class="nv">_printf</span>
+</div><div class="line nasm">	<span class="nf">add</span>	<span class="nb">esp</span><span class="p">,</span> <span class="mi">12</span>					<span class="c1">; 0000000cH</span>
+</div><div class="line nasm"><span class="c1">; Line 10</span>
+</div><div class="line nasm">	<span class="nf">xor</span>	<span class="nb">eax</span><span class="p">,</span> <span class="nb">eax</span>
+</div><div class="line nasm"><span class="c1">; Line 11</span>
+</div><div class="line nasm">	<span class="nf">mov</span>	<span class="nb">esp</span><span class="p">,</span> <span class="nb">ebp</span>
+</div><div class="line nasm">	<span class="nf">pop</span>	<span class="nb">ebp</span>
+</div><div class="line nasm">	<span class="nf">ret</span>	<span class="mi">0</span>
+</div><div class="line nasm"><span class="nf">_main</span>	<span class="nv">ENDP</span>
+</div><div class="line nasm"><span class="nf">_TEXT</span>	<span class="nv">ENDS</span>
+</div><div class="line nasm"><span class="c1">; Function compile flags: /Odtp</span>
+</div><div class="line nasm"><span class="nf">_TEXT</span>	<span class="ow">SEG</span><span class="nv">MENT</span>
+</div><div class="line nasm"><span class="nf">_test</span>	<span class="nv">PROC</span>
+</div><div class="line nasm"><span class="c1">; File a.c</span>
+</div><div class="line nasm"><span class="c1">; Line 3</span>
+</div><div class="line nasm">	<span class="nf">push</span>	<span class="nb">ebp</span>
+</div><div class="line nasm">	<span class="nf">mov</span>	<span class="nb">ebp</span><span class="p">,</span> <span class="nb">esp</span>
+</div><div class="line nasm"><span class="c1">; Line 4</span>
+</div><div class="line nasm">	<span class="nf">fld1</span>
+</div><div class="line nasm"><span class="c1">; Line 5</span>
+</div><div class="line nasm">	<span class="nf">pop</span>	<span class="nb">ebp</span>
+</div><div class="line nasm">	<span class="nf">ret</span>	<span class="mi">0</span>
+</div><div class="line nasm"><span class="nf">_test</span>	<span class="nv">ENDP</span>
+</div><div class="line nasm"><span class="nf">_TEXT</span>	<span class="nv">ENDS</span>
+</div><div class="line nasm"><span class="nf">END</span>
+</div></pre></td></tr></table></div></figure></notextile></div>
+<p>我们可以发现实际上是利用的X87的ST(0)栈寄存器来传递的，然后编译器自动在call语句后面加了一句fstp来从X87里面取出来。</p>
+<h3 id="long-long">返回 long long</h3>
+<p>我们再来看看longlong的。</p>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption>b.c<a href="http://blog.rexdf.org">MyBlog</a></figcaption><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div><div data-line="5" class="line-number"></div><div data-line="6" class="line-number"></div><div data-line="7" class="line-number"></div><div data-line="8" class="line-number"></div><div data-line="9" class="line-number"></div><div data-line="10" class="line-number"></div><div data-line="11" class="line-number"></div></pre></td><td class="main code"><pre><div class="line c"><span class="cp">#include &lt;stdio.h&gt;</span>
+</div><div class="line c"> </div><div class="line c"><span class="kt">long</span> <span class="kt">long</span> <span class="nf">test</span><span class="p">(){</span>
+</div><div class="line c">    <span class="k">return</span> <span class="mf">1e10</span><span class="p">;</span>
+</div><div class="line c"><span class="p">}</span>
+</div><div class="line c"> </div><div class="line c"><span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+</div><div class="line c">    <span class="kt">long</span> <span class="kt">long</span> <span class="n">x</span> <span class="o">=</span> <span class="n">test</span><span class="p">();</span>
+</div><div class="line c">    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%lld&quot;</span><span class="p">,</span> <span class="n">x</span><span class="p">);</span>
+</div><div class="line c">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</div><div class="line c"><span class="p">}</span>
+</div></pre></td></tr></table></div></figure></notextile></div>
+<p>汇编代码</p>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption>b.asm<a href="http://blog.rexdf.org">MyBlog</a></figcaption><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div><div data-line="5" class="line-number"></div><div data-line="6" class="line-number"></div><div data-line="7" class="line-number"></div><div data-line="8" class="line-number"></div><div data-line="9" class="line-number"></div><div data-line="10" class="line-number"></div><div data-line="11" class="line-number"></div><div data-line="12" class="line-number"></div><div data-line="13" class="line-number"></div><div data-line="14" class="line-number"></div><div data-line="15" class="line-number"></div><div data-line="16" class="line-number"></div><div data-line="17" class="line-number"></div><div data-line="18" class="line-number"></div><div data-line="19" class="line-number"></div><div data-line="20" class="line-number"></div><div data-line="21" class="line-number"></div><div data-line="22" class="line-number"></div><div data-line="23" class="line-number"></div><div data-line="24" class="line-number"></div><div data-line="25" class="line-number"></div><div data-line="26" class="line-number"></div><div data-line="27" class="line-number"></div><div data-line="28" class="line-number"></div><div data-line="29" class="line-number"></div><div data-line="30" class="line-number"></div><div data-line="31" class="line-number"></div><div data-line="32" class="line-number"></div><div data-line="33" class="line-number"></div><div data-line="34" class="line-number"></div><div data-line="35" class="line-number"></div><div data-line="36" class="line-number"></div><div data-line="37" class="line-number"></div><div data-line="38" class="line-number"></div><div data-line="39" class="line-number"></div><div data-line="40" class="line-number"></div><div data-line="41" class="line-number"></div><div data-line="42" class="line-number"></div><div data-line="43" class="line-number"></div><div data-line="44" class="line-number"></div><div data-line="45" class="line-number"></div><div data-line="46" class="line-number"></div><div data-line="47" class="line-number"></div><div data-line="48" class="line-number"></div><div data-line="49" class="line-number"></div><div data-line="50" class="line-number"></div><div data-line="51" class="line-number"></div><div data-line="52" class="line-number"></div><div data-line="53" class="line-number"></div><div data-line="54" class="line-number"></div><div data-line="55" class="line-number"></div><div data-line="56" class="line-number"></div><div data-line="57" class="line-number"></div><div data-line="58" class="line-number"></div><div data-line="59" class="line-number"></div><div data-line="60" class="line-number"></div><div data-line="61" class="line-number"></div><div data-line="62" class="line-number"></div><div data-line="63" class="line-number"></div><div data-line="64" class="line-number"></div><div data-line="65" class="line-number"></div><div data-line="66" class="line-number"></div><div data-line="67" class="line-number"></div><div data-line="68" class="line-number"></div></pre></td><td class="main code"><pre><div class="line nasm"><span class="c1">; Listing generated by Microsoft (R) Optimizing Compiler Version 18.00.31101.0 </span>
+</div><div class="line nasm"> </div><div class="line nasm">	<span class="nf">TITLE</span>	<span class="nv">b.c</span>
+</div><div class="line nasm">	<span class="nf">.686P</span>
+</div><div class="line nasm">	<span class="nf">.XMM</span>
+</div><div class="line nasm">	<span class="nf">include</span> <span class="nv">listing.inc</span>
+</div><div class="line nasm">	<span class="nf">.model</span>	<span class="nv">flat</span>
+</div><div class="line nasm"> </div><div class="line nasm"><span class="nf">INCLUDELIB</span> <span class="nv">LIBCMT</span>
+</div><div class="line nasm"><span class="nf">INCLUDELIB</span> <span class="nv">OLDNAMES</span>
+</div><div class="line nasm"> </div><div class="line nasm"><span class="nf">_DATA</span>	<span class="ow">SEG</span><span class="nv">MENT</span>
+</div><div class="line nasm"><span class="nf">$SG3047</span>	<span class="nv">DB</span>	<span class="s">&#39;%lld&#39;</span><span class="p">,</span> <span class="mh">00H</span>
+</div><div class="line nasm"><span class="nf">_DATA</span>	<span class="nv">ENDS</span>
+</div><div class="line nasm"><span class="nf">PUBLIC</span>	<span class="nv">_test</span>
+</div><div class="line nasm"><span class="nf">PUBLIC</span>	<span class="nv">_main</span>
+</div><div class="line nasm"><span class="nf">PUBLIC</span>	<span class="nv">__real@4202a05f20000000</span>
+</div><div class="line nasm"><span class="nf">EXTRN</span>	<span class="nv">_printf</span><span class="p">:</span><span class="nv">PROC</span>
+</div><div class="line nasm"><span class="nf">EXTRN</span>	<span class="nv">__dtol3</span><span class="p">:</span><span class="nv">PROC</span>
+</div><div class="line nasm"><span class="c1">;	COMDAT __real@4202a05f20000000</span>
+</div><div class="line nasm"><span class="nf">CONST</span>	<span class="ow">SEG</span><span class="nv">MENT</span>
+</div><div class="line nasm"><span class="nf">__real@4202a05f20000000</span> <span class="nv">DQ</span> <span class="mi">04202</span><span class="nv">a05f20000000r</span>	<span class="c1">; 1e+010</span>
+</div><div class="line nasm"><span class="nf">CONST</span>	<span class="nv">ENDS</span>
+</div><div class="line nasm"><span class="c1">; Function compile flags: /Odtp</span>
+</div><div class="line nasm"><span class="nf">_TEXT</span>	<span class="ow">SEG</span><span class="nv">MENT</span>
+</div><div class="line nasm"><span class="nf">_x$</span> <span class="err">=</span> <span class="o">-</span><span class="mi">8</span>						<span class="c1">; size = 8</span>
+</div><div class="line nasm"><span class="nf">_main</span>	<span class="nv">PROC</span>
+</div><div class="line nasm"><span class="c1">; File b.c</span>
+</div><div class="line nasm"><span class="c1">; Line 7</span>
+</div><div class="line nasm">	<span class="nf">push</span>	<span class="nb">ebp</span>
+</div><div class="line nasm">	<span class="nf">mov</span>	<span class="nb">ebp</span><span class="p">,</span> <span class="nb">esp</span>
+</div><div class="line nasm">	<span class="nf">sub</span>	<span class="nb">esp</span><span class="p">,</span> <span class="mi">8</span>
+</div><div class="line nasm"><span class="c1">; Line 8</span>
+</div><div class="line nasm">	<span class="nf">call</span>	<span class="nv">_test</span>
+</div><div class="line nasm">	<span class="nf">mov</span>	<span class="kt">DWORD</span> <span class="nv">PTR</span> <span class="nv">_x$</span><span class="p">[</span><span class="nb">ebp</span><span class="p">],</span> <span class="nb">eax</span>
+</div><div class="line nasm">	<span class="nf">mov</span>	<span class="kt">DWORD</span> <span class="nv">PTR</span> <span class="nv">_x$</span><span class="p">[</span><span class="nb">ebp</span><span class="o">+</span><span class="mi">4</span><span class="p">],</span> <span class="nb">edx</span>
+</div><div class="line nasm"><span class="c1">; Line 9</span>
+</div><div class="line nasm">	<span class="nf">mov</span>	<span class="nb">eax</span><span class="p">,</span> <span class="kt">DWORD</span> <span class="nv">PTR</span> <span class="nv">_x$</span><span class="p">[</span><span class="nb">ebp</span><span class="o">+</span><span class="mi">4</span><span class="p">]</span>
+</div><div class="line nasm">	<span class="nf">push</span>	<span class="nb">eax</span>
+</div><div class="line nasm">	<span class="nf">mov</span>	<span class="nb">ecx</span><span class="p">,</span> <span class="kt">DWORD</span> <span class="nv">PTR</span> <span class="nv">_x$</span><span class="p">[</span><span class="nb">ebp</span><span class="p">]</span>
+</div><div class="line nasm">	<span class="nf">push</span>	<span class="nb">ecx</span>
+</div><div class="line nasm">	<span class="nf">push</span>	<span class="nv">OFFSET</span> <span class="kc">$</span><span class="nv">SG3047</span>
+</div><div class="line nasm">	<span class="nf">call</span>	<span class="nv">_printf</span>
+</div><div class="line nasm">	<span class="nf">add</span>	<span class="nb">esp</span><span class="p">,</span> <span class="mi">12</span>					<span class="c1">; 0000000cH</span>
+</div><div class="line nasm"><span class="c1">; Line 10</span>
+</div><div class="line nasm">	<span class="nf">xor</span>	<span class="nb">eax</span><span class="p">,</span> <span class="nb">eax</span>
+</div><div class="line nasm"><span class="c1">; Line 11</span>
+</div><div class="line nasm">	<span class="nf">mov</span>	<span class="nb">esp</span><span class="p">,</span> <span class="nb">ebp</span>
+</div><div class="line nasm">	<span class="nf">pop</span>	<span class="nb">ebp</span>
+</div><div class="line nasm">	<span class="nf">ret</span>	<span class="mi">0</span>
+</div><div class="line nasm"><span class="nf">_main</span>	<span class="nv">ENDP</span>
+</div><div class="line nasm"><span class="nf">_TEXT</span>	<span class="nv">ENDS</span>
+</div><div class="line nasm"><span class="c1">; Function compile flags: /Odtp</span>
+</div><div class="line nasm"><span class="nf">_TEXT</span>	<span class="ow">SEG</span><span class="nv">MENT</span>
+</div><div class="line nasm"><span class="nf">_test</span>	<span class="nv">PROC</span>
+</div><div class="line nasm"><span class="c1">; File b.c</span>
+</div><div class="line nasm"><span class="c1">; Line 3</span>
+</div><div class="line nasm">	<span class="nf">push</span>	<span class="nb">ebp</span>
+</div><div class="line nasm">	<span class="nf">mov</span>	<span class="nb">ebp</span><span class="p">,</span> <span class="nb">esp</span>
+</div><div class="line nasm"><span class="c1">; Line 4</span>
+</div><div class="line nasm">	<span class="nf">movsd</span>	<span class="nv">xmm0</span><span class="p">,</span> <span class="kt">QWORD</span> <span class="nv">PTR</span> <span class="nv">__real@4202a05f20000000</span>
+</div><div class="line nasm">	<span class="nf">call</span>	<span class="nv">__dtol3</span>
+</div><div class="line nasm"><span class="c1">; Line 5</span>
+</div><div class="line nasm">	<span class="nf">pop</span>	<span class="nb">ebp</span>
+</div><div class="line nasm">	<span class="nf">ret</span>	<span class="mi">0</span>
+</div><div class="line nasm"><span class="nf">_test</span>	<span class="nv">ENDP</span>
+</div><div class="line nasm"><span class="nf">_TEXT</span>	<span class="nv">ENDS</span>
+</div><div class="line nasm"><span class="nf">END</span>
+</div></pre></td></tr></table></div></figure></notextile></div>
+<p>这里返回前call了一个__dtol3的函数，从main里面我们可以看到long long值是被它转到了eax edx里面去了。s虽然我们不知道这个dtol3干啥用的，但是它作用应该是清晰的，从xmm0取出64位整数，放到eax edx中。 所以返回64位整数是用的eax 和edx来做的。</p>
+<p>返回结构体呢？也可以类似分析，只是代码比较多。这里就不贴出来了。看VC++实现的是caller预分配自己栈空间，通过<code>lea	eax, DWORD PTR $T1[ebp]；	push	eax； call	_test； add	esp, 4</code>传入一个buffer来让callee填。</p>
+<p>然后我们来看看gcc和clang是怎么处理的吧！</p>
+<h2 id="gcc">gcc</h2>
+<p>下面是gcc3.4.4的结果</p>
+<h3 id="double-1">double</h3>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption>a.asm<a href="http://blog.rexdf.org">MyBlog</a></figcaption><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div><div data-line="5" class="line-number"></div><div data-line="6" class="line-number"></div><div data-line="7" class="line-number"></div><div data-line="8" class="line-number"></div><div data-line="9" class="line-number"></div><div data-line="10" class="line-number"></div><div data-line="11" class="line-number"></div><div data-line="12" class="line-number"></div><div data-line="13" class="line-number"></div><div data-line="14" class="line-number"></div><div data-line="15" class="line-number"></div><div data-line="16" class="line-number"></div><div data-line="17" class="line-number"></div><div data-line="18" class="line-number"></div><div data-line="19" class="line-number"></div><div data-line="20" class="line-number"></div><div data-line="21" class="line-number"></div><div data-line="22" class="line-number"></div><div data-line="23" class="line-number"></div><div data-line="24" class="line-number"></div><div data-line="25" class="line-number"></div><div data-line="26" class="line-number"></div><div data-line="27" class="line-number"></div><div data-line="28" class="line-number"></div><div data-line="29" class="line-number"></div><div data-line="30" class="line-number"></div><div data-line="31" class="line-number"></div><div data-line="32" class="line-number"></div><div data-line="33" class="line-number"></div><div data-line="34" class="line-number"></div></pre></td><td class="main code"><pre><div class="line gas">	<span class="na">.file</span>	<span class="s">&quot;a.c&quot;</span>
+</div><div class="line gas">	<span class="na">.intel_syntax</span>
+</div><div class="line gas">	<span class="na">.text</span>
+</div><div class="line gas"><span class="na">.globl</span> <span class="no">_test</span>
+</div><div class="line gas">	<span class="na">.def</span>	<span class="no">_test</span><span class="err">;</span>	<span class="no">.scl</span>	<span class="mi">2</span><span class="err">;</span>	<span class="no">.type</span>	<span class="mi">32</span><span class="err">;</span>	<span class="no">.endef</span>
+</div><div class="line gas"><span class="nl">_test:</span>
+</div><div class="line gas">	<span class="nf">push</span>	<span class="no">ebp</span>
+</div><div class="line gas">	<span class="nf">mov</span>	<span class="no">ebp</span><span class="p">,</span> <span class="no">esp</span>
+</div><div class="line gas">	<span class="nf">fld1</span>
+</div><div class="line gas">	<span class="nf">pop</span>	<span class="no">ebp</span>
+</div><div class="line gas">	<span class="nf">ret</span>
+</div><div class="line gas">	<span class="na">.def</span>	<span class="no">___main</span><span class="err">;</span>	<span class="no">.scl</span>	<span class="mi">2</span><span class="err">;</span>	<span class="no">.type</span>	<span class="mi">32</span><span class="err">;</span>	<span class="no">.endef</span>
+</div><div class="line gas">	<span class="na">.section</span> <span class="no">.rdata</span><span class="p">,</span><span class="s">&quot;dr&quot;</span>
+</div><div class="line gas"><span class="nl">LC3:</span>
+</div><div class="line gas">	<span class="na">.ascii</span> <span class="s">&quot;%lld\0&quot;</span>
+</div><div class="line gas">	<span class="na">.text</span>
+</div><div class="line gas"><span class="na">.globl</span> <span class="no">_main</span>
+</div><div class="line gas">	<span class="na">.def</span>	<span class="no">_main</span><span class="err">;</span>	<span class="no">.scl</span>	<span class="mi">2</span><span class="err">;</span>	<span class="no">.type</span>	<span class="mi">32</span><span class="err">;</span>	<span class="no">.endef</span>
+</div><div class="line gas"><span class="nl">_main:</span>
+</div><div class="line gas">	<span class="nf">push</span>	<span class="no">ebp</span>
+</div><div class="line gas">	<span class="nf">mov</span>	<span class="no">ebp</span><span class="p">,</span> <span class="no">esp</span>
+</div><div class="line gas">	<span class="nf">sub</span>	<span class="no">esp</span><span class="p">,</span> <span class="mi">24</span>
+</div><div class="line gas">	<span class="nf">and</span>	<span class="no">esp</span><span class="p">,</span> <span class="p">-</span><span class="mi">16</span>
+</div><div class="line gas">	<span class="nf">mov</span>	<span class="no">eax</span><span class="p">,</span> <span class="mi">16</span>
+</div><div class="line gas">	<span class="nf">call</span>	<span class="no">__alloca</span>
+</div><div class="line gas">	<span class="nf">call</span>	<span class="no">___main</span>
+</div><div class="line gas">	<span class="nf">call</span>	<span class="no">_test</span>
+</div><div class="line gas">	<span class="nf">fstp</span>	<span class="no">QWORD</span> <span class="no">PTR</span> <span class="err">[</span><span class="no">esp</span><span class="err">+</span><span class="mi">4</span><span class="err">]</span>
+</div><div class="line gas">	<span class="nf">mov</span>	<span class="no">DWORD</span> <span class="no">PTR</span> <span class="err">[</span><span class="no">esp</span><span class="err">]</span><span class="p">,</span> <span class="no">OFFSET</span> <span class="no">FLAT</span><span class="p">:</span><span class="no">LC3</span>
+</div><div class="line gas">	<span class="nf">call</span>	<span class="no">_printf</span>
+</div><div class="line gas">	<span class="nf">mov</span>	<span class="no">eax</span><span class="p">,</span> <span class="mi">0</span>
+</div><div class="line gas">	<span class="nf">leave</span>
+</div><div class="line gas">	<span class="nf">ret</span>
+</div><div class="line gas">	<span class="na">.def</span>	<span class="no">_printf</span><span class="err">;</span>	<span class="no">.scl</span>	<span class="mi">3</span><span class="err">;</span>	<span class="no">.type</span>	<span class="mi">32</span><span class="err">;</span>	<span class="no">.endef</span>
+</div></pre></td></tr></table></div></figure></notextile></div>
+<h3 id="long-long-1">long long</h3>
+<p>double的</p>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption>b.asm<a href="http://blog.rexdf.org">MyBlog</a></figcaption><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div><div data-line="5" class="line-number"></div><div data-line="6" class="line-number"></div><div data-line="7" class="line-number"></div><div data-line="8" class="line-number"></div><div data-line="9" class="line-number"></div><div data-line="10" class="line-number"></div><div data-line="11" class="line-number"></div><div data-line="12" class="line-number"></div><div data-line="13" class="line-number"></div><div data-line="14" class="line-number"></div><div data-line="15" class="line-number"></div><div data-line="16" class="line-number"></div><div data-line="17" class="line-number"></div><div data-line="18" class="line-number"></div><div data-line="19" class="line-number"></div><div data-line="20" class="line-number"></div><div data-line="21" class="line-number"></div><div data-line="22" class="line-number"></div><div data-line="23" class="line-number"></div><div data-line="24" class="line-number"></div><div data-line="25" class="line-number"></div><div data-line="26" class="line-number"></div><div data-line="27" class="line-number"></div><div data-line="28" class="line-number"></div><div data-line="29" class="line-number"></div><div data-line="30" class="line-number"></div><div data-line="31" class="line-number"></div><div data-line="32" class="line-number"></div><div data-line="33" class="line-number"></div><div data-line="34" class="line-number"></div><div data-line="35" class="line-number"></div><div data-line="36" class="line-number"></div></pre></td><td class="main code"><pre><div class="line gas">	<span class="na">.file</span>	<span class="s">&quot;b.c&quot;</span>
+</div><div class="line gas">	<span class="na">.intel_syntax</span>
+</div><div class="line gas">	<span class="na">.text</span>
+</div><div class="line gas"><span class="na">.globl</span> <span class="no">_test</span>
+</div><div class="line gas">	<span class="na">.def</span>	<span class="no">_test</span><span class="err">;</span>	<span class="no">.scl</span>	<span class="mi">2</span><span class="err">;</span>	<span class="no">.type</span>	<span class="mi">32</span><span class="err">;</span>	<span class="no">.endef</span>
+</div><div class="line gas"><span class="nl">_test:</span>
+</div><div class="line gas">	<span class="nf">push</span>	<span class="no">ebp</span>
+</div><div class="line gas">	<span class="nf">mov</span>	<span class="no">ebp</span><span class="p">,</span> <span class="no">esp</span>
+</div><div class="line gas">	<span class="nf">mov</span>	<span class="no">eax</span><span class="p">,</span> <span class="mi">1</span>
+</div><div class="line gas">	<span class="nf">mov</span>	<span class="no">edx</span><span class="p">,</span> <span class="mi">0</span>
+</div><div class="line gas">	<span class="nf">pop</span>	<span class="no">ebp</span>
+</div><div class="line gas">	<span class="nf">ret</span>
+</div><div class="line gas">	<span class="na">.def</span>	<span class="no">___main</span><span class="err">;</span>	<span class="no">.scl</span>	<span class="mi">2</span><span class="err">;</span>	<span class="no">.type</span>	<span class="mi">32</span><span class="err">;</span>	<span class="no">.endef</span>
+</div><div class="line gas">	<span class="na">.section</span> <span class="no">.rdata</span><span class="p">,</span><span class="s">&quot;dr&quot;</span>
+</div><div class="line gas"><span class="nl">LC0:</span>
+</div><div class="line gas">	<span class="na">.ascii</span> <span class="s">&quot;%lld\0&quot;</span>
+</div><div class="line gas">	<span class="na">.text</span>
+</div><div class="line gas"><span class="na">.globl</span> <span class="no">_main</span>
+</div><div class="line gas">	<span class="na">.def</span>	<span class="no">_main</span><span class="err">;</span>	<span class="no">.scl</span>	<span class="mi">2</span><span class="err">;</span>	<span class="no">.type</span>	<span class="mi">32</span><span class="err">;</span>	<span class="no">.endef</span>
+</div><div class="line gas"><span class="nl">_main:</span>
+</div><div class="line gas">	<span class="nf">push</span>	<span class="no">ebp</span>
+</div><div class="line gas">	<span class="nf">mov</span>	<span class="no">ebp</span><span class="p">,</span> <span class="no">esp</span>
+</div><div class="line gas">	<span class="nf">sub</span>	<span class="no">esp</span><span class="p">,</span> <span class="mi">24</span>
+</div><div class="line gas">	<span class="nf">and</span>	<span class="no">esp</span><span class="p">,</span> <span class="p">-</span><span class="mi">16</span>
+</div><div class="line gas">	<span class="nf">mov</span>	<span class="no">eax</span><span class="p">,</span> <span class="mi">16</span>
+</div><div class="line gas">	<span class="nf">call</span>	<span class="no">__alloca</span>
+</div><div class="line gas">	<span class="nf">call</span>	<span class="no">___main</span>
+</div><div class="line gas">	<span class="nf">call</span>	<span class="no">_test</span>
+</div><div class="line gas">	<span class="nf">mov</span>	<span class="no">DWORD</span> <span class="no">PTR</span> <span class="err">[</span><span class="no">esp</span><span class="err">+</span><span class="mi">4</span><span class="err">]</span><span class="p">,</span> <span class="no">eax</span>
+</div><div class="line gas">	<span class="nf">mov</span>	<span class="no">DWORD</span> <span class="no">PTR</span> <span class="err">[</span><span class="no">esp</span><span class="err">+</span><span class="mi">8</span><span class="err">]</span><span class="p">,</span> <span class="no">edx</span>
+</div><div class="line gas">	<span class="nf">mov</span>	<span class="no">DWORD</span> <span class="no">PTR</span> <span class="err">[</span><span class="no">esp</span><span class="err">]</span><span class="p">,</span> <span class="no">OFFSET</span> <span class="no">FLAT</span><span class="p">:</span><span class="no">LC0</span>
+</div><div class="line gas">	<span class="nf">call</span>	<span class="no">_printf</span>
+</div><div class="line gas">	<span class="nf">mov</span>	<span class="no">eax</span><span class="p">,</span> <span class="mi">0</span>
+</div><div class="line gas">	<span class="nf">leave</span>
+</div><div class="line gas">	<span class="nf">ret</span>
+</div><div class="line gas">	<span class="na">.def</span>	<span class="no">_printf</span><span class="err">;</span>	<span class="no">.scl</span>	<span class="mi">3</span><span class="err">;</span>	<span class="no">.type</span>	<span class="mi">32</span><span class="err">;</span>	<span class="no">.endef</span>
+</div></pre></td></tr></table></div></figure></notextile></div>
+<p>可以发现gcc的代码直白很多，没有msvc的那种负担，但是二进制代码和汇编代码好像还不完全一样，最终代码似乎并没有完全按照他编译出来的汇编翻译，应该是还有后续的优化过程。之所以我不贴gcc4.9的代码，是因为它优化比较厉害，直接函数都不调用了。</p>
+<h2 id="clang">clang</h2>
+<p>下面是clang 3.4.2</p>
+<h3 id="double-2">double</h3>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption>a.asm<a href="http://blog.rexdf.org">MyBlog</a></figcaption><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div><div data-line="5" class="line-number"></div><div data-line="6" class="line-number"></div><div data-line="7" class="line-number"></div><div data-line="8" class="line-number"></div><div data-line="9" class="line-number"></div><div data-line="10" class="line-number"></div><div data-line="11" class="line-number"></div><div data-line="12" class="line-number"></div><div data-line="13" class="line-number"></div><div data-line="14" class="line-number"></div><div data-line="15" class="line-number"></div><div data-line="16" class="line-number"></div><div data-line="17" class="line-number"></div><div data-line="18" class="line-number"></div><div data-line="19" class="line-number"></div><div data-line="20" class="line-number"></div><div data-line="21" class="line-number"></div><div data-line="22" class="line-number"></div><div data-line="23" class="line-number"></div><div data-line="24" class="line-number"></div><div data-line="25" class="line-number"></div><div data-line="26" class="line-number"></div><div data-line="27" class="line-number"></div><div data-line="28" class="line-number"></div><div data-line="29" class="line-number"></div><div data-line="30" class="line-number"></div><div data-line="31" class="line-number"></div><div data-line="32" class="line-number"></div><div data-line="33" class="line-number"></div><div data-line="34" class="line-number"></div><div data-line="35" class="line-number"></div><div data-line="36" class="line-number"></div><div data-line="37" class="line-number"></div><div data-line="38" class="line-number"></div><div data-line="39" class="line-number"></div><div data-line="40" class="line-number"></div><div data-line="41" class="line-number"></div><div data-line="42" class="line-number"></div><div data-line="43" class="line-number"></div><div data-line="44" class="line-number"></div><div data-line="45" class="line-number"></div><div data-line="46" class="line-number"></div><div data-line="47" class="line-number"></div><div data-line="48" class="line-number"></div><div data-line="49" class="line-number"></div><div data-line="50" class="line-number"></div><div data-line="51" class="line-number"></div><div data-line="52" class="line-number"></div><div data-line="53" class="line-number"></div><div data-line="54" class="line-number"></div><div data-line="55" class="line-number"></div><div data-line="56" class="line-number"></div><div data-line="57" class="line-number"></div><div data-line="58" class="line-number"></div></pre></td><td class="main code"><pre><div class="line llvm">	<span class="p">.</span><span class="err">def</span>	 <span class="vg">@feat.00</span><span class="c">;</span>
+</div><div class="line llvm">	<span class="p">.</span><span class="err">scl</span>	<span class="m">3</span><span class="c">;</span>
+</div><div class="line llvm">	<span class="p">.</span><span class="k">type</span>	<span class="m">0</span><span class="c">;</span>
+</div><div class="line llvm">	<span class="p">.</span><span class="err">endef</span>
+</div><div class="line llvm">	<span class="p">.</span><span class="err">globl</span>	<span class="vg">@feat.00</span>
+</div><div class="line llvm"><span class="vg">@feat.00</span> <span class="p">=</span> <span class="m">1</span>
+</div><div class="line llvm">	<span class="p">.</span><span class="err">def</span>	 <span class="err">_test</span><span class="c">;</span>
+</div><div class="line llvm">	<span class="p">.</span><span class="err">scl</span>	<span class="m">2</span><span class="c">;</span>
+</div><div class="line llvm">	<span class="p">.</span><span class="k">type</span>	<span class="m">32</span><span class="c">;</span>
+</div><div class="line llvm">	<span class="p">.</span><span class="err">endef</span>
+</div><div class="line llvm">	<span class="p">.</span><span class="err">text</span>
+</div><div class="line llvm">	<span class="p">.</span><span class="err">globl</span>	<span class="err">_test</span>
+</div><div class="line llvm">	<span class="p">.</span><span class="k">align</span>	<span class="m">16</span><span class="p">,</span> <span class="m">0x90</span>
+</div><div class="line llvm"><span class="nl">_test:</span>
+</div><div class="line llvm">	<span class="err">push</span>	<span class="err">ebp</span>
+</div><div class="line llvm">	<span class="err">mov</span>	<span class="err">ebp</span><span class="p">,</span> <span class="err">esp</span>
+</div><div class="line llvm">	<span class="k">and</span>	<span class="err">esp</span><span class="p">,</span> <span class="m">-8</span>
+</div><div class="line llvm">	<span class="k">sub</span>	<span class="err">esp</span><span class="p">,</span> <span class="m">8</span>
+</div><div class="line llvm">	<span class="err">mov</span>	<span class="err">ea</span><span class="k">x</span><span class="p">,</span> <span class="m">1</span>
+</div><div class="line llvm">	<span class="err">cvts</span><span class="k">i2</span><span class="err">sd</span>	<span class="err">xmm</span><span class="m">0</span><span class="p">,</span> <span class="err">ea</span><span class="k">x</span>
+</div><div class="line llvm">	<span class="err">fld</span><span class="m">1</span>
+</div><div class="line llvm">	<span class="err">movsd</span>	<span class="err">qw</span><span class="k">ord</span> <span class="err">ptr</span> <span class="p">[</span><span class="err">esp</span><span class="p">],</span> <span class="err">xmm</span><span class="m">0</span>
+</div><div class="line llvm">	<span class="err">mov</span>	<span class="err">esp</span><span class="p">,</span> <span class="err">ebp</span>
+</div><div class="line llvm">	<span class="err">pop</span>	<span class="err">ebp</span>
+</div><div class="line llvm">	<span class="k">ret</span>
+</div><div class="line llvm"> </div><div class="line llvm">	<span class="p">.</span><span class="err">def</span>	 <span class="err">_main</span><span class="c">;</span>
+</div><div class="line llvm">	<span class="p">.</span><span class="err">scl</span>	<span class="m">2</span><span class="c">;</span>
+</div><div class="line llvm">	<span class="p">.</span><span class="k">type</span>	<span class="m">32</span><span class="c">;</span>
+</div><div class="line llvm">	<span class="p">.</span><span class="err">endef</span>
+</div><div class="line llvm">	<span class="p">.</span><span class="err">globl</span>	<span class="err">_main</span>
+</div><div class="line llvm">	<span class="p">.</span><span class="k">align</span>	<span class="m">16</span><span class="p">,</span> <span class="m">0x90</span>
+</div><div class="line llvm"><span class="nl">_main:</span>
+</div><div class="line llvm">	<span class="err">push</span>	<span class="err">ebp</span>
+</div><div class="line llvm">	<span class="err">mov</span>	<span class="err">ebp</span><span class="p">,</span> <span class="err">esp</span>
+</div><div class="line llvm">	<span class="k">and</span>	<span class="err">esp</span><span class="p">,</span> <span class="m">-8</span>
+</div><div class="line llvm">	<span class="k">sub</span>	<span class="err">esp</span><span class="p">,</span> <span class="m">40</span>
+</div><div class="line llvm">	<span class="k">call</span>	<span class="err">___main</span>
+</div><div class="line llvm">	<span class="err">mov</span>	<span class="err">dw</span><span class="k">ord</span> <span class="err">ptr</span> <span class="p">[</span><span class="err">esp</span> <span class="err">+</span> <span class="m">36</span><span class="p">],</span> <span class="m">0</span>
+</div><div class="line llvm">	<span class="k">call</span>	<span class="err">_test</span>
+</div><div class="line llvm">	<span class="err">fstp</span>	<span class="err">qw</span><span class="k">ord</span> <span class="err">ptr</span> <span class="p">[</span><span class="err">esp</span> <span class="err">+</span> <span class="m">16</span><span class="p">]</span>
+</div><div class="line llvm">	<span class="err">movsd</span>	<span class="err">xmm</span><span class="m">0</span><span class="p">,</span> <span class="err">qw</span><span class="k">ord</span> <span class="err">ptr</span> <span class="p">[</span><span class="err">esp</span> <span class="err">+</span> <span class="m">16</span><span class="p">]</span>
+</div><div class="line llvm">	<span class="err">lea</span>	<span class="err">ea</span><span class="k">x</span><span class="p">,</span> <span class="err">dw</span><span class="k">ord</span> <span class="err">ptr</span> <span class="p">[</span><span class="err">L_</span><span class="p">.</span><span class="err">str</span><span class="p">]</span>
+</div><div class="line llvm">	<span class="err">movsd</span>	<span class="err">qw</span><span class="k">ord</span> <span class="err">ptr</span> <span class="p">[</span><span class="err">esp</span> <span class="err">+</span> <span class="m">24</span><span class="p">],</span> <span class="err">xmm</span><span class="m">0</span>
+</div><div class="line llvm">	<span class="err">movsd</span>	<span class="err">xmm</span><span class="m">0</span><span class="p">,</span> <span class="err">qw</span><span class="k">ord</span> <span class="err">ptr</span> <span class="p">[</span><span class="err">esp</span> <span class="err">+</span> <span class="m">24</span><span class="p">]</span>
+</div><div class="line llvm">	<span class="err">mov</span>	<span class="err">dw</span><span class="k">ord</span> <span class="err">ptr</span> <span class="p">[</span><span class="err">esp</span><span class="p">],</span> <span class="err">ea</span><span class="k">x</span>
+</div><div class="line llvm">	<span class="err">movsd</span>	<span class="err">qw</span><span class="k">ord</span> <span class="err">ptr</span> <span class="p">[</span><span class="err">esp</span> <span class="err">+</span> <span class="m">4</span><span class="p">],</span> <span class="err">xmm</span><span class="m">0</span>
+</div><div class="line llvm">	<span class="k">call</span>	<span class="err">_printf</span>
+</div><div class="line llvm">	<span class="err">mov</span>	<span class="err">ec</span><span class="k">x</span><span class="p">,</span> <span class="m">0</span>
+</div><div class="line llvm">	<span class="err">mov</span>	<span class="err">dw</span><span class="k">ord</span> <span class="err">ptr</span> <span class="p">[</span><span class="err">esp</span> <span class="err">+</span> <span class="m">12</span><span class="p">],</span> <span class="err">ea</span><span class="k">x</span>
+</div><div class="line llvm">	<span class="err">mov</span>	<span class="err">ea</span><span class="k">x</span><span class="p">,</span> <span class="err">ec</span><span class="k">x</span>
+</div><div class="line llvm">	<span class="err">mov</span>	<span class="err">esp</span><span class="p">,</span> <span class="err">ebp</span>
+</div><div class="line llvm">	<span class="err">pop</span>	<span class="err">ebp</span>
+</div><div class="line llvm">	<span class="k">ret</span>
+</div><div class="line llvm"> </div><div class="line llvm">	<span class="p">.</span><span class="k">section</span>	<span class="p">.</span><span class="err">rdata</span><span class="p">,</span><span class="s">&quot;r&quot;</span>
+</div><div class="line llvm"><span class="nl">L_.str:</span>
+</div><div class="line llvm">	<span class="p">.</span><span class="err">asciz</span>	<span class="s">&quot;%f&quot;</span>
+</div></pre></td></tr></table></div></figure></notextile></div>
+<h3 id="long-long-2">long long</h3>
+<p>double的</p>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption>b.asm<a href="http://blog.rexdf.org">MyBlog</a></figcaption><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div><div data-line="5" class="line-number"></div><div data-line="6" class="line-number"></div><div data-line="7" class="line-number"></div><div data-line="8" class="line-number"></div><div data-line="9" class="line-number"></div><div data-line="10" class="line-number"></div><div data-line="11" class="line-number"></div><div data-line="12" class="line-number"></div><div data-line="13" class="line-number"></div><div data-line="14" class="line-number"></div><div data-line="15" class="line-number"></div><div data-line="16" class="line-number"></div><div data-line="17" class="line-number"></div><div data-line="18" class="line-number"></div><div data-line="19" class="line-number"></div><div data-line="20" class="line-number"></div><div data-line="21" class="line-number"></div><div data-line="22" class="line-number"></div><div data-line="23" class="line-number"></div><div data-line="24" class="line-number"></div><div data-line="25" class="line-number"></div><div data-line="26" class="line-number"></div><div data-line="27" class="line-number"></div><div data-line="28" class="line-number"></div><div data-line="29" class="line-number"></div><div data-line="30" class="line-number"></div><div data-line="31" class="line-number"></div><div data-line="32" class="line-number"></div><div data-line="33" class="line-number"></div><div data-line="34" class="line-number"></div><div data-line="35" class="line-number"></div><div data-line="36" class="line-number"></div><div data-line="37" class="line-number"></div><div data-line="38" class="line-number"></div><div data-line="39" class="line-number"></div><div data-line="40" class="line-number"></div><div data-line="41" class="line-number"></div><div data-line="42" class="line-number"></div><div data-line="43" class="line-number"></div><div data-line="44" class="line-number"></div><div data-line="45" class="line-number"></div><div data-line="46" class="line-number"></div><div data-line="47" class="line-number"></div><div data-line="48" class="line-number"></div><div data-line="49" class="line-number"></div><div data-line="50" class="line-number"></div><div data-line="51" class="line-number"></div><div data-line="52" class="line-number"></div><div data-line="53" class="line-number"></div><div data-line="54" class="line-number"></div></pre></td><td class="main code"><pre><div class="line llvm">	<span class="p">.</span><span class="err">def</span>	 <span class="vg">@feat.00</span><span class="c">;</span>
+</div><div class="line llvm">	<span class="p">.</span><span class="err">scl</span>	<span class="m">3</span><span class="c">;</span>
+</div><div class="line llvm">	<span class="p">.</span><span class="k">type</span>	<span class="m">0</span><span class="c">;</span>
+</div><div class="line llvm">	<span class="p">.</span><span class="err">endef</span>
+</div><div class="line llvm">	<span class="p">.</span><span class="err">globl</span>	<span class="vg">@feat.00</span>
+</div><div class="line llvm"><span class="vg">@feat.00</span> <span class="p">=</span> <span class="m">1</span>
+</div><div class="line llvm">	<span class="p">.</span><span class="err">def</span>	 <span class="err">_test</span><span class="c">;</span>
+</div><div class="line llvm">	<span class="p">.</span><span class="err">scl</span>	<span class="m">2</span><span class="c">;</span>
+</div><div class="line llvm">	<span class="p">.</span><span class="k">type</span>	<span class="m">32</span><span class="c">;</span>
+</div><div class="line llvm">	<span class="p">.</span><span class="err">endef</span>
+</div><div class="line llvm">	<span class="p">.</span><span class="err">text</span>
+</div><div class="line llvm">	<span class="p">.</span><span class="err">globl</span>	<span class="err">_test</span>
+</div><div class="line llvm">	<span class="p">.</span><span class="k">align</span>	<span class="m">16</span><span class="p">,</span> <span class="m">0x90</span>
+</div><div class="line llvm"><span class="nl">_test:</span>
+</div><div class="line llvm">	<span class="err">push</span>	<span class="err">ebp</span>
+</div><div class="line llvm">	<span class="err">mov</span>	<span class="err">ebp</span><span class="p">,</span> <span class="err">esp</span>
+</div><div class="line llvm">	<span class="err">mov</span>	<span class="err">ea</span><span class="k">x</span><span class="p">,</span> <span class="m">1</span>
+</div><div class="line llvm">	<span class="k">xor</span>	<span class="err">ed</span><span class="k">x</span><span class="p">,</span> <span class="err">ed</span><span class="k">x</span>
+</div><div class="line llvm">	<span class="err">pop</span>	<span class="err">ebp</span>
+</div><div class="line llvm">	<span class="k">ret</span>
+</div><div class="line llvm"> </div><div class="line llvm">	<span class="p">.</span><span class="err">def</span>	 <span class="err">_main</span><span class="c">;</span>
+</div><div class="line llvm">	<span class="p">.</span><span class="err">scl</span>	<span class="m">2</span><span class="c">;</span>
+</div><div class="line llvm">	<span class="p">.</span><span class="k">type</span>	<span class="m">32</span><span class="c">;</span>
+</div><div class="line llvm">	<span class="p">.</span><span class="err">endef</span>
+</div><div class="line llvm">	<span class="p">.</span><span class="err">globl</span>	<span class="err">_main</span>
+</div><div class="line llvm">	<span class="p">.</span><span class="k">align</span>	<span class="m">16</span><span class="p">,</span> <span class="m">0x90</span>
+</div><div class="line llvm"><span class="nl">_main:</span>
+</div><div class="line llvm">	<span class="err">push</span>	<span class="err">ebp</span>
+</div><div class="line llvm">	<span class="err">mov</span>	<span class="err">ebp</span><span class="p">,</span> <span class="err">esp</span>
+</div><div class="line llvm">	<span class="k">and</span>	<span class="err">esp</span><span class="p">,</span> <span class="m">-8</span>
+</div><div class="line llvm">	<span class="k">sub</span>	<span class="err">esp</span><span class="p">,</span> <span class="m">40</span>
+</div><div class="line llvm">	<span class="k">call</span>	<span class="err">___main</span>
+</div><div class="line llvm">	<span class="err">lea</span>	<span class="err">ea</span><span class="k">x</span><span class="p">,</span> <span class="err">dw</span><span class="k">ord</span> <span class="err">ptr</span> <span class="p">[</span><span class="err">L_</span><span class="p">.</span><span class="err">str</span><span class="p">]</span>
+</div><div class="line llvm">	<span class="err">mov</span>	<span class="err">dw</span><span class="k">ord</span> <span class="err">ptr</span> <span class="p">[</span><span class="err">esp</span> <span class="err">+</span> <span class="m">36</span><span class="p">],</span> <span class="m">0</span>
+</div><div class="line llvm">	<span class="err">mov</span>	<span class="err">dw</span><span class="k">ord</span> <span class="err">ptr</span> <span class="p">[</span><span class="err">esp</span> <span class="err">+</span> <span class="m">20</span><span class="p">],</span> <span class="err">ea</span><span class="k">x</span>
+</div><div class="line llvm">	<span class="k">call</span>	<span class="err">_test</span>
+</div><div class="line llvm">	<span class="err">mov</span>	<span class="err">dw</span><span class="k">ord</span> <span class="err">ptr</span> <span class="p">[</span><span class="err">esp</span> <span class="err">+</span> <span class="m">28</span><span class="p">],</span> <span class="err">ed</span><span class="k">x</span>
+</div><div class="line llvm">	<span class="err">mov</span>	<span class="err">dw</span><span class="k">ord</span> <span class="err">ptr</span> <span class="p">[</span><span class="err">esp</span> <span class="err">+</span> <span class="m">24</span><span class="p">],</span> <span class="err">ea</span><span class="k">x</span>
+</div><div class="line llvm">	<span class="err">mov</span>	<span class="err">ec</span><span class="k">x</span><span class="p">,</span> <span class="err">esp</span>
+</div><div class="line llvm">	<span class="err">mov</span>	<span class="err">dw</span><span class="k">ord</span> <span class="err">ptr</span> <span class="p">[</span><span class="err">ec</span><span class="k">x</span> <span class="err">+</span> <span class="m">8</span><span class="p">],</span> <span class="err">ed</span><span class="k">x</span>
+</div><div class="line llvm">	<span class="err">mov</span>	<span class="err">dw</span><span class="k">ord</span> <span class="err">ptr</span> <span class="p">[</span><span class="err">ec</span><span class="k">x</span> <span class="err">+</span> <span class="m">4</span><span class="p">],</span> <span class="err">ea</span><span class="k">x</span>
+</div><div class="line llvm">	<span class="err">mov</span>	<span class="err">dw</span><span class="k">ord</span> <span class="err">ptr</span> <span class="p">[</span><span class="err">ec</span><span class="k">x</span><span class="p">],</span> <span class="err">L_</span><span class="p">.</span><span class="err">str</span>
+</div><div class="line llvm">	<span class="k">call</span>	<span class="err">_printf</span>
+</div><div class="line llvm">	<span class="err">mov</span>	<span class="err">ec</span><span class="k">x</span><span class="p">,</span> <span class="m">0</span>
+</div><div class="line llvm">	<span class="err">mov</span>	<span class="err">dw</span><span class="k">ord</span> <span class="err">ptr</span> <span class="p">[</span><span class="err">esp</span> <span class="err">+</span> <span class="m">16</span><span class="p">],</span> <span class="err">ea</span><span class="k">x</span>
+</div><div class="line llvm">	<span class="err">mov</span>	<span class="err">ea</span><span class="k">x</span><span class="p">,</span> <span class="err">ec</span><span class="k">x</span>
+</div><div class="line llvm">	<span class="err">mov</span>	<span class="err">esp</span><span class="p">,</span> <span class="err">ebp</span>
+</div><div class="line llvm">	<span class="err">pop</span>	<span class="err">ebp</span>
+</div><div class="line llvm">	<span class="k">ret</span>
+</div><div class="line llvm"> </div><div class="line llvm">	<span class="p">.</span><span class="k">section</span>	<span class="p">.</span><span class="err">rdata</span><span class="p">,</span><span class="s">&quot;r&quot;</span>
+</div><div class="line llvm"><span class="nl">L_.str:</span>
+</div><div class="line llvm">	<span class="p">.</span><span class="err">asciz</span>	<span class="s">&quot;%lld&quot;</span>
+</div></pre></td></tr></table></div></figure></notextile></div>
+</div>
+<footer>
+<p class="meta">
+<span class="byline author vcard">Posted by <span class="fn">Rexdf</span></span>
+<time class="data-article month-04 season-spring" datetime="2015-04-23T18:51:34+08:00" pubdate><span class="month">Apr</span> <span class="day">23rd</span> <span class="year">2015</span></time>
+<span class="categories">
+<a class="category" href="/blog/categories/assembly/">Assembly</a>
+</span>
+</p>
+<div class="sharing">
+</div>
+<p class="meta">
+<a class="basic-alignment left" href="/blog/2015/04/04/fa-xian-ge-xin-huan-jing-msys2/" title="Previous Post: 发现个新环境msys2">&laquo; 发现个新环境msys2</a>
+<a class="basic-alignment right" href="/blog/2015/04/29/bian-yi-filezillazhi-2/" title="Next Post: 编译filezilla之2">编译filezilla之2 &raquo;</a>
+</p>
+</footer>
+</article>
+<section>
+<h1>Comments</h1>
+<div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
+</div>
+<aside class="sidebar">
+<section>
+<h1>Categories</h1>
+<ul id="categories">
+<li class="category"><a href="/blog/categories/acm/">ACM <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/algorithm/">Algorithm <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/assembly/">Assembly <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/cygwin/">Cygwin <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/gnu/">GNU <sup>8</sup></a></li>
+<li class="category"><a href="/blog/categories/math/">Math <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/octopress/">Octopress <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/programming/">Programming <sup>6</sup></a></li>
+<li class="category"><a href="/blog/categories/security/">Security <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sublime/">Sublime <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/synology/">Synology <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sysadmin/">SysAdmin <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/web/">Web <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/windows/">Windows <sup>7</sup></a></li>
+<li class="category"><a href="/blog/categories/proxmox/">proxmox <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/ri-chang/">日常 <sup>37</sup></a></li>
+</ul>
+</section>
+<section>
+<h1>Recent Posts</h1>
+<ul id="recent_posts">
+<li class="post">
+<a href="/blog/2024/12/16/fu-wu-qi-wa-kuang-bing-du-de-cha-sha/">服务器挖矿病毒的查杀</a>
+</li>
+<li class="post">
+<a href="/blog/2021/07/11/apple-m1-bian-yi-tensorflow/">Apple M1 编译tensorflow</a>
+</li>
+<li class="post">
+<a href="/blog/2021/02/27/chromiumbian-ma-qi-wen-ti/">Chromium编码器问题</a>
+</li>
+<li class="post">
+<a href="/blog/2020/12/13/proxmoxbi-ji/">Proxmox笔记</a>
+</li>
+<li class="post">
+<a href="/blog/2020/11/15/lun-yan-du-yu-shen-du/">论广度与深度</a>
+</li>
+</ul>
+</section>
+<section>
+<iframe frameborder="0" scrolling="no" referrerpolicy="unsafe-url" style="width:283px;height:200px" src="https://t.rexdf.org/?m=app&a=showwidget&name=rexdf&type=1&width=283px&height=500px"></iframe>
+</section>
+<section>
+<h1>GitHub Repos</h1>
+<ul id="gh_repos">
+<li class="loading">Status updating...</li>
+</ul>
+<a href="https://github.com/rexdf">@rexdf</a> on GitHub
+<script type="text/javascript">$(document).ready(function(){if(!window.jXHR){var e=document.createElement("script");e.type="text/javascript",e.src="/javascripts/libs/jXHR.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}github.showRepos({user:"rexdf",count:0,skip_forks:!0,target:"#gh_repos"})})</script>
+</section>
+</aside>
+</div>
+</div>
+<footer role="contentinfo"><p>
+<span class="credit">Copyright &copy; 2024 - Rexdf -</span> |
+<span class="credit">Powered by <a name="bottoms" target="_blank" href="http://octopress.org">Octopress</a></span> |
+<span class="credit">Theme by ：<a href="https://blog.rexdf.org/" target="_blank" rel="theme">Rexdf</a></span> |
+<span class="credit">Host by：<a href="https://github.com/" target="_blank" rel="host">Github.com</a></span> |
+<span class="credit">版权声明：<a href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" target="_blank" rel="license">CC BY-NC-SA 3.0</a><img src="https://analytics.rexdf.net/piwik.php?idsite=1&amp;rec=1" style="border:0" alt="" referrerpolicy="no-referrer-when-downgrade"></span>|
+<span class="credit"><a href="/sitemap.xml" rel="sitemap">sitemap</a></span>
+</p>
+<script type="text/javascript" src="https://tajs.qq.com/stats?sId=30296377" charset="UTF-8"></script>
+</footer>
+<script type="text/javascript">var disqus_shortname="rexdf",disqus_identifier="https://i.rexdf.org/blog/2015/04/23/cru-he-fan-hui-doubleyu-longlong/",disqus_url="https://i.rexdf.org/blog/2015/04/23/cru-he-fan-hui-doubleyu-longlong/",disqus_script="embed.js";!function(){var e=document.createElement("script");e.type="text/javascript",e.async=!0,e.src="//"+disqus_shortname+".disqus.com/"+disqus_script,(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(e)}()</script>
+<script type="text/javascript">$(function(){$(".entry-content").each(function(t){var r=t;$(this).find("img.fancybox").each(function(){var t=$(this),a=t.attr("title"),n=t.attr("class");t.removeAttr("class"),t.wrap('<a href="'+this.src+'" class="'+n+'" rel="gallery'+r+'" />'),""!=a&&t.parent().attr("title",a)})}),$(".fancybox").fancybox()})</script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Security | Rexdf]]></title>
+  <link href="https://i.rexdf.org/blog/categories/security/atom.xml" rel="self"/>
+  <link href="https://i.rexdf.org/"/>
+  <updated>2024-12-16T23:11:13+08:00</updated>
+  <id>https://i.rexdf.org/</id>
+  <author>
+    <name><![CDATA[Rexdf]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[安全维护日志]]></title>
+    <link href="https://i.rexdf.org/blog/2014/10/11/an-quan-wei-hu-ri-zhi/"/>
+    <updated>2014-10-11T20:54:55+08:00</updated>
+    <id>https://i.rexdf.org/blog/2014/10/11/an-quan-wei-hu-ri-zhi</id>
+    <content type="html"><![CDATA[<p>简直恐怖，我低调开启的VPS才50h就收到了来自世界各地的(主要是中国广东一带)的ssh攻击。刚刚开始的时候我是直接关掉了web服务的，因为好像还没有这方面的需求，博客主机刚刚续费了，迁过来似乎不是这么迫切，然后只是在上面尝试着各种技术配置着玩。然后今天没事进去看了下auth.log，一看吓一跳。</p>
+
+<!-- more -->
+
+<p>明显是工具在扫端口，高端口一个接一个地扫，用户名各种组合，还有一些奇葩的错误方式，大约是在扫漏洞？</p>
+
+<p>虽然只是测试用途而已，我完全可以随手删掉它重建一个，里面啥都没有。但是问题是我刚刚开机大约50分钟后就开始了第一波紧密的ssh暴力攻击。</p>
+
+<p>我安全配置还算比较保守的了，因为主机只有我一个人使用，我采用的全是白名单制，但是如果系统有bug，那么还确实没有办法的。特别是Wordpress这种三方插件一大堆的玩意，放到博客主机上我倒是完全不需要担心这些，现在倒是有种不要迁移过来的想法了。</p>
+
+<pre><code>grep Failed auth.log | rev | cut -d\  -f4 | rev | sort -u
+</code></pre>
+
+<p>然后得到如下内容</p>
+
+<pre><code>111.74.238.152
+117.21.173.177
+122.225.109.113
+122.225.109.199
+122.70.137.124
+123.127.36.162
+173.196.1.230
+175.45.192.234
+183.56.129.146
+187.85.146.19
+192.126.112.118
+218.106.254.121
+218.2.0.129
+222.186.24.68
+222.186.34.118
+222.186.34.243
+222.186.34.245
+59.10.53.46
+60.173.14.130
+60.173.14.134
+61.155.4.18
+61.174.51.198
+61.174.51.201
+61.181.24.6
+61.234.104.167
+91.240.163.39
+</code></pre>
+
+<p>然后我就发现了<a href="http://antivirus.neu.edu.cn/ssh/" target="_blank">http://antivirus.neu.edu.cn/ssh/</a>这里也有一个<a href="http://antivirus.neu.edu.cn/ssh/lists/" target="_blank">列表</a>，这份清单<a href="http://www.us.openbl.org/lists/" target="_blank">这里</a>也有。<a href="http://www.chekiang.info/scan/ssh.php" target="_blank">这个</a>博客也维护了一份，另外他的文件下载里面似乎还有一个开源的程序 http://download.chekiang.info/gongju/DenyHosts-2.6.tar.gz可以下载使用，提供安装脚本，我没有查看过代码，也就不测试了。</p>
+
+<p>虽然我暂时应该还用不上，不过倒是涨了一下姿势了！</p>
+
+<p>就在写这篇博客的同时攻击依然在进行，考虑到效率，以及实际情况。我没有采用iptable来限制端口访问，而采用的基于TCP wrapper的方式。并没有采用上面的hosts.deny这种黑名单方式，因为显然查找黑名单需要消耗资源。我直接采用白名单制。</p>
+
+<p>hosts.allow中</p>
+
+<p><code>bash /etc/hosts.allow http://blog.rexdf.org MyBlog
+sshd: 10.10.10.10/25
+</code></p>
+
+<p>hosts.deny中</p>
+
+<p><code>bash /etc/hosts.deny http://blog.rexdf.org MyBlog
+sshd: ALL
+</code></p>
+
+<p>结果</p>
+
+<pre><code>Oct 11 11:07:11 xxx sshd[15448]: refused connect from 222.186.34.118 (222.186.34.118)
+Oct 11 11:07:22 xxx sshd[15449]: refused connect from 222.186.34.118 (222.186.34.118)
+Oct 11 11:07:30 xxx sshd[15450]: refused connect from 202.109.143.56 (202.109.143.56)
+Oct 11 11:07:40 xxx sshd[15451]: refused connect from 202.109.143.56 (202.109.143.56)
+Oct 11 11:07:52 xxx sshd[15452]: refused connect from 202.109.143.56 (202.109.143.56)
+Oct 11 11:08:01 xxx sshd[15453]: refused connect from 222.186.34.118 (222.186.34.118)
+Oct 11 11:08:04 xxx sshd[15454]: refused connect from 202.109.143.56 (202.109.143.56)
+Oct 11 11:08:10 xxx sshd[15455]: refused connect from 183.56.129.146 (183.56.129.146)
+Oct 11 11:08:14 xxx sshd[15457]: refused connect from 202.109.143.56 (202.109.143.56)
+Oct 11 11:08:45 xxx sshd[15458]: refused connect from 202.109.143.56 (202.109.143.56)
+</code></pre>
+
+<p>看上去sshd的进程号还在不断增长。</p>
+]]></content>
+  </entry>
+  
+</feed>

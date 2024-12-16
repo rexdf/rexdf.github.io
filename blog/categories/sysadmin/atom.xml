@@ -1,0 +1,736 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: SysAdmin | Rexdf]]></title>
+  <link href="https://i.rexdf.org/blog/categories/sysadmin/atom.xml" rel="self"/>
+  <link href="https://i.rexdf.org/"/>
+  <updated>2024-12-16T23:11:13+08:00</updated>
+  <id>https://i.rexdf.org/</id>
+  <author>
+    <name><![CDATA[Rexdf]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[搭了个gitlab]]></title>
+    <link href="https://i.rexdf.org/blog/2018/09/12/da-liao-ge-gitlab/"/>
+    <updated>2018-09-12T14:21:15+08:00</updated>
+    <id>https://i.rexdf.org/blog/2018/09/12/da-liao-ge-gitlab</id>
+    <content type="html"><![CDATA[<ul class="markdown-toc">
+  <li><a href="#section">成果</a>    <ul>
+      <li><a href="#pipelines--jobs">Pipelines &amp; Jobs</a></li>
+      <li><a href="#gitlab-pages">GitLab Pages</a></li>
+    </ul>
+  </li>
+  <li><a href="#section-1">安装</a>    <ul>
+      <li><a href="#section-2">登录系统初始设置</a></li>
+      <li><a href="#section-3">安装常用软件配置等</a></li>
+      <li><a href="#gitlab">安装gitlab依赖</a></li>
+      <li><a href="#gitlab-1">安装gitlab</a></li>
+      <li><a href="#section-4">用户配置</a></li>
+    </ul>
+  </li>
+  <li><a href="#cicd">配置CI/CD</a>    <ul>
+      <li><a href="#gitlab-pages-1">自定义域名的GitLab Pages服务</a></li>
+    </ul>
+  </li>
+  <li><a href="#dnspodapi-key">通过环境变量传递DNSPOD的api key</a></li>
+  <li><a href="#section-5">用上面的环境变量签泛解析证书</a></li>
+  <li><a href="#gitlab-2">把证书拷贝到gitlab配置目录下</a>    <ul>
+      <li><a href="#gitlab-runner">配置GitLab Runner</a>        <ul>
+          <li><a href="#docker">安装docker</a></li>
+          <li><a href="#gitlab-runner-1">安装gitlab-runner及其配置</a></li>
+          <li><a href="#section-6">错误</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><a href="#section-7">时间成本</a></li>
+  <li><a href="#section-8">维护</a>    <ul>
+      <li><a href="#section-9">2018年10月2日</a>        <ul>
+          <li><a href="#section-10">问题</a></li>
+          <li><a href="#section-11">探索</a></li>
+          <li><a href="#section-12">解决</a></li>
+          <li><a href="#section-13">真实原因</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p>今天无意中看见个CN2线路，2核+4GB+4T的VPS，打了下折之后年付18美元。这么便宜，我都不敢把服务商写出来了。当然这是OpenVZ的，目前看来还好，将来不知道会被玩坏成什么样子。</p>
+
+<!--more-->
+
+<p>开源的自建git项目托管服务，貌似有模仿github用ruby写的<a href="https://about.gitlab.com/" target="_blank">gitlab</a>，用scala基于JVM的<a href="https://github.com/gitbucket/gitbucket" target="_blank">GitBucket</a>，以及国人用golang开发的<a href="https://github.com/gogs/gogs" target="_blank">gogs/gitea</a>等。功能最完善的当然是gitlab了。 gogs可以跑在路由器、树莓派等低配置硬件上，听闻国内有小团队直接用树莓派挂块硬盘跑gogs作为公司的代码仓库。至于GitBucket，没试过，猜想应该具有Java一贯的容易部署高内存消耗的特性吧。</p>
+
+<p>之前想装gitlab，都被官方文档的推荐内存要求吓退，最终都换成了gitea/gogs。虽然kvm可以通过swap加大内存绕过，但是好像比较卡，所以都没怎么用过。</p>
+
+<h1 id="section">成果</h1>
+
+<p>测试了下搭建私有gitlab带Web-IDE的持续集成环境。</p>
+
+<p>目前能做到在gitlab网页上编辑一下文件或者本地编辑后push一下，会自动触发gitlab-runner(一个docker虚拟机环境)，进行自动的编译和测试工作。如果编译与测试均成功通过，则进行部署。这样简化软件开发流程。</p>
+
+<p>如下四张图</p>
+
+<h2 id="pipelines--jobs">Pipelines &amp; Jobs</h2>
+
+<p><img src="/images/gitlab1.png" alt="GitLab CI/CD" class="center fancybox" /></p>
+
+<p><img src="/images/gitlab4.png" alt="GitLab CI/CD" class="center fancybox" /></p>
+
+<h2 id="gitlab-pages">GitLab Pages</h2>
+
+<p><img src="/images/gitlab2.png" alt="GitLab Pages" class="center fancybox" /></p>
+
+<p><img src="/images/gitlab3.png" alt="自定义泛解析域名" class="center fancybox" /></p>
+
+<h1 id="section-1">安装</h1>
+
+<h2 id="section-2">登录系统初始设置</h2>
+
+<p>我的惯例是如下，首先禁掉密码登录(<code>nano /etc/ssh/sshd_config</code>)，然后更新(<code>apt-get update &amp;&amp; apt-get -y upgrade</code>)，重启(<code>reboot</code>)</p>
+
+<h2 id="section-3">安装常用软件配置等</h2>
+
+<p>这里只随手打一下习惯性手指条件反射记得的包</p>
+
+<p><code>bash 常用包安装 http://blog.rexdf.org MyBlog
+apt-get install curl wget bash-completion git bmon htop iftop nano vnstat build-essential language-pack-zh-hans
+locale-gen zh_CN.UTF-8
+</code></p>
+
+<h2 id="gitlab">安装gitlab依赖</h2>
+
+<p>按照我一贯的习惯，能用包管理，尽量用包管理，docker次之，最次脚本安装。直接按照<a href="https://about.gitlab.com/installation/#ubuntu" target="_blank">官方文档</a>就好。</p>
+
+<p><code>bash 安装gitlab依赖 http://blog.rexdf.org MyBlog
+sudo apt-get update
+sudo apt-get install -y curl openssh-server ca-certificates postfix
+</code></p>
+
+<h2 id="gitlab-1">安装gitlab</h2>
+
+<p>之前有玩过bitnami的<a href="https://bitnami.com/stack/gitlab" target="_blank">虚拟机版本gitlab</a>，那个是GitLab CE。然而GitLab官方在<a href="https://about.gitlab.com/installation/ce-or-ee/" target="_blank">这里</a>说GitLab Enterprise Edition版本具有社区版本(MIT Expat license)的全部功能，而且能随时使用商业版以及试用过期后回退到社区版。故而直接安装企业版。</p>
+
+<p><code>bash 安装gitlab官方源 http://blog.rexdf.org MyBlog
+curl https://packages.gitlab.com/install/repositories/gitlab/gitlab-ee/script.deb.sh | sudo bash
+</code></p>
+
+<p>先加入GitLab官方的源，并导入密钥。</p>
+
+<p>现在去设置一下dns，把域名指向过来。然后就可以通过包管理来安装了</p>
+
+<p><code>bash 安装gitlab http://blog.rexdf.org MyBlog
+sudo EXTERNAL_URL="https://gitlab.rexdf.net" apt-get install gitlab-ee
+</code></p>
+
+<p>小插曲：安装过程中会自动设置letsencrypt证书，我预想的是只是配置而已，然而当我看到letsencrpt字样的dpkg error时，就发现了这安装程序原来集成了自动配置证书功能。</p>
+
+<h2 id="section-4">用户配置</h2>
+
+<p>打开网页就是一个密码输入界面，这里输入的是GitLab的root用户的密码。然后注册了一个普通用户，发现没有任何验证，赶紧用root用户管理员关掉任意用户注册功能。</p>
+
+<h1 id="cicd">配置CI/CD</h1>
+
+<p>我并没有配置太多，只是换了下favicon与logo，然后用普通权限用户的ssh实验了下private项目的pull与push。 具体过程和github与Gitbucket没啥区别，这里不赘述。 当然修改<code>gitlab.rb</code>之后<code>gitlab-ctl reconfigure</code>这个应该也是要养成习惯了。</p>
+
+<h2 id="gitlab-pages-1">自定义域名的GitLab Pages服务</h2>
+
+<p>默认是没有开启Pages服务的。由于有点想当做博客/维基用的想法，所以研究了下。也挺简单，参考<a href="https://docs.gitlab.com/ee/administration/pages/#wildcard-domains-with-tls-support" target="_blank">官方文档</a>，一小时搞定。</p>
+
+<p>首先要泛解析另外一个域名，出于防范XSS攻击考虑，官方不推荐用gitlab服务的主域名。而且gitlab的安装程序目前似乎还不能自动配置泛解析letsencrypt证书。</p>
+
+<p>Let’s Encrypt支持泛解析测试的时候就看到过尝鲜用户的报告。印象中acme.sh是支持得最好的。我用的是如下的指令</p>
+
+<p>```bash 签发泛解析域名 http://blog.rexdf.org MyBlog
+#安装acme.sh(会自动配置alias和crontab等)
+curl https://get.acme.sh | sh</p>
+
+<h1 id="dnspodapi-key">通过环境变量传递DNSPOD的api key</h1>
+<p>export DP_Id=”123456”
+export DP_Key=”14axxxxxbccxxxxx8a25xxxxx6xxxxx9”</p>
+
+<h1 id="section-5">用上面的环境变量签泛解析证书</h1>
+<p>acme.sh  –issue  -d ‘*.rexdf.com’  –dns dns_dp</p>
+
+<h1 id="gitlab-2">把证书拷贝到gitlab配置目录下</h1>
+<p>acme.sh  –installcert -d  ‘*.rexdf.com’  \
+–key-file   /etc/gitlab/ssl/rexdf.com.pages.key  \
+–fullchain-file /etc/gitlab/ssl/rexdf.com.pages.crt 
+```</p>
+
+<p>然后修改<code>/etc/gitlab/gitlab.rb</code></p>
+
+<p>找到gitlab pages相关的地方
+最终如下</p>
+
+<p>```bash /etc/gitlab/gitlab.rb http://blog.rexdf.org MyBlog
+pages_external_url “https://rexdf.com/”
+gitlab_pages[‘enable’] = true</p>
+
+<p>pages_nginx[‘redirect_http_to_https’] = true
+pages_nginx[‘ssl_certificate’] = “/etc/gitlab/ssl/rexdf.com.pages.crt”
+pages_nginx[‘ssl_certificate_key’] = “/etc/gitlab/ssl/rexdf.com.pages.key”
+```</p>
+
+<h2 id="gitlab-runner">配置GitLab Runner</h2>
+
+<p>虽然有openvz官方的<a href="https://wiki.openvz.org/Docker_inside_CT" target="_blank">这篇</a>说明openvz是可以支持docker的，然而我的这个好像不支持，下单时我应该选3.x kernel的。 不过还好gitlab-runner好像就不推荐和gitlab跑在同一个机器上。</p>
+
+<p>在另外一台也是极端便宜的小鸡上装了个gitlab-runner</p>
+
+<h3 id="docker">安装docker</h3>
+
+<p>参考docker<a href="https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-from-a-package" target="_blank">官方文档</a></p>
+
+<p>```bash 安装docker http://blog.rexdf.org MyBlog
+apt-get install \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    software-properties-common</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>curl -fsSL https://download.docker.com/linux/ubuntu/gpg</td>
+      <td>sudo apt-key add -</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>sudo add-apt-repository \
+   “deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+   $(lsb_release -cs) \
+   stable”</p>
+
+<p>apt-get update</p>
+
+<p>sudo apt-get install docker-ce
+```</p>
+
+<h3 id="gitlab-runner-1">安装gitlab-runner及其配置</h3>
+
+<p>参考<a href="https://docs.gitlab.com/runner/install/linux-repository.html" target="_blank">官方文档</a></p>
+
+<p><code>bash 安装gitlab-runner http://blog.rexdf.org MyBlog
+curl -L https://packages.gitlab.com/install/repositories/runner/gitlab-runner/script.deb.sh | sudo bash
+sudo apt-get install gitlab-runner
+</code></p>
+
+<p>配置相对来说比较方便,Runner executor选docker，然后镜像选择ruby:2.3就好了</p>
+
+<p><code>bash 向gitlab注册gitlab-runner http://blog.rexdf.org MyBlog
+sudo gitlab-runner register
+</code></p>
+
+<p>另外gitlab-runner配置在<code>/etc/gitlab-runner/config.toml</code></p>
+
+<h3 id="section-6">错误</h3>
+
+<p><code>
+This job is stuck, because you don’t have any active runners that can run this job.
+</code></p>
+
+<p>应该在runner上面勾选<code>Run untagged jobs [] Indicates whether this runner can pick jobs without tags</code></p>
+
+<h1 id="section-7">时间成本</h1>
+
+<p>看了下付款记录，11点付款，下午2点多开始想搭gitlab，到现在写完本文下午6点钟。 整体上比较简单，只要照着官方文档复制粘贴命令就好了。</p>
+
+<h1 id="section-8">维护</h1>
+
+<h2 id="section-9">2018年10月2日</h2>
+
+<p>今天好像Debian系列的libc都升级了，于是惯例升级下系统。然而gitlab这次遇到了点儿问题记录下。</p>
+
+<h3 id="section-10">问题</h3>
+
+<p><code>bash 升级错误 http://blog.rexdf.org MyBlog
+apt-get update &amp;&amp; apt-get -y dist-upgrade
+Get:1 http://security.ubuntu.com/ubuntu xenial-security InRelease [107 kB]
+...
+Get:17 http://archive.ubuntu.com/ubuntu xenial-updates/universe Translation-en [279 kB]
+Fetched 3,792 kB in 2s (1,377 kB/s)
+Reading package lists... Done
+Reading package lists... Done
+Building dependency tree
+Reading state information... Done
+Calculating upgrade... Done
+The following packages will be upgraded:
+  gitlab-ee linux-libc-dev
+2 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+Need to get 494 MB of archives.
+After this operation, 1,921 kB of additional disk space will be used.
+Get:1 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 linux-libc-dev amd64 4.4.0-137.163 [850 kB]
+Get:2 https://packages.gitlab.com/gitlab/gitlab-ee/ubuntu xenial/main amd64 gitlab-ee amd64 11.3.1-ee.0 [493 MB]
+Fetched 494 MB in 15s (32.8 MB/s)
+(Reading database ... 118431 files and directories currently installed.)
+Preparing to unpack .../linux-libc-dev_4.4.0-137.163_amd64.deb ...
+Unpacking linux-libc-dev:amd64 (4.4.0-137.163) over (4.4.0-135.161) ...
+Preparing to unpack .../gitlab-ee_11.3.1-ee.0_amd64.deb ...
+gitlab preinstall: Automatically backing up only the GitLab SQL database (excluding everything else!)
+Dumping database ...
+Dumping PostgreSQL database gitlabhq_production ... [DONE]
+done
+Dumping repositories ...
+[SKIPPED]
+Dumping uploads ...
+[SKIPPED]
+Dumping builds ...
+[SKIPPED]
+Dumping artifacts ...
+[SKIPPED]
+Dumping pages ...
+[SKIPPED]
+Dumping lfs objects ...
+[SKIPPED]
+Dumping container registry images ...
+[DISABLED]
+Creating backup archive: 1538469788_2018_10_02_11.3.0-ee_gitlab_backup.tar ... done
+Uploading backup archive to remote storage  ... skipped
+Deleting tmp directories ... done
+done
+Deleting old backups ... skipping
+Unpacking gitlab-ee (11.3.1-ee.0) over (11.3.0-ee.0) ...
+dpkg: error processing archive /var/cache/apt/archives/gitlab-ee_11.3.1-ee.0_amd64.deb (--unpack):
+ unable to stat other new file '/opt/gitlab/embedded/postgresql/9.6.8/share/extension/lo--1.0--1.1.sql': Cannot allocate memory
+Errors were encountered while processing:
+ /var/cache/apt/archives/gitlab-ee_11.3.1-ee.0_amd64.deb
+E: Sub-process /usr/bin/dpkg returned an error code (1)
+</code></p>
+
+<p>如果继续运行 <code>apt-get update &amp;&amp; apt-get -y dist-upgrade</code> 则是类似如下的错误</p>
+
+<p><code>bash 再次安装依然错误 http://blog.rexdf.org MyBlog
+dpkg: error processing archive /var/cache/apt/archives/gitlab-ee_11.3.1-ee.0_amd64.deb (--unpack):
+ unable to stat './opt/gitlab/embedded/lib/ruby/gems/2.4.0/gems/graphql-1.8.1/spec/dummy/tmp/cache/assets/sprockets/v3.0/ij/ijLUBXXLleeHIaUQp-SQmpq0HpA44rYlbW5OJbKpnsg.cache' (which I was about to install): Cannot allocate memory
+dpkg-deb: error: subprocess paste was killed by signal (Broken pipe)
+Errors were encountered while processing:
+ /var/cache/apt/archives/gitlab-ee_11.3.1-ee.0_amd64.deb
+E: Sub-process /usr/bin/dpkg returned an error code (1)
+</code></p>
+
+<h3 id="section-11">探索</h3>
+
+<p>期初我以为是内存的原因，于是<code>/opt/gitlab/bin/gitlab-ctl status</code> 然后 <code>/opt/gitlab/bin/gitlab-ctl stop</code>以及<code>/opt/gitlab/bin/gitlab-ctl start postgresql</code>和<code>/opt/gitlab/bin/gitlab-ctl start postgres-exporter</code>。这样内存占用减小到了206M/4G，而且开了另外一个终端实时监控内存使用情况，发现运行<code>dpkg -i /var/cache/apt/archives/gitlab-ee_11.3.1-ee.0_amd64.deb</code>过程中，内存从来就没超过1G。于是基本否定内存不足的情况了。</p>
+
+<h3 id="section-12">解决</h3>
+
+<p>运行如下三条命令即可解决</p>
+
+<p><code>bash 解决 http://blog.rexdf.org MyBlog
+xx:~# apt-get install -f
+Reading package lists... Done
+Building dependency tree
+Reading state information... Done
+The following packages will be REMOVED:
+  gitlab-ee
+0 upgraded, 0 newly installed, 1 to remove and 0 not upgraded.
+2 not fully installed or removed.
+After this operation, 1,524 MB disk space will be freed.
+Do you want to continue? [Y/n]
+(Reading database ... 118428 files and directories currently installed.)
+Removing gitlab-ee (11.3.0-ee.0) ...
+Setting up linux-libc-dev:amd64 (4.4.0-137.163) ...
+xx:~# dpkg -i /var/cache/apt/archives/gitlab-ee_11.3.1-ee.0_amd64.deb
+xx:~# gitlab-ctl restart
+</code></p>
+
+<h3 id="section-13">真实原因</h3>
+
+<p>老版本依然在运行中，而且没有卸载。所以新版本无法覆盖。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[无盘虚拟机试玩]]></title>
+    <link href="https://i.rexdf.org/blog/2014/11/24/wu-pan-xu-ni-ji-shi-wan/"/>
+    <updated>2014-11-24T14:46:58+08:00</updated>
+    <id>https://i.rexdf.org/blog/2014/11/24/wu-pan-xu-ni-ji-shi-wan</id>
+    <content type="html"><![CDATA[<p>试着玩了两个无盘系统，一个是BXP在win2000server上面，客户端是xp客户端；另一个是锐起3.1在Win2003，客户端依然是xp。我只试验了3.3BXP，这个感觉学习原理挺不错。但是它非常老，有几点不好的地方。首先，不具备开机还原磁盘的功能(或者我没发现)，所以开机是锁定磁盘的，也就是一个镜像只能开机一个机器。所以如果10台或者100台，那么重复占用的磁盘就会非常大；其次不知道是不是用的win2000的原因，无盘客户端开机非常之慢，而工作站我还是放在SSD上面的，至少开机速度比正常虚拟机开机XP慢4到10倍。然后我就实验了锐起3.1，这个实验起来非常之爽，可以说和BXP比起来优点非常显著，首先最明显的就是<strong>开机速度非常之快</strong>，和直接启动磁盘虚拟机没多大差别，一个系统只需要一个镜像，也就是说<strong>一个镜像可以同时启动多个系统</strong>，而且支持更新镜像，支持<strong>全自动客户端自动配置</strong>，支持开机还原磁盘。</p>
+
+<!-- more -->
+
+<p>至于怎么配置BXP3.3和锐起3.1，网上教程比较多，而且多数都是视频教程。</p>
+
+<p>至于VMware上面安装锐起的，主要是参考的<a href="http://bbs.kafan.cn/thread-1315652-1-1.html" target="_blank">这里</a>，虚拟机安装和视频教程中的主要区别在于，虚拟机可以设置一个虚拟网络(LAN)。然后定义个全局虚拟网，自己给其一个独立的名字，然后你就可以在这个虚拟网络中任意定义你局域网IP了，比如你可以设置DHCP为10.0.0.1或者192.168.10.10或者172.16.17.17这样的网段，这个局域网IP段和其他名字的局域是相对独立的，也就是一个独立的子网，不同子网里面的LAN地址可以互相重复。这样在虚拟机中也可以组成非常复杂的网络来进行实验了。这里有一点需要指出，就是VMware在LAN里面也自带了一个默认的DHCP服务(也就是你没有配置DHCP的时候也会获取一个IP的)，我们可以自己配置DHCP把它覆盖掉，或者手工指定静态IP。</p>
+
+<p>本文主要记叙的是关于无盘虚拟机的上网问题，这个有点类似网吧的那种。因为发现锐起可以同时启动多台虚拟之后，我就在想很多用途，比如调试程序的时候可以用这种方式，非常非常之方便。关键是只要物理机内存支持，可以快速开启任意多的虚拟机而不需要磁盘，<strong>只要建一个虚拟机(不需要任何磁盘光盘或者软盘)，然后把网卡设置成锐起的LAN，直接开机锐起就会自动分配IP然后启动一个虚拟机XP</strong>，另外那么以及开机还原这个有点。而且虚拟机的所有流量都必须经过LAN到达工作站，那么在上面部署流量分析、翻***墙、抓包、协议分析等会非常方便。</p>
+
+<p>上网配置</p>
+
+<p>首先在公网网卡上面开启 共享Internet即可。但是这个方法需要开启防火墙ICS等服务。会导致 路由器和远程访问被禁止。</p>
+
+<p>两块网卡:</p>
+
+<pre><code>1.NAT DHCP自动获取，现在为192.168.199.153
+2.LAN 192.168.5.1 
+</code></pre>
+
+<p>然后开启DHCP服务，192.168.5.10-192.168.5.250</p>
+
+<p>开启DNS服务，做一个转发器。关键是转发到192.168.199.2，这个地址。这个地址是VMware的NAT的DHCP的网关，可以ipconfig/all看到。</p>
+
+<p>因为我是先配置的LAN网卡，等到要上网才发现需要再添加一块网卡，所以没有关机的情况下，热插拔了一块NAT的VMware网卡。直接自动找到驱动并可以使用。但是我发现一个奇怪的事情就是ping baidu.com可以解析成正确的地址，但是全部丢包。这显然是路由的问题。</p>
+
+<p>然后开启 路由器和远程访问 选NAT的那项即可。</p>
+
+<p>这时客户端发现无法ping通，但是dns解析是正常的。路由问题！！</p>
+
+<p>然后route print一看。</p>
+
+<pre><code>Network Destination        Netmask          Gateway       Interface  Metric
+      0.0.0.0          0.0.0.0      192.168.5.1      192.168.5.1      1
+      0.0.0.0          0.0.0.0    192.168.199.2  192.168.199.153     10
+....
+Default Gateway:       192.168.5.1
+</code></pre>
+
+<p>有两条,然后默认网关显然不正确。</p>
+
+<p>直接删除第一条</p>
+
+<pre><code>route delete 0.0.0.0 mask 0.0.0.0 192.168.5.1
+</code></pre>
+
+<p>然后工作站服务器可以正常上网，客户端一看也是正常的了。</p>
+
+<p>最终效果如下图，看看如何轻易的同时启动四台VMware虚拟机，而且对于硬件比如CPU核心数、硬盘、内存是可以异构的，完全没有影响。</p>
+
+<p><img src="/images/rq1.png" alt="cpp自动补全" class="center fancybox" /></p>
+
+<p><img src="/images/rq2.png" alt="cpp自动补全" class="center fancybox" /></p>
+
+<p><img src="/images/rq3.png" alt="cpp自动补全" class="center fancybox" /></p>
+
+<p><img src="/images/rq5.png" alt="cpp自动补全" class="center fancybox" /></p>
+
+<p><img src="/images/rq4.png" alt="cpp自动补全" class="center fancybox" /></p>
+
+<p>然后看看磁盘使用量，工作站的vmdk磁盘只有5.5G，这4台虚拟机的磁盘是用共用一个8G的img镜像作为系统盘。本身win2003占用的大约是1.2G的样子，然后这个8G的磁盘占用了显示的是占用8G，但是VMware的vmdk把它压缩了，然后每个虚拟机配置文件大约100M左右(在工作目录中192.168.5.11-0.dat这样的文件)</p>
+
+<p><img src="/images/rq6.png" alt="cpp自动补全" class="center fancybox" /></p>
+
+<p>最后附件一下BXP的两张截图，BXP启动速度非常非常之慢(只启动一台)。开机大约需要三四分钟。而锐起即使是四台同时开机，全部启动完毕(听到开机音乐）,用时不超过30秒。</p>
+
+<p><img src="/images/bxp1.png" alt="cpp自动补全" class="center fancybox" /></p>
+
+<p><img src="/images/bxp2.png" alt="cpp自动补全" class="center fancybox" /></p>
+
+<p>不过开机之运行倒是都还流畅，因为这个是和虚拟CPU内核数和内存相关的，这个属于虚拟机配置，与无盘系统不太相关。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[云计算层次]]></title>
+    <link href="https://i.rexdf.org/blog/2014/10/27/yun-ji-suan-ceng-ci/"/>
+    <updated>2014-10-27T23:43:39+08:00</updated>
+    <id>https://i.rexdf.org/blog/2014/10/27/yun-ji-suan-ceng-ci</id>
+    <content type="html"><![CDATA[<p>云计算大家基本都耳熟能详了，也都应该对IaaS,PaaS,SaaS有所了解了。云产业标准似乎也该到了尘埃落定的时候了。云服务提供商五花八门，除了国际大型公司被封锁在外。国内似乎也是热闹非凡。</p>
+
+<!-- more -->
+
+<p>如下图</p>
+
+<p><img src="/images/cloud.png" alt="云计算层次" class="center fancybox" /></p>
+
+<p>云计算分为IaaS,PaaS,SaaS三大类。目前竞争比较激烈的热门云计算领域应该是PaaS，主要的就是Container提供runtime的形式。</p>
+
+<p>像GAE,SAE,BAE,JAE，Openshift，dotcloud,Cloud Foundry,Heroku等等不一而足。</p>
+
+<p>而SaaS实际上也是热门，只是往往在不知不觉中使用，或者附加在PaaS里面而已。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[三分钟新建shadowsocks服务器]]></title>
+    <link href="https://i.rexdf.org/blog/2014/10/12/san-fen-zhong-xin-jian-shadowsocksfu-wu-qi/"/>
+    <updated>2014-10-12T17:35:24+08:00</updated>
+    <id>https://i.rexdf.org/blog/2014/10/12/san-fen-zhong-xin-jian-shadowsocksfu-wu-qi</id>
+    <content type="html"><![CDATA[<ul class="markdown-toc">
+  <li><a href="#section">新建主机</a></li>
+  <li><a href="#shadowsocks">安装shadowsocks</a></li>
+  <li><a href="#shadowsocks-1">配置shadowsocks</a></li>
+  <li><a href="#shadowsocks-2">启动shadowsocks</a></li>
+  <li><a href="#section-1">系统安全设置</a>    <ul>
+      <li><a href="#ssh">ssh配置</a></li>
+      <li><a href="#iptables">iptables配置</a></li>
+      <li><a href="#section-2">内核参数调整</a></li>
+    </ul>
+  </li>
+  <li><a href="#section-3">维护笔记</a></li>
+</ul>
+
+<p>Shadowsocks速度真的是没话说啊！我自己也尝试折腾过l2tp/ipsec，在winxp/win8.1下面均可以登陆，但是非常不稳定，大约浏览2个页面链接就会自动断开，大约是要配置iptables来忽略某些干扰包，但是据说速度并不佳所以放弃了。最重要的还是我发现在Ubuntu下面、Android下面无论如何也是连不上我自己配置的l2tp/ipsec的，只有win是能连上，还不稳定。</p>
+
+<!-- more -->
+
+<p>快速搭建shadowsocks服务器一来是因为万一RP不高被盯上，更重要的是可以随时删掉服务器来节省费用。DO上面是按小时计费的，所以每新建一个服务器用不用至少都是略高于一个小时的费用的。shadowsocks和主服务器分离也是为安全出发考虑。</p>
+
+<p>下面是配置笔记，主要注重安全性。因为并不复杂，涉及密码较多，故没有做成脚本。</p>
+
+<h2 id="section">新建主机</h2>
+
+<p>这个无需赘言，这里新建的是LEMP主机。用完随手删掉主机。</p>
+
+<h2 id="shadowsocks">安装shadowsocks</h2>
+
+<pre><code>apt-get update &amp;&amp; apt-get -y upgrade
+apt-get install python-pip python-m2crypto supervisor iptables-persistent
+pip install shadowsocks
+</code></pre>
+
+<h2 id="shadowsocks-1">配置shadowsocks</h2>
+
+<p><code>bash /etc/shadowsocks.json http://blog.rexdf.org MyBlog
+nano /etc/shadowsocks.json
+{
+    "server":"my_server_ip",
+    "server_port":8388,
+    "local_address": "127.0.0.1",
+    "local_port":1080,
+    "password":"mypassword",
+    "timeout":600,
+    "method":"aes-256-cfb",
+    "fast_open": true,
+    "workers": 1
+}
+</code></p>
+
+<p><code>bash /etc/supervisor/conf.d/shadowsocks.conf http://blog.rexdf.org MyBlog
+nano /etc/supervisor/conf.d/shadowsocks.conf
+[program:shadowsocks]
+command=ssserver -c /etc/shadowsocks.json
+autorestart=true
+user=nobody
+</code></p>
+
+<p><code>bash /etc/default/supervisor http://blog.rexdf.org MyBlog
+nano /etc/default/supervisor
+ulimit -n 51200
+</code></p>
+
+<h2 id="shadowsocks-2">启动shadowsocks</h2>
+
+<pre><code>service supervisor start
+supervisorctl reload
+</code></pre>
+
+<p>现在你就可以使用了，下面的属于安全方面的优化。不优化，使用起来也是没有问题，大不了随手删掉重建一个，所以大家都说一键安装shadowsocks的。</p>
+
+<h2 id="section-1">系统安全设置</h2>
+
+<pre><code>adduser xxx
+visudo
+xxx    ALL=(ALL:ALL) ALL
+
+service nginx stop
+update-rc.d -f nginx remove
+service mysql stop
+update-rc.d -f mysql remove
+service cron stop
+nano /etc/init/mysql.conf #注释掉start on一行
+</code></pre>
+
+<h3 id="ssh">ssh配置</h3>
+
+<p>注意下面，否则只能Web页面VNC登陆改配置
+把root下面.ssh/authorized_keys复制到~/.ssh下面，同时权限要正确。
+可以先su xxx，然后执行ssh xxx@127.0.0.1，会自动生成.ssh目录，然后拷贝authorized_keys。</p>
+
+<p><code>bash /etc/ssh/sshd_config http://blog.rexdf.org MyBlog
+nano /etc/ssh/sshd_config
+Port 1025-65536 #自己在范围内随便选一个数字即可
+PermitRootLogin no
+AllowUsers xxx
+PermitEmptyPasswords no
+PasswordAuthentication no
+UsePAM no
+</code></p>
+
+<p>重启ssh服务器</p>
+
+<pre><code>service ssh restart
+</code></pre>
+
+<p>这个问题吓了我一跳，如此有历史的低级攻击方式，现在还是规模很大，每次主机新建1个小时内就开始了，一大批的来自世界各地的攻击(我还是安静模式，系统只开了ssh端口和shadowsocks端口)。下面地方有tricks，我没有说明。</p>
+
+<p><code>bash /etc/hosts.allow http://blog.rexdf.org MyBlog
+nano /etc/hosts.allow
+sshd: your_ip/mask
+</code></p>
+
+<p><code>bash /etc/hosts.deny http://blog.rexdf.org MyBlog
+nano /etc/hosts.deny
+sshd:ALL
+</code></p>
+
+<h3 id="iptables">iptables配置</h3>
+
+<p><strong>下面这个不行</strong>，socks5的链接是双向的,浏览器发起的http、https链接会在动态端口范围内接收数据(49152 - 65535)，所以input需要非常大的范围的，白名单制限制过大。</p>
+
+<p><code>bash 错误的iptables http://blog.rexdf.org MyBlog
+iptables -P INPUT DROP
+iptables -A INPUT -i eth0 -p tcp -s your_ip/mask --dport 22 -m state --state NEW,ESTABLISHED -j ACCEPT
+iptables -A INPUT -i eth0 -p tcp -s your_ip/mask --dport 8388 -m state --state NEW,ESTABLISHED -j ACCEPT
+#iptables -A OUTPUT -o eth0 -p tcp --sport 22 -m state --state ESTABLISHED -j ACCEPT
+</code></p>
+
+<p>只采用黑名单制，<strong>下面的可行</strong>。</p>
+
+<p><code>bash /etc/iptables/rules.v4 http://blog.rexdf.org MyBlog
+nano /etc/iptables/rules.v4
+-A INPUT ! -s your_ip/mask -i eth0 -p tcp -m tcp --dport 22 -m state --state NEW,ESTABLISHED -j DROP
+-A INPUT ! -s your_ip/mask -i eth0 -p tcp -m tcp --dport 8388 -m state --state NEW,ESTABLISHED -j DROP
+</code></p>
+
+<p>重新载入iptables规则</p>
+
+<pre><code>service iptables-persistent restart
+</code></pre>
+
+<h3 id="section-2">内核参数调整</h3>
+
+<p>```bash /etc/sysctl.conf http://blog.rexdf.org MyBlog
+nano /etc/sysctl.conf
+net.ipv4.ip_forward = 1
+net.ipv4.conf.all.accept_redirects = 0
+net.ipv4.conf.all.send_redirects = 0
+net.ipv4.conf.default.rp_filter = 0
+net.ipv4.conf.default.accept_source_route = 0
+net.ipv4.conf.default.send_redirects = 0
+net.ipv4.icmp_ignore_bogus_error_responses = 1</p>
+
+<p>fs.file-max = 51200</p>
+
+<p>net.core.netdev_max_backlog = 250000
+net.core.somaxconn = 4096</p>
+
+<p>net.ipv4.tcp_syncookies = 1
+net.ipv4.tcp_tw_reuse = 1
+net.ipv4.tcp_tw_recycle = 0
+net.ipv4.tcp_fin_timeout = 30
+net.ipv4.tcp_keepalive_time = 1200
+net.ipv4.ip_local_port_range = 10000 65000
+net.ipv4.tcp_max_syn_backlog = 8192
+net.ipv4.tcp_max_tw_buckets = 5000
+net.ipv4.tcp_fastopen = 3
+net.ipv4.tcp_mtu_probing = 1
+net.ipv4.tcp_congestion_control = hybla
+```</p>
+
+<p>重新载入配置文件，使配置生效。</p>
+
+<pre><code>sysctl -p
+</code></pre>
+
+<h2 id="section-3">维护笔记</h2>
+
+<p>所有端口</p>
+
+<pre><code>netstat -anltp | grep "LISTEN"
+</code></pre>
+
+<p>所有链接</p>
+
+<pre><code>lsof -i
+</code></pre>
+
+<p>nginx开机启动</p>
+
+<pre><code>update-rc.d -f nginx disable
+update-rc.d nginx defaults
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[安全维护日志]]></title>
+    <link href="https://i.rexdf.org/blog/2014/10/11/an-quan-wei-hu-ri-zhi/"/>
+    <updated>2014-10-11T20:54:55+08:00</updated>
+    <id>https://i.rexdf.org/blog/2014/10/11/an-quan-wei-hu-ri-zhi</id>
+    <content type="html"><![CDATA[<p>简直恐怖，我低调开启的VPS才50h就收到了来自世界各地的(主要是中国广东一带)的ssh攻击。刚刚开始的时候我是直接关掉了web服务的，因为好像还没有这方面的需求，博客主机刚刚续费了，迁过来似乎不是这么迫切，然后只是在上面尝试着各种技术配置着玩。然后今天没事进去看了下auth.log，一看吓一跳。</p>
+
+<!-- more -->
+
+<p>明显是工具在扫端口，高端口一个接一个地扫，用户名各种组合，还有一些奇葩的错误方式，大约是在扫漏洞？</p>
+
+<p>虽然只是测试用途而已，我完全可以随手删掉它重建一个，里面啥都没有。但是问题是我刚刚开机大约50分钟后就开始了第一波紧密的ssh暴力攻击。</p>
+
+<p>我安全配置还算比较保守的了，因为主机只有我一个人使用，我采用的全是白名单制，但是如果系统有bug，那么还确实没有办法的。特别是Wordpress这种三方插件一大堆的玩意，放到博客主机上我倒是完全不需要担心这些，现在倒是有种不要迁移过来的想法了。</p>
+
+<pre><code>grep Failed auth.log | rev | cut -d\  -f4 | rev | sort -u
+</code></pre>
+
+<p>然后得到如下内容</p>
+
+<pre><code>111.74.238.152
+117.21.173.177
+122.225.109.113
+122.225.109.199
+122.70.137.124
+123.127.36.162
+173.196.1.230
+175.45.192.234
+183.56.129.146
+187.85.146.19
+192.126.112.118
+218.106.254.121
+218.2.0.129
+222.186.24.68
+222.186.34.118
+222.186.34.243
+222.186.34.245
+59.10.53.46
+60.173.14.130
+60.173.14.134
+61.155.4.18
+61.174.51.198
+61.174.51.201
+61.181.24.6
+61.234.104.167
+91.240.163.39
+</code></pre>
+
+<p>然后我就发现了<a href="http://antivirus.neu.edu.cn/ssh/" target="_blank">http://antivirus.neu.edu.cn/ssh/</a>这里也有一个<a href="http://antivirus.neu.edu.cn/ssh/lists/" target="_blank">列表</a>，这份清单<a href="http://www.us.openbl.org/lists/" target="_blank">这里</a>也有。<a href="http://www.chekiang.info/scan/ssh.php" target="_blank">这个</a>博客也维护了一份，另外他的文件下载里面似乎还有一个开源的程序 http://download.chekiang.info/gongju/DenyHosts-2.6.tar.gz可以下载使用，提供安装脚本，我没有查看过代码，也就不测试了。</p>
+
+<p>虽然我暂时应该还用不上，不过倒是涨了一下姿势了！</p>
+
+<p>就在写这篇博客的同时攻击依然在进行，考虑到效率，以及实际情况。我没有采用iptable来限制端口访问，而采用的基于TCP wrapper的方式。并没有采用上面的hosts.deny这种黑名单方式，因为显然查找黑名单需要消耗资源。我直接采用白名单制。</p>
+
+<p>hosts.allow中</p>
+
+<p><code>bash /etc/hosts.allow http://blog.rexdf.org MyBlog
+sshd: 10.10.10.10/25
+</code></p>
+
+<p>hosts.deny中</p>
+
+<p><code>bash /etc/hosts.deny http://blog.rexdf.org MyBlog
+sshd: ALL
+</code></p>
+
+<p>结果</p>
+
+<pre><code>Oct 11 11:07:11 xxx sshd[15448]: refused connect from 222.186.34.118 (222.186.34.118)
+Oct 11 11:07:22 xxx sshd[15449]: refused connect from 222.186.34.118 (222.186.34.118)
+Oct 11 11:07:30 xxx sshd[15450]: refused connect from 202.109.143.56 (202.109.143.56)
+Oct 11 11:07:40 xxx sshd[15451]: refused connect from 202.109.143.56 (202.109.143.56)
+Oct 11 11:07:52 xxx sshd[15452]: refused connect from 202.109.143.56 (202.109.143.56)
+Oct 11 11:08:01 xxx sshd[15453]: refused connect from 222.186.34.118 (222.186.34.118)
+Oct 11 11:08:04 xxx sshd[15454]: refused connect from 202.109.143.56 (202.109.143.56)
+Oct 11 11:08:10 xxx sshd[15455]: refused connect from 183.56.129.146 (183.56.129.146)
+Oct 11 11:08:14 xxx sshd[15457]: refused connect from 202.109.143.56 (202.109.143.56)
+Oct 11 11:08:45 xxx sshd[15458]: refused connect from 202.109.143.56 (202.109.143.56)
+</code></pre>
+
+<p>看上去sshd的进程号还在不断增长。</p>
+]]></content>
+  </entry>
+  
+</feed>

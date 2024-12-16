@@ -1,0 +1,198 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<script type="text/javascript">var _speedMark=new Date</script>
+<meta charset="utf-8">
+<title>手机QQ1.4 版协议帮助文档(转) - Rexdf</title>
+<meta name="author" content="Rexdf">
+<meta name="description" content="分析了一部分手机QQ的协议，基于TCP的。版本是1.4, 基于QQ kjava3版本 Manifest-Version: 1.0 MIDlet-Vendor: Tencent MIDlet-Version: 3.0.1 MIDlet-1: 手机QQ,/icon.png,com.tencent. &hellip;">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' data: https://hm.baidu.com https://tajs.qq.com https://ssl.google-analytics.com https://static.rexdf.org https://*.disquscdn.com https://rexdf.disqus.com https://api.github.com https://ssl.google-analytics.com https://disqus.com https://analytics.rexdf.net; connect-src 'self' https://static.rexdf.org https://analytics.rexdf.net https://hm.baidu.com; img-src data: https://*; font-src data: https://*; child-src 'none'; style-src 'self' 'unsafe-inline' https://*; frame-src 'self' https://t.rexdf.org http://t.rexdf.org https://rexdf.disqus.com https://disqus.com">
+<link rel="canonical" href="https://i.rexdf.org/blog/2013/12/25/shou-ji-QQ1-4-ban-xie-yi-bang-zhu-wen-dang-zhuan">
+<link rel="dns-prefetch" href="https://static.rexdf.org/">
+<link href="/favicon.ico" rel="icon">
+<link id="main-css" href="/stylesheets/screen.css" media="screen,projection" rel="stylesheet" type="text/css" title="pc">
+<link href="/stylesheets/screen_mobile.css" rel="alternate stylesheet" type="text/css" title="mobile">
+<link href="/atom.xml" rel="alternate" title="Rexdf" type="application/atom+xml">
+<script src="/javascripts/libs/jquery.min.js"></script>
+<script src="/javascripts/octopress-rexdf.min.js" type="text/javascript"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+      
+      toggle_theme();
+  });
+</script>
+<script type="text/javascript" async src="https://static.rexdf.org/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript">var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-55590409-1"]),_gaq.push(["_trackPageview"]),function(){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(t,e)}()</script>
+<script>var _hmt=_hmt||[];!function(){var e=document.createElement("script");e.src="//hm.baidu.com/hm.js?32192d95b89fbefa0875c4c95adb1412";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}()</script>
+<script src="/javascripts/fancybox/jquery.fancybox.pack.js"></script>
+<link rel="stylesheet" type="text/css" href="/javascripts/fancybox/jquery.fancybox.css">
+<script type="text/javascript">var _paq=_paq||[];_paq.push(["trackPageView"]),_paq.push(["enableLinkTracking"]),function(){var e="https://analytics.rexdf.net/";_paq.push(["setTrackerUrl",e+"piwik.php"]),_paq.push(["setSiteId","1"]);var a=document,t=a.createElement("script"),p=a.getElementsByTagName("script")[0];t.type="text/javascript",t.async=!0,t.defer=!0,t.src=e+"piwik.js",p.parentNode.insertBefore(t,p)}()</script>
+</head>
+<body class="low-contrast-linen-wptouch-bg">
+<header role="banner"><hgroup>
+<h1 id="header-title"><a href="/">Rexdf</a></h1>
+<h2 id="subtitle">The devil is in the Details.</h2>
+</hgroup>
+</header>
+<nav role="navigation"><ul class="subscription" data-subscription="rss">
+<li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+</ul>
+<form action="https://google.com/search" method="get">
+<fieldset role="search">
+<input type="hidden" name="q" value="site:i.rexdf.org">
+<input class="search" type="text" name="q" results="0" placeholder="Search">
+</fieldset>
+</form>
+<ul class="main-navigation">
+<li><a href="/">Blog</a></li>
+<li><a href="/blog/archives/">Archives</a></li>
+<li><a href="/idea/">Idea</a></li>
+<li><a href="/share/">Share</a></li>
+<li><a href="/books/">Books</a></li>
+<li><a href="/donate/">Donate</a></li>
+<li><a target="_blank" href="https://blog.rexdf.org" style="font-family:Shadows Into Light">Main-Blog</a></li>
+</ul>
+</nav>
+<div id="main">
+<div id="content">
+<div>
+<article class="hentry" role="article">
+<header>
+<h1 class="entry-title">手机QQ1.4 版协议帮助文档(转)</h1>
+<p class="meta">
+<time class="data-article month-12 season-winter" datetime="2013-12-25T22:49:00+08:00" pubdate><span class="month">Dec</span> <span class="day">25th</span> <span class="year">2013</span></time>
+| <a href="#disqus_thread" data-disqus-identifier="https://i.rexdf.org">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>分析了一部分手机QQ的协议，基于TCP的。版本是1.4, 基于QQ kjava3版本 Manifest-Version: 1.0 MIDlet-Vendor: Tencent MIDlet-Version: 3.0.1 MIDlet-1: 手机QQ,/icon.png,com.tencent.kqq2_3.KQQMIDlet MicroEdition-Configuration: CLDC-1.0 MIDlet-Name: 手机QQ MicroEdition-Profile: MIDP-2.0</p>
+<h3 id="section">1:服务器</h3>
+<p>58.60.12.177:14000 http://conf.3g.qq.com/newConf/kjava/aubin2.jsp 密码=到大写(取数据摘要(到字节集(密码)))</p>
+<h3 id="section-1">2:登录:</h3>
+<p>VER=1.4&amp;CON;=1&amp;CMD;=Login&amp;SEQ;=标识&amp;UIN;=QQ&amp;PS;=密码&amp;M5;=1&amp;LG;=0&amp;LC;=812822641C978097&amp;GD;=5MWX2PF3FOVGTP6B&amp;CKE;= 这里还有个换行符 没加发过去没反映 cmd 这个是命令码 每次发送命令后QQ返回的包里面的SEQ都和对应包相同，以后发包时每次在上一个包的SEQ上+1作为新的。 返回: VER=1.1&amp;CMD;=Login&amp;SEQ;=200&amp;UIN;=QQ&amp;RES;=0&amp;RS;=0&amp;HI;=60&amp;LI;=300&amp;SG;=c903f1a02326204ebc3b99b34700bce32c0078a8366337fbdc46db9be57c3b9a&amp;SSG;=3684427132 这个登录成功 VER=1.1&amp;CMD;=Login&amp;SEQ;=267&amp;UIN;=QQ&amp;RES;=0&amp;RS;=1&amp;RA;=Password error! 密码错误 VER=1.1&amp;CMD;=VERIFYCODE&amp;SEQ;=241&amp;UIN;=QQ&amp;RES;=0&amp;SC;=1&amp;NT;=&amp;VC;=89504e470d0a1a0a0000000d4948445200000064000000280403000000fa56427000000030504c5445ffffffdfdfdfbfbfbfefefef9f9f9f1f1f1f0f0f0f3f3f3fafafaf5f5f5f2f2f2f4f4f4f7f7f7f8f8f8fcfcfcf6f6f6f4cf2fad2000002b349444154388de5543d685351143e6962f292da260aea20854025a0d373b0823f90a50e9dd28a0fa114d2b439f96fea6074515ccca04b5d326aa1f05ce360ec9829825316bb085a043b3914a53888e077ee7d696bde4b6966bfe1ddf7ce3ddfb9e7e7bb8f68204e4f0edef3c634f3c3e1185719b8774c67bf29cf9a50b271bc5db4e7e347336e58bc4934c60a19a2309692791463442714d414ded6c76d78b91abf5eff9075472774cba1ac8faaa5e8c118b7b1b180175b27d4702895ba5edb6e8ade99a380f6c85a0e852d7e24272eba0f711cda213ec0e3cb3378e6e92c9e65172502eb66ec2417a60e1839d85b125fcacbba2809586384521bfb8c9f9f614784b4dac46e1f1a7c874d3ae17897cc675c22990586b24a17cc4bccc97e8a9d9d601553fa369322627c065e90c1dc94fd1a77fb29bc429633134c2f294524299813ea1aa9040f75599cd27e04f9a83b9dfb4efba3471d36efd2b55924a8286a83d29ab54da3443280927c359253e85454d176a95e86e4ba3a3c68bda3d2e483686480e9449cea6b11ae406e29da822551c6849372c43fb5a84f756eb7be4ac1d498c8ca5a41794d58d3518e49d8c3a82deadccfa1a9c1250a2f8d4bae9d32a2acf76aebeb58a727886944ac909131a45589227574ec4eb5bfc7b4d31384bfb6e8434a954815f5077982b93a1947f56e594664ba23aa8f196ac5e9552bd52a4040164365795f037deb4700cda1f01cdeea794a347d2d6e87f9cf078c498ba8e871932d1463482cbb44a1322eaf8932800d7d2d66dd0c0c3e0e95146351ce3f780b9f65dc21e45430e99b48c2a56312c9de26bac2cb5b3203d6c2f57df98dc5bfc7f34f3c18e4b77392198bd86fbebb7f575b43c2a4f75e04e08ca8bce5c40fbdd1c6f38ab237e02fe6b30b5f3f39d7f7b8b8ce037b33104fd5dfc8ab3783f1dce2dcc2500cd473ca3f4c291ac6cba129ff1bfe02b68915dcc24158fc0000000049454e44ae426082 要验证码 是一个PNG图片。</p>
+<h3 id="section-2">3:发送验证码</h3>
+<p>VER=1.4&amp;CON;=1&amp;CMD;=VERIFYCODE&amp;SEQ;=标识&amp;UIN;=+QQ+&amp;SID;=&amp;XP;=C4CA4238A0B92382&amp;SC;=2&amp;VC;=验证码 返回的跟上面的差不多.</p>
+<h3 id="section-3">4:注销</h3>
+<p>VER=1.4&amp;CON;=1&amp;CMD;=Logout&amp;SEQ;=标识&amp;UIN;=QQ&amp;SID;=&amp;XP;=C4CA4238A0B92382</p>
+<h3 id="section-4">5:获取在线好友</h3>
+<p>VER=1.4&amp;CON;=1&amp;CMD;=Query_Stat2&amp;SEQ;=标识&amp;UIN;=QQ&amp;SID;=&amp;XP;=C4CA4238A0B92382&amp;CM;=2&amp;UN;=0</p>
+<h3 id="section-5">6:发送消息</h3>
+<p>VER=1.4&amp;CON;=1&amp;CMD;=CLTMSG&amp;SEQ;= 标识&amp;UIN;= QQ&amp;SID;=&amp;XP;=C4CA4238A0B92382&amp;UN;= 发送对象&amp;MG;=消息</p>
+<h3 id="section-6">7:查看好友资料</h3>
+<p>VER=1.4&amp;CON;=1&amp;CMD;=GetInfo&amp;SEQ;=标识&amp;UIN;=QQ&amp;SID;=&amp;XP;=C4CA4238A0B92382&amp;LV;=2&amp;UN;=好友</p>
+<h3 id="section-7">8:隐身</h3>
+<p>VER=1.4&amp;CON;=1&amp;CMD;=Change_Stat&amp;SEQ;=标识&amp;UIN;=QQ&amp;SID;=&amp;XP;=C4CA4238A0B92382&amp;ST;=40</p>
+<h3 id="section-8">9:离开</h3>
+<p>VER=1.4&amp;CON;=1&amp;CMD;=Change_Stat&amp;SEQ;=标识&amp;UIN;=QQ&amp;SID;=&amp;XP;=C4CA4238A0B92382&amp;ST;=30</p>
+<h3 id="section-9">10:在线</h3>
+<p>VER=1.4&amp;CON;=1&amp;CMD;=Change_Stat&amp;SEQ;=标识&amp;UIN;=QQ&amp;SID;=&amp;XP;=C4CA4238A0B92382&amp;ST;=10 状态, 10 在线 30 离开 40隐身 20 好像是忙碌 手机QQ3.0上面没这个功能 有兴趣可以测试下</p>
+<h3 id="section-10">11:查找好友</h3>
+<p>VER=1.4&amp;CON;=1&amp;CMD;=AddToList&amp;SEQ;=标识&amp;UIN;=QQ&amp;SID;=&amp;XP;=C4CA4238A0B92382&amp;UN;=好友</p>
+<h3 id="section-11">12:验证</h3>
+<p>VER=1.4&amp;CON;=1&amp;CMD;=Ack_AddToList&amp;SEQ;=标识&amp;UIN;=QQ&amp;SID;=&amp;XP;=C4CA4238A0B92382&amp;UN;=好友&amp;CD;=2&amp;RS;=验证文本 发送的数据后面都有个换行符 返回的文本都utf-8编码的</p>
+</div>
+<footer>
+<p class="meta">
+<span class="byline author vcard">Posted by <span class="fn">Rexdf</span></span>
+<time class="data-article month-12 season-winter" datetime="2013-12-25T22:49:00+08:00" pubdate><span class="month">Dec</span> <span class="day">25th</span> <span class="year">2013</span></time>
+</p>
+<div class="sharing">
+</div>
+<p class="meta">
+<a class="basic-alignment left" href="/blog/2013/12/25/css-zhi-after-after-zhuan/" title="Previous Post: css之:after ::after(转)">&laquo; css之:after ::after(转)</a>
+<a class="basic-alignment right" href="/blog/2013/12/27/tan-chen-xiao-xu/" title="Next Post: 叹陈晓旭">叹陈晓旭 &raquo;</a>
+</p>
+</footer>
+</article>
+<section>
+<h1>Comments</h1>
+<div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
+</div>
+<aside class="sidebar">
+<section>
+<h1>Categories</h1>
+<ul id="categories">
+<li class="category"><a href="/blog/categories/acm/">ACM <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/algorithm/">Algorithm <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/assembly/">Assembly <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/cygwin/">Cygwin <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/gnu/">GNU <sup>8</sup></a></li>
+<li class="category"><a href="/blog/categories/math/">Math <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/octopress/">Octopress <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/programming/">Programming <sup>6</sup></a></li>
+<li class="category"><a href="/blog/categories/security/">Security <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sublime/">Sublime <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/synology/">Synology <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sysadmin/">SysAdmin <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/web/">Web <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/windows/">Windows <sup>7</sup></a></li>
+<li class="category"><a href="/blog/categories/proxmox/">proxmox <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/ri-chang/">日常 <sup>37</sup></a></li>
+</ul>
+</section>
+<section>
+<h1>Recent Posts</h1>
+<ul id="recent_posts">
+<li class="post">
+<a href="/blog/2024/12/16/fu-wu-qi-wa-kuang-bing-du-de-cha-sha/">服务器挖矿病毒的查杀</a>
+</li>
+<li class="post">
+<a href="/blog/2021/07/11/apple-m1-bian-yi-tensorflow/">Apple M1 编译tensorflow</a>
+</li>
+<li class="post">
+<a href="/blog/2021/02/27/chromiumbian-ma-qi-wen-ti/">Chromium编码器问题</a>
+</li>
+<li class="post">
+<a href="/blog/2020/12/13/proxmoxbi-ji/">Proxmox笔记</a>
+</li>
+<li class="post">
+<a href="/blog/2020/11/15/lun-yan-du-yu-shen-du/">论广度与深度</a>
+</li>
+</ul>
+</section>
+<section>
+<iframe frameborder="0" scrolling="no" referrerpolicy="unsafe-url" style="width:283px;height:200px" src="https://t.rexdf.org/?m=app&a=showwidget&name=rexdf&type=1&width=283px&height=500px"></iframe>
+</section>
+<section>
+<h1>GitHub Repos</h1>
+<ul id="gh_repos">
+<li class="loading">Status updating...</li>
+</ul>
+<a href="https://github.com/rexdf">@rexdf</a> on GitHub
+<script type="text/javascript">$(document).ready(function(){if(!window.jXHR){var e=document.createElement("script");e.type="text/javascript",e.src="/javascripts/libs/jXHR.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}github.showRepos({user:"rexdf",count:0,skip_forks:!0,target:"#gh_repos"})})</script>
+</section>
+</aside>
+</div>
+</div>
+<footer role="contentinfo"><p>
+<span class="credit">Copyright &copy; 2024 - Rexdf -</span> |
+<span class="credit">Powered by <a name="bottoms" target="_blank" href="http://octopress.org">Octopress</a></span> |
+<span class="credit">Theme by ：<a href="https://blog.rexdf.org/" target="_blank" rel="theme">Rexdf</a></span> |
+<span class="credit">Host by：<a href="https://github.com/" target="_blank" rel="host">Github.com</a></span> |
+<span class="credit">版权声明：<a href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" target="_blank" rel="license">CC BY-NC-SA 3.0</a><img src="https://analytics.rexdf.net/piwik.php?idsite=1&amp;rec=1" style="border:0" alt="" referrerpolicy="no-referrer-when-downgrade"></span>|
+<span class="credit"><a href="/sitemap.xml" rel="sitemap">sitemap</a></span>
+</p>
+<script type="text/javascript" src="https://tajs.qq.com/stats?sId=30296377" charset="UTF-8"></script>
+</footer>
+<script type="text/javascript">var disqus_shortname="rexdf",disqus_identifier="https://i.rexdf.org/blog/2013/12/25/shou-ji-QQ1-4-ban-xie-yi-bang-zhu-wen-dang-zhuan/",disqus_url="https://i.rexdf.org/blog/2013/12/25/shou-ji-QQ1-4-ban-xie-yi-bang-zhu-wen-dang-zhuan/",disqus_script="embed.js";!function(){var e=document.createElement("script");e.type="text/javascript",e.async=!0,e.src="//"+disqus_shortname+".disqus.com/"+disqus_script,(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(e)}()</script>
+<script type="text/javascript">$(function(){$(".entry-content").each(function(t){var r=t;$(this).find("img.fancybox").each(function(){var t=$(this),a=t.attr("title"),n=t.attr("class");t.removeAttr("class"),t.wrap('<a href="'+this.src+'" class="'+n+'" rel="gallery'+r+'" />'),""!=a&&t.parent().attr("title",a)})}),$(".fancybox").fancybox()})</script>
+</body>
+</html>

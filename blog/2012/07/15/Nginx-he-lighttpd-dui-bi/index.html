@@ -1,0 +1,181 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<script type="text/javascript">var _speedMark=new Date</script>
+<meta charset="utf-8">
+<title>Nginx和lighttpd对比 - Rexdf</title>
+<meta name="author" content="Rexdf">
+<meta name="description" content="背景 lighttpd和nginx是近年来两个流行的高性能web server。nginx在近几年冒起很快，根据netcraft对2010年2月所有网站域名的web server市场份额调查显示，nginx占据第4位，已明显超越了lighttpd，如下图示： 百度有一些服务使用lighttpd， &hellip;">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' data: https://hm.baidu.com https://tajs.qq.com https://ssl.google-analytics.com https://static.rexdf.org https://*.disquscdn.com https://rexdf.disqus.com https://api.github.com https://ssl.google-analytics.com https://disqus.com https://analytics.rexdf.net; connect-src 'self' https://static.rexdf.org https://analytics.rexdf.net https://hm.baidu.com; img-src data: https://*; font-src data: https://*; child-src 'none'; style-src 'self' 'unsafe-inline' https://*; frame-src 'self' https://t.rexdf.org http://t.rexdf.org https://rexdf.disqus.com https://disqus.com">
+<link rel="canonical" href="https://i.rexdf.org/blog/2012/07/15/Nginx-he-lighttpd-dui-bi">
+<link rel="dns-prefetch" href="https://static.rexdf.org/">
+<link href="/favicon.ico" rel="icon">
+<link id="main-css" href="/stylesheets/screen.css" media="screen,projection" rel="stylesheet" type="text/css" title="pc">
+<link href="/stylesheets/screen_mobile.css" rel="alternate stylesheet" type="text/css" title="mobile">
+<link href="/atom.xml" rel="alternate" title="Rexdf" type="application/atom+xml">
+<script src="/javascripts/libs/jquery.min.js"></script>
+<script src="/javascripts/octopress-rexdf.min.js" type="text/javascript"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+      
+      toggle_theme();
+  });
+</script>
+<script type="text/javascript" async src="https://static.rexdf.org/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript">var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-55590409-1"]),_gaq.push(["_trackPageview"]),function(){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(t,e)}()</script>
+<script>var _hmt=_hmt||[];!function(){var e=document.createElement("script");e.src="//hm.baidu.com/hm.js?32192d95b89fbefa0875c4c95adb1412";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}()</script>
+<script src="/javascripts/fancybox/jquery.fancybox.pack.js"></script>
+<link rel="stylesheet" type="text/css" href="/javascripts/fancybox/jquery.fancybox.css">
+<script type="text/javascript">var _paq=_paq||[];_paq.push(["trackPageView"]),_paq.push(["enableLinkTracking"]),function(){var e="https://analytics.rexdf.net/";_paq.push(["setTrackerUrl",e+"piwik.php"]),_paq.push(["setSiteId","1"]);var a=document,t=a.createElement("script"),p=a.getElementsByTagName("script")[0];t.type="text/javascript",t.async=!0,t.defer=!0,t.src=e+"piwik.js",p.parentNode.insertBefore(t,p)}()</script>
+</head>
+<body class="low-contrast-linen-wptouch-bg">
+<header role="banner"><hgroup>
+<h1 id="header-title"><a href="/">Rexdf</a></h1>
+<h2 id="subtitle">The devil is in the Details.</h2>
+</hgroup>
+</header>
+<nav role="navigation"><ul class="subscription" data-subscription="rss">
+<li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+</ul>
+<form action="https://google.com/search" method="get">
+<fieldset role="search">
+<input type="hidden" name="q" value="site:i.rexdf.org">
+<input class="search" type="text" name="q" results="0" placeholder="Search">
+</fieldset>
+</form>
+<ul class="main-navigation">
+<li><a href="/">Blog</a></li>
+<li><a href="/blog/archives/">Archives</a></li>
+<li><a href="/idea/">Idea</a></li>
+<li><a href="/share/">Share</a></li>
+<li><a href="/books/">Books</a></li>
+<li><a href="/donate/">Donate</a></li>
+<li><a target="_blank" href="https://blog.rexdf.org" style="font-family:Shadows Into Light">Main-Blog</a></li>
+</ul>
+</nav>
+<div id="main">
+<div id="content">
+<div>
+<article class="hentry" role="article">
+<header>
+<h1 class="entry-title">Nginx和lighttpd对比</h1>
+<p class="meta">
+<time class="data-article month-07 season-summer" datetime="2012-07-15T00:41:00+08:00" pubdate><span class="month">Jul</span> <span class="day">15th</span> <span class="year">2012</span></time>
+| <a href="#disqus_thread" data-disqus-identifier="https://i.rexdf.org">Comments</a>
+</p>
+</header>
+<div class="entry-content"><h1 id="section"><strong>背景</strong></h1>
+<p>lighttpd和nginx是近年来两个流行的高性能web server。nginx在近几年冒起很快，根据netcraft对2010年2月所有网站域名的web server市场份额调查显示，nginx占据第4位，已明显超越了lighttpd，如下图示： 百度有一些服务使用lighttpd，我们希望对 nginx开展调研，并和lighttpd进行对比。</p>
+<h1 id="section-1"><strong>概述</strong></h1>
+<p>Nginx和lighttpd基本上是同质的，都是采用基于epoll/kqueue/select的全异步事件模型，可以轻松地维持大量的连接，不惧怕慢连接攻击。两者都提供了丰富的HTTP服务功能，例如压缩、url rewrite、虚拟主机、SSL、proxy等等。 Nginx大量模仿了apache的设计风格，比如模块的定义、装配、以及配置数据的解析和组织方式等等。Lighttpd则是自己设计的一套。 和lighttpd相比，Nginx做事更加精细，它提供的一些比较特别。 Nginx的代码入手更困难一些（主观看法）。举个例子，Nginx内部的HTTP状态迁移是比较隐性的，它通过一系列的handler赋值来实现，如果要完整地追踪一次HTTP请求的处理过程，比较费劲。这个就说明，一旦出了问题，追查比较困难。而lighttpd的代码中有一个显式的HTTP状态迁移，一目了然，相比之下比较好看一些。 扩展模块开发方面，nginx的module模仿了apache的设计和实现方式，和lighttpd是完全不同的。主观感觉上nginx模块开发的入门门槛更高一些，因为必须弄清楚nginx的内部运行机制才好确认你写的代码到底有没有问题和隐患。 和lighttpd一样，nginx同样存在着开发文档很少的问题。最好的文档还是源码本身。</p>
+<h1 id="section-2"><strong>功能</strong></h1>
+<p>Nginx完全不支持动态库so，所以它的模块都必须静态编译，且不能动态加载。要加载哪些模块，模块按照怎样的顺序执行，都是在编译期由 configure指定的，如果要调整，也只能重新编译一遍，无法通过改配置来实现。在这方面，Lighttpd做得比nginx好。Lighttpd支 持动态so，并且可以在配置文件中调整各模块的先后顺序，在某些应用场景下，调整模块的先后顺序是很有用的。 条件配置语法的灵活性，lighttpd比nginx要好一些。Lighttpd可以很方便地配置成这样： $HTTP[“url”] =~ “…” { Proxy-core.backends = (“10.1.1.1:8080”, “10.1.1.2:8080”, …) Proxy-core.balancer = “round-robin” Proxy-core.protocol = “http” …… } $HTTP[“host”] =~ “…” { Access.deny-all = “enable” } $HTTP[“useragent”] =~ “…” { url.redirect = (“” =&gt; “http://example.com/”) url.redirect-code = 302 } $HTTP[“url”] =~ “…” { $HTTP[“querystring”] =~ “…” { $HTTP[“referer”] =~ “…” { … } } } 在nginx中，如果模块本身没提供条件支持的话，需要依赖rewrite模块做一次内部跳转，把变化反映到url上，再通过location使其生效。 在一些具体的功能点上，nginx和lighttpd各有特点： 有一些比较细节的地方，nginx考虑得比lighttpd周全，比如nginx可以配置HTTP头部的长度、HTTP请求的读写超时 等，lighttpd的官方版本是不支持的，百度对此进行了改良。再例如nginx可以配置listen队列长度、nginx进程起来后 挂在哪个CPU核上运行，lighttpd现在还不支持。 Nginx的proxy功能比lighttpd强大，主要是proxy cache，另外还有一些细节上的处理。比如nginx支持4xx/5xx错误自动重试下一个后端。但是Lighttpd的proxy现在还支持scgi 和ajp两种后端转发协议，nginx不支持。 Nginx有一些比较有特色的功能module，例如： 1）secure_link，可以用来防盗链，目前在CDN上有应用。这个功能很不错，可以考虑在lighttpd上开发相应的模块。 2）geoip，用户给配置一个ip地理信息数据文件，nginx可以以此为根据，判断客户端ip来自哪个国家和城市。</p>
+<h1 id="section-3"><strong>性能</strong></h1>
+<p>根据简单性能对比，Nginx的性能比lighttpd略好。原因可能有以下几方面： 1. Lighttpd启动了几个辅助线程，有加锁竞争行为，这样会使性能有所降低（线程个数是可配的，这里还有优化的余地）；nginx完全不涉及线程，不加锁。 2. Lighttpd有动态so，nginx全静态编译，动态库执行效率比静态慢大约5%~10%左右。 3. Nginx在细节优化上可能做得更好一些。例如nginx的epoll是ET（边缘触发）的，而lighttpd的epoll是LT（水平触发）的。 nginx的性能要好一些，不过对大多数应用来说，lighttpd的性能指标已够用了，一个系统主要的瓶颈往往是在后端。由于lighttpd具有动态模块的加载能力，适合非常需要灵活配置的场合。 总体而言，nginx和lighttpd都是非常好的web server选择。</p>
+</div>
+<footer>
+<p class="meta">
+<span class="byline author vcard">Posted by <span class="fn">Rexdf</span></span>
+<time class="data-article month-07 season-summer" datetime="2012-07-15T00:41:00+08:00" pubdate><span class="month">Jul</span> <span class="day">15th</span> <span class="year">2012</span></time>
+</p>
+<div class="sharing">
+</div>
+<p class="meta">
+<a class="basic-alignment left" href="/blog/2012/07/15/Lighttpd-he-nginx-de-dui-bi-na-ge-hao/" title="Previous Post: Lighttpd和nginx的对比　哪个好？">&laquo; Lighttpd和nginx的对比　哪个好？</a>
+<a class="basic-alignment right" href="/blog/2012/07/15/san-da-Web-Server-fen-xi-ApacheLighttpdNginx/" title="Next Post: 三大Web Server分析(Apache、Lighttpd、Nginx)">三大Web Server分析(Apache、Lighttpd、Nginx) &raquo;</a>
+</p>
+</footer>
+</article>
+<section>
+<h1>Comments</h1>
+<div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
+</div>
+<aside class="sidebar">
+<section>
+<h1>Categories</h1>
+<ul id="categories">
+<li class="category"><a href="/blog/categories/acm/">ACM <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/algorithm/">Algorithm <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/assembly/">Assembly <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/cygwin/">Cygwin <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/gnu/">GNU <sup>8</sup></a></li>
+<li class="category"><a href="/blog/categories/math/">Math <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/octopress/">Octopress <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/programming/">Programming <sup>6</sup></a></li>
+<li class="category"><a href="/blog/categories/security/">Security <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sublime/">Sublime <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/synology/">Synology <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sysadmin/">SysAdmin <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/web/">Web <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/windows/">Windows <sup>7</sup></a></li>
+<li class="category"><a href="/blog/categories/proxmox/">proxmox <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/ri-chang/">日常 <sup>37</sup></a></li>
+</ul>
+</section>
+<section>
+<h1>Recent Posts</h1>
+<ul id="recent_posts">
+<li class="post">
+<a href="/blog/2024/12/16/fu-wu-qi-wa-kuang-bing-du-de-cha-sha/">服务器挖矿病毒的查杀</a>
+</li>
+<li class="post">
+<a href="/blog/2021/07/11/apple-m1-bian-yi-tensorflow/">Apple M1 编译tensorflow</a>
+</li>
+<li class="post">
+<a href="/blog/2021/02/27/chromiumbian-ma-qi-wen-ti/">Chromium编码器问题</a>
+</li>
+<li class="post">
+<a href="/blog/2020/12/13/proxmoxbi-ji/">Proxmox笔记</a>
+</li>
+<li class="post">
+<a href="/blog/2020/11/15/lun-yan-du-yu-shen-du/">论广度与深度</a>
+</li>
+</ul>
+</section>
+<section>
+<iframe frameborder="0" scrolling="no" referrerpolicy="unsafe-url" style="width:283px;height:200px" src="https://t.rexdf.org/?m=app&a=showwidget&name=rexdf&type=1&width=283px&height=500px"></iframe>
+</section>
+<section>
+<h1>GitHub Repos</h1>
+<ul id="gh_repos">
+<li class="loading">Status updating...</li>
+</ul>
+<a href="https://github.com/rexdf">@rexdf</a> on GitHub
+<script type="text/javascript">$(document).ready(function(){if(!window.jXHR){var e=document.createElement("script");e.type="text/javascript",e.src="/javascripts/libs/jXHR.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}github.showRepos({user:"rexdf",count:0,skip_forks:!0,target:"#gh_repos"})})</script>
+</section>
+</aside>
+</div>
+</div>
+<footer role="contentinfo"><p>
+<span class="credit">Copyright &copy; 2024 - Rexdf -</span> |
+<span class="credit">Powered by <a name="bottoms" target="_blank" href="http://octopress.org">Octopress</a></span> |
+<span class="credit">Theme by ：<a href="https://blog.rexdf.org/" target="_blank" rel="theme">Rexdf</a></span> |
+<span class="credit">Host by：<a href="https://github.com/" target="_blank" rel="host">Github.com</a></span> |
+<span class="credit">版权声明：<a href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" target="_blank" rel="license">CC BY-NC-SA 3.0</a><img src="https://analytics.rexdf.net/piwik.php?idsite=1&amp;rec=1" style="border:0" alt="" referrerpolicy="no-referrer-when-downgrade"></span>|
+<span class="credit"><a href="/sitemap.xml" rel="sitemap">sitemap</a></span>
+</p>
+<script type="text/javascript" src="https://tajs.qq.com/stats?sId=30296377" charset="UTF-8"></script>
+</footer>
+<script type="text/javascript">var disqus_shortname="rexdf",disqus_identifier="https://i.rexdf.org/blog/2012/07/15/Nginx-he-lighttpd-dui-bi/",disqus_url="https://i.rexdf.org/blog/2012/07/15/Nginx-he-lighttpd-dui-bi/",disqus_script="embed.js";!function(){var e=document.createElement("script");e.type="text/javascript",e.async=!0,e.src="//"+disqus_shortname+".disqus.com/"+disqus_script,(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(e)}()</script>
+<script type="text/javascript">$(function(){$(".entry-content").each(function(t){var r=t;$(this).find("img.fancybox").each(function(){var t=$(this),a=t.attr("title"),n=t.attr("class");t.removeAttr("class"),t.wrap('<a href="'+this.src+'" class="'+n+'" rel="gallery'+r+'" />'),""!=a&&t.parent().attr("title",a)})}),$(".fancybox").fancybox()})</script>
+</body>
+</html>

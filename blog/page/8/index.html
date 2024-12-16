@@ -1,0 +1,754 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<script type="text/javascript">var _speedMark=new Date</script>
+<meta charset="utf-8">
+<title>Rexdf</title>
+<meta name="author" content="Rexdf">
+<meta name="description" content="很简单的一个插件，现在支持汉化Sublime Text2，Sublime Text3。全部系统Win64、Win32，Linux64，Linux32，OSX等，可以随意来回切换简体中文、繁体中文、日语、英语，无需重启SublimeText。 ">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' data: https://hm.baidu.com https://tajs.qq.com https://ssl.google-analytics.com https://static.rexdf.org https://*.disquscdn.com https://rexdf.disqus.com https://api.github.com https://ssl.google-analytics.com https://disqus.com https://analytics.rexdf.net; connect-src 'self' https://static.rexdf.org https://analytics.rexdf.net https://hm.baidu.com; img-src data: https://*; font-src data: https://*; child-src 'none'; style-src 'self' 'unsafe-inline' https://*; frame-src 'self' https://t.rexdf.org http://t.rexdf.org https://rexdf.disqus.com https://disqus.com">
+<link rel="canonical" href="https://i.rexdf.org/blog/page/8">
+<link rel="dns-prefetch" href="https://static.rexdf.org/">
+<link href="/favicon.ico" rel="icon">
+<link id="main-css" href="/stylesheets/screen.css" media="screen,projection" rel="stylesheet" type="text/css" title="pc">
+<link href="/stylesheets/screen_mobile.css" rel="alternate stylesheet" type="text/css" title="mobile">
+<link href="/atom.xml" rel="alternate" title="Rexdf" type="application/atom+xml">
+<script src="/javascripts/libs/jquery.min.js"></script>
+<script src="/javascripts/octopress-rexdf.min.js" type="text/javascript"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+      
+      toggle_theme();
+  });
+</script>
+<script type="text/javascript" async src="https://static.rexdf.org/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript">var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-55590409-1"]),_gaq.push(["_trackPageview"]),function(){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(t,e)}()</script>
+<script>var _hmt=_hmt||[];!function(){var e=document.createElement("script");e.src="//hm.baidu.com/hm.js?32192d95b89fbefa0875c4c95adb1412";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}()</script>
+<script src="/javascripts/fancybox/jquery.fancybox.pack.js"></script>
+<link rel="stylesheet" type="text/css" href="/javascripts/fancybox/jquery.fancybox.css">
+<script type="text/javascript">var _paq=_paq||[];_paq.push(["trackPageView"]),_paq.push(["enableLinkTracking"]),function(){var e="https://analytics.rexdf.net/";_paq.push(["setTrackerUrl",e+"piwik.php"]),_paq.push(["setSiteId","1"]);var a=document,t=a.createElement("script"),p=a.getElementsByTagName("script")[0];t.type="text/javascript",t.async=!0,t.defer=!0,t.src=e+"piwik.js",p.parentNode.insertBefore(t,p)}()</script>
+</head>
+<body class="low-contrast-linen-wptouch-bg">
+<header role="banner"><hgroup>
+<h1 id="header-title"><a href="/">Rexdf</a></h1>
+<h2 id="subtitle">The devil is in the Details.</h2>
+</hgroup>
+</header>
+<nav role="navigation"><ul class="subscription" data-subscription="rss">
+<li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+</ul>
+<form action="https://google.com/search" method="get">
+<fieldset role="search">
+<input type="hidden" name="q" value="site:i.rexdf.org">
+<input class="search" type="text" name="q" results="0" placeholder="Search">
+</fieldset>
+</form>
+<ul class="main-navigation">
+<li><a href="/">Blog</a></li>
+<li><a href="/blog/archives/">Archives</a></li>
+<li><a href="/idea/">Idea</a></li>
+<li><a href="/share/">Share</a></li>
+<li><a href="/books/">Books</a></li>
+<li><a href="/donate/">Donate</a></li>
+<li><a target="_blank" href="https://blog.rexdf.org" style="font-family:Shadows Into Light">Main-Blog</a></li>
+</ul>
+</nav>
+<div id="main">
+<div id="content">
+<div class="blog-index">
+<article>
+<header>
+<h1 class="entry-title">[置顶]<a href="/blog/2015/05/15/fa-bu-yi-ge-sublimeyi-hua-cha-jian/">发布一个sublime汉化插件</a></h1>
+<p class="meta">
+<time class="data-article month-05 season-spring" datetime="2015-05-15T11:19:01+08:00" pubdate><span class="month">May</span> <span class="day">15th</span> <span class="year">2015</span></time>
+| <a href="/blog/2015/05/15/fa-bu-yi-ge-sublimeyi-hua-cha-jian/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2015/05/15/fa-bu-yi-ge-sublimeyi-hua-cha-jian/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>很简单的一个插件，现在支持汉化Sublime Text2，Sublime Text3。全部系统Win64、Win32，Linux64，Linux32，OSX等，可以随意来回切换简体中文、繁体中文、日语、英语，无需重启SublimeText。</p>
+</div>
+<footer>
+<a rel="full-article" href="/blog/2015/05/15/fa-bu-yi-ge-sublimeyi-hua-cha-jian/">Read on &rarr;</a>
+</footer>
+</article>
+<article>
+<header>
+<h1 class="entry-title"><a href="/blog/2013/12/25/shou-ji-QQ1-4-ban-xie-yi-bang-zhu-wen-dang-zhuan/">手机QQ1.4 版协议帮助文档(转)</a></h1>
+<p class="meta">
+<time class="data-article month-12 season-winter" datetime="2013-12-25T22:49:00+08:00" pubdate><span class="month">Dec</span> <span class="day">25th</span> <span class="year">2013</span></time>
+| <a href="/blog/2013/12/25/shou-ji-QQ1-4-ban-xie-yi-bang-zhu-wen-dang-zhuan/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2013/12/25/shou-ji-QQ1-4-ban-xie-yi-bang-zhu-wen-dang-zhuan/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>分析了一部分手机QQ的协议，基于TCP的。版本是1.4, 基于QQ kjava3版本 Manifest-Version: 1.0 MIDlet-Vendor: Tencent MIDlet-Version: 3.0.1 MIDlet-1: 手机QQ,/icon.png,com.tencent.kqq2_3.KQQMIDlet MicroEdition-Configuration: CLDC-1.0 MIDlet-Name: 手机QQ MicroEdition-Profile: MIDP-2.0</p>
+<h3 id="section">1:服务器</h3>
+<p>58.60.12.177:14000 http://conf.3g.qq.com/newConf/kjava/aubin2.jsp 密码=到大写(取数据摘要(到字节集(密码)))</p>
+<h3 id="section-1">2:登录:</h3>
+<p>VER=1.4&amp;CON;=1&amp;CMD;=Login&amp;SEQ;=标识&amp;UIN;=QQ&amp;PS;=密码&amp;M5;=1&amp;LG;=0&amp;LC;=812822641C978097&amp;GD;=5MWX2PF3FOVGTP6B&amp;CKE;= 这里还有个换行符 没加发过去没反映 cmd 这个是命令码 每次发送命令后QQ返回的包里面的SEQ都和对应包相同，以后发包时每次在上一个包的SEQ上+1作为新的。 返回: VER=1.1&amp;CMD;=Login&amp;SEQ;=200&amp;UIN;=QQ&amp;RES;=0&amp;RS;=0&amp;HI;=60&amp;LI;=300&amp;SG;=c903f1a02326204ebc3b99b34700bce32c0078a8366337fbdc46db9be57c3b9a&amp;SSG;=3684427132 这个登录成功 VER=1.1&amp;CMD;=Login&amp;SEQ;=267&amp;UIN;=QQ&amp;RES;=0&amp;RS;=1&amp;RA;=Password error! 密码错误 VER=1.1&amp;CMD;=VERIFYCODE&amp;SEQ;=241&amp;UIN;=QQ&amp;RES;=0&amp;SC;=1&amp;NT;=&amp;VC;=89504e470d0a1a0a0000000d4948445200000064000000280403000000fa56427000000030504c5445ffffffdfdfdfbfbfbfefefef9f9f9f1f1f1f0f0f0f3f3f3fafafaf5f5f5f2f2f2f4f4f4f7f7f7f8f8f8fcfcfcf6f6f6f4cf2fad2000002b349444154388de5543d685351143e6962f292da260aea20854025a0d373b0823f90a50e9dd28a0fa114d2b439f96fea6074515ccca04b5d326aa1f05ce360ec9829825316bb085a043b3914a53888e077ee7d696bde4b6966bfe1ddf7ce3ddfb9e7e7bb8f68204e4f0edef3c634f3c3e1185719b8774c67bf29cf9a50b271bc5db4e7e347336e58bc4934c60a19a2309692791463442714d414ded6c76d78b91abf5eff9075472774cba1ac8faaa5e8c118b7b1b180175b27d4702895ba5edb6e8ade99a380f6c85a0e852d7e24272eba0f711cda213ec0e3cb3378e6e92c9e65172502eb66ec2417a60e1839d85b125fcacbba2809586384521bfb8c9f9f614784b4dac46e1f1a7c874d3ae17897cc675c22990586b24a17cc4bccc97e8a9d9d601553fa369322627c065e90c1dc94fd1a77fb29bc429633134c2f294524299813ea1aa9040f75599cd27e04f9a83b9dfb4efba3471d36efd2b55924a8286a83d29ab54da3443280927c359253e85454d176a95e86e4ba3a3c68bda3d2e483686480e9449cea6b11ae406e29da822551c6849372c43fb5a84f756eb7be4ac1d498c8ca5a41794d58d3518e49d8c3a82deadccfa1a9c1250a2f8d4bae9d32a2acf76aebeb58a727886944ac909131a45589227574ec4eb5bfc7b4d31384bfb6e8434a954815f5077982b93a1947f56e594664ba23aa8f196ac5e9552bd52a4040164365795f037deb4700cda1f01cdeea794a347d2d6e87f9cf078c498ba8e871932d1463482cbb44a1322eaf8932800d7d2d66dd0c0c3e0e95146351ce3f780b9f65dc21e45430e99b48c2a56312c9de26bac2cb5b3203d6c2f57df98dc5bfc7f34f3c18e4b77392198bd86fbebb7f575b43c2a4f75e04e08ca8bce5c40fbdd1c6f38ab237e02fe6b30b5f3f39d7f7b8b8ce037b33104fd5dfc8ab3783f1dce2dcc2500cd473ca3f4c291ac6cba129ff1bfe02b68915dcc24158fc0000000049454e44ae426082 要验证码 是一个PNG图片。</p>
+<h3 id="section-2">3:发送验证码</h3>
+<p>VER=1.4&amp;CON;=1&amp;CMD;=VERIFYCODE&amp;SEQ;=标识&amp;UIN;=+QQ+&amp;SID;=&amp;XP;=C4CA4238A0B92382&amp;SC;=2&amp;VC;=验证码 返回的跟上面的差不多.</p>
+<h3 id="section-3">4:注销</h3>
+<p>VER=1.4&amp;CON;=1&amp;CMD;=Logout&amp;SEQ;=标识&amp;UIN;=QQ&amp;SID;=&amp;XP;=C4CA4238A0B92382</p>
+<h3 id="section-4">5:获取在线好友</h3>
+<p>VER=1.4&amp;CON;=1&amp;CMD;=Query_Stat2&amp;SEQ;=标识&amp;UIN;=QQ&amp;SID;=&amp;XP;=C4CA4238A0B92382&amp;CM;=2&amp;UN;=0</p>
+<h3 id="section-5">6:发送消息</h3>
+<p>VER=1.4&amp;CON;=1&amp;CMD;=CLTMSG&amp;SEQ;= 标识&amp;UIN;= QQ&amp;SID;=&amp;XP;=C4CA4238A0B92382&amp;UN;= 发送对象&amp;MG;=消息</p>
+<h3 id="section-6">7:查看好友资料</h3>
+<p>VER=1.4&amp;CON;=1&amp;CMD;=GetInfo&amp;SEQ;=标识&amp;UIN;=QQ&amp;SID;=&amp;XP;=C4CA4238A0B92382&amp;LV;=2&amp;UN;=好友</p>
+<h3 id="section-7">8:隐身</h3>
+<p>VER=1.4&amp;CON;=1&amp;CMD;=Change_Stat&amp;SEQ;=标识&amp;UIN;=QQ&amp;SID;=&amp;XP;=C4CA4238A0B92382&amp;ST;=40</p>
+<h3 id="section-8">9:离开</h3>
+<p>VER=1.4&amp;CON;=1&amp;CMD;=Change_Stat&amp;SEQ;=标识&amp;UIN;=QQ&amp;SID;=&amp;XP;=C4CA4238A0B92382&amp;ST;=30</p>
+<h3 id="section-9">10:在线</h3>
+<p>VER=1.4&amp;CON;=1&amp;CMD;=Change_Stat&amp;SEQ;=标识&amp;UIN;=QQ&amp;SID;=&amp;XP;=C4CA4238A0B92382&amp;ST;=10 状态, 10 在线 30 离开 40隐身 20 好像是忙碌 手机QQ3.0上面没这个功能 有兴趣可以测试下</p>
+<h3 id="section-10">11:查找好友</h3>
+<p>VER=1.4&amp;CON;=1&amp;CMD;=AddToList&amp;SEQ;=标识&amp;UIN;=QQ&amp;SID;=&amp;XP;=C4CA4238A0B92382&amp;UN;=好友</p>
+<h3 id="section-11">12:验证</h3>
+<p>VER=1.4&amp;CON;=1&amp;CMD;=Ack_AddToList&amp;SEQ;=标识&amp;UIN;=QQ&amp;SID;=&amp;XP;=C4CA4238A0B92382&amp;UN;=好友&amp;CD;=2&amp;RS;=验证文本 发送的数据后面都有个换行符 返回的文本都utf-8编码的</p>
+</div>
+</article>
+<article>
+<header>
+<h1 class="entry-title"><a href="/blog/2013/12/25/css-zhi-after-after-zhuan/">Css之:after ::after(转)</a></h1>
+<p class="meta">
+<time class="data-article month-12 season-winter" datetime="2013-12-25T22:29:00+08:00" pubdate><span class="month">Dec</span> <span class="day">25th</span> <span class="year">2013</span></time>
+| <a href="/blog/2013/12/25/css-zhi-after-after-zhuan/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2013/12/25/css-zhi-after-after-zhuan/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>css之:after ::after</p>
+<h3 id="after-">:after 的用法</h3>
+<p>CSS :after 伪元素(pseudo-element)（后面有<a href="http://blog.meituo.net/2010/08/29/css%E4%B9%8Bafter-after/#wei">解释</a>） 定义</p>
+<pre><code>:after 伪元素在元素内容之后插入内容。
+</code></pre>
+<p>这个伪元素允许创作人员在元素内容的最后面插入生成内容。默认地，这个伪元素是行内元素，不过可以使用属性 display 改变这一点。 例子： 此样式会在每个 h1 元素之后播放一段声音：</p>
+<pre><code>h1:after{    content:url(beep.wav);}
+</code></pre>
+<p>这里有<a href="http://www.w3schools.com/css/tryit.asp?filename=trycss_after">w3schools的例子</a>吧 还有一个:after差不多的:before,就是在元素内容之前插入内容，内容当然就是<a href="https://developer.mozilla.org/en/CSS/content">content</a>指出的内容如：文字，图片<a href="http://www.quirksmode.org/css/beforeafter.html">quirksmode提供的例子</a> 浏览器IE6，7不支持:after伪类，详细的兼容性列表<a href="http://www.quirksmode.org/css/beforeafter_content.html">这里</a></p>
+<h3 id="after-after">:after 和::after的区别</h3>
+<pre><code>element:after  { style properties }  /* CSS2 syntax */
+element::after { style properties }  /* CSS3 syntax, not supported by IE8 */
+</code></pre>
+<table>
+<tbody>
+<tr>
+<td>见[:after</td>
+<td>::after](https://developer.mozilla.org/en/CSS/:after)</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>The ::after notation was introduced in CSS 3 in order to establish a discrimination between pseudo-classes and pseudo-elements. Browsers also accept the notation :after introduced in CSS 2.</p>
+</blockquote>
+<p>一个冒号专门用来表示伪类，而伪元素用两个冒号来表示，以示区别,也就是一个是伪类，一个是伪元素。ie8仅支持:after。</p>
+<p>Browser Lowest Version Support of</p>
+<p>Internet Explorer 8.0
+<code>:after</code></p>
+<p>Firefox (Gecko) 1.0 (1.0)
+<code>:after</code></p>
+<p>1.0 (1.5)
+<code>:after | ::after</code></p>
+<p>Opera 4.0
+<code>:after</code></p>
+<p>7.0
+<code>:after | ::after</code></p>
+<p>Safari (WebKit) 1.0 (85)
+<code>:after | ::after</code></p>
+<h3 id="section">什么是伪类和伪元素</h3>
+<p>_伪类_可以独立于文档的元素来分配样式，且可以分配给任何元素，逻辑上和功能上类类似，但是其是预定义的、不存在于文档树中且表达方式也不同，所以叫伪类。 _伪元素_所控制的内容和一个元素控制的内容一样，但是伪元素不存在于文档树中，不是真正的元素，所以叫伪元素。 伪类和伪元素都不出现在源文件和文档树中。伪元素在firebug下是查看不到的。 常见的伪类有：:first-child ，:link:，vistited，:hover:，active:focus，:lang 伪元素有：:first-line，:first-letter，:before，:after</p>
+</div>
+</article>
+<article>
+<header>
+<h1 class="entry-title"><a href="/blog/2013/12/25/5-zhong-fang-fa-li-ke-xie-chu-geng-hao-de-CSS-dai-ma-zhuan/">5种方法立刻写出更好的CSS代码(转)</a></h1>
+<p class="meta">
+<time class="data-article month-12 season-winter" datetime="2013-12-25T22:00:00+08:00" pubdate><span class="month">Dec</span> <span class="day">25th</span> <span class="year">2013</span></time>
+| <a href="/blog/2013/12/25/5-zhong-fang-fa-li-ke-xie-chu-geng-hao-de-CSS-dai-ma-zhuan/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2013/12/25/5-zhong-fang-fa-li-ke-xie-chu-geng-hao-de-CSS-dai-ma-zhuan/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>文章转自：http://www.yeeyan.com/articles/view/toydime/30047 简介 当然，每个人都可以编写CSS代码，甚至你现在已经让它为你的项目工作了。但是CSS还可以更好吗？开始用这5个Tips改进你的CSS吧！</p>
+<h3 id="section">1.重置</h3>
+<p>首先，很认真的告诉你，总是要重置某些分类。无论你是使用 Eric Meyer Reset、YUI Reset 或者你自己编写的重置代码，只要使用就对了。 它能很简单的移除所有元素的填充（padding）和边距（margin）： html, body, div, h1, h2, h3, h4, h5, h6, ul, ol, dl, li, dt, dd, p, blockquote, pre, form, fieldset, table, th, td { margin: 0; padding: 0; } Eric Meyer Reset和YUI Reset都是非常强大的，但是对于我而言，它们走的太远了。我觉得你最终需要重置一切，然后重新定义所有元素的属性。这就是为什么Eric Meyer推荐更有效的使用（重置样式表），而你不要只是使用他的重置样式表，将它拖放到你的项目中。调整它（的重置样式表），建立属于自己的重置样式表。 噢，请停止使用： * { margin: 0; padding: 0; } 花更多的时间去制作它，当你移除了填充（padding）你认为单选按钮会发生什么变化？表单元素有时能够做些时髦的事情，所以最有效的方式就是将他们独立。</p>
+<h3 id="section-1">2.排序</h3>
+<p>一个小的测试 这个例子就是要让你思考如何更快的找到右边距属性？ Example#1 div#header h1 { z-index: 101; color: #000; position: relative; line-height: 24px; margin-right: 48px; border-bottom: 1px solid #dedede; font-size: 18px; } Example#2 div#header h1 { border-bottom: 1px solid #dedede; color: #000; font-size: 18px; line-height: 24px; margin-right: 48px; position: relative; z-index: 101;}你不能告诉我Example#2不能更快的找到右边距属性。根据字母排序你的元素属性。一致的创建你的CSS，将帮助你节省花费在寻找一个特殊属性的时间。 我知道一些人用这样的方法去组织代码，其他人又用另一种方法去组织，但是在我的公司，我们协商一致做出决定，所有的代码都将按照字母排序来组织。通过这样组织代码与其他人协同工作一定是有帮助的。当我碰到属性没有按照字母排序的层叠样式表我每一次都会退缩。</p>
+<h3 id="section-2">3.组织</h3>
+<p>你应该组织你的样式表以致相关的内容靠在一起，更简单的找到想要的。使用更有效的注解。举个例子，这是我如何构造我的层叠样式表： /<strong>**<em>Reset</em></strong><strong>/ 移除元素的填充（padding）和边距（margin）。 /</strong><strong><em>Basic Elements</em></strong><strong>/ 定义基本元素的样式: body, h1-h6, ul, ol, a, p, 等. /</strong><strong><em>Generic Classes</em></strong><strong>/ 定义简单的风格，好像浮动的某一侧, 移除元素的下边距, 等当然，它们大部分都与我们希望的语义不相关,但是它们是高效处理代码所必须的。 /</strong><strong><em>Basic Layout</em></strong><strong>/ 定义基本的模板: header, footer等. 帮助定义网页布局的基本元素 /</strong><strong><em>Header</em></strong><strong>/ 定义所有Hearder元素 /</strong><strong><em>Content</em></strong><strong>/ 定义所有内容框内的元素 /</strong><strong><em>Footer</em></strong><strong>/ 定义所有Footer的元素 /</strong><strong><em>Etc</em></strong>**/ 定义其他的选择器。 通过注解和归类相似元素的分组，将更快的找到你想要的。</p>
+<h3 id="section-3">4.一致性</h3>
+<p>无论你决定使用什么方式去编写代码，保持一致。我已经对全部放在1行VS多行的CSS编写编写方式的争论感到乏味和疲倦。这是不需要争辩的。每个人都有自己的观点，所以选择一种你喜欢的工作方式，并在所有的样式表中保持一致。 就我个人而言，我将使用两者结合的方式。如果一个选择器超过了3个属性，我将截断它采用多行的方式编写。 div#header { float: left; width: 100%; } div#header div.column { border-right: 1px solid #ccc; float: rightright; margin-right: 50px; padding: 10px; width: 300px; } div#header h1 { float: left; position: relative; width: 250px; } 所以找到你喜欢的工作方式然后保持一致。</p>
+<h3 id="section-4">5.从正确的地方开始</h3>
+<p>在完成标记语言之前不要去尝试靠近你的样式表。 当我准备分割一张网页的时候，创建CSS文件之前，我需要预览并且标记body开标签到body的闭合标签之间的所有文档。我不会增加额外的DIV ,ID,或者类选择器。我将会添加一些一般的DIV，就好像hearder、content、footer.因为我知道这些东西是现实存在的。 通过先标记文档，你将不会碰到本已注定的divities1和classitis2麻烦!/<em>You only need to add in that stuff once you have begun to write the CSS and realize that you are going to need another hook to accomplish what you are trying to achieve.</em>/(原文未译）。 利用CSS子选择器指定子元素；不要只是机械的给元素添加类或者ID选择器。记住：没有一个良好的格式化文档（或者标记结构）CSS是无价值的。 总结 这些Tips能够帮助我更好的完成CSS代码的编写。但是这并不意味着这张列表的结束，接下来我将会去带来一些其他的与大家分享。 你有什么更好的Tips帮助我们完善CSS代码？</p>
+</div>
+</article>
+<article>
+<header>
+<h1 class="entry-title"><a href="/blog/2013/12/18/mi-ma-an-quan-ce-lve/">密码安全策略</a></h1>
+<p class="meta">
+<time class="data-article month-12 season-winter" datetime="2013-12-18T18:26:00+08:00" pubdate><span class="month">Dec</span> <span class="day">18th</span> <span class="year">2013</span></time>
+| <a href="/blog/2013/12/18/mi-ma-an-quan-ce-lve/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2013/12/18/mi-ma-an-quan-ce-lve/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>本文起因是因为看到了知乎的<a href="http://zhuanlan.zhihu.com/williamlong/19639239?utm_campaign=rss&amp;utm_medium=rss&amp;utm_source=rss&amp;utm_content=title">这篇</a>，一时有感而发。记得大约一两年前谷歌的各种服务是各种的不稳定，当时应该比较公认gmail是高大上的，偶尔也会有些雅虎邮箱。然而我的gmail邮箱却不知道申请了多少次，因为申请完了我就忘了账号名了，有的则是忘记密码了。后来也听说啥hr看到QQ邮箱就直接不看简历了，那段时间一直使用的163邮箱作为核心邮箱，然而密码过度复杂，而且经常修改，终于某一段时间后咋么也找不回密码了。而那些使用gmail的同学，发一份文件过去，然后打电话给对方，他说他gmail无法打开，被屏蔽了。然后直接火了，打电话让对方开启飞信或者QQ来传送文件。这些经历应该很多人和我有类似的经历。总的来说gmail我是没什么好感的，因为广告、用户界面、操作习惯没有一样是我喜欢的。外加后来我架设了独立的域名信箱，基本上各种服务就都绑定过来了。总的来说google强大之处是可以看到的，但是像gmail和outlook从来就不想使用。因为时常看到的关于安全审计人员们分析邮箱记录，典型的就是看的outlook邮件记录。所以后来我追求各种独立的服务，而对于流氓网站要求注册的行为，则统统使用一次性密码。也就是说不打算第二次登陆进去的，下次再次真的需要再次注册，因为我不是一个会在一个什么论坛花时间来讨论的人。 以上杂扯了这么多下面言归正传： 1.一般流氓站点 使用可以通过验证的弱密码abc123，,13456，password等异常弱的密码，只要能通过注册认证即可。但是必须记住，这样的密码不要用来长久使用，这通常用来积分下载，也就是说你发现网站有些意思而且你一周下来超过3天都登陆进去聊过，那么还是换个密码的好。 2.社交网站 facebook、twitter、qq大小号、人人、新浪微博等，对于这些网站一般都在自身设置密码保护上比较好了，安全性和公司的大小基本成正比。但是社会工程学应该会集中火力在这些站点，因为社会工程就是绕开技术层面漏洞攻击转而对人的漏洞攻击。而人是社会性的动物，因为社交网站是最好的社会工程学站研究站点。 3.社会邮箱 需要几个重点邮箱，策略一般是密码保护邮箱使用知名的邮箱，然后这个邮箱名字复杂，但是不要贴出来，而且最好定期在安全的网络环境登陆。然后经常公布的邮箱就使用qq邮箱吧，这样毕竟方便。 4.公司学校 这包括网盘、邮箱、内网认证、平台登录等。相对来说公司的安全性会高一些，因为涉及到的财务问题会严重些。 5.网银等 这样的页面不要在别人电脑登陆，也不要在不安全网络连接下登陆。密码避开生日姓名。 然后推荐一款密码生成工具，Lastpass。 我使用Lastpass的策略是，流氓站点全部使用Lastpass生成加记忆密码；社交网站不记忆；社会邮箱使用不常用的浏览器登陆(因为debug网页需要，我装了O+S+F+C+I)；网银相关只使用IE登陆；Firefox默认浏览器，平时基本使用Firefox和chrome浏览网页(因为fb，tw方便)，IE插件全部禁止清理掉；定期清理浏览器历史包括Cookie；尽量不要安装非官方市场下载的插件；不信任软件虚拟机运行；定期重装(2~3个月)，因为大部分软件在虚拟机，主机工作量不大。</p>
+</div>
+</article>
+<article>
+<header>
+<h1 class="entry-title"><a href="/blog/2013/12/12/centos-fen-qu-diao-zheng-xiang-xi/">Centos分区调整详细</a></h1>
+<p class="meta">
+<time class="data-article month-12 season-winter" datetime="2013-12-12T20:53:00+08:00" pubdate><span class="month">Dec</span> <span class="day">12th</span> <span class="year">2013</span></time>
+| <a href="/blog/2013/12/12/centos-fen-qu-diao-zheng-xiang-xi/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2013/12/12/centos-fen-qu-diao-zheng-xiang-xi/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>以前解决过一次这个问题</p>
+<blockquote>
+<p><a href="/2013/03/centos-%e6%97%a0%e6%8d%9f%e8%b0%83%e6%95%b4%e5%88%86%e5%8c%ba%e5%a4%a7%e5%b0%8f%e6%96%b9%e6%a1%88/">CentOS 无损调整分区大小方案</a></p>
+</blockquote>
+<p>但是当时只是说明了用gparted来解决，不过没有详细说明操作步骤。</p>
+<h3 id="section">0.增加磁盘大小</h3>
+<p>由于我是VMWare虚拟机里面，所以先在settings里面选中Hard Disk，然后Utilities里面Expand输入想要增加的大小，如我的5G。如果是物理磁盘，则需要没有分区的磁盘空间。</p>
+<h3 id="section-1">1.增加分区大小</h3>
+<p>先查看分区大小(下面是我的成功添加5G后的)</p>
+<pre><code>[root@localhost rexdf]# fdisk -l
+
+Disk /dev/sda: 16.1 GB, 16106127360 bytes
+255 heads, 63 sectors/track, 1958 cylinders
+Units = cylinders of 16065 * 512 = 8225280 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disk identifier: 0x00059acf
+
+   Device Boot      Start         End      Blocks   Id  System
+/dev/sda1   *           1          64      512000   83  Linux
+Partition 1 does not end on cylinder boundary.
+/dev/sda2              64        1959    15215616   8e  Linux LVM
+
+Disk /dev/mapper/vg_livecd-lv_root: 13.5 GB, 13497270272 bytes
+255 heads, 63 sectors/track, 1640 cylinders
+Units = cylinders of 16065 * 512 = 8225280 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disk identifier: 0x00000000
+
+
+Disk /dev/mapper/vg_livecd-lv_swap: 2076 MB, 2076180480 bytes
+255 heads, 63 sectors/track, 252 cylinders
+Units = cylinders of 16065 * 512 = 8225280 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disk identifier: 0x00000000
+</code></pre>
+<p>启动gparted的livecd [caption id=”attachment<em>2047” align=”alignnone” width=”722”]<img src="/wp-content/uploads/2013/12/gparted_setting1.png" alt="键盘设置"> 键盘设置[/caption] [caption id=”attachment</em>2048” align=”alignnone” width=”738”]<img src="http://blog.rexdf.org/wp-content/uploads/2013/12/gparted_setting2.png" alt="语言选择"> 语言选择[/caption] [caption id=”attachment<em>2049” align=”alignnone” width=”743”]<img src="http://blog.rexdf.org/wp-content/uploads/2013/12/gparted_setting3.png" alt="启动图形界面"> 启动图形界面[/caption] [caption id=”attachment</em>2050” align=”alignnone” width=”635”]<img src="http://blog.rexdf.org/wp-content/uploads/2013/12/gparted_start.png" alt="默认选项"> 默认选项[/caption] [caption id=”attachment<em>2051” align=”alignnone” width=”805”]<img src="http://blog.rexdf.org/wp-content/uploads/2013/12/gparted1.png" alt="界面"> 界面[/caption] [caption id=”attachment</em>2052” align=”alignnone” width=”799”]<img src="http://blog.rexdf.org/wp-content/uploads/2013/12/gparted2.png" alt="反激活"> 反激活[/caption] [caption id=”attachment<em>2053” align=”alignnone” width=”790”]<img src="http://blog.rexdf.org/wp-content/uploads/2013/12/gparted3.png" alt="可以调整大小了"> 可以调整大小了[/caption] [caption id=”attachment</em>2054” align=”alignnone” width=”798”]<img src="http://blog.rexdf.org/wp-content/uploads/2013/12/gparted4.png" alt="调整大小"> 调整大小[/caption] [caption id=”attachment<em>2055” align=”alignnone” width=”799”]<img src="http://blog.rexdf.org/wp-content/uploads/2013/12/gparted5.png" alt="点击apply，执行"> 点击apply，执行[/caption] [caption id=”attachment</em>2056” align=”alignnone” width=”795”]<img src="http://blog.rexdf.org/wp-content/uploads/2013/12/gparted6.png" alt="重启"> 重启[/caption] [caption id=”attachment_2057” align=”alignnone” width=”819”]<img src="http://blog.rexdf.org/wp-content/uploads/2013/12/gparted7.png" alt="重启后，弹出光驱"> 重启后，弹出光驱[/caption]</p>
+<h3 id="section-2">2.修改逻辑分区大小</h3>
+<p>先查看挂载点</p>
+<pre><code>[root@localhost rexdf]# df -h
+Filesystem                     Size  Used Avail Use% Mounted on
+/dev/mapper/vg_livecd-lv_root   13G  6.9G  5.5G  56% /
+tmpfs                          495M  372K  494M   1% /dev/shm
+/dev/sda1                      485M  125M  335M  28% /boot
+</code></pre>
+<p>分区使用的lvm来管理的，这样可以方便挂载。</p>
+<pre><code>#/dev/mapper/vg_livecd-lv_root增加10G
+lvextend -L+10G /dev/mapper/vg_livecd-lv_root
+#检查ext2、ext3、ext4等文件系统的正确性，类似win的chkdsk命令，可有可无，如果上面命令报错则必须
+e2fsck -f /dev/mapper/vg_livecd-lv_root
+#ext2/ext3/ext4文件系统重定义大小工具
+resize2fs /dev/mapper/vg_livecd-lv_root
+</code></pre>
+<p>在执行上面之前需要先umount，由于我的是/目录所以是不可能umount的，<strong>故需要使用live_cd启动系统</strong>。 在这里执行umount /会提示busy的。 在live_cd启动后，打开terminal，su换到root账户fdisk -l查看被挂载到哪里了，然后执行lvextend 、e2fsck 、resize2fs 即可。</p>
+<h3 id="section-3">3.参考链接</h3>
+<p>1.<a href="http://kerry.blog.51cto.com/172631/568968">CentOS 5.5下LVM的分区管理 </a>2.<a href="http://hi.baidu.com/luosong253/item/2ca3121b73b6db466826bb35">resize2fs解释</a></p>
+</div>
+</article>
+<article>
+<header>
+<h1 class="entry-title"><a href="/blog/2013/12/09/tie-ba-gei-xian-jian-liu-de-yi-xie-jian-yi-YY/">贴吧&#8211;给仙剑六的一些建议(YY)</a></h1>
+<p class="meta">
+<time class="data-article month-12 season-winter" datetime="2013-12-09T18:10:00+08:00" pubdate><span class="month">Dec</span> <span class="day">9th</span> <span class="year">2013</span></time>
+| <a href="/blog/2013/12/09/tie-ba-gei-xian-jian-liu-de-yi-xie-jian-yi-YY/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2013/12/09/tie-ba-gei-xian-jian-liu-de-yi-xie-jian-yi-YY/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>基本上就是因为仙剑是回合制我才玩的，即时制那种很容易死掉，对于不太玩游戏的人不容易上手，而且伤键盘严重。另外一个走迷宫也有部分人诟病，但是应该也还有部分人喜欢。 应该说仙剑主要的就是剧情曲折见长，有种看电影的味道，但是需要玩家参与，对于游戏的玩法，还是保留回合制的好，比如GAL的大部分也就是这种样子的。 如果职业划分过于严重的话，应该就会影响到游戏玩下去了，因为剧情为主，人物特长是可以有的，但是划分职业的就让人感觉不伦不类的感觉，仙剑本身就是有人物技能区别的，每个人的技能都是不一样的，擅长群体攻击、物理攻击、法术攻击等，然后再加一个职业概念，不舒服的感觉，毕竟中国传统文化应该没有职业这个概念，有的只是出生不同、地位不同、界不同。 道具复杂化是随着代数增加的，每一代都会继承上一代的部分道具，增加部分道具，然后冗余性很大。应该说仙剑里面往往有些万能道具游戏设定的是很难获得的，但是有了修改器，基本上没啥意义了，往往开始玩的时候就把终极装备、群体恢复等改成99，然后一些其他的道具或许都忽略了存在了吧。打的时候就会对着攻略地图，基本上都不会去捡物品。也不会去啥刻意的练级，应该说如果不参照攻略，有些场景是非常难通过的，简直是不可能的，或者花费很多时间，特别是有这么多支线以后。 以前刚刚开始玩上古卷轴的时候，对于那种职业划分简直就是感到恶心，对于道具重量也是感到恶心。而且显然仙剑的道具更有特色，基本上很多道具都是有中国传统文化意义的，可以挖掘出道具的传统文化含义。虽然有使命召唤、上古卷轴、极品飞车这样的画面追求极致的游戏，但是玩起来需要一段时间的适应，有的还比较长，像极品飞车我就是怎么都玩不会，一会儿就撞车了，觉得飙车很无聊的感觉，好几次装了给同学玩，然后我自己就卸载了。 基本上仙剑的定位我觉得就是倾向于类GAL游戏主要是剧情见长，至于战斗系统、角色技能设定不走俗套有一定变化感觉就不错了。 画面质量自然是越来越好的，期待六的有新的突破，不过电影似乎就更难拍了；剧情对话则是越来越接近90后和00后的口味，这点似乎是一些90-比较反感。总的来说弓长君的属于一种风格，姚仙的属于另一个风格。故事的时间上，以仙一为原点，一个前溯，一个发展。弓长君带领开发组成立烛龙开发的古谭则有种仙剑四以前的故事的味道(自然是时间段与仙剑让开的好)，而且风格有较重的欧式风格，不过刻意地减少一切可能从仙剑系统继承东西，现在基本形成独立的故事体系。 不知仙剑六的时间点会定在哪里？是在四和五之间呢，还是开辟新的时间点，抑或不作明确说明？姚仙亲自参与制作游戏时间的还不超过逍遥的寿命呢~觉得较为可能的是五后面的几百年，才能较为干净地撇开与五的关系，能有一个全新的人物角色与主题。另外仙剑的悲剧结局，基本要把一个非常重要的东西(或者关键人物)毁灭：仙剑一是灵儿，仙剑三的锁妖塔，仙剑四的琼华派，仙剑五的蜀山(雨柔属于可再生资源，主角)。不知道仙剑六的高潮部分会毁灭啥？难道走五前那种毁灭主角的道路？如果(注意这里的如果)这样就一来会有审美疲劳，二来感觉就不算新的一代，可以算作五的外传(或者一新外传也可以)。这样的话即使再高级的游戏引擎、再优秀的战斗系统、再精美的画面，也只是一个伤害鼠标键盘CPU和消耗玩家生命的游戏而已，粉丝应该很少很多。</p>
+</div>
+</article>
+<article>
+<header>
+<h1 class="entry-title"><a href="/blog/2013/11/22/Linux-Shell/">Linux Shell</a></h1>
+<p class="meta">
+<time class="data-article month-11 season-autumn" datetime="2013-11-22T22:29:00+08:00" pubdate><span class="month">Nov</span> <span class="day">22nd</span> <span class="year">2013</span></time>
+| <a href="/blog/2013/11/22/Linux-Shell/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2013/11/22/Linux-Shell/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><h3 id="section">1.$,$#,$? …</h3>
+<p>$0 这个程式的执行名字 $n 这个程式的第n个参数值，n=1..9 $* 这个程式的所有参数,此选项参数可超过9个。 $# 这个程式的参数个数 $$ 这个程式的PID(脚本运行的当前进程ID号) $! 执行上一个背景指令的PID(后台运行的最后一个进程的进程ID号) $? 执行上一个指令的返回值 (显示最后命令的退出状态。0表示没有错误，其他任何值表明有错误) $- 显示shell使用的当前选项，与set命令功能相同 $@ 跟$*类似，但是可以当作数组用</p>
+<h3 id="section-1">2.”2&gt;&amp;1”含义</h3>
+<p>脚本是: nohup /mnt/Nand3/H2000G &gt;/dev/null 2&gt;&amp;1 &amp; 对 于&amp; 1 更准确的说应该是文件描述符 1,而1 一般代表的就是STDOUT_FILENO,实际上这个操作就是一个dup2(2)调用.他标准输出到all_result ,然后复制标准输出到文件描述符2(STDERR_FILENO),其后果就是文件描述符1和2指向同一个文件表项,也可以说错误的输出被合并了.其中0 表示键盘输入 1表示屏幕输出 2表示错误输出.把标准出错重定向到标准输出,然后扔到/DEV/NULL下面去。通俗的说，就是把所有标准输出和标准出错都扔到垃圾桶里面。 command &gt;out.file 2&gt;&amp;1 &amp; command &gt;out.file是将command的输出重定向到out.file文件，即输出内容不打印到屏幕上，而是输出到out.file文件中。 2&gt;&amp;1 是将标准出错重定向到标准输出，这里的标准输出已经重定向到了out.file文件，即将标准出错也输出到out.file文件中。最后一个&amp; ， 是让该命令在后台执行。 试想2&gt;1代表什么，2与&gt;结合代表错误重定向，而1则代表错误重定向到一个文件1，而不代表标准输出； 换成2&gt;&amp;1，&amp;与1结合就代表标准输出了，就变成错误重定向到标准输出. 你可以用 ls 2&gt;1测试一下，不会报没有2文件的错误，但会输出一个空的文件1； ls xxx 2&gt;1测试，没有xxx这个文件的错误输出到了1中； ls xxx 2&gt;&amp;1测试，不会生成1这个文件了，不过错误跑到标准输出了； ls xxx &gt;out.txt 2&gt;&amp;1, 实际上可换成 ls xxx 1&gt;out.txt 2&gt;&amp;1；重定向符号&gt;默认是1,错误和输出都传到out.txt了。 为何2&gt;&amp;1要写在后面？ command &gt; file 2&gt;&amp;1 首先是command &gt; file将标准输出重定向到file中， 2&gt;&amp;1 是标准错误拷贝了标准输出的行为，也就是同样被重定向到file中，最终结果就是标准输出和错误都被重定向到file中。 command 2&gt;&amp;1 &gt;file 2&gt;&amp;1 标准错误拷贝了标准输出的行为，但此时标准输出还是在终端。&gt;file 后输出才被重定向到file，但标准错误仍然保持在终端。 用strace可以看到： 1. command &gt; file 2&gt;&amp;1 这个命令中实现重定向的关键系统调用序列是： open(file) == 3 dup2(3,1) dup2(1,2) 2. command 2&gt;&amp;1 &gt;file 这个命令中实现重定向的关键系统调用序列是： dup2(1,2) open(file) == 3 dup2(3,1) 可以考虑一下不同的dup2()调用序列会产生怎样的文件共享结构。请参考APUE 3.10, 3.12</p>
+</div>
+</article>
+<article>
+<header>
+<h1 class="entry-title"><a href="/blog/2013/11/22/Daemon-cheng-xu-de-yuan-li-he-shi-xian-zhuan/">Daemon程序的原理和实现[转]</a></h1>
+<p class="meta">
+<time class="data-article month-11 season-autumn" datetime="2013-11-22T22:24:00+08:00" pubdate><span class="month">Nov</span> <span class="day">22nd</span> <span class="year">2013</span></time>
+| <a href="/blog/2013/11/22/Daemon-cheng-xu-de-yuan-li-he-shi-xian-zhuan/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2013/11/22/Daemon-cheng-xu-de-yuan-li-he-shi-xian-zhuan/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><h3 id="section">一、引言</h3>
+<p>Daemon程序是一直运行的服务端程序，又称为守护进程。</p>
+<h3 id="daemon">二、Daemon程序简介</h3>
+<p>Daemon是长时间运行的进程，通常在系统启动后就运行，在系统关闭时才结束。一般说Daemon程序在后台运行，是因为它没有控制终端，无法和前台的用户交互。Daemon程序一般都作为服务程序使用，等待客户端程序与它通信。我们也把运行的Daemon程序称作守护进程。</p>
+<h3 id="daemon-1">三、Daemon程序编写规则</h3>
+<p>编写Daemon程序有一些基本的规则，以避免不必要的麻烦。 1、首先是程序运行后调用fork，并让父进程退出。子进程获得一个新的进程ID，但继承了父进程的进程组ID。 2、调用setsid创建一个新的session，使自己成为新session和新进程组的leader，并使进程没有控制终端(tty)。 3、改变当前工作目录至根目录，以免影响可加载文件系统。或者也可以改变到某些特定的目录。 4、设置文件创建mask为0，避免创建文件时权限的影响。 5、关闭不需要的打开文件描述符。因为Daemon程序在后台执行，不需要于终端交互，通常就关闭STDIN、STDOUT和STDERR。其它根据实际情况处理。 另一个问题是Daemon程序不能和终端交互，也就无法使用printf方法输出信息了。我 们可以使用syslog机制来实现信息的输出，方便程序的调试。在使用syslog前需要首先启动syslogd程序，关于syslogd程序的使用请参 考它的man page，或相关文档，我们就不在这里讨论了。</p>
+<h3 id="daemon-2">四、一个Daemon程序的例子</h3>
+<p>编译运行环境为Redhat Linux。 我们新建一个daemontest.c程序，文件内容如下：</p>
+<pre><code>#include &lt;unistd.h&gt;
+#include &lt;sys/types.h&gt;
+#include &lt;sys/stat.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;syslog.h&gt;
+#include &lt;signal.h&gt;
+
+int daemon_init(void) 
+{ 
+	pid_t pid; 
+	if((pid = fork()) &lt; 0) 
+		return(-1); 
+	else if(pid != 0) 
+		exit(0); /* parent exit */ 
+	/* child continues */ 
+	
+	setsid(); /* become session leader */ 
+	chdir("/"); /* change working directory */ 
+	umask(0); /* clear file mode creation mask */ 
+	close(0); /* close stdin */ 
+	close(1); /* close stdout */ 
+	close(2); /* close stderr */ 
+	return(0); 
+} 
+
+void sig_term(int signo) 
+{ 
+	if(signo == SIGTERM) 
+	/* catched signal sent by kill(1) command */ 
+	{ 
+		syslog(LOG_INFO, "program terminated."); 
+		closelog(); 
+		exit(0); 
+	} 
+} 
+
+int main(void) 
+{ 
+	if(daemon_init() == -1) 
+	{ 
+		printf("can't fork self\n"); 
+		exit(0); 
+	} 
+
+	openlog("daemontest", LOG_PID, LOG_USER); 
+	syslog(LOG_INFO, "program started."); 
+	signal(SIGTERM, sig_term); /* arrange to catch the signal */ 
+	while(1) 
+	{ 
+		sleep(1); /* put your main program here */ 
+	} 
+	return(0); 
+} 
+</code></pre>
+<p>使用如下命令编译该程序： gcc -Wall -o daemontest daemontest.c编译完成后生成名为daemontest的程序，执行./daemontest来测试程序的运行。 使用ps axj命令可以显示系统中已运行的daemon程序的信息，包括进程ID、session ID、控制终端等内容。 部分显示内容： PPID PID PGID SID TTY TPGID STAT UID TIME COMMAND 1098 1101 1101 1074 pts/1 1101 S 0 0:00 -bash 1 1581 777 777 ? -1 S 500 0:13 gedit 1 1650 1650 1650 ? -1 S 500 0:00 ./daemontest 794 1654 1654 794 pts/0 1654 R 500 0:00 ps axj 从中可以看到daemontest程序运行的进程号为1650。 我们再来看看/var/log/messages文件中的信息： Apr 7 22:00:32 localhost daemontest[1650]: program started. 显示了我们在程序中希望输出的信息。 我们再使用kill 1650命令来杀死这个进程，/var/log/messages文件中就会有如下的信息： Apr 7 22:11:10 localhost daemontest[1650]: program terminated. 使用ps axj命令检查，发现系统中daemontest进程已经没有了。</p>
+<h3 id="section-1">五、另一个例子</h3>
+<pre><code>// start_daemon: 启动守护进程
+void start_daemon()
+{
+    int pid;
+    FILE *fp;
+
+    if(pid = fork())
+    {
+         // 这里是父进程的处理过程，把子进程的 pid 写入 PIDFILE 防止重复
+         fp = fopen(PIDFILE, “w”);
+         fprintf(fp, “%d”, pid);
+
+         // 关闭父进程
+         exit(0);
+    }
+
+    // 子进程的初始化在 main 函数里，这里也可以放一些
+}
+
+// anti_dup: 防止重复
+void anti_dup()
+{
+    FILE *fp;
+    int pid;
+
+    if(fp = fopen(PIDFILE, “r”))
+    {
+        fscanf(fp, “%d”, &amp;pid);
+        if(kill(pid, 0) == 0)
+        {
+            printf(”daemon already running!\n”);
+            fclose(fp);
+            exit(1);
+        }
+    }
+}
+
+// close_daemon: 退出守护进程
+void close_daemon()
+{
+    FILE *fp;
+    int pid;
+
+    if(fp = fopen(PIDFILE, “r”))
+    {
+        fscanf(fp, “%d”, &amp;pid);
+        if(kill(pid, 0) == -1) // 0 信号用来检测进程是否存在
+        {
+            printf(”daemon not running!\n”);
+            fclose(fp);
+            exit(1);
+        }
+        else
+        {
+            kill(pid, 9); // 9 信号用来杀死进程
+            fclose(fp);
+            exit(1);
+        }
+    }
+}
+
+int main(int argc, char *argv[])
+{
+    if ((argc == 2) &amp;&amp; (strcmp(”quit”, argv[1]) == 0))
+    {
+        close_daemon();
+    }
+    anti_dup();
+    start_daemon();
+
+    /* TODO: 一些初始化工作，放在这里 */
+
+    // 主循环
+    while (1)
+    {
+        /* TODO: 工作代码，可以定义成若干个工作函数 */
+        printf(”Hello World!\n”);
+
+        // 休息一会儿
+        sleep(5);
+    }
+
+    return 0;
+}
+</code></pre>
+</div>
+</article>
+<article>
+<header>
+<h1 class="entry-title"><a href="/blog/2013/11/22/Unix-huan-jing-gao-ji-bian-cheng-dan-shi-li-shou-hu-jin-cheng-de-shi-xian-zhuan/">《Unix环境高级编程》：单实例守护进程的实现 [转]</a></h1>
+<p class="meta">
+<time class="data-article month-11 season-autumn" datetime="2013-11-22T22:18:00+08:00" pubdate><span class="month">Nov</span> <span class="day">22nd</span> <span class="year">2013</span></time>
+| <a href="/blog/2013/11/22/Unix-huan-jing-gao-ji-bian-cheng-dan-shi-li-shou-hu-jin-cheng-de-shi-xian-zhuan/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2013/11/22/Unix-huan-jing-gao-ji-bian-cheng-dan-shi-li-shou-hu-jin-cheng-de-shi-xian-zhuan/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>《Unix环境高级编程》这本书附带了许多短小精美的小程序，我在阅读此书的时候，将书上的代码按照自己的理解重写了一遍（大部分是抄书上的），加深一下自己的理解（纯看书太困了，呵呵）。此例子在Ubuntu10.04上测试通过。 程序简介：这个DEMO是按照UNIX守护进程的编程规则实现的一个单实例的守护程序。</p>
+<pre><code>//《APUE》程序13－1：初始化一个守护进程
+//《APUE》程序13－2：保证只运行某个守护进程的一个副本
+//《APUE》程序14－5：在文件整体加锁
+
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+#include &lt;unistd.h&gt;
+#include &lt;fcntl.h&gt;
+#include &lt;time.h&gt;
+#include &lt;signal.h&gt;
+#include &lt;errno.h&gt;
+#include &lt;sys/resource.h&gt;
+#include &lt;sys/syslog.h&gt;
+#include &lt;sys/file.h&gt;
+#include &lt;sys/stat.h&gt;
+
+//创建锁文件的路径
+#define LOCKFILE "/var/run/daemon.pid"
+//锁文件的打开模式
+#define LOCKMODE (S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH)
+
+//输出错误信息并退出  
+void error_quit(const char *str)  
+{  
+	fprintf(stderr, "%s\n", str);  
+	exit(1);  
+} 
+
+//对文件fd加上记录锁
+int lockfile(int fd)
+{
+	struct flock fl;
+	fl.l_type = F_WRLCK;
+	fl.l_start = 0;
+	fl.l_whence = SEEK_SET;
+	fl.l_len = 0;
+	return fcntl(fd, F_SETLK, &amp;fl);
+}
+
+//若程序已经运行，则返回1，否则返回0
+int already_running(void)
+{
+	int fd;
+	char buf[16];
+
+	//打开放置记录锁的文件
+	fd = open(LOCKFILE, O_RDWR|O_CREAT, LOCKMODE);
+	if( fd &lt; 0 )
+	{
+		syslog(LOG_ERR, "can't open %s: %s", LOCKFILE, strerror(errno));
+		exit(1);
+	}
+	//试图对文件fd加锁，
+	//如果加锁失败的话
+	if( lockfile(fd) &lt; 0 )
+	{
+		//如果是因为权限不够或资源暂时不可用，则返回1
+		if( EACCES == errno ||
+			EAGAIN == errno )
+		{
+			close(fd);
+			return 1;
+		}
+		//否则，程序出错，写入一条错误记录后直接退出
+		syslog(LOG_ERR, "can't lock %s: %s", LOCKFILE, strerror(errno));
+		exit(1);
+	}
+
+	//先将文件fd清空，然后再向其中写入当前的进程号
+	ftruncate(fd, 0);
+	sprintf(buf, "%ld", (long)getpid());
+	write(fd, buf, strlen(buf)+1);
+	return 0;
+}
+
+//将一个进程变为守护进程
+void daemonize(void)
+{
+	int i, fd0, fd1, fd2;
+	pid_t pid;
+	struct rlimit rl;
+	struct sigaction sa;
+
+	//见注解1
+	umask(0);
+
+	//获取最大的文件描述号
+	int temp;
+	temp = getrlimit(RLIMIT_NOFILE, &amp;rl);
+	if( temp &lt; 0 )
+		error_quit("can't get file limit");
+
+	//见注解2，
+	pid = fork();
+	if( pid &lt; 0 )
+		error_quit("can't fork");
+	else if(pid != 0)
+		exit(0);
+
+	//见注解3
+	setsid();
+	sa.sa_handler = SIG_IGN;
+	sigemptyset(&amp;sa.sa_mask);
+	sa.sa_flags = 0;
+	temp = sigaction(SIGHUP, &amp;sa, NULL);
+	if( temp &lt; 0 )
+		error_quit("can't ignore SIGHUP");
+
+	////确保子进程不会有机会分配到一个控制终端
+	pid = fork();
+	if( pid &lt; 0 )
+		error_quit("can't fork");
+	else if(pid != 0)
+		exit(0);
+
+	//见注解4
+	temp = chdir("/");
+	if( temp &lt; 0 )
+		error_quit("can't change directoy to /");
+
+	//见注解5
+	if( rl.rlim_max == RLIM_INFINITY )
+		rl.rlim_max = 1024;
+	for(i=0; i&lt;rl.rlim_max; i++)
+		close(i);
+
+	//见注解6
+	fd0 = open("/dev/null", O_RDWR);
+	fd1 = dup(0);
+	fd2 = dup(0);
+
+	if( fd0 != 0 ||
+		fd1 != 1 ||
+		fd2 != 2 )
+	{
+		syslog(LOG_ERR, "unexpected file descriptors %d %d %d",
+			fd0, fd1, fd2);
+		exit(1);
+	}
+}
+
+//该主函数是我原创的，呵呵
+int main(void)
+{
+	//打开系统的日志文件
+	openlog("my test log: ", LOG_CONS, LOG_DAEMON);
+	daemonize();
+
+	//如果程序已经运行，则向记录文件中写入一句话，然后退出
+	if( already_running() )
+	{
+		syslog(LOG_ERR, "daemon alread running");
+		closelog();
+		return 1;
+	}
+
+	//向日志文件写入程序的开始（当前）时间，
+	//过100秒后，再向记录文件写入结束时间，然后结束程序
+	time_t tt = time(0);
+	syslog(LOG_INFO, "the log program start at: %s", 
+		asctime(localtime(&amp;tt)) );
+	sleep(100);
+	//pause()
+	tt = time(0);
+	syslog(LOG_INFO, "the log program end at: %s", 
+		asctime(localtime(&amp;tt)) );
+
+	//关闭日志文件
+	//虽然不关也没事，但为了和openlog配对，还是将它写上去吧
+	closelog();
+	return 0;
+}
+</code></pre>
+<table>
+<tbody>
+<tr>
+<td>运行示例（红色字体的为输入）： qch@ubuntu:~/code$ gcc temp.c -o temp qch@ubuntu:~/code$ sudo ./temp qch@ubuntu:~/code$ sudo ./temp qch@ubuntu:~/code$ ps axj</td>
+<td>grep temp 1 2648 2647 2647 ? -1 S 0 0:00 ./temp 2127 2673 2672 2127 pts/0 2672 S+ 1000 0:00 grep –color=auto temp #两分钟后，再打开日志文件，查看一下程序的日志 qch@ubuntu:~/code$ tail -f /var/log/syslog Sep 24 07:53:58 ubuntu my test log: : the log program start at: Mon Sep 24 07:53:58 2012 Sep 24 07:54:07 ubuntu my test log: : daemon alread running Sep 24 07:55:38 ubuntu my test log: : the log program end at: Mon Sep 24 07:55:38 2012 注解：守护进程的编程规则 1：首先要调用umask将文件模式创建屏蔽字设置为0.由继承得来的文件模式创建屏蔽字可能会拒绝设置某些权限。 2：调用fork，然后使父进程退出（exit）。这样做实现了两点：第一，如果该守护进程是作为一条简单shell命令启动的，那么父进程终止使得shell认为这条命令已经执行完毕；第二，子进程继承了父进程的进程组ID，但具有一个新的进程ID，这就保证了子进程不是一个进程组的组长进程。这是setsid调用必要前提条件。 3：调用setsid以创建一个新会话。执行三个操作，（a）成为新会话的首进程，（b）成为一个新进程的组长进程，（c）没有控制终端。 4：将当前工作目录更改为根目录。进程活动时，其工作目录所在的文件系统不能卸下。一般需要将工作目录改变到根目录。对于需要转储核心，写运行日志的进程将工作目录改变到特定目录 5：关闭不再需要的文件描述符。进程从创建它的父进程那里继承了打开的文件描述符。如不关闭，将会浪费系统资源，造成进程所在的文件系统无法卸下以及引起无法预料的错误。 6：重定向0,1,2到/dev/null，使任何一个试图读标准输入，写标准输出和标准出错的程序库都不会产生任何效果。</td>
+</tr>
+</tbody>
+</table>
+</div>
+</article>
+<article>
+<header>
+<h1 class="entry-title"><a href="/blog/2013/11/22/nginx-da-kai-php-wen-jian-zong-shi-xian-shi-xia-zai/">Nginx打开php文件总是显示下载</a></h1>
+<p class="meta">
+<time class="data-article month-11 season-autumn" datetime="2013-11-22T22:12:00+08:00" pubdate><span class="month">Nov</span> <span class="day">22nd</span> <span class="year">2013</span></time>
+| <a href="/blog/2013/11/22/nginx-da-kai-php-wen-jian-zong-shi-xian-shi-xia-zai/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2013/11/22/nginx-da-kai-php-wen-jian-zong-shi-xian-shi-xia-zai/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>nginx和php-fpm使用的是socket文件，一切配置完成。测试的时候主页正常打开了，然而点击上面的链接却都是弹出的下载，而且一看都是源码。 关键的配置代码如下：</p>
+<pre><code>location ~ ^/index\.php(/|$) {
+            fastcgi_pass unix:/var/php-fpm.socket;
+            fastcgi_param SCRIPT_FILENAME    $document_root$fastcgi_script_name;
+            fastcgi_param PATH_INFO $fastcgi_script_name;
+            include fastcgi_params;
+}
+</code></pre>
+<p>这个配置不知道是谁写的，反正就出现了这样奇葩的效果，估计是因为测试index.php而写的。实际上去掉index就好了。</p>
+<pre><code>location ~ \.php$ {
+            fastcgi_pass unix:/var/php-fpm.socket;
+            fastcgi_param SCRIPT_FILENAME    $document_root$fastcgi_script_name;
+            fastcgi_param PATH_INFO $fastcgi_script_name;
+            include fastcgi_params;
+}
+</code></pre>
+</div>
+</article>
+<div class="pagination">
+<a class="prev" href="/blog/page/9/">&larr; Older</a>
+<a href="/blog/archives">Blog Archives</a>
+<a class="next" href="/blog/page/7/">Newer &rarr;</a>
+</div>
+</div>
+<aside class="sidebar">
+<section>
+<h1>Categories</h1>
+<ul id="categories">
+<li class="category"><a href="/blog/categories/acm/">ACM <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/algorithm/">Algorithm <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/assembly/">Assembly <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/cygwin/">Cygwin <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/gnu/">GNU <sup>8</sup></a></li>
+<li class="category"><a href="/blog/categories/math/">Math <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/octopress/">Octopress <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/programming/">Programming <sup>6</sup></a></li>
+<li class="category"><a href="/blog/categories/security/">Security <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sublime/">Sublime <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/synology/">Synology <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sysadmin/">SysAdmin <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/web/">Web <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/windows/">Windows <sup>7</sup></a></li>
+<li class="category"><a href="/blog/categories/proxmox/">proxmox <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/ri-chang/">日常 <sup>37</sup></a></li>
+</ul>
+</section>
+<section>
+<h1>Recent Posts</h1>
+<ul id="recent_posts">
+<li class="post">
+<a href="/blog/2024/12/16/fu-wu-qi-wa-kuang-bing-du-de-cha-sha/">服务器挖矿病毒的查杀</a>
+</li>
+<li class="post">
+<a href="/blog/2021/07/11/apple-m1-bian-yi-tensorflow/">Apple M1 编译tensorflow</a>
+</li>
+<li class="post">
+<a href="/blog/2021/02/27/chromiumbian-ma-qi-wen-ti/">Chromium编码器问题</a>
+</li>
+<li class="post">
+<a href="/blog/2020/12/13/proxmoxbi-ji/">Proxmox笔记</a>
+</li>
+<li class="post">
+<a href="/blog/2020/11/15/lun-yan-du-yu-shen-du/">论广度与深度</a>
+</li>
+</ul>
+</section>
+<section>
+<iframe frameborder="0" scrolling="no" referrerpolicy="unsafe-url" style="width:283px;height:200px" src="https://t.rexdf.org/?m=app&a=showwidget&name=rexdf&type=1&width=283px&height=500px"></iframe>
+</section>
+<section>
+<h1>GitHub Repos</h1>
+<ul id="gh_repos">
+<li class="loading">Status updating&#8230;</li>
+</ul>
+<a href="https://github.com/rexdf">@rexdf</a> on GitHub
+<script type="text/javascript">$(document).ready(function(){if(!window.jXHR){var e=document.createElement("script");e.type="text/javascript",e.src="/javascripts/libs/jXHR.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}github.showRepos({user:"rexdf",count:0,skip_forks:!0,target:"#gh_repos"})})</script>
+</section>
+</aside>
+</div>
+</div>
+<footer role="contentinfo"><p>
+<span class="credit">Copyright &copy; 2024 - Rexdf -</span> |
+<span class="credit">Powered by <a name="bottoms" target="_blank" href="http://octopress.org">Octopress</a></span> |
+<span class="credit">Theme by ：<a href="https://blog.rexdf.org/" target="_blank" rel="theme">Rexdf</a></span> |
+<span class="credit">Host by：<a href="https://github.com/" target="_blank" rel="host">Github.com</a></span> |
+<span class="credit">版权声明：<a href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" target="_blank" rel="license">CC BY-NC-SA 3.0</a><img src="https://analytics.rexdf.net/piwik.php?idsite=1&amp;rec=1" style="border:0" alt="" referrerpolicy="no-referrer-when-downgrade"></span>|
+<span class="credit"><a href="/sitemap.xml" rel="sitemap">sitemap</a></span>
+</p>
+<script type="text/javascript" src="https://tajs.qq.com/stats?sId=30296377" charset="UTF-8"></script>
+</footer>
+<script type="text/javascript">var disqus_shortname="rexdf",disqus_script="count.js";!function(){var e=document.createElement("script");e.type="text/javascript",e.async=!0,e.src="//"+disqus_shortname+".disqus.com/"+disqus_script,(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(e)}()</script>
+<script type="text/javascript">$(function(){$(".entry-content").each(function(t){var r=t;$(this).find("img.fancybox").each(function(){var t=$(this),a=t.attr("title"),n=t.attr("class");t.removeAttr("class"),t.wrap('<a href="'+this.src+'" class="'+n+'" rel="gallery'+r+'" />'),""!=a&&t.parent().attr("title",a)})}),$(".fancybox").fancybox()})</script>
+</body>
+</html>

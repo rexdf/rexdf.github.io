@@ -1,0 +1,265 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<script type="text/javascript">var _speedMark=new Date</script>
+<meta charset="utf-8">
+<title>Zoj-3752 - Rexdf</title>
+<meta name="author" content="Rexdf">
+<meta name="description" content="The Three Guys Time Limit: 2 Seconds      Memory Limit: 65536 KB      Special Judge Recent days, a joke spread out among Chinese social networks. “If &hellip;">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' data: https://hm.baidu.com https://tajs.qq.com https://ssl.google-analytics.com https://static.rexdf.org https://*.disquscdn.com https://rexdf.disqus.com https://api.github.com https://ssl.google-analytics.com https://disqus.com https://analytics.rexdf.net; connect-src 'self' https://static.rexdf.org https://analytics.rexdf.net https://hm.baidu.com; img-src data: https://*; font-src data: https://*; child-src 'none'; style-src 'self' 'unsafe-inline' https://*; frame-src 'self' https://t.rexdf.org http://t.rexdf.org https://rexdf.disqus.com https://disqus.com">
+<link rel="canonical" href="https://i.rexdf.org/blog/2014/01/27/zoj-3752">
+<link rel="dns-prefetch" href="https://static.rexdf.org/">
+<link href="/favicon.ico" rel="icon">
+<link id="main-css" href="/stylesheets/screen.css" media="screen,projection" rel="stylesheet" type="text/css" title="pc">
+<link href="/stylesheets/screen_mobile.css" rel="alternate stylesheet" type="text/css" title="mobile">
+<link href="/atom.xml" rel="alternate" title="Rexdf" type="application/atom+xml">
+<script src="/javascripts/libs/jquery.min.js"></script>
+<script src="/javascripts/octopress-rexdf.min.js" type="text/javascript"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+      
+      toggle_theme();
+  });
+</script>
+<script type="text/javascript" async src="https://static.rexdf.org/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript">var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-55590409-1"]),_gaq.push(["_trackPageview"]),function(){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(t,e)}()</script>
+<script>var _hmt=_hmt||[];!function(){var e=document.createElement("script");e.src="//hm.baidu.com/hm.js?32192d95b89fbefa0875c4c95adb1412";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}()</script>
+<script src="/javascripts/fancybox/jquery.fancybox.pack.js"></script>
+<link rel="stylesheet" type="text/css" href="/javascripts/fancybox/jquery.fancybox.css">
+<script type="text/javascript">var _paq=_paq||[];_paq.push(["trackPageView"]),_paq.push(["enableLinkTracking"]),function(){var e="https://analytics.rexdf.net/";_paq.push(["setTrackerUrl",e+"piwik.php"]),_paq.push(["setSiteId","1"]);var a=document,t=a.createElement("script"),p=a.getElementsByTagName("script")[0];t.type="text/javascript",t.async=!0,t.defer=!0,t.src=e+"piwik.js",p.parentNode.insertBefore(t,p)}()</script>
+</head>
+<body class="low-contrast-linen-wptouch-bg">
+<header role="banner"><hgroup>
+<h1 id="header-title"><a href="/">Rexdf</a></h1>
+<h2 id="subtitle">The devil is in the Details.</h2>
+</hgroup>
+</header>
+<nav role="navigation"><ul class="subscription" data-subscription="rss">
+<li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+</ul>
+<form action="https://google.com/search" method="get">
+<fieldset role="search">
+<input type="hidden" name="q" value="site:i.rexdf.org">
+<input class="search" type="text" name="q" results="0" placeholder="Search">
+</fieldset>
+</form>
+<ul class="main-navigation">
+<li><a href="/">Blog</a></li>
+<li><a href="/blog/archives/">Archives</a></li>
+<li><a href="/idea/">Idea</a></li>
+<li><a href="/share/">Share</a></li>
+<li><a href="/books/">Books</a></li>
+<li><a href="/donate/">Donate</a></li>
+<li><a target="_blank" href="https://blog.rexdf.org" style="font-family:Shadows Into Light">Main-Blog</a></li>
+</ul>
+</nav>
+<div id="main">
+<div id="content">
+<div>
+<article class="hentry" role="article">
+<header>
+<h1 class="entry-title">Zoj-3752</h1>
+<p class="meta">
+<time class="data-article month-01 season-winter" datetime="2014-01-27T14:28:00+08:00" pubdate><span class="month">Jan</span> <span class="day">27th</span> <span class="year">2014</span></time>
+| <a href="#disqus_thread" data-disqus-identifier="https://i.rexdf.org">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>The Three Guys</p>
+<hr>
+<p>Time Limit: 2 Seconds      Memory Limit: 65536 KB      Special Judge</p>
+<hr>
+<p>Recent days, a joke spread out among Chinese social networks. “If <em>Yao Ming</em>, <em>Guo Jingming</em> and <em>He Jiong</em> lying on the ground, can they form a triangle?” Some netizens think that it is impossible to form a triangle since <em>Yao Ming</em> is a basketball giant, while <em>Guo Jingming</em> and <em>He Jiong</em> are artists with short statures. But another group of netizens came out and claim: “Yes, they can!” Someone even has presented a sketch to prove their theory:  </p>
+<p><img src="http://acm.zju.edu.cn/onlinejudge/showImage.do?name=HowToFormTriangles.jpg" alt="HowToFormTriangles.jpg"></p>
+<p>  There are three guys in somewhere of the world. They have learned of this idea and want to try it out by themselves. Given you the height of the three guys, please find out the maximum area of triangle they can form. The height consists of two parts: the upper part of body Ui and the lower part of body Li.</p>
+<h4 id="input">Input</h4>
+<p>There are multiple test cases (about 3000). For each test case: There are three lines. Each line consists of two integers Ui and Li (1 &lt;= Ui, Li &lt;= 150) indicates the height of two parts of the i-th guy.</p>
+<h4 id="output">Output</h4>
+<p>For each test case, output the maximum area of triangle they can form. Any solution with a relative or absolute error of at most 1e-9 will be accepted.</p>
+<h4 id="sample-input">Sample Input</h4>
+<pre><code>10 10
+20 20
+30 30
+</code></pre>
+<h4 id="sample-output">Sample Output</h4>
+<pre><code>600.000000000000
+</code></pre>
+<hr>
+<p>Author: <strong>JIANG, Kai</strong> Source: <strong>ZOJ Monthly, January 2014</strong></p>
+<h4 id="section">题意解释：</h4>
+<p>额，不想具体多说，转换一下，三段可以折叠的木棍，组成面积最大的三角形。由于很久没有做过zoj了，昨天想去看看zoj的月赛，结果悲催的没做出来。<del>赛后调试发现double就可以过，int就不行，这才发现zoj的int是16位整数，而long才是32位整数，不像不像cf的int直接就是32位的</del>，刚刚开始想错了边长是\((150 \times 2)=300\)，而不是我以为的150，故计算过程是超过32位int了的，顺便说一句zoj的long和long long是一样的都是64位整数，不想其他的long和int一样，不过最好不要使用long，因为按照标准int&lt;=long&lt;=long long即可以，那么long取4或者8都是合理的。解法很多，如果思维足够缜密，那么用if是可以写出来的，3！<em>2^3</em>20=4320种情况，但是真的用if应该小于这么多情况。另外就是排列组合的生成了，可以递归也可以while写。</p>
+<h4 id="section-1">代码</h4>
+<pre><code>#include &lt;iostream&gt;
+#include &lt;cstdio&gt;
+#include &lt;cstdlib&gt;
+#include &lt;cmath&gt;
+#include &lt;algorithm&gt;
+
+using namespace std;
+
+inline double area_triangle(int a,int b,int c){
+	long q=1L*(a+b+c)*(a+b-c)*(a+c-b)*(b+c-a);//!!3*150^4=1,518,750,000溢出Int！！！ ZOJ int:16 long:32 
+	return sqrt(q)/4.0;
+}
+
+inline int is_tri(int a,int b,int c){
+	return a+b&gt;c &amp;&amp; a+c&gt;b &amp;&amp; b+c&gt;a;
+}
+
+int main(){
+	int a[4][2],b[6],sum;
+	int p1[3]={0,1,2};
+	int p2[3][2]={ {0,1},{0,1},{0,1}};
+	int a1,a2,a3;
+	double ans,tmp;
+	while(~scanf("%d%d %d%d %d%d",&amp;a[0][0],&amp;a[0][1],&amp;a[1][0],&amp;a[1][1],&amp;a[2][0],&amp;a[2][1])){
+		ans=0;
+		sum=0;
+		for(int i=0;i&lt;6;i++){
+			sum+=a[i&gt;&gt;1][i&amp;1];
+		}
+		p1[0]=0,p1[1]=1,p1[2]=2;
+		do{
+			//printf("#%d %d %d\n",p1[0],p1[1],p1[2]);
+			p2[0][0]=0,p2[0][1]=1;
+			do{
+				p2[1][0]=0,p2[1][1]=1;
+				do{
+					p2[2][0]=0,p2[2][1]=1;
+					do{
+						for(int i=0;i&lt;6;i++){
+							b[i]=a[p1[i&gt;&gt;1]][p2[p1[i&gt;&gt;1]][i&amp;1]];
+						}
+						for(int i=0;i&lt;4;i++){
+							for(int j=i+1;j&lt;5;j++){
+								for(int k=j+1;k&lt;6;k++){
+									a2=0,a3=0;
+									for(int l=i;l&lt;j;l++){
+										a2+=b[l];
+									}
+									for(int l=j;l&lt;k;l++){
+										a3+=b[l];
+									}
+									a1=sum-a2-a3;
+									if(is_tri(a1,a2,a3)){
+										tmp=area_triangle(a1,a2,a3);
+										if(tmp&gt;ans)ans=tmp;
+									}
+								}
+							}
+						}
+					}while(next_permutation(p2[2],p2[2]+2)); //前后摆放2种 
+				}while(next_permutation(p2[1],p2[1]+2)); //前后摆放2种 
+			}while(next_permutation(p2[0],p2[0]+2)); //前后摆放2种 
+		}while(next_permutation(p1,p1+3)); //三个人下标排序有3！=6种情况 
+		printf("%.10lf\n",ans);
+	}
+	return 0;
+}
+</code></pre>
+</div>
+<footer>
+<p class="meta">
+<span class="byline author vcard">Posted by <span class="fn">Rexdf</span></span>
+<time class="data-article month-01 season-winter" datetime="2014-01-27T14:28:00+08:00" pubdate><span class="month">Jan</span> <span class="day">27th</span> <span class="year">2014</span></time>
+</p>
+<div class="sharing">
+</div>
+<p class="meta">
+<a class="basic-alignment left" href="/blog/2014/01/19/chong-zhuang-xi-tong-ru-he-shan-chu-cygwin-wen-jian-jia/" title="Previous Post: 重装系统如何删除cygwin文件夹">&laquo; 重装系统如何删除cygwin文件夹</a>
+<a class="basic-alignment right" href="/blog/2014/01/27/zoj-3753/" title="Next Post: zoj-3753">zoj-3753 &raquo;</a>
+</p>
+</footer>
+</article>
+<section>
+<h1>Comments</h1>
+<div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
+</div>
+<aside class="sidebar">
+<section>
+<h1>Categories</h1>
+<ul id="categories">
+<li class="category"><a href="/blog/categories/acm/">ACM <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/algorithm/">Algorithm <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/assembly/">Assembly <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/cygwin/">Cygwin <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/gnu/">GNU <sup>8</sup></a></li>
+<li class="category"><a href="/blog/categories/math/">Math <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/octopress/">Octopress <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/programming/">Programming <sup>6</sup></a></li>
+<li class="category"><a href="/blog/categories/security/">Security <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sublime/">Sublime <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/synology/">Synology <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sysadmin/">SysAdmin <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/web/">Web <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/windows/">Windows <sup>7</sup></a></li>
+<li class="category"><a href="/blog/categories/proxmox/">proxmox <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/ri-chang/">日常 <sup>37</sup></a></li>
+</ul>
+</section>
+<section>
+<h1>Recent Posts</h1>
+<ul id="recent_posts">
+<li class="post">
+<a href="/blog/2024/12/16/fu-wu-qi-wa-kuang-bing-du-de-cha-sha/">服务器挖矿病毒的查杀</a>
+</li>
+<li class="post">
+<a href="/blog/2021/07/11/apple-m1-bian-yi-tensorflow/">Apple M1 编译tensorflow</a>
+</li>
+<li class="post">
+<a href="/blog/2021/02/27/chromiumbian-ma-qi-wen-ti/">Chromium编码器问题</a>
+</li>
+<li class="post">
+<a href="/blog/2020/12/13/proxmoxbi-ji/">Proxmox笔记</a>
+</li>
+<li class="post">
+<a href="/blog/2020/11/15/lun-yan-du-yu-shen-du/">论广度与深度</a>
+</li>
+</ul>
+</section>
+<section>
+<iframe frameborder="0" scrolling="no" referrerpolicy="unsafe-url" style="width:283px;height:200px" src="https://t.rexdf.org/?m=app&a=showwidget&name=rexdf&type=1&width=283px&height=500px"></iframe>
+</section>
+<section>
+<h1>GitHub Repos</h1>
+<ul id="gh_repos">
+<li class="loading">Status updating...</li>
+</ul>
+<a href="https://github.com/rexdf">@rexdf</a> on GitHub
+<script type="text/javascript">$(document).ready(function(){if(!window.jXHR){var e=document.createElement("script");e.type="text/javascript",e.src="/javascripts/libs/jXHR.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}github.showRepos({user:"rexdf",count:0,skip_forks:!0,target:"#gh_repos"})})</script>
+</section>
+</aside>
+</div>
+</div>
+<footer role="contentinfo"><p>
+<span class="credit">Copyright &copy; 2024 - Rexdf -</span> |
+<span class="credit">Powered by <a name="bottoms" target="_blank" href="http://octopress.org">Octopress</a></span> |
+<span class="credit">Theme by ：<a href="https://blog.rexdf.org/" target="_blank" rel="theme">Rexdf</a></span> |
+<span class="credit">Host by：<a href="https://github.com/" target="_blank" rel="host">Github.com</a></span> |
+<span class="credit">版权声明：<a href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" target="_blank" rel="license">CC BY-NC-SA 3.0</a><img src="https://analytics.rexdf.net/piwik.php?idsite=1&amp;rec=1" style="border:0" alt="" referrerpolicy="no-referrer-when-downgrade"></span>|
+<span class="credit"><a href="/sitemap.xml" rel="sitemap">sitemap</a></span>
+</p>
+<script type="text/javascript" src="https://tajs.qq.com/stats?sId=30296377" charset="UTF-8"></script>
+</footer>
+<script type="text/javascript">var disqus_shortname="rexdf",disqus_identifier="https://i.rexdf.org/blog/2014/01/27/zoj-3752/",disqus_url="https://i.rexdf.org/blog/2014/01/27/zoj-3752/",disqus_script="embed.js";!function(){var e=document.createElement("script");e.type="text/javascript",e.async=!0,e.src="//"+disqus_shortname+".disqus.com/"+disqus_script,(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(e)}()</script>
+<script type="text/javascript">$(function(){$(".entry-content").each(function(t){var r=t;$(this).find("img.fancybox").each(function(){var t=$(this),a=t.attr("title"),n=t.attr("class");t.removeAttr("class"),t.wrap('<a href="'+this.src+'" class="'+n+'" rel="gallery'+r+'" />'),""!=a&&t.parent().attr("title",a)})}),$(".fancybox").fancybox()})</script>
+</body>
+</html>

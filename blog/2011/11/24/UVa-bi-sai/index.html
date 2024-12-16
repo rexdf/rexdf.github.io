@@ -1,0 +1,185 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<script type="text/javascript">var _speedMark=new Date</script>
+<meta charset="utf-8">
+<title>UVa比赛 - Rexdf</title>
+<meta name="author" content="Rexdf">
+<meta name="description" content="Posted on 08月 5, 2006by dwyak 第一次做UVa的比赛应该是高二的时候，那时网上比赛这个概念刚刚出来，我们也才知道，原来上网还能参加比赛。 那是2001年1月27日，UVa的第16场Online Contest（今天这场是第148场），题目是UVa &hellip;">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' data: https://hm.baidu.com https://tajs.qq.com https://ssl.google-analytics.com https://static.rexdf.org https://*.disquscdn.com https://rexdf.disqus.com https://api.github.com https://ssl.google-analytics.com https://disqus.com https://analytics.rexdf.net; connect-src 'self' https://static.rexdf.org https://analytics.rexdf.net https://hm.baidu.com; img-src data: https://*; font-src data: https://*; child-src 'none'; style-src 'self' 'unsafe-inline' https://*; frame-src 'self' https://t.rexdf.org http://t.rexdf.org https://rexdf.disqus.com https://disqus.com">
+<link rel="canonical" href="https://i.rexdf.org/blog/2011/11/24/UVa-bi-sai">
+<link rel="dns-prefetch" href="https://static.rexdf.org/">
+<link href="/favicon.ico" rel="icon">
+<link id="main-css" href="/stylesheets/screen.css" media="screen,projection" rel="stylesheet" type="text/css" title="pc">
+<link href="/stylesheets/screen_mobile.css" rel="alternate stylesheet" type="text/css" title="mobile">
+<link href="/atom.xml" rel="alternate" title="Rexdf" type="application/atom+xml">
+<script src="/javascripts/libs/jquery.min.js"></script>
+<script src="/javascripts/octopress-rexdf.min.js" type="text/javascript"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+      
+      toggle_theme();
+  });
+</script>
+<script type="text/javascript" async src="https://static.rexdf.org/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript">var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-55590409-1"]),_gaq.push(["_trackPageview"]),function(){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(t,e)}()</script>
+<script>var _hmt=_hmt||[];!function(){var e=document.createElement("script");e.src="//hm.baidu.com/hm.js?32192d95b89fbefa0875c4c95adb1412";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}()</script>
+<script src="/javascripts/fancybox/jquery.fancybox.pack.js"></script>
+<link rel="stylesheet" type="text/css" href="/javascripts/fancybox/jquery.fancybox.css">
+<script type="text/javascript">var _paq=_paq||[];_paq.push(["trackPageView"]),_paq.push(["enableLinkTracking"]),function(){var e="https://analytics.rexdf.net/";_paq.push(["setTrackerUrl",e+"piwik.php"]),_paq.push(["setSiteId","1"]);var a=document,t=a.createElement("script"),p=a.getElementsByTagName("script")[0];t.type="text/javascript",t.async=!0,t.defer=!0,t.src=e+"piwik.js",p.parentNode.insertBefore(t,p)}()</script>
+</head>
+<body class="low-contrast-linen-wptouch-bg">
+<header role="banner"><hgroup>
+<h1 id="header-title"><a href="/">Rexdf</a></h1>
+<h2 id="subtitle">The devil is in the Details.</h2>
+</hgroup>
+</header>
+<nav role="navigation"><ul class="subscription" data-subscription="rss">
+<li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+</ul>
+<form action="https://google.com/search" method="get">
+<fieldset role="search">
+<input type="hidden" name="q" value="site:i.rexdf.org">
+<input class="search" type="text" name="q" results="0" placeholder="Search">
+</fieldset>
+</form>
+<ul class="main-navigation">
+<li><a href="/">Blog</a></li>
+<li><a href="/blog/archives/">Archives</a></li>
+<li><a href="/idea/">Idea</a></li>
+<li><a href="/share/">Share</a></li>
+<li><a href="/books/">Books</a></li>
+<li><a href="/donate/">Donate</a></li>
+<li><a target="_blank" href="https://blog.rexdf.org" style="font-family:Shadows Into Light">Main-Blog</a></li>
+</ul>
+</nav>
+<div id="main">
+<div id="content">
+<div>
+<article class="hentry" role="article">
+<header>
+<h1 class="entry-title">UVa比赛</h1>
+<p class="meta">
+<time class="data-article month-11 season-autumn" datetime="2011-11-24T20:21:00+08:00" pubdate><span class="month">Nov</span> <span class="day">24th</span> <span class="year">2011</span></time>
+| <a href="#disqus_thread" data-disqus-identifier="https://i.rexdf.org">Comments</a>
+</p>
+</header>
+<div class="entry-content"><h1 id="posted-on-08-5-2006httpdwyakwordpresscom20060805uvae6af94e8b59bby-dwyakhttpdwyakwordpresscomauthordwyak">Posted on <a href="http://dwyak.wordpress.com/2006/08/05/uva%e6%af%94%e8%b5%9b/">08月 5, 2006</a>by <a href="http://dwyak.wordpress.com/author/dwyak/">dwyak</a></h1>
+<p>第一次做UVa的比赛应该是高二的时候，那时网上比赛这个概念刚刚出来，我们也才知道，原来上网还能参加比赛。</p>
+<p>那是2001年1月27日，UVa的第16场Online Contest（今天这场是第148场），题目是UVa Problemset的10080到10084。按照现在的水平，这5道题估计两小时内应该能做完了。这次比赛，我的成绩是0道。其实我写了3个程序，但是交上去都是Compile Error，并且不知道怎样才能改对。当时的UVa Pascal编译器是GNU Pascal (GPC)，要求很怪。例如一定要加一个Program XXX(input, output)，否则会Compile Error；再如，fillchar(a, sizeof(a), <em>true</em>)会Compile Error。总之，我一直不知道。于是之后的半年里，我在UVa比赛中的每次提交都是Compile Error。</p>
+<p>后来，在和师兄WRS的共同努力下，我们终于克服的Compile Error的难关，开始在比赛中对题。而且，我们有时还能做出很高的排名，当然是作弊的（多台机器一起做，还用马甲）。</p>
+<p>高三的时候，开始比较认真地接触ACM-ICPC，我才发现，要想不作弊地在UVa上取得一个好名次，还是有相当难度的。那时的UVa，有Meteors（02年总冠军）, Saratov SU#3, Warsaw Eagles（03年总冠军），还有LML，强队挺多的。我是一个新手，还只有一个人，比赛开始后一两个小时就被别人（其实不是别人，就是LCX, LJ &amp; ZJ）以2~3倍题数领先。那时的我居然还想在UVa比赛中拿第一——主要是因为水平相差太悬殊，以至于都不知道别人比自己强多少了。现在回想起来，当时的UVa比赛可以说是鼎盛时期，水平一点不亚于World Finals。</p>
+<p>大一的时候，因为Meteors退役了，Saratov SU#3和Warsaw Eagles没来参加，我们在UVa比赛中还能取得不错的名次。我们主要的对手变成了ZJU。那年的ZJU正处在巅峰，而我们的实力尚未起来，所以我们在比赛中甚至处于下风。即便是在北京赛区，我们也有点害怕ZJU。我记得，这年，我们有过一次在UVa比赛中拿第一的经历（也是唯一的一次）。那次比赛好像才5道题，我们以微弱的时间优势赢了ZJU。</p>
+<p>大一的寒假，因为没有进Final，我基本上都是单挑做比赛的。那段时间的单挑让我的实力长了不少。我想，主要原因是我基本的实力达到了，可以开始和其他队有竞争，再加上单挑的压力，成长速度特别快。这段时间，我单挑的成绩可以稳定地保持在前十了。我觉得，如果能稳定在前十，那么单挑UVa就会有很大的收获。否则，跟不上前面的队，那么单挑的价值就会降低。</p>
+<p>大二的时候，我们的实力有了进一步的提高，在UVa上能经常拿拿第一了。当然，这和Saratov SU#3和Warsaw Eagles的退役也有很大关系。不过，我们赢的时候优势都很小。</p>
+<p>回想起来，我们状态最好的时候应该是分区赛前后，那时连续几次都是第一。之后的比赛好像就变得困难起来了。KTH – Three Headed Monkey（04年决赛的亚军）来到了UVa比赛。在和他们的比赛中，我们完败。Final前的最后一次warm-up，KTH没来，我们侥幸赢了一场，结束了这个赛季的UVa系列比赛。</p>
+<p>大三的时候，也就是Spirit这年，我们的队伍基本上成熟了。而且，这时的UVa比赛整体水平也严重下降。印象中，我不记得这一年我们在UVa上输过比赛了。有意思的是，10月初的一次warm-up，我们冒充Shahriar Manzoor（UVa的某老大）参加比赛。比赛到一半的时候，Shahriar Manzoor特地给了一个clarification，说“爬头的那支队不是我，但是他们很可能会成为你们比赛中的强劲对手:)”（原话不记得了，大致这个意思）。之后的那场比赛，为了避免误会，我们把“Shahriar Manzoor :-) ”改成了“)-: Rooznam Rairhahs ”。那场比赛，5个小时后，机房关门了，我们还剩最后一题没Y。Comars寝室要断电，就跑到我寝室来，在我室友的机器上完成了最后一题。之后，我陪他通了一宵。</p>
+<p>这一年的UVa比赛，锻炼价值已经不大了，因为我们的优势很大，有时甚至能赢两题。我们发现，是时候去寻找一些更富挑战性的比赛去做了，例如SGU的比赛。之后，我们做UVa比赛的频率大大减小。Final前的最后一次warm-up，是我最后一次做UVa比赛。这一天，我们放弃了另一场很有意义的训练，来做UVa。不过，这时的UVa比赛确实大不如前了，这场比赛的收获也非常有限。</p>
+<p>UVa的比赛，虽说到后期逐渐成为了鸡肋，但是就收获而言，它还是最大的。记得刚进交大的时候，LCX对我们说，他和LJ平时的训练是可能会偷偷懒，但是UVa的比赛一定会认真去做。因为这是一场比赛，有很多个对手，其中不乏强手，机会难得。虽然UVa的系统不怎么样，虽然题目可能出得不好，但是为了这些对手（或者我们可以把他们看作陪练），就冲着他们，我们也要重视这个比赛，投入全部的精力去做好UVa的比赛。</p>
+</div>
+<footer>
+<p class="meta">
+<span class="byline author vcard">Posted by <span class="fn">Rexdf</span></span>
+<time class="data-article month-11 season-autumn" datetime="2011-11-24T20:21:00+08:00" pubdate><span class="month">Nov</span> <span class="day">24th</span> <span class="year">2011</span></time>
+</p>
+<div class="sharing">
+</div>
+<p class="meta">
+<a class="basic-alignment left" href="/blog/2011/11/24/368/" title="Previous Post: .">&laquo; .</a>
+<a class="basic-alignment right" href="/blog/2011/11/24/Terrific-jue-sai/" title="Next Post: Terrific决赛">Terrific决赛 &raquo;</a>
+</p>
+</footer>
+</article>
+<section>
+<h1>Comments</h1>
+<div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
+</div>
+<aside class="sidebar">
+<section>
+<h1>Categories</h1>
+<ul id="categories">
+<li class="category"><a href="/blog/categories/acm/">ACM <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/algorithm/">Algorithm <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/assembly/">Assembly <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/cygwin/">Cygwin <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/gnu/">GNU <sup>8</sup></a></li>
+<li class="category"><a href="/blog/categories/math/">Math <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/octopress/">Octopress <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/programming/">Programming <sup>6</sup></a></li>
+<li class="category"><a href="/blog/categories/security/">Security <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sublime/">Sublime <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/synology/">Synology <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sysadmin/">SysAdmin <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/web/">Web <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/windows/">Windows <sup>7</sup></a></li>
+<li class="category"><a href="/blog/categories/proxmox/">proxmox <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/ri-chang/">日常 <sup>37</sup></a></li>
+</ul>
+</section>
+<section>
+<h1>Recent Posts</h1>
+<ul id="recent_posts">
+<li class="post">
+<a href="/blog/2024/12/16/fu-wu-qi-wa-kuang-bing-du-de-cha-sha/">服务器挖矿病毒的查杀</a>
+</li>
+<li class="post">
+<a href="/blog/2021/07/11/apple-m1-bian-yi-tensorflow/">Apple M1 编译tensorflow</a>
+</li>
+<li class="post">
+<a href="/blog/2021/02/27/chromiumbian-ma-qi-wen-ti/">Chromium编码器问题</a>
+</li>
+<li class="post">
+<a href="/blog/2020/12/13/proxmoxbi-ji/">Proxmox笔记</a>
+</li>
+<li class="post">
+<a href="/blog/2020/11/15/lun-yan-du-yu-shen-du/">论广度与深度</a>
+</li>
+</ul>
+</section>
+<section>
+<iframe frameborder="0" scrolling="no" referrerpolicy="unsafe-url" style="width:283px;height:200px" src="https://t.rexdf.org/?m=app&a=showwidget&name=rexdf&type=1&width=283px&height=500px"></iframe>
+</section>
+<section>
+<h1>GitHub Repos</h1>
+<ul id="gh_repos">
+<li class="loading">Status updating...</li>
+</ul>
+<a href="https://github.com/rexdf">@rexdf</a> on GitHub
+<script type="text/javascript">$(document).ready(function(){if(!window.jXHR){var e=document.createElement("script");e.type="text/javascript",e.src="/javascripts/libs/jXHR.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}github.showRepos({user:"rexdf",count:0,skip_forks:!0,target:"#gh_repos"})})</script>
+</section>
+</aside>
+</div>
+</div>
+<footer role="contentinfo"><p>
+<span class="credit">Copyright &copy; 2024 - Rexdf -</span> |
+<span class="credit">Powered by <a name="bottoms" target="_blank" href="http://octopress.org">Octopress</a></span> |
+<span class="credit">Theme by ：<a href="https://blog.rexdf.org/" target="_blank" rel="theme">Rexdf</a></span> |
+<span class="credit">Host by：<a href="https://github.com/" target="_blank" rel="host">Github.com</a></span> |
+<span class="credit">版权声明：<a href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" target="_blank" rel="license">CC BY-NC-SA 3.0</a><img src="https://analytics.rexdf.net/piwik.php?idsite=1&amp;rec=1" style="border:0" alt="" referrerpolicy="no-referrer-when-downgrade"></span>|
+<span class="credit"><a href="/sitemap.xml" rel="sitemap">sitemap</a></span>
+</p>
+<script type="text/javascript" src="https://tajs.qq.com/stats?sId=30296377" charset="UTF-8"></script>
+</footer>
+<script type="text/javascript">var disqus_shortname="rexdf",disqus_identifier="https://i.rexdf.org/blog/2011/11/24/UVa-bi-sai/",disqus_url="https://i.rexdf.org/blog/2011/11/24/UVa-bi-sai/",disqus_script="embed.js";!function(){var s=document.createElement("script");s.type="text/javascript",s.async=!0,s.src="//"+disqus_shortname+".disqus.com/"+disqus_script,(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(s)}()</script>
+<script type="text/javascript">$(function(){$(".entry-content").each(function(t){var r=t;$(this).find("img.fancybox").each(function(){var t=$(this),a=t.attr("title"),n=t.attr("class");t.removeAttr("class"),t.wrap('<a href="'+this.src+'" class="'+n+'" rel="gallery'+r+'" />'),""!=a&&t.parent().attr("title",a)})}),$(".fancybox").fancybox()})</script>
+</body>
+</html>

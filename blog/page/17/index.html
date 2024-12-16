@@ -1,0 +1,708 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<script type="text/javascript">var _speedMark=new Date</script>
+<meta charset="utf-8">
+<title>Rexdf</title>
+<meta name="author" content="Rexdf">
+<meta name="description" content="很简单的一个插件，现在支持汉化Sublime Text2，Sublime Text3。全部系统Win64、Win32，Linux64，Linux32，OSX等，可以随意来回切换简体中文、繁体中文、日语、英语，无需重启SublimeText。 ">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' data: https://hm.baidu.com https://tajs.qq.com https://ssl.google-analytics.com https://static.rexdf.org https://*.disquscdn.com https://rexdf.disqus.com https://api.github.com https://ssl.google-analytics.com https://disqus.com https://analytics.rexdf.net; connect-src 'self' https://static.rexdf.org https://analytics.rexdf.net https://hm.baidu.com; img-src data: https://*; font-src data: https://*; child-src 'none'; style-src 'self' 'unsafe-inline' https://*; frame-src 'self' https://t.rexdf.org http://t.rexdf.org https://rexdf.disqus.com https://disqus.com">
+<link rel="canonical" href="https://i.rexdf.org/blog/page/17">
+<link rel="dns-prefetch" href="https://static.rexdf.org/">
+<link href="/favicon.ico" rel="icon">
+<link id="main-css" href="/stylesheets/screen.css" media="screen,projection" rel="stylesheet" type="text/css" title="pc">
+<link href="/stylesheets/screen_mobile.css" rel="alternate stylesheet" type="text/css" title="mobile">
+<link href="/atom.xml" rel="alternate" title="Rexdf" type="application/atom+xml">
+<script src="/javascripts/libs/jquery.min.js"></script>
+<script src="/javascripts/octopress-rexdf.min.js" type="text/javascript"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+      
+      toggle_theme();
+  });
+</script>
+<script type="text/javascript" async src="https://static.rexdf.org/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript">var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-55590409-1"]),_gaq.push(["_trackPageview"]),function(){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(t,e)}()</script>
+<script>var _hmt=_hmt||[];!function(){var e=document.createElement("script");e.src="//hm.baidu.com/hm.js?32192d95b89fbefa0875c4c95adb1412";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}()</script>
+<script src="/javascripts/fancybox/jquery.fancybox.pack.js"></script>
+<link rel="stylesheet" type="text/css" href="/javascripts/fancybox/jquery.fancybox.css">
+<script type="text/javascript">var _paq=_paq||[];_paq.push(["trackPageView"]),_paq.push(["enableLinkTracking"]),function(){var e="https://analytics.rexdf.net/";_paq.push(["setTrackerUrl",e+"piwik.php"]),_paq.push(["setSiteId","1"]);var a=document,t=a.createElement("script"),p=a.getElementsByTagName("script")[0];t.type="text/javascript",t.async=!0,t.defer=!0,t.src=e+"piwik.js",p.parentNode.insertBefore(t,p)}()</script>
+</head>
+<body class="low-contrast-linen-wptouch-bg">
+<header role="banner"><hgroup>
+<h1 id="header-title"><a href="/">Rexdf</a></h1>
+<h2 id="subtitle">The devil is in the Details.</h2>
+</hgroup>
+</header>
+<nav role="navigation"><ul class="subscription" data-subscription="rss">
+<li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+</ul>
+<form action="https://google.com/search" method="get">
+<fieldset role="search">
+<input type="hidden" name="q" value="site:i.rexdf.org">
+<input class="search" type="text" name="q" results="0" placeholder="Search">
+</fieldset>
+</form>
+<ul class="main-navigation">
+<li><a href="/">Blog</a></li>
+<li><a href="/blog/archives/">Archives</a></li>
+<li><a href="/idea/">Idea</a></li>
+<li><a href="/share/">Share</a></li>
+<li><a href="/books/">Books</a></li>
+<li><a href="/donate/">Donate</a></li>
+<li><a target="_blank" href="https://blog.rexdf.org" style="font-family:Shadows Into Light">Main-Blog</a></li>
+</ul>
+</nav>
+<div id="main">
+<div id="content">
+<div class="blog-index">
+<article>
+<header>
+<h1 class="entry-title">[置顶]<a href="/blog/2015/05/15/fa-bu-yi-ge-sublimeyi-hua-cha-jian/">发布一个sublime汉化插件</a></h1>
+<p class="meta">
+<time class="data-article month-05 season-spring" datetime="2015-05-15T11:19:01+08:00" pubdate><span class="month">May</span> <span class="day">15th</span> <span class="year">2015</span></time>
+| <a href="/blog/2015/05/15/fa-bu-yi-ge-sublimeyi-hua-cha-jian/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2015/05/15/fa-bu-yi-ge-sublimeyi-hua-cha-jian/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>很简单的一个插件，现在支持汉化Sublime Text2，Sublime Text3。全部系统Win64、Win32，Linux64，Linux32，OSX等，可以随意来回切换简体中文、繁体中文、日语、英语，无需重启SublimeText。</p>
+</div>
+<footer>
+<a rel="full-article" href="/blog/2015/05/15/fa-bu-yi-ge-sublimeyi-hua-cha-jian/">Read on &rarr;</a>
+</footer>
+</article>
+<article>
+<header>
+<h1 class="entry-title"><a href="/blog/2012/07/15/Lighttpd-he-nginx-de-dui-bi-na-ge-hao/">Lighttpd和nginx的对比　哪个好？</a></h1>
+<p class="meta">
+<time class="data-article month-07 season-summer" datetime="2012-07-15T00:37:00+08:00" pubdate><span class="month">Jul</span> <span class="day">15th</span> <span class="year">2012</span></time>
+| <a href="/blog/2012/07/15/Lighttpd-he-nginx-de-dui-bi-na-ge-hao/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2012/07/15/Lighttpd-he-nginx-de-dui-bi-na-ge-hao/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>我有个习惯就是好对比自己现在用的软件 Lighttpd和nginx是目前替代apache最有力的两个竞争者了，偶最近考虑把网站的apache替换为它们中的一个，因此找找他们的不同之处整理了一下 跑php的话或者有其他一些东西如ruby等，lighttpd是不错的，其次可以选择nginx，主要看熟悉程度 经验（非VPS），nginx比lighttpd占用资源少点，也更加稳定点。对VPS而言，可能nginx更好点，毕竟VPS资源更为紧张 Lighttpd应该不会出现内存泄漏才对 它对系统资源的使用是采用“最差使用算法”（貌似是个新词，:) ）就是说尽最大压榨系统 直到系统没有资源了才一次性释放，所以跟踪Lighttpd的话，经常发现系统资源要被Lighttpd压榨的完全枯竭了，可是就在要枯竭的那个时候，系 统资源一下子又多出很多来（Lighttpd释放的） Lighttpd和Nginx都有一些具有代表性的网站在使用 比如CSDN的博客使用Nginx javaeye的新闻板块使用了Lighttpd 上面提到的两个我可以确认，因为我用Wireshark抓包查看了的 二者其实已经很相似了。。。也就是功能不完全相同而已 一个是轻量级的，一个是均衡负载</p>
+</div>
+</article>
+<article>
+<header>
+<h1 class="entry-title"><a href="/blog/2012/07/11/zai-tan-select-iocp-epoll-kqueue-ji-ge-zhong-I-O-fu-yong-ji-zhi/">再谈select, Iocp, epoll,kqueue及各种I/O复用机制</a></h1>
+<p class="meta">
+<time class="data-article month-07 season-summer" datetime="2012-07-11T03:09:00+08:00" pubdate><span class="month">Jul</span> <span class="day">11th</span> <span class="year">2012</span></time>
+| <a href="/blog/2012/07/11/zai-tan-select-iocp-epoll-kqueue-ji-ge-zhong-I-O-fu-yong-ji-zhi/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2012/07/11/zai-tan-select-iocp-epoll-kqueue-ji-ge-zhong-I-O-fu-yong-ji-zhi/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><h1 id="io"><strong>首先，介绍几种常见的I/O模型及其区别</strong>，如下：</h1>
+<ul>
+<li>blocking I/O</li>
+<li>nonblocking I/O</li>
+<li>I/O multiplexing (<code>select</code> and <code>poll</code>)</li>
+<li>signal driven I/O (<code>SIGIO</code>)</li>
+<li>asynchronous I/O (the POSIX <code>aio_</code>functions)</li>
+</ul>
+<h2 id="blocking-io-"><strong>blocking I/O</strong>  这个不用多解释吧，阻塞套接字。下图是它调用过程的图示：</h2>
+<p><img src="http://hi.csdn.net/attachment/201001/28/156467_126466013140tA.jpg" alt=""> 重点解释下上图，下面例子都会讲到。首先application调用 recvfrom()转入kernel，注意kernel有2个过程，wait for data和copy data from kernel to user。直到最后copy complete后，recvfrom()才返回。此过程一直是阻塞的。</p>
+<h2 id="nonblocking-io-blocking-io"><strong>nonblocking I/O：</strong>  与blocking I/O对立的，非阻塞套接字，调用过程图如下：</h2>
+<p><img src="http://hi.csdn.net/attachment/201001/28/156467_1264660132Vc0H.jpg" alt=""> 可以看见，如果直接操作它，那就是个轮询。。直到内核缓冲区有数据。</p>
+<h2 id="io-multiplexing-select-and-poll-ioselect"><strong>I/O multiplexing (select and poll)</strong>  最常见的I/O复用模型，select。</h2>
+<p><img src="http://hi.csdn.net/attachment/201001/28/156467_126466013344Mb.jpg" alt=""> select先阻塞，有活动套接字才返回。与<strong>blocking I/O</strong>相比，select会有两次系统调用，但是select能处理多个套接字。</p>
+<h2 id="signal-driven-io-sigio-unix"><strong>signal driven I/O (SIGIO)</strong>  只有UNIX系统支持，感兴趣的课查阅相关资料</h2>
+<p><img src="http://hi.csdn.net/attachment/201001/28/156467_1264660134r93R.jpg" alt=""> 与<strong>I/O multiplexing (select and poll)</strong>相比，它的优势是，免去了select的阻塞与轮询，当有活跃套接字时，由注册的handler处理。</p>
+<h2 id="asynchronous-io-the-posix-aiofunctions-nixwindowsiocp"><strong>asynchronous I/O (the POSIX aio_functions)</strong>  很少有*nix系统支持，windows的IOCP则是此模型</h2>
+<p><img src="http://hi.csdn.net/attachment/201001/28/156467_1264660135UGwy.jpg" alt=""> 完全异步的I/O复用机制，因为纵观上面其它四种模型，至少都会在由kernel copy data to appliction时阻塞。而该模型是当copy完成后才通知application，可见是纯异步的。好像只有windows的完成端口是这个模型，效率也很出色。</p>
+<h1 id="section"><strong>下面是以上五种模型的比较</strong></h1>
+<p><strong><img src="http://hi.csdn.net/attachment/201001/28/156467_1264660135Ow47.jpg" alt=""></strong>可以看出，越往后，阻塞越少，理论上效率也是最优。 =====================分割线================================== 5种模型的比较比较清晰了，剩下的就是把select,epoll,iocp,kqueue按号入座那就OK了。 select和iocp分别对应第3种与第5种模型，那么epoll与kqueue呢？其实也于select属于同一种模型，只是更高级一些，可以看作有了第4种模型的某些特性，如callback机制。</p>
+<h1 id="epollkqueueselect-">**那么，为什么epoll,kqueue比select高级？  **</h1>
+<p>答案是，他们无<strong>轮询</strong>。因为他们用callback取代了。想想看，当套接字比较多的时候，每次select()都要通过遍历FD_SETSIZE个Socket来完成调度,不管哪个Socket是活跃的,都遍历一遍。这会浪费很多CPU时间。如果能给套接字注册某个回调函数，当他们活跃时，自动完成相关操作，那就避免了轮询，这正是epoll与kqueue做的。</p>
+<h1 id="windows-or-nix-iocp-or-kqueueepoll"><strong>windows or *nix （IOCP or kqueue/epoll）？</strong></h1>
+<p>诚然，Windows的IOCP非常出色，目前很少有支持<strong>asynchronous I/O</strong>的系统，但是由于其系统本身的局限性，大型服务器还是在UNIX下。而且正如上面所述，kqueue/epoll 与 IOCP相比，就是多了一层从内核copy数据到应用层的阻塞，从而不能算作<strong>asynchronous I/O类。</strong>但是，这层小小的阻塞无足轻重，kqueue与epoll已经做得很优秀了。</p>
+<h1 id="io-design-patterns"><strong>提供一致的接口，IO Design Patterns</strong></h1>
+<p>实际上，不管是哪种模型，都可以抽象一层出来，提供一致的接口，广为人知的有ACE,Libevent这些，他们都是跨平台的，而且他们自动选择最优的I/O复用机制，用户只需调用接口即可。说到这里又得说说2个设计模式，<strong>Reactor</strong> and <strong>Proactor。</strong>有一篇经典文章<a href="http://www.artima.com/articles/io_design_patterns.html">http://www.artima.com/articles/io_design_patterns.html</a>值得阅读，Libevent是<strong>Reactor</strong>模型，ACE提供<strong>Proactor</strong>模型。实际都是对各种I/O复用机制的封装。</p>
+<h1 id="java-nioio"><strong>Java nio包是什么I/O机制？</strong></h1>
+<p>我曾天真的认为java nio封装的是IOCP。。现在可以确定，目前的java本质是select()模型，可以检查/jre/bin/nio.dll得知。至于java服务器为什么效率还不错。。我也不得而知，可能是设计得比较好吧。。-_-。 =====================分割线================================== <strong>总结一些重点：</strong></p>
+<ol>
+<li>只有IOCP是asynchronous I/O，其他机制或多或少都会有一点阻塞。</li>
+<li>select低效是因为每次它都需要轮询。但低效也是相对的，视情况而定，也可通过良好的设计改善</li>
+<li>epoll, kqueue是Reacor模式，IOCP是Proactor模式。</li>
+<li>java nio包是select模型。。</li>
+</ol>
+</div>
+</article>
+<article>
+<header>
+<h1 class="entry-title"><a href="/blog/2012/07/03/ji-zhong-display-table-cell-de-ying-yong/">几种display:table-cell的应用</a></h1>
+<p class="meta">
+<time class="data-article month-07 season-summer" datetime="2012-07-03T11:49:00+08:00" pubdate><span class="month">Jul</span> <span class="day">3rd</span> <span class="year">2012</span></time>
+| <a href="/blog/2012/07/03/ji-zhong-display-table-cell-de-ying-yong/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2012/07/03/ji-zhong-display-table-cell-de-ying-yong/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>对于调试footer时发现的一个奇怪的现象，看来table确实与div是有很大的区别的。这么一来div可以作为表格使用了！</p>
+<h3 id="displaytable-cell">一、display:table-cell属性简述</h3>
+<p>display:table-cell属性指让标签元素以表格单元格的形式呈现，类似于td标签。目前IE8+以及其他现代浏览器都是支持此属性的，但是IE6/7只能对你说sorry了，这一事实也是大大制约了display:table-cell属性在实际项目中的应用。 我们都知道，单元格有一些比较特别的属性，例如元素的垂直居中对齐，关联伸缩等，所以display:table-cell还是有不少潜在的使用价值的，虽说IE6/7不支持此属性，但是幸运的是，IE6/7一些乱糟糟的属性与渲染，我们可以其他方法实现同样或是类似的效果。 与其他一些display属性类似，table-cell同样会被其他一些CSS属性破坏，例如float, position:absolute，所以，在使用display:table-cell与float:left或是position:absolute属性尽量不用同用。设置了display:table-cell的元素对宽度高度敏感，对margin值无反应，响应padding属性，基本上就是活脱脱的一个td标签元素了。</p>
+<h3 id="displaytable-cell-1">二、display:table-cell与大小不固定元素的垂直居中</h3>
+<p>使用display:table-cell让大小不固定元素垂直居中已经是很老的方法了，关于此应用，我已经在“<a href="http://www.zhangxinxu.com/wordpress/?p=61">大小不固定的图片、多行文字的水平垂直居中</a>”这篇文章中有过介绍。 <img src="http://image.zhangxinxu.com/image/blog/201010/2010-10-28_204356.png" alt="以前图片垂直居中之截图 张鑫旭-鑫空间-鑫生活"> 方便阅读，这里再次展示下代码：</p>
+<pre><code>/*这里的大小是根据高宽上限128像素图片设置的*/
+div{display:table-cell; width:1em; height:1em; border:1px solid #beceeb; font-size:144px; text-align:center; vertical-align:middle;}
+div img{vertical-align:middle;}
+</code></pre>
+<p>结果如下图： <img src="http://image.zhangxinxu.com/image/blog/200908/2009-08-27_232027.jpg" alt="table-cell和文字大小实现的图片垂直居中显示"> 这里有个demo地址，里面有display:table-cell实现大小不固定图片垂直居中的效果展示，您可以狠狠地点击<a href="http://www.zhangxinxu.com/study/200908/img-text-vertical-align.html">这里</a>。</p>
+<h3 id="displaytable-cell-2">二、display:table-cell与两栏自适应布局</h3>
+<p>就在前不久，看facebook好友动态列表页面前端代码的时候才发现原来display:table-cell可以用在两栏的自适应布局上。 <img src="http://image.zhangxinxu.com/image/blog/201010/2010-10-11_204048.png" alt="facebook的table-cell自适应方法 张鑫旭-鑫空间-鑫生活"> 虽然IE6/7不认识display:table-cell，但是亏了其一向自以为是的渲染与解析，我们可以很幸运的使用其他属性实现几乎一致的效果。 <img src="http://image.zhangxinxu.com/image/blog/201010/2010-10-28_211636.png" alt="display:table-cell下的两栏自适应效果截图 张鑫旭-鑫空间-鑫生活"> 您可以狠狠地点击这里：<a href="http://www.zhangxinxu.com/study/201010/table-cell-two-column-flow-layout.html">display:table-cell下两栏自适应布局demo</a> <strong>代码展示：</strong> 本例中，左侧为头像，右侧内容自适应。其中头像部分使用了float属性，左浮动，IE8+以及Firefox、Chrome、Opera等现代浏览器右侧使用了display:table-cell属性，结果就自适应了，很简单的代码，很神奇的效果。 <img src="http://image.zhangxinxu.com/image/blog/201010/2010-10-28_212249.png" alt="display:table-cell自适应布局代码展示 张鑫旭-鑫空间-鑫生活"> OK，对于不认识display:table-cell属性的IE6/7呢？哦呵呵，很简单，使用display:inline-block属性代替display:table-cell就完全ok的啦！ 原因在于：IE6/7下block属性的元素对inline-block属性是有反应，但是却不是纯洁的反应，而是怪蜀黍看到粉嫩小萝莉的一点邪念，就是让元素有个怪异的haslayout属性。//zxx:大家似乎都喜欢用haslayout解析一些老IE下的一些怪异现象，但我自己打心底里是不认同这个概念。 如果IE6/7是很标准的纯洁的解释inline-block属性的话，是无法实现自适应的，右侧的文字描述内容会跑到头像的下面，哦呵呵~~有点负负得正，以毒攻毒的意味。代码如下：</p>
+<pre><code>display:table-cell; *display:inline-block;
+</code></pre>
+<p>就万事大吉，收工回家了。 在本例demo中，右侧内容足够多，所以宽度完整的撑开了，如果内容有限，则宽度就是内容的宽度，此时想要让某个元素（例如关闭按钮）右侧定位就会有问题，解决方法就是定义一个非常宽的宽度，就像上面facebook截图中的CSS属性一样，所以，考虑到各种情况，更健壮耐用的CSS代码应如下：</p>
+<pre><code>display:table-cell; *display:inline-block; width:2000px; *width:auto;
+</code></pre>
+<p>或者使用：</p>
+<pre><code>display:table-cell;  width:2000px; *width:auto; *zoom:1;
+</code></pre>
+<p>这种两栏的自适应布局，不仅不要分别丈量与计算两列的宽度，连“<a href="http://www.zhangxinxu.com/wordpress/?p=1152">页面重构鑫三无准则 之无宽度准则</a>”中absolute自适应布局的头像宽度都不需要亮了，可以说是更加懒惰，更加直接的好方法。</p>
+<h3 id="displaytable-cell-3">三、display:table-cell下的等高布局</h3>
+<p>table表格中的单元格最大的特点之一就是同一行列表元素都等高。所以，很多时候，我们需要等高布局的时候，就可以借助display:table-cell属性。说到table-cell的布局，不得不说一下“匿名表格元素创建规则”：</p>
+<blockquote>
+<p>CSS2.1表格模型中的元素，可能不会全部包含在除HTML之外的文档语言中。这时，那些“丢失”的元素会被模拟出来，从而使得表格模型能够正常工作。所有的表格元素将会自动在自身周围生成所需的匿名table对象，使其符合table/inline-table、table-row、table- cell的三层嵌套关系。</p>
+</blockquote>
+<p>举个例子吧，如果我们为元素使用“display:table-cell;”属性，而不将其父容器设置为“display:table-row;”属性，浏览器会默认创建出一个表格行，就好像文档中真的存在一个被声明的表格行一样。如果您还不是很理解，可见参见支付宝UED的“<a href="http://ued.alipay.com/wd/2008/10/29/%E5%9F%BA%E4%BA%8Edisplaytable%E7%9A%84css%E5%B8%83%E5%B1%80/">基于display:table的CSS布局</a>”一文。//zxx:支付宝今年的招牌广告做得很赞的~~ 实现等高布局，毫无疑问，display:table-cell是首选，这就好比鼹鼠，生下来就是为了打洞用的。考虑到匿名创建表格元素的问题，所有table-cell元素外一定要留有一个用来包裹的标签。于是，我们有类似下面的CSS代码：</p>
+<pre><code>.list_row{display:table-row;}
+.list_cell{display:table-cell; width:30%; padding:1.6%; background-color:#f5f5f5;}
+/*中间一个元素背景淡蓝，有别于两边的淡灰色*/
+.list_center{background-color:#f0f3f9;}
+</code></pre>
+<p>结果在现代浏览器下（如下Firefox3.6下截图）： <img src="http://image.zhangxinxu.com/image/blog/201010/2010-10-28_230339.png" alt="table-cell下的等高布局 张鑫旭-鑫空间-鑫生活"></p>
+</div>
+</article>
+<article>
+<header>
+<h1 class="entry-title"><a href="/blog/2012/07/02/WordPress3-4-1-sheng-ji-hou-Bug-xiu-fu-ri-ji/">WordPress3.4.1升级后Bug修复日记</a></h1>
+<p class="meta">
+<time class="data-article month-07 season-summer" datetime="2012-07-02T13:42:00+08:00" pubdate><span class="month">Jul</span> <span class="day">2nd</span> <span class="year">2012</span></time>
+| <a href="/blog/2012/07/02/WordPress3-4-1-sheng-ji-hou-Bug-xiu-fu-ri-ji/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2012/07/02/WordPress3-4-1-sheng-ji-hou-Bug-xiu-fu-ri-ji/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>因为以前一直没有升级主题的习惯，一来主题自定义东西过多，好不容易改出来的东西不想因为升级而搞丢。最近升级版本到3.4.1，想把主题也升一下，备份后便升级了，可是问题一大串的。</p>
+<h2 id="section">国内视频网站无法自动替换</h2>
+<p>先是无法像Youtube或者GoogleVideo一样的使用那个正则表达式替换。 * 1.把代码用FTP下载到本地，调试完全一样的代码。本地正常。 * 2.把WordPress的数据备份下来，本地导入测试正常。然后把服务器的数据库删掉，重新安装WordPress最新版，导入数据。依然无法替换Youku、Tudou等视频。 * 3.把服务器的数据库从Western Latin 改成UTF8，和本地到此数据库一样。 依然无法替换。 * 4.极端恼火，把服务器的所有WordPress文件夹内容全部删掉，暂时把http://blog.rexdf.org指向了GAE博客，做了一个暂时的反向代理。然后下载一个新的wordpress-3.4.1-zh_CN上传，重新安装，依然无法替换国内视频网站。但是确认Youtube的是可以被正常替换。 * 5.把翻译文件换成前一个带“中文本地化”菜单的，修改日志，把视频地址用&lt;p&gt;标签包起来（要知道我是有10多篇视频日志啊，反复改了3次）。老版本的文件可以正常利用正则表达式替换国内视频。 * 6.手动修改了/wp-content/languages/zh_CN.php，如下</p>
+<pre><code>&lt;?php
+/**
+ * WordPress China Localization Patches Collection
+ */
+
+/**
+ * Legacy database options cleanup
+ *
+ * Cleanup of all options that were introduced pre-3.4.
+ * To save time, this function is only to be called on admin pages.
+ *
+ * @since 3.4.0
+ */
+function zh_cn_l10n_legacy_option_cleanup() {
+  // 3.3 series
+  delete_site_option( 'zh_cn_l10n_preference_patches' );
+  
+  // 3.0.5, 3.1 series, 3.2 series
+  delete_site_option( 'zh_cn_language_pack_enable_chinese_fake_oembed' );
+  
+  // 3.0.1, 3.0.2, 3.0.3, 3.0.4
+  delete_site_option( 'zh_cn_language_pack_options_version' );
+  delete_site_option( 'zh_cn_language_pack_enable_backend_style_modifications' );
+  
+  // awkward ones...
+  delete_site_option( 'zh_cn_language_pack_enable_icpip_num_show' );
+  delete_site_option( 'zh_cn_language_pack_icpip_num' );
+  delete_site_option( 'zh_cn_language_pack_is_configured' );
+  
+}
+add_action( 'admin_init', 'zh_cn_l10n_legacy_option_cleanup' );
+
+
+/**
+ * Tudou wp_embed handler
+ *
+ * Embed code last updated:
+ *  Tue, 05 Jun 2012 22:23:03 -0400 
+ *
+ * Feel free to submit or correct URL formats here:
+ *  http://cn.wordpress.org/contact/
+ *
+ * @since 3.4.0
+ */
+function wp_embed_handler_tudou( $matches, $attr, $url, $rawattr ) {
+  $embed = sprintf(
+    '&lt;embed src="http://www.tudou.com/v/%1$s/&amp;resourceId=0_05_05_99&amp;bid=05/v.swf" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" wmode="opaque" width="480" height="400"&gt;&lt;/embed&gt;',
+    esc_attr( $matches['video_id'] ) );
+
+  return apply_filters( 'embed_tudou', $embed, $matches, $attr, $url, $rawattr );
+}
+wp_embed_register_handler( 'tudou', 
+  '#https?://(?:www\.)?tudou\.com/(?:programs/view|listplay/(?&lt;list_id&gt;[a-z0-9_=\-]+))/(?&lt;video_id&gt;[a-z0-9_=\-]+)#i', 
+  'wp_embed_handler_tudou' );
+
+
+/**
+ * 56.com wp_embed handler
+ *
+ * Embed code last updated:
+ *  Tue, 05 Jun 2012 23:03:29 -0400 
+ *
+ * Feel free to submit or correct URL formats here:
+ *  http://cn.wordpress.org/contact/
+ *
+ * @since 3.4.0
+ */
+function wp_embed_handler_56com( $matches, $attr, $url, $rawattr ) {
+  $matches['video_id'] = $matches['video_id1'] == '' ? 
+    $matches['video_id2'] : $matches['video_id1'];
+  
+  $embed = sprintf(
+    "&lt;embed src='http://player.56.com/v_%1\$s.swf'  type='application/x-shockwave-flash' width='480' height='405' allowFullScreen='true' allowNetworking='all' allowScriptAccess='always'&gt;&lt;/embed&gt;",
+    esc_attr( $matches['video_id'] ) );
+
+  return apply_filters( 'embed_56com', $embed, $matches, $attr, $url, $rawattr );
+}
+wp_embed_register_handler( '56com', 
+  '#https?://(?:www\.)?56\.com/[a-z0-9]+/(?:play_album\-aid\-[0-9]+_vid\-(?&lt;video_id1&gt;[a-z0-9_=\-]+)|v_(?&lt;video_id2&gt;[a-z0-9_=\-]+))#i', 
+  'wp_embed_handler_56com' );
+
+
+/**
+ * Youku wp_embed handler
+ *
+ * Embed code last updated:
+ *  Wed, 06 Jun 2012 00:36:11 -0400 
+ *
+ * Feel free to submit or correct URL formats here:
+ *  http://cn.wordpress.org/contact/
+ *
+ * @since 3.4.0
+ */
+function wp_embed_handler_youku( $matches, $attr, $url, $rawattr ) {
+  $embed = sprintf(
+    '&lt;embed src="http://player.youku.com/player.php/sid/%1$s/v.swf" allowFullScreen="true" quality="high" width="480" height="400" align="middle" allowScriptAccess="always" type="application/x-shockwave-flash"&gt;&lt;/embed&gt;',
+    esc_attr( $matches['video_id'] ) );
+
+  return apply_filters( 'embed_youku', $embed, $matches, $attr, $url, $rawattr );
+}
+wp_embed_register_handler( 'youku', 
+  '#https?://v\.youku\.com/v_show/id_(?&lt;video_id&gt;[a-z0-9_=\-]+)#i', 
+  'wp_embed_handler_youku' );
+
+
+/**
+ * Chinese administration screens style - enqueue stylesheet
+ *
+ * This patch serves as a work-around to fix the font-size and font-style.
+ *
+ * Submit better CSS rules here:
+ *  http://cn.wordpress.org/contact/
+ *
+ * @since 3.3.0
+ */
+function zh_cn_l10n_patch_admin_screens_style_enqueue_stylesheet() {
+  wp_register_style( 'zh-cn-l10n-administration-screens', 
+    content_url( ( WP_DEBUG ? '/languages/zh_CN-administration-screens.dev.css' : '/languages/zh_CN-administration-screens.css' ) ), 
+    array( 'wp-admin' ), 
+    '20111120');
+  wp_enqueue_style( 'zh-cn-l10n-administration-screens' );
+}
+add_action( 'admin_init', 
+  'zh_cn_l10n_patch_admin_screens_style_enqueue_stylesheet' );
+
+
+/**
+ * Chinese character count - register script
+ *
+ * This patch serves as a work-around to fix the built-in word-count.js.
+ * 
+ * The sum of Chinese characters and English words will show up in "word count"
+ * field once enabled.
+ *
+ * @since 3.3.0
+ */
+function zh_cn_l10n_patch_character_count_register_script() {
+  wp_deregister_script( 'word-count' );
+  wp_register_script( 'word-count', 
+    content_url( ( WP_DEBUG ? '/languages/zh_CN-word-count.dev.js' : '/languages/zh_CN-word-count.js' ) ), 
+    array( 'jquery' ), 
+    '20120605' );
+}
+add_action( 'admin_footer', 
+  'zh_cn_l10n_patch_character_count_register_script' );
+
+
+?&gt;
+
+
+&lt;?php
+
+/**
+ * 注册设置
+ *
+ * @since 3.0.1
+ */
+function zh_cn_language_pack_backend_register_settings() {
+    add_settings_field( 'zh_cn_language_pack_enable_chinese_fake_oembed',
+        '中国媒体嵌入',
+        'zh_cn_language_pack_embed_fake_oembed_settings',
+        'media',
+        'embeds' );
+
+    add_option( 'zh_cn_language_pack_enable_backend_style_modifications', 1 );
+    add_option( 'zh_cn_language_pack_enable_chinese_fake_oembed', 1 );
+    
+    register_setting( 'zh-cn-language-pack-general-settings',
+        'zh_cn_language_pack_enable_backend_style_modifications' );
+    register_setting( 'zh-cn-language-pack-general-settings',
+        'zh_cn_language_pack_enable_chinese_fake_oembed' );
+
+    register_setting( 'media',
+        'zh_cn_language_pack_enable_chinese_fake_oembed' );
+
+    // 从用户数据库移除旧设置项
+</code></pre>
+</div>
+</article>
+<article>
+<header>
+<h1 class="entry-title"><a href="/blog/2012/06/25/JQuery-zhong--id-zhao-bu-dao-JQuery-id-ke-yi/">JQuery中$(#id)找不到，JQuery(#id)可以</a></h1>
+<p class="meta">
+<time class="data-article month-06 season-summer" datetime="2012-06-25T02:31:00+08:00" pubdate><span class="month">Jun</span> <span class="day">25th</span> <span class="year">2012</span></time>
+| <a href="/blog/2012/06/25/JQuery-zhong--id-zhao-bu-dao-JQuery-id-ke-yi/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2012/06/25/JQuery-zhong--id-zhao-bu-dao-JQuery-id-ke-yi/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>jQuery(function(){ jQuery(“.articlepost”).hover( function(){jQuery(this).addClass(“shaddow”);}, function(){jQuery(this).removeClass(“shaddow”); }); });</p>
+<p>其它类库也用$(““)这样的格式，和jquery有冲突了。 jQuery()这种写法就是避免和其它类库同时使用时在用$这个东西的冲突的.代码可以这样改。 jQuery(function($){ $(“.articlepost”).hover( function(){$(this).addClass(“shaddow”);}, function(){$(this).removeClass(“shaddow”); }); });</p>
+<h2 id="comments">Comments</h2>
+<p><strong><a href="#65" title="2012-06-27 15:30:03">http://qczx.us</a>:</strong> 我主要用YUI，不过JQuery也是很不错的框架，收藏了。平民时尚，感谢分享。</p>
+</div>
+</article>
+<article>
+<header>
+<h1 class="entry-title"><a href="/blog/2012/06/24/GAE-shi-wan/">GAE试玩</a></h1>
+<p class="meta">
+<time class="data-article month-06 season-summer" datetime="2012-06-24T23:37:00+08:00" pubdate><span class="month">Jun</span> <span class="day">24th</span> <span class="year">2012</span></time>
+| <a href="/blog/2012/06/24/GAE-shi-wan/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2012/06/24/GAE-shi-wan/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>从昨天下午开始一直玩到现在，粗略建立一个Micolog的基于Python的类Wordpress博客，地址为: <a href="http://micolog.rexdf.org">http://micolog.rexdf.org</a>暂时不爬<em>篱</em>笆应该也是可以访问的。用起来和PHP确实有很大的不同的地方，有时间去折腾下Java的quercus，在GAE上玩玩php。 不过今天最大的收获是，学会了稳定快速的爬<em>篱</em>笆的方法了，现在GAE每天稳定的15G(PC)+1G(Xiaomi)，不用再忍受FG的各种缺点了（不过某些方面还是FG稳定很多，只是是全局的）。G<strong>G</strong>t配合着Proxifier可以达到FG全局的特性，不过发现配置极端复杂，没有Chrome里面的Switch<em>-Sharp的稳定。出现各种包类型不对，比如Fac</em>book的80端口需要做HTTP代理，443端口必须做HTTPS代理，Twi<em>ter也有各种问题而IE无法访问。测试下来，Chrome配合Switch</em>-Sharp是最稳定的，IE和FireFox对于安全的策略都不同，需要分别安装证书才能正常访问SSL加密的HTTPS地址。 还是没有办法在手机上用Android4.0使用Face<em>ook本地应用,也就是不用FG的话，只用GAE没法让Connecitify爬</em>篱*笆。只能在Android上用GAE，但是只对浏览器有用，不是全局的。 最后再分享一个奇怪的现象，莫名的发现php版本的G<strong>G</strong>t速度居然会比GAE快，这个是从打开网页的时间中感性发现的。确实是这样的</p>
+</div>
+</article>
+<article>
+<header>
+<h1 class="entry-title"><a href="/blog/2012/06/23/jQuery-offsetpositionoffsetParentscrollLeftscrollTop-html-kong-jian-ding-wei-css-position-shu/">jQuery offset，position，offsetParent，scrollLeft，scrollTop Html控件定位 Css Position属</a></h1>
+<p class="meta">
+<time class="data-article month-06 season-summer" datetime="2012-06-23T16:45:00+08:00" pubdate><span class="month">Jun</span> <span class="day">23rd</span> <span class="year">2012</span></time>
+| <a href="/blog/2012/06/23/jQuery-offsetpositionoffsetParentscrollLeftscrollTop-html-kong-jian-ding-wei-css-position-shu/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2012/06/23/jQuery-offsetpositionoffsetParentscrollLeftscrollTop-html-kong-jian-ding-wei-css-position-shu/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>定位应用：点击一个按钮，然后在按钮的右边弹出一个提示框 1，提示框相对于屏幕进行定位，那么使用offset来取得当前按钮相对于body的top和left，然后通过$(‘body’).prepend(tipContent);把提示控件加到body下 注意tipContent采用absolute定位，并设置top，left的值，当把tipContent加到body的最前面时，由于tipContent前面没有任何东西，因此它就是以body为基准根据top，left的值进行定位</p>
+<p>Javascript代码</p>
+<ol>
+<li>$(this).offset().left;</li>
+<li>$(this).offset().top;</li>
+<li>$(‘body’).prepend(tipContent);</li>
+</ol>
+<p>2，提示框相对于点击的按钮进行定位(即提示框出现在按钮的旁边)，那么使用position来取得当前按钮相对于offset parent的top和left，，然后通过$(this).after(tipContent);;把提示控件加到按钮的后面(兄弟节点)，因此被追加的提示控件的offset parent和按钮的offset parent一定是相同的！，也就变相达到了提示控件相对于 按钮 进行定位的效果！ // 注意tipContent采用absolute定位，当把tipContent加到按钮后面后（兄弟节点，他们有相同的offset parent） // absolute：绝对定位，元素相对于它的第一个被定位的祖先元素（offset parent非static）来进行定位,由于按钮和提示控件并排在一起，不管 被用来作为基准的第一个被定位的祖先元素（非static）是谁，按钮和提示控件相对于 基准控件的top，left距离都是可以简单地通过+-进行平移操作！</p>
+<p>Javascript代码</p>
+<ol>
+<li>$(this).position().left;</li>
+<li>$(this).position().top;</li>
+<li>$(this).after(tipContent);</li>
+</ol>
+<p><strong>offset:偏移、平移、位移</strong> <strong>offset()</strong>:获取匹配元素集合中的第一个元素相对于document的当前坐标值（相对于body左上角的left， top的值）。 返回的对象包含两个整形属性：top 和 left。 如果把一个元素定位到已经存在的元素的上面（特别地做拖拽操作的时候）， .offset()方法更加有用。 <strong>position()</strong>:获取当前匹配元素集合中的第一个元素相对于offset parent的当前坐标值（相对于offset parent元素左上角的left， top的值）。 返回的对象包含两个整形属性：top 和 left。 如果要让一个元素靠近另外一个元素进行定位，并且这2个元素被包含在另外一个DOM元素中， .position()方法更加有用。 jquery不支持取得相对于隐藏元素、或者包含borders, margins, padding属性的body元素的坐标。（对offset（）和position（）方法都是！） <strong>offsetParent()</strong>：取得被定位后最近的祖先元素！ 给你一个jQuery对象，它的offsetParent()方法会在 DOM树中搜索所有这个jQuery对象的祖先元素，并返回一个表示离这个元素最近的祖先元素的jQuery对象。 一个元素说被定位指的是它包含一个CSS定位属性（position）,并且其值为relative,absolute或者fixed。其值不是css position属性的默认值static！ offsetParent属性返回一个对象的引用，这个对象是距离调用offsetParent的元素最近的（在包含层次中最靠近的），并且是已进行过CSS定位的容器元素。 如果这个容器元素未进行CSS定位, 则offsetParent属性的取值为根元素(在标准兼容模式下为html元素；在怪异呈现模式下为body元素)的引用。 当容器元素的style.display 被设置为 “none”时（译注：IE和Opera除外），offsetParent属性 返回 null。 <strong>scrollLeft()：</strong>获取匹配元素集合中的第一个元素相对于水平滚动条左边的距离。 这个距离等于从被选中元素到水平滚动条左边的像素值。如果滚动条非常左、或者元素不能被滚动，那么这个值为0. <strong>scrollTop()</strong>：获取匹配元素集合中的第一个元素相对于纵向滚动条上边的距离。 这个距离等于从被选中元素到纵向滚动条上边的像素值。如果滚动条非常上、或者元素不能被滚动，那么这个值为0. 注意：当一个元素被隐藏后，调用scrollTop， scrollLeft（）或者animate()方法是不会正常工作的。 css position属性：position属性指出一个元素的定位方法。有4种可能值：static, relative, absolute or fixed：</p>
+<ul>
+<li>static：默认值，元素按照在文档流中出现的顺序渲染</li>
+<li>absolute：绝对定位，元素相对于它的第一个被定位的祖先元素（非static）来进行定位</li>
+<li>fixed：元素相对于浏览器window进行定位</li>
+<li>relative：元素相对与它的正常位置进行定位，因此”left:20”就表示在元素正常位置的基础上，左移20像素的距离。 参考<a href="http://js8.in/602.html">http://js8.in/602.html</a>中的结论： 使用position()方法时事实上是把该元素当绝对定位来处理，获取的是该元素相当于最近的一个拥有绝对或者相对定位的父元素的偏移位置 使用position()方法时如果其所有的父元素都为默认定位（static）方式，则其处理方式和offset()一样，是当前窗口的相对偏移 使用offset()方法不管该元素如何定位，也不管其父元素如何定位，都是获取的该元素相对于当前视口的偏移</li>
+</ul>
+</div>
+</article>
+<article>
+<header>
+<h1 class="entry-title"><a href="/blog/2012/06/23/javascript-gai-bian-div-wei-zhi/">Javascript改变div位置</a></h1>
+<p class="meta">
+<time class="data-article month-06 season-summer" datetime="2012-06-23T16:34:00+08:00" pubdate><span class="month">Jun</span> <span class="day">23rd</span> <span class="year">2012</span></time>
+| <a href="/blog/2012/06/23/javascript-gai-bian-div-wei-zhi/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2012/06/23/javascript-gai-bian-div-wei-zhi/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>因为对速度的优化过程中发现谷歌广告拖慢了网页加载至少3s以上。原来谷歌广告是放在&lt;body&gt;&lt;/body&gt;开始部分，作为菜单一级div附属的。这样后果是，没有加载谷歌广告就不会加载后面的body的主要内容，严重拖慢了加载时间，故将其放到了footer部分，然后用css把其对齐到上面。<br>
+原来广告放在&lt;div id=&#8221;ads_&#8221;&gt;&lt;/div&gt;里面，把代码移动到footer部分，并没有直接删掉ads_层，而是重新命名了一个层&lt;div id=&#8221;ads_bott&#8221;&gt;&lt;/div&gt;，因为ads_采用css定位和控制大小的，这样ads_空层占位符的作用了，整个页面感觉没有变化一样。另外一个重要的作用就是可以用js进行相对定位。代码如下，折腾了大约两个小时，因为以前没有怎么系统学习js，还是比较纠结的。结论是：.style.top和.style.left作为左值，只能接受字符型的”10px”赋值。 附上代码吧：<br>
+ </p>
+<pre><code>&lt;script type="text/javascript"&gt;
+// &lt; ![CDATA[
+document.getElementById("ads_bott").style.left=document.getElementById("ads_").offsetLeft+"px";
+document.getElementById("ads_bott").style.top=(60+document.getElementById("ads_").offsetTop)+"px";
+
+// ]]&gt;&lt;/script&gt;
+</code></pre>
+</div>
+</article>
+<article>
+<header>
+<h1 class="entry-title"><a href="/blog/2012/06/17/jing-jian-wp_head/">精简wp_head()</a></h1>
+<p class="meta">
+<time class="data-article month-06 season-summer" datetime="2012-06-17T01:34:00+08:00" pubdate><span class="month">Jun</span> <span class="day">17th</span> <span class="year">2012</span></time>
+| <a href="/blog/2012/06/17/jing-jian-wp_head/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2012/06/17/jing-jian-wp_head/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>在function加入如下代码：</p>
+<pre><code>&lt;?php
+//remove_action( 'wp_head', 'wp_enqueue_scripts', 1 );
+remove_action( 'wp_head', 'feed_links', 2 );
+remove_action( 'wp_head', 'feed_links_extra', 3 );
+remove_action( 'wp_head', 'rsd_link' );
+remove_action( 'wp_head', 'wlwmanifest_link' );
+remove_action( 'wp_head', 'index_rel_link' );
+remove_action( 'wp_head', 'parent_post_rel_link', 10, 0 );
+remove_action( 'wp_head', 'start_post_rel_link', 10, 0 );
+remove_action( 'wp_head', 'adjacent_posts_rel_link_wp_head', 10, 0 );
+//remove_action( 'wp_head', 'locale_stylesheet' );
+remove_action( 'publish_future_post', 'check_and_publish_future_post', 10, 1 );
+//remove_action( 'wp_head', 'noindex', 1 );
+//remove_action( 'wp_head', 'wp_print_styles', 8 );
+//remove_action( 'wp_head', 'wp_print_head_scripts', 9 );
+remove_action( 'wp_head', 'wp_generator' );
+//remove_action( 'wp_head', 'rel_canonical' );
+remove_action( 'wp_footer', 'wp_print_footer_scripts' );
+remove_action( 'wp_head', 'wp_shortlink_wp_head', 10, 0 );
+remove_action( 'template_redirect', 'wp_shortlink_header', 11, 0 );
+add_action('widgets_init', 'my_remove_recent_comments_style');
+function my_remove_recent_comments_style() {
+global $wp_widget_factory;
+remove_action('wp_head', array($wp_widget_factory-&gt;widgets['WP_Widget_Recent_Comments'], 'recent_comments_style'));
+}
+?&gt;
+</code></pre>
+</div>
+</article>
+<article>
+<header>
+<h1 class="entry-title"><a href="/blog/2012/06/16/duo-IP-duo-duan-kou-apache-xu-ni-zhu-ji-de-pei-zhi-de-she-zhi/">多IP多端口apache虚拟主机的配置的设置</a></h1>
+<p class="meta">
+<time class="data-article month-06 season-summer" datetime="2012-06-16T22:58:00+08:00" pubdate><span class="month">Jun</span> <span class="day">16th</span> <span class="year">2012</span></time>
+| <a href="/blog/2012/06/16/duo-IP-duo-duan-kou-apache-xu-ni-zhu-ji-de-pei-zhi-de-she-zhi/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2012/06/16/duo-IP-duo-duan-kou-apache-xu-ni-zhu-ji-de-pei-zhi-de-she-zhi/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>在很多的虚拟主机应用中由于某些原因我们常常为主机分配多个IP[TMD现在IDC的IP好贵],以下是几种多个IP或多个端品的apache虚拟主机的配置例子</p>
+<p>基于IP地址的虚拟主机配置</p>
+<pre><code>Listen 80
+
+DocumentRoot /www/example1
+
+ServerName www.example1.com
+
+DocumentRoot /www/example2
+
+ServerName www.example2.org
+</code></pre>
+<p>基于IP和多端口的虚拟主机配置</p>
+<pre><code>Listen 172.20.30.40:80
+
+Listen 172.20.30.40:8080
+
+Listen 172.20.30.50:80
+
+Listen 172.20.30.50:8080
+
+DocumentRoot /www/example1-80
+
+ServerName www.example1.com
+
+DocumentRoot /www/example1-8080
+
+ServerName www.example1.com
+
+DocumentRoot /www/example2-80
+
+ServerName www.example1.org
+
+DocumentRoot /www/example2-8080
+
+ServerName www.example2.org
+</code></pre>
+<p>单个IP地址的服务器上基于域名的虚拟主机配置：</p>
+<pre><code># Ensure that Apache listens on port 80
+
+Listen 80
+
+# Listen for virtual host requests on all IP addresses
+
+NameVirtualHost *:80
+
+DocumentRoot /www/example1
+
+ServerName www.example1.com
+
+ServerAlias example1.com. *.example1.com
+
+# Other directives here
+
+DocumentRoot /www/example2
+
+ServerName www.example2.org
+
+# Other directives here
+</code></pre>
+<p>在多个IP地址的服务器上配置基于域名的虚拟主机：</p>
+<pre><code>Listen 80
+
+# This is the “main” server running on 172.20.30.40
+
+ServerName server.domain.com
+
+DocumentRoot /www/mainserver
+
+# This is the other address
+
+NameVirtualHost 172.20.30.50
+
+DocumentRoot /www/example1
+
+ServerName www.example1.com
+
+# Other directives here …
+
+DocumentRoot /www/example2
+
+ServerName www.example2.org
+
+# Other directives here …
+</code></pre>
+<p>在不同的端口上运行不同的站点：</p>
+<p>基于多端口的服务器上配置基于域名的虚拟主机。</p>
+<pre><code>Listen 80
+
+Listen 8080
+
+NameVirtualHost 172.20.30.40:80
+
+NameVirtualHost 172.20.30.40:8080
+
+ServerName www.example1.com
+
+DocumentRoot /www/domain-80
+
+ServerName www.example1.com
+
+DocumentRoot /www/domain-8080
+
+ServerName www.example2.org
+
+DocumentRoot /www/otherdomain-80
+
+ServerName www.example2.org
+
+DocumentRoot /www/otherdomain-8080
+</code></pre>
+<p>基于域名和基于IP的混合虚拟主机的配置:</p>
+<pre><code>Listen 80
+
+NameVirtualHost 172.20.30.40
+
+DocumentRoot /www/example1
+
+ServerName www.example1.com
+
+DocumentRoot /www/example2
+
+ServerName www.example2.org
+
+DocumentRoot /www/example3
+
+ServerName www.example3.net
+</code></pre>
+<h2 id="comments">Comments</h2>
+<p><strong><a href="#62" title="2012-06-17 14:48:24">清风迅来</a>:</strong> 哎..貌似我那个空间只有1个ip的说=。= 可能我申请的只是一个空间而不是一个虚拟主机…… 倒是DNS服务器有好几个……</p>
+<p><strong><a href="#63" title="2012-06-22 20:20:07">rexdf</a>:</strong> 这个是在本地配置时的设置呢，好多虚拟主机限制都是很大的。</p>
+</div>
+</article>
+<div class="pagination">
+<a class="prev" href="/blog/page/18/">&larr; Older</a>
+<a href="/blog/archives">Blog Archives</a>
+<a class="next" href="/blog/page/16/">Newer &rarr;</a>
+</div>
+</div>
+<aside class="sidebar">
+<section>
+<h1>Categories</h1>
+<ul id="categories">
+<li class="category"><a href="/blog/categories/acm/">ACM <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/algorithm/">Algorithm <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/assembly/">Assembly <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/cygwin/">Cygwin <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/gnu/">GNU <sup>8</sup></a></li>
+<li class="category"><a href="/blog/categories/math/">Math <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/octopress/">Octopress <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/programming/">Programming <sup>6</sup></a></li>
+<li class="category"><a href="/blog/categories/security/">Security <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sublime/">Sublime <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/synology/">Synology <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sysadmin/">SysAdmin <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/web/">Web <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/windows/">Windows <sup>7</sup></a></li>
+<li class="category"><a href="/blog/categories/proxmox/">proxmox <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/ri-chang/">日常 <sup>37</sup></a></li>
+</ul>
+</section>
+<section>
+<h1>Recent Posts</h1>
+<ul id="recent_posts">
+<li class="post">
+<a href="/blog/2024/12/16/fu-wu-qi-wa-kuang-bing-du-de-cha-sha/">服务器挖矿病毒的查杀</a>
+</li>
+<li class="post">
+<a href="/blog/2021/07/11/apple-m1-bian-yi-tensorflow/">Apple M1 编译tensorflow</a>
+</li>
+<li class="post">
+<a href="/blog/2021/02/27/chromiumbian-ma-qi-wen-ti/">Chromium编码器问题</a>
+</li>
+<li class="post">
+<a href="/blog/2020/12/13/proxmoxbi-ji/">Proxmox笔记</a>
+</li>
+<li class="post">
+<a href="/blog/2020/11/15/lun-yan-du-yu-shen-du/">论广度与深度</a>
+</li>
+</ul>
+</section>
+<section>
+<iframe frameborder="0" scrolling="no" referrerpolicy="unsafe-url" style="width:283px;height:200px" src="https://t.rexdf.org/?m=app&a=showwidget&name=rexdf&type=1&width=283px&height=500px"></iframe>
+</section>
+<section>
+<h1>GitHub Repos</h1>
+<ul id="gh_repos">
+<li class="loading">Status updating&#8230;</li>
+</ul>
+<a href="https://github.com/rexdf">@rexdf</a> on GitHub
+<script type="text/javascript">$(document).ready(function(){if(!window.jXHR){var e=document.createElement("script");e.type="text/javascript",e.src="/javascripts/libs/jXHR.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}github.showRepos({user:"rexdf",count:0,skip_forks:!0,target:"#gh_repos"})})</script>
+</section>
+</aside>
+</div>
+</div>
+<footer role="contentinfo"><p>
+<span class="credit">Copyright &copy; 2024 - Rexdf -</span> |
+<span class="credit">Powered by <a name="bottoms" target="_blank" href="http://octopress.org">Octopress</a></span> |
+<span class="credit">Theme by ：<a href="https://blog.rexdf.org/" target="_blank" rel="theme">Rexdf</a></span> |
+<span class="credit">Host by：<a href="https://github.com/" target="_blank" rel="host">Github.com</a></span> |
+<span class="credit">版权声明：<a href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" target="_blank" rel="license">CC BY-NC-SA 3.0</a><img src="https://analytics.rexdf.net/piwik.php?idsite=1&amp;rec=1" style="border:0" alt="" referrerpolicy="no-referrer-when-downgrade"></span>|
+<span class="credit"><a href="/sitemap.xml" rel="sitemap">sitemap</a></span>
+</p>
+<script type="text/javascript" src="https://tajs.qq.com/stats?sId=30296377" charset="UTF-8"></script>
+</footer>
+<script type="text/javascript">var disqus_shortname="rexdf",disqus_script="count.js";!function(){var e=document.createElement("script");e.type="text/javascript",e.async=!0,e.src="//"+disqus_shortname+".disqus.com/"+disqus_script,(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(e)}()</script>
+<script type="text/javascript">$(function(){$(".entry-content").each(function(t){var r=t;$(this).find("img.fancybox").each(function(){var t=$(this),a=t.attr("title"),n=t.attr("class");t.removeAttr("class"),t.wrap('<a href="'+this.src+'" class="'+n+'" rel="gallery'+r+'" />'),""!=a&&t.parent().attr("title",a)})}),$(".fancybox").fancybox()})</script>
+</body>
+</html>

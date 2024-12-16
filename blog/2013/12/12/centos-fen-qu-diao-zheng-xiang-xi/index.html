@@ -1,0 +1,231 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<script type="text/javascript">var _speedMark=new Date</script>
+<meta charset="utf-8">
+<title>Centos分区调整详细 - Rexdf</title>
+<meta name="author" content="Rexdf">
+<meta name="description" content="以前解决过一次这个问题 CentOS 无损调整分区大小方案 但是当时只是说明了用gparted来解决，不过没有详细说明操作步骤。 0.增加磁盘大小 由于我是VMWare虚拟机里面，所以先在settings里面选中Hard Disk，然后Utilities里面Expand输入想要增加的大小， &hellip;">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' data: https://hm.baidu.com https://tajs.qq.com https://ssl.google-analytics.com https://static.rexdf.org https://*.disquscdn.com https://rexdf.disqus.com https://api.github.com https://ssl.google-analytics.com https://disqus.com https://analytics.rexdf.net; connect-src 'self' https://static.rexdf.org https://analytics.rexdf.net https://hm.baidu.com; img-src data: https://*; font-src data: https://*; child-src 'none'; style-src 'self' 'unsafe-inline' https://*; frame-src 'self' https://t.rexdf.org http://t.rexdf.org https://rexdf.disqus.com https://disqus.com">
+<link rel="canonical" href="https://i.rexdf.org/blog/2013/12/12/centos-fen-qu-diao-zheng-xiang-xi">
+<link rel="dns-prefetch" href="https://static.rexdf.org/">
+<link href="/favicon.ico" rel="icon">
+<link id="main-css" href="/stylesheets/screen.css" media="screen,projection" rel="stylesheet" type="text/css" title="pc">
+<link href="/stylesheets/screen_mobile.css" rel="alternate stylesheet" type="text/css" title="mobile">
+<link href="/atom.xml" rel="alternate" title="Rexdf" type="application/atom+xml">
+<script src="/javascripts/libs/jquery.min.js"></script>
+<script src="/javascripts/octopress-rexdf.min.js" type="text/javascript"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+      
+      toggle_theme();
+  });
+</script>
+<script type="text/javascript" async src="https://static.rexdf.org/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript">var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-55590409-1"]),_gaq.push(["_trackPageview"]),function(){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(t,e)}()</script>
+<script>var _hmt=_hmt||[];!function(){var e=document.createElement("script");e.src="//hm.baidu.com/hm.js?32192d95b89fbefa0875c4c95adb1412";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}()</script>
+<script src="/javascripts/fancybox/jquery.fancybox.pack.js"></script>
+<link rel="stylesheet" type="text/css" href="/javascripts/fancybox/jquery.fancybox.css">
+<script type="text/javascript">var _paq=_paq||[];_paq.push(["trackPageView"]),_paq.push(["enableLinkTracking"]),function(){var e="https://analytics.rexdf.net/";_paq.push(["setTrackerUrl",e+"piwik.php"]),_paq.push(["setSiteId","1"]);var a=document,t=a.createElement("script"),p=a.getElementsByTagName("script")[0];t.type="text/javascript",t.async=!0,t.defer=!0,t.src=e+"piwik.js",p.parentNode.insertBefore(t,p)}()</script>
+</head>
+<body class="low-contrast-linen-wptouch-bg">
+<header role="banner"><hgroup>
+<h1 id="header-title"><a href="/">Rexdf</a></h1>
+<h2 id="subtitle">The devil is in the Details.</h2>
+</hgroup>
+</header>
+<nav role="navigation"><ul class="subscription" data-subscription="rss">
+<li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+</ul>
+<form action="https://google.com/search" method="get">
+<fieldset role="search">
+<input type="hidden" name="q" value="site:i.rexdf.org">
+<input class="search" type="text" name="q" results="0" placeholder="Search">
+</fieldset>
+</form>
+<ul class="main-navigation">
+<li><a href="/">Blog</a></li>
+<li><a href="/blog/archives/">Archives</a></li>
+<li><a href="/idea/">Idea</a></li>
+<li><a href="/share/">Share</a></li>
+<li><a href="/books/">Books</a></li>
+<li><a href="/donate/">Donate</a></li>
+<li><a target="_blank" href="https://blog.rexdf.org" style="font-family:Shadows Into Light">Main-Blog</a></li>
+</ul>
+</nav>
+<div id="main">
+<div id="content">
+<div>
+<article class="hentry" role="article">
+<header>
+<h1 class="entry-title">Centos分区调整详细</h1>
+<p class="meta">
+<time class="data-article month-12 season-winter" datetime="2013-12-12T20:53:00+08:00" pubdate><span class="month">Dec</span> <span class="day">12th</span> <span class="year">2013</span></time>
+| <a href="#disqus_thread" data-disqus-identifier="https://i.rexdf.org">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>以前解决过一次这个问题</p>
+<blockquote>
+<p><a href="/2013/03/centos-%e6%97%a0%e6%8d%9f%e8%b0%83%e6%95%b4%e5%88%86%e5%8c%ba%e5%a4%a7%e5%b0%8f%e6%96%b9%e6%a1%88/">CentOS 无损调整分区大小方案</a></p>
+</blockquote>
+<p>但是当时只是说明了用gparted来解决，不过没有详细说明操作步骤。</p>
+<h3 id="section">0.增加磁盘大小</h3>
+<p>由于我是VMWare虚拟机里面，所以先在settings里面选中Hard Disk，然后Utilities里面Expand输入想要增加的大小，如我的5G。如果是物理磁盘，则需要没有分区的磁盘空间。</p>
+<h3 id="section-1">1.增加分区大小</h3>
+<p>先查看分区大小(下面是我的成功添加5G后的)</p>
+<pre><code>[root@localhost rexdf]# fdisk -l
+
+Disk /dev/sda: 16.1 GB, 16106127360 bytes
+255 heads, 63 sectors/track, 1958 cylinders
+Units = cylinders of 16065 * 512 = 8225280 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disk identifier: 0x00059acf
+
+   Device Boot      Start         End      Blocks   Id  System
+/dev/sda1   *           1          64      512000   83  Linux
+Partition 1 does not end on cylinder boundary.
+/dev/sda2              64        1959    15215616   8e  Linux LVM
+
+Disk /dev/mapper/vg_livecd-lv_root: 13.5 GB, 13497270272 bytes
+255 heads, 63 sectors/track, 1640 cylinders
+Units = cylinders of 16065 * 512 = 8225280 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disk identifier: 0x00000000
+
+
+Disk /dev/mapper/vg_livecd-lv_swap: 2076 MB, 2076180480 bytes
+255 heads, 63 sectors/track, 252 cylinders
+Units = cylinders of 16065 * 512 = 8225280 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disk identifier: 0x00000000
+</code></pre>
+<p>启动gparted的livecd [caption id=”attachment<em>2047” align=”alignnone” width=”722”]<img src="/wp-content/uploads/2013/12/gparted_setting1.png" alt="键盘设置"> 键盘设置[/caption] [caption id=”attachment</em>2048” align=”alignnone” width=”738”]<img src="http://blog.rexdf.org/wp-content/uploads/2013/12/gparted_setting2.png" alt="语言选择"> 语言选择[/caption] [caption id=”attachment<em>2049” align=”alignnone” width=”743”]<img src="http://blog.rexdf.org/wp-content/uploads/2013/12/gparted_setting3.png" alt="启动图形界面"> 启动图形界面[/caption] [caption id=”attachment</em>2050” align=”alignnone” width=”635”]<img src="http://blog.rexdf.org/wp-content/uploads/2013/12/gparted_start.png" alt="默认选项"> 默认选项[/caption] [caption id=”attachment<em>2051” align=”alignnone” width=”805”]<img src="http://blog.rexdf.org/wp-content/uploads/2013/12/gparted1.png" alt="界面"> 界面[/caption] [caption id=”attachment</em>2052” align=”alignnone” width=”799”]<img src="http://blog.rexdf.org/wp-content/uploads/2013/12/gparted2.png" alt="反激活"> 反激活[/caption] [caption id=”attachment<em>2053” align=”alignnone” width=”790”]<img src="http://blog.rexdf.org/wp-content/uploads/2013/12/gparted3.png" alt="可以调整大小了"> 可以调整大小了[/caption] [caption id=”attachment</em>2054” align=”alignnone” width=”798”]<img src="http://blog.rexdf.org/wp-content/uploads/2013/12/gparted4.png" alt="调整大小"> 调整大小[/caption] [caption id=”attachment<em>2055” align=”alignnone” width=”799”]<img src="http://blog.rexdf.org/wp-content/uploads/2013/12/gparted5.png" alt="点击apply，执行"> 点击apply，执行[/caption] [caption id=”attachment</em>2056” align=”alignnone” width=”795”]<img src="http://blog.rexdf.org/wp-content/uploads/2013/12/gparted6.png" alt="重启"> 重启[/caption] [caption id=”attachment_2057” align=”alignnone” width=”819”]<img src="http://blog.rexdf.org/wp-content/uploads/2013/12/gparted7.png" alt="重启后，弹出光驱"> 重启后，弹出光驱[/caption]</p>
+<h3 id="section-2">2.修改逻辑分区大小</h3>
+<p>先查看挂载点</p>
+<pre><code>[root@localhost rexdf]# df -h
+Filesystem                     Size  Used Avail Use% Mounted on
+/dev/mapper/vg_livecd-lv_root   13G  6.9G  5.5G  56% /
+tmpfs                          495M  372K  494M   1% /dev/shm
+/dev/sda1                      485M  125M  335M  28% /boot
+</code></pre>
+<p>分区使用的lvm来管理的，这样可以方便挂载。</p>
+<pre><code>#/dev/mapper/vg_livecd-lv_root增加10G
+lvextend -L+10G /dev/mapper/vg_livecd-lv_root
+#检查ext2、ext3、ext4等文件系统的正确性，类似win的chkdsk命令，可有可无，如果上面命令报错则必须
+e2fsck -f /dev/mapper/vg_livecd-lv_root
+#ext2/ext3/ext4文件系统重定义大小工具
+resize2fs /dev/mapper/vg_livecd-lv_root
+</code></pre>
+<p>在执行上面之前需要先umount，由于我的是/目录所以是不可能umount的，<strong>故需要使用live_cd启动系统</strong>。 在这里执行umount /会提示busy的。 在live_cd启动后，打开terminal，su换到root账户fdisk -l查看被挂载到哪里了，然后执行lvextend 、e2fsck 、resize2fs 即可。</p>
+<h3 id="section-3">3.参考链接</h3>
+<p>1.<a href="http://kerry.blog.51cto.com/172631/568968">CentOS 5.5下LVM的分区管理 </a>2.<a href="http://hi.baidu.com/luosong253/item/2ca3121b73b6db466826bb35">resize2fs解释</a></p>
+</div>
+<footer>
+<p class="meta">
+<span class="byline author vcard">Posted by <span class="fn">Rexdf</span></span>
+<time class="data-article month-12 season-winter" datetime="2013-12-12T20:53:00+08:00" pubdate><span class="month">Dec</span> <span class="day">12th</span> <span class="year">2013</span></time>
+</p>
+<div class="sharing">
+</div>
+<p class="meta">
+<a class="basic-alignment left" href="/blog/2013/12/09/tie-ba-gei-xian-jian-liu-de-yi-xie-jian-yi-YY/" title="Previous Post: 贴吧--给仙剑六的一些建议(YY)">&laquo; 贴吧--给仙剑六的一些建议(YY)</a>
+<a class="basic-alignment right" href="/blog/2013/12/18/mi-ma-an-quan-ce-lve/" title="Next Post: 密码安全策略">密码安全策略 &raquo;</a>
+</p>
+</footer>
+</article>
+<section>
+<h1>Comments</h1>
+<div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
+</div>
+<aside class="sidebar">
+<section>
+<h1>Categories</h1>
+<ul id="categories">
+<li class="category"><a href="/blog/categories/acm/">ACM <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/algorithm/">Algorithm <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/assembly/">Assembly <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/cygwin/">Cygwin <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/gnu/">GNU <sup>8</sup></a></li>
+<li class="category"><a href="/blog/categories/math/">Math <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/octopress/">Octopress <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/programming/">Programming <sup>6</sup></a></li>
+<li class="category"><a href="/blog/categories/security/">Security <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sublime/">Sublime <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/synology/">Synology <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sysadmin/">SysAdmin <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/web/">Web <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/windows/">Windows <sup>7</sup></a></li>
+<li class="category"><a href="/blog/categories/proxmox/">proxmox <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/ri-chang/">日常 <sup>37</sup></a></li>
+</ul>
+</section>
+<section>
+<h1>Recent Posts</h1>
+<ul id="recent_posts">
+<li class="post">
+<a href="/blog/2024/12/16/fu-wu-qi-wa-kuang-bing-du-de-cha-sha/">服务器挖矿病毒的查杀</a>
+</li>
+<li class="post">
+<a href="/blog/2021/07/11/apple-m1-bian-yi-tensorflow/">Apple M1 编译tensorflow</a>
+</li>
+<li class="post">
+<a href="/blog/2021/02/27/chromiumbian-ma-qi-wen-ti/">Chromium编码器问题</a>
+</li>
+<li class="post">
+<a href="/blog/2020/12/13/proxmoxbi-ji/">Proxmox笔记</a>
+</li>
+<li class="post">
+<a href="/blog/2020/11/15/lun-yan-du-yu-shen-du/">论广度与深度</a>
+</li>
+</ul>
+</section>
+<section>
+<iframe frameborder="0" scrolling="no" referrerpolicy="unsafe-url" style="width:283px;height:200px" src="https://t.rexdf.org/?m=app&a=showwidget&name=rexdf&type=1&width=283px&height=500px"></iframe>
+</section>
+<section>
+<h1>GitHub Repos</h1>
+<ul id="gh_repos">
+<li class="loading">Status updating...</li>
+</ul>
+<a href="https://github.com/rexdf">@rexdf</a> on GitHub
+<script type="text/javascript">$(document).ready(function(){if(!window.jXHR){var e=document.createElement("script");e.type="text/javascript",e.src="/javascripts/libs/jXHR.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}github.showRepos({user:"rexdf",count:0,skip_forks:!0,target:"#gh_repos"})})</script>
+</section>
+</aside>
+</div>
+</div>
+<footer role="contentinfo"><p>
+<span class="credit">Copyright &copy; 2024 - Rexdf -</span> |
+<span class="credit">Powered by <a name="bottoms" target="_blank" href="http://octopress.org">Octopress</a></span> |
+<span class="credit">Theme by ：<a href="https://blog.rexdf.org/" target="_blank" rel="theme">Rexdf</a></span> |
+<span class="credit">Host by：<a href="https://github.com/" target="_blank" rel="host">Github.com</a></span> |
+<span class="credit">版权声明：<a href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" target="_blank" rel="license">CC BY-NC-SA 3.0</a><img src="https://analytics.rexdf.net/piwik.php?idsite=1&amp;rec=1" style="border:0" alt="" referrerpolicy="no-referrer-when-downgrade"></span>|
+<span class="credit"><a href="/sitemap.xml" rel="sitemap">sitemap</a></span>
+</p>
+<script type="text/javascript" src="https://tajs.qq.com/stats?sId=30296377" charset="UTF-8"></script>
+</footer>
+<script type="text/javascript">var disqus_shortname="rexdf",disqus_identifier="https://i.rexdf.org/blog/2013/12/12/centos-fen-qu-diao-zheng-xiang-xi/",disqus_url="https://i.rexdf.org/blog/2013/12/12/centos-fen-qu-diao-zheng-xiang-xi/",disqus_script="embed.js";!function(){var e=document.createElement("script");e.type="text/javascript",e.async=!0,e.src="//"+disqus_shortname+".disqus.com/"+disqus_script,(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(e)}()</script>
+<script type="text/javascript">$(function(){$(".entry-content").each(function(t){var r=t;$(this).find("img.fancybox").each(function(){var t=$(this),a=t.attr("title"),n=t.attr("class");t.removeAttr("class"),t.wrap('<a href="'+this.src+'" class="'+n+'" rel="gallery'+r+'" />'),""!=a&&t.parent().attr("title",a)})}),$(".fancybox").fancybox()})</script>
+</body>
+</html>

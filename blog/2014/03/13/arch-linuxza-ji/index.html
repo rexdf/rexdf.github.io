@@ -1,0 +1,277 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<script type="text/javascript">var _speedMark=new Date</script>
+<meta charset="utf-8">
+<title>Arch Linux杂记 - Rexdf</title>
+<meta name="author" content="Rexdf">
+<meta name="description" content="Archlinux安装笔记。 Arch Linux 安装 cfdiskmkfs.ext4 /dev/sda9mkswap /dev/sda12swapon /dev/sda12mount /dev/sda10 /mntdhcpcdpacstrap /mnt base base- &hellip;">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' data: https://hm.baidu.com https://tajs.qq.com https://ssl.google-analytics.com https://static.rexdf.org https://*.disquscdn.com https://rexdf.disqus.com https://api.github.com https://ssl.google-analytics.com https://disqus.com https://analytics.rexdf.net; connect-src 'self' https://static.rexdf.org https://analytics.rexdf.net https://hm.baidu.com; img-src data: https://*; font-src data: https://*; child-src 'none'; style-src 'self' 'unsafe-inline' https://*; frame-src 'self' https://t.rexdf.org http://t.rexdf.org https://rexdf.disqus.com https://disqus.com">
+<link rel="canonical" href="https://i.rexdf.org/blog/2014/03/13/arch-linuxza-ji">
+<link rel="dns-prefetch" href="https://static.rexdf.org/">
+<link href="/favicon.ico" rel="icon">
+<link id="main-css" href="/stylesheets/screen.css" media="screen,projection" rel="stylesheet" type="text/css" title="pc">
+<link href="/stylesheets/screen_mobile.css" rel="alternate stylesheet" type="text/css" title="mobile">
+<link href="/atom.xml" rel="alternate" title="Rexdf" type="application/atom+xml">
+<script src="/javascripts/libs/jquery.min.js"></script>
+<script src="/javascripts/octopress-rexdf.min.js" type="text/javascript"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+      
+      toggle_theme();
+  });
+</script>
+<script type="text/javascript" async src="https://static.rexdf.org/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript">var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-55590409-1"]),_gaq.push(["_trackPageview"]),function(){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(t,e)}()</script>
+<script>var _hmt=_hmt||[];!function(){var e=document.createElement("script");e.src="//hm.baidu.com/hm.js?32192d95b89fbefa0875c4c95adb1412";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}()</script>
+<script src="/javascripts/fancybox/jquery.fancybox.pack.js"></script>
+<link rel="stylesheet" type="text/css" href="/javascripts/fancybox/jquery.fancybox.css">
+<script type="text/javascript">var _paq=_paq||[];_paq.push(["trackPageView"]),_paq.push(["enableLinkTracking"]),function(){var e="https://analytics.rexdf.net/";_paq.push(["setTrackerUrl",e+"piwik.php"]),_paq.push(["setSiteId","1"]);var a=document,t=a.createElement("script"),p=a.getElementsByTagName("script")[0];t.type="text/javascript",t.async=!0,t.defer=!0,t.src=e+"piwik.js",p.parentNode.insertBefore(t,p)}()</script>
+</head>
+<body class="low-contrast-linen-wptouch-bg">
+<header role="banner"><hgroup>
+<h1 id="header-title"><a href="/">Rexdf</a></h1>
+<h2 id="subtitle">The devil is in the Details.</h2>
+</hgroup>
+</header>
+<nav role="navigation"><ul class="subscription" data-subscription="rss">
+<li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+</ul>
+<form action="https://google.com/search" method="get">
+<fieldset role="search">
+<input type="hidden" name="q" value="site:i.rexdf.org">
+<input class="search" type="text" name="q" results="0" placeholder="Search">
+</fieldset>
+</form>
+<ul class="main-navigation">
+<li><a href="/">Blog</a></li>
+<li><a href="/blog/archives/">Archives</a></li>
+<li><a href="/idea/">Idea</a></li>
+<li><a href="/share/">Share</a></li>
+<li><a href="/books/">Books</a></li>
+<li><a href="/donate/">Donate</a></li>
+<li><a target="_blank" href="https://blog.rexdf.org" style="font-family:Shadows Into Light">Main-Blog</a></li>
+</ul>
+</nav>
+<div id="main">
+<div id="content">
+<div>
+<article class="hentry" role="article">
+<header>
+<h1 class="entry-title">Arch Linux杂记</h1>
+<p class="meta">
+<time class="data-article month-03 season-spring" datetime="2014-03-13T17:24:50+08:00" pubdate><span class="month">Mar</span> <span class="day">13th</span> <span class="year">2014</span></time>
+| <a href="#disqus_thread" data-disqus-identifier="https://i.rexdf.org">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>Archlinux安装笔记。</p>
+<h1 id="arch-linux-">Arch Linux 安装</h1>
+<pre><code>cfdisk
+mkfs.ext4 /dev/sda9
+mkswap /dev/sda12
+swapon /dev/sda12
+mount /dev/sda10 /mnt
+dhcpcd
+pacstrap /mnt base base-devel
+pacstrap /mnt grub-bios
+genfstab -p /mnt &gt;&gt;/mnt/etc/fstab
+arch-chroot /mnt
+vi /etc/hostname
+vi /etc/vconsole.conf #KEYMAP=us
+vi /etc/timezone #Asia/Shanghai
+vi /etc/locale.conf #LANG=en_US.UTF-8 #LANG=zh_CN.UTF-8
+vi /etc/locale.gen
+locale-gen
+mkinitcpio -p linux
+grub-install /dev/sda
+grub-mkconfig -o /boot/grub/grub.cfg
+passwd
+exit
+reboot
+dhcpcd
+pacman -Syu
+useradd -m -g users -G wheel -s /bin/bash xxxx
+passwd xxxx
+visudo #%wheel ALL=(ALL) ALL
+
+#########################
+
+pacman -S virtualbox-guest-utils xorg-twm xorg-xclock xterm vim ruby wget git ttf-dejavu wqy-zenhei wqy-microhei xorg kde kde-l10n-zh_cn firefox firefox-i18n-zh-cn flashplugin chromium nurcuses ibus ibus-pinyin ibus-qt
+pacman base-devel svn mercurial
+systemctl enable NetworkManager.service
+systemctl enable kdm.service
+
+/etc/pacman.conf
+[archlinuxcn]
+#The Chinese Arch Linux communities packages.
+SigLevel = Optional TrustAll
+Server   = http://repo.archlinuxcn.org/$arch
+
+pacman -Syu yaourt
+
+yaourt ttf-ms-win8 ttf-ms-fonts ttf-win7-fonts vboxguest-hook
+</code></pre>
+<h1 id="virtualbox-vdi-">VirtualBox vdi 磁盘空间增加空间</h1>
+<p>先来抱怨几句，说真的，我觉得VirtualBox除了在Linux的发行版本上面安装自然简单以外并没觉得有任何的优势。而且感觉不好用的一方一大堆，比如早先是不支持拖放和剪贴板共享的。但是记得大二的时候某同学一个劲的说VirtualBox的好，劝说不要用VMware。当然从自由软件的角度似乎是对的，但是当时我们争论的似乎仅仅是功能。</p>
+<p>现在我说我现在的4.3.8r92456版本遇到的问题，现在剪贴板拖放似乎支持的比VMware还要好了。但是因为在VMware的Linux里面没有找到Archlinux的选项，而我不想用Linux选项来装Archlinux。而打开VirtualBox，里面就有Arch，所以就装在了VirtualBox里面了。而起初忽略了磁盘问题，直接用了默认的8G的vdi磁盘，而装了一些GUI的应用之后磁盘空间开始吃紧了，大约只剩下800M了，这样编译一个大一点的项目，自然就不够了，所以就要修改vdi虚拟磁盘的大小了。</p>
+<p>起初我以为和VMware一样，设置里面有一个菜单直接就可以修改磁盘大小，哪知根本没有。找遍了VirtualBox的菜单就都找不到，虚拟介质管理器里面的修改只是修改一个莫名其妙的类型。起初我还以为是VirtualBox的问题，把VirtualBox卸载了重装，问题依然</p>
+<pre><code>c:\Program Files\Oracle\VirtualBox&gt;VBoxManage.exe modifyhd "P:\Arch\Arch.vdi" --
+resize 10240
+0%...
+Progress state: VBOX_E_NOT_SUPPORTED
+VBoxManage.exe: error: Resize hard disk operation for this format is not impleme
+nted yet!
+</code></pre>
+<p>我以为是Win8.1的问题，然后换到物理机的Ubuntu上面，提示的同样的错误。尝试过sudo，win下面也试过用管理员执行。尝试过在Virtual里面释放然后执行，以及虚拟介质管理器里面复制一个新的，得到的都是上面提示那个错误。</p>
+<p>这样似乎可以肯定VirtualBox的vdi文件的的最大size不可以修改的，至少不能稳定地修改，否则<strong>为何不把磁盘size修改加入GUI界面？</strong></p>
+<h2 id="section">解决方案</h2>
+<p>磁盘修改自然就是gparted的iso磁盘了，相信Linux管理员应该都有一个这样的U盘或者光盘。当然我是虚拟只要iso文件就好了。</p>
+<p>这里附一个今天遇到的Gparted的问题。
+<img src="/images/gparted1.png" alt="">
+<img class="left" src="/images/gparted1.png" title="Gparted1">
+<img src="/images/gparted2.png" alt="">
+而这个下载下来用UltraISO是无法打开了，报告是iso格式错误。 而二进制查看gparted-live-0.18.0-1-i486.iso发现各位均为0。 所以我只能用以前下载的一个版本了。</p>
+<p><img src="/images/gparted2.5.png" alt=""></p>
+<p><img src="/images/gparted3.png" alt=""></p>
+<p><img src="/images/gparted4.png" alt=""></p>
+<p><img src="/images/gparted5.png" alt=""></p>
+<p><img src="/images/gparted6.png" alt=""></p>
+<p><img src="/images/gparted7.png" alt=""></p>
+<p><img src="/images/gparted8.png" alt=""></p>
+<p><img src="/images/gparted9.png" alt=""></p>
+<p><img src="/images/gparted10.png" alt=""></p>
+<p><img src="/images/gparted11.png" alt=""></p>
+<p><img src="/images/gparted12.png" alt=""></p>
+<p><img src="/images/gparted13.png" alt=""></p>
+<p><img src="/images/gparted15.png" alt=""></p>
+<p><img src="/images/gparted16.png" alt=""></p>
+<p><img src="/images/gparted17.png" alt=""></p>
+<p><img src="/images/gparted18.png" alt=""></p>
+<p>现在依然无法启动需要用archlinux的iso启动 然后执行下面的命令：</p>
+<pre><code>mount /dev/sda2 /mnt
+mount /dev/sda1 /mnt/boot
+arch-chroot /mnt
+dhcpcd
+pacman -Syy
+pacman -Syu
+pacman -S udev mkinitcpio 
+
+mkinitcpio -p linux
+grub-install /dev/sda
+grub-mkconfig -o /boot/grub/grub.cfg
+exit
+poweroff
+</code></pre>
+<p>然后VirtualBox里面卸载光盘，并把原来的dvi删除。再次启动就OK啦！
+<img src="/images/arch1.png" alt=""></p>
+<p><img src="/images/arch2.png" alt=""></p>
+</div>
+<footer>
+<p class="meta">
+<span class="byline author vcard">Posted by <span class="fn">Rexdf</span></span>
+<time class="data-article month-03 season-spring" datetime="2014-03-13T17:24:50+08:00" pubdate><span class="month">Mar</span> <span class="day">13th</span> <span class="year">2014</span></time>
+<span class="categories">
+<a class="category" href="/blog/categories/gnu/">GNU</a>
+</span>
+</p>
+<div class="sharing">
+</div>
+<p class="meta">
+<a class="basic-alignment left" href="/blog/2014/03/11/figletzhong-wen-zhi-chi-cygwinshi-xian/" title="Previous Post: figlet中文支持--Cygwin实现">&laquo; figlet中文支持--Cygwin实现</a>
+<a class="basic-alignment right" href="/blog/2014/03/14/gcc-4-dot-8-2zai-cygwinshang-de-yi-xie-wen-ti/" title="Next Post: GCC 4.8.2在Cygwin上的一些问题">GCC 4.8.2在Cygwin上的一些问题 &raquo;</a>
+</p>
+</footer>
+</article>
+<section>
+<h1>Comments</h1>
+<div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
+</div>
+<aside class="sidebar">
+<section>
+<h1>Categories</h1>
+<ul id="categories">
+<li class="category"><a href="/blog/categories/acm/">ACM <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/algorithm/">Algorithm <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/assembly/">Assembly <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/cygwin/">Cygwin <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/gnu/">GNU <sup>8</sup></a></li>
+<li class="category"><a href="/blog/categories/math/">Math <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/octopress/">Octopress <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/programming/">Programming <sup>6</sup></a></li>
+<li class="category"><a href="/blog/categories/security/">Security <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sublime/">Sublime <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/synology/">Synology <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sysadmin/">SysAdmin <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/web/">Web <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/windows/">Windows <sup>7</sup></a></li>
+<li class="category"><a href="/blog/categories/proxmox/">proxmox <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/ri-chang/">日常 <sup>37</sup></a></li>
+</ul>
+</section>
+<section>
+<h1>Recent Posts</h1>
+<ul id="recent_posts">
+<li class="post">
+<a href="/blog/2024/12/16/fu-wu-qi-wa-kuang-bing-du-de-cha-sha/">服务器挖矿病毒的查杀</a>
+</li>
+<li class="post">
+<a href="/blog/2021/07/11/apple-m1-bian-yi-tensorflow/">Apple M1 编译tensorflow</a>
+</li>
+<li class="post">
+<a href="/blog/2021/02/27/chromiumbian-ma-qi-wen-ti/">Chromium编码器问题</a>
+</li>
+<li class="post">
+<a href="/blog/2020/12/13/proxmoxbi-ji/">Proxmox笔记</a>
+</li>
+<li class="post">
+<a href="/blog/2020/11/15/lun-yan-du-yu-shen-du/">论广度与深度</a>
+</li>
+</ul>
+</section>
+<section>
+<iframe frameborder="0" scrolling="no" referrerpolicy="unsafe-url" style="width:283px;height:200px" src="https://t.rexdf.org/?m=app&a=showwidget&name=rexdf&type=1&width=283px&height=500px"></iframe>
+</section>
+<section>
+<h1>GitHub Repos</h1>
+<ul id="gh_repos">
+<li class="loading">Status updating...</li>
+</ul>
+<a href="https://github.com/rexdf">@rexdf</a> on GitHub
+<script type="text/javascript">$(document).ready(function(){if(!window.jXHR){var e=document.createElement("script");e.type="text/javascript",e.src="/javascripts/libs/jXHR.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}github.showRepos({user:"rexdf",count:0,skip_forks:!0,target:"#gh_repos"})})</script>
+</section>
+</aside>
+</div>
+</div>
+<footer role="contentinfo"><p>
+<span class="credit">Copyright &copy; 2024 - Rexdf -</span> |
+<span class="credit">Powered by <a name="bottoms" target="_blank" href="http://octopress.org">Octopress</a></span> |
+<span class="credit">Theme by ：<a href="https://blog.rexdf.org/" target="_blank" rel="theme">Rexdf</a></span> |
+<span class="credit">Host by：<a href="https://github.com/" target="_blank" rel="host">Github.com</a></span> |
+<span class="credit">版权声明：<a href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" target="_blank" rel="license">CC BY-NC-SA 3.0</a><img src="https://analytics.rexdf.net/piwik.php?idsite=1&amp;rec=1" style="border:0" alt="" referrerpolicy="no-referrer-when-downgrade"></span>|
+<span class="credit"><a href="/sitemap.xml" rel="sitemap">sitemap</a></span>
+</p>
+<script type="text/javascript" src="https://tajs.qq.com/stats?sId=30296377" charset="UTF-8"></script>
+</footer>
+<script type="text/javascript">var disqus_shortname="rexdf",disqus_identifier="https://i.rexdf.org/blog/2014/03/13/arch-linuxza-ji/",disqus_url="https://i.rexdf.org/blog/2014/03/13/arch-linuxza-ji/",disqus_script="embed.js";!function(){var e=document.createElement("script");e.type="text/javascript",e.async=!0,e.src="//"+disqus_shortname+".disqus.com/"+disqus_script,(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(e)}()</script>
+<script type="text/javascript">$(function(){$(".entry-content").each(function(t){var r=t;$(this).find("img.fancybox").each(function(){var t=$(this),a=t.attr("title"),n=t.attr("class");t.removeAttr("class"),t.wrap('<a href="'+this.src+'" class="'+n+'" rel="gallery'+r+'" />'),""!=a&&t.parent().attr("title",a)})}),$(".fancybox").fancybox()})</script>
+</body>
+</html>

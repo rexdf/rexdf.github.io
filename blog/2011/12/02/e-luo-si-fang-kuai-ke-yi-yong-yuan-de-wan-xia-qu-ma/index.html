@@ -1,0 +1,175 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<script type="text/javascript">var _speedMark=new Date</script>
+<meta charset="utf-8">
+<title>俄罗斯方块可以永远的玩下去吗？ - Rexdf</title>
+<meta name="author" content="Rexdf">
+<meta name="description" content="　　 大家在玩俄罗斯方块的时候有没有想过这样一个问题：如果玩家足够牛B的话，是不是永远也不可能玩死？换句话说，假设你是万恶的游戏机，你打算害死你面前的玩家；你知道任意时刻游戏的状态，并可以有针对性地给出一些明显不合适的方块，尽量迫使玩家面对最坏情况。那么，你有没有一种算法能保证害死玩家， &hellip;">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' data: https://hm.baidu.com https://tajs.qq.com https://ssl.google-analytics.com https://static.rexdf.org https://*.disquscdn.com https://rexdf.disqus.com https://api.github.com https://ssl.google-analytics.com https://disqus.com https://analytics.rexdf.net; connect-src 'self' https://static.rexdf.org https://analytics.rexdf.net https://hm.baidu.com; img-src data: https://*; font-src data: https://*; child-src 'none'; style-src 'self' 'unsafe-inline' https://*; frame-src 'self' https://t.rexdf.org http://t.rexdf.org https://rexdf.disqus.com https://disqus.com">
+<link rel="canonical" href="https://i.rexdf.org/blog/2011/12/02/e-luo-si-fang-kuai-ke-yi-yong-yuan-de-wan-xia-qu-ma">
+<link rel="dns-prefetch" href="https://static.rexdf.org/">
+<link href="/favicon.ico" rel="icon">
+<link id="main-css" href="/stylesheets/screen.css" media="screen,projection" rel="stylesheet" type="text/css" title="pc">
+<link href="/stylesheets/screen_mobile.css" rel="alternate stylesheet" type="text/css" title="mobile">
+<link href="/atom.xml" rel="alternate" title="Rexdf" type="application/atom+xml">
+<script src="/javascripts/libs/jquery.min.js"></script>
+<script src="/javascripts/octopress-rexdf.min.js" type="text/javascript"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+      
+      toggle_theme();
+  });
+</script>
+<script type="text/javascript" async src="https://static.rexdf.org/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript">var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-55590409-1"]),_gaq.push(["_trackPageview"]),function(){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(t,e)}()</script>
+<script>var _hmt=_hmt||[];!function(){var e=document.createElement("script");e.src="//hm.baidu.com/hm.js?32192d95b89fbefa0875c4c95adb1412";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}()</script>
+<script src="/javascripts/fancybox/jquery.fancybox.pack.js"></script>
+<link rel="stylesheet" type="text/css" href="/javascripts/fancybox/jquery.fancybox.css">
+<script type="text/javascript">var _paq=_paq||[];_paq.push(["trackPageView"]),_paq.push(["enableLinkTracking"]),function(){var e="https://analytics.rexdf.net/";_paq.push(["setTrackerUrl",e+"piwik.php"]),_paq.push(["setSiteId","1"]);var a=document,t=a.createElement("script"),p=a.getElementsByTagName("script")[0];t.type="text/javascript",t.async=!0,t.defer=!0,t.src=e+"piwik.js",p.parentNode.insertBefore(t,p)}()</script>
+</head>
+<body class="low-contrast-linen-wptouch-bg">
+<header role="banner"><hgroup>
+<h1 id="header-title"><a href="/">Rexdf</a></h1>
+<h2 id="subtitle">The devil is in the Details.</h2>
+</hgroup>
+</header>
+<nav role="navigation"><ul class="subscription" data-subscription="rss">
+<li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+</ul>
+<form action="https://google.com/search" method="get">
+<fieldset role="search">
+<input type="hidden" name="q" value="site:i.rexdf.org">
+<input class="search" type="text" name="q" results="0" placeholder="Search">
+</fieldset>
+</form>
+<ul class="main-navigation">
+<li><a href="/">Blog</a></li>
+<li><a href="/blog/archives/">Archives</a></li>
+<li><a href="/idea/">Idea</a></li>
+<li><a href="/share/">Share</a></li>
+<li><a href="/books/">Books</a></li>
+<li><a href="/donate/">Donate</a></li>
+<li><a target="_blank" href="https://blog.rexdf.org" style="font-family:Shadows Into Light">Main-Blog</a></li>
+</ul>
+</nav>
+<div id="main">
+<div id="content">
+<div>
+<article class="hentry" role="article">
+<header>
+<h1 class="entry-title">俄罗斯方块可以永远的玩下去吗？</h1>
+<p class="meta">
+<time class="data-article month-12 season-winter" datetime="2011-12-02T19:20:00+08:00" pubdate><span class="month">Dec</span> <span class="day">2nd</span> <span class="year">2011</span></time>
+| <a href="#disqus_thread" data-disqus-identifier="https://i.rexdf.org">Comments</a>
+</p>
+</header>
+<div class="entry-content"><h3 id="section">　　</h3>
+<p><img src="/wp-content/uploads/2011/12/20111130132207-311619789.jpg" alt=""> 大家在玩<a href="http://wenwen.soso.com/z/Search.e?sp=S%E4%BF%84%E7%BD%97%E6%96%AF%E6%96%B9%E5%9D%97&amp;ch=w.search.jhlink">俄罗斯方块</a>的时候有没有想过这样一个问题：如果玩家足够牛B的话，是不是永远也不可能玩死？换句话说，假设你是万恶的<a href="http://wenwen.soso.com/z/Search.e?sp=S%E6%B8%B8%E6%88%8F%E6%9C%BA&amp;ch=w.search.jhlink">游戏机</a>，你打算害死你面前的玩家；你知道任意时刻游戏的状态，并可以有针对性地给出一些明显不合适的方块，尽量迫使玩家面对<a href="http://wenwen.soso.com/z/Search.e?sp=S%E6%9C%80%E5%9D%8F%E6%83%85%E5%86%B5&amp;ch=w.search.jhlink">最坏情况</a>。那么，你有没有一种<a href="http://wenwen.soso.com/z/Search.e?sp=S%E7%AE%97%E6%B3%95&amp;ch=w.search.jhlink">算法</a>能保证害死玩家，或者玩家无论如何都存在一种必胜策略呢？ 俄罗斯方块的游戏区域是一个宽为10，高为20的<a href="http://wenwen.soso.com/z/Search.e?sp=S%E7%9F%A9%E5%BD%A2&amp;ch=w.search.jhlink">矩形</a>，并且玩家可以预先看到下一个给出的方块是什么。在<a href="http://wenwen.soso.com/z/Search.e?sp=S%E8%AE%BE%E8%AE%A1%E7%AD%96%E7%95%A5&amp;ch=w.search.jhlink">设计策略</a>时，你必需考虑到这一点。 相信很多人有过这样的经历：玩俄罗斯方块时一开局就给你一个“S”型方块，让<a href="http://wenwen.soso.com/z/Search.e?sp=S%E5%AE%8C%E7%BE%8E%E4%B8%BB%E4%B9%89%E8%80%85&amp;ch=w.search.jhlink">完美主义者</a>感 到异常别扭；结果，第二个方块还是这个“S”，第三个方块依旧 是“S”，相当令人崩溃。于是，我们开始猜测，如果游戏机给你无穷个“S”形方块，玩家是不是就没有解了？答案是否定的。如图1，从第10步开始，整个局 面产生一个循环；只要机器给的一直都是“S”方块，玩家可以不断重复这几个步骤，保证永远也<a href="http://wenwen.soso.com/z/Search.e?sp=S%E6%AD%BB%E4%B8%8D%E4%BA%86&amp;ch=w.search.jhlink">死不了</a>。 个循环是在<a href="http://wenwen.soso.com/z/Search.e?sp=S%E6%B8%B8%E6%88%8F%E5%9C%BA%E5%9C%B0&amp;ch=w.search.jhlink">游戏场地</a>清空了的情况下才产生的。有人会进一步想了，要是在玩着玩着，看着你局势不好时突然给你无穷多个“S”方块呢？事实上，此时局面的循环依然可能存在，如图2。在第5个“S”形方块落地后，循环再次产生。 俄罗斯方块真的不可能玩死吗？1988年，John Brzustowski的一篇<a href="http://wenwen.soso.com/z/Search.e?sp=S%E8%AE%BA%E6%96%87&amp;ch=w.search.jhlink">论文</a>指出，俄罗斯方块游戏无解并非不可能。它给出了一种算法可以保证游戏 机能够害死玩家，即使我们要求它必须提前向玩家展示出下一个方块的形状。<a href="http://wenwen.soso.com/z/Search.e?sp=S%E6%9E%84%E9%80%A0&amp;ch=w.search.jhlink">构造</a>的关键在于，整个游戏的局面个数是有限的（2的20<a href="http://wenwen.soso.com/z/Search.e?sp=S0%E6%AC%A1%E6%96%B9&amp;ch=w.search.jhlink">0次方</a>），如果玩家一直不 死，在某一时刻必然会重复某一状态。我们把两次重复状态及其之间的游戏过程叫做一个“循环”，这个循环<a href="http://wenwen.soso.com/z/Search.e?sp=S%E5%AE%9E%E9%99%85%E5%BD%B1%E5%93%8D&amp;ch=w.search.jhlink">实际影响</a>到的那些行就叫做“实际循环区”。例如，图 2就是一个循环，这个循环的“实际循环区”是从第4行到第7行这四行。 我们把宽为10的游戏区域划分为5个宽为2的“通道”，从左至右用1到5标号。注意到图1和图2中的两个循环都有一个共同点：每个“S”形方 块最终都完全落在某个通道内。事实上，对于任意一个只有“S”形方块的循环，我们都有这个结论。也就是说，如果游戏机一直给你“S”形的方块，你却用它们 弄出了一个循环，那只有一种可能：所有“S”形方块的下落位置都没有跨越通道（就像图3中的紫色方块那样，而非绿色方块那样）。 为了证明这一点，我们对通道编号施归纳。令命题P(x)表示，如果某个“S”形方块（或它的其中一部分）落在了通道x的左边，那它一定完全落在某个通道 内。 P(1)显然成立：方块根本不可能占据通道1左边的某个格子，因为通道1左边啥都没有。下面我们说明，当P(n)为真时，P(n+1)也为真。 我们首先要证明一个引理：在循环中的任意时刻，通道n的实际循环区内绝对不可能出现形如“口”的两个并排的格子。如图4.1，假设图中<a href="http://wenwen.soso.com/z/Search.e?sp=S%E6%98%9F%E5%8F%B7&amp;ch=w.search.jhlink">星号</a>方 块所在行 是通道n的实际循环区内位置最低的“口”的结构。假如这一行被消掉了，又由归纳假设，不存在哪个“S”形方块跨越了该通道的左边界，因此只有一种可能： 某个“S”形方块从左侧面挤了进来（如图4.2）。但这样一来，我们又产生了一个更低的“口”，矛盾。这就是说，星号方块所在行一直没被消去。但这也是 不可能的，因为实际循环区内是一个<a href="http://wenwen.soso.com/z/Search.e?sp=S%E6%96%B0%E9%99%88%E4%BB%A3%E8%B0%A2&amp;ch=w.search.jhlink">新陈代谢</a>、<a href="http://wenwen.soso.com/z/Search.e?sp=S%E4%BB%A5%E6%97%A7%E6%8D%A2%E6%96%B0&amp;ch=w.search.jhlink">以旧换新</a>的更替过程，每一行最后都是会被消除的。 虑命题P(n+1)。要想让“S”形方块占据通道n的格子，只有图5这四种情况。但是，由于我们之前证明了通道n中不能存在“口”，因此在 这个“S”形方块落下之前，星号方块都是已经有了的了。注意到，每一个“S”形方块的下落都致使“口”形结构的减少，但第一种情形除外——它消除了一个 “口”形结构，但在其上方带来了一个新的，使得“口”形结构个数保持不变。没有哪种情<a href="http://wenwen.soso.com/z/Search.e?sp=S%E5%BD%A2%E8%83%BD&amp;ch=w.search.jhlink">形能</a>够增加“口”的个数。但是，通道n的“口”形结构个数应 该是恒定的，因为它在一个循环区里。因此，只有第一种情况才能够被接受。 仅含有“S”形方块的循环只有一种情况——“S” 形方块在各个通道内重叠，填满并消除若干行后回到初始状态。实际循环区内的每个通道都是一个模样：底下是0个或多个“”，顶部一个“口”。注意，最 右侧那个通道的最顶端是一个“口”，右边这个空<a href="http://wenwen.soso.com/z/Search.e?sp=S%E7%99%BD%E4%B8%80&amp;ch=w.search.jhlink">白一</a>辈子也不可能用“Z”形方块填上。也就是说，在一个只含“S”形方块的循环区内，必然会有某一行，它 的最右侧是一个“口”，它保证了该行不能仅用“Z”形方块消掉。如图6所示，箭头所指的行无法单用“Z”形方块消除，因为星号位置不可能用“Z”形方块 填充。 下面我们给出游戏机害死人的算法： 1. 不断给出“S”形方块并显示下一个方块也为“S”，直到出现一个循环； 2. 给一个“S”形方块并显示下一个方块为“Z”； 3. 不断给出“Z”形方块并显示下一个方块也为“Z”，直到出现一个循环； 4. 给一个“Z”形方块并显示下一个方块为“S”；</p>
+</div>
+<footer>
+<p class="meta">
+<span class="byline author vcard">Posted by <span class="fn">Rexdf</span></span>
+<time class="data-article month-12 season-winter" datetime="2011-12-02T19:20:00+08:00" pubdate><span class="month">Dec</span> <span class="day">2nd</span> <span class="year">2011</span></time>
+</p>
+<div class="sharing">
+</div>
+<p class="meta">
+<a class="basic-alignment left" href="/blog/2011/12/02/CDN-nei-rong-fen-fa-wang-luo-ji-shu-yuan-li/" title="Previous Post: CDN（内容分发网络）技术原理">&laquo; CDN（内容分发网络）技术原理</a>
+<a class="basic-alignment right" href="/blog/2011/12/02/ri-zhi-lu-shen-me-shi-yu-ming-jie-xi-AAAA-ji-lu-TXT-ji-lu/" title="Next Post: 日知录：什么是域名解析AAAA记录、TXT记录？">日知录：什么是域名解析AAAA记录、TXT记录？ &raquo;</a>
+</p>
+</footer>
+</article>
+<section>
+<h1>Comments</h1>
+<div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
+</div>
+<aside class="sidebar">
+<section>
+<h1>Categories</h1>
+<ul id="categories">
+<li class="category"><a href="/blog/categories/acm/">ACM <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/algorithm/">Algorithm <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/assembly/">Assembly <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/cygwin/">Cygwin <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/gnu/">GNU <sup>8</sup></a></li>
+<li class="category"><a href="/blog/categories/math/">Math <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/octopress/">Octopress <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/programming/">Programming <sup>6</sup></a></li>
+<li class="category"><a href="/blog/categories/security/">Security <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sublime/">Sublime <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/synology/">Synology <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sysadmin/">SysAdmin <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/web/">Web <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/windows/">Windows <sup>7</sup></a></li>
+<li class="category"><a href="/blog/categories/proxmox/">proxmox <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/ri-chang/">日常 <sup>37</sup></a></li>
+</ul>
+</section>
+<section>
+<h1>Recent Posts</h1>
+<ul id="recent_posts">
+<li class="post">
+<a href="/blog/2024/12/16/fu-wu-qi-wa-kuang-bing-du-de-cha-sha/">服务器挖矿病毒的查杀</a>
+</li>
+<li class="post">
+<a href="/blog/2021/07/11/apple-m1-bian-yi-tensorflow/">Apple M1 编译tensorflow</a>
+</li>
+<li class="post">
+<a href="/blog/2021/02/27/chromiumbian-ma-qi-wen-ti/">Chromium编码器问题</a>
+</li>
+<li class="post">
+<a href="/blog/2020/12/13/proxmoxbi-ji/">Proxmox笔记</a>
+</li>
+<li class="post">
+<a href="/blog/2020/11/15/lun-yan-du-yu-shen-du/">论广度与深度</a>
+</li>
+</ul>
+</section>
+<section>
+<iframe frameborder="0" scrolling="no" referrerpolicy="unsafe-url" style="width:283px;height:200px" src="https://t.rexdf.org/?m=app&a=showwidget&name=rexdf&type=1&width=283px&height=500px"></iframe>
+</section>
+<section>
+<h1>GitHub Repos</h1>
+<ul id="gh_repos">
+<li class="loading">Status updating...</li>
+</ul>
+<a href="https://github.com/rexdf">@rexdf</a> on GitHub
+<script type="text/javascript">$(document).ready(function(){if(!window.jXHR){var e=document.createElement("script");e.type="text/javascript",e.src="/javascripts/libs/jXHR.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}github.showRepos({user:"rexdf",count:0,skip_forks:!0,target:"#gh_repos"})})</script>
+</section>
+</aside>
+</div>
+</div>
+<footer role="contentinfo"><p>
+<span class="credit">Copyright &copy; 2024 - Rexdf -</span> |
+<span class="credit">Powered by <a name="bottoms" target="_blank" href="http://octopress.org">Octopress</a></span> |
+<span class="credit">Theme by ：<a href="https://blog.rexdf.org/" target="_blank" rel="theme">Rexdf</a></span> |
+<span class="credit">Host by：<a href="https://github.com/" target="_blank" rel="host">Github.com</a></span> |
+<span class="credit">版权声明：<a href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" target="_blank" rel="license">CC BY-NC-SA 3.0</a><img src="https://analytics.rexdf.net/piwik.php?idsite=1&amp;rec=1" style="border:0" alt="" referrerpolicy="no-referrer-when-downgrade"></span>|
+<span class="credit"><a href="/sitemap.xml" rel="sitemap">sitemap</a></span>
+</p>
+<script type="text/javascript" src="https://tajs.qq.com/stats?sId=30296377" charset="UTF-8"></script>
+</footer>
+<script type="text/javascript">var disqus_shortname="rexdf",disqus_identifier="https://i.rexdf.org/blog/2011/12/02/e-luo-si-fang-kuai-ke-yi-yong-yuan-de-wan-xia-qu-ma/",disqus_url="https://i.rexdf.org/blog/2011/12/02/e-luo-si-fang-kuai-ke-yi-yong-yuan-de-wan-xia-qu-ma/",disqus_script="embed.js";!function(){var e=document.createElement("script");e.type="text/javascript",e.async=!0,e.src="//"+disqus_shortname+".disqus.com/"+disqus_script,(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(e)}()</script>
+<script type="text/javascript">$(function(){$(".entry-content").each(function(t){var r=t;$(this).find("img.fancybox").each(function(){var t=$(this),a=t.attr("title"),n=t.attr("class");t.removeAttr("class"),t.wrap('<a href="'+this.src+'" class="'+n+'" rel="gallery'+r+'" />'),""!=a&&t.parent().attr("title",a)})}),$(".fancybox").fancybox()})</script>
+</body>
+</html>

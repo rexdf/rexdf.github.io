@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Sublime | Rexdf]]></title>
+  <link href="https://i.rexdf.org/blog/categories/sublime/atom.xml" rel="self"/>
+  <link href="https://i.rexdf.org/"/>
+  <updated>2024-12-16T23:11:13+08:00</updated>
+  <id>https://i.rexdf.org/</id>
+  <author>
+    <name><![CDATA[Rexdf]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[发布一个sublime汉化插件]]></title>
+    <link href="https://i.rexdf.org/blog/2015/05/15/fa-bu-yi-ge-sublimeyi-hua-cha-jian/"/>
+    <updated>2015-05-15T11:19:01+08:00</updated>
+    <id>https://i.rexdf.org/blog/2015/05/15/fa-bu-yi-ge-sublimeyi-hua-cha-jian</id>
+    <content type="html"><![CDATA[<p>很简单的一个插件，现在支持汉化Sublime Text2，Sublime Text3。全部系统Win64、Win32，Linux64，Linux32，OSX等，可以随意来回切换简体中文、繁体中文、日语、英语，无需重启SublimeText。</p>
+
+<!-- more -->
+
+<p>项目主页 <a href="https://github.com/rexdf/Chinese-Localization" target="_blank">https://github.com/rexdf/Chinese-Localization</a></p>
+
+<p>已经发布到<a href="https://packagecontrol.io" target="_blank">PackageControl</a>，搜索Chinese即可找到ChineseLocaization。</p>
+
+<p>几个截图:</p>
+
+<p><img src="/images/sublime_chinese.gif" alt="Win-builds" class="center fancybox" /></p>
+
+<p><img src="/images/sublime_trans_linux.png" alt="Win-builds" class="center fancybox" /></p>
+
+<p><img src="/images/sublime_translation.png" alt="Win-builds" class="center fancybox" /></p>
+]]></content>
+  </entry>
+  
+</feed>

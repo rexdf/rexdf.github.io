@@ -1,0 +1,221 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<script type="text/javascript">var _speedMark=new Date</script>
+<meta charset="utf-8">
+<title>POJ1014: 多重背包 + 二进制优化 + 取模优化 - Rexdf</title>
+<meta name="author" content="Rexdf">
+<meta name="description" content="问题描述： 有若干价值为分别为1，2 ，3，4，5，6的大理石，求总价值的均分策略。设价值为V的石头重量为V,这批石头的总价值为SUM,则问题转化为选取若干大理石将容量为SUM/2的背包装满。 背包问题（参考“背包问题9讲”） 有N件物品和一个容量为V的背包，第i件物品的费用是c[i]，价值是w[ &hellip;">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' data: https://hm.baidu.com https://tajs.qq.com https://ssl.google-analytics.com https://static.rexdf.org https://*.disquscdn.com https://rexdf.disqus.com https://api.github.com https://ssl.google-analytics.com https://disqus.com https://analytics.rexdf.net; connect-src 'self' https://static.rexdf.org https://analytics.rexdf.net https://hm.baidu.com; img-src data: https://*; font-src data: https://*; child-src 'none'; style-src 'self' 'unsafe-inline' https://*; frame-src 'self' https://t.rexdf.org http://t.rexdf.org https://rexdf.disqus.com https://disqus.com">
+<link rel="canonical" href="https://i.rexdf.org/blog/2011/10/30/POJ1014-duo-chong-bei-bao--er-jin-zhi-you-hua--qu-mo-you-hua">
+<link rel="dns-prefetch" href="https://static.rexdf.org/">
+<link href="/favicon.ico" rel="icon">
+<link id="main-css" href="/stylesheets/screen.css" media="screen,projection" rel="stylesheet" type="text/css" title="pc">
+<link href="/stylesheets/screen_mobile.css" rel="alternate stylesheet" type="text/css" title="mobile">
+<link href="/atom.xml" rel="alternate" title="Rexdf" type="application/atom+xml">
+<script src="/javascripts/libs/jquery.min.js"></script>
+<script src="/javascripts/octopress-rexdf.min.js" type="text/javascript"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+      
+      toggle_theme();
+  });
+</script>
+<script type="text/javascript" async src="https://static.rexdf.org/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript">var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-55590409-1"]),_gaq.push(["_trackPageview"]),function(){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(t,e)}()</script>
+<script>var _hmt=_hmt||[];!function(){var e=document.createElement("script");e.src="//hm.baidu.com/hm.js?32192d95b89fbefa0875c4c95adb1412";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}()</script>
+<script src="/javascripts/fancybox/jquery.fancybox.pack.js"></script>
+<link rel="stylesheet" type="text/css" href="/javascripts/fancybox/jquery.fancybox.css">
+<script type="text/javascript">var _paq=_paq||[];_paq.push(["trackPageView"]),_paq.push(["enableLinkTracking"]),function(){var e="https://analytics.rexdf.net/";_paq.push(["setTrackerUrl",e+"piwik.php"]),_paq.push(["setSiteId","1"]);var a=document,t=a.createElement("script"),p=a.getElementsByTagName("script")[0];t.type="text/javascript",t.async=!0,t.defer=!0,t.src=e+"piwik.js",p.parentNode.insertBefore(t,p)}()</script>
+</head>
+<body class="low-contrast-linen-wptouch-bg">
+<header role="banner"><hgroup>
+<h1 id="header-title"><a href="/">Rexdf</a></h1>
+<h2 id="subtitle">The devil is in the Details.</h2>
+</hgroup>
+</header>
+<nav role="navigation"><ul class="subscription" data-subscription="rss">
+<li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+</ul>
+<form action="https://google.com/search" method="get">
+<fieldset role="search">
+<input type="hidden" name="q" value="site:i.rexdf.org">
+<input class="search" type="text" name="q" results="0" placeholder="Search">
+</fieldset>
+</form>
+<ul class="main-navigation">
+<li><a href="/">Blog</a></li>
+<li><a href="/blog/archives/">Archives</a></li>
+<li><a href="/idea/">Idea</a></li>
+<li><a href="/share/">Share</a></li>
+<li><a href="/books/">Books</a></li>
+<li><a href="/donate/">Donate</a></li>
+<li><a target="_blank" href="https://blog.rexdf.org" style="font-family:Shadows Into Light">Main-Blog</a></li>
+</ul>
+</nav>
+<div id="main">
+<div id="content">
+<div>
+<article class="hentry" role="article">
+<header>
+<h1 class="entry-title">POJ1014: 多重背包 + 二进制优化 + 取模优化</h1>
+<p class="meta">
+<time class="data-article month-10 season-autumn" datetime="2011-10-30T02:23:00+08:00" pubdate><span class="month">Oct</span> <span class="day">30th</span> <span class="year">2011</span></time>
+| <a href="#disqus_thread" data-disqus-identifier="https://i.rexdf.org">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>问题描述： 有若干价值为分别为1，2 ，3，4，5，6的大理石，求总价值的均分策略。设价值为V的石头重量为V,这批石头的总价值为SUM,则问题转化为选取若干大理石将容量为SUM/2的背包装满。 背包问题（参考“背包问题9讲”） 有N件物品和一个容量为V的背包，第i件物品的费用是c[i]，价值是w[i]。 f[i][v]表示前i件物品恰放入一个容量为v的背包可以获得的最大价值,则有： 0-1背包</p>
+<p>状态转移方程 f[i][v] = max{f[i-1][v], f[i-1][v-c[i]]+w[i]}</p>
+<p>解法 O(VN) for i = 1…N for v = V…c[i] f[v] = max{f[v], f[v-c[i]]+w[i]};</p>
+<p>子过程 procedure ZeroOnePack(cost, weight) for v = V…cost f[v] = max{f[v], f[v-cost]+weight}</p>
+<p>初始化 要求恰好装满背包： f[0] = 0, f[1…V] = –1 只要求价值最大: f[0…V] = 0</p>
+<p>完全背包</p>
+<p>状态转移方程 O(V<em>Σ(V/c[i])) f[i][v] = max{f[i-1][v-k</em>c[i]]+k<em>w[i]|0&lt;=k</em>c[i]&lt;=v}</p>
+<p>转化为0-1背包问题 O(VN) for i = 1…N for v = cost…V f[v] = max{f[v], f[v-cost]+weight}</p>
+<p>子过程 procedure CompletePack(cost, weight) for v = cost…V f[v] = max{f[v], f[v-cost]+weight}</p>
+<p>多重背包 (指定每件物品的个数n[i])</p>
+<p>状态转移方程 O(V<em>Σn[i]) f[i][v] = max{f[i-1][v-k</em>c[i]]+k*w[i]|0&lt;=k&lt;=n[i]}</p>
+<p>二进制优化 O(V*Σlog(n[i])) 将第i种物品以2的指数分堆：1，2，4，…，2^(k-1)，n[i]-2^k+1,且 k是满足n[i]-2^k+1&gt;0的最大整数。每次处理一堆而不是一个物品。</p>
+<p>伪代码 procedure MultiplePack(cost, weight, amount) if cost<em>amount&gt;=V CompletePack(cost, weight) return integer k=1 while k&lt;amount ZeroOnePack(k</em>cost, k<em>weight) amount = amount – k k = k * 2 ZeroOnePack(amount</em>cost, amount*weight)</p>
+<p>取模优化 当输入样本特别大时，比如给出上百万件物品，这时候仅靠优化算法仍然不能使运行时间降到满意的范围。可考虑如何减少输入样本。poj1014的discussion上有一个非常巧妙的“取模优化”法。 设价值为v(1&lt;=v&lt;=6)的物品共有n件，我们希望找到一个比较小的数s(s&lt;n), 且将n件物品v减少到s或s-1件，问题的可分性不变。考虑不可分和可分两种情况：</p>
+<ul>
+<li>如果该问题不可分，那么n-2件v仍然不可分，依次类推，用s或 s-1替换n仍然不可分</li>
+<li>如果该问题可分，即可分成价值相等的两堆。分两种情况考虑：</li>
+<li>如果两堆里都有v。 两堆各减一个v，即n改为n-2,仍然可分，可以反复减2直至只有一堆有v。</li>
+<li>如果仅有一堆有v。 如果将n改为n-2仍可分，则必须满足两个条件： I.没有v的那一堆中，至少有一种其它物品可替换v。II.替换后两堆都至少有一个v。如果n&gt;s时始终满足这两个条件，我们就可以用s或s-1替换n. 下面依次考虑v=1,2,3,4,5,6时如何根据“抽屉原理”得到满足条件I和II的s。 v=1时，s=6 替换法： if(n&gt;6) n=6-n%2 1总能被其它价值替换，所以满足条件I不是问题，为满足条件2，s必须大于6。 因为6是其它价值物品中一次可替换最多1的物品。 v=2时，s=5 替换法： if(n&gt;5) n=4+n%2 由1<em>(2-1)+3</em>(2-1)+4<em>(1-1)+5</em>(2-1)+6<em>(1-1) = 9 &lt; 2</em>5知，s=4时满足条件I。但这里要注意，如果另一堆可替换2的是两个5，那么一次就可替换5个2。为满足条件 II,s不能小于5。所以这里s是5而不是4。 v=3时，s=8 替换法： if(n&gt;8) n=8-n%2 由1<em>(3-1)+2</em>(3-1)+4<em>(3-1)+5</em>(3-1)+6<em>(1-1) = 24 &lt; 3</em>9知，s=8时满足条件I，且最多可替换5个3，所以s=8&gt;5也满足条件II。 v=4时，s=8 替换法： if(n&gt;8) n=8-n%2 由1<em>(4-1)+2</em>(2-1)+3<em>(4-1)+5</em>(4-1)+6<em>(2-1) = 35 &lt; 4</em>9知， s=8时满足条件I，且最多可替换5个4，所以s=8&gt;5也满足条件II。 v=5时，s=12 替换法： if(n&gt;12) n=12-n%2 由1<em>(5-1)+2</em>(5-1)+3<em>(5-1)+4</em>(5-1)+6<em>(5-1) = 64 &lt; 5</em>13知，s=12满足条件I，且最多可替换6个5，所以s=12&gt;6也满足条件II。 v=6时，s=7 替换法：if(n&gt;7) n=6+n%2 由1<em>(6-1)+2</em>(3-1)+3<em>(2-1)+4</em>(3-1)+5<em>(6-1) = 45 &lt; 6</em>8知，s=7满足条件I，且最多可替换5个6，所以s=7&gt;5也满足条件II。 可以看出，“模优化”将无论多么大的输入样本减少到50个以内，极大地减少了计算量，从而显著提高运行效率。而“模优化”的关键就是“抽屉原理”。</li>
+</ul>
+<h2 id="comments">Comments</h2>
+<table>
+<tbody>
+<tr>
+<td><strong><a href="#12" title="2011-10-30 10:30:11">rexdf</a>:</strong> (function(){ var p = { url:location.href, to:’qqmail’, desc:’’, /<em>默认分享理由(可选)</em>/ summary:’’,/<em>摘要(可选)</em>/ title:’’,/<em>分享标题(可选)</em>/ site:’’,/<em>分享来源 如：腾讯网(可选)</em>/ pics:’’ /<em>分享图片的路径(可选)</em>/ }; var s = []; for(var i in p){ s.push(i + ‘=’ + encodeURIComponent(p[i]</td>
+<td> </td>
+<td>’’)); } document.write([”’].join(“”)); })();</td>
+</tr>
+</tbody>
+</table>
+<p><strong><a href="#13" title="2011-10-30 10:31:34">rexdf</a>:</strong> #include<iostream>
+using namespace std;</iostream></p>
+<pre><code>int main()
+{
+cout&lt;&lt;"Hello World!"&lt;&lt;endl;
+system("pause");
+return 0;
+}
+</code></pre>
+<p><strong><a href="#14" title="2011-10-31 23:23:21">asdfasdfasdf</a>:</strong> text</p>
+<p><strong><a href="#15" title="2011-10-31 23:26:41">SkyWorld</a>:</strong> <?php
+    echo "hello world.";
+    echo "I found this editor is very convenient for edit code."
+     ?></p>
+<p><strong><a href="#16" title="2011-10-31 23:27:01">SkyWorld</a>:</strong> <?php
+    echo "hello world.";
+    echo "I found this editor is very convenient for edit code.";
+     ?></p>
+<p><strong><a href="#17" title="2011-11-12 23:29:55">rexdf</a>:</strong> 你好 现在回复可用了</p>
+</div>
+<footer>
+<p class="meta">
+<span class="byline author vcard">Posted by <span class="fn">Rexdf</span></span>
+<time class="data-article month-10 season-autumn" datetime="2011-10-30T02:23:00+08:00" pubdate><span class="month">Oct</span> <span class="day">30th</span> <span class="year">2011</span></time>
+</p>
+<div class="sharing">
+</div>
+<p class="meta">
+<a class="basic-alignment right" href="/blog/2011/10/30/zui-da-liu-Dinic-suan-fa-he-SAP-suan-fa-jian-jie/" title="Next Post: 最大流-Dinic算法和SAP算法简介">最大流-Dinic算法和SAP算法简介 &raquo;</a>
+</p>
+</footer>
+</article>
+<section>
+<h1>Comments</h1>
+<div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
+</div>
+<aside class="sidebar">
+<section>
+<h1>Categories</h1>
+<ul id="categories">
+<li class="category"><a href="/blog/categories/acm/">ACM <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/algorithm/">Algorithm <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/assembly/">Assembly <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/cygwin/">Cygwin <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/gnu/">GNU <sup>8</sup></a></li>
+<li class="category"><a href="/blog/categories/math/">Math <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/octopress/">Octopress <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/programming/">Programming <sup>6</sup></a></li>
+<li class="category"><a href="/blog/categories/security/">Security <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sublime/">Sublime <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/synology/">Synology <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sysadmin/">SysAdmin <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/web/">Web <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/windows/">Windows <sup>7</sup></a></li>
+<li class="category"><a href="/blog/categories/proxmox/">proxmox <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/ri-chang/">日常 <sup>37</sup></a></li>
+</ul>
+</section>
+<section>
+<h1>Recent Posts</h1>
+<ul id="recent_posts">
+<li class="post">
+<a href="/blog/2024/12/16/fu-wu-qi-wa-kuang-bing-du-de-cha-sha/">服务器挖矿病毒的查杀</a>
+</li>
+<li class="post">
+<a href="/blog/2021/07/11/apple-m1-bian-yi-tensorflow/">Apple M1 编译tensorflow</a>
+</li>
+<li class="post">
+<a href="/blog/2021/02/27/chromiumbian-ma-qi-wen-ti/">Chromium编码器问题</a>
+</li>
+<li class="post">
+<a href="/blog/2020/12/13/proxmoxbi-ji/">Proxmox笔记</a>
+</li>
+<li class="post">
+<a href="/blog/2020/11/15/lun-yan-du-yu-shen-du/">论广度与深度</a>
+</li>
+</ul>
+</section>
+<section>
+<iframe frameborder="0" scrolling="no" referrerpolicy="unsafe-url" style="width:283px;height:200px" src="https://t.rexdf.org/?m=app&a=showwidget&name=rexdf&type=1&width=283px&height=500px"></iframe>
+</section>
+<section>
+<h1>GitHub Repos</h1>
+<ul id="gh_repos">
+<li class="loading">Status updating...</li>
+</ul>
+<a href="https://github.com/rexdf">@rexdf</a> on GitHub
+<script type="text/javascript">$(document).ready(function(){if(!window.jXHR){var e=document.createElement("script");e.type="text/javascript",e.src="/javascripts/libs/jXHR.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}github.showRepos({user:"rexdf",count:0,skip_forks:!0,target:"#gh_repos"})})</script>
+</section>
+</aside>
+</div>
+</div>
+<footer role="contentinfo"><p>
+<span class="credit">Copyright &copy; 2024 - Rexdf -</span> |
+<span class="credit">Powered by <a name="bottoms" target="_blank" href="http://octopress.org">Octopress</a></span> |
+<span class="credit">Theme by ：<a href="https://blog.rexdf.org/" target="_blank" rel="theme">Rexdf</a></span> |
+<span class="credit">Host by：<a href="https://github.com/" target="_blank" rel="host">Github.com</a></span> |
+<span class="credit">版权声明：<a href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" target="_blank" rel="license">CC BY-NC-SA 3.0</a><img src="https://analytics.rexdf.net/piwik.php?idsite=1&amp;rec=1" style="border:0" alt="" referrerpolicy="no-referrer-when-downgrade"></span>|
+<span class="credit"><a href="/sitemap.xml" rel="sitemap">sitemap</a></span>
+</p>
+<script type="text/javascript" src="https://tajs.qq.com/stats?sId=30296377" charset="UTF-8"></script>
+</footer>
+<script type="text/javascript">var disqus_shortname="rexdf",disqus_identifier="https://i.rexdf.org/blog/2011/10/30/POJ1014-duo-chong-bei-bao--er-jin-zhi-you-hua--qu-mo-you-hua/",disqus_url="https://i.rexdf.org/blog/2011/10/30/POJ1014-duo-chong-bei-bao--er-jin-zhi-you-hua--qu-mo-you-hua/",disqus_script="embed.js";!function(){var e=document.createElement("script");e.type="text/javascript",e.async=!0,e.src="//"+disqus_shortname+".disqus.com/"+disqus_script,(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(e)}()</script>
+<script type="text/javascript">$(function(){$(".entry-content").each(function(t){var r=t;$(this).find("img.fancybox").each(function(){var t=$(this),a=t.attr("title"),n=t.attr("class");t.removeAttr("class"),t.wrap('<a href="'+this.src+'" class="'+n+'" rel="gallery'+r+'" />'),""!=a&&t.parent().attr("title",a)})}),$(".fancybox").fancybox()})</script>
+</body>
+</html>

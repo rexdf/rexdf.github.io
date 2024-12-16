@@ -1,0 +1,406 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<script type="text/javascript">var _speedMark=new Date</script>
+<meta charset="utf-8">
+<title>Chromium编码器问题 - Rexdf</title>
+<meta name="author" content="Rexdf">
+<meta name="description" content="问题解决 编译配置 目录结构 _begin_to_work_x64.bat build.bat buildx64_2.bat buildx86_2.bat mybuild\args.gn mybuild86\args.gn 额外的笔记 编译消耗 参考资料 本文记录chromium编译遇到的问题 &hellip;">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' data: https://hm.baidu.com https://tajs.qq.com https://ssl.google-analytics.com https://static.rexdf.org https://*.disquscdn.com https://rexdf.disqus.com https://api.github.com https://ssl.google-analytics.com https://disqus.com https://analytics.rexdf.net; connect-src 'self' https://static.rexdf.org https://analytics.rexdf.net https://hm.baidu.com; img-src data: https://*; font-src data: https://*; child-src 'none'; style-src 'self' 'unsafe-inline' https://*; frame-src 'self' https://t.rexdf.org http://t.rexdf.org https://rexdf.disqus.com https://disqus.com">
+<link rel="canonical" href="https://i.rexdf.org/blog/2021/02/27/chromiumbian-ma-qi-wen-ti">
+<link rel="dns-prefetch" href="https://static.rexdf.org/">
+<link href="/favicon.ico" rel="icon">
+<link id="main-css" href="/stylesheets/screen.css" media="screen,projection" rel="stylesheet" type="text/css" title="pc">
+<link href="/stylesheets/screen_mobile.css" rel="alternate stylesheet" type="text/css" title="mobile">
+<link href="/atom.xml" rel="alternate" title="Rexdf" type="application/atom+xml">
+<script src="/javascripts/libs/jquery.min.js"></script>
+<script src="/javascripts/octopress-rexdf.min.js" type="text/javascript"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+      
+      toggle_theme();
+  });
+</script>
+<script type="text/javascript" async src="https://static.rexdf.org/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript">var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-55590409-1"]),_gaq.push(["_trackPageview"]),function(){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(t,e)}()</script>
+<script>var _hmt=_hmt||[];!function(){var e=document.createElement("script");e.src="//hm.baidu.com/hm.js?32192d95b89fbefa0875c4c95adb1412";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}()</script>
+<script src="/javascripts/fancybox/jquery.fancybox.pack.js"></script>
+<link rel="stylesheet" type="text/css" href="/javascripts/fancybox/jquery.fancybox.css">
+<script type="text/javascript">var _paq=_paq||[];_paq.push(["trackPageView"]),_paq.push(["enableLinkTracking"]),function(){var e="https://analytics.rexdf.net/";_paq.push(["setTrackerUrl",e+"piwik.php"]),_paq.push(["setSiteId","1"]);var a=document,t=a.createElement("script"),p=a.getElementsByTagName("script")[0];t.type="text/javascript",t.async=!0,t.defer=!0,t.src=e+"piwik.js",p.parentNode.insertBefore(t,p)}()</script>
+</head>
+<body class="low-contrast-linen-wptouch-bg">
+<header role="banner"><hgroup>
+<h1 id="header-title"><a href="/">Rexdf</a></h1>
+<h2 id="subtitle">The devil is in the Details.</h2>
+</hgroup>
+</header>
+<nav role="navigation"><ul class="subscription" data-subscription="rss">
+<li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+</ul>
+<form action="https://google.com/search" method="get">
+<fieldset role="search">
+<input type="hidden" name="q" value="site:i.rexdf.org">
+<input class="search" type="text" name="q" results="0" placeholder="Search">
+</fieldset>
+</form>
+<ul class="main-navigation">
+<li><a href="/">Blog</a></li>
+<li><a href="/blog/archives/">Archives</a></li>
+<li><a href="/idea/">Idea</a></li>
+<li><a href="/share/">Share</a></li>
+<li><a href="/books/">Books</a></li>
+<li><a href="/donate/">Donate</a></li>
+<li><a target="_blank" href="https://blog.rexdf.org" style="font-family:Shadows Into Light">Main-Blog</a></li>
+</ul>
+</nav>
+<div id="main">
+<div id="content">
+<div>
+<article class="hentry" role="article">
+<header>
+<h1 class="entry-title">Chromium编码器问题</h1>
+<p class="meta">
+<time class="data-article month-02 season-winter" datetime="2021-02-27T20:20:00+08:00" pubdate><span class="month">Feb</span> <span class="day">27th</span> <span class="year">2021</span></time>
+| <a href="#disqus_thread" data-disqus-identifier="https://i.rexdf.org">Comments</a>
+</p>
+</header>
+<div class="entry-content"><ul class="markdown-toc">
+<li><a href="#section">问题解决</a></li>
+<li><a href="#section-1">编译配置</a><ul>
+<li><a href="#section-2">目录结构</a></li>
+<li><a href="#begintoworkx64bat">_begin_to_work_x64.bat</a></li>
+<li><a href="#buildbat">build.bat</a></li>
+<li><a href="#buildx642bat">buildx64_2.bat</a></li>
+<li><a href="#buildx862bat">buildx86_2.bat</a></li>
+<li><a href="#mybuildargsgn">mybuild\args.gn</a></li>
+<li><a href="#mybuild86argsgn">mybuild86\args.gn</a></li>
+<li><a href="#section-3">额外的笔记</a></li>
+</ul>
+</li>
+<li><a href="#section-4">编译消耗</a></li>
+<li><a href="#section-5">参考资料</a></li>
+</ul>
+<p>本文记录chromium编译遇到的问题。 Windows上的Chrome浏览器一直都用着一个自己编译的版本。然而最近几个月的编译发现了Twitter的视频似乎没法播放，而Youtube的视频依然是正常的。</p>
+<h1 id="section">问题解决</h1>
+<p><img src="/images/twitter_not_play.png" alt="The media could not be played" class="center fancybox"></p>
+<p>如上图所示。 搜索了一圈，尝试了重置浏览器(重新指定一个cache目录)和修改<a href="chrome://about">chrome://about</a>似乎都没效果。</p>
+<p>但是编译的时候有报一个错误’use_h254’编译选项未定义。那就变有什么编码器不支持了。然后搜了下确实现在默认不带h254的解码器了。但是用<code>proprietary_codecs = true</code>就可以再次启用。</p>
+<p><img src="/images/twitter_play.png" alt="Twitter video" class="center fancybox"></p>
+<h1 id="section-1">编译配置</h1>
+<p>下面这个配置是我2015年写的一个自动化脚本，大概一直用到现在2021年，中间可能有几次优化，但是大体上都是2015年那会写的。</p>
+<p>首先假设下面的目录树在某个目录，那么其上一级目录要有<code>depot_tools</code>文件夹，然后把如下内容填入。按照如下笔记拖下源码。这个大概20~30分钟就好了。</p>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div><div data-line="5" class="line-number"></div><div data-line="6" class="line-number"></div><div data-line="7" class="line-number"></div><div data-line="8" class="line-number"></div><div data-line="9" class="line-number"></div><div data-line="10" class="line-number"></div><div data-line="11" class="line-number"></div></pre></td><td class="main code"><pre><div class="line plain">更新工具链
+</div><div class="line plain">gclient runhooks
+</div><div class="line plain"> </div><div class="line plain"> </div><div class="line plain">出现问题时使用:
+</div><div class="line plain">git reset --hard origin/master
+</div><div class="line plain"> </div><div class="line plain"> </div><div class="line plain">更新代码
+</div><div class="line plain">git rebase-update
+</div><div class="line plain">gclient sync</div></pre></td></tr></table></div></figure></notextile></div>
+<h2 id="section-2">目录结构</h2>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div><div data-line="5" class="line-number"></div><div data-line="6" class="line-number"></div><div data-line="7" class="line-number"></div><div data-line="8" class="line-number"></div><div data-line="9" class="line-number"></div><div data-line="10" class="line-number"></div><div data-line="11" class="line-number"></div><div data-line="12" class="line-number"></div><div data-line="13" class="line-number"></div><div data-line="14" class="line-number"></div><div data-line="15" class="line-number"></div></pre></td><td class="main code"><pre><div class="line plain">│  _begin_to_work_x64.bat
+</div><div class="line plain">│
+</div><div class="line plain">├─build_result
+</div><div class="line plain">├─chromium
+</div><div class="line plain">│      build.bat
+</div><div class="line plain">│      buildx64_2.bat
+</div><div class="line plain">│      buildx86_2.bat
+</div><div class="line plain">│
+</div><div class="line plain">└─src
+</div><div class="line plain">    └─out
+</div><div class="line plain">        ├─mybuild
+</div><div class="line plain">        │      args.gn
+</div><div class="line plain">        │
+</div><div class="line plain">        └─mybuild86
+</div><div class="line plain">                args.gn
+</div></pre></td></tr></table></div></figure></notextile></div>
+<h2 id="begintoworkx64bat">_begin_to_work_x64.bat</h2>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div><div data-line="5" class="line-number"></div><div data-line="6" class="line-number"></div><div data-line="7" class="line-number"></div><div data-line="8" class="line-number"></div><div data-line="9" class="line-number"></div><div data-line="10" class="line-number"></div></pre></td><td class="main code"><pre><div class="line plain">@echo off
+</div><div class="line plain">chcp 437
+</div><div class="line plain">cd /d  %~dp0chromium
+</div><div class="line plain">rem call ..\setup_and_clean.bat
+</div><div class="line plain">set str=%~dp0
+</div><div class="line plain">path=%str%..\depot_tools;%path%
+</div><div class="line plain">set DEPOT_TOOLS_WIN_TOOLCHAIN=0
+</div><div class="line plain">rem set NO_AUTH_BOTO_CONFIG=%~dp0boto.cfg
+</div><div class="line plain">rem %comspec% /k "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" amd64
+</div><div class="line plain">%comspec% /k "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
+</div></pre></td></tr></table></div></figure></notextile></div>
+<h2 id="buildbat">build.bat</h2>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div><div data-line="5" class="line-number"></div><div data-line="6" class="line-number"></div><div data-line="7" class="line-number"></div><div data-line="8" class="line-number"></div><div data-line="9" class="line-number"></div><div data-line="10" class="line-number"></div><div data-line="11" class="line-number"></div><div data-line="12" class="line-number"></div><div data-line="13" class="line-number"></div><div data-line="14" class="line-number"></div><div data-line="15" class="line-number"></div><div data-line="16" class="line-number"></div><div data-line="17" class="line-number"></div><div data-line="18" class="line-number"></div><div data-line="19" class="line-number"></div><div data-line="20" class="line-number"></div><div data-line="21" class="line-number"></div><div data-line="22" class="line-number"></div><div data-line="23" class="line-number"></div><div data-line="24" class="line-number"></div><div data-line="25" class="line-number"></div><div data-line="26" class="line-number"></div><div data-line="27" class="line-number"></div><div data-line="28" class="line-number"></div><div data-line="29" class="line-number"></div><div data-line="30" class="line-number"></div><div data-line="31" class="line-number"></div><div data-line="32" class="line-number"></div><div data-line="33" class="line-number"></div><div data-line="34" class="line-number"></div><div data-line="35" class="line-number"></div><div data-line="36" class="line-number"></div><div data-line="37" class="line-number"></div><div data-line="38" class="line-number"></div><div data-line="39" class="line-number"></div><div data-line="40" class="line-number"></div><div data-line="41" class="line-number"></div><div data-line="42" class="line-number"></div><div data-line="43" class="line-number"></div></pre></td><td class="main code"><pre><div class="line plain">@echo off
+</div><div class="line plain"> </div><div class="line plain">cd /d %~dp0src
+</div><div class="line plain"> </div><div class="line plain">set path=%~dp0..\..\depot_tools;%path%
+</div><div class="line plain">set DEPOT_TOOLS_WIN_TOOLCHAIN=0
+</div><div class="line plain">set VERSION_NUMVER=91.0.4432.1
+</div><div class="line plain"> </div><div class="line plain">if exist out (
+</div><div class="line plain"> rd /s /q out
+</div><div class="line plain">)
+</div><div class="line plain"> </div><div class="line plain">xcopy %~dp0..\src %~dp0src /E /I /s
+</div><div class="line plain"> </div><div class="line plain">call gn gen out/mybuild64 --ide=vs
+</div><div class="line plain">call gn gen --ide=vs --filters=//chrome out/Default64
+</div><div class="line plain"> </div><div class="line plain">call gn gen out/mybuild 
+</div><div class="line plain">call gn gen out/mybuild86
+</div><div class="line plain"> </div><div class="line plain">if not exist ..\..\build_result\%VERSION_NUMVER% (
+</div><div class="line plain">  mkdir  ..\..\build_result\%VERSION_NUMVER%
+</div><div class="line plain">)
+</div><div class="line plain"> </div><div class="line plain">if not exist ..\..\build_result\%VERSION_NUMVER%\x86 (
+</div><div class="line plain">  mkdir  ..\..\build_result\%VERSION_NUMVER%\x86
+</div><div class="line plain">)
+</div><div class="line plain"> </div><div class="line plain">if not exist ..\..\build_result\%VERSION_NUMVER%\x86\chrome.packed.7z (
+</div><div class="line plain">    call ..\buildx86_2.bat %VERSION_NUMVER%
+</div><div class="line plain">)
+</div><div class="line plain"> </div><div class="line plain">if not exist ..\..\build_result\%VERSION_NUMVER%\x64 (
+</div><div class="line plain">  mkdir  ..\..\build_result\%VERSION_NUMVER%\x64
+</div><div class="line plain">)
+</div><div class="line plain"> </div><div class="line plain">if not exist ..\..\build_result\%VERSION_NUMVER%\x64\chrome.packed.7z (
+</div><div class="line plain">    call ..\buildx64_2.bat %VERSION_NUMVER%
+</div><div class="line plain">)
+</div><div class="line plain"> </div><div class="line plain">rem shutdown -s -t 600
+</div><div class="line plain"> </div><div class="line plain">pause</div></pre></td></tr></table></div></figure></notextile></div>
+<h2 id="buildx642bat">buildx64_2.bat</h2>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div><div data-line="5" class="line-number"></div><div data-line="6" class="line-number"></div><div data-line="7" class="line-number"></div><div data-line="8" class="line-number"></div><div data-line="9" class="line-number"></div><div data-line="10" class="line-number"></div><div data-line="11" class="line-number"></div><div data-line="12" class="line-number"></div><div data-line="13" class="line-number"></div><div data-line="14" class="line-number"></div><div data-line="15" class="line-number"></div><div data-line="16" class="line-number"></div><div data-line="17" class="line-number"></div><div data-line="18" class="line-number"></div><div data-line="19" class="line-number"></div><div data-line="20" class="line-number"></div><div data-line="21" class="line-number"></div><div data-line="22" class="line-number"></div><div data-line="23" class="line-number"></div><div data-line="24" class="line-number"></div><div data-line="25" class="line-number"></div><div data-line="26" class="line-number"></div><div data-line="27" class="line-number"></div><div data-line="28" class="line-number"></div><div data-line="29" class="line-number"></div><div data-line="30" class="line-number"></div><div data-line="31" class="line-number"></div><div data-line="32" class="line-number"></div><div data-line="33" class="line-number"></div><div data-line="34" class="line-number"></div><div data-line="35" class="line-number"></div><div data-line="36" class="line-number"></div><div data-line="37" class="line-number"></div><div data-line="38" class="line-number"></div></pre></td><td class="main code"><pre><div class="line plain">@echo off
+</div><div class="line plain"> </div><div class="line plain">cd /d %~dp0src
+</div><div class="line plain"> </div><div class="line plain">set path=%~dp0..\..\depot_tools;%path%
+</div><div class="line plain">set DEPOT_TOOLS_WIN_TOOLCHAIN=0
+</div><div class="line plain"> </div><div class="line plain">if [%1]==[] goto error
+</div><div class="line plain"> </div><div class="line plain">ninja -C out/mybuild chrome
+</div><div class="line plain">ninja -C out/mybuild chromedriver
+</div><div class="line plain">ninja -C out/mybuild mini_installer
+</div><div class="line plain"> </div><div class="line plain">for %%i in (chrome.packed.7z,chromedriver.exe,mini_installer.exe,setup.exe) do (
+</div><div class="line plain">    if exist out\mybuild\%%i (
+</div><div class="line plain">        copy out\mybuild\%%i ..\..\build_result\%1\x64\
+</div><div class="line plain">    )
+</div><div class="line plain">)
+</div><div class="line plain"> </div><div class="line plain">REM copy out\mybuild\chrome.packed.7z ..\..\build_result\%1\x64\
+</div><div class="line plain">REM copy out\mybuild\chromedriver.exe ..\..\build_result\%1\x64\
+</div><div class="line plain">REM copy out\mybuild\setup.exe ..\..\build_result\%1\x64\
+</div><div class="line plain"> </div><div class="line plain"> </div><div class="line plain">ninja -C out/mybuild -t graph all &gt; ..\..\build_result\%1\deps.dot
+</div><div class="line plain"> </div><div class="line plain">ninja -C out/mybuild -t targets &gt; ..\..\build_result\%1\targets.txt
+</div><div class="line plain"> </div><div class="line plain">if [%2] neq [] (
+</div><div class="line plain">    rd /s /q out\mybuild
+</div><div class="line plain">)
+</div><div class="line plain"> </div><div class="line plain"> </div><div class="line plain">echo Done.
+</div><div class="line plain">GOTO :EOF
+</div><div class="line plain"> </div><div class="line plain">:error
+</div><div class="line plain">echo Need a version number.
+</div></pre></td></tr></table></div></figure></notextile></div>
+<h2 id="buildx862bat">buildx86_2.bat</h2>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div><div data-line="5" class="line-number"></div><div data-line="6" class="line-number"></div><div data-line="7" class="line-number"></div><div data-line="8" class="line-number"></div><div data-line="9" class="line-number"></div><div data-line="10" class="line-number"></div><div data-line="11" class="line-number"></div><div data-line="12" class="line-number"></div><div data-line="13" class="line-number"></div><div data-line="14" class="line-number"></div><div data-line="15" class="line-number"></div><div data-line="16" class="line-number"></div><div data-line="17" class="line-number"></div><div data-line="18" class="line-number"></div><div data-line="19" class="line-number"></div><div data-line="20" class="line-number"></div><div data-line="21" class="line-number"></div><div data-line="22" class="line-number"></div><div data-line="23" class="line-number"></div><div data-line="24" class="line-number"></div><div data-line="25" class="line-number"></div><div data-line="26" class="line-number"></div><div data-line="27" class="line-number"></div><div data-line="28" class="line-number"></div><div data-line="29" class="line-number"></div><div data-line="30" class="line-number"></div><div data-line="31" class="line-number"></div><div data-line="32" class="line-number"></div><div data-line="33" class="line-number"></div></pre></td><td class="main code"><pre><div class="line plain">@echo off
+</div><div class="line plain"> </div><div class="line plain">cd /d %~dp0src
+</div><div class="line plain"> </div><div class="line plain">set path=%~dp0..\..\depot_tools;%path%
+</div><div class="line plain">set DEPOT_TOOLS_WIN_TOOLCHAIN=0
+</div><div class="line plain"> </div><div class="line plain">if [%1]==[] goto error
+</div><div class="line plain"> </div><div class="line plain"> </div><div class="line plain">ninja -C out/mybuild86 chrome
+</div><div class="line plain">ninja -C out/mybuild86 chromedriver
+</div><div class="line plain">ninja -C out/mybuild86 mini_installer
+</div><div class="line plain"> </div><div class="line plain"> </div><div class="line plain">for %%i in (chrome.packed.7z,chromedriver.exe,mini_installer.exe,setup.exe) do (
+</div><div class="line plain">    if exist out\mybuild86\%%i (
+</div><div class="line plain">        copy out\mybuild86\%%i ..\..\build_result\%1\x86\
+</div><div class="line plain">    )
+</div><div class="line plain">)
+</div><div class="line plain"> </div><div class="line plain">REM copy out\mybuild86\chrome.packed.7z ..\..\build_result\%1\x86\
+</div><div class="line plain">REM copy out\mybuild86\chromedriver.exe ..\..\build_result\%1\x86\
+</div><div class="line plain">REM copy out\mybuild86\mini_installer.exe ..\..\build_result\%1\x86\
+</div><div class="line plain">if [%2] neq [] (
+</div><div class="line plain">    rd /s /q out\mybuild86
+</div><div class="line plain">)
+</div><div class="line plain"> </div><div class="line plain">echo Done.
+</div><div class="line plain">GOTO :EOF
+</div><div class="line plain"> </div><div class="line plain">:error
+</div><div class="line plain">echo Need a version number.
+</div></pre></td></tr></table></div></figure></notextile></div>
+<h2 id="mybuildargsgn">mybuild\args.gn</h2>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div><div data-line="5" class="line-number"></div><div data-line="6" class="line-number"></div><div data-line="7" class="line-number"></div><div data-line="8" class="line-number"></div><div data-line="9" class="line-number"></div><div data-line="10" class="line-number"></div><div data-line="11" class="line-number"></div><div data-line="12" class="line-number"></div><div data-line="13" class="line-number"></div><div data-line="14" class="line-number"></div><div data-line="15" class="line-number"></div><div data-line="16" class="line-number"></div><div data-line="17" class="line-number"></div><div data-line="18" class="line-number"></div><div data-line="19" class="line-number"></div><div data-line="20" class="line-number"></div><div data-line="21" class="line-number"></div><div data-line="22" class="line-number"></div><div data-line="23" class="line-number"></div><div data-line="24" class="line-number"></div><div data-line="25" class="line-number"></div><div data-line="26" class="line-number"></div><div data-line="27" class="line-number"></div><div data-line="28" class="line-number"></div><div data-line="29" class="line-number"></div><div data-line="30" class="line-number"></div></pre></td><td class="main code"><pre><div class="line plain"># Build arguments go here.
+</div><div class="line plain"># See "gn args &lt;out_dir&gt; --list" for available build arguments.
+</div><div class="line plain"># enable_nacl = false
+</div><div class="line plain"> </div><div class="line plain">ffmpeg_branding = "Chrome"
+</div><div class="line plain"> </div><div class="line plain">is_component_build = false
+</div><div class="line plain">is_debug = false
+</div><div class="line plain">is_official_build = true
+</div><div class="line plain"> </div><div class="line plain"># proprietary_codecs = true
+</div><div class="line plain"># remove_webcore_debug_symbols = true
+</div><div class="line plain">rtc_use_h264 = true
+</div><div class="line plain"> </div><div class="line plain">symbol_level = 1
+</div><div class="line plain">blink_symbol_level = 1
+</div><div class="line plain"> </div><div class="line plain"># syzygy_optimize = true
+</div><div class="line plain"> </div><div class="line plain"># use_jumbo_build = true
+</div><div class="line plain">media_use_ffmpeg = true
+</div><div class="line plain">media_use_libvpx = true
+</div><div class="line plain">proprietary_codecs = true
+</div><div class="line plain"># use_openh264 = true
+</div><div class="line plain"> </div><div class="line plain">google_api_key = "no"
+</div><div class="line plain">google_default_client_id = "no"
+</div><div class="line plain">google_default_client_secret = "no"
+</div><div class="line plain"> </div><div class="line plain">#x64_arch = "skylake-avx512"</div></pre></td></tr></table></div></figure></notextile></div>
+<h2 id="mybuild86argsgn">mybuild86\args.gn</h2>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div><div data-line="5" class="line-number"></div><div data-line="6" class="line-number"></div><div data-line="7" class="line-number"></div><div data-line="8" class="line-number"></div><div data-line="9" class="line-number"></div><div data-line="10" class="line-number"></div><div data-line="11" class="line-number"></div><div data-line="12" class="line-number"></div><div data-line="13" class="line-number"></div><div data-line="14" class="line-number"></div><div data-line="15" class="line-number"></div><div data-line="16" class="line-number"></div><div data-line="17" class="line-number"></div><div data-line="18" class="line-number"></div><div data-line="19" class="line-number"></div><div data-line="20" class="line-number"></div><div data-line="21" class="line-number"></div><div data-line="22" class="line-number"></div><div data-line="23" class="line-number"></div><div data-line="24" class="line-number"></div><div data-line="25" class="line-number"></div><div data-line="26" class="line-number"></div><div data-line="27" class="line-number"></div><div data-line="28" class="line-number"></div><div data-line="29" class="line-number"></div><div data-line="30" class="line-number"></div><div data-line="31" class="line-number"></div><div data-line="32" class="line-number"></div></pre></td><td class="main code"><pre><div class="line plain"># Build arguments go here.
+</div><div class="line plain"># See "gn args &lt;out_dir&gt; --list" for available build arguments.
+</div><div class="line plain">enable_nacl = false
+</div><div class="line plain"> </div><div class="line plain">ffmpeg_branding = "Chrome"
+</div><div class="line plain"> </div><div class="line plain">is_component_build = false
+</div><div class="line plain">is_debug = false
+</div><div class="line plain">is_official_build = true
+</div><div class="line plain"> </div><div class="line plain">proprietary_codecs = true
+</div><div class="line plain">#remove_webcore_debug_symbols = true
+</div><div class="line plain">rtc_use_h264 = true
+</div><div class="line plain"> </div><div class="line plain">symbol_level = 1
+</div><div class="line plain">blink_symbol_level = 1
+</div><div class="line plain"> </div><div class="line plain"># syzygy_optimize = true
+</div><div class="line plain"> </div><div class="line plain">media_use_ffmpeg = true
+</div><div class="line plain">media_use_libvpx = true
+</div><div class="line plain">proprietary_codecs = true
+</div><div class="line plain"># use_openh264 = true
+</div><div class="line plain"> </div><div class="line plain"># use_jumbo_build = true
+</div><div class="line plain"> </div><div class="line plain">target_cpu = "x86"
+</div><div class="line plain"> </div><div class="line plain">google_api_key = "no"
+</div><div class="line plain">google_default_client_id = "no"
+</div><div class="line plain">google_default_client_secret = "no"
+</div><div class="line plain"> </div></pre></td></tr></table></div></figure></notextile></div>
+<h2 id="section-3">额外的笔记</h2>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div><div data-line="5" class="line-number"></div><div data-line="6" class="line-number"></div><div data-line="7" class="line-number"></div><div data-line="8" class="line-number"></div><div data-line="9" class="line-number"></div><div data-line="10" class="line-number"></div><div data-line="11" class="line-number"></div><div data-line="12" class="line-number"></div><div data-line="13" class="line-number"></div><div data-line="14" class="line-number"></div><div data-line="15" class="line-number"></div><div data-line="16" class="line-number"></div><div data-line="17" class="line-number"></div><div data-line="18" class="line-number"></div><div data-line="19" class="line-number"></div><div data-line="20" class="line-number"></div><div data-line="21" class="line-number"></div><div data-line="22" class="line-number"></div><div data-line="23" class="line-number"></div><div data-line="24" class="line-number"></div><div data-line="25" class="line-number"></div><div data-line="26" class="line-number"></div><div data-line="27" class="line-number"></div><div data-line="28" class="line-number"></div><div data-line="29" class="line-number"></div><div data-line="30" class="line-number"></div><div data-line="31" class="line-number"></div><div data-line="32" class="line-number"></div><div data-line="33" class="line-number"></div><div data-line="34" class="line-number"></div><div data-line="35" class="line-number"></div><div data-line="36" class="line-number"></div><div data-line="37" class="line-number"></div><div data-line="38" class="line-number"></div><div data-line="39" class="line-number"></div><div data-line="40" class="line-number"></div><div data-line="41" class="line-number"></div><div data-line="42" class="line-number"></div></pre></td><td class="main code"><pre><div class="line plain"> </div><div class="line plain">生成编译文件目录
+</div><div class="line plain">gn gen out/Default
+</div><div class="line plain"> </div><div class="line plain">配置编译参数
+</div><div class="line plain">gn args out\mybuild
+</div><div class="line plain"> </div><div class="line plain">列出全部参数
+</div><div class="line plain">gn args out\mybuild --list
+</div><div class="line plain"> </div><div class="line plain">编译
+</div><div class="line plain">ninja -C out/Default chrome
+</div><div class="line plain"> </div><div class="line plain">ninja -C out/mybuild86 chrome &amp;&amp; ninja -C out/mybuild chrome
+</div><div class="line plain"> </div><div class="line plain"> </div><div class="line plain">参数
+</div><div class="line plain"> </div><div class="line plain">is_component_build = false
+</div><div class="line plain">is_debug = false
+</div><div class="line plain">symbol_level = 0
+</div><div class="line plain">enable_nacl = false
+</div><div class="line plain">remove_webcore_debug_symbols = true
+</div><div class="line plain">use_openh264 = true
+</div><div class="line plain">rtc_use_h264 = true
+</div><div class="line plain">ffmpeg_branding = "Chrome"
+</div><div class="line plain"> </div><div class="line plain">#这个参数会导致错误
+</div><div class="line plain">enable_wifi_display = true
+</div><div class="line plain"> </div><div class="line plain">syzygy_optimize = true
+</div><div class="line plain"> </div><div class="line plain">#这个一般不需要
+</div><div class="line plain">is_win_fastlink = true
+</div><div class="line plain"> </div><div class="line plain">#32位的加一行
+</div><div class="line plain">target_cpu = "x86"
+</div><div class="line plain"> </div><div class="line plain"> </div><div class="line plain">google_api_key = "no"
+</div><div class="line plain">google_default_client_id = "no"
+</div><div class="line plain">google_default_client_secret = "no"</div></pre></td></tr></table></div></figure></notextile></div>
+<h1 id="section-4">编译消耗</h1>
+<p>chrome编译似乎给100GB内存，32独占物理核，编译依然是2小时左右，时间和我笔记本32GB-8750H时间差不多。不像firefox只要20分钟就能编译完成，似乎远远快于笔记本。</p>
+<p>磁盘嘛，一个版本大概50GB,给足100GB笔记满足，如果像我上面脚本一样要编译x86和x64大概需要200GB-300GB的磁盘剩余空间。</p>
+<p><img src="/images/chrome_build.png" alt="ESXI Chromium build" class="center fancybox"></p>
+<h1 id="section-5">参考资料</h1>
+<ol>
+<li><a href="https://gist.github.com/jedi4ever/d095656ae0f0eca4a83ebb2b331da367" target="_blank">Building chromium on OSX</a></li>
+<li><a href="https://chromium.woolyss.com/" target="_blank">The free and open-source project behind Google Chrome</a></li>
+<li><a href="https://chromium.googlesource.com/chromium/src/+/master/docs/windows_build_instructions.md" target="_blank">Checking out and Building Chromium for Windows</a></li>
+</ol>
+</div>
+<footer>
+<p class="meta">
+<span class="byline author vcard">Posted by <span class="fn">Rexdf</span></span>
+<time class="data-article month-02 season-winter" datetime="2021-02-27T20:20:00+08:00" pubdate><span class="month">Feb</span> <span class="day">27th</span> <span class="year">2021</span></time>
+<span class="categories">
+<a class="category" href="/blog/categories/ri-chang/">日常</a>
+</span>
+</p>
+<div class="sharing">
+</div>
+<p class="meta">
+<a class="basic-alignment left" href="/blog/2020/12/13/proxmoxbi-ji/" title="Previous Post: proxmox笔记">&laquo; proxmox笔记</a>
+<a class="basic-alignment right" href="/blog/2021/07/11/apple-m1-bian-yi-tensorflow/" title="Next Post: Apple M1 编译tensorflow">Apple M1 编译tensorflow &raquo;</a>
+</p>
+</footer>
+</article>
+<section>
+<h1>Comments</h1>
+<div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
+</div>
+<aside class="sidebar">
+<section>
+<h1>Categories</h1>
+<ul id="categories">
+<li class="category"><a href="/blog/categories/acm/">ACM <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/algorithm/">Algorithm <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/assembly/">Assembly <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/cygwin/">Cygwin <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/gnu/">GNU <sup>8</sup></a></li>
+<li class="category"><a href="/blog/categories/math/">Math <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/octopress/">Octopress <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/programming/">Programming <sup>6</sup></a></li>
+<li class="category"><a href="/blog/categories/security/">Security <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sublime/">Sublime <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/synology/">Synology <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sysadmin/">SysAdmin <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/web/">Web <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/windows/">Windows <sup>7</sup></a></li>
+<li class="category"><a href="/blog/categories/proxmox/">proxmox <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/ri-chang/">日常 <sup>37</sup></a></li>
+</ul>
+</section>
+<section>
+<h1>Recent Posts</h1>
+<ul id="recent_posts">
+<li class="post">
+<a href="/blog/2024/12/16/fu-wu-qi-wa-kuang-bing-du-de-cha-sha/">服务器挖矿病毒的查杀</a>
+</li>
+<li class="post">
+<a href="/blog/2021/07/11/apple-m1-bian-yi-tensorflow/">Apple M1 编译tensorflow</a>
+</li>
+<li class="post">
+<a href="/blog/2021/02/27/chromiumbian-ma-qi-wen-ti/">Chromium编码器问题</a>
+</li>
+<li class="post">
+<a href="/blog/2020/12/13/proxmoxbi-ji/">Proxmox笔记</a>
+</li>
+<li class="post">
+<a href="/blog/2020/11/15/lun-yan-du-yu-shen-du/">论广度与深度</a>
+</li>
+</ul>
+</section>
+<section>
+<iframe frameborder="0" scrolling="no" referrerpolicy="unsafe-url" style="width:283px;height:200px" src="https://t.rexdf.org/?m=app&a=showwidget&name=rexdf&type=1&width=283px&height=500px"></iframe>
+</section>
+<section>
+<h1>GitHub Repos</h1>
+<ul id="gh_repos">
+<li class="loading">Status updating...</li>
+</ul>
+<a href="https://github.com/rexdf">@rexdf</a> on GitHub
+<script type="text/javascript">$(document).ready(function(){if(!window.jXHR){var e=document.createElement("script");e.type="text/javascript",e.src="/javascripts/libs/jXHR.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}github.showRepos({user:"rexdf",count:0,skip_forks:!0,target:"#gh_repos"})})</script>
+</section>
+</aside>
+</div>
+</div>
+<footer role="contentinfo"><p>
+<span class="credit">Copyright &copy; 2024 - Rexdf -</span> |
+<span class="credit">Powered by <a name="bottoms" target="_blank" href="http://octopress.org">Octopress</a></span> |
+<span class="credit">Theme by ：<a href="https://blog.rexdf.org/" target="_blank" rel="theme">Rexdf</a></span> |
+<span class="credit">Host by：<a href="https://github.com/" target="_blank" rel="host">Github.com</a></span> |
+<span class="credit">版权声明：<a href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" target="_blank" rel="license">CC BY-NC-SA 3.0</a><img src="https://analytics.rexdf.net/piwik.php?idsite=1&amp;rec=1" style="border:0" alt="" referrerpolicy="no-referrer-when-downgrade"></span>|
+<span class="credit"><a href="/sitemap.xml" rel="sitemap">sitemap</a></span>
+</p>
+<script type="text/javascript" src="https://tajs.qq.com/stats?sId=30296377" charset="UTF-8"></script>
+</footer>
+<script type="text/javascript">var disqus_shortname="rexdf",disqus_identifier="https://i.rexdf.org/blog/2021/02/27/chromiumbian-ma-qi-wen-ti/",disqus_url="https://i.rexdf.org/blog/2021/02/27/chromiumbian-ma-qi-wen-ti/",disqus_script="embed.js";!function(){var e=document.createElement("script");e.type="text/javascript",e.async=!0,e.src="//"+disqus_shortname+".disqus.com/"+disqus_script,(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(e)}()</script>
+<script type="text/javascript">$(function(){$(".entry-content").each(function(t){var r=t;$(this).find("img.fancybox").each(function(){var t=$(this),a=t.attr("title"),n=t.attr("class");t.removeAttr("class"),t.wrap('<a href="'+this.src+'" class="'+n+'" rel="gallery'+r+'" />'),""!=a&&t.parent().attr("title",a)})}),$(".fancybox").fancybox()})</script>
+</body>
+</html>

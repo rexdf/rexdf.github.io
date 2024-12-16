@@ -1,0 +1,230 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<script type="text/javascript">var _speedMark=new Date</script>
+<meta charset="utf-8">
+<title>Dnsmasq的一些问题 - Rexdf</title>
+<meta name="author" content="Rexdf">
+<meta name="description" content="配置文件的位置 顺序有影响 启动时机 关于rc.local 与systemd-resolved共存 在openvz下启动 dnsmasq似乎常常用于简单用途的dns缓存，比如防止解析泄漏、作为dhcp服务器等。可以跑在服务器上，但也许更多的情况是跑在手机上或者路由器上。 &hellip;">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' data: https://hm.baidu.com https://tajs.qq.com https://ssl.google-analytics.com https://static.rexdf.org https://*.disquscdn.com https://rexdf.disqus.com https://api.github.com https://ssl.google-analytics.com https://disqus.com https://analytics.rexdf.net; connect-src 'self' https://static.rexdf.org https://analytics.rexdf.net https://hm.baidu.com; img-src data: https://*; font-src data: https://*; child-src 'none'; style-src 'self' 'unsafe-inline' https://*; frame-src 'self' https://t.rexdf.org http://t.rexdf.org https://rexdf.disqus.com https://disqus.com">
+<link rel="canonical" href="https://i.rexdf.org/blog/2018/11/13/dnsmasqde-yi-xie-wen-ti">
+<link rel="dns-prefetch" href="https://static.rexdf.org/">
+<link href="/favicon.ico" rel="icon">
+<link id="main-css" href="/stylesheets/screen.css" media="screen,projection" rel="stylesheet" type="text/css" title="pc">
+<link href="/stylesheets/screen_mobile.css" rel="alternate stylesheet" type="text/css" title="mobile">
+<link href="/atom.xml" rel="alternate" title="Rexdf" type="application/atom+xml">
+<script src="/javascripts/libs/jquery.min.js"></script>
+<script src="/javascripts/octopress-rexdf.min.js" type="text/javascript"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+      
+      toggle_theme();
+  });
+</script>
+<script type="text/javascript" async src="https://static.rexdf.org/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript">var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-55590409-1"]),_gaq.push(["_trackPageview"]),function(){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(t,e)}()</script>
+<script>var _hmt=_hmt||[];!function(){var e=document.createElement("script");e.src="//hm.baidu.com/hm.js?32192d95b89fbefa0875c4c95adb1412";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}()</script>
+<script src="/javascripts/fancybox/jquery.fancybox.pack.js"></script>
+<link rel="stylesheet" type="text/css" href="/javascripts/fancybox/jquery.fancybox.css">
+<script type="text/javascript">var _paq=_paq||[];_paq.push(["trackPageView"]),_paq.push(["enableLinkTracking"]),function(){var e="https://analytics.rexdf.net/";_paq.push(["setTrackerUrl",e+"piwik.php"]),_paq.push(["setSiteId","1"]);var a=document,t=a.createElement("script"),p=a.getElementsByTagName("script")[0];t.type="text/javascript",t.async=!0,t.defer=!0,t.src=e+"piwik.js",p.parentNode.insertBefore(t,p)}()</script>
+</head>
+<body class="low-contrast-linen-wptouch-bg">
+<header role="banner"><hgroup>
+<h1 id="header-title"><a href="/">Rexdf</a></h1>
+<h2 id="subtitle">The devil is in the Details.</h2>
+</hgroup>
+</header>
+<nav role="navigation"><ul class="subscription" data-subscription="rss">
+<li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+</ul>
+<form action="https://google.com/search" method="get">
+<fieldset role="search">
+<input type="hidden" name="q" value="site:i.rexdf.org">
+<input class="search" type="text" name="q" results="0" placeholder="Search">
+</fieldset>
+</form>
+<ul class="main-navigation">
+<li><a href="/">Blog</a></li>
+<li><a href="/blog/archives/">Archives</a></li>
+<li><a href="/idea/">Idea</a></li>
+<li><a href="/share/">Share</a></li>
+<li><a href="/books/">Books</a></li>
+<li><a href="/donate/">Donate</a></li>
+<li><a target="_blank" href="https://blog.rexdf.org" style="font-family:Shadows Into Light">Main-Blog</a></li>
+</ul>
+</nav>
+<div id="main">
+<div id="content">
+<div>
+<article class="hentry" role="article">
+<header>
+<h1 class="entry-title">Dnsmasq的一些问题</h1>
+<p class="meta">
+<time class="data-article month-11 season-autumn" datetime="2018-11-13T16:58:03+08:00" pubdate><span class="month">Nov</span> <span class="day">13th</span> <span class="year">2018</span></time>
+| <a href="#disqus_thread" data-disqus-identifier="https://i.rexdf.org">Comments</a>
+</p>
+</header>
+<div class="entry-content"><ul class="markdown-toc">
+<li><a href="#section">配置文件的位置</a></li>
+<li><a href="#section-1">顺序有影响</a></li>
+<li><a href="#section-2">启动时机</a></li>
+<li><a href="#rclocal">关于<code>rc.local</code></a></li>
+<li><a href="#systemd-resolved">与systemd-resolved共存</a></li>
+<li><a href="#openvz">在openvz下启动</a></li>
+</ul>
+<p>dnsmasq似乎常常用于简单用途的dns缓存，比如防止解析泄漏、作为dhcp服务器等。可以跑在服务器上，但也许更多的情况是跑在手机上或者路由器上。本文记录几个使用过程中遇到的问题。</p>
+<h2 id="section">配置文件的位置</h2>
+<p>之前我一般是修改的<code>/etc/dnsmasq.conf</code>，但其实更好的是，在<code>/etc/dnsmasq.d/</code>新建按功能命名的conf文件。</p>
+<h2 id="section-1">顺序有影响</h2>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div><div data-line="5" class="line-number"></div></pre></td><td class="main code"><pre><div class="line plain">interface=tap_soft
+</div><div class="line plain">bind-interfaces
+</div><div class="line plain">listen-address=127.0.0.1,172.10.1.1
+</div><div class="line plain">dhcp-range=tap_soft,172.10.1.10,172.10.1.240,6h
+</div><div class="line plain">dhcp-option=tap_soft,3,172.10.1.1
+</div></pre></td></tr></table></div></figure></notextile></div>
+<p>一定要是这个顺序，交换下前三行顺序，然后就怎么都起不来dnsmasq.service了。</p>
+<h2 id="section-2">启动时机</h2>
+<p>一般我都是改动了一下的。按照如下提示修改。</p>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div><div data-line="5" class="line-number"></div><div data-line="6" class="line-number"></div><div data-line="7" class="line-number"></div><div data-line="8" class="line-number"></div><div data-line="9" class="line-number"></div><div data-line="10" class="line-number"></div><div data-line="11" class="line-number"></div><div data-line="12" class="line-number"></div></pre></td><td class="main code"><pre><div class="line plain">nano /lib/systemd/system/dnsmasq.service
+</div><div class="line plain">[Unit]
+</div><div class="line plain">Description=dnsmasq - A lightweight DHCP and caching DNS server
+</div><div class="line plain">Requires=network.target sys-subsystem-net-devices-tap_soft.device rc.local.service
+</div><div class="line plain">Wants=sys-subsystem-net-devices-tap_soft.device nss-lookup.target
+</div><div class="line plain">Before=nss-lookup.target
+</div><div class="line plain">After=sys-subsystem-net-devices-tap_soft.device network.target
+</div><div class="line plain"> </div><div class="line plain">[Service]
+</div><div class="line plain"> </div><div class="line plain">Restart=on-failure
+</div><div class="line plain">RestartSec=20
+</div></pre></td></tr></table></div></figure></notextile></div>
+<h2 id="rclocal">关于<code>rc.local</code></h2>
+<p>一般情况下，似乎只在openwrt之类的路由器上见得比较多，如果有systemd，写个systemd unit最好不过。写个<code>/etc/init.d/</code>脚本也行。</p>
+<p>我的<code>/etc/rc.loal</code>内容如下</p>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div></pre></td><td class="main code"><pre><div class="line plain">iptables -t nat -A POSTROUTING -s 172.10.1.0/24 -o eth0 -j SNAT --to-source 8.8.8.8
+</div><div class="line plain"> </div><div class="line plain">exit 0
+</div><div class="line plain"> </div></pre></td></tr></table></div></figure></notextile></div>
+<p>然而每次reboot重启之后，dnsmasq都没有启动，提示的是<code>dnsmasq.service: Job dnsmasq.service/start failed with result 'dependency'.</code>。而登录上去手动执行<code>systemctl start dnsmasq</code>却可以正常启动。用<code>journalctl -xe</code>查看日志，找到如下：</p>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div></pre></td><td class="main code"><pre><div class="line plain">GoogleApp rc.local[770]: Another app is currently holding the xtables lock. Perhaps you want to use the -w option?
+</div><div class="line plain">GoogleApp systemd[1]: Failed to start /etc/rc.local Compatibility.
+</div></pre></td></tr></table></div></figure></notextile></div>
+<p>机子上其实还装了docker和wireguard，可能是执行rc.local的时候，正好有其他的正在执行iptables。所以解决办法其实也挺简单将<code>/etc/rc.loal</code>最前面加一个<code>sleep 5</code>，然后就好了，反复重启都暂时没遇到dnsmasq起不来的情况了。 像这种用<code>sleep</code>延迟执行时间的做法显然不完美，正确的做法应该是写个systemd，然后写好依赖，然而现在能用，也就此作罢。</p>
+<h2 id="systemd-resolved">与systemd-resolved共存</h2>
+<p>只需要注意systemd-resolved侦听的是127.0.0.53:53就好了。 参考如下命令笔记</p>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div><div data-line="5" class="line-number"></div><div data-line="6" class="line-number"></div><div data-line="7" class="line-number"></div><div data-line="8" class="line-number"></div><div data-line="9" class="line-number"></div><div data-line="10" class="line-number"></div><div data-line="11" class="line-number"></div></pre></td><td class="main code"><pre><div class="line plain"># https://wiki.archlinux.org/index.php?title=Systemd-resolved&amp;redirect=no
+</div><div class="line plain"> </div><div class="line plain">ln -sf /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
+</div><div class="line plain"> </div><div class="line plain">nano /etc/systemd/resolved.conf.d/dns_servers.conf
+</div><div class="line plain"> </div><div class="line plain">[Resolve]
+</div><div class="line plain">DNS=1.239.100.100 1.233.43.71
+</div><div class="line plain"> </div><div class="line plain"> </div><div class="line plain">systemd-resolve --status
+</div></pre></td></tr></table></div></figure></notextile></div>
+<h2 id="openvz">在openvz下启动</h2>
+<p>大都启动有问题，但是去掉 <code>interface=tap_soft</code> 与 <code>bind-interfaces</code> 貌似可以一用。</p>
+</div>
+<footer>
+<p class="meta">
+<span class="byline author vcard">Posted by <span class="fn">Rexdf</span></span>
+<time class="data-article month-11 season-autumn" datetime="2018-11-13T16:58:03+08:00" pubdate><span class="month">Nov</span> <span class="day">13th</span> <span class="year">2018</span></time>
+<span class="categories">
+<a class="category" href="/blog/categories/ri-chang/">日常</a>
+</span>
+</p>
+<div class="sharing">
+</div>
+<p class="meta">
+<a class="basic-alignment left" href="/blog/2018/10/11/owncloud-clientdeng-lu-chu-xian-forbidden/" title="Previous Post: owncloud-client登录出现Forbidden">&laquo; owncloud-client登录出现Forbidden</a>
+<a class="basic-alignment right" href="/blog/2018/11/22/ji-lu-yi-ci-ovzxia-de-sshfu-wu-qi-dong-shi-bai/" title="Next Post: 记录一次ovz下的ssh服务启动失败">记录一次ovz下的ssh服务启动失败 &raquo;</a>
+</p>
+</footer>
+</article>
+<section>
+<h1>Comments</h1>
+<div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
+</div>
+<aside class="sidebar">
+<section>
+<h1>Categories</h1>
+<ul id="categories">
+<li class="category"><a href="/blog/categories/acm/">ACM <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/algorithm/">Algorithm <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/assembly/">Assembly <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/cygwin/">Cygwin <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/gnu/">GNU <sup>8</sup></a></li>
+<li class="category"><a href="/blog/categories/math/">Math <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/octopress/">Octopress <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/programming/">Programming <sup>6</sup></a></li>
+<li class="category"><a href="/blog/categories/security/">Security <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sublime/">Sublime <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/synology/">Synology <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sysadmin/">SysAdmin <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/web/">Web <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/windows/">Windows <sup>7</sup></a></li>
+<li class="category"><a href="/blog/categories/proxmox/">proxmox <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/ri-chang/">日常 <sup>37</sup></a></li>
+</ul>
+</section>
+<section>
+<h1>Recent Posts</h1>
+<ul id="recent_posts">
+<li class="post">
+<a href="/blog/2024/12/16/fu-wu-qi-wa-kuang-bing-du-de-cha-sha/">服务器挖矿病毒的查杀</a>
+</li>
+<li class="post">
+<a href="/blog/2021/07/11/apple-m1-bian-yi-tensorflow/">Apple M1 编译tensorflow</a>
+</li>
+<li class="post">
+<a href="/blog/2021/02/27/chromiumbian-ma-qi-wen-ti/">Chromium编码器问题</a>
+</li>
+<li class="post">
+<a href="/blog/2020/12/13/proxmoxbi-ji/">Proxmox笔记</a>
+</li>
+<li class="post">
+<a href="/blog/2020/11/15/lun-yan-du-yu-shen-du/">论广度与深度</a>
+</li>
+</ul>
+</section>
+<section>
+<iframe frameborder="0" scrolling="no" referrerpolicy="unsafe-url" style="width:283px;height:200px" src="https://t.rexdf.org/?m=app&a=showwidget&name=rexdf&type=1&width=283px&height=500px"></iframe>
+</section>
+<section>
+<h1>GitHub Repos</h1>
+<ul id="gh_repos">
+<li class="loading">Status updating...</li>
+</ul>
+<a href="https://github.com/rexdf">@rexdf</a> on GitHub
+<script type="text/javascript">$(document).ready(function(){if(!window.jXHR){var e=document.createElement("script");e.type="text/javascript",e.src="/javascripts/libs/jXHR.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}github.showRepos({user:"rexdf",count:0,skip_forks:!0,target:"#gh_repos"})})</script>
+</section>
+</aside>
+</div>
+</div>
+<footer role="contentinfo"><p>
+<span class="credit">Copyright &copy; 2024 - Rexdf -</span> |
+<span class="credit">Powered by <a name="bottoms" target="_blank" href="http://octopress.org">Octopress</a></span> |
+<span class="credit">Theme by ：<a href="https://blog.rexdf.org/" target="_blank" rel="theme">Rexdf</a></span> |
+<span class="credit">Host by：<a href="https://github.com/" target="_blank" rel="host">Github.com</a></span> |
+<span class="credit">版权声明：<a href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" target="_blank" rel="license">CC BY-NC-SA 3.0</a><img src="https://analytics.rexdf.net/piwik.php?idsite=1&amp;rec=1" style="border:0" alt="" referrerpolicy="no-referrer-when-downgrade"></span>|
+<span class="credit"><a href="/sitemap.xml" rel="sitemap">sitemap</a></span>
+</p>
+<script type="text/javascript" src="https://tajs.qq.com/stats?sId=30296377" charset="UTF-8"></script>
+</footer>
+<script type="text/javascript">var disqus_shortname="rexdf",disqus_identifier="https://i.rexdf.org/blog/2018/11/13/dnsmasqde-yi-xie-wen-ti/",disqus_url="https://i.rexdf.org/blog/2018/11/13/dnsmasqde-yi-xie-wen-ti/",disqus_script="embed.js";!function(){var e=document.createElement("script");e.type="text/javascript",e.async=!0,e.src="//"+disqus_shortname+".disqus.com/"+disqus_script,(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(e)}()</script>
+<script type="text/javascript">$(function(){$(".entry-content").each(function(t){var r=t;$(this).find("img.fancybox").each(function(){var t=$(this),a=t.attr("title"),n=t.attr("class");t.removeAttr("class"),t.wrap('<a href="'+this.src+'" class="'+n+'" rel="gallery'+r+'" />'),""!=a&&t.parent().attr("title",a)})}),$(".fancybox").fancybox()})</script>
+</body>
+</html>

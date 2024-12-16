@@ -1,0 +1,288 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<script type="text/javascript">var _speedMark=new Date</script>
+<meta charset="utf-8">
+<title>Octopress博客更新日志 - Rexdf</title>
+<meta name="author" content="Rexdf">
+<meta name="description" content="1.CDN加速 2.增加分类列表 2.1.注册插件 2.2建立aside模板 2.3添加CSS 3.图像CDN加速 3.1原生markdown语法CDN加速(原创) 3.2 Octopress定义的语法加速 4.Pygment错误 5.大量Configuration信息 &hellip;">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' data: https://hm.baidu.com https://tajs.qq.com https://ssl.google-analytics.com https://static.rexdf.org https://*.disquscdn.com https://rexdf.disqus.com https://api.github.com https://ssl.google-analytics.com https://disqus.com https://analytics.rexdf.net; connect-src 'self' https://static.rexdf.org https://analytics.rexdf.net https://hm.baidu.com; img-src data: https://*; font-src data: https://*; child-src 'none'; style-src 'self' 'unsafe-inline' https://*; frame-src 'self' https://t.rexdf.org http://t.rexdf.org https://rexdf.disqus.com https://disqus.com">
+<link rel="canonical" href="https://i.rexdf.org/blog/2014/09/26/octopressbo-ke-geng-xin-ri-zhi">
+<link rel="dns-prefetch" href="https://static.rexdf.org/">
+<link href="/favicon.ico" rel="icon">
+<link id="main-css" href="/stylesheets/screen.css" media="screen,projection" rel="stylesheet" type="text/css" title="pc">
+<link href="/stylesheets/screen_mobile.css" rel="alternate stylesheet" type="text/css" title="mobile">
+<link href="/atom.xml" rel="alternate" title="Rexdf" type="application/atom+xml">
+<script src="/javascripts/libs/jquery.min.js"></script>
+<script src="/javascripts/octopress-rexdf.min.js" type="text/javascript"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+      
+      toggle_theme();
+  });
+</script>
+<script type="text/javascript" async src="https://static.rexdf.org/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript">var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-55590409-1"]),_gaq.push(["_trackPageview"]),function(){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(t,e)}()</script>
+<script>var _hmt=_hmt||[];!function(){var e=document.createElement("script");e.src="//hm.baidu.com/hm.js?32192d95b89fbefa0875c4c95adb1412";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}()</script>
+<script src="/javascripts/fancybox/jquery.fancybox.pack.js"></script>
+<link rel="stylesheet" type="text/css" href="/javascripts/fancybox/jquery.fancybox.css">
+<script type="text/javascript">var _paq=_paq||[];_paq.push(["trackPageView"]),_paq.push(["enableLinkTracking"]),function(){var e="https://analytics.rexdf.net/";_paq.push(["setTrackerUrl",e+"piwik.php"]),_paq.push(["setSiteId","1"]);var a=document,t=a.createElement("script"),p=a.getElementsByTagName("script")[0];t.type="text/javascript",t.async=!0,t.defer=!0,t.src=e+"piwik.js",p.parentNode.insertBefore(t,p)}()</script>
+</head>
+<body class="low-contrast-linen-wptouch-bg">
+<header role="banner"><hgroup>
+<h1 id="header-title"><a href="/">Rexdf</a></h1>
+<h2 id="subtitle">The devil is in the Details.</h2>
+</hgroup>
+</header>
+<nav role="navigation"><ul class="subscription" data-subscription="rss">
+<li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+</ul>
+<form action="https://google.com/search" method="get">
+<fieldset role="search">
+<input type="hidden" name="q" value="site:i.rexdf.org">
+<input class="search" type="text" name="q" results="0" placeholder="Search">
+</fieldset>
+</form>
+<ul class="main-navigation">
+<li><a href="/">Blog</a></li>
+<li><a href="/blog/archives/">Archives</a></li>
+<li><a href="/idea/">Idea</a></li>
+<li><a href="/share/">Share</a></li>
+<li><a href="/books/">Books</a></li>
+<li><a href="/donate/">Donate</a></li>
+<li><a target="_blank" href="https://blog.rexdf.org" style="font-family:Shadows Into Light">Main-Blog</a></li>
+</ul>
+</nav>
+<div id="main">
+<div id="content">
+<div>
+<article class="hentry" role="article">
+<header>
+<h1 class="entry-title">Octopress博客更新日志</h1>
+<p class="meta">
+<time class="data-article month-09 season-autumn" datetime="2014-09-26T16:25:37+08:00" pubdate><span class="month">Sep</span> <span class="day">26th</span> <span class="year">2014</span></time>
+| <a href="#disqus_thread" data-disqus-identifier="https://i.rexdf.org">Comments</a>
+</p>
+</header>
+<div class="entry-content"><ul class="markdown-toc">
+<li><a href="#cdn">1.CDN加速</a></li>
+<li><a href="#section">2.增加分类列表</a><ul>
+<li><a href="#section-1">2.1.注册插件</a></li>
+<li><a href="#aside">2.2建立aside模板</a></li>
+<li><a href="#css">2.3添加CSS</a></li>
+</ul>
+</li>
+<li><a href="#cdn-1">3.图像CDN加速</a><ul>
+<li><a href="#markdowncdn">3.1原生markdown语法CDN加速(原创)</a></li>
+<li><a href="#octopress">3.2 Octopress定义的语法加速</a></li>
+</ul>
+</li>
+<li><a href="#pygment">4.Pygment错误</a></li>
+<li><a href="#configuration">5.大量Configuration信息</a></li>
+</ul>
+<p>Octopress用了应该超过一年了，感觉还不错，看到了不少迁移到基于Python的Pelican和基于nodejs的Hexo，不过暂时我还没打算迁移过去。因为到现在才刚刚适应Jekyll的环境，虽然生成的时候确实非常之慢。</p>
+<h2 id="cdn">1.CDN加速</h2>
+<ul>
+<li>全站静态文件启动cdn加速。</li>
+</ul>
+<p>这个似乎并不困难，但是我现在有200多篇blog，一篇篇来改显然不现实。我希望的是可以自动化替换，并且可以随时修改的。</p>
+<p>暂时我没有发现scss和ruby变量通用的方法，所以scss里面专用一个变量，在octopress/sass/screen.scss的第三行加入一行<code>$cdn_prefix:"http:cdn.example.com"</code>，这样便可以在各个scss文件中使用这个变量了。注意的是，scss语法中，字符替换和ruby的类似。是这样使用的：<code>background: $page-bg image-url('#{$cdn_prefix}/images/back_gb.jpg') top center fixed;</code>，也就是说，<code>'#{$var}'</code>这个<code>$var</code>会被替换。</p>
+<p>另外一个便是ruby代码和html模板中的变量。ruby代码中我使用的是<code>Jekyll.configuration({})['cdn_prefix']</code>来读取<code>_config.yml</code>中的配置，而html中则是使用<code>{ { site.cdn_prefix } }</code>来替换字符。</p>
+<h2 id="section">2.增加分类列表</h2>
+<ul>
+<li>category list tag</li>
+</ul>
+<p>这个网上解决方案很多，而且还有云标签等不同的实现。问题是网上找的的好像都不支持中文。原因是他们处理超链接的时候没有采用Jekyll的默认方式，而是自作聪明写了一段代码。下面是我的代码。</p>
+<h3 id="section-1">2.1.注册插件</h3>
+<p>在<code>plugins/</code>增加<code>category_list_tag.rb</code>文件，内容如下</p>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption>plugins/category_list_tag.rb<a href="http://blog.rexdf.org">MyBlog</a></figcaption><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div><div data-line="5" class="line-number"></div><div data-line="6" class="line-number"></div><div data-line="7" class="line-number"></div><div data-line="8" class="line-number"></div><div data-line="9" class="line-number marked start"></div><div data-line="10" class="line-number marked end"></div><div data-line="11" class="line-number"></div><div data-line="12" class="line-number"></div><div data-line="13" class="line-number"></div><div data-line="14" class="line-number"></div><div data-line="15" class="line-number"></div><div data-line="16" class="line-number"></div><div data-line="17" class="line-number"></div></pre></td><td class="main code"><pre><div class="line ruby"><span class="k">module</span> <span class="nn">Jekyll</span>
+</div><div class="line ruby">  <span class="k">class</span> <span class="nc">CategoryListTag</span> <span class="o">&lt;</span> <span class="ss">Liquid</span><span class="p">:</span><span class="ss">:Tag</span>
+</div><div class="line ruby">    <span class="k">def</span> <span class="nf">render</span><span class="p">(</span><span class="n">context</span><span class="p">)</span>
+</div><div class="line ruby">      <span class="n">html</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+</div><div class="line ruby">      <span class="n">categories</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">registers</span><span class="o">[</span><span class="ss">:site</span><span class="o">].</span><span class="n">categories</span><span class="o">.</span><span class="n">keys</span>
+</div><div class="line ruby">      <span class="n">categories</span><span class="o">.</span><span class="n">sort</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">category</span><span class="o">|</span>
+</div><div class="line ruby">        <span class="n">posts_in_category</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">registers</span><span class="o">[</span><span class="ss">:site</span><span class="o">].</span><span class="n">categories</span><span class="o">[</span><span class="n">category</span><span class="o">].</span><span class="n">size</span>
+</div><div class="line ruby">        <span class="n">category_dir</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">registers</span><span class="o">[</span><span class="ss">:site</span><span class="o">].</span><span class="n">config</span><span class="o">[</span><span class="s1">&#39;category_dir&#39;</span><span class="o">]</span>
+</div><div class="line marked start ruby">        <span class="c1">#category_url = File.join(category_dir, category.gsub(/_|\P{Word}/, &#39;-&#39;).gsub(/-{2,}/, &#39;-&#39;).downcase)</span>
+</div><div class="line marked end ruby">        <span class="n">html</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;&lt;li class=&#39;category&#39;&gt;&lt;a href=&#39;/</span><span class="si">#{</span><span class="n">category_dir</span><span class="si">}</span><span class="s2">/</span><span class="si">#{</span><span class="n">category</span><span class="o">.</span><span class="n">to_url</span><span class="si">}</span><span class="s2">/&#39;&gt;</span><span class="si">#{</span><span class="n">category</span><span class="si">}</span><span class="s2"> (</span><span class="si">#{</span><span class="n">posts_in_category</span><span class="si">}</span><span class="s2">)&lt;/a&gt;&lt;/li&gt;</span><span class="se">\n</span><span class="s2">&quot;</span>
+</div><div class="line ruby">      <span class="k">end</span>
+</div><div class="line ruby">      <span class="n">html</span>
+</div><div class="line ruby">    <span class="k">end</span>
+</div><div class="line ruby">  <span class="k">end</span>
+</div><div class="line ruby"><span class="k">end</span>
+</div><div class="line ruby"> </div><div class="line ruby"><span class="ss">Liquid</span><span class="p">:</span><span class="ss">:Template</span><span class="o">.</span><span class="n">register_tag</span><span class="p">(</span><span class="s1">&#39;category_list&#39;</span><span class="p">,</span> <span class="ss">Jekyll</span><span class="p">:</span><span class="ss">:CategoryListTag</span><span class="p">)</span>
+</div></pre></td></tr></table></div></figure></notextile></div>
+<p>这里重点是第10行，<code>#{category.to_url}</code>是关键，这样对中文的支持就没有问题了。ruby会自动把汉字转换成拼音，日语转换成罗马字母。</p>
+<h3 id="aside">2.2建立aside模板</h3>
+<p>然后新建 <code>source/_inclide/custom/asides/category_list.html</code>，内容如下：</p>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption>source/_inclide/custom/asides/category_list.html<a href="http://blog.rexdf.org">MyBlog</a></figcaption><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div><div data-line="5" class="line-number"></div><div data-line="6" class="line-number"></div></pre></td><td class="main code"><pre><div class="line html"><span class="nt">&lt;section&gt;</span>
+</div><div class="line html">  <span class="nt">&lt;h1&gt;</span>Categories<span class="nt">&lt;/h1&gt;</span>
+</div><div class="line html">  <span class="nt">&lt;ul</span> <span class="na">id=</span><span class="s">&quot;categories&quot;</span><span class="nt">&gt;</span>
+</div><div class="line html">    { % category_list % }
+</div><div class="line html">  <span class="nt">&lt;/ul&gt;</span>
+</div><div class="line html"><span class="nt">&lt;/section&gt;</span>
+</div></pre></td></tr></table></div></figure></notextile></div>
+<h3 id="css">2.3添加CSS</h3>
+<p>修改<code>sass/custom/_styles.scss</code>，添加如下内容，这个自定义符合自己主题搭配的就好。</p>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption>sass/custom/_styles.scss<a href="http://blog.rexdf.org">MyBlog</a></figcaption><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div><div data-line="5" class="line-number"></div><div data-line="6" class="line-number"></div><div data-line="7" class="line-number"></div><div data-line="8" class="line-number"></div><div data-line="9" class="line-number"></div><div data-line="10" class="line-number"></div><div data-line="11" class="line-number"></div><div data-line="12" class="line-number"></div><div data-line="13" class="line-number"></div></pre></td><td class="main code"><pre><div class="line scss"><span class="nn">#markdown-toc</span><span class="nd">:before</span> <span class="p">{</span>
+</div><div class="line scss">  <span class="na">content</span><span class="o">:</span> <span class="s2">&quot;目录&quot;</span><span class="p">;</span>
+</div><div class="line scss">  <span class="na">font-weight</span><span class="o">:</span> <span class="no">bold</span><span class="p">;</span>
+</div><div class="line scss"><span class="p">}</span>
+</div><div class="line scss"><span class="nt">ul</span><span class="nn">#markdown-toc</span> <span class="p">{</span>
+</div><div class="line scss">  <span class="na">list-style</span><span class="o">:</span> <span class="no">none</span><span class="p">;</span>
+</div><div class="line scss">  <span class="na">float</span><span class="o">:</span> <span class="no">right</span><span class="p">;</span>
+</div><div class="line scss">  <span class="k">@include</span><span class="nd"> shadow-box</span><span class="p">;</span>
+</div><div class="line scss">  <span class="na">background-color</span><span class="o">:</span> <span class="nb">white</span><span class="p">;</span>
+</div><div class="line scss">  <span class="na">border</span><span class="o">:</span> <span class="mi">0</span><span class="mf">.5</span><span class="kt">em</span> <span class="no">solid</span> <span class="nf">rgba</span><span class="p">(</span><span class="mi">224</span><span class="o">,</span> <span class="mi">224</span><span class="o">,</span> <span class="mi">248</span><span class="o">,</span> <span class="mi">0</span><span class="mf">.1</span><span class="p">);</span>
+</div><div class="line scss">  <span class="na">padding</span><span class="o">:</span><span class="mi">5</span><span class="kt">px</span><span class="p">;</span>
+</div><div class="line scss">  <span class="na">margin-left</span><span class="o">:</span><span class="mi">10</span><span class="kt">px</span><span class="p">;</span>
+</div><div class="line scss"><span class="p">}</span>
+</div></pre></td></tr></table></div></figure></notextile></div>
+<h2 id="cdn-1">3.图像CDN加速</h2>
+<p>这里只是具体地讲一下，图像有两种。一个是markdown自身的，另一个是octopress/jekyll定义的。</p>
+<h3 id="markdowncdn">3.1原生markdown语法CDN加速(原创)</h3>
+<p>这个比较麻烦，曾经一年多我都没有解决。前两天无意中解决了。过程不详细叙述了。这里只是简要说明下过程。因为我用的是<code>kramdown</code>，所以如果你是用的<code>rdiscount</code>，那么不用看这个了。</p>
+<p>这里是系统级别的hacking，也就是给kramdown进行一个强制的硬编码。(我是这么想的，在自己的电脑上，kramdown被依赖到的可能性非常低。所以我就放心地hacking了。)</p>
+<p>在Cygwin的gem都是被安装在了<code>~/.gem/ruby/gems</code>下面，而Linux下面除了这个目录，还可能在<code>/usr/lib/ruby/gems/2.1.0/gems/</code>下面，可以通过<code>gem env</code>查看你系统的gem存放目录。在这里目录下面应该会发现一个<code>kramdown-***</code>目录，这个目录下面<code>lib/kramdown/converter/html.rb</code>，打开这个文件，搜索<code>convert_img</code>，会找到一个<code>def convert_img(el, indent)</code>定义的函数。原始的应该只有一行。我们要打一个patch，变成如下:</p>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption>lib/kramdown/converter/html.rb<a href="http://blog.rexdf.org">MyBlog</a></figcaption><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number marked start"></div><div data-line="3" class="line-number marked"></div><div data-line="4" class="line-number marked end"></div><div data-line="5" class="line-number"></div><div data-line="6" class="line-number"></div></pre></td><td class="main code"><pre><div class="line ruby"><span class="k">def</span> <span class="nf">convert_img</span><span class="p">(</span><span class="n">el</span><span class="p">,</span> <span class="n">indent</span><span class="p">)</span>
+</div><div class="line marked start ruby">    <span class="k">if</span> <span class="o">!</span><span class="p">(</span><span class="n">el</span><span class="o">.</span><span class="n">attr</span><span class="o">[</span><span class="s1">&#39;src&#39;</span><span class="o">].</span><span class="n">match</span><span class="p">(</span><span class="sr">/^http/</span><span class="p">))</span>
+</div><div class="line marked ruby">       <span class="n">el</span><span class="o">.</span><span class="n">attr</span><span class="o">[</span><span class="s1">&#39;src&#39;</span><span class="o">]</span> <span class="o">=</span> <span class="no">Jekyll</span><span class="o">.</span><span class="n">configuration</span><span class="p">({})</span><span class="o">[</span><span class="s1">&#39;cdn_prefix&#39;</span><span class="o">]</span> <span class="o">+</span> <span class="n">el</span><span class="o">.</span><span class="n">attr</span><span class="o">[</span><span class="s1">&#39;src&#39;</span><span class="o">]</span>
+</div><div class="line marked end ruby">    <span class="k">end</span>
+</div><div class="line ruby">    <span class="s2">&quot;&lt;img</span><span class="si">#{</span><span class="n">html_attributes</span><span class="p">(</span><span class="n">el</span><span class="o">.</span><span class="n">attr</span><span class="p">)</span><span class="si">}</span><span class="s2"> /&gt;&quot;</span>
+</div><div class="line ruby"><span class="k">end</span>
+</div></pre></td></tr></table></div></figure></notextile></div>
+<p>这里我用了<code>_config.yml</code>里面增加的一个变量<code>cdn_prefix</code>，如果你嫌麻烦硬编码也是可以的，只是这样下次修改cdn的时候方便些。</p>
+<h3 id="octopress">3.2 Octopress定义的语法加速</h3>
+<p>这个比较简单，网上到处都有，简单叙述下。 修改<code>plugins/image_tag.rb</code>,如下</p>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption>plugins/image_tag.rb<a href="http://blog.rexdf.org">MyBlog</a></figcaption><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="31" class="line-number"></div><div data-line="32" class="line-number"></div><div data-line="33" class="line-number"></div><div data-line="34" class="line-number"></div><div data-line="35" class="line-number"></div><div data-line="36" class="line-number marked start end"></div><div data-line="37" class="line-number"></div><div data-line="38" class="line-number"></div></pre></td><td class="main code"><pre><div class="line ruby"><span class="o">.</span><span class="n">.</span><span class="o">.</span>
+</div><div class="line ruby">        <span class="k">else</span>
+</div><div class="line ruby">          <span class="vi">@img</span><span class="o">[</span><span class="s1">&#39;alt&#39;</span><span class="o">]</span>    <span class="o">=</span> <span class="vi">@img</span><span class="o">[</span><span class="s1">&#39;title&#39;</span><span class="o">].</span><span class="n">gsub!</span><span class="p">(</span><span class="sr">/&quot;/</span><span class="p">,</span> <span class="s1">&#39;&amp;#34;&#39;</span><span class="p">)</span> <span class="k">if</span> <span class="vi">@img</span><span class="o">[</span><span class="s1">&#39;title&#39;</span><span class="o">]</span>
+</div><div class="line ruby">        <span class="k">end</span>
+</div><div class="line ruby">        <span class="vi">@img</span><span class="o">[</span><span class="s1">&#39;class&#39;</span><span class="o">].</span><span class="n">gsub!</span><span class="p">(</span><span class="sr">/&quot;/</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="k">if</span> <span class="vi">@img</span><span class="o">[</span><span class="s1">&#39;class&#39;</span><span class="o">]</span>
+</div><div class="line marked start end ruby">        <span class="vi">@img</span><span class="o">[</span><span class="s1">&#39;src&#39;</span><span class="o">]</span> <span class="o">=</span> <span class="no">Jekyll</span><span class="o">.</span><span class="n">configuration</span><span class="p">({})</span><span class="o">[</span><span class="s1">&#39;cdn_prefix&#39;</span><span class="o">]</span> <span class="o">+</span> <span class="vi">@img</span><span class="o">[</span><span class="s1">&#39;src&#39;</span><span class="o">]</span> <span class="k">if</span> <span class="vi">@img</span><span class="o">[</span><span class="s1">&#39;src&#39;</span><span class="o">][</span><span class="mi">0</span><span class="o">]</span> <span class="o">==</span> <span class="s1">&#39;/&#39;</span>
+</div><div class="line ruby">      <span class="k">end</span>
+</div><div class="line ruby">      <span class="k">super</span>
+</div></pre></td></tr></table></div></figure></notextile></div>
+<p>也就是增加第36行，这里也是用了<code>_config.yml</code>里面增加的一个变量<code>cdn_prefix</code>，你完全可以硬编码。</p>
+<h2 id="pygment">4.Pygment错误</h2>
+<p>较常见的是如下的错误</p>
+<pre><code>Error:  Pygments can't parse unknown language: &lt;/p&gt;
+</code></pre>
+<p>这个有一个辅助解决办法是修改<code>plugins/pygments_code.rb</code>,如下</p>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption>plugins/pygments_code.rb<a href="http://blog.rexdf.org">MyBlog</a></figcaption><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="26" class="line-number"></div><div data-line="27" class="line-number marked start end"></div><div data-line="28" class="line-number"></div></pre></td><td class="main code"><pre><div class="line ruby"><span class="k">rescue</span> <span class="no">MentosError</span>
+</div><div class="line marked start end ruby">   <span class="k">raise</span> <span class="s2">&quot;Pygments can&#39;t parse unknown language: </span><span class="si">#{</span><span class="n">lang</span><span class="si">}#{</span><span class="n">code</span><span class="si">}</span><span class="s2">.&quot;</span>
+</div><div class="line ruby"><span class="k">end</span>
+</div></pre></td></tr></table></div></figure></notextile></div>
+<p>家下来可以根据出错提示，修改博客的markdown原文就好。</p>
+<h2 id="configuration">5.大量Configuration信息</h2>
+<p>实际上每执行一次<code>Jekyll.configuration({})['cdn_prefix']</code>都会输出一次。如果不想见到满屏的这个提示。请按照修改<code>kramdown</code>的方法，修改<code>lib/jekyll.rb</code>，注释掉一行<code>$stdout.puts "Configuration from #{config_file}"</code>。如果是2.4版本请修改<code>/usr/lib/ruby/gems/2.1.0/gems/jekyll-2.4.0/lib/jekyll/configuration.rb</code>，就是注释掉一行 <code>Jekyll.logger.info "Configuration file:", file</code>。</p>
+</div>
+<footer>
+<p class="meta">
+<span class="byline author vcard">Posted by <span class="fn">Rexdf</span></span>
+<time class="data-article month-09 season-autumn" datetime="2014-09-26T16:25:37+08:00" pubdate><span class="month">Sep</span> <span class="day">26th</span> <span class="year">2014</span></time>
+<span class="categories">
+<a class="category" href="/blog/categories/octopress/">Octopress</a>, <a class="category" href="/blog/categories/ri-chang/">日常</a>
+</span>
+</p>
+<div class="sharing">
+</div>
+<p class="meta">
+<a class="basic-alignment left" href="/blog/2014/09/24/bian-yi-gpg4win/" title="Previous Post: 编译Gpg4win">&laquo; 编译Gpg4win</a>
+<a class="basic-alignment right" href="/blog/2014/10/05/gruntpi-liang-ya-suo-tu-pian/" title="Next Post: grunt批量压缩图片">grunt批量压缩图片 &raquo;</a>
+</p>
+</footer>
+</article>
+<section>
+<h1>Comments</h1>
+<div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
+</div>
+<aside class="sidebar">
+<section>
+<h1>Categories</h1>
+<ul id="categories">
+<li class="category"><a href="/blog/categories/acm/">ACM <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/algorithm/">Algorithm <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/assembly/">Assembly <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/cygwin/">Cygwin <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/gnu/">GNU <sup>8</sup></a></li>
+<li class="category"><a href="/blog/categories/math/">Math <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/octopress/">Octopress <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/programming/">Programming <sup>6</sup></a></li>
+<li class="category"><a href="/blog/categories/security/">Security <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sublime/">Sublime <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/synology/">Synology <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sysadmin/">SysAdmin <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/web/">Web <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/windows/">Windows <sup>7</sup></a></li>
+<li class="category"><a href="/blog/categories/proxmox/">proxmox <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/ri-chang/">日常 <sup>37</sup></a></li>
+</ul>
+</section>
+<section>
+<h1>Recent Posts</h1>
+<ul id="recent_posts">
+<li class="post">
+<a href="/blog/2024/12/16/fu-wu-qi-wa-kuang-bing-du-de-cha-sha/">服务器挖矿病毒的查杀</a>
+</li>
+<li class="post">
+<a href="/blog/2021/07/11/apple-m1-bian-yi-tensorflow/">Apple M1 编译tensorflow</a>
+</li>
+<li class="post">
+<a href="/blog/2021/02/27/chromiumbian-ma-qi-wen-ti/">Chromium编码器问题</a>
+</li>
+<li class="post">
+<a href="/blog/2020/12/13/proxmoxbi-ji/">Proxmox笔记</a>
+</li>
+<li class="post">
+<a href="/blog/2020/11/15/lun-yan-du-yu-shen-du/">论广度与深度</a>
+</li>
+</ul>
+</section>
+<section>
+<iframe frameborder="0" scrolling="no" referrerpolicy="unsafe-url" style="width:283px;height:200px" src="https://t.rexdf.org/?m=app&a=showwidget&name=rexdf&type=1&width=283px&height=500px"></iframe>
+</section>
+<section>
+<h1>GitHub Repos</h1>
+<ul id="gh_repos">
+<li class="loading">Status updating...</li>
+</ul>
+<a href="https://github.com/rexdf">@rexdf</a> on GitHub
+<script type="text/javascript">$(document).ready(function(){if(!window.jXHR){var e=document.createElement("script");e.type="text/javascript",e.src="/javascripts/libs/jXHR.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}github.showRepos({user:"rexdf",count:0,skip_forks:!0,target:"#gh_repos"})})</script>
+</section>
+</aside>
+</div>
+</div>
+<footer role="contentinfo"><p>
+<span class="credit">Copyright &copy; 2024 - Rexdf -</span> |
+<span class="credit">Powered by <a name="bottoms" target="_blank" href="http://octopress.org">Octopress</a></span> |
+<span class="credit">Theme by ：<a href="https://blog.rexdf.org/" target="_blank" rel="theme">Rexdf</a></span> |
+<span class="credit">Host by：<a href="https://github.com/" target="_blank" rel="host">Github.com</a></span> |
+<span class="credit">版权声明：<a href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" target="_blank" rel="license">CC BY-NC-SA 3.0</a><img src="https://analytics.rexdf.net/piwik.php?idsite=1&amp;rec=1" style="border:0" alt="" referrerpolicy="no-referrer-when-downgrade"></span>|
+<span class="credit"><a href="/sitemap.xml" rel="sitemap">sitemap</a></span>
+</p>
+<script type="text/javascript" src="https://tajs.qq.com/stats?sId=30296377" charset="UTF-8"></script>
+</footer>
+<script type="text/javascript">var disqus_shortname="rexdf",disqus_identifier="https://i.rexdf.org/blog/2014/09/26/octopressbo-ke-geng-xin-ri-zhi/",disqus_url="https://i.rexdf.org/blog/2014/09/26/octopressbo-ke-geng-xin-ri-zhi/",disqus_script="embed.js";!function(){var e=document.createElement("script");e.type="text/javascript",e.async=!0,e.src="//"+disqus_shortname+".disqus.com/"+disqus_script,(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(e)}()</script>
+<script type="text/javascript">$(function(){$(".entry-content").each(function(t){var r=t;$(this).find("img.fancybox").each(function(){var t=$(this),a=t.attr("title"),n=t.attr("class");t.removeAttr("class"),t.wrap('<a href="'+this.src+'" class="'+n+'" rel="gallery'+r+'" />'),""!=a&&t.parent().attr("title",a)})}),$(".fancybox").fancybox()})</script>
+</body>
+</html>

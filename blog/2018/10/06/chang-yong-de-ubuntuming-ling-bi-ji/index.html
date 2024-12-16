@@ -1,0 +1,263 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<script type="text/javascript">var _speedMark=new Date</script>
+<meta charset="utf-8">
+<title>常用的Ubuntu命令笔记 - Rexdf</title>
+<meta name="author" content="Rexdf">
+<meta name="description" content="包管理部分 系统管理 网络环境 本文主要是把平时记录的Notes中，参考次数比较多的笔记摘录出来，供不时之需。 包管理部分 其实是一部分实际问题，乘着写文章整理一下。下面这些问题都是单条短命令，去掉问题中可能包含的字符后，应该不超过20个非空白字符，大都是10个内字符。 &hellip;">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' data: https://hm.baidu.com https://tajs.qq.com https://ssl.google-analytics.com https://static.rexdf.org https://*.disquscdn.com https://rexdf.disqus.com https://api.github.com https://ssl.google-analytics.com https://disqus.com https://analytics.rexdf.net; connect-src 'self' https://static.rexdf.org https://analytics.rexdf.net https://hm.baidu.com; img-src data: https://*; font-src data: https://*; child-src 'none'; style-src 'self' 'unsafe-inline' https://*; frame-src 'self' https://t.rexdf.org http://t.rexdf.org https://rexdf.disqus.com https://disqus.com">
+<link rel="canonical" href="https://i.rexdf.org/blog/2018/10/06/chang-yong-de-ubuntuming-ling-bi-ji">
+<link rel="dns-prefetch" href="https://static.rexdf.org/">
+<link href="/favicon.ico" rel="icon">
+<link id="main-css" href="/stylesheets/screen.css" media="screen,projection" rel="stylesheet" type="text/css" title="pc">
+<link href="/stylesheets/screen_mobile.css" rel="alternate stylesheet" type="text/css" title="mobile">
+<link href="/atom.xml" rel="alternate" title="Rexdf" type="application/atom+xml">
+<script src="/javascripts/libs/jquery.min.js"></script>
+<script src="/javascripts/octopress-rexdf.min.js" type="text/javascript"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+      
+      toggle_theme();
+  });
+</script>
+<script type="text/javascript" async src="https://static.rexdf.org/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript">var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-55590409-1"]),_gaq.push(["_trackPageview"]),function(){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(t,e)}()</script>
+<script>var _hmt=_hmt||[];!function(){var e=document.createElement("script");e.src="//hm.baidu.com/hm.js?32192d95b89fbefa0875c4c95adb1412";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}()</script>
+<script src="/javascripts/fancybox/jquery.fancybox.pack.js"></script>
+<link rel="stylesheet" type="text/css" href="/javascripts/fancybox/jquery.fancybox.css">
+<script type="text/javascript">var _paq=_paq||[];_paq.push(["trackPageView"]),_paq.push(["enableLinkTracking"]),function(){var e="https://analytics.rexdf.net/";_paq.push(["setTrackerUrl",e+"piwik.php"]),_paq.push(["setSiteId","1"]);var a=document,t=a.createElement("script"),p=a.getElementsByTagName("script")[0];t.type="text/javascript",t.async=!0,t.defer=!0,t.src=e+"piwik.js",p.parentNode.insertBefore(t,p)}()</script>
+</head>
+<body class="low-contrast-linen-wptouch-bg">
+<header role="banner"><hgroup>
+<h1 id="header-title"><a href="/">Rexdf</a></h1>
+<h2 id="subtitle">The devil is in the Details.</h2>
+</hgroup>
+</header>
+<nav role="navigation"><ul class="subscription" data-subscription="rss">
+<li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+</ul>
+<form action="https://google.com/search" method="get">
+<fieldset role="search">
+<input type="hidden" name="q" value="site:i.rexdf.org">
+<input class="search" type="text" name="q" results="0" placeholder="Search">
+</fieldset>
+</form>
+<ul class="main-navigation">
+<li><a href="/">Blog</a></li>
+<li><a href="/blog/archives/">Archives</a></li>
+<li><a href="/idea/">Idea</a></li>
+<li><a href="/share/">Share</a></li>
+<li><a href="/books/">Books</a></li>
+<li><a href="/donate/">Donate</a></li>
+<li><a target="_blank" href="https://blog.rexdf.org" style="font-family:Shadows Into Light">Main-Blog</a></li>
+</ul>
+</nav>
+<div id="main">
+<div id="content">
+<div>
+<article class="hentry" role="article">
+<header>
+<h1 class="entry-title">常用的Ubuntu命令笔记</h1>
+<p class="meta">
+<time class="data-article month-10 season-autumn" datetime="2018-10-06T22:21:11+08:00" pubdate><span class="month">Oct</span> <span class="day">6th</span> <span class="year">2018</span></time>
+| <a href="#disqus_thread" data-disqus-identifier="https://i.rexdf.org">Comments</a>
+</p>
+</header>
+<div class="entry-content"><ul class="markdown-toc">
+<li><a href="#section">包管理部分</a></li>
+<li><a href="#section-1">系统管理</a></li>
+<li><a href="#section-2">网络环境</a></li>
+</ul>
+<p>本文主要是把平时记录的Notes中，参考次数比较多的笔记摘录出来，供不时之需。</p>
+<h2 id="section">包管理部分</h2>
+<p>其实是一部分实际问题，乘着写文章整理一下。下面这些问题都是单条短命令，去掉问题中可能包含的字符后，应该不超过20个非空白字符，大都是10个内字符。</p>
+<ul>
+<li>如何查看已经安装的vim版本号？ <code>apt list vim</code> 或者 <code>dpkg -l vim</code></li>
+<li>如何查看已经安装的vim的所有文件列表？ <code>dpkg -L vim</code></li>
+<li>如何查看<code>/bin/vim</code>这个文件属于哪个包？ <code>dpkg -S /bin/vim</code></li>
+<li>如何查看vim有哪些依赖？ <code>apt-cache depends vim</code></li>
+<li>如何查看哪些包依赖vim这个包？ <code>apt-cache rdepends vim</code></li>
+<li>如何查看安装了哪些版本的内核？ <code>dpkg --get-selections | grep linux</code></li>
+<li>如何查找源里面有哪些vim相关的包？ <code>apt-cache search vim</code></li>
+<li>如何获取官方nginx包的源码(打patch然后重新编译)编译环境？ <code>apt-get source nginx &amp;&amp; apt-get build-dep nginx</code> (这里要求配置了deb-src源，另外<a href="https://www.debian.org/doc/manuals/packaging-tutorial/packaging-tutorial.en.pdf" target="_blank">debian packaging</a>话题较大，此略过)</li>
+</ul>
+<h2 id="section-1">系统管理</h2>
+<ul>
+<li>如何修改时区？ <code>dpkg-reconfigure tzdata</code></li>
+<li>如何配置编码？</li>
+</ul>
+<h2 id="section-2">网络环境</h2>
+<ul>
+<li>如何配置linux命令行外网访问？</li>
+</ul>
+<p>对于浏览器或者命令行本身支持socks5的这里不谈。命令行种类繁多，用过一段时间proxychain，然而有些情况下似乎不太好用。 其实比较希望linux命令里面实现按域名(可自定义)类似PAC的方式实现外网访问。</p>
+<p>首先安装privoxy(或者功能差一些的polipo) <code>apt-get install privoxy</code> ，然后配置一下需要处理的域名列表。</p>
+<p>我用的是 <a href="https://github.com/zfl9/gfwlist2privoxy" target="_blank">gfwlist2privoxy</a> , 这个脚本貌似有点问题，第一行有个多余的输出，直接删掉就好，然后把github的域名加到第一行，强制github.com走外网。具体参考其readme就好了。</p>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption>privoxy配置<a href="http://blog.rexdf.org">MyBlog</a></figcaption><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div><div data-line="5" class="line-number"></div><div data-line="6" class="line-number"></div><div data-line="7" class="line-number"></div><div data-line="8" class="line-number"></div></pre></td><td class="main code"><pre><div class="line bash"><span class="nb">cd</span> ~
+</div><div class="line bash">apt install -y git curl
+</div><div class="line bash">git clone https://github.com/zfl9/gfwlist2privoxy.git
+</div><div class="line bash"><span class="nb">cd </span>gfwlist2privoxy
+</div><div class="line bash">sh gfwlist2privoxy 127.0.0.1:1080 <span class="c">#1080换成下面socks5客户端的端口</span>
+</div><div class="line bash">sudo mv -f gfwlist.action /etc/privoxy/ <span class="c">#把外网域名列表拷贝到privoxy目录</span>
+</div><div class="line bash">sudo <span class="nb">echo</span> <span class="s1">&#39;actionsfile gfwlist.action&#39;</span> &gt;&gt;/etc/privoxy/config <span class="c">#或者nano手工编辑加上这一行也行</span>
+</div><div class="line bash">sudo systemctl restart privoxy.service
+</div></pre></td></tr></table></div></figure></notextile></div>
+<p>接着跑一个或者多个ss-local、v2ray、kcptun等socks5客户端，推荐全部用systemd管理，比较方便，此处略过具体安装步骤。可以同时起来多个，方便切换。 关于配置，我一般如下：<code>systemctl edit shadowsocks-libev-local@local</code>,敲一个回车留一个空白文件然后保存。接着编辑<code>/etc/shadowsocks-libev/local.json</code>加上适当的配置，然后执行<code>systemctl enable shadowsocks-libev-local@local</code> 和 <code>systemctl start shadowsocks-libev-local@local</code> 就好了。 (说明：其中<code>shadowsocks-libev-local@%I</code>的@后面接着的字符对应于<code>/etc/shadowsocks-libev/%I.json</code>，所以你可以方便同时起来任意多个客户端。)</p>
+<p>一个样例local.json</p>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div><div data-line="5" class="line-number"></div><div data-line="6" class="line-number"></div><div data-line="7" class="line-number"></div><div data-line="8" class="line-number"></div><div data-line="9" class="line-number"></div><div data-line="10" class="line-number"></div><div data-line="11" class="line-number"></div><div data-line="12" class="line-number"></div></pre></td><td class="main code"><pre><div class="line plain">{
+</div><div class="line plain">      "server": "8.8.8.8",
+</div><div class="line plain">      "server_port": 1,
+</div><div class="line plain">      "password": "What's tHiS？",
+</div><div class="line plain">      "method": "aes-128-gcm",
+</div><div class="line plain">      "timeout": 60,
+</div><div class="line plain">      "local_port": 2,
+</div><div class="line plain">      "local_address": "0.0.0.0",
+</div><div class="line plain">      "plugin": "",
+</div><div class="line plain">      "plugin_opts": "",
+</div><div class="line plain">      "plugin_args": "",
+</div><div class="line plain">}
+</div></pre></td></tr></table></div></figure></notextile></div>
+<p>好了现在所做的工作还只是在把1080的socks5转换成了http/https的8118而已。接下来就是让命令行程序使用它。这个问题比较推荐参考<a href="https://wiki.archlinux.org/index.php/proxy_settings" target="_blank">ArchWiki/Proxy settings</a>。</p>
+<p>把上面Archlinux的wiki里面的proxy_on proxy_off两个函数拷贝到<code>~/.bashrc</code> 里面。</p>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption>~/.bashrc<a href="http://blog.rexdf.org">MyBlog</a></figcaption><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div><div data-line="4" class="line-number"></div><div data-line="5" class="line-number"></div><div data-line="6" class="line-number"></div><div data-line="7" class="line-number"></div><div data-line="8" class="line-number"></div><div data-line="9" class="line-number"></div><div data-line="10" class="line-number"></div><div data-line="11" class="line-number"></div><div data-line="12" class="line-number"></div><div data-line="13" class="line-number"></div><div data-line="14" class="line-number"></div><div data-line="15" class="line-number"></div><div data-line="16" class="line-number"></div><div data-line="17" class="line-number"></div><div data-line="18" class="line-number"></div></pre></td><td class="main code"><pre><div class="line bash"><span class="k">function </span>proxy_on<span class="o">()</span> <span class="o">{</span>
+</div><div class="line bash">    <span class="c"># port=${1:-8118}</span>
+</div><div class="line bash">    <span class="nb">export </span><span class="nv">no_proxy</span><span class="o">=</span><span class="s2">&quot;localhost,127.0.0.1,localaddress,.localdomain.com&quot;</span>
+</div><div class="line bash"> </div><div class="line bash">    <span class="nb">export </span><span class="nv">http_proxy</span><span class="o">=</span><span class="s2">&quot;http://localhost:8118/&quot;</span>
+</div><div class="line bash">    <span class="nb">export </span><span class="nv">https_proxy</span><span class="o">=</span><span class="nv">$http_proxy</span> <span class="se">\</span>
+</div><div class="line bash">           <span class="nv">ftp_proxy</span><span class="o">=</span><span class="nv">$http_proxy</span> <span class="se">\</span>
+</div><div class="line bash">           <span class="nv">rsync_proxy</span><span class="o">=</span><span class="nv">$http_proxy</span> <span class="se">\</span>
+</div><div class="line bash">           <span class="nv">HTTP_PROXY</span><span class="o">=</span><span class="nv">$http_proxy</span> <span class="se">\</span>
+</div><div class="line bash">           <span class="nv">HTTPS_PROXY</span><span class="o">=</span><span class="nv">$http_proxy</span> <span class="se">\</span>
+</div><div class="line bash">           <span class="nv">FTP_PROXY</span><span class="o">=</span><span class="nv">$http_proxy</span> <span class="se">\</span>
+</div><div class="line bash">           <span class="nv">RSYNC_PROXY</span><span class="o">=</span><span class="nv">$http_proxy</span>
+</div><div class="line bash"><span class="o">}</span>
+</div><div class="line bash"><span class="k">function </span>proxy_off<span class="o">(){</span>
+</div><div class="line bash">    <span class="nb">unset </span>http_proxy https_proxy ftp_proxy rsync_proxy <span class="se">\</span>
+</div><div class="line bash">          HTTP_PROXY HTTPS_PROXY FTP_PROXY RSYNC_PROXY
+</div><div class="line bash">    <span class="nb">echo</span> -e <span class="s2">&quot;Proxy environment variable removed.&quot;</span>
+</div><div class="line bash"><span class="o">}</span>
+</div></pre></td></tr></table></div></figure></notextile></div>
+<p>然后<code>source ~/.bashrc</code>，接下来执行<code>proxy_on</code>，那么就开启了。 但是现在执行<code>sudo</code>提权命令时却依然不会走外网。解决办法是<code>sudo visudo</code>，在里面加上<code>Defaults env_keep += "http_proxy https_proxy ftp_proxy"</code>。这句的作用是提权时让这三个环境变量维持不变。</p>
+<p>测试一下</p>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption>测试<a href="http://blog.rexdf.org">MyBlog</a></figcaption><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div><div data-line="2" class="line-number"></div><div data-line="3" class="line-number"></div></pre></td><td class="main code"><pre><div class="line bash">curl -4sSkL https://www.baidu.com <span class="c">#走直连，tcpdump 抓包可验证</span>
+</div><div class="line bash">curl -4sSkL https://www.google.com <span class="c">#走代理，实现了 gfwlist PAC 效果</span>
+</div><div class="line bash">curl -4sSkL http://ip.chinaz.com/getip.aspx <span class="c">#按道理来说，会显示本机 IP</span>
+</div></pre></td></tr></table></div></figure></notextile></div>
+<p>有时会特地希望某个没有被和谐的域名走外网，那么只要编辑 <code>/etc/privoxy/gfwlist.action</code> 加进去，然后重启privoxy就好了。</p>
+<p>现在就可以安心地拖chromium或者Android的源码了。不需要时也可以执行<code>proxy_off</code>关掉。</p>
+<p>至于udp2raw和frp等，等下次再补充。</p>
+<ul>
+<li>IP以及ipv6如何配置？</li>
+</ul>
+<p>这个存储在<code>/etc/network/interfaces</code>，参考<a href="https://wiki.debian.org/NetworkConfiguration" target="_blank">Debian/wiki/NetworkConfiguration</a>和<a href="https://help.ubuntu.com/lts/serverguide/network-configuration.html.en" target="_blank">Ubuntu/wiki</a>。DebianWiki其中包含几个高级一些的配置：桥接(Bridging把多个网卡聚合到同一个子网)、VLAN(dot1q, 802.1q, trunk,)、单网卡多IP配置等。而Ubuntu文档则有关于Ubuntu-18.04采用的systemd-resolved的说明。</p>
+</div>
+<footer>
+<p class="meta">
+<span class="byline author vcard">Posted by <span class="fn">Rexdf</span></span>
+<time class="data-article month-10 season-autumn" datetime="2018-10-06T22:21:11+08:00" pubdate><span class="month">Oct</span> <span class="day">6th</span> <span class="year">2018</span></time>
+<span class="categories">
+<a class="category" href="/blog/categories/ri-chang/">日常</a>
+</span>
+</p>
+<div class="sharing">
+</div>
+<p class="meta">
+<a class="basic-alignment left" href="/blog/2018/09/14/geng-xin-liao-xia-bo-ke-zhu-ti/" title="Previous Post: 更新了下博客主题">&laquo; 更新了下博客主题</a>
+<a class="basic-alignment right" href="/blog/2018/10/11/owncloud-clientdeng-lu-chu-xian-forbidden/" title="Next Post: owncloud-client登录出现Forbidden">owncloud-client登录出现Forbidden &raquo;</a>
+</p>
+</footer>
+</article>
+<section>
+<h1>Comments</h1>
+<div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
+</div>
+<aside class="sidebar">
+<section>
+<h1>Categories</h1>
+<ul id="categories">
+<li class="category"><a href="/blog/categories/acm/">ACM <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/algorithm/">Algorithm <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/assembly/">Assembly <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/cygwin/">Cygwin <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/gnu/">GNU <sup>8</sup></a></li>
+<li class="category"><a href="/blog/categories/math/">Math <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/octopress/">Octopress <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/programming/">Programming <sup>6</sup></a></li>
+<li class="category"><a href="/blog/categories/security/">Security <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sublime/">Sublime <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/synology/">Synology <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sysadmin/">SysAdmin <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/web/">Web <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/windows/">Windows <sup>7</sup></a></li>
+<li class="category"><a href="/blog/categories/proxmox/">proxmox <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/ri-chang/">日常 <sup>37</sup></a></li>
+</ul>
+</section>
+<section>
+<h1>Recent Posts</h1>
+<ul id="recent_posts">
+<li class="post">
+<a href="/blog/2024/12/16/fu-wu-qi-wa-kuang-bing-du-de-cha-sha/">服务器挖矿病毒的查杀</a>
+</li>
+<li class="post">
+<a href="/blog/2021/07/11/apple-m1-bian-yi-tensorflow/">Apple M1 编译tensorflow</a>
+</li>
+<li class="post">
+<a href="/blog/2021/02/27/chromiumbian-ma-qi-wen-ti/">Chromium编码器问题</a>
+</li>
+<li class="post">
+<a href="/blog/2020/12/13/proxmoxbi-ji/">Proxmox笔记</a>
+</li>
+<li class="post">
+<a href="/blog/2020/11/15/lun-yan-du-yu-shen-du/">论广度与深度</a>
+</li>
+</ul>
+</section>
+<section>
+<iframe frameborder="0" scrolling="no" referrerpolicy="unsafe-url" style="width:283px;height:200px" src="https://t.rexdf.org/?m=app&a=showwidget&name=rexdf&type=1&width=283px&height=500px"></iframe>
+</section>
+<section>
+<h1>GitHub Repos</h1>
+<ul id="gh_repos">
+<li class="loading">Status updating...</li>
+</ul>
+<a href="https://github.com/rexdf">@rexdf</a> on GitHub
+<script type="text/javascript">$(document).ready(function(){if(!window.jXHR){var e=document.createElement("script");e.type="text/javascript",e.src="/javascripts/libs/jXHR.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}github.showRepos({user:"rexdf",count:0,skip_forks:!0,target:"#gh_repos"})})</script>
+</section>
+</aside>
+</div>
+</div>
+<footer role="contentinfo"><p>
+<span class="credit">Copyright &copy; 2024 - Rexdf -</span> |
+<span class="credit">Powered by <a name="bottoms" target="_blank" href="http://octopress.org">Octopress</a></span> |
+<span class="credit">Theme by ：<a href="https://blog.rexdf.org/" target="_blank" rel="theme">Rexdf</a></span> |
+<span class="credit">Host by：<a href="https://github.com/" target="_blank" rel="host">Github.com</a></span> |
+<span class="credit">版权声明：<a href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" target="_blank" rel="license">CC BY-NC-SA 3.0</a><img src="https://analytics.rexdf.net/piwik.php?idsite=1&amp;rec=1" style="border:0" alt="" referrerpolicy="no-referrer-when-downgrade"></span>|
+<span class="credit"><a href="/sitemap.xml" rel="sitemap">sitemap</a></span>
+</p>
+<script type="text/javascript" src="https://tajs.qq.com/stats?sId=30296377" charset="UTF-8"></script>
+</footer>
+<script type="text/javascript">var disqus_shortname="rexdf",disqus_identifier="https://i.rexdf.org/blog/2018/10/06/chang-yong-de-ubuntuming-ling-bi-ji/",disqus_url="https://i.rexdf.org/blog/2018/10/06/chang-yong-de-ubuntuming-ling-bi-ji/",disqus_script="embed.js";!function(){var e=document.createElement("script");e.type="text/javascript",e.async=!0,e.src="//"+disqus_shortname+".disqus.com/"+disqus_script,(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(e)}()</script>
+<script type="text/javascript">$(function(){$(".entry-content").each(function(t){var r=t;$(this).find("img.fancybox").each(function(){var t=$(this),a=t.attr("title"),n=t.attr("class");t.removeAttr("class"),t.wrap('<a href="'+this.src+'" class="'+n+'" rel="gallery'+r+'" />'),""!=a&&t.parent().attr("title",a)})}),$(".fancybox").fancybox()})</script>
+</body>
+</html>

@@ -1,0 +1,325 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<script type="text/javascript">var _speedMark=new Date</script>
+<meta charset="utf-8">
+<title>Codeforces Round #168 (Div. 2) Convex Shape - Rexdf</title>
+<meta name="author" content="Rexdf">
+<meta name="description" content="include #include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;queue&gt; using namespace std; char map[55][55];int n,m; &hellip;">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' data: https://hm.baidu.com https://tajs.qq.com https://ssl.google-analytics.com https://static.rexdf.org https://*.disquscdn.com https://rexdf.disqus.com https://api.github.com https://ssl.google-analytics.com https://disqus.com https://analytics.rexdf.net; connect-src 'self' https://static.rexdf.org https://analytics.rexdf.net https://hm.baidu.com; img-src data: https://*; font-src data: https://*; child-src 'none'; style-src 'self' 'unsafe-inline' https://*; frame-src 'self' https://t.rexdf.org http://t.rexdf.org https://rexdf.disqus.com https://disqus.com">
+<link rel="canonical" href="https://i.rexdf.org/blog/2013/03/13/Codeforces-Round-168-Div-2-Convex-Shape">
+<link rel="dns-prefetch" href="https://static.rexdf.org/">
+<link href="/favicon.ico" rel="icon">
+<link id="main-css" href="/stylesheets/screen.css" media="screen,projection" rel="stylesheet" type="text/css" title="pc">
+<link href="/stylesheets/screen_mobile.css" rel="alternate stylesheet" type="text/css" title="mobile">
+<link href="/atom.xml" rel="alternate" title="Rexdf" type="application/atom+xml">
+<script src="/javascripts/libs/jquery.min.js"></script>
+<script src="/javascripts/octopress-rexdf.min.js" type="text/javascript"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+      
+      toggle_theme();
+  });
+</script>
+<script type="text/javascript" async src="https://static.rexdf.org/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript">var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-55590409-1"]),_gaq.push(["_trackPageview"]),function(){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(t,e)}()</script>
+<script>var _hmt=_hmt||[];!function(){var e=document.createElement("script");e.src="//hm.baidu.com/hm.js?32192d95b89fbefa0875c4c95adb1412";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}()</script>
+<script src="/javascripts/fancybox/jquery.fancybox.pack.js"></script>
+<link rel="stylesheet" type="text/css" href="/javascripts/fancybox/jquery.fancybox.css">
+<script type="text/javascript">var _paq=_paq||[];_paq.push(["trackPageView"]),_paq.push(["enableLinkTracking"]),function(){var e="https://analytics.rexdf.net/";_paq.push(["setTrackerUrl",e+"piwik.php"]),_paq.push(["setSiteId","1"]);var a=document,t=a.createElement("script"),p=a.getElementsByTagName("script")[0];t.type="text/javascript",t.async=!0,t.defer=!0,t.src=e+"piwik.js",p.parentNode.insertBefore(t,p)}()</script>
+</head>
+<body class="low-contrast-linen-wptouch-bg">
+<header role="banner"><hgroup>
+<h1 id="header-title"><a href="/">Rexdf</a></h1>
+<h2 id="subtitle">The devil is in the Details.</h2>
+</hgroup>
+</header>
+<nav role="navigation"><ul class="subscription" data-subscription="rss">
+<li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+</ul>
+<form action="https://google.com/search" method="get">
+<fieldset role="search">
+<input type="hidden" name="q" value="site:i.rexdf.org">
+<input class="search" type="text" name="q" results="0" placeholder="Search">
+</fieldset>
+</form>
+<ul class="main-navigation">
+<li><a href="/">Blog</a></li>
+<li><a href="/blog/archives/">Archives</a></li>
+<li><a href="/idea/">Idea</a></li>
+<li><a href="/share/">Share</a></li>
+<li><a href="/books/">Books</a></li>
+<li><a href="/donate/">Donate</a></li>
+<li><a target="_blank" href="https://blog.rexdf.org" style="font-family:Shadows Into Light">Main-Blog</a></li>
+</ul>
+</nav>
+<div id="main">
+<div id="content">
+<div>
+<article class="hentry" role="article">
+<header>
+<h1 class="entry-title">Codeforces Round #168 (Div. 2) Convex Shape</h1>
+<p class="meta">
+<time class="data-article month-03 season-spring" datetime="2013-03-13T19:46:00+08:00" pubdate><span class="month">Mar</span> <span class="day">13th</span> <span class="year">2013</span></time>
+| <a href="#disqus_thread" data-disqus-identifier="https://i.rexdf.org">Comments</a>
+</p>
+</header>
+<div class="entry-content"><h1 id="include-iostream">include<iostream></iostream></h1>
+<pre><code>#include &lt;cstdio&gt;
+#include &lt;cstdlib&gt;
+#include &lt;cstring&gt;
+#include &lt;queue&gt;
+
+using namespace std;
+
+char map[55][55];
+int n,m;
+int vis2[55][55];
+int minvis[55][55];
+const int dx[]={1,0,-1,0};
+const int dy[]={0,1,0,-1};
+
+struct node
+{
+	int x,y;
+	int dir;
+	int t;
+};
+
+queue&lt;node&gt; q;
+
+int global_check_once;
+
+int bfs(int x,int y)
+{
+	node tmp,top;
+	int tx,ty;
+	tmp.t=0;tmp.x=x;tmp.y=y;
+	tmp.dir=-1;
+	while(!q.empty())q.pop();
+	memset(vis2,0,sizeof(vis2));
+	memset(minvis,0,sizeof(minvis));
+	q.push(tmp);
+	vis2[x][y]=1;
+	minvis[x][y]=0;
+	//cout&lt;&lt;"begin to search "&lt;&lt;x&lt;&lt;" "&lt;&lt;y&lt;&lt;endl;
+	while(!q.empty())
+	{
+		top=q.front();
+		q.pop();
+		//cout&lt;&lt;"pop "&lt;&lt;top.x&lt;&lt;" "&lt;&lt;top.y&lt;&lt;" "&lt;&lt;top.dir&lt;&lt;" "&lt;&lt;top.t&lt;&lt;endl;
+		for(int i=0;i&lt;4;i++)
+		{
+			tx=top.x+dx[i];
+			ty=top.y+dy[i];
+			
+			if(tx&gt;=0 &amp;&amp; tx&lt;n &amp;&amp; ty&gt;=0 &amp;&amp; ty&lt;m &amp;&amp;
+			   map[tx][ty]=='B')// &amp;&amp; vis[tx][ty][tmp.t][i]==0
+			{
+				tmp.t=top.t;
+				if(i!=top.dir)tmp.t++;
+			   	tmp.x=tx;tmp.y=ty;
+				tmp.dir=i;
+				if(vis2[tx][ty])
+				{
+					if(minvis[tx][ty]&lt;tmp.t)
+					{
+						//cout&lt;&lt;"ignore "&lt;&lt;tx&lt;&lt;" "&lt;&lt;ty&lt;&lt;endl;
+						continue;
+					}
+				}
+				q.push(tmp);
+				//cout&lt;&lt;x&lt;&lt;","&lt;&lt;y&lt;&lt;"push "&lt;&lt;tx&lt;&lt;" "&lt;&lt;ty&lt;&lt;" "&lt;&lt;i&lt;&lt;" "&lt;&lt;tmp.t&lt;&lt;endl;
+				//vis[tx][ty][i]=1;
+				vis2[tx][ty]=1;
+				minvis[tx][ty]=tmp.t;
+			}
+		}
+	}
+	for(int i=0;i&lt;n;i++)
+	  for(int j=0;j&lt;m;j++)
+	    if(map[i][j]=='B' &amp;&amp; minvis[i][j]&gt;2)
+		{
+			//cout&lt;&lt;"find &gt;2 "&lt;&lt;"("&lt;&lt;x&lt;&lt;","&lt;&lt;y&lt;&lt;") "&lt;&lt;i&lt;&lt;" "&lt;&lt;j&lt;&lt;endl;
+			return 0;
+		}
+	if(0==global_check_once)
+	{
+		for(int i=0;i&lt;n;i++)
+		  for(int j=0;j&lt;m;j++)
+		    if(map[i][j]=='B' &amp;&amp; vis2[i][j]==0)
+			{
+			   //cout&lt;&lt;"find seperated "&lt;&lt;endl;
+			   return 0;
+			}
+		global_check_once=1;
+	}
+	return 1;
+}
+
+int solve()
+{
+	global_check_once=0;
+	for(int i=0;i&lt;n;i++)
+	  for(int j=0;j&lt;m;j++)
+	    if(map[i][j]=='B')
+	    {
+	    	if(0==bfs(i,j))return 0;
+	    }
+	return 1;
+}
+
+int main()
+{
+	//freopen("b_in.txt","r",stdin);
+	//freopen("b_out.txt","w",stdout);
+	while(cin&gt;&gt;n&gt;&gt;m)
+	{
+		for(int i=0;i&lt;n;i++)
+		  cin&gt;&gt;map[i];
+		if(solve())cout&lt;&lt;"YES"&lt;&lt;endl;
+		else cout&lt;&lt;"NO"&lt;&lt;endl;
+	}
+	//system("pause");
+	return 0;
+}
+</code></pre>
+<p>B. Convex Shape</p>
+<p>time limit per test</p>
+<p>2 seconds</p>
+<p>memory limit per test</p>
+<p>256 megabytes</p>
+<p>input</p>
+<p>standard input</p>
+<p>output</p>
+<p>standard output</p>
+<p>Consider an <em>n</em> × <em>m</em> grid. Initially all the cells of the grid are colored white. Lenny has painted some of the cells (at least one) black. We call a painted grid convex if one can walk from any black cell to any another black cell using a path of side-adjacent black cells changing his direction at most once during the path. In the figure below, the left grid is convex while the right one is not convex, because there exist two cells which need more than one time to change direction in their path.</p>
+<p> </p>
+<p><img src="http://codeforces.ru/renderer/811f6686ee905d7d1f95e96356ded29f8f77d16f.png" alt=""></p>
+<p> </p>
+<p>You’re given a painted grid in the input. Tell Lenny if the grid is convex or not.</p>
+<p>Input</p>
+<p>The first line of the input contains two integers <em>n</em> and <em>m</em> (1 ≤ <em>n</em>, <em>m</em> ≤ 50) — the size of the grid. Each of the next <em>n</em> lines contains _m_characters “B” or “W”. Character “B” denotes a black cell of the grid and “W” denotes a white cell of the grid.</p>
+<p>It’s guaranteed that the grid has at least one black cell.</p>
+<p>Output</p>
+<p>On the only line of the output print “YES” if the grid is convex, otherwise print “NO”. Do not print quotes.</p>
+<p>Sample test(s)</p>
+<p>input</p>
+<pre><code>3 4 WWBW BWWW WWWB
+</code></pre>
+<p>output</p>
+<pre><code>NO
+</code></pre>
+<p>input</p>
+<pre><code>3 1 B B W
+</code></pre>
+<p>output</p>
+<pre><code>YES
+</code></pre>
+</div>
+<footer>
+<p class="meta">
+<span class="byline author vcard">Posted by <span class="fn">Rexdf</span></span>
+<time class="data-article month-03 season-spring" datetime="2013-03-13T19:46:00+08:00" pubdate><span class="month">Mar</span> <span class="day">13th</span> <span class="year">2013</span></time>
+</p>
+<div class="sharing">
+</div>
+<p class="meta">
+<a class="basic-alignment left" href="/blog/2013/03/11/VIM-xiao-wan/" title="Previous Post: VIM小玩">&laquo; VIM小玩</a>
+<a class="basic-alignment right" href="/blog/2013/03/17/CentOS-wu-sun-diao-zheng-fen-qu-da-xiao-fang-an/" title="Next Post: CentOS 无损调整分区大小方案">CentOS 无损调整分区大小方案 &raquo;</a>
+</p>
+</footer>
+</article>
+<section>
+<h1>Comments</h1>
+<div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
+</div>
+<aside class="sidebar">
+<section>
+<h1>Categories</h1>
+<ul id="categories">
+<li class="category"><a href="/blog/categories/acm/">ACM <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/algorithm/">Algorithm <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/assembly/">Assembly <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/cygwin/">Cygwin <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/gnu/">GNU <sup>8</sup></a></li>
+<li class="category"><a href="/blog/categories/math/">Math <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/octopress/">Octopress <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/programming/">Programming <sup>6</sup></a></li>
+<li class="category"><a href="/blog/categories/security/">Security <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sublime/">Sublime <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/synology/">Synology <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sysadmin/">SysAdmin <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/web/">Web <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/windows/">Windows <sup>7</sup></a></li>
+<li class="category"><a href="/blog/categories/proxmox/">proxmox <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/ri-chang/">日常 <sup>37</sup></a></li>
+</ul>
+</section>
+<section>
+<h1>Recent Posts</h1>
+<ul id="recent_posts">
+<li class="post">
+<a href="/blog/2024/12/16/fu-wu-qi-wa-kuang-bing-du-de-cha-sha/">服务器挖矿病毒的查杀</a>
+</li>
+<li class="post">
+<a href="/blog/2021/07/11/apple-m1-bian-yi-tensorflow/">Apple M1 编译tensorflow</a>
+</li>
+<li class="post">
+<a href="/blog/2021/02/27/chromiumbian-ma-qi-wen-ti/">Chromium编码器问题</a>
+</li>
+<li class="post">
+<a href="/blog/2020/12/13/proxmoxbi-ji/">Proxmox笔记</a>
+</li>
+<li class="post">
+<a href="/blog/2020/11/15/lun-yan-du-yu-shen-du/">论广度与深度</a>
+</li>
+</ul>
+</section>
+<section>
+<iframe frameborder="0" scrolling="no" referrerpolicy="unsafe-url" style="width:283px;height:200px" src="https://t.rexdf.org/?m=app&a=showwidget&name=rexdf&type=1&width=283px&height=500px"></iframe>
+</section>
+<section>
+<h1>GitHub Repos</h1>
+<ul id="gh_repos">
+<li class="loading">Status updating...</li>
+</ul>
+<a href="https://github.com/rexdf">@rexdf</a> on GitHub
+<script type="text/javascript">$(document).ready(function(){if(!window.jXHR){var e=document.createElement("script");e.type="text/javascript",e.src="/javascripts/libs/jXHR.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}github.showRepos({user:"rexdf",count:0,skip_forks:!0,target:"#gh_repos"})})</script>
+</section>
+</aside>
+</div>
+</div>
+<footer role="contentinfo"><p>
+<span class="credit">Copyright &copy; 2024 - Rexdf -</span> |
+<span class="credit">Powered by <a name="bottoms" target="_blank" href="http://octopress.org">Octopress</a></span> |
+<span class="credit">Theme by ：<a href="https://blog.rexdf.org/" target="_blank" rel="theme">Rexdf</a></span> |
+<span class="credit">Host by：<a href="https://github.com/" target="_blank" rel="host">Github.com</a></span> |
+<span class="credit">版权声明：<a href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" target="_blank" rel="license">CC BY-NC-SA 3.0</a><img src="https://analytics.rexdf.net/piwik.php?idsite=1&amp;rec=1" style="border:0" alt="" referrerpolicy="no-referrer-when-downgrade"></span>|
+<span class="credit"><a href="/sitemap.xml" rel="sitemap">sitemap</a></span>
+</p>
+<script type="text/javascript" src="https://tajs.qq.com/stats?sId=30296377" charset="UTF-8"></script>
+</footer>
+<script type="text/javascript">var disqus_shortname="rexdf",disqus_identifier="https://i.rexdf.org/blog/2013/03/13/Codeforces-Round-168-Div-2-Convex-Shape/",disqus_url="https://i.rexdf.org/blog/2013/03/13/Codeforces-Round-168-Div-2-Convex-Shape/",disqus_script="embed.js";!function(){var e=document.createElement("script");e.type="text/javascript",e.async=!0,e.src="//"+disqus_shortname+".disqus.com/"+disqus_script,(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(e)}()</script>
+<script type="text/javascript">$(function(){$(".entry-content").each(function(t){var r=t;$(this).find("img.fancybox").each(function(){var t=$(this),a=t.attr("title"),n=t.attr("class");t.removeAttr("class"),t.wrap('<a href="'+this.src+'" class="'+n+'" rel="gallery'+r+'" />'),""!=a&&t.parent().attr("title",a)})}),$(".fancybox").fancybox()})</script>
+</body>
+</html>

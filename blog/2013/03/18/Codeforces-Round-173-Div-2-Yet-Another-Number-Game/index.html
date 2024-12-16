@@ -1,0 +1,369 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<script type="text/javascript">var _speedMark=new Date</script>
+<meta charset="utf-8">
+<title>Codeforces Round #173 (Div. 2) Yet Another Number Game - Rexdf</title>
+<meta name="author" content="Rexdf">
+<meta name="description" content="D. Yet Another Number Game time limit per test 2 seconds memory limit per test 256 megabytes input standard input output standard output Since most &hellip;">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' data: https://hm.baidu.com https://tajs.qq.com https://ssl.google-analytics.com https://static.rexdf.org https://*.disquscdn.com https://rexdf.disqus.com https://api.github.com https://ssl.google-analytics.com https://disqus.com https://analytics.rexdf.net; connect-src 'self' https://static.rexdf.org https://analytics.rexdf.net https://hm.baidu.com; img-src data: https://*; font-src data: https://*; child-src 'none'; style-src 'self' 'unsafe-inline' https://*; frame-src 'self' https://t.rexdf.org http://t.rexdf.org https://rexdf.disqus.com https://disqus.com">
+<link rel="canonical" href="https://i.rexdf.org/blog/2013/03/18/Codeforces-Round-173-Div-2-Yet-Another-Number-Game">
+<link rel="dns-prefetch" href="https://static.rexdf.org/">
+<link href="/favicon.ico" rel="icon">
+<link id="main-css" href="/stylesheets/screen.css" media="screen,projection" rel="stylesheet" type="text/css" title="pc">
+<link href="/stylesheets/screen_mobile.css" rel="alternate stylesheet" type="text/css" title="mobile">
+<link href="/atom.xml" rel="alternate" title="Rexdf" type="application/atom+xml">
+<script src="/javascripts/libs/jquery.min.js"></script>
+<script src="/javascripts/octopress-rexdf.min.js" type="text/javascript"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+      
+      toggle_theme();
+  });
+</script>
+<script type="text/javascript" async src="https://static.rexdf.org/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript">var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-55590409-1"]),_gaq.push(["_trackPageview"]),function(){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(t,e)}()</script>
+<script>var _hmt=_hmt||[];!function(){var e=document.createElement("script");e.src="//hm.baidu.com/hm.js?32192d95b89fbefa0875c4c95adb1412";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}()</script>
+<script src="/javascripts/fancybox/jquery.fancybox.pack.js"></script>
+<link rel="stylesheet" type="text/css" href="/javascripts/fancybox/jquery.fancybox.css">
+<script type="text/javascript">var _paq=_paq||[];_paq.push(["trackPageView"]),_paq.push(["enableLinkTracking"]),function(){var e="https://analytics.rexdf.net/";_paq.push(["setTrackerUrl",e+"piwik.php"]),_paq.push(["setSiteId","1"]);var a=document,t=a.createElement("script"),p=a.getElementsByTagName("script")[0];t.type="text/javascript",t.async=!0,t.defer=!0,t.src=e+"piwik.js",p.parentNode.insertBefore(t,p)}()</script>
+</head>
+<body class="low-contrast-linen-wptouch-bg">
+<header role="banner"><hgroup>
+<h1 id="header-title"><a href="/">Rexdf</a></h1>
+<h2 id="subtitle">The devil is in the Details.</h2>
+</hgroup>
+</header>
+<nav role="navigation"><ul class="subscription" data-subscription="rss">
+<li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+</ul>
+<form action="https://google.com/search" method="get">
+<fieldset role="search">
+<input type="hidden" name="q" value="site:i.rexdf.org">
+<input class="search" type="text" name="q" results="0" placeholder="Search">
+</fieldset>
+</form>
+<ul class="main-navigation">
+<li><a href="/">Blog</a></li>
+<li><a href="/blog/archives/">Archives</a></li>
+<li><a href="/idea/">Idea</a></li>
+<li><a href="/share/">Share</a></li>
+<li><a href="/books/">Books</a></li>
+<li><a href="/donate/">Donate</a></li>
+<li><a target="_blank" href="https://blog.rexdf.org" style="font-family:Shadows Into Light">Main-Blog</a></li>
+</ul>
+</nav>
+<div id="main">
+<div id="content">
+<div>
+<article class="hentry" role="article">
+<header>
+<h1 class="entry-title">Codeforces Round #173 (Div. 2) Yet Another Number Game</h1>
+<p class="meta">
+<time class="data-article month-03 season-spring" datetime="2013-03-18T11:15:00+08:00" pubdate><span class="month">Mar</span> <span class="day">18th</span> <span class="year">2013</span></time>
+| <a href="#disqus_thread" data-disqus-identifier="https://i.rexdf.org">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>D. Yet Another Number Game</p>
+<p>time limit per test</p>
+<p>2 seconds</p>
+<p>memory limit per test</p>
+<p>256 megabytes</p>
+<p>input</p>
+<p>standard input</p>
+<p>output</p>
+<p>standard output</p>
+<p>Since most contestants do not read this part, I have to repeat that Bitlandians are quite weird. They have their own jobs, their own working method, their own lives, their own sausages and their own games! Since you are so curious about Bitland, I’ll give you the chance of peeking at one of these games. BitLGM and BitAryo are playing yet another of their crazy-looking genius-needed Bitlandish games. They’ve got a sequence of <em>n</em> non-negative integers <em>a</em>1, <em>a</em>2, …, <em>a__n</em>. The players make moves in turns. BitLGM moves first. Each player can and must do one of the two following actions in his turn:  </p>
+<ul>
+<li>Take one of the integers (we’ll denote it as <em>a__i</em>). Choose integer <em>x</em> (1 ≤ <em>x</em> ≤ <em>a__i</em>). And then decrease <em>a__i</em> by <em>x</em>, that is, apply assignment:<em>a__i</em> = <em>a__i</em> - <em>x</em>.</li>
+<li>Choose integer <em>x</em> <img src="http://codeforces.ru/renderer/9bcd77b1a4d70adef53560c92a78c087c5d0039f.png" alt="">. And then decrease all <em>a__i</em> by <em>x</em>, that is, apply assignment: <em>a__i</em> = <em>a__i</em> - <em>x</em>, for all <em>i</em>.   The player who cannot make a move loses. You’re given the initial sequence <em>a</em>1, <em>a</em>2, …, <em>a__n</em>. Determine who wins, if both players plays optimally well and if BitLGM and BitAryo start playing the described game in this sequence.</li>
+</ul>
+<p>Input</p>
+<p>The first line contains an integer <em>n</em> (1 ≤ <em>n</em> ≤ 3). The next line contains <em>n</em> integers <em>a</em>1, <em>a</em>2, …, <em>a__n</em> (0 ≤ <em>a__i</em> &lt; 300).</p>
+<p>Output</p>
+<p>Write the name of the winner (provided that both players play optimally well). Either “BitLGM” or “BitAryo” (without the quotes).</p>
+<p>Sample test(s)</p>
+<p>input</p>
+<pre><code>2 1 1
+</code></pre>
+<p>output</p>
+<pre><code>BitLGM
+</code></pre>
+<p>input</p>
+<pre><code>2 1 2
+</code></pre>
+<p>output</p>
+<pre><code>BitAryo
+</code></pre>
+<p>input</p>
+<pre><code>3 1 2 1
+</code></pre>
+<p>output</p>
+<pre><code>BitLGM
+
+
+#include &lt;iostream&gt;
+#include &lt;cstdio&gt;
+#include &lt;cstdlib&gt;
+#include &lt;cstring&gt;
+
+using namespace std;
+
+int tab2[305][305];
+int tab3[305][305][305];
+
+int check2(int x,int y)
+{
+	if(0==x &amp;&amp; 0==y)return 1;
+	int Min=x&lt;y?x:y;
+	for(int i=Min;i&gt;=0;i--)
+	  if(1==tab2[x-i][y-i])return 0;
+	for(int i=0;i&lt;=y;i++)
+	  if(1==tab2[x][i])return 0;
+	for(int i=0;i&lt;=x;i++)
+	  if(1==tab2[i][y])return 0;
+	return 1;
+}
+
+void mark2(int x,int y)
+{
+	for(int i=0;;i++)
+	{
+		if(x+i&gt;303 || y+i&gt;303)break;
+		tab2[x+i][y+i]=0;
+	}
+	for(int i=0;i&lt;303;i++)
+	{
+		tab2[x][i]=0;
+		tab2[i][y]=0;
+	}
+	tab2[x][y]=1;
+}
+
+void inital2()
+{
+	memset(tab2,-1,sizeof(tab2));
+	//tab2[0][0]=1;
+	for(int i=0;i&lt;303;i++)
+	  for(int j=0;j&lt;303;j++)
+	  {
+	  	if(tab2[i][j]!=-1)continue;
+	  	if(check2(i,j))
+	  	{
+	  		mark2(i,j);
+	  		mark2(j,i);
+	  	}
+	  }
+	/*
+	for(int i=0;i&lt;10;i++)
+	{
+	  for(int j=0;j&lt;10;j++)
+	    cout&lt;&lt;tab2[i][j]&lt;&lt;" ";
+	  cout&lt;&lt;endl;
+	}
+	*/
+}
+
+int check3(int x,int y,int z)
+{
+	if(0==x &amp;&amp; 0==y &amp;&amp; 0==z)return 1;
+	int Min=x&lt;y?x:y;
+	Min=Min&lt;z?Min:z;
+	for(int i=Min;i&gt;=0;i--)
+	  if(1==tab3[x-i][y-i][z-i])return 0;
+	for(int i=0;i&lt;=z;i++)
+	  if(1==tab3[x][y][i])return 0;
+	for(int i=0;i&lt;=y;i++)
+	  if(1==tab3[x][i][z])return 0;
+	for(int i=0;i&lt;=x;i++)
+	  if(1==tab3[i][y][z])return 0;
+	return 1;
+}
+
+void mark3(int x,int y,int z)
+{
+	for(int i=0;;i++)
+	{
+		if(x+i&gt;303 || y+i&gt;303 || z+i&gt;303)break;
+		tab3[x+i][y+i][z+i]=0;
+	}
+	for(int i=0;i&lt;303;i++)
+	{
+		tab3[x][y][i]=0;
+		tab3[x][i][z]=0;
+		tab3[i][y][z]=0;
+	}
+	tab3[x][y][z]=1;
+}
+
+void inital3()
+{
+	memset(tab3,-1,sizeof(tab3));
+	//tab2[0][0]=1;
+	for(int i=0;i&lt;303;i++)
+	  for(int j=0;j&lt;303;j++)
+	    for(int k=0;k&lt;303;k++)
+		  {
+		  	if(tab3[i][j][k]!=-1)continue;
+		  	if(check3(i,j,k))
+		  	{
+		  		mark3(i,j,k);
+		  		mark3(i,k,j);
+		  		mark3(k,i,j);
+		  		
+		  		mark3(j,i,k);
+		  		mark3(j,k,i);
+		  		mark3(k,j,i);
+		  	}
+		  }
+	/*
+	for(int i=0;i&lt;10;i++)
+	{
+	    cout&lt;&lt;i&lt;&lt;endl;
+	  for(int k=0;k&lt;10;k++)
+	   {
+		  for(int j=0;j&lt;10;j++)
+		    cout&lt;&lt;tab3[i][k][j]&lt;&lt;" ";
+		  cout&lt;&lt;endl;
+	   }
+	   cout&lt;&lt;endl;
+	}
+	*/
+}
+
+int main()
+{
+	int n;
+	int a[5];
+	cin&gt;&gt;n;
+	if(1==n)
+	{
+		cin&gt;&gt;a[0];
+		if(a[0])cout&lt;&lt;"BitLGM"&lt;&lt;endl;
+		else cout&lt;&lt;"BitAryo"&lt;&lt;endl;
+	}
+	else if(2==n)
+	{
+		inital2();
+		cin&gt;&gt;a[0]&gt;&gt;a[1];
+		//cout&lt;&lt;tab2[a[0]][a[1]]&lt;&lt;endl;
+		if(tab2[a[0]][a[1]])cout&lt;&lt;"BitAryo"&lt;&lt;endl;
+		else cout&lt;&lt;"BitLGM"&lt;&lt;endl;
+	}
+	else if(3==n)
+	{
+		inital3();
+		cin&gt;&gt;a[0]&gt;&gt;a[1]&gt;&gt;a[2];
+		if(tab3[a[0]][a[1]][a[2]])cout&lt;&lt;"BitAryo"&lt;&lt;endl;
+		else cout&lt;&lt;"BitLGM"&lt;&lt;endl;
+	}
+	return 0;
+}
+</code></pre>
+</div>
+<footer>
+<p class="meta">
+<span class="byline author vcard">Posted by <span class="fn">Rexdf</span></span>
+<time class="data-article month-03 season-spring" datetime="2013-03-18T11:15:00+08:00" pubdate><span class="month">Mar</span> <span class="day">18th</span> <span class="year">2013</span></time>
+</p>
+<div class="sharing">
+</div>
+<p class="meta">
+<a class="basic-alignment left" href="/blog/2013/03/18/Codeforces-Round-173-Div-2-XOR-and-OR/" title="Previous Post: Codeforces Round #173 (Div. 2) XOR and OR">&laquo; Codeforces Round #173 (Div. 2) XOR and OR</a>
+<a class="basic-alignment right" href="/blog/2013/03/22/zhuan-C-zhong-huo-qu-gao-jing-du-shi-jian-cha/" title="Next Post: [转]C++中获取高精度时间差">[转]C++中获取高精度时间差 &raquo;</a>
+</p>
+</footer>
+</article>
+<section>
+<h1>Comments</h1>
+<div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
+</div>
+<aside class="sidebar">
+<section>
+<h1>Categories</h1>
+<ul id="categories">
+<li class="category"><a href="/blog/categories/acm/">ACM <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/algorithm/">Algorithm <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/assembly/">Assembly <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/cygwin/">Cygwin <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/gnu/">GNU <sup>8</sup></a></li>
+<li class="category"><a href="/blog/categories/math/">Math <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/octopress/">Octopress <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/programming/">Programming <sup>6</sup></a></li>
+<li class="category"><a href="/blog/categories/security/">Security <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sublime/">Sublime <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/synology/">Synology <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sysadmin/">SysAdmin <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/web/">Web <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/windows/">Windows <sup>7</sup></a></li>
+<li class="category"><a href="/blog/categories/proxmox/">proxmox <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/ri-chang/">日常 <sup>37</sup></a></li>
+</ul>
+</section>
+<section>
+<h1>Recent Posts</h1>
+<ul id="recent_posts">
+<li class="post">
+<a href="/blog/2024/12/16/fu-wu-qi-wa-kuang-bing-du-de-cha-sha/">服务器挖矿病毒的查杀</a>
+</li>
+<li class="post">
+<a href="/blog/2021/07/11/apple-m1-bian-yi-tensorflow/">Apple M1 编译tensorflow</a>
+</li>
+<li class="post">
+<a href="/blog/2021/02/27/chromiumbian-ma-qi-wen-ti/">Chromium编码器问题</a>
+</li>
+<li class="post">
+<a href="/blog/2020/12/13/proxmoxbi-ji/">Proxmox笔记</a>
+</li>
+<li class="post">
+<a href="/blog/2020/11/15/lun-yan-du-yu-shen-du/">论广度与深度</a>
+</li>
+</ul>
+</section>
+<section>
+<iframe frameborder="0" scrolling="no" referrerpolicy="unsafe-url" style="width:283px;height:200px" src="https://t.rexdf.org/?m=app&a=showwidget&name=rexdf&type=1&width=283px&height=500px"></iframe>
+</section>
+<section>
+<h1>GitHub Repos</h1>
+<ul id="gh_repos">
+<li class="loading">Status updating...</li>
+</ul>
+<a href="https://github.com/rexdf">@rexdf</a> on GitHub
+<script type="text/javascript">$(document).ready(function(){if(!window.jXHR){var e=document.createElement("script");e.type="text/javascript",e.src="/javascripts/libs/jXHR.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}github.showRepos({user:"rexdf",count:0,skip_forks:!0,target:"#gh_repos"})})</script>
+</section>
+</aside>
+</div>
+</div>
+<footer role="contentinfo"><p>
+<span class="credit">Copyright &copy; 2024 - Rexdf -</span> |
+<span class="credit">Powered by <a name="bottoms" target="_blank" href="http://octopress.org">Octopress</a></span> |
+<span class="credit">Theme by ：<a href="https://blog.rexdf.org/" target="_blank" rel="theme">Rexdf</a></span> |
+<span class="credit">Host by：<a href="https://github.com/" target="_blank" rel="host">Github.com</a></span> |
+<span class="credit">版权声明：<a href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" target="_blank" rel="license">CC BY-NC-SA 3.0</a><img src="https://analytics.rexdf.net/piwik.php?idsite=1&amp;rec=1" style="border:0" alt="" referrerpolicy="no-referrer-when-downgrade"></span>|
+<span class="credit"><a href="/sitemap.xml" rel="sitemap">sitemap</a></span>
+</p>
+<script type="text/javascript" src="https://tajs.qq.com/stats?sId=30296377" charset="UTF-8"></script>
+</footer>
+<script type="text/javascript">var disqus_shortname="rexdf",disqus_identifier="https://i.rexdf.org/blog/2013/03/18/Codeforces-Round-173-Div-2-Yet-Another-Number-Game/",disqus_url="https://i.rexdf.org/blog/2013/03/18/Codeforces-Round-173-Div-2-Yet-Another-Number-Game/",disqus_script="embed.js";!function(){var e=document.createElement("script");e.type="text/javascript",e.async=!0,e.src="//"+disqus_shortname+".disqus.com/"+disqus_script,(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(e)}()</script>
+<script type="text/javascript">$(function(){$(".entry-content").each(function(t){var r=t;$(this).find("img.fancybox").each(function(){var t=$(this),a=t.attr("title"),n=t.attr("class");t.removeAttr("class"),t.wrap('<a href="'+this.src+'" class="'+n+'" rel="gallery'+r+'" />'),""!=a&&t.parent().attr("title",a)})}),$(".fancybox").fancybox()})</script>
+</body>
+</html>

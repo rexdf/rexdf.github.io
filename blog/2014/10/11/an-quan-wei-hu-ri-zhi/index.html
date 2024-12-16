@@ -1,0 +1,232 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<script type="text/javascript">var _speedMark=new Date</script>
+<meta charset="utf-8">
+<title>安全维护日志 - Rexdf</title>
+<meta name="author" content="Rexdf">
+<meta name="description" content="简直恐怖，我低调开启的VPS才50h就收到了来自世界各地的(主要是中国广东一带)的ssh攻击。刚刚开始的时候我是直接关掉了web服务的，因为好像还没有这方面的需求，博客主机刚刚续费了，迁过来似乎不是这么迫切，然后只是在上面尝试着各种技术配置着玩。然后今天没事进去看了下auth.log，一看吓一跳 &hellip;">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' data: https://hm.baidu.com https://tajs.qq.com https://ssl.google-analytics.com https://static.rexdf.org https://*.disquscdn.com https://rexdf.disqus.com https://api.github.com https://ssl.google-analytics.com https://disqus.com https://analytics.rexdf.net; connect-src 'self' https://static.rexdf.org https://analytics.rexdf.net https://hm.baidu.com; img-src data: https://*; font-src data: https://*; child-src 'none'; style-src 'self' 'unsafe-inline' https://*; frame-src 'self' https://t.rexdf.org http://t.rexdf.org https://rexdf.disqus.com https://disqus.com">
+<link rel="canonical" href="https://i.rexdf.org/blog/2014/10/11/an-quan-wei-hu-ri-zhi">
+<link rel="dns-prefetch" href="https://static.rexdf.org/">
+<link href="/favicon.ico" rel="icon">
+<link id="main-css" href="/stylesheets/screen.css" media="screen,projection" rel="stylesheet" type="text/css" title="pc">
+<link href="/stylesheets/screen_mobile.css" rel="alternate stylesheet" type="text/css" title="mobile">
+<link href="/atom.xml" rel="alternate" title="Rexdf" type="application/atom+xml">
+<script src="/javascripts/libs/jquery.min.js"></script>
+<script src="/javascripts/octopress-rexdf.min.js" type="text/javascript"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+      
+      toggle_theme();
+  });
+</script>
+<script type="text/javascript" async src="https://static.rexdf.org/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript">var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-55590409-1"]),_gaq.push(["_trackPageview"]),function(){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(t,e)}()</script>
+<script>var _hmt=_hmt||[];!function(){var e=document.createElement("script");e.src="//hm.baidu.com/hm.js?32192d95b89fbefa0875c4c95adb1412";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}()</script>
+<script src="/javascripts/fancybox/jquery.fancybox.pack.js"></script>
+<link rel="stylesheet" type="text/css" href="/javascripts/fancybox/jquery.fancybox.css">
+<script type="text/javascript">var _paq=_paq||[];_paq.push(["trackPageView"]),_paq.push(["enableLinkTracking"]),function(){var e="https://analytics.rexdf.net/";_paq.push(["setTrackerUrl",e+"piwik.php"]),_paq.push(["setSiteId","1"]);var a=document,t=a.createElement("script"),p=a.getElementsByTagName("script")[0];t.type="text/javascript",t.async=!0,t.defer=!0,t.src=e+"piwik.js",p.parentNode.insertBefore(t,p)}()</script>
+</head>
+<body class="low-contrast-linen-wptouch-bg">
+<header role="banner"><hgroup>
+<h1 id="header-title"><a href="/">Rexdf</a></h1>
+<h2 id="subtitle">The devil is in the Details.</h2>
+</hgroup>
+</header>
+<nav role="navigation"><ul class="subscription" data-subscription="rss">
+<li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+</ul>
+<form action="https://google.com/search" method="get">
+<fieldset role="search">
+<input type="hidden" name="q" value="site:i.rexdf.org">
+<input class="search" type="text" name="q" results="0" placeholder="Search">
+</fieldset>
+</form>
+<ul class="main-navigation">
+<li><a href="/">Blog</a></li>
+<li><a href="/blog/archives/">Archives</a></li>
+<li><a href="/idea/">Idea</a></li>
+<li><a href="/share/">Share</a></li>
+<li><a href="/books/">Books</a></li>
+<li><a href="/donate/">Donate</a></li>
+<li><a target="_blank" href="https://blog.rexdf.org" style="font-family:Shadows Into Light">Main-Blog</a></li>
+</ul>
+</nav>
+<div id="main">
+<div id="content">
+<div>
+<article class="hentry" role="article">
+<header>
+<h1 class="entry-title">安全维护日志</h1>
+<p class="meta">
+<time class="data-article month-10 season-autumn" datetime="2014-10-11T20:54:55+08:00" pubdate><span class="month">Oct</span> <span class="day">11th</span> <span class="year">2014</span></time>
+| <a href="#disqus_thread" data-disqus-identifier="https://i.rexdf.org">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>简直恐怖，我低调开启的VPS才50h就收到了来自世界各地的(主要是中国广东一带)的ssh攻击。刚刚开始的时候我是直接关掉了web服务的，因为好像还没有这方面的需求，博客主机刚刚续费了，迁过来似乎不是这么迫切，然后只是在上面尝试着各种技术配置着玩。然后今天没事进去看了下auth.log，一看吓一跳。</p>
+<p>明显是工具在扫端口，高端口一个接一个地扫，用户名各种组合，还有一些奇葩的错误方式，大约是在扫漏洞？</p>
+<p>虽然只是测试用途而已，我完全可以随手删掉它重建一个，里面啥都没有。但是问题是我刚刚开机大约50分钟后就开始了第一波紧密的ssh暴力攻击。</p>
+<p>我安全配置还算比较保守的了，因为主机只有我一个人使用，我采用的全是白名单制，但是如果系统有bug，那么还确实没有办法的。特别是Wordpress这种三方插件一大堆的玩意，放到博客主机上我倒是完全不需要担心这些，现在倒是有种不要迁移过来的想法了。</p>
+<pre><code>grep Failed auth.log | rev | cut -d\  -f4 | rev | sort -u
+</code></pre>
+<p>然后得到如下内容</p>
+<pre><code>111.74.238.152
+117.21.173.177
+122.225.109.113
+122.225.109.199
+122.70.137.124
+123.127.36.162
+173.196.1.230
+175.45.192.234
+183.56.129.146
+187.85.146.19
+192.126.112.118
+218.106.254.121
+218.2.0.129
+222.186.24.68
+222.186.34.118
+222.186.34.243
+222.186.34.245
+59.10.53.46
+60.173.14.130
+60.173.14.134
+61.155.4.18
+61.174.51.198
+61.174.51.201
+61.181.24.6
+61.234.104.167
+91.240.163.39
+</code></pre>
+<p>然后我就发现了<a href="http://antivirus.neu.edu.cn/ssh/" target="_blank">http://antivirus.neu.edu.cn/ssh/</a>这里也有一个<a href="http://antivirus.neu.edu.cn/ssh/lists/" target="_blank">列表</a>，这份清单<a href="http://www.us.openbl.org/lists/" target="_blank">这里</a>也有。<a href="http://www.chekiang.info/scan/ssh.php" target="_blank">这个</a>博客也维护了一份，另外他的文件下载里面似乎还有一个开源的程序 http://download.chekiang.info/gongju/DenyHosts-2.6.tar.gz可以下载使用，提供安装脚本，我没有查看过代码，也就不测试了。</p>
+<p>虽然我暂时应该还用不上，不过倒是涨了一下姿势了！</p>
+<p>就在写这篇博客的同时攻击依然在进行，考虑到效率，以及实际情况。我没有采用iptable来限制端口访问，而采用的基于TCP wrapper的方式。并没有采用上面的hosts.deny这种黑名单方式，因为显然查找黑名单需要消耗资源。我直接采用白名单制。</p>
+<p>hosts.allow中</p>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption>/etc/hosts.allow<a href="http://blog.rexdf.org">MyBlog</a></figcaption><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div></pre></td><td class="main code"><pre><div class="line bash">sshd: 10.10.10.10/25
+</div></pre></td></tr></table></div></figure></notextile></div>
+<p>hosts.deny中</p>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption>/etc/hosts.deny<a href="http://blog.rexdf.org">MyBlog</a></figcaption><div class="highlight pre-code"><table><tr><td class="gutter" aria-hidden="true"><pre class="line-numbers"><div data-line="1" class="line-number"></div></pre></td><td class="main code"><pre><div class="line bash">sshd: ALL
+</div></pre></td></tr></table></div></figure></notextile></div>
+<p>结果</p>
+<pre><code>Oct 11 11:07:11 xxx sshd[15448]: refused connect from 222.186.34.118 (222.186.34.118)
+Oct 11 11:07:22 xxx sshd[15449]: refused connect from 222.186.34.118 (222.186.34.118)
+Oct 11 11:07:30 xxx sshd[15450]: refused connect from 202.109.143.56 (202.109.143.56)
+Oct 11 11:07:40 xxx sshd[15451]: refused connect from 202.109.143.56 (202.109.143.56)
+Oct 11 11:07:52 xxx sshd[15452]: refused connect from 202.109.143.56 (202.109.143.56)
+Oct 11 11:08:01 xxx sshd[15453]: refused connect from 222.186.34.118 (222.186.34.118)
+Oct 11 11:08:04 xxx sshd[15454]: refused connect from 202.109.143.56 (202.109.143.56)
+Oct 11 11:08:10 xxx sshd[15455]: refused connect from 183.56.129.146 (183.56.129.146)
+Oct 11 11:08:14 xxx sshd[15457]: refused connect from 202.109.143.56 (202.109.143.56)
+Oct 11 11:08:45 xxx sshd[15458]: refused connect from 202.109.143.56 (202.109.143.56)
+</code></pre>
+<p>看上去sshd的进程号还在不断增长。</p>
+</div>
+<footer>
+<p class="meta">
+<span class="byline author vcard">Posted by <span class="fn">Rexdf</span></span>
+<time class="data-article month-10 season-autumn" datetime="2014-10-11T20:54:55+08:00" pubdate><span class="month">Oct</span> <span class="day">11th</span> <span class="year">2014</span></time>
+<span class="categories">
+<a class="category" href="/blog/categories/security/">Security</a>, <a class="category" href="/blog/categories/sysadmin/">SysAdmin</a>
+</span>
+</p>
+<div class="sharing">
+</div>
+<p class="meta">
+<a class="basic-alignment left" href="/blog/2014/10/10/mac-osxxu-ni-ji-ci-pan-ya-suo/" title="Previous Post: Mac-OSX虚拟机磁盘压缩">&laquo; Mac-OSX虚拟机磁盘压缩</a>
+<a class="basic-alignment right" href="/blog/2014/10/12/san-fen-zhong-xin-jian-shadowsocksfu-wu-qi/" title="Next Post: 三分钟新建shadowsocks服务器">三分钟新建shadowsocks服务器 &raquo;</a>
+</p>
+</footer>
+</article>
+<section>
+<h1>Comments</h1>
+<div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
+</div>
+<aside class="sidebar">
+<section>
+<h1>Categories</h1>
+<ul id="categories">
+<li class="category"><a href="/blog/categories/acm/">ACM <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/algorithm/">Algorithm <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/assembly/">Assembly <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/cygwin/">Cygwin <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/gnu/">GNU <sup>8</sup></a></li>
+<li class="category"><a href="/blog/categories/math/">Math <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/octopress/">Octopress <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/programming/">Programming <sup>6</sup></a></li>
+<li class="category"><a href="/blog/categories/security/">Security <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sublime/">Sublime <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/synology/">Synology <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sysadmin/">SysAdmin <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/web/">Web <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/windows/">Windows <sup>7</sup></a></li>
+<li class="category"><a href="/blog/categories/proxmox/">proxmox <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/ri-chang/">日常 <sup>37</sup></a></li>
+</ul>
+</section>
+<section>
+<h1>Recent Posts</h1>
+<ul id="recent_posts">
+<li class="post">
+<a href="/blog/2024/12/16/fu-wu-qi-wa-kuang-bing-du-de-cha-sha/">服务器挖矿病毒的查杀</a>
+</li>
+<li class="post">
+<a href="/blog/2021/07/11/apple-m1-bian-yi-tensorflow/">Apple M1 编译tensorflow</a>
+</li>
+<li class="post">
+<a href="/blog/2021/02/27/chromiumbian-ma-qi-wen-ti/">Chromium编码器问题</a>
+</li>
+<li class="post">
+<a href="/blog/2020/12/13/proxmoxbi-ji/">Proxmox笔记</a>
+</li>
+<li class="post">
+<a href="/blog/2020/11/15/lun-yan-du-yu-shen-du/">论广度与深度</a>
+</li>
+</ul>
+</section>
+<section>
+<iframe frameborder="0" scrolling="no" referrerpolicy="unsafe-url" style="width:283px;height:200px" src="https://t.rexdf.org/?m=app&a=showwidget&name=rexdf&type=1&width=283px&height=500px"></iframe>
+</section>
+<section>
+<h1>GitHub Repos</h1>
+<ul id="gh_repos">
+<li class="loading">Status updating...</li>
+</ul>
+<a href="https://github.com/rexdf">@rexdf</a> on GitHub
+<script type="text/javascript">$(document).ready(function(){if(!window.jXHR){var e=document.createElement("script");e.type="text/javascript",e.src="/javascripts/libs/jXHR.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}github.showRepos({user:"rexdf",count:0,skip_forks:!0,target:"#gh_repos"})})</script>
+</section>
+</aside>
+</div>
+</div>
+<footer role="contentinfo"><p>
+<span class="credit">Copyright &copy; 2024 - Rexdf -</span> |
+<span class="credit">Powered by <a name="bottoms" target="_blank" href="http://octopress.org">Octopress</a></span> |
+<span class="credit">Theme by ：<a href="https://blog.rexdf.org/" target="_blank" rel="theme">Rexdf</a></span> |
+<span class="credit">Host by：<a href="https://github.com/" target="_blank" rel="host">Github.com</a></span> |
+<span class="credit">版权声明：<a href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" target="_blank" rel="license">CC BY-NC-SA 3.0</a><img src="https://analytics.rexdf.net/piwik.php?idsite=1&amp;rec=1" style="border:0" alt="" referrerpolicy="no-referrer-when-downgrade"></span>|
+<span class="credit"><a href="/sitemap.xml" rel="sitemap">sitemap</a></span>
+</p>
+<script type="text/javascript" src="https://tajs.qq.com/stats?sId=30296377" charset="UTF-8"></script>
+</footer>
+<script type="text/javascript">var disqus_shortname="rexdf",disqus_identifier="https://i.rexdf.org/blog/2014/10/11/an-quan-wei-hu-ri-zhi/",disqus_url="https://i.rexdf.org/blog/2014/10/11/an-quan-wei-hu-ri-zhi/",disqus_script="embed.js";!function(){var e=document.createElement("script");e.type="text/javascript",e.async=!0,e.src="//"+disqus_shortname+".disqus.com/"+disqus_script,(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(e)}()</script>
+<script type="text/javascript">$(function(){$(".entry-content").each(function(t){var r=t;$(this).find("img.fancybox").each(function(){var t=$(this),a=t.attr("title"),n=t.attr("class");t.removeAttr("class"),t.wrap('<a href="'+this.src+'" class="'+n+'" rel="gallery'+r+'" />'),""!=a&&t.parent().attr("title",a)})}),$(".fancybox").fancybox()})</script>
+</body>
+</html>

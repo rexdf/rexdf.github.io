@@ -1,0 +1,293 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<script type="text/javascript">var _speedMark=new Date</script>
+<meta charset="utf-8">
+<title>WordPress数据库改名 - Rexdf</title>
+<meta name="author" content="Rexdf">
+<meta name="description" content="今天突然想把默认的那个wp_数据库表前缀改一下，按照网上的方案一般就是直接在原始数据库上面改。但是考虑到可能改坏数据库，因为我不希望这么做。当然改数据库表名可以使用phpMyAdmin或者使用”alter table 表名 rename to 新表名” 都是可以的，但是改完之后还需要修改几个值， &hellip;">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' data: https://hm.baidu.com https://tajs.qq.com https://ssl.google-analytics.com https://static.rexdf.org https://*.disquscdn.com https://rexdf.disqus.com https://api.github.com https://ssl.google-analytics.com https://disqus.com https://analytics.rexdf.net; connect-src 'self' https://static.rexdf.org https://analytics.rexdf.net https://hm.baidu.com; img-src data: https://*; font-src data: https://*; child-src 'none'; style-src 'self' 'unsafe-inline' https://*; frame-src 'self' https://t.rexdf.org http://t.rexdf.org https://rexdf.disqus.com https://disqus.com">
+<link rel="canonical" href="https://i.rexdf.org/blog/2013/10/01/WordPress-shu-ju-ku-gai-ming">
+<link rel="dns-prefetch" href="https://static.rexdf.org/">
+<link href="/favicon.ico" rel="icon">
+<link id="main-css" href="/stylesheets/screen.css" media="screen,projection" rel="stylesheet" type="text/css" title="pc">
+<link href="/stylesheets/screen_mobile.css" rel="alternate stylesheet" type="text/css" title="mobile">
+<link href="/atom.xml" rel="alternate" title="Rexdf" type="application/atom+xml">
+<script src="/javascripts/libs/jquery.min.js"></script>
+<script src="/javascripts/octopress-rexdf.min.js" type="text/javascript"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+      
+      toggle_theme();
+  });
+</script>
+<script type="text/javascript" async src="https://static.rexdf.org/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript">var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-55590409-1"]),_gaq.push(["_trackPageview"]),function(){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(t,e)}()</script>
+<script>var _hmt=_hmt||[];!function(){var e=document.createElement("script");e.src="//hm.baidu.com/hm.js?32192d95b89fbefa0875c4c95adb1412";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}()</script>
+<script src="/javascripts/fancybox/jquery.fancybox.pack.js"></script>
+<link rel="stylesheet" type="text/css" href="/javascripts/fancybox/jquery.fancybox.css">
+<script type="text/javascript">var _paq=_paq||[];_paq.push(["trackPageView"]),_paq.push(["enableLinkTracking"]),function(){var e="https://analytics.rexdf.net/";_paq.push(["setTrackerUrl",e+"piwik.php"]),_paq.push(["setSiteId","1"]);var a=document,t=a.createElement("script"),p=a.getElementsByTagName("script")[0];t.type="text/javascript",t.async=!0,t.defer=!0,t.src=e+"piwik.js",p.parentNode.insertBefore(t,p)}()</script>
+</head>
+<body class="low-contrast-linen-wptouch-bg">
+<header role="banner"><hgroup>
+<h1 id="header-title"><a href="/">Rexdf</a></h1>
+<h2 id="subtitle">The devil is in the Details.</h2>
+</hgroup>
+</header>
+<nav role="navigation"><ul class="subscription" data-subscription="rss">
+<li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+</ul>
+<form action="https://google.com/search" method="get">
+<fieldset role="search">
+<input type="hidden" name="q" value="site:i.rexdf.org">
+<input class="search" type="text" name="q" results="0" placeholder="Search">
+</fieldset>
+</form>
+<ul class="main-navigation">
+<li><a href="/">Blog</a></li>
+<li><a href="/blog/archives/">Archives</a></li>
+<li><a href="/idea/">Idea</a></li>
+<li><a href="/share/">Share</a></li>
+<li><a href="/books/">Books</a></li>
+<li><a href="/donate/">Donate</a></li>
+<li><a target="_blank" href="https://blog.rexdf.org" style="font-family:Shadows Into Light">Main-Blog</a></li>
+</ul>
+</nav>
+<div id="main">
+<div id="content">
+<div>
+<article class="hentry" role="article">
+<header>
+<h1 class="entry-title">WordPress数据库改名</h1>
+<p class="meta">
+<time class="data-article month-10 season-autumn" datetime="2013-10-01T21:49:00+08:00" pubdate><span class="month">Oct</span> <span class="day">1st</span> <span class="year">2013</span></time>
+| <a href="#disqus_thread" data-disqus-identifier="https://i.rexdf.org">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>今天突然想把默认的那个wp_数据库表前缀改一下，按照网上的方案一般就是直接在原始数据库上面改。但是考虑到可能改坏数据库，因为我不希望这么做。当然改数据库表名可以使用phpMyAdmin或者使用”alter table 表名 rename to 新表名” 都是可以的，但是改完之后还需要修改几个值，我特地装了一个新的Wordpress来重新做了一个表来验证，下面语句应该是对的(假设想改成blog_)：</p>
+<pre><code>UPDATE blog_usermeta SET meta_key ='blog_capabilities' WHERE meta_key ='wp_capabilities';
+UPDATE blog_usermeta SET meta_key ='blog_user_level' WHERE meta_key ='wp_user_level';
+UPDATE blog_options SET option_name='blog_user_roles' WHERE option_name='wp_user_roles'; 
+</code></pre>
+<p>然后我记起以前在做一个SQL Server的时候用的方法，导出成为SQL脚本然后修改脚本，然后修改脚本，但是此法我暂时还没有调试成功，问题较多，主要是编码问题；因为我不需要更换数据库位置，所以突然明白只需要复制表就好了，数据库空间我基本没怎么用，于是最终采用了第二种方法。</p>
+<h3 id="sql">1.SQL脚本修改法</h3>
+<p>通过phpMyAdmin导出wp_的表，二进制一定要选择十六进制格式，由于Wordpress Statistics插件的wp_statistics_visitor较大有4.5M，而且每分每秒都在增加行，开始一起导出所有wp_开头的数据库，使用wp_的通配符替换文本之后，无法执行，有12M+的大小。 然后把wp_statistics_visitor单独导出，wp_posts也单独导出了，然后余下的一起导出，分成三个文件。这时我也意思到存在一个问题，就是我曾经研究过Wordpress的数据库结构然后发过文章，所以wp_posts替换一定要使用严格的模式，比如替换 INSERT INTO <code>wp_posts</code> VALUES，而不是简单地替换wp_甚至wp_posts，当然这个的前提是我文章中没有这个语句，不然就得使用正则表达式替换行首了。 花了大约半个钟头把全部的前缀替换好了，包括那个需要改值的都一起替换了，实际上还是不止上面的三条，我发现的有六处(欢迎大家补充)：</p>
+<pre><code>UPDATE blog_usermeta SET meta_key ='blog_user-settings' WHERE meta_key ='wp_user-settings';
+UPDATE blog_usermeta SET meta_key ='blog_user-settings-time' WHERE meta_key ='wp_user-settings-time';
+UPDATE blog_usermeta SET meta_key ='blog_dashboard_quick_press_last_post_id' WHERE meta_key ='wp_dashboard_quick_press_last_post_id';
+UPDATE blog_usermeta SET meta_key ='blog_user_level' WHERE meta_key ='wp_user_level';
+UPDATE blog_usermeta SET meta_key ='blog_capabilities' WHERE meta_key ='wp_capabilities';
+UPDATE blog_options SET option_name='blog_user_roles' WHERE option_name='wp_user_roles';
+</code></pre>
+<h3 id="section">2.数据库复制法</h3>
+<p>这个方法优化了前面提到的各个问题直接写成了一个脚本，执行之后把wp_config.php中的$table_prefix改成blog即可了。</p>
+<pre><code>CREATE TABLE `blog_posts` (
+  `ID` bigint(20) unsigned NOT NULL auto_increment,
+  `post_author` bigint(20) unsigned NOT NULL default '0',
+  `post_date` datetime NOT NULL default '0000-00-00 00:00:00',
+  `post_date_gmt` datetime NOT NULL default '0000-00-00 00:00:00',
+  `post_content` longtext NOT NULL,
+  `post_title` text NOT NULL,
+  `post_excerpt` text NOT NULL,
+  `post_status` varchar(20) NOT NULL default 'publish',
+  `comment_status` varchar(20) NOT NULL default 'open',
+  `ping_status` varchar(20) NOT NULL default 'open',
+  `post_password` varchar(20) NOT NULL default '',
+  `post_name` varchar(200) NOT NULL default '',
+  `to_ping` text NOT NULL,
+  `pinged` text NOT NULL,
+  `post_modified` datetime NOT NULL default '0000-00-00 00:00:00',
+  `post_modified_gmt` datetime NOT NULL default '0000-00-00 00:00:00',
+  `post_content_filtered` longtext NOT NULL,
+  `post_parent` bigint(20) unsigned NOT NULL default '0',
+  `guid` varchar(255) NOT NULL default '',
+  `menu_order` int(11) NOT NULL default '0',
+  `post_type` varchar(20) NOT NULL default 'post',
+  `post_mime_type` varchar(100) NOT NULL default '',
+  `comment_count` bigint(20) NOT NULL default '0',
+  PRIMARY KEY  (`ID`),
+  KEY `post_name` (`post_name`),
+  KEY `type_status_date` (`post_type`,`post_status`,`post_date`,`ID`),
+  KEY `post_parent` (`post_parent`),
+  KEY `post_author` (`post_author`)
+) ENGINE=MyISAM AUTO_INCREMENT=1828 DEFAULT CHARSET=utf8 AUTO_INCREMENT=1828 ;
+
+insert into blog_posts select * from wp_posts;
+
+CREATE TABLE `blog_commentmeta` (
+  `meta_id` bigint(20) unsigned NOT NULL auto_increment,
+  `comment_id` bigint(20) unsigned NOT NULL default '0',
+  `meta_key` varchar(255) default NULL,
+  `meta_value` longtext,
+  PRIMARY KEY  (`meta_id`),
+  KEY `comment_id` (`comment_id`),
+  KEY `meta_key` (`meta_key`)
+) ENGINE=MyISAM AUTO_INCREMENT=4631 DEFAULT CHARSET=utf8 AUTO_INCREMENT=4631 ;
+
+insert into blog_commentmeta select * from wp_commentmeta;
+
+CREATE TABLE `blog_comments` (
+  `comment_ID` bigint(20) unsigned NOT NULL auto_increment,
+  `comment_post_ID` bigint(20) unsigned NOT NULL default '0',
+  `comment_author` tinytext NOT NULL,
+  `comment_author_email` varchar(100) NOT NULL default '',
+  `comment_author_url` varchar(200) NOT NULL default '',
+  `comment_author_IP` varchar(100) NOT NULL default '',
+  `comment_date` datetime NOT NULL default '0000-00-00 00:00:00',
+  `comment_date_gmt` datetime NOT NULL default '0000-00-00 00:00:00',
+  `comment_content` text NOT NULL,
+  `comment_karma` int(11) NOT NULL default '0',
+  `comment_approved` varchar(20) NOT NULL default '1',
+  `comment_agent` varchar(255) NOT NULL default '',
+  `comment_type` varchar(20) NOT NULL default '',
+  `comment_parent` bigint(20) unsigned NOT NULL default '0',
+  `user_id` bigint(20) unsigned NOT NULL default '0',
+  PRIMARY KEY  (`comment_ID`),
+  KEY `comment_post_ID` (`comment_post_ID`),
+  KEY `comment_approved_date_gmt` (`comment_approved`,`comment_date_gmt`),
+  KEY `comment_date_gmt` (`comment_date_gmt`),
+  KEY `comment_parent` (`comment_parent`)
+) ENGINE=MyISAM AUTO_INCREMENT=1566 DEFAULT CHARSET=utf8 AUTO_INCREMENT=1566 ;
+
+insert into blog_comments select * from wp_comments;
+
+CREATE TABLE `blog_links` (
+  `link_id` bigint(20) unsigned NOT NULL auto_increment,
+  `link_url` varchar(255) NOT NULL default '',
+  `link_name` varchar(255) NOT NULL default '',
+  `link_image` varchar(255) NOT NULL default '',
+  `link_target` varchar(25) NOT NULL default '',
+  `link_description` varchar(255) NOT NULL default '',
+  `link_visible` varchar(20) NOT NULL default 'Y',
+  `link_owner` bigint(20) unsigned NOT NULL default '1',
+  `link_rating` int(11) NOT NULL default '0',
+  `link_updated` datetime NOT NULL default '0000-00-00 00:00:00',
+  `link_rel` varchar(255) NOT NULL default '',
+  `link_notes` mediumtext NOT NULL,
+  `link_rss` varchar(255) NOT NULL default '',
+  PRIMARY KEY  (`link_id`),
+  KEY `link_visible` (`link_visible`)
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
+
+insert into blog_links select * from wp_links;
+
+CREATE TABLE `blog_options` (
+  `option_id` bigint(20) unsigned NOT NULL auto_increment,
+  `option_name` varchar(64) NOT NULL default '',
+  `option_value` longtext NOT NULL,
+  `autoload` varchar(20) NOT NULL default 'yes',
+  PRIMARY KEY  (`option_id`),
+  UNIQUE KEY `option_name` (`option_name`)
+) ENGINE=MyISAM AUTO_INCREMENT=90783 DEFAULT CHARSET=utf8 AUTO_INCREMENT=90783 ;
+
+insert into blog_options select * from wp_options;
+
+CREATE TABLE `blog_postmeta` (
+</code></pre>
+</div>
+<footer>
+<p class="meta">
+<span class="byline author vcard">Posted by <span class="fn">Rexdf</span></span>
+<time class="data-article month-10 season-autumn" datetime="2013-10-01T21:49:00+08:00" pubdate><span class="month">Oct</span> <span class="day">1st</span> <span class="year">2013</span></time>
+</p>
+<div class="sharing">
+</div>
+<p class="meta">
+<a class="basic-alignment left" href="/blog/2013/09/29/ce-shi-Android-ying-yong/" title="Previous Post: 测试Android应用">&laquo; 测试Android应用</a>
+<a class="basic-alignment right" href="/blog/2013/10/04/WordPress-an-quan-pian/" title="Next Post: WordPress安全篇">WordPress安全篇 &raquo;</a>
+</p>
+</footer>
+</article>
+<section>
+<h1>Comments</h1>
+<div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
+</div>
+<aside class="sidebar">
+<section>
+<h1>Categories</h1>
+<ul id="categories">
+<li class="category"><a href="/blog/categories/acm/">ACM <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/algorithm/">Algorithm <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/assembly/">Assembly <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/cygwin/">Cygwin <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/gnu/">GNU <sup>8</sup></a></li>
+<li class="category"><a href="/blog/categories/math/">Math <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/octopress/">Octopress <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/programming/">Programming <sup>6</sup></a></li>
+<li class="category"><a href="/blog/categories/security/">Security <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sublime/">Sublime <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/synology/">Synology <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sysadmin/">SysAdmin <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/web/">Web <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/windows/">Windows <sup>7</sup></a></li>
+<li class="category"><a href="/blog/categories/proxmox/">proxmox <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/ri-chang/">日常 <sup>37</sup></a></li>
+</ul>
+</section>
+<section>
+<h1>Recent Posts</h1>
+<ul id="recent_posts">
+<li class="post">
+<a href="/blog/2024/12/16/fu-wu-qi-wa-kuang-bing-du-de-cha-sha/">服务器挖矿病毒的查杀</a>
+</li>
+<li class="post">
+<a href="/blog/2021/07/11/apple-m1-bian-yi-tensorflow/">Apple M1 编译tensorflow</a>
+</li>
+<li class="post">
+<a href="/blog/2021/02/27/chromiumbian-ma-qi-wen-ti/">Chromium编码器问题</a>
+</li>
+<li class="post">
+<a href="/blog/2020/12/13/proxmoxbi-ji/">Proxmox笔记</a>
+</li>
+<li class="post">
+<a href="/blog/2020/11/15/lun-yan-du-yu-shen-du/">论广度与深度</a>
+</li>
+</ul>
+</section>
+<section>
+<iframe frameborder="0" scrolling="no" referrerpolicy="unsafe-url" style="width:283px;height:200px" src="https://t.rexdf.org/?m=app&a=showwidget&name=rexdf&type=1&width=283px&height=500px"></iframe>
+</section>
+<section>
+<h1>GitHub Repos</h1>
+<ul id="gh_repos">
+<li class="loading">Status updating...</li>
+</ul>
+<a href="https://github.com/rexdf">@rexdf</a> on GitHub
+<script type="text/javascript">$(document).ready(function(){if(!window.jXHR){var e=document.createElement("script");e.type="text/javascript",e.src="/javascripts/libs/jXHR.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}github.showRepos({user:"rexdf",count:0,skip_forks:!0,target:"#gh_repos"})})</script>
+</section>
+</aside>
+</div>
+</div>
+<footer role="contentinfo"><p>
+<span class="credit">Copyright &copy; 2024 - Rexdf -</span> |
+<span class="credit">Powered by <a name="bottoms" target="_blank" href="http://octopress.org">Octopress</a></span> |
+<span class="credit">Theme by ：<a href="https://blog.rexdf.org/" target="_blank" rel="theme">Rexdf</a></span> |
+<span class="credit">Host by：<a href="https://github.com/" target="_blank" rel="host">Github.com</a></span> |
+<span class="credit">版权声明：<a href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" target="_blank" rel="license">CC BY-NC-SA 3.0</a><img src="https://analytics.rexdf.net/piwik.php?idsite=1&amp;rec=1" style="border:0" alt="" referrerpolicy="no-referrer-when-downgrade"></span>|
+<span class="credit"><a href="/sitemap.xml" rel="sitemap">sitemap</a></span>
+</p>
+<script type="text/javascript" src="https://tajs.qq.com/stats?sId=30296377" charset="UTF-8"></script>
+</footer>
+<script type="text/javascript">var disqus_shortname="rexdf",disqus_identifier="https://i.rexdf.org/blog/2013/10/01/WordPress-shu-ju-ku-gai-ming/",disqus_url="https://i.rexdf.org/blog/2013/10/01/WordPress-shu-ju-ku-gai-ming/",disqus_script="embed.js";!function(){var s=document.createElement("script");s.type="text/javascript",s.async=!0,s.src="//"+disqus_shortname+".disqus.com/"+disqus_script,(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(s)}()</script>
+<script type="text/javascript">$(function(){$(".entry-content").each(function(t){var r=t;$(this).find("img.fancybox").each(function(){var t=$(this),a=t.attr("title"),n=t.attr("class");t.removeAttr("class"),t.wrap('<a href="'+this.src+'" class="'+n+'" rel="gallery'+r+'" />'),""!=a&&t.parent().attr("title",a)})}),$(".fancybox").fancybox()})</script>
+</body>
+</html>

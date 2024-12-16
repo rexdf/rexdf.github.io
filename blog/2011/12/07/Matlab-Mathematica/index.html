@@ -1,0 +1,174 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<script type="text/javascript">var _speedMark=new Date</script>
+<meta charset="utf-8">
+<title>Matlab&Mathematica - Rexdf</title>
+<meta name="author" content="Rexdf">
+<meta name="description" content="一、常用对象操作：除了一般windows窗口的常用功能键外。 1、!dir 可以查看当前工作目录的文件。   !dir&amp; 可以在dos状态下查看。 2、who  可以查看当前工作空间变量名，    whos 可以查看变量名细节。 3、功能键： 功能键             快捷键 &hellip;">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' data: https://hm.baidu.com https://tajs.qq.com https://ssl.google-analytics.com https://static.rexdf.org https://*.disquscdn.com https://rexdf.disqus.com https://api.github.com https://ssl.google-analytics.com https://disqus.com https://analytics.rexdf.net; connect-src 'self' https://static.rexdf.org https://analytics.rexdf.net https://hm.baidu.com; img-src data: https://*; font-src data: https://*; child-src 'none'; style-src 'self' 'unsafe-inline' https://*; frame-src 'self' https://t.rexdf.org http://t.rexdf.org https://rexdf.disqus.com https://disqus.com">
+<link rel="canonical" href="https://i.rexdf.org/blog/2011/12/07/Matlab-Mathematica">
+<link rel="dns-prefetch" href="https://static.rexdf.org/">
+<link href="/favicon.ico" rel="icon">
+<link id="main-css" href="/stylesheets/screen.css" media="screen,projection" rel="stylesheet" type="text/css" title="pc">
+<link href="/stylesheets/screen_mobile.css" rel="alternate stylesheet" type="text/css" title="mobile">
+<link href="/atom.xml" rel="alternate" title="Rexdf" type="application/atom+xml">
+<script src="/javascripts/libs/jquery.min.js"></script>
+<script src="/javascripts/octopress-rexdf.min.js" type="text/javascript"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+      
+      toggle_theme();
+  });
+</script>
+<script type="text/javascript" async src="https://static.rexdf.org/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript">var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-55590409-1"]),_gaq.push(["_trackPageview"]),function(){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(t,e)}()</script>
+<script>var _hmt=_hmt||[];!function(){var e=document.createElement("script");e.src="//hm.baidu.com/hm.js?32192d95b89fbefa0875c4c95adb1412";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}()</script>
+<script src="/javascripts/fancybox/jquery.fancybox.pack.js"></script>
+<link rel="stylesheet" type="text/css" href="/javascripts/fancybox/jquery.fancybox.css">
+<script type="text/javascript">var _paq=_paq||[];_paq.push(["trackPageView"]),_paq.push(["enableLinkTracking"]),function(){var e="https://analytics.rexdf.net/";_paq.push(["setTrackerUrl",e+"piwik.php"]),_paq.push(["setSiteId","1"]);var a=document,t=a.createElement("script"),p=a.getElementsByTagName("script")[0];t.type="text/javascript",t.async=!0,t.defer=!0,t.src=e+"piwik.js",p.parentNode.insertBefore(t,p)}()</script>
+</head>
+<body class="low-contrast-linen-wptouch-bg">
+<header role="banner"><hgroup>
+<h1 id="header-title"><a href="/">Rexdf</a></h1>
+<h2 id="subtitle">The devil is in the Details.</h2>
+</hgroup>
+</header>
+<nav role="navigation"><ul class="subscription" data-subscription="rss">
+<li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+</ul>
+<form action="https://google.com/search" method="get">
+<fieldset role="search">
+<input type="hidden" name="q" value="site:i.rexdf.org">
+<input class="search" type="text" name="q" results="0" placeholder="Search">
+</fieldset>
+</form>
+<ul class="main-navigation">
+<li><a href="/">Blog</a></li>
+<li><a href="/blog/archives/">Archives</a></li>
+<li><a href="/idea/">Idea</a></li>
+<li><a href="/share/">Share</a></li>
+<li><a href="/books/">Books</a></li>
+<li><a href="/donate/">Donate</a></li>
+<li><a target="_blank" href="https://blog.rexdf.org" style="font-family:Shadows Into Light">Main-Blog</a></li>
+</ul>
+</nav>
+<div id="main">
+<div id="content">
+<div>
+<article class="hentry" role="article">
+<header>
+<h1 class="entry-title">Matlab&Mathematica</h1>
+<p class="meta">
+<time class="data-article month-12 season-winter" datetime="2011-12-07T22:31:00+08:00" pubdate><span class="month">Dec</span> <span class="day">7th</span> <span class="year">2011</span></time>
+| <a href="#disqus_thread" data-disqus-identifier="https://i.rexdf.org">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>一、常用对象操作：除了一般windows窗口的常用功能键外。 1、!dir 可以查看当前工作目录的文件。   !dir&amp; 可以在dos状态下查看。 2、who  可以查看当前工作空间变量名，    whos 可以查看变量名细节。 3、功能键： 功能键             快捷键           说明 方向上键           Ctrl+P          返回前一行输入 方向下键           Ctrl+N          返回下一行输入 方向左键           Ctrl+B          光标向后移一个字符 方向右键           Ctrl+F          光标向前移一个字符 Ctrl+方向右键      Ctrl+R          光标向右移一个字符 Ctrl+方向左键      Ctrl+L          光标向左移一个字符 home              Ctrl+A          光标移到行首 End               Ctrl+E          光标移到行尾 Esc               Ctrl+U          清除一行 Del               Ctrl+D          清除光标所在的字符 Backspace         Ctrl+H          删除光标前一个字符                              Ctrl+K          删除到行尾 Ctrl+C          中断正在执行的命令 4、clc可以命令窗口显示的内容，但并不清除工作空间。 二、函数及运算 1、运算符： ＋：加，  －：减，  *：乘，  /： 除， ：左除  ^：  幂，‘：复数的共轭转置， （）：制定运算顺序。 2、常用函数表： sin( )   正弦（变量为弧度） Cot( )   余切（变量为弧度） sind( )  正弦（变量为度数） Cotd( )  余切（变量为度数） asin( )  反正弦（返回弧度） acot( )  反余切（返回弧度） Asind( ) 反正弦（返回度数） acotd( ) 反余切（返回度数） cos( )   余弦（变量为弧度） exp( )   指数 cosd( )  余弦（变量为度数） log( )   对数 acos( )  余正弦（返回弧度） log10( ) 以10为底对数 acosd( ) 余正弦（返回度数） sqrt( )  开方 tan( )   正切（变量为弧度） realsqrt( ) 返回非负根 tand( )  正切（变量为度数） abs( )   取绝对值 atan( )  反正切（返回弧度） angle( ) 返回复数的相位角 atand( ) 反正切（返回度数） mod(x,y) 返回x/y的余数 sum(  )  向量元素求和 3、其余函数可以用help elfun和help specfun命令获得。 4、常用常数的值： pi            3.1415926……. realmin       最小浮点数，2^-1022 i             虚数单位 realmax       最大浮点数，（2－eps）2^1022 j             虚数单位 Inf           无限值 eps           浮点相对经度＝2^-52 NaN           空值 三、数组和矩阵： 1、构造数组的方法：增量发和linspace(first,last,num)first和last为起始和终止数，num为需要的数组元素个数。 2、构造矩阵的方法：可以直接用[ ]来输入数组，也可以用以下提供的函数来生成矩阵。 ones( )   创建一个所有元素都为1的矩阵，其中可以制定维数，1，2….个变量 zeros()   创建一个所有元素都为0的矩阵 eye()     创建对角元素为1，其他元素为0的矩阵 diag()    根据向量创建对角矩阵，即以向量的元素为对角元素 magic()   创建魔方矩阵 rand()    创建随机矩阵，服从均匀分布 randn()   创建随机矩阵，服从正态分布 randperm()         创建随机行向量 horcat             C=[A,B]，水平聚合矩阵，还可以用cat(1,A,B) vercat             C=[A;B]，垂直聚合矩阵, 还可以用cat(2,A,B) repmat(M,v,h)      将矩阵M在垂直方向上聚合v次，在水平方向上聚合h次 blkdiag（A，B）     以A，和B为块创建块对角矩阵 length             返回矩阵最长维的的长度 ndims              返回维数 numel              返回矩阵元素个数 size               返回每一维的长度，[rows,cols]=size(A) reshape            重塑矩阵，reshape(A,2,6),将A变为2×6的矩阵，按列排列。 rot90              旋转矩阵90度，逆时针方向 fliplr             沿垂轴翻转矩阵 flipud             沿水平轴翻转矩阵 transpose          沿主对角线翻转矩阵 ctranspose         转置矩阵，也可用A’或A.’，这仅当矩阵为复数矩阵时才有区别 inv                矩阵的逆 det                矩阵的行列式值 trace              矩阵对角元素的和 norm               矩阵或矢量的范数，norm（a，1），norm（a，Inf）……. normest            估计矩阵的最大范数矢量 chol               矩阵的cholesky分解 cholinc            不完全cholesky分解 lu                 LU分解 luinc              不完全LU分解 qr                 正交分解 kron（A，B）        A为m×n，B为p×q，则生成mp×nq的矩阵，A的每一个元素都会乘上B，并占据p×q大小的空间 rank               求出矩阵的刺 pinv               求伪逆矩阵 A^p                对A进行操作 A.^P               对A中的每一个元素进行操作 四、数值计算 1、线性方程组求解 （1）AX=B 的解可以用X＝AB求。XA=B的解可以用X= A/B求。如果A是m×n的矩阵，当m＝n时可以找到唯一解，m&lt;n，不定解，解中至多有m个非零元素。如果m&gt;n，超定系统，至少找到一组 解。如果A是奇异的，且AX=B有解，可以用X＝pinv（A）×B返回最小二乘解 （2）AX=b,  A＝L×U，[L,U]=lu(A),  X=U(Lb),即用LU分解求解。 （3）QR（正交）分解是将一矩阵表示为一正交矩阵和一上三角矩阵之积，A＝Q×R[Q,R]=chol(A),  X=Q(Ub) （4）cholesky分解类似。 2、特征值 D＝eig（A）返回A的所有特征值组成的矩阵。[V,D]=eig(A),还返回特征向量矩阵。 3、A＝U×S×UT，[U,S]=schur(A).其中S的对角线元素为A的特征值。 4、多项式Matlab里面的多项式是以向量来表示的，其具体操作函数如下： conv           多项式的乘法 deconv         多项式的除法，【a，b】＝deconv（s），返回商和余数 poly           求多项式的系数（由已知根求多项式的系数） polyeig        求多项式的特征值 Polyfit（x，y，n）        多项式的曲线拟合，x，y为被拟合的向量，n为拟合多项式阶数。 polyder        求多项式的一阶导数，polyder（a，b）返回ab的导数 [a,b]＝polyder（a，b）返回a/b的导数。 polyint        多项式的积分 polyval        求多项式的值 polyvalm       以矩阵为变量求多项式的值 residue        部分分式展开式 roots          求多项式的根（返回所有根组成的向量） 注：用ploy（A）求出矩阵的特征多项式，然后再求其根，即为矩阵的特征值。 5、插值常用的插值函数如下： griddata       数据网格化合曲面拟合 Griddata3      三维数据网格化合超曲面拟合 interp1        一维插值（yi=interp1(x,y,xi,’method’)Method=nearest/linear/spline/pchip/cubic Interp2        二维插值zi=interp1(x,y,z,xi,yi’method’),bilinear Interp3        三维插值 interpft       用快速傅立叶变换进行一维插值，help fft。 mkpp           使用分段多项式 spline         三次样条插值 pchip          分段hermit插值 6、函数最值的求解</p>
+</div>
+<footer>
+<p class="meta">
+<span class="byline author vcard">Posted by <span class="fn">Rexdf</span></span>
+<time class="data-article month-12 season-winter" datetime="2011-12-07T22:31:00+08:00" pubdate><span class="month">Dec</span> <span class="day">7th</span> <span class="year">2011</span></time>
+</p>
+<div class="sharing">
+</div>
+<p class="meta">
+<a class="basic-alignment left" href="/blog/2011/12/02/IPv6-Apache-yu-ming-DNS-AAAA-pei-zhi/" title="Previous Post: IPv6 Apache 域名DNS AAAA配置">&laquo; IPv6 Apache 域名DNS AAAA配置</a>
+<a class="basic-alignment right" href="/blog/2011/12/09/lu-yin-ben-shen-mei-sha-ke-xiao-jia-shang-zi-mu-xiao-can-wo-le/" title="Next Post: 录音本身没啥可笑，加上字幕笑惨我了。。">录音本身没啥可笑，加上字幕笑惨我了。。 &raquo;</a>
+</p>
+</footer>
+</article>
+<section>
+<h1>Comments</h1>
+<div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
+</div>
+<aside class="sidebar">
+<section>
+<h1>Categories</h1>
+<ul id="categories">
+<li class="category"><a href="/blog/categories/acm/">ACM <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/algorithm/">Algorithm <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/assembly/">Assembly <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/cygwin/">Cygwin <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/gnu/">GNU <sup>8</sup></a></li>
+<li class="category"><a href="/blog/categories/math/">Math <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/octopress/">Octopress <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/programming/">Programming <sup>6</sup></a></li>
+<li class="category"><a href="/blog/categories/security/">Security <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sublime/">Sublime <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/synology/">Synology <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sysadmin/">SysAdmin <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/web/">Web <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/windows/">Windows <sup>7</sup></a></li>
+<li class="category"><a href="/blog/categories/proxmox/">proxmox <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/ri-chang/">日常 <sup>37</sup></a></li>
+</ul>
+</section>
+<section>
+<h1>Recent Posts</h1>
+<ul id="recent_posts">
+<li class="post">
+<a href="/blog/2024/12/16/fu-wu-qi-wa-kuang-bing-du-de-cha-sha/">服务器挖矿病毒的查杀</a>
+</li>
+<li class="post">
+<a href="/blog/2021/07/11/apple-m1-bian-yi-tensorflow/">Apple M1 编译tensorflow</a>
+</li>
+<li class="post">
+<a href="/blog/2021/02/27/chromiumbian-ma-qi-wen-ti/">Chromium编码器问题</a>
+</li>
+<li class="post">
+<a href="/blog/2020/12/13/proxmoxbi-ji/">Proxmox笔记</a>
+</li>
+<li class="post">
+<a href="/blog/2020/11/15/lun-yan-du-yu-shen-du/">论广度与深度</a>
+</li>
+</ul>
+</section>
+<section>
+<iframe frameborder="0" scrolling="no" referrerpolicy="unsafe-url" style="width:283px;height:200px" src="https://t.rexdf.org/?m=app&a=showwidget&name=rexdf&type=1&width=283px&height=500px"></iframe>
+</section>
+<section>
+<h1>GitHub Repos</h1>
+<ul id="gh_repos">
+<li class="loading">Status updating...</li>
+</ul>
+<a href="https://github.com/rexdf">@rexdf</a> on GitHub
+<script type="text/javascript">$(document).ready(function(){if(!window.jXHR){var e=document.createElement("script");e.type="text/javascript",e.src="/javascripts/libs/jXHR.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}github.showRepos({user:"rexdf",count:0,skip_forks:!0,target:"#gh_repos"})})</script>
+</section>
+</aside>
+</div>
+</div>
+<footer role="contentinfo"><p>
+<span class="credit">Copyright &copy; 2024 - Rexdf -</span> |
+<span class="credit">Powered by <a name="bottoms" target="_blank" href="http://octopress.org">Octopress</a></span> |
+<span class="credit">Theme by ：<a href="https://blog.rexdf.org/" target="_blank" rel="theme">Rexdf</a></span> |
+<span class="credit">Host by：<a href="https://github.com/" target="_blank" rel="host">Github.com</a></span> |
+<span class="credit">版权声明：<a href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" target="_blank" rel="license">CC BY-NC-SA 3.0</a><img src="https://analytics.rexdf.net/piwik.php?idsite=1&amp;rec=1" style="border:0" alt="" referrerpolicy="no-referrer-when-downgrade"></span>|
+<span class="credit"><a href="/sitemap.xml" rel="sitemap">sitemap</a></span>
+</p>
+<script type="text/javascript" src="https://tajs.qq.com/stats?sId=30296377" charset="UTF-8"></script>
+</footer>
+<script type="text/javascript">var disqus_shortname="rexdf",disqus_identifier="https://i.rexdf.org/blog/2011/12/07/Matlab-Mathematica/",disqus_url="https://i.rexdf.org/blog/2011/12/07/Matlab-Mathematica/",disqus_script="embed.js";!function(){var e=document.createElement("script");e.type="text/javascript",e.async=!0,e.src="//"+disqus_shortname+".disqus.com/"+disqus_script,(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(e)}()</script>
+<script type="text/javascript">$(function(){$(".entry-content").each(function(t){var r=t;$(this).find("img.fancybox").each(function(){var t=$(this),a=t.attr("title"),n=t.attr("class");t.removeAttr("class"),t.wrap('<a href="'+this.src+'" class="'+n+'" rel="gallery'+r+'" />'),""!=a&&t.parent().attr("title",a)})}),$(".fancybox").fancybox()})</script>
+</body>
+</html>

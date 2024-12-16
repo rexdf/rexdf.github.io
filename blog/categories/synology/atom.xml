@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Synology | Rexdf]]></title>
+  <link href="https://i.rexdf.org/blog/categories/synology/atom.xml" rel="self"/>
+  <link href="https://i.rexdf.org/"/>
+  <updated>2024-12-16T23:11:13+08:00</updated>
+  <id>https://i.rexdf.org/</id>
+  <author>
+    <name><![CDATA[Rexdf]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[如何扩展群晖的basic分区容量]]></title>
+    <link href="https://i.rexdf.org/blog/2020/11/11/ru-he-kuo-zhan-qun-hui-de-basicfen-qu-rong-liang/"/>
+    <updated>2020-11-11T22:28:32+08:00</updated>
+    <id>https://i.rexdf.org/blog/2020/11/11/ru-he-kuo-zhan-qun-hui-de-basicfen-qu-rong-liang</id>
+    <content type="html"><![CDATA[<ul class="markdown-toc">
+  <li><a href="#section">1. 磁盘对拷</a></li>
+  <li><a href="#section-1">2. 测试群晖开机</a></li>
+  <li><a href="#section-2">3. 修改分区大小</a></li>
+  <li><a href="#section-5">3.4 参考资料</a></li>
+</ul>
+
+<p>美亚买了一个14T的硬盘，经历两周从德国邮寄收到了。拆出硬盘，准备换入群晖，发现硬盘分区已经没有了，最小的那个分区是一个4T的硬盘，而且是当初的第一个硬盘，上面有群晖的系统分区。</p>
+
+<!--more-->
+
+<p>本文主要记录操作过程，总时间不长，白天在上班，大概花了大概11+3个小时完成从4T到14T无损迁移，并且被群晖系统识别为全部容量。</p>
+
+<h3 id="section">1. 磁盘对拷</h3>
+
+<p>这个工具大概比较多，我用的Diskgenius，用的双盘位的硬盘盒, 直接 工具 -&gt; 克隆磁盘 -&gt; 源磁盘选4T那个盘，目标磁盘选14T的磁盘，复制所有扇区。</p>
+
+<p>一看时间需要12个小时，我就睡觉去了，早上起来，刚好拷完，用了大概11个小时。</p>
+
+<h3 id="section-1">2. 测试群晖开机</h3>
+
+<p>14T的磁盘插入群晖，可以正常开机。 似乎问题解决了，<strong>然而群晖只能识别成4T</strong>。 在群晖系统网页里面试了下，没有扩展按钮。</p>
+
+<h3 id="section-2">3. 修改分区大小</h3>
+
+<p>因为当初对这台群晖定位是灵活，都是用的basic btrfs建立的分区。群晖关机，拔下硬盘，用便携的硬盘盒插入PC，diskgenius只能识别出里面的一个EXT4分区，另外的几个分区似乎没法识别Linux Raid分区</p>
+
+<p><img src="/images/synology_partitions.png" alt="synology partitions" class="center fancybox" /></p>
+
+<h4 id="ubuntu">3.1 用Ubuntu挂载</h4>
+
+<p>无奈只能用Linux挂载了，虽然用虚拟机大概也可以。但是我这里刚好有一台物理机，所以就把硬盘盒弹出插入Ubuntu系统了。</p>
+
+<p><code>
+mdadm --readwrite /dev/md3
+dmsetup remove_all
+</code></p>
+
+<h4 id="section-3">3.2 修改分区大小</h4>
+
+<p>先尝试了下面的命令。</p>
+
+<p><code>
+mdadm --grow --size max /dev/md3
+resize2fs /dev/md3
+</code></p>
+
+<p>第一条命令提示扩展raid到了3.6T，这显然不是我要的。</p>
+
+<p>用fdisk -l 看了下</p>
+
+<p>```
+Disk /dev/sdd：12.75 TiB，14000519643136 字节，27344764928 个扇区
+Disk model: WDC WD140abcd-xx
+单元：扇区 / 1 * 512 = 512 字节
+扇区大小(逻辑/物理)：512 字节 / 4096 字节
+I/O 大小(最小/最佳)：4096 字节 / 4096 字节
+磁盘标签类型：gpt
+磁盘标识符：00000000-0000-0000-0000-000000000000</p>
+
+<p>设备          起点       末尾       扇区  大小 类型
+/dev/sdd1     2048    4982527    4980480  2.4G Linux RAID
+/dev/sdd2  4982528    9176831    4194304    2G Linux RAID
+/dev/sdd3  9437184 7813832351 7804395168  3.6T Linux RAID</p>
+
+<p>Disk /dev/md3：3.65 TiB，3995849261056 字节，7804393088 个扇区
+单元：扇区 / 1 * 512 = 512 字节
+扇区大小(逻辑/物理)：512 字节 / 4096 字节
+I/O 大小(最小/最佳)：4096 字节 / 4096 字节
+```</p>
+
+<p>好家伙，分区只有3.6T，再怎么扩展肯定都是扩展不上去了。解决办法也是很简单，直接强行改分区大小好了。试了下fdisk，没找到改分区大小的命令。然后试了下gparted，这个图形界面的工具。可以修改分区前后的空闲空间大小，好像也没法改变分区自己的大小。(其实用diskgenius拷贝完毕，就想过改分区大小，diskgenius菜单是灰色的(我是付费高级版本))。 最后大小parted命令好像支持，也很简单。</p>
+
+<p>```
+parted /dev/sdd
+root@xxxx:~# parted /dev/sdd
+GNU Parted 3.3
+使用 /dev/sdd
+欢迎使用 GNU Parted！输入 ‘help’ 来查看命令列表。
+(parted) print
+型号：ATA WDC WD140abcd-xx (scsi)
+磁盘 /dev/sdd: 14.0TB
+扇区大小 (逻辑/物理)：512B/4096B
+分区表：gpt
+磁盘标志：</p>
+
+<p>编号  起始点  结束点  大小    文件系统        名称  标志
+ 1    1049kB  2551MB  2550MB  ext4                  raid
+ 2    2551MB  4699MB  2147MB  linux-swap(v1)        raid
+ 3    4832MB  4001GB  3996GB                        raid</p>
+
+<p>(parted) resizepart
+分区编号？ 3
+结束点？  [4001GB]? 14.0TB
+(parted) print
+型号：ATA WDC WD140abcd-xx (scsi)
+磁盘 /dev/sdd: 14.0TB
+扇区大小 (逻辑/物理)：512B/4096B
+分区表：gpt
+磁盘标志：</p>
+
+<p>编号  起始点  结束点  大小    文件系统        名称  标志
+ 1    1049kB  2551MB  2550MB  ext4                  raid
+ 2    2551MB  4699MB  2147MB  linux-swap(v1)        raid
+ 3    4832MB  14.0TB  14.0TB                        raid</p>
+
+<p>(parted) quit
+```</p>
+
+<p>用fdisk看了下</p>
+
+<p>```
+Disk /dev/sdd：12.75 TiB，14000519643136 字节，27344764928 个扇区
+Disk model: WDC WD140abcd-xx
+单元：扇区 / 1 * 512 = 512 字节
+扇区大小(逻辑/物理)：512 字节 / 4096 字节
+I/O 大小(最小/最佳)：4096 字节 / 4096 字节
+磁盘标签类型：gpt
+磁盘标识符：00000000-0000-0000-0000-000000000000</p>
+
+<p>设备          起点        末尾        扇区  大小 类型
+/dev/sdd1     2048     4982527     4980480  2.4G Linux RAID
+/dev/sdd2  4982528     9176831     4194304    2G Linux RAID
+/dev/sdd3  9437184 27343750000 27334312817 12.7T Linux RAID</p>
+
+<p>Disk /dev/md3：3.65 TiB，3995849277440 字节，7804393120 个扇区
+单元：扇区 / 1 * 512 = 512 字节
+扇区大小(逻辑/物理)：512 字节 / 4096 字节
+I/O 大小(最小/最佳)：4096 字节 / 4096 字节
+```</p>
+
+<p>分区层面似乎解决了</p>
+
+<p><code>
+root@xxxx:~# mdadm --grow --size max /dev/md3
+mdadm: component size of /dev/md3 has been set to 13667155384K
+root@xxxx:~# resize2fs /dev/md3
+resize2fs 1.45.5 (07-Jan-2020)
+resize2fs: 超级块中的幻数有错 尝试打开 /dev/md3 时
+找不到有效的文件系统超级块。
+</code></p>
+
+<p>为了安心用<code>mount /dev/md3 /mnt</code> 然后看了下，文件都还在。于是<code>umount /mnt</code>,拔下硬盘。</p>
+
+<h4 id="section-4">3.3 群晖扩展分区</h4>
+
+<p>拔下硬盘插入群晖，开机。一看还是4T，但是磁盘管理里面多了一个扩展按钮，点一下就变成了12.22T了
+。至此问题完美解决，无损迁移4T到14T了。</p>
+
+<h3 id="section-5">3.4 参考资料</h3>
+
+<ol>
+  <li><a href="https://www.synology.com/en-us/knowledgebase/DSM/tutorial/Storage/How_can_I_recover_data_from_my_DiskStation_using_a_PC" target="_blank">How can I recover data on my Synology NAS using a PC?</a></li>
+  <li><a href="https://www.tecmint.com/parted-command-to-create-resize-rescue-linux-disk-partitions/" target="_blank">8 Linux ‘Parted’ Commands to Create, Resize and Rescue Disk Partitions</a></li>
+</ol>
+]]></content>
+  </entry>
+  
+</feed>

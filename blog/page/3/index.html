@@ -1,0 +1,410 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<script type="text/javascript">var _speedMark=new Date</script>
+<meta charset="utf-8">
+<title>Rexdf</title>
+<meta name="author" content="Rexdf">
+<meta name="description" content="很简单的一个插件，现在支持汉化Sublime Text2，Sublime Text3。全部系统Win64、Win32，Linux64，Linux32，OSX等，可以随意来回切换简体中文、繁体中文、日语、英语，无需重启SublimeText。 ">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' data: https://hm.baidu.com https://tajs.qq.com https://ssl.google-analytics.com https://static.rexdf.org https://*.disquscdn.com https://rexdf.disqus.com https://api.github.com https://ssl.google-analytics.com https://disqus.com https://analytics.rexdf.net; connect-src 'self' https://static.rexdf.org https://analytics.rexdf.net https://hm.baidu.com; img-src data: https://*; font-src data: https://*; child-src 'none'; style-src 'self' 'unsafe-inline' https://*; frame-src 'self' https://t.rexdf.org http://t.rexdf.org https://rexdf.disqus.com https://disqus.com">
+<link rel="canonical" href="https://i.rexdf.org/blog/page/3">
+<link rel="dns-prefetch" href="https://static.rexdf.org/">
+<link href="/favicon.ico" rel="icon">
+<link id="main-css" href="/stylesheets/screen.css" media="screen,projection" rel="stylesheet" type="text/css" title="pc">
+<link href="/stylesheets/screen_mobile.css" rel="alternate stylesheet" type="text/css" title="mobile">
+<link href="/atom.xml" rel="alternate" title="Rexdf" type="application/atom+xml">
+<script src="/javascripts/libs/jquery.min.js"></script>
+<script src="/javascripts/octopress-rexdf.min.js" type="text/javascript"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+      
+      toggle_theme();
+  });
+</script>
+<script type="text/javascript" async src="https://static.rexdf.org/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript">var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-55590409-1"]),_gaq.push(["_trackPageview"]),function(){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(t,e)}()</script>
+<script>var _hmt=_hmt||[];!function(){var e=document.createElement("script");e.src="//hm.baidu.com/hm.js?32192d95b89fbefa0875c4c95adb1412";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}()</script>
+<script src="/javascripts/fancybox/jquery.fancybox.pack.js"></script>
+<link rel="stylesheet" type="text/css" href="/javascripts/fancybox/jquery.fancybox.css">
+<script type="text/javascript">var _paq=_paq||[];_paq.push(["trackPageView"]),_paq.push(["enableLinkTracking"]),function(){var e="https://analytics.rexdf.net/";_paq.push(["setTrackerUrl",e+"piwik.php"]),_paq.push(["setSiteId","1"]);var a=document,t=a.createElement("script"),p=a.getElementsByTagName("script")[0];t.type="text/javascript",t.async=!0,t.defer=!0,t.src=e+"piwik.js",p.parentNode.insertBefore(t,p)}()</script>
+</head>
+<body class="low-contrast-linen-wptouch-bg">
+<header role="banner"><hgroup>
+<h1 id="header-title"><a href="/">Rexdf</a></h1>
+<h2 id="subtitle">The devil is in the Details.</h2>
+</hgroup>
+</header>
+<nav role="navigation"><ul class="subscription" data-subscription="rss">
+<li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+</ul>
+<form action="https://google.com/search" method="get">
+<fieldset role="search">
+<input type="hidden" name="q" value="site:i.rexdf.org">
+<input class="search" type="text" name="q" results="0" placeholder="Search">
+</fieldset>
+</form>
+<ul class="main-navigation">
+<li><a href="/">Blog</a></li>
+<li><a href="/blog/archives/">Archives</a></li>
+<li><a href="/idea/">Idea</a></li>
+<li><a href="/share/">Share</a></li>
+<li><a href="/books/">Books</a></li>
+<li><a href="/donate/">Donate</a></li>
+<li><a target="_blank" href="https://blog.rexdf.org" style="font-family:Shadows Into Light">Main-Blog</a></li>
+</ul>
+</nav>
+<div id="main">
+<div id="content">
+<div class="blog-index">
+<article>
+<header>
+<h1 class="entry-title">[置顶]<a href="/blog/2015/05/15/fa-bu-yi-ge-sublimeyi-hua-cha-jian/">发布一个sublime汉化插件</a></h1>
+<p class="meta">
+<time class="data-article month-05 season-spring" datetime="2015-05-15T11:19:01+08:00" pubdate><span class="month">May</span> <span class="day">15th</span> <span class="year">2015</span></time>
+| <a href="/blog/2015/05/15/fa-bu-yi-ge-sublimeyi-hua-cha-jian/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2015/05/15/fa-bu-yi-ge-sublimeyi-hua-cha-jian/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>很简单的一个插件，现在支持汉化Sublime Text2，Sublime Text3。全部系统Win64、Win32，Linux64，Linux32，OSX等，可以随意来回切换简体中文、繁体中文、日语、英语，无需重启SublimeText。</p>
+</div>
+<footer>
+<a rel="full-article" href="/blog/2015/05/15/fa-bu-yi-ge-sublimeyi-hua-cha-jian/">Read on &rarr;</a>
+</footer>
+</article>
+<article>
+<header>
+<h1 class="entry-title"><a href="/blog/2015/06/26/visual-studiobian-yi-gvimzhi-chi-racket-mzscheme/">Visual Studio编译gvim支持Racket(mzscheme)</a></h1>
+<p class="meta">
+<time class="data-article month-06 season-summer" datetime="2015-06-26T01:28:25+08:00" pubdate><span class="month">Jun</span> <span class="day">26th</span> <span class="year">2015</span></time>
+| <a href="/blog/2015/06/26/visual-studiobian-yi-gvimzhi-chi-racket-mzscheme/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2015/06/26/visual-studiobian-yi-gvimzhi-chi-racket-mzscheme/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><ul class="markdown-toc">
+<li><a href="#section">版本号</a></li>
+<li><a href="#mzschemebasec">mzscheme_base.c</a></li>
+<li><a href="#schemeregistertlsspace">scheme_register_tls_space</a></li>
+<li><a href="#racket">自己编译Racket</a></li>
+<li><a href="#section-1">我的修改</a></li>
+<li><a href="#section-2">后记</a></li>
+</ul>
+<p>在VS编译的64位gvim支持了Python2/3,ruby，perl，tcl，lua之后(参考<a href="http://blog.rexdf.org/2015/06/在visual-studio编译gvim和ycmd/" target="_blank">在Visual Studio编译gvim和ycmd</a>)，发现配置里面还有一个叫做MzScheme，而且是在Make_mvc.mak里面，就是说原生是支持VS编译的。那么开启吧。</p>
+</div>
+<footer>
+<a rel="full-article" href="/blog/2015/06/26/visual-studiobian-yi-gvimzhi-chi-racket-mzscheme/">Read on &rarr;</a>
+</footer>
+</article>
+<article>
+<header>
+<h1 class="entry-title"><a href="/blog/2015/06/14/opensource-projects-build-skills/">Opensource Projects Build Skills</a></h1>
+<p class="meta">
+<time class="data-article month-06 season-summer" datetime="2015-06-14T19:04:18+08:00" pubdate><span class="month">Jun</span> <span class="day">14th</span> <span class="year">2015</span></time>
+| <a href="/blog/2015/06/14/opensource-projects-build-skills/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2015/06/14/opensource-projects-build-skills/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>Build from source code.</p>
+<table>
+<thead>
+<tr>
+<th>opensource software</th>
+<th>times</th>
+<th>build on platform</th>
+<th>required skills</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>archlinux</td>
+<td>+</td>
+<td>virtual machine</td>
+<td>Linux</td>
+</tr>
+<tr>
+<td>LFS</td>
+<td>2~3</td>
+<td>virtual machine</td>
+<td>Gnu Make,Linux toolchain,build kernel</td>
+</tr>
+<tr>
+<td>gentoo</td>
+<td>+</td>
+<td>virtual machine</td>
+<td>Linux</td>
+</tr>
+<tr>
+<td>BLFS</td>
+<td>+</td>
+<td>virtual machine</td>
+<td>Linux</td>
+</tr>
+<tr>
+<td>opencv</td>
+<td>2~3</td>
+<td>Windows</td>
+<td>cmake</td>
+</tr>
+<tr>
+<td>Qt</td>
+<td>+</td>
+<td>Windows(MSVS,MingW)</td>
+<td>MSVC,MingW</td>
+</tr>
+<tr>
+<td>Filezilla</td>
+<td>2~3</td>
+<td>MingW64(Windows/Linux)</td>
+<td>cross build, build gnu software on windows</td>
+</tr>
+<tr>
+<td>gpg4win</td>
+<td>+</td>
+<td>Linux(archlinux,debian)</td>
+<td>cross build</td>
+</tr>
+<tr>
+<td>android</td>
+<td>+</td>
+<td>Ubuntu</td>
+<td>cross build,android rom</td>
+</tr>
+<tr>
+<td>firefox</td>
+<td>+</td>
+<td>Windows</td>
+<td>MSVS</td>
+</tr>
+<tr>
+<td>chrome</td>
+<td>+</td>
+<td>Windows</td>
+<td>MSVS,ninja</td>
+</tr>
+</tbody>
+</table>
+</div>
+</article>
+<article>
+<header>
+<h1 class="entry-title"><a href="/blog/2015/04/29/bian-yi-filezillazhi-2/">编译filezilla之2</a></h1>
+<p class="meta">
+<time class="data-article month-04 season-spring" datetime="2015-04-29T01:41:56+08:00" pubdate><span class="month">Apr</span> <span class="day">29th</span> <span class="year">2015</span></time>
+| <a href="/blog/2015/04/29/bian-yi-filezillazhi-2/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2015/04/29/bian-yi-filezillazhi-2/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><ul class="markdown-toc">
+<li><a href="#shobjh-present-but-cannot-be-compiled">1.shobj.h present but cannot be compiled</a></li>
+<li><a href="#cc1plusexe-has-stopped-working">2.cc1plus.exe has stopped working</a></li>
+<li><a href="#localtimer-gmtimer">3.localtime_r gmtime_r相关的错误</a></li>
+<li><a href="#cygwin-posixprocessh">4.cygwin posix环境影响process.h</a></li>
+</ul>
+<p>在<a href="/blog/2014/09/20/zi-ji-bian-yi-filezilla-client/" target="_blank">自己编译FileZilla Client</a>中编译过3.9，但是对于最近的3.10却一直编译不出来。</p>
+<p>换了多个编译器，其中<a href="/blog/2015/04/04/fa-xian-ge-xin-huan-jing-msys2/" target="_blank">发现个新环境msys2</a>中提到过的基本都试了一遍(实际上主要在实验有4.9的，因为Filezilla3.10.x似乎用到了4.9的一些特性或者头文件)。</p>
+</div>
+<footer>
+<a rel="full-article" href="/blog/2015/04/29/bian-yi-filezillazhi-2/">Read on &rarr;</a>
+</footer>
+</article>
+<article>
+<header>
+<h1 class="entry-title"><a href="/blog/2015/04/23/cru-he-fan-hui-doubleyu-longlong/">C如何返回double与longlong</a></h1>
+<p class="meta">
+<time class="data-article month-04 season-spring" datetime="2015-04-23T18:51:34+08:00" pubdate><span class="month">Apr</span> <span class="day">23rd</span> <span class="year">2015</span></time>
+| <a href="/blog/2015/04/23/cru-he-fan-hui-doubleyu-longlong/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2015/04/23/cru-he-fan-hui-doubleyu-longlong/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><ul class="markdown-toc">
+<li><a href="#msvc">MSVC</a><ul>
+<li><a href="#double">返回double</a></li>
+<li><a href="#long-long">返回 long long</a></li>
+</ul>
+</li>
+<li><a href="#gcc">gcc</a><ul>
+<li><a href="#double-1">double</a></li>
+<li><a href="#long-long-1">long long</a></li>
+</ul>
+</li>
+<li><a href="#clang">clang</a><ul>
+<li><a href="#double-2">double</a></li>
+<li><a href="#long-long-2">long long</a></li>
+</ul>
+</li>
+</ul>
+<p>我们学过汇编的都应该知道C语言的返回值，在x86机器上面都是用eax来实现的。而eax是32位的，所以返回值只能是int/long类型或者指针类型，在汇编里面都是dword。可是突然想到怎么实现返回64位值呢？难道会是指针？显然不太可能这样做。
+</p></div>
+<footer>
+<a rel="full-article" href="/blog/2015/04/23/cru-he-fan-hui-doubleyu-longlong/">Read on &rarr;</a>
+</footer>
+</article>
+<article>
+<header>
+<h1 class="entry-title"><a href="/blog/2015/04/04/fa-xian-ge-xin-huan-jing-msys2/">发现个新环境msys2</a></h1>
+<p class="meta">
+<time class="data-article month-04 season-spring" datetime="2015-04-04T15:02:30+08:00" pubdate><span class="month">Apr</span> <span class="day">4th</span> <span class="year">2015</span></time>
+| <a href="/blog/2015/04/04/fa-xian-ge-xin-huan-jing-msys2/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2015/04/04/fa-xian-ge-xin-huan-jing-msys2/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><ul class="markdown-toc">
+<li><a href="#mingwmsys-10">MinGW/msys 1.0:</a></li>
+<li><a href="#mingw">MingW</a></li>
+<li><a href="#mingw-w64">MinGW-w64</a></li>
+<li><a href="#mingw-builds">MinGW-builds</a></li>
+<li><a href="#win-builds">Win-builds</a></li>
+<li><a href="#tdm-gcc">tdm-gcc</a></li>
+<li><a href="#cygwin">Cygwin</a></li>
+<li><a href="#msys2">msys2</a></li>
+<li><a href="#section">结束语</a></li>
+</ul>
+<p>好久没写，发生种种暂且不表。</p>
+<p>最近注意到了一个新的Windows上面的模拟Linux的项目。一般来说两大主流阵营MingW与Cygwin，这两个思路各不相同。相对来说MingW性能比较好，尽可能用WinAPI替代实现。Cygwin则是添加了一个层，利用很多dll来模拟Linux的那些syscall(典型的如fork)。所以cygwin程序一般都是需要有cygwin的dll在path里面才可以运行。MingW缺点是很多程序没法编译，如果没有专门为MingW设计的程序，基本上MingW是编译不出来的。Cygwin缺点是会比较慢。</p>
+</div>
+<footer>
+<a rel="full-article" href="/blog/2015/04/04/fa-xian-ge-xin-huan-jing-msys2/">Read on &rarr;</a>
+</footer>
+</article>
+<article>
+<header>
+<h1 class="entry-title"><a href="/blog/2015/01/09/cheng-xu-yu-yan/">程序语言</a></h1>
+<p class="meta">
+<time class="data-article month-01 season-winter" datetime="2015-01-09T16:55:26+08:00" pubdate><span class="month">Jan</span> <span class="day">9th</span> <span class="year">2015</span></time>
+| <a href="/blog/2015/01/09/cheng-xu-yu-yan/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2015/01/09/cheng-xu-yu-yan/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>午后无聊整理了下大体上的语言关系图谱，有一些个人观点在里面如有不对之处欢迎指正。本来是一副横向的，但是我发现HTML那里刚好可以断开，所以就分成两幅了，对排版正好有好处。</p>
+</div>
+<footer>
+<a rel="full-article" href="/blog/2015/01/09/cheng-xu-yu-yan/">Read on &rarr;</a>
+</footer>
+</article>
+<article>
+<header>
+<h1 class="entry-title"><a href="/blog/2015/01/02/cygwinde-ri-chang-miao-yong/">Cygwin的日常妙用</a></h1>
+<p class="meta">
+<time class="data-article month-01 season-winter" datetime="2015-01-02T18:09:04+08:00" pubdate><span class="month">Jan</span> <span class="day">2nd</span> <span class="year">2015</span></time>
+| <a href="/blog/2015/01/02/cygwinde-ri-chang-miao-yong/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2015/01/02/cygwinde-ri-chang-miao-yong/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>电脑的日常使用中总是会感觉一些需求不能满足，比如希望批量重命名1000多个分布在不同文件夹的图片，希望在十多个文件夹中的txt文件中找一个含有某一字符串的文件等。</p>
+</div>
+<footer>
+<a rel="full-article" href="/blog/2015/01/02/cygwinde-ri-chang-miao-yong/">Read on &rarr;</a>
+</footer>
+</article>
+<article>
+<header>
+<h1 class="entry-title"><a href="/blog/2015/01/01/crc32de-wen-ti/">Crc32的问题</a></h1>
+<p class="meta">
+<time class="data-article month-01 season-winter" datetime="2015-01-01T23:05:32+08:00" pubdate><span class="month">Jan</span> <span class="day">1st</span> <span class="year">2015</span></time>
+| <a href="/blog/2015/01/01/crc32de-wen-ti/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2015/01/01/crc32de-wen-ti/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>最近Adobe更新比较频繁，然后下载下来12个1G分卷的是用的Total Command的win-sfv32生成的一个sfv校验文件。因为以前好像都是MD5的校验和，所以直接用md5sum,sha1sum和type命令，直接在cmd里面就可以把问题解决(我的path里面带了cygwin的bin目录)。突然来个CRC32还真没办法。</p>
+</div>
+<footer>
+<a rel="full-article" href="/blog/2015/01/01/crc32de-wen-ti/">Read on &rarr;</a>
+</footer>
+</article>
+<article>
+<header>
+<h1 class="entry-title"><a href="/blog/2014/11/30/cygwinde-xwindui-win8-dot-1zhi-chi-wan-mei/">Cygwin的XWin对win8.1支持完美</a></h1>
+<p class="meta">
+<time class="data-article month-11 season-autumn" datetime="2014-11-30T17:35:06+08:00" pubdate><span class="month">Nov</span> <span class="day">30th</span> <span class="year">2014</span></time>
+| <a href="/blog/2014/11/30/cygwinde-xwindui-win8-dot-1zhi-chi-wan-mei/#disqus_thread" data-disqus-identifier="https://i.rexdf.org/blog/2014/11/30/cygwinde-xwindui-win8-dot-1zhi-chi-wan-mei/">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>最近一次升级cygwin后(cygwin升级基本上和Ubuntu差不多频繁，个人感觉仅仅次于Arch的升级频率，这说明开发社区异常活跃)，对图形界面比较惊喜。而国内的几个有影响的mirror都加入了cygwin的源，所以网速没问题的(实际上kernel.org的源也是非常稳定的)。</p>
+</div>
+<footer>
+<a rel="full-article" href="/blog/2014/11/30/cygwinde-xwindui-win8-dot-1zhi-chi-wan-mei/">Read on &rarr;</a>
+</footer>
+</article>
+<div class="pagination">
+<a class="prev" href="/blog/page/4/">&larr; Older</a>
+<a href="/blog/archives">Blog Archives</a>
+<a class="next" href="/blog/page/2/">Newer &rarr;</a>
+</div>
+</div>
+<aside class="sidebar">
+<section>
+<h1>Categories</h1>
+<ul id="categories">
+<li class="category"><a href="/blog/categories/acm/">ACM <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/algorithm/">Algorithm <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/assembly/">Assembly <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/cygwin/">Cygwin <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/gnu/">GNU <sup>8</sup></a></li>
+<li class="category"><a href="/blog/categories/math/">Math <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/octopress/">Octopress <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/programming/">Programming <sup>6</sup></a></li>
+<li class="category"><a href="/blog/categories/security/">Security <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sublime/">Sublime <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/synology/">Synology <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sysadmin/">SysAdmin <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/web/">Web <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/windows/">Windows <sup>7</sup></a></li>
+<li class="category"><a href="/blog/categories/proxmox/">proxmox <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/ri-chang/">日常 <sup>37</sup></a></li>
+</ul>
+</section>
+<section>
+<h1>Recent Posts</h1>
+<ul id="recent_posts">
+<li class="post">
+<a href="/blog/2024/12/16/fu-wu-qi-wa-kuang-bing-du-de-cha-sha/">服务器挖矿病毒的查杀</a>
+</li>
+<li class="post">
+<a href="/blog/2021/07/11/apple-m1-bian-yi-tensorflow/">Apple M1 编译tensorflow</a>
+</li>
+<li class="post">
+<a href="/blog/2021/02/27/chromiumbian-ma-qi-wen-ti/">Chromium编码器问题</a>
+</li>
+<li class="post">
+<a href="/blog/2020/12/13/proxmoxbi-ji/">Proxmox笔记</a>
+</li>
+<li class="post">
+<a href="/blog/2020/11/15/lun-yan-du-yu-shen-du/">论广度与深度</a>
+</li>
+</ul>
+</section>
+<section>
+<iframe frameborder="0" scrolling="no" referrerpolicy="unsafe-url" style="width:283px;height:200px" src="https://t.rexdf.org/?m=app&a=showwidget&name=rexdf&type=1&width=283px&height=500px"></iframe>
+</section>
+<section>
+<h1>GitHub Repos</h1>
+<ul id="gh_repos">
+<li class="loading">Status updating&#8230;</li>
+</ul>
+<a href="https://github.com/rexdf">@rexdf</a> on GitHub
+<script type="text/javascript">$(document).ready(function(){if(!window.jXHR){var e=document.createElement("script");e.type="text/javascript",e.src="/javascripts/libs/jXHR.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}github.showRepos({user:"rexdf",count:0,skip_forks:!0,target:"#gh_repos"})})</script>
+</section>
+</aside>
+</div>
+</div>
+<footer role="contentinfo"><p>
+<span class="credit">Copyright &copy; 2024 - Rexdf -</span> |
+<span class="credit">Powered by <a name="bottoms" target="_blank" href="http://octopress.org">Octopress</a></span> |
+<span class="credit">Theme by ：<a href="https://blog.rexdf.org/" target="_blank" rel="theme">Rexdf</a></span> |
+<span class="credit">Host by：<a href="https://github.com/" target="_blank" rel="host">Github.com</a></span> |
+<span class="credit">版权声明：<a href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" target="_blank" rel="license">CC BY-NC-SA 3.0</a><img src="https://analytics.rexdf.net/piwik.php?idsite=1&amp;rec=1" style="border:0" alt="" referrerpolicy="no-referrer-when-downgrade"></span>|
+<span class="credit"><a href="/sitemap.xml" rel="sitemap">sitemap</a></span>
+</p>
+<script type="text/javascript" src="https://tajs.qq.com/stats?sId=30296377" charset="UTF-8"></script>
+</footer>
+<script type="text/javascript">var disqus_shortname="rexdf",disqus_script="count.js";!function(){var e=document.createElement("script");e.type="text/javascript",e.async=!0,e.src="//"+disqus_shortname+".disqus.com/"+disqus_script,(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(e)}()</script>
+<script type="text/javascript">$(function(){$(".entry-content").each(function(t){var r=t;$(this).find("img.fancybox").each(function(){var t=$(this),a=t.attr("title"),n=t.attr("class");t.removeAttr("class"),t.wrap('<a href="'+this.src+'" class="'+n+'" rel="gallery'+r+'" />'),""!=a&&t.parent().attr("title",a)})}),$(".fancybox").fancybox()})</script>
+</body>
+</html>

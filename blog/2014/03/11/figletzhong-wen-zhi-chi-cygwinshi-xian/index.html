@@ -1,0 +1,299 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<script type="text/javascript">var _speedMark=new Date</script>
+<meta charset="utf-8">
+<title>figlet中文支持--Cygwin实现 - Rexdf</title>
+<meta name="author" content="Rexdf">
+<meta name="description" content="1.效果 2.程序调用图 3.修改过程简记 4.编码问题 GBK的子集GB2312 UTF-8 5.FIGlet示例 figlet可以用来画ASCII的字符，很是有趣。 ____ _ __| _ \ _____ ____| |/ _|| |_) / _ \ \/ / _` | |_| _ &lt &hellip;">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' data: https://hm.baidu.com https://tajs.qq.com https://ssl.google-analytics.com https://static.rexdf.org https://*.disquscdn.com https://rexdf.disqus.com https://api.github.com https://ssl.google-analytics.com https://disqus.com https://analytics.rexdf.net; connect-src 'self' https://static.rexdf.org https://analytics.rexdf.net https://hm.baidu.com; img-src data: https://*; font-src data: https://*; child-src 'none'; style-src 'self' 'unsafe-inline' https://*; frame-src 'self' https://t.rexdf.org http://t.rexdf.org https://rexdf.disqus.com https://disqus.com">
+<link rel="canonical" href="https://i.rexdf.org/blog/2014/03/11/figletzhong-wen-zhi-chi-cygwinshi-xian">
+<link rel="dns-prefetch" href="https://static.rexdf.org/">
+<link href="/favicon.ico" rel="icon">
+<link id="main-css" href="/stylesheets/screen.css" media="screen,projection" rel="stylesheet" type="text/css" title="pc">
+<link href="/stylesheets/screen_mobile.css" rel="alternate stylesheet" type="text/css" title="mobile">
+<link href="/atom.xml" rel="alternate" title="Rexdf" type="application/atom+xml">
+<script src="/javascripts/libs/jquery.min.js"></script>
+<script src="/javascripts/octopress-rexdf.min.js" type="text/javascript"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+      
+      toggle_theme();
+  });
+</script>
+<script type="text/javascript" async src="https://static.rexdf.org/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript">var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-55590409-1"]),_gaq.push(["_trackPageview"]),function(){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(t,e)}()</script>
+<script>var _hmt=_hmt||[];!function(){var e=document.createElement("script");e.src="//hm.baidu.com/hm.js?32192d95b89fbefa0875c4c95adb1412";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}()</script>
+<script src="/javascripts/fancybox/jquery.fancybox.pack.js"></script>
+<link rel="stylesheet" type="text/css" href="/javascripts/fancybox/jquery.fancybox.css">
+<script type="text/javascript">var _paq=_paq||[];_paq.push(["trackPageView"]),_paq.push(["enableLinkTracking"]),function(){var e="https://analytics.rexdf.net/";_paq.push(["setTrackerUrl",e+"piwik.php"]),_paq.push(["setSiteId","1"]);var a=document,t=a.createElement("script"),p=a.getElementsByTagName("script")[0];t.type="text/javascript",t.async=!0,t.defer=!0,t.src=e+"piwik.js",p.parentNode.insertBefore(t,p)}()</script>
+</head>
+<body class="low-contrast-linen-wptouch-bg">
+<header role="banner"><hgroup>
+<h1 id="header-title"><a href="/">Rexdf</a></h1>
+<h2 id="subtitle">The devil is in the Details.</h2>
+</hgroup>
+</header>
+<nav role="navigation"><ul class="subscription" data-subscription="rss">
+<li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+</ul>
+<form action="https://google.com/search" method="get">
+<fieldset role="search">
+<input type="hidden" name="q" value="site:i.rexdf.org">
+<input class="search" type="text" name="q" results="0" placeholder="Search">
+</fieldset>
+</form>
+<ul class="main-navigation">
+<li><a href="/">Blog</a></li>
+<li><a href="/blog/archives/">Archives</a></li>
+<li><a href="/idea/">Idea</a></li>
+<li><a href="/share/">Share</a></li>
+<li><a href="/books/">Books</a></li>
+<li><a href="/donate/">Donate</a></li>
+<li><a target="_blank" href="https://blog.rexdf.org" style="font-family:Shadows Into Light">Main-Blog</a></li>
+</ul>
+</nav>
+<div id="main">
+<div id="content">
+<div>
+<article class="hentry" role="article">
+<header>
+<h1 class="entry-title">figlet中文支持--Cygwin实现</h1>
+<p class="meta">
+<time class="data-article month-03 season-spring" datetime="2014-03-11T23:33:31+08:00" pubdate><span class="month">Mar</span> <span class="day">11th</span> <span class="year">2014</span></time>
+| <a href="#disqus_thread" data-disqus-identifier="https://i.rexdf.org">Comments</a>
+</p>
+</header>
+<div class="entry-content"><ul class="markdown-toc">
+<li><a href="#section">1.效果</a></li>
+<li><a href="#section-1">2.程序调用图</a></li>
+<li><a href="#section-2">3.修改过程简记</a></li>
+<li><a href="#section-3">4.编码问题</a><ul>
+<li><a href="#gbkgb2312">GBK的子集GB2312</a></li>
+<li><a href="#utf-8">UTF-8</a></li>
+</ul>
+</li>
+<li><a href="#figlet">5.FIGlet示例</a></li>
+</ul>
+<p><a href="http://www.figlet.org/" title="Figlet">figlet</a>可以用来画ASCII的字符，很是有趣。</p>
+<pre><code> ____              _  __
+|  _ \ _____  ____| |/ _|
+| |_) / _ \ \/ / _` | |_
+|  _ &lt;  __/&gt;  &lt; (_| |  _|
+|_| \_\___/_/\_\__,_|_|
+</code></pre>
+<p>但是要支持中文则是比较麻烦的一件事情，首先现在开源社区基本都是用UTF-8字符了，甚至连Unicode都不太肯使用。但是figlet官方提供的字库International fonts里面包含了fg16st和fg16fs两种字体，也就是宋体和仿宋体。但是因为作者不是中国人，所以对编码犯了很多常识性质的错误，写本博文的时候，其2.2.5的源码中这样定义的：</p>
+<pre><code>#define DATE "31 May 2012"
+#define VERSION "2.2.5"
+#define VERSION_INT 20205
+</code></pre>
+<p>也就是2012年五月的时候，这个写于<a href="http://www.figlet.org/figlet_history.html">1991年</a>的工具，中间依然有2007年<a href="http://coolwanglu.blogspot.com/2007/05/figlet.html">王璐</a>指出的严重常识性质的错误。非常严重的错误，致使从逻辑上不可能支持中文。</p>
+<p>当然在读了一会儿源码之后，就会发觉这个2100+行的figlet.c，实际上比较简单，逻辑应该算是比较简单的了。</p>
+<h1 id="section">1.效果</h1>
+<p>先上两张图片来说明
+<img src="/images/figlet2.png" alt="cygwin" class="center fancybox"></p>
+<p><img src="/images/figlet3.png" alt="cygwin" class="center fancybox"></p>
+<h1 id="section-1">2.程序调用图</h1>
+<p><img src="/images/figlet-graph.png" alt="cygwin" class="center fancybox"></p>
+<h1 id="section-2">3.修改过程简记</h1>
+<p>待我修改完整，并把UTF-8字体也转化一个之后，整理好自定义字体转化工具后会发布一个github。 基本上完全按照<a href="http://coolwanglu.blogspot.com/2007/05/figlet.html">王璐</a>就可以很好地解决了，只是现在问题还不是很完美。所以暂时还不公布代码</p>
+<h1 id="section-3">4.编码问题</h1>
+<p>先上图说明一个我遇到的问题，因为我系统是因为所以我一直以为gcc提示本身是英文的，今天才发现，当我在右键Options里面Text–&gt;Locale:zh_CN;Character set GBK;然后cygwin的各个命令全部变成中文了；不过运行octopress则如下的错误。显然我需要不停地改设置来运行不同的程序了。
+<img src="/images/figlet1.png" alt="cygwin" class="center fancybox">
+当然应该有一个解决方案就是把figlet转化一个UTF-8的Control File出来就好了。</p>
+<h2 id="gbkgb2312">GBK的子集GB2312</h2>
+<p>GB2312是GBK的子集，GBK是GB18030的子集。GB2312编码大约包含6000多汉字（不包括特殊字符）,编码范围为第一位b0-f7,第二位编码范围为a1-fe(第一位为cf时,第二位为a1-d3),计算一下汉字个数为6762个汉字。当然还有其他的字符。包括控制键和其他字符大约7573个字符编码。</p>
+<p>GBK是包括中日韩字符的大字符集合，GBK编码是对GB2312编码的扩充，容纳的汉字更多，但仅仅是扩充，没有质的变化。保留了所有GB2312编码,在此基础上进行编码范围的扩充.容纳(包含特殊字符)共22014个字符编码。</p>
+<p>GB18030编码是在GBK编码基础上的扩充，因为汉字更多，仅仅使用两位编码已经不能容纳要求的汉字，所以采用了2\4位混和的办法，可以支持更多的汉字编码。并且保留了原有的GBK 2字节编码兼容GB2312和gbk编码的文件。大概容纳55657个编码(包含特殊字符)。</p>
+<p><strong>GB2312编码重点总结如下</strong>
+GB2312能完美的支持简体中文和英文，一个中文文字占用2个字节，一个英文字母同样占用2个字节。 问题产生了：在没有安装IE的简体中文支持的电脑上看GB2312编码的网页，其中中文都会是乱码，比如一位英国人在伦敦浏览你的网页，看到的除了英文字母正常外其他的都会是乱七八糟，就像火星文。</p>
+<h2 id="utf-8">UTF-8</h2>
+<p>UTF-8是unicode，可以看作是大字符集，它包含了大部分文字的编码。为表达更多的文字，UTF-8采用2/3混编的方式。目前所容纳的汉字范围小于GBK编码。</p>
+<p><strong>UTF-8重点总结如下</strong>
+UTF-8能完美的支持英文和中文，甚至其他文，一个中文文字占用3个字节，一个英文字母同样占用1个字节。</p>
+<p>使用UTF-8的一个<strong>最大好处</strong>是其他地区的用户（如美国、印度、台湾）<strong>无需安装IE的简体中文支持就能正常观看你的文字</strong>而不会出现乱码。通常网络传输也是用UTF-8编码。</p>
+<h1 id="figlet">5.FIGlet示例</h1>
+<pre><code>$ figlet -f acrobatic Rexdf
+  o__ __o                                    o     o__ __o
+ &lt;|     v\                                  &lt;|&gt;   /v     v\
+ / \     &lt;\                                 &lt; \  /&gt;       &lt;\
+ \o/     o/      o__  __o   \o    o/   o__ __o/  \o
+  |__  _&lt;|      /v      |&gt;   v\  /v   /v     |    |&gt;_
+  |       \    /&gt;      //     &lt;\/&gt;   /&gt;     / \   |
+ &lt;o&gt;       \o  \o    o/       o/\o   \      \o/  &lt;o&gt;
+  |         v\  v\  /v __o   /v  v\   o      |    |
+ / \         &lt;\  &lt;\/&gt; __/&gt;  /&gt;    &lt;\  &lt;\__  / \  / \
+
+
+$ figlet -f catwalk Rexdf
+_///////                            _//    _//
+_//    _//                          _//  _/
+_//    _//     _//    _//   _//     _//_/_/ _/
+_/ _//       _/   _//   _/ _//  _// _//  _//
+_//  _//    _///// _//   _/    _/   _//  _//
+_//    _//  _/         _/  _// _/   _//  _//
+_//      _//  _////   _//   _// _// _//  _//
+
+$ figlet -f cosmike Rexdf
+:::::::..  .,::::::    .,::      .::::::::-.  .-:::::'
+;;;;``;;;; ;;;;''''    `;;;,  .,;;  ;;,   `';,;;;''''
+ [[[,/[[['  [[cccc       '[[,,[['   `[[     [[[[[,,==
+ $$$$$$c    $$""""        Y$$$P      $$,    $$`$$$"``
+ 888b "88bo,888oo,__    oP"``"Yo,    888_,o8P' 888
+ MMMM   "W" """"YUMMM,m"       "Mm,  MMMMP"`   "MM,
+
+
+
+$ figlet -f doh Re
+
+
+RRRRRRRRRRRRRRRRR
+R::::::::::::::::R
+R::::::RRRRRR:::::R
+RR:::::R     R:::::R
+  R::::R     R:::::R    eeeeeeeeeeee
+  R::::R     R:::::R  ee::::::::::::ee
+  R::::RRRRRR:::::R  e::::::eeeee:::::ee
+  R:::::::::::::RR  e::::::e     e:::::e
+  R::::RRRRRR:::::R e:::::::eeeee::::::e
+  R::::R     R:::::Re:::::::::::::::::e
+  R::::R     R:::::Re::::::eeeeeeeeeee
+  R::::R     R:::::Re:::::::e
+RR:::::R     R:::::Re::::::::e
+R::::::R     R:::::R e::::::::eeeeeeee
+R::::::R     R:::::R  ee:::::::::::::e
+RRRRRRRR     RRRRRRR    eeeeeeeeeeeeee
+
+$ figlet -f isometric1 Rexdf
+      ___           ___           ___           ___           ___
+     /\  \         /\  \         |\__\         /\  \         /\  \
+    /::\  \       /::\  \        |:|  |       /::\  \       /::\  \
+   /:/\:\  \     /:/\:\  \       |:|  |      /:/\:\  \     /:/\:\  \
+  /::\~\:\  \   /::\~\:\  \      |:|__|__   /:/  \:\__\   /::\~\:\  \
+ /:/\:\ \:\__\ /:/\:\ \:\__\ ____/::::\__\ /:/__/ \:|__| /:/\:\ \:\__\
+ \/_|::\/:/  / \:\~\:\ \/__/ \::::/~~/~    \:\  \ /:/  / \/__\:\ \/__/
+    |:|::/  /   \:\ \:\__\    ~~|:|~~|      \:\  /:/  /       \:\__\
+    |:|\/__/     \:\ \/__/      |:|  |       \:\/:/  /         \/__/
+    |:|  |        \:\__\        |:|  |        \::/__/
+     \|__|         \/__/         \|__|         ~~
+
+
+$ figlet -f smisome1 Rexdf
+    ___       ___       ___       ___       ___
+   /\  \     /\  \     /\__\     /\  \     /\  \
+  /::\  \   /::\  \   |::L__L   /::\  \   /::\  \
+ /::\:\__\ /::\:\__\ /::::\__\ /:/\:\__\ /::\:\__\
+ \;:::/  / \:\:\/  / \;::;/__/ \:\/:/  / \/\:\/__/
+  |:\/__/   \:\/  /   |::|__|   \::/  /     \/__/
+   \|__|     \/__/     \/__/     \/__/
+</code></pre>
+</div>
+<footer>
+<p class="meta">
+<span class="byline author vcard">Posted by <span class="fn">Rexdf</span></span>
+<time class="data-article month-03 season-spring" datetime="2014-03-11T23:33:31+08:00" pubdate><span class="month">Mar</span> <span class="day">11th</span> <span class="year">2014</span></time>
+<span class="categories">
+<a class="category" href="/blog/categories/gnu/">GNU</a>
+</span>
+</p>
+<div class="sharing">
+</div>
+<p class="meta">
+<a class="basic-alignment left" href="/blog/2014/03/10/gnupgshi-yong-bi-ji/" title="Previous Post: GnuPG使用笔记">&laquo; GnuPG使用笔记</a>
+<a class="basic-alignment right" href="/blog/2014/03/13/arch-linuxza-ji/" title="Next Post: arch linux杂记">arch linux杂记 &raquo;</a>
+</p>
+</footer>
+</article>
+<section>
+<h1>Comments</h1>
+<div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
+</div>
+<aside class="sidebar">
+<section>
+<h1>Categories</h1>
+<ul id="categories">
+<li class="category"><a href="/blog/categories/acm/">ACM <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/algorithm/">Algorithm <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/assembly/">Assembly <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/cygwin/">Cygwin <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/gnu/">GNU <sup>8</sup></a></li>
+<li class="category"><a href="/blog/categories/math/">Math <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/octopress/">Octopress <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/programming/">Programming <sup>6</sup></a></li>
+<li class="category"><a href="/blog/categories/security/">Security <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sublime/">Sublime <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/synology/">Synology <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sysadmin/">SysAdmin <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/web/">Web <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/windows/">Windows <sup>7</sup></a></li>
+<li class="category"><a href="/blog/categories/proxmox/">proxmox <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/ri-chang/">日常 <sup>37</sup></a></li>
+</ul>
+</section>
+<section>
+<h1>Recent Posts</h1>
+<ul id="recent_posts">
+<li class="post">
+<a href="/blog/2024/12/16/fu-wu-qi-wa-kuang-bing-du-de-cha-sha/">服务器挖矿病毒的查杀</a>
+</li>
+<li class="post">
+<a href="/blog/2021/07/11/apple-m1-bian-yi-tensorflow/">Apple M1 编译tensorflow</a>
+</li>
+<li class="post">
+<a href="/blog/2021/02/27/chromiumbian-ma-qi-wen-ti/">Chromium编码器问题</a>
+</li>
+<li class="post">
+<a href="/blog/2020/12/13/proxmoxbi-ji/">Proxmox笔记</a>
+</li>
+<li class="post">
+<a href="/blog/2020/11/15/lun-yan-du-yu-shen-du/">论广度与深度</a>
+</li>
+</ul>
+</section>
+<section>
+<iframe frameborder="0" scrolling="no" referrerpolicy="unsafe-url" style="width:283px;height:200px" src="https://t.rexdf.org/?m=app&a=showwidget&name=rexdf&type=1&width=283px&height=500px"></iframe>
+</section>
+<section>
+<h1>GitHub Repos</h1>
+<ul id="gh_repos">
+<li class="loading">Status updating...</li>
+</ul>
+<a href="https://github.com/rexdf">@rexdf</a> on GitHub
+<script type="text/javascript">$(document).ready(function(){if(!window.jXHR){var e=document.createElement("script");e.type="text/javascript",e.src="/javascripts/libs/jXHR.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}github.showRepos({user:"rexdf",count:0,skip_forks:!0,target:"#gh_repos"})})</script>
+</section>
+</aside>
+</div>
+</div>
+<footer role="contentinfo"><p>
+<span class="credit">Copyright &copy; 2024 - Rexdf -</span> |
+<span class="credit">Powered by <a name="bottoms" target="_blank" href="http://octopress.org">Octopress</a></span> |
+<span class="credit">Theme by ：<a href="https://blog.rexdf.org/" target="_blank" rel="theme">Rexdf</a></span> |
+<span class="credit">Host by：<a href="https://github.com/" target="_blank" rel="host">Github.com</a></span> |
+<span class="credit">版权声明：<a href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" target="_blank" rel="license">CC BY-NC-SA 3.0</a><img src="https://analytics.rexdf.net/piwik.php?idsite=1&amp;rec=1" style="border:0" alt="" referrerpolicy="no-referrer-when-downgrade"></span>|
+<span class="credit"><a href="/sitemap.xml" rel="sitemap">sitemap</a></span>
+</p>
+<script type="text/javascript" src="https://tajs.qq.com/stats?sId=30296377" charset="UTF-8"></script>
+</footer>
+<script type="text/javascript">var disqus_shortname="rexdf",disqus_identifier="https://i.rexdf.org/blog/2014/03/11/figletzhong-wen-zhi-chi-cygwinshi-xian/",disqus_url="https://i.rexdf.org/blog/2014/03/11/figletzhong-wen-zhi-chi-cygwinshi-xian/",disqus_script="embed.js";!function(){var e=document.createElement("script");e.type="text/javascript",e.async=!0,e.src="//"+disqus_shortname+".disqus.com/"+disqus_script,(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(e)}()</script>
+<script type="text/javascript">$(function(){$(".entry-content").each(function(t){var r=t;$(this).find("img.fancybox").each(function(){var t=$(this),a=t.attr("title"),n=t.attr("class");t.removeAttr("class"),t.wrap('<a href="'+this.src+'" class="'+n+'" rel="gallery'+r+'" />'),""!=a&&t.parent().attr("title",a)})}),$(".fancybox").fancybox()})</script>
+</body>
+</html>

@@ -1,0 +1,203 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<script type="text/javascript">var _speedMark=new Date</script>
+<meta charset="utf-8">
+<title>Crc32的问题 - Rexdf</title>
+<meta name="author" content="Rexdf">
+<meta name="description" content="最近Adobe更新比较频繁，然后下载下来12个1G分卷的是用的Total Command的win-sfv32生成的一个sfv校验文件。因为以前好像都是MD5的校验和，所以直接用md5sum,sha1sum和type命令，直接在cmd里面就可以把问题解决(我的path里面带了cygwin的bin目录 &hellip;">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' data: https://hm.baidu.com https://tajs.qq.com https://ssl.google-analytics.com https://static.rexdf.org https://*.disquscdn.com https://rexdf.disqus.com https://api.github.com https://ssl.google-analytics.com https://disqus.com https://analytics.rexdf.net; connect-src 'self' https://static.rexdf.org https://analytics.rexdf.net https://hm.baidu.com; img-src data: https://*; font-src data: https://*; child-src 'none'; style-src 'self' 'unsafe-inline' https://*; frame-src 'self' https://t.rexdf.org http://t.rexdf.org https://rexdf.disqus.com https://disqus.com">
+<link rel="canonical" href="https://i.rexdf.org/blog/2015/01/01/crc32de-wen-ti">
+<link rel="dns-prefetch" href="https://static.rexdf.org/">
+<link href="/favicon.ico" rel="icon">
+<link id="main-css" href="/stylesheets/screen.css" media="screen,projection" rel="stylesheet" type="text/css" title="pc">
+<link href="/stylesheets/screen_mobile.css" rel="alternate stylesheet" type="text/css" title="mobile">
+<link href="/atom.xml" rel="alternate" title="Rexdf" type="application/atom+xml">
+<script src="/javascripts/libs/jquery.min.js"></script>
+<script src="/javascripts/octopress-rexdf.min.js" type="text/javascript"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+      
+      toggle_theme();
+  });
+</script>
+<script type="text/javascript" async src="https://static.rexdf.org/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript">var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-55590409-1"]),_gaq.push(["_trackPageview"]),function(){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(t,e)}()</script>
+<script>var _hmt=_hmt||[];!function(){var e=document.createElement("script");e.src="//hm.baidu.com/hm.js?32192d95b89fbefa0875c4c95adb1412";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}()</script>
+<script src="/javascripts/fancybox/jquery.fancybox.pack.js"></script>
+<link rel="stylesheet" type="text/css" href="/javascripts/fancybox/jquery.fancybox.css">
+<script type="text/javascript">var _paq=_paq||[];_paq.push(["trackPageView"]),_paq.push(["enableLinkTracking"]),function(){var e="https://analytics.rexdf.net/";_paq.push(["setTrackerUrl",e+"piwik.php"]),_paq.push(["setSiteId","1"]);var a=document,t=a.createElement("script"),p=a.getElementsByTagName("script")[0];t.type="text/javascript",t.async=!0,t.defer=!0,t.src=e+"piwik.js",p.parentNode.insertBefore(t,p)}()</script>
+</head>
+<body class="low-contrast-linen-wptouch-bg">
+<header role="banner"><hgroup>
+<h1 id="header-title"><a href="/">Rexdf</a></h1>
+<h2 id="subtitle">The devil is in the Details.</h2>
+</hgroup>
+</header>
+<nav role="navigation"><ul class="subscription" data-subscription="rss">
+<li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+</ul>
+<form action="https://google.com/search" method="get">
+<fieldset role="search">
+<input type="hidden" name="q" value="site:i.rexdf.org">
+<input class="search" type="text" name="q" results="0" placeholder="Search">
+</fieldset>
+</form>
+<ul class="main-navigation">
+<li><a href="/">Blog</a></li>
+<li><a href="/blog/archives/">Archives</a></li>
+<li><a href="/idea/">Idea</a></li>
+<li><a href="/share/">Share</a></li>
+<li><a href="/books/">Books</a></li>
+<li><a href="/donate/">Donate</a></li>
+<li><a target="_blank" href="https://blog.rexdf.org" style="font-family:Shadows Into Light">Main-Blog</a></li>
+</ul>
+</nav>
+<div id="main">
+<div id="content">
+<div>
+<article class="hentry" role="article">
+<header>
+<h1 class="entry-title">Crc32的问题</h1>
+<p class="meta">
+<time class="data-article month-01 season-winter" datetime="2015-01-01T23:05:32+08:00" pubdate><span class="month">Jan</span> <span class="day">1st</span> <span class="year">2015</span></time>
+| <a href="#disqus_thread" data-disqus-identifier="https://i.rexdf.org">Comments</a>
+</p>
+</header>
+<div class="entry-content"><p>最近Adobe更新比较频繁，然后下载下来12个1G分卷的是用的Total Command的win-sfv32生成的一个sfv校验文件。因为以前好像都是MD5的校验和，所以直接用md5sum,sha1sum和type命令，直接在cmd里面就可以把问题解决(我的path里面带了cygwin的bin目录)。突然来个CRC32还真没办法。</p>
+<p>突然想起Linux和BSD里面都带有一个cksum命令，然后发现cksum在cygwin里面也是带有的。但是问题是cksum生成的格式是：</p>
+<p>10进制CRC32 文件大小 文件名</p>
+<p>然后我开了个cygwin终端，用<code>echo "obase=64;20150101"|bc</code>来转成十六进制，自然就看到CRC32值不符合了。然后隐约觉得继续安装下去会出问题。然后解压这12个文件，得到的也是一个带sfv的iso文件，问题是rar解压过程并没有报错。继续用cksum来校验这个解压出来的15+G的iso文件，依然校验不符。然后突然记起我的一个万能工具rhash，于是用<code>rhash.exe -C file.iso</code>进行校验，惊奇发现和sfv是对的上的。</p>
+<p>经过一番搜索发现，CRC32算法有很多种类，除了多项式选择的不同外，其中具体实现细节也还有很多差异。</p>
+<p>cksum这个工具是bsd4.4里面开始出现的。它的计算结果与所有其他算法都不相同，其多项式如下</p>
+<p>由ISO/IEC 8802-3:1989.:</p>
+<script type="math/tex;mode=display">G(x) = x^{32} + x^{26} + x^{23} + x^{22} + x^{16} + x^{12} + x^{11} + x^{10} + x^8 + x^7 + x^5 + x^4 + x^2 + x + 1</script>
+<p>然而参考这篇<a href="http://developers.blog.box.com/2011/10/12/crc32-checksums-the-good-the-bad-and-the-ugly/" target="_blank">CRC32 Checksums; The Good, The Bad, And The Ugly</a>之后，然后发现Unix的这个cksum还真是比较特立独行的。总之，一般它只能用来和它自己比较。</p>
+<p>然后关于CRC的一些详细资料<a href="http://en.wikipedia.org/wiki/Cyclic_redundancy_check" target="_blank">这里</a>的表格。这里可以发现zlib的实现的CRC32似乎并不是CRC校验码。</p>
+<p>python实现的常规版本的CRC32计算<a href="http://www.matteomattei.com/how-to-calculate-the-crc32-of-a-file-in-python/" target="_blank">How to calculate the crc32 of a file in Python</a>，以及zlib版本的CRC32计算<a href="http://stackoverflow.com/questions/16292289/calculating-crc-using-python-zlib-crc32-function" target="_blank">Calculating CRC using Python zlib.crc32 function</a>。</p>
+<p>另外附一个详细的各种CRC32计算软件<a href="http://www.jonelo.de/java/jacksum/" target="_blank">JACKSUM</a>，其中包括Java实现的cksum。</p>
+<p>另外cksum/sum的<a href="http://www2.research.att.com/~astopen/man/man1/sum.html" target="_blank">texinfo文档</a>和苹果系统的<a href="https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man1/cksum.1.html" target="_blank">官方文档</a>。</p>
+<p>一个python实现的cksum计算代码<a href="http://stackoverflow.com/questions/6835381/python-equivalent-of-unix-cksum-function" target="_blank">Python equivalent of unix cksum function</a>。</p>
+<pre><code>cksum         algorithm:   POSIX 1003.2 CRC algorithm
+              length:      32 bits
+              type:        crc
+              since:       Jacksum 1.0.0
+              comment:     - under BeOS    it is /bin/cksum
+                           - under FreeBSD it is /usr/bin/cksum
+                           - under HP-UX   it is /usr/bin/cksum and
+                             /usr/bin/sum -p
+                           - under IBM AIX it is /usr/bin/cksum
+                           - under Linux   it is /usr/bin/cksum
+</code></pre>
+<p>以太网Mac帧校验的CRC32的细节<a href="http://stackoverflow.com/questions/9286631/ethernet-crc32-calculation-software-vs-algorithmic-result" target="_blank">Ethernet CRC32 calculation - software vs algorithmic result</a>。</p>
+<p>另外还有ruby和perl版本的<a href="http://stackoverflow.com/questions/4273281/how-to-calculate-32-bit-crc-in-ruby-on-rails" target="_blank">How to calculate 32 bit CRC in Ruby on rails?</a>和<a href="http://www.perlmonks.org/?node_id=913462" target="_blank">Calculating the crc checksum of a file using perl?</a>，另外php版本的在<a href="http://developers.blog.box.com/2011/10/12/crc32-checksums-the-good-the-bad-and-the-ugly/" target="_blank">CRC32 Checksums; The Good, The Bad, And The Ugly</a>里面有说明。</p>
+</div>
+<footer>
+<p class="meta">
+<span class="byline author vcard">Posted by <span class="fn">Rexdf</span></span>
+<time class="data-article month-01 season-winter" datetime="2015-01-01T23:05:32+08:00" pubdate><span class="month">Jan</span> <span class="day">1st</span> <span class="year">2015</span></time>
+<span class="categories">
+<a class="category" href="/blog/categories/gnu/">GNU</a>, <a class="category" href="/blog/categories/ri-chang/">日常</a>
+</span>
+</p>
+<div class="sharing">
+</div>
+<p class="meta">
+<a class="basic-alignment left" href="/blog/2014/11/30/cygwinde-xwindui-win8-dot-1zhi-chi-wan-mei/" title="Previous Post: Cygwin的XWin对win8.1支持完美">&laquo; Cygwin的XWin对win8.1支持完美</a>
+<a class="basic-alignment right" href="/blog/2015/01/02/cygwinde-ri-chang-miao-yong/" title="Next Post: cygwin的日常妙用">cygwin的日常妙用 &raquo;</a>
+</p>
+</footer>
+</article>
+<section>
+<h1>Comments</h1>
+<div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
+</div>
+<aside class="sidebar">
+<section>
+<h1>Categories</h1>
+<ul id="categories">
+<li class="category"><a href="/blog/categories/acm/">ACM <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/algorithm/">Algorithm <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/assembly/">Assembly <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/cygwin/">Cygwin <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/gnu/">GNU <sup>8</sup></a></li>
+<li class="category"><a href="/blog/categories/math/">Math <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/octopress/">Octopress <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/programming/">Programming <sup>6</sup></a></li>
+<li class="category"><a href="/blog/categories/security/">Security <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sublime/">Sublime <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/synology/">Synology <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sysadmin/">SysAdmin <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/web/">Web <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/windows/">Windows <sup>7</sup></a></li>
+<li class="category"><a href="/blog/categories/proxmox/">proxmox <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/ri-chang/">日常 <sup>37</sup></a></li>
+</ul>
+</section>
+<section>
+<h1>Recent Posts</h1>
+<ul id="recent_posts">
+<li class="post">
+<a href="/blog/2024/12/16/fu-wu-qi-wa-kuang-bing-du-de-cha-sha/">服务器挖矿病毒的查杀</a>
+</li>
+<li class="post">
+<a href="/blog/2021/07/11/apple-m1-bian-yi-tensorflow/">Apple M1 编译tensorflow</a>
+</li>
+<li class="post">
+<a href="/blog/2021/02/27/chromiumbian-ma-qi-wen-ti/">Chromium编码器问题</a>
+</li>
+<li class="post">
+<a href="/blog/2020/12/13/proxmoxbi-ji/">Proxmox笔记</a>
+</li>
+<li class="post">
+<a href="/blog/2020/11/15/lun-yan-du-yu-shen-du/">论广度与深度</a>
+</li>
+</ul>
+</section>
+<section>
+<iframe frameborder="0" scrolling="no" referrerpolicy="unsafe-url" style="width:283px;height:200px" src="https://t.rexdf.org/?m=app&a=showwidget&name=rexdf&type=1&width=283px&height=500px"></iframe>
+</section>
+<section>
+<h1>GitHub Repos</h1>
+<ul id="gh_repos">
+<li class="loading">Status updating...</li>
+</ul>
+<a href="https://github.com/rexdf">@rexdf</a> on GitHub
+<script type="text/javascript">$(document).ready(function(){if(!window.jXHR){var e=document.createElement("script");e.type="text/javascript",e.src="/javascripts/libs/jXHR.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}github.showRepos({user:"rexdf",count:0,skip_forks:!0,target:"#gh_repos"})})</script>
+</section>
+</aside>
+</div>
+</div>
+<footer role="contentinfo"><p>
+<span class="credit">Copyright &copy; 2024 - Rexdf -</span> |
+<span class="credit">Powered by <a name="bottoms" target="_blank" href="http://octopress.org">Octopress</a></span> |
+<span class="credit">Theme by ：<a href="https://blog.rexdf.org/" target="_blank" rel="theme">Rexdf</a></span> |
+<span class="credit">Host by：<a href="https://github.com/" target="_blank" rel="host">Github.com</a></span> |
+<span class="credit">版权声明：<a href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" target="_blank" rel="license">CC BY-NC-SA 3.0</a><img src="https://analytics.rexdf.net/piwik.php?idsite=1&amp;rec=1" style="border:0" alt="" referrerpolicy="no-referrer-when-downgrade"></span>|
+<span class="credit"><a href="/sitemap.xml" rel="sitemap">sitemap</a></span>
+</p>
+<script type="text/javascript" src="https://tajs.qq.com/stats?sId=30296377" charset="UTF-8"></script>
+</footer>
+<script type="text/javascript">var disqus_shortname="rexdf",disqus_identifier="https://i.rexdf.org/blog/2015/01/01/crc32de-wen-ti/",disqus_url="https://i.rexdf.org/blog/2015/01/01/crc32de-wen-ti/",disqus_script="embed.js";!function(){var e=document.createElement("script");e.type="text/javascript",e.async=!0,e.src="//"+disqus_shortname+".disqus.com/"+disqus_script,(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(e)}()</script>
+<script type="text/javascript">$(function(){$(".entry-content").each(function(t){var r=t;$(this).find("img.fancybox").each(function(){var t=$(this),a=t.attr("title"),n=t.attr("class");t.removeAttr("class"),t.wrap('<a href="'+this.src+'" class="'+n+'" rel="gallery'+r+'" />'),""!=a&&t.parent().attr("title",a)})}),$(".fancybox").fancybox()})</script>
+</body>
+</html>

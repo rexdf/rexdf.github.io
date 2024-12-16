@@ -1,0 +1,241 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<script type="text/javascript">var _speedMark=new Date</script>
+<meta charset="utf-8">
+<title>发现个新环境msys2 - Rexdf</title>
+<meta name="author" content="Rexdf">
+<meta name="description" content="MinGW/msys 1.0: MingW MinGW-w64 MinGW-builds Win-builds tdm-gcc Cygwin msys2 结束语 好久没写，发生种种暂且不表。 最近注意到了一个新的Windows上面的模拟Linux的项目。 &hellip;">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' data: https://hm.baidu.com https://tajs.qq.com https://ssl.google-analytics.com https://static.rexdf.org https://*.disquscdn.com https://rexdf.disqus.com https://api.github.com https://ssl.google-analytics.com https://disqus.com https://analytics.rexdf.net; connect-src 'self' https://static.rexdf.org https://analytics.rexdf.net https://hm.baidu.com; img-src data: https://*; font-src data: https://*; child-src 'none'; style-src 'self' 'unsafe-inline' https://*; frame-src 'self' https://t.rexdf.org http://t.rexdf.org https://rexdf.disqus.com https://disqus.com">
+<link rel="canonical" href="https://i.rexdf.org/blog/2015/04/04/fa-xian-ge-xin-huan-jing-msys2">
+<link rel="dns-prefetch" href="https://static.rexdf.org/">
+<link href="/favicon.ico" rel="icon">
+<link id="main-css" href="/stylesheets/screen.css" media="screen,projection" rel="stylesheet" type="text/css" title="pc">
+<link href="/stylesheets/screen_mobile.css" rel="alternate stylesheet" type="text/css" title="mobile">
+<link href="/atom.xml" rel="alternate" title="Rexdf" type="application/atom+xml">
+<script src="/javascripts/libs/jquery.min.js"></script>
+<script src="/javascripts/octopress-rexdf.min.js" type="text/javascript"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+      
+      toggle_theme();
+  });
+</script>
+<script type="text/javascript" async src="https://static.rexdf.org/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript">var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-55590409-1"]),_gaq.push(["_trackPageview"]),function(){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(t,e)}()</script>
+<script>var _hmt=_hmt||[];!function(){var e=document.createElement("script");e.src="//hm.baidu.com/hm.js?32192d95b89fbefa0875c4c95adb1412";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}()</script>
+<script src="/javascripts/fancybox/jquery.fancybox.pack.js"></script>
+<link rel="stylesheet" type="text/css" href="/javascripts/fancybox/jquery.fancybox.css">
+<script type="text/javascript">var _paq=_paq||[];_paq.push(["trackPageView"]),_paq.push(["enableLinkTracking"]),function(){var e="https://analytics.rexdf.net/";_paq.push(["setTrackerUrl",e+"piwik.php"]),_paq.push(["setSiteId","1"]);var a=document,t=a.createElement("script"),p=a.getElementsByTagName("script")[0];t.type="text/javascript",t.async=!0,t.defer=!0,t.src=e+"piwik.js",p.parentNode.insertBefore(t,p)}()</script>
+</head>
+<body class="low-contrast-linen-wptouch-bg">
+<header role="banner"><hgroup>
+<h1 id="header-title"><a href="/">Rexdf</a></h1>
+<h2 id="subtitle">The devil is in the Details.</h2>
+</hgroup>
+</header>
+<nav role="navigation"><ul class="subscription" data-subscription="rss">
+<li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+</ul>
+<form action="https://google.com/search" method="get">
+<fieldset role="search">
+<input type="hidden" name="q" value="site:i.rexdf.org">
+<input class="search" type="text" name="q" results="0" placeholder="Search">
+</fieldset>
+</form>
+<ul class="main-navigation">
+<li><a href="/">Blog</a></li>
+<li><a href="/blog/archives/">Archives</a></li>
+<li><a href="/idea/">Idea</a></li>
+<li><a href="/share/">Share</a></li>
+<li><a href="/books/">Books</a></li>
+<li><a href="/donate/">Donate</a></li>
+<li><a target="_blank" href="https://blog.rexdf.org" style="font-family:Shadows Into Light">Main-Blog</a></li>
+</ul>
+</nav>
+<div id="main">
+<div id="content">
+<div>
+<article class="hentry" role="article">
+<header>
+<h1 class="entry-title">发现个新环境msys2</h1>
+<p class="meta">
+<time class="data-article month-04 season-spring" datetime="2015-04-04T15:02:30+08:00" pubdate><span class="month">Apr</span> <span class="day">4th</span> <span class="year">2015</span></time>
+| <a href="#disqus_thread" data-disqus-identifier="https://i.rexdf.org">Comments</a>
+</p>
+</header>
+<div class="entry-content"><ul class="markdown-toc">
+<li><a href="#mingwmsys-10">MinGW/msys 1.0:</a></li>
+<li><a href="#mingw">MingW</a></li>
+<li><a href="#mingw-w64">MinGW-w64</a></li>
+<li><a href="#mingw-builds">MinGW-builds</a></li>
+<li><a href="#win-builds">Win-builds</a></li>
+<li><a href="#tdm-gcc">tdm-gcc</a></li>
+<li><a href="#cygwin">Cygwin</a></li>
+<li><a href="#msys2">msys2</a></li>
+<li><a href="#section">结束语</a></li>
+</ul>
+<p>好久没写，发生种种暂且不表。</p>
+<p>最近注意到了一个新的Windows上面的模拟Linux的项目。一般来说两大主流阵营MingW与Cygwin，这两个思路各不相同。相对来说MingW性能比较好，尽可能用WinAPI替代实现。Cygwin则是添加了一个层，利用很多dll来模拟Linux的那些syscall(典型的如fork)。所以cygwin程序一般都是需要有cygwin的dll在path里面才可以运行。MingW缺点是很多程序没法编译，如果没有专门为MingW设计的程序，基本上MingW是编译不出来的。Cygwin缺点是会比较慢。</p>
+<p>另外注意一下环境变量。MingW的环境变量path转换比较简陋很多情况下会有问题。cygwin环境下面有<code>cygpath.exe</code>这个工具来回转化(我就是用它hack了一下在cygwin的Mintty下面能运行调用nodejs处理博客压缩)。另外cygwin的path是Unicode的，偶尔会出现目录过深，windows资源管理器和<code>rd /s</code>都删不掉的超长路径文件，<code>rm -rf</code>可以在Windows下面轻易删除。</p>
+<p>msys本来是MingW的基本shell环境，从MingW项目没落之前很久就没更新过了。</p>
+<p>msys2是完全不同的项目。下面会详细给出参考。在此之前我们来看看各种Windows下面的gcc native build环境的比较。</p>
+<p>在此之前提醒一下，大部分MingW系列都是官网加SourceForge.net托管二进制的模式，所以有两个主要官网.</p>
+<h2 id="mingwmsys-10">MinGW/msys 1.0:</h2>
+<p>MinGW的官网是<a href="http://www.mingw.org/" target="_blank">http://www.mingw.org/</a>。</p>
+<p>MingW里面自带一个msys 1.0，这个比较经典，但是太老了，如果需要gcc 3.4.4与GNU Make 3.81搭配。很多最近的github与svn checkout都会编译失败。基本上除了学习csapp以外没有任何其他用途(它与CSAPP里面例子编译结果一致)。如果要用<code>/bin/gcc</code>就是msys的的古董gcc，因为MinGW的PATH里面<code>/mingw/bin</code>在<code>/bin</code>前面。</p>
+<h2 id="mingw">MingW</h2>
+<p>还算在更新从<a href="http://sourceforge.net/projects/mingw/" target="_blank">http://sourceforge.net/projects/mingw/</a>上看最后一次更新是2014年12月。估计是某个包的补丁而已。</p>
+<h2 id="mingw-w64">MinGW-w64</h2>
+<p>官网<a href="http://mingw-w64.yaxm.org" target="_blank">http://mingw-w64.yaxm.org</a>,二进制文件官网<a href="http://sourceforge.net/projects/mingw-w64/" target="_blank">http://sourceforge.net/projects/mingw-w64/</a>。</p>
+<p>应该是MinGW的后续了。一个典型的下载目录是<a href="http://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win64/Personal%20Builds/mingw-builds/4.9.2/threads-win32/seh/" target="_blank">http://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win64/Personal%20Builds/mingw-builds/4.9.2/threads-win32/seh/</a>，这样的结构。理论上应该更新最好的，是从Linux版本的MinGW编译出的Windows版本。这个是目前正规血统的MinGW项目，虽然是构建Windows的exe和dll文件，但是<strong>它能力最大发挥在Linux平台上</strong>。<strong>支持win7/8/8.1的API</strong>。被<a href="http://ffmpeg.mplayerhq.hu/" target="_blank">ffmpeg</a>，<a href="http://www.gtk.org/download-windows-64bit.html" target="_blank">GTK+</a>，<a href="http://www.openssl.org/" target="_blank">OpenSSL</a>，<a href="http://www.wxwidgets.org/" target="_blank">wxWidgets</a>，<a href="http://www.perl.org/" target="_blank">Perl</a>，<a href="http://sourceware.org/pthreads-win32/" target="_blank">phreads</a>，<a href="http://kde.org/" target="_blank">KDE Software Collection</a>，<a href="http://gimp-win.sourceforge.net/stable.html" target="_blank">GIMP</a>，<a href="http://www.blender.org/" target="_blank">Blender</a>，<a href="http://www.r-project.org/" target="_blank">The R Project for Statistical Computing</a>等项目所使用。但是Windows版本各种bug吧。</p>
+<h2 id="mingw-builds">MinGW-builds</h2>
+<p>被废弃的官网<a href="https://code.google.com/p/mingw-builds/" target="_blank">https://code.google.com/p/mingw-builds/</a>.</p>
+<p>二进制文件官网<a href="http://sourceforge.net/projects/mingwbuilds/" target="_blank">http://sourceforge.net/projects/mingwbuilds/</a>.</p>
+<p>似乎是俄罗斯人开发的，目前似乎停止开发了，已有的发行版gcc 4.6.2-4.8.1。一些feature如下(我也不懂直接复制了)。</p>
+<pre><code>OpenMP
+LTO
+Graphite
+std Thread support library
+std Atomic operations library
+Native TLS Callbacks
+Wide-Character Startup (-municode)
+32-bit and 64-bit Windows
+Multilib toolchains
+Cross-compiling from x86_64 for i686 and vice versa
+</code></pre>
+<h2 id="win-builds">Win-builds</h2>
+<p>官网是<a href="http://win-builds.org/" target="_blank">http://win-builds.org/</a>.</p>
+<p>它需要依附在MinGW或者Cygwin的shell环境下，Linux下也有一个版本。最新是4.8.3版本。</p>
+<p>这个比较稳定，其集成了Qt, Curl, EFL, freetype, GTK+, lua, openssl, sqlite, wget, zlib…等等92个库。支持Windows和Linux，感觉如果是做开发，这个好像是个不错的选择。</p>
+<p><img src="/images/winbuilds_screenshot.png" alt="Win-builds" class="center fancybox"></p>
+<h2 id="tdm-gcc">tdm-gcc</h2>
+<p>官网是<a href="http://tdm-gcc.tdragon.net/" target="_blank">http://tdm-gcc.tdragon.net/</a>.</p>
+<p>这个还是比较个性和实用的选择。它默认选用的posix，这个可能会引起一些问题。但是<a href="http://www.wxwidgets.org" target="_blank">wxWidgets</a>官网推荐的编译器就是它，另外一部分人喜欢的Dev-CPP的后续开发版本<a href="http://sourceforge.net/projects/orwelldevcpp/" target="_blank">orwelldevcpp</a>也是用的它。可见其定制还是有一定合理性的。</p>
+<p>更新较快最新已经更新到4.9.2了。</p>
+<h2 id="cygwin">Cygwin</h2>
+<p>这个不用在这里多说，社区很活跃，发邮件很快就有人回复。软件更新也很频繁。这里说下mirror，除了163等。阿里也有mirror，<a href="http://mirrors.aliyun.com/" target="_blank">http://mirrors.aliyun.com/</a>，速度会比较快。但是注意，添加mirror有技巧。首先复制的目录应该是<code>http://mirrors.aliyun.com/cygwin</code>不能带最后的那个<code>/</code>，其次添加之后需要首先随手点击一下其他的，然后再点击刚刚添加的阿里才可以，手动换其他的源也是这样。</p>
+<h2 id="msys2">msys2</h2>
+<p>官网<a href="http://msys2.github.io" target="_blank">http://msys2.github.io</a> 可能在目前github的一系列事件有关，国内没法直接打开.二进制文件官网<a href="http://sourceforge.net/projects/msys2/" target="_blank">http://sourceforge.net/projects/msys2/</a>.</p>
+<p>一个<a href="http://sourceforge.net/p/msys2/wiki/Contributing%20to%20MSYS2/" target="_blank">简介</a>.</p>
+<p>两个关键的github repo:</p>
+<p><a href="https://github.com/Alexpux/MSYS2-packages" target="_blank">https://github.com/Alexpux/MSYS2-packages</a></p>
+<p><a href="https://github.com/Alexpux/MINGW-packages" target="_blank">https://github.com/Alexpux/MINGW-packages</a></p>
+<p>如果想自己从源码编译可以用他的patch。实际上SourceForge.net上面的就是用他的patch编译出来的。</p>
+<p>另外就是它采用了我最喜欢的ArchLinux的<code>pacman -Syu</code>。简直棒到不行。但是略微有点小问题就是需要rebase，还好它比cygwin自动化一些，直接执行根目录里面的<code>autorebase.bat</code>即可。</p>
+<p>我发现他的github里面有很多在所有其他地方没见过的包，比如nodejs(nodejs官网的win版本在cygwin的shell下面会找不到正确的目录，直接拒绝执行，这会导致很多需要用nodejs的命令行项目无法编译以及使用)。</p>
+<p>一个国内的二进制mirror:
+<a href="https://lug.ustc.edu.cn/wiki/mirrors/help/msys2" target="_blank">MSYS2 镜像使用帮助</a>.</p>
+<p><img src="/images/msys2_sc.png" alt="MSYS2" class="center fancybox"></p>
+<h2 id="section">结束语</h2>
+<p>最后说一下国人据说很有前途的<a href="https://github.com/wishstudio/flinux" target="_blank">flinux</a>的包管理也是基于pacman的，看来大家都是比较喜欢<code>pacman</code>的了。</p>
+</div>
+<footer>
+<p class="meta">
+<span class="byline author vcard">Posted by <span class="fn">Rexdf</span></span>
+<time class="data-article month-04 season-spring" datetime="2015-04-04T15:02:30+08:00" pubdate><span class="month">Apr</span> <span class="day">4th</span> <span class="year">2015</span></time>
+<span class="categories">
+<a class="category" href="/blog/categories/cygwin/">Cygwin</a>, <a class="category" href="/blog/categories/windows/">Windows</a>
+</span>
+</p>
+<div class="sharing">
+</div>
+<p class="meta">
+<a class="basic-alignment left" href="/blog/2015/01/09/cheng-xu-yu-yan/" title="Previous Post: 程序语言">&laquo; 程序语言</a>
+<a class="basic-alignment right" href="/blog/2015/04/23/cru-he-fan-hui-doubleyu-longlong/" title="Next Post: C如何返回double与longlong">C如何返回double与longlong &raquo;</a>
+</p>
+</footer>
+</article>
+<section>
+<h1>Comments</h1>
+<div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
+</div>
+<aside class="sidebar">
+<section>
+<h1>Categories</h1>
+<ul id="categories">
+<li class="category"><a href="/blog/categories/acm/">ACM <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/algorithm/">Algorithm <sup>2</sup></a></li>
+<li class="category"><a href="/blog/categories/assembly/">Assembly <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/cygwin/">Cygwin <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/gnu/">GNU <sup>8</sup></a></li>
+<li class="category"><a href="/blog/categories/math/">Math <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/octopress/">Octopress <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/programming/">Programming <sup>6</sup></a></li>
+<li class="category"><a href="/blog/categories/security/">Security <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sublime/">Sublime <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/synology/">Synology <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/sysadmin/">SysAdmin <sup>5</sup></a></li>
+<li class="category"><a href="/blog/categories/web/">Web <sup>3</sup></a></li>
+<li class="category"><a href="/blog/categories/windows/">Windows <sup>7</sup></a></li>
+<li class="category"><a href="/blog/categories/proxmox/">proxmox <sup>1</sup></a></li>
+<li class="category"><a href="/blog/categories/ri-chang/">日常 <sup>37</sup></a></li>
+</ul>
+</section>
+<section>
+<h1>Recent Posts</h1>
+<ul id="recent_posts">
+<li class="post">
+<a href="/blog/2024/12/16/fu-wu-qi-wa-kuang-bing-du-de-cha-sha/">服务器挖矿病毒的查杀</a>
+</li>
+<li class="post">
+<a href="/blog/2021/07/11/apple-m1-bian-yi-tensorflow/">Apple M1 编译tensorflow</a>
+</li>
+<li class="post">
+<a href="/blog/2021/02/27/chromiumbian-ma-qi-wen-ti/">Chromium编码器问题</a>
+</li>
+<li class="post">
+<a href="/blog/2020/12/13/proxmoxbi-ji/">Proxmox笔记</a>
+</li>
+<li class="post">
+<a href="/blog/2020/11/15/lun-yan-du-yu-shen-du/">论广度与深度</a>
+</li>
+</ul>
+</section>
+<section>
+<iframe frameborder="0" scrolling="no" referrerpolicy="unsafe-url" style="width:283px;height:200px" src="https://t.rexdf.org/?m=app&a=showwidget&name=rexdf&type=1&width=283px&height=500px"></iframe>
+</section>
+<section>
+<h1>GitHub Repos</h1>
+<ul id="gh_repos">
+<li class="loading">Status updating...</li>
+</ul>
+<a href="https://github.com/rexdf">@rexdf</a> on GitHub
+<script type="text/javascript">$(document).ready(function(){if(!window.jXHR){var e=document.createElement("script");e.type="text/javascript",e.src="/javascripts/libs/jXHR.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}github.showRepos({user:"rexdf",count:0,skip_forks:!0,target:"#gh_repos"})})</script>
+</section>
+</aside>
+</div>
+</div>
+<footer role="contentinfo"><p>
+<span class="credit">Copyright &copy; 2024 - Rexdf -</span> |
+<span class="credit">Powered by <a name="bottoms" target="_blank" href="http://octopress.org">Octopress</a></span> |
+<span class="credit">Theme by ：<a href="https://blog.rexdf.org/" target="_blank" rel="theme">Rexdf</a></span> |
+<span class="credit">Host by：<a href="https://github.com/" target="_blank" rel="host">Github.com</a></span> |
+<span class="credit">版权声明：<a href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" target="_blank" rel="license">CC BY-NC-SA 3.0</a><img src="https://analytics.rexdf.net/piwik.php?idsite=1&amp;rec=1" style="border:0" alt="" referrerpolicy="no-referrer-when-downgrade"></span>|
+<span class="credit"><a href="/sitemap.xml" rel="sitemap">sitemap</a></span>
+</p>
+<script type="text/javascript" src="https://tajs.qq.com/stats?sId=30296377" charset="UTF-8"></script>
+</footer>
+<script type="text/javascript">var disqus_shortname="rexdf",disqus_identifier="https://i.rexdf.org/blog/2015/04/04/fa-xian-ge-xin-huan-jing-msys2/",disqus_url="https://i.rexdf.org/blog/2015/04/04/fa-xian-ge-xin-huan-jing-msys2/",disqus_script="embed.js";!function(){var s=document.createElement("script");s.type="text/javascript",s.async=!0,s.src="//"+disqus_shortname+".disqus.com/"+disqus_script,(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(s)}()</script>
+<script type="text/javascript">$(function(){$(".entry-content").each(function(t){var r=t;$(this).find("img.fancybox").each(function(){var t=$(this),a=t.attr("title"),n=t.attr("class");t.removeAttr("class"),t.wrap('<a href="'+this.src+'" class="'+n+'" rel="gallery'+r+'" />'),""!=a&&t.parent().attr("title",a)})}),$(".fancybox").fancybox()})</script>
+</body>
+</html>
